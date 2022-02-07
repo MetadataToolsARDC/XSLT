@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<codelists xmlns:gmd="http://www.isotc211.org/2005/gmd">
+	<codelist name="gmd:CI_DateTypeCode">
+		<entry>
+			<code>creation</code>
+			<label>Creation</label>
+			<description>created</description>
+		</entry>
+		<entry>
+			<code>publication</code>
+			<label>Publication</label>
+			<description>publicationDate</description>
+		</entry>
+		<entry>
+			<code>revision</code>
+			<label>Revision</label>
+			<description>modified</description>
+		</entry>
+	</codelist>
+	<codelist name="gmd:CI_RoleCode">
+		<entry>
+			<code>resourceProvider</code>
+			<label>Resource provider</label>
+			<description></description>
+		</entry>
+		<entry>
+			<code>custodian</code>
+			<label>Custodian</label>
+			<description></description>
+		</entry>
+		<entry>
+			<code>owner</code>
+			<label>Owner</label>
+			<description></description>
+		</entry>
+		<entry>
+			<code>user</code>
+			<label>User</label>
+			<description></description>
+		</entry>
+		<entry>
+			<code>distributor</code>
+			<label>Distributor</label>
+			<description></description>
+		</entry>
+		<entry>
+			<code>originator</code>
+			<label>Originator</label>
+			<description></description>
+		</entry>
+		<entry>
+			<code>pointOfContact</code>
+			<label>Point of contact</label>
+			<description></description>
+		</entry>
+		<entry>
+			<code>principalInvestigator</code>
+			<label>Principal investigator</label>
+			<description>hasPrincipalInvestigator</description>
+		</entry>
+		<entry>
+			<code>processor</code>
+			<label>Processor</label>
+			<description></description>
+		</entry>
+		<entry>
+			<code>publisher</code>
+			<label>Publisher</label>
+			<description></description>
+		</entry>
+		<entry>
+			<code>author</code>
+			<label>Author</label>
+			<description></description>
+		</entry>
+			</codelist>
+</codelists>
