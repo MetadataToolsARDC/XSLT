@@ -89,7 +89,7 @@
             
             <!--xsl:apply-templates select="mdb:contact/cit:CI_Responsibility/cit:party[contains(lower-case(*/cit:positionName), 'data manager')]" mode="DIF_Data_Centre"/-->
             
-            <!-- Note defaulted area below needs to be changed if you aren't that data centre 0-->
+            <!-- Note defaulted area below needs to be changed if you aren't that data centre - you can use the line above if you want to make it conditional on actual values-->
             
             <Data_Center>
                 <Data_Center_Name>
@@ -228,6 +228,7 @@
                     <Role>INVESTIGATOR</Role>
                 </xsl:when>
                 <xsl:otherwise>
+                    <!-- Just take the first one if there is no INVESTIGATOR -->
                     <Role><xsl:value-of select="$mapped_role_Sequence[1]"/></Role>
                 </xsl:otherwise>
             </xsl:choose>
