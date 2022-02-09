@@ -214,19 +214,9 @@
         </Data_Set_Citation>
     </xsl:template>
     <xsl:template match="cit:CI_Responsibility" mode="DIF_Personnel_Grouped">
-        <xsl:variable name="nameGroupingKey" select="current-grouping-key()"/>
         <xsl:variable name="namePart_sequence" select="local:nameSeparatedNoTitle_sequence(current-grouping-key())" as="xs:string*"/>
-        <xsl:variable name="role_sequence">
-            <xsl:for-each-group select="current-group()" group-by="cit:role/cit:CI_RoleCode/@codeListValue">
-              <xsl:value-of select="current-grouping-key()"/>
-            </xsl:for-each-group>
-        </xsl:variable>
         
         <Personnel>
-            <!--xsl:for-each select="$role_sequence">
-                <Role><xsl:value-of select="local:mapRole_ISO_DIF(.)"/></Role>
-            </xsl:for-each-->
-            
             <xsl:variable name="mapped_role_Sequence" as="xs:string*">
                 <xsl:for-each-group select="current-group()" group-by="local:mapRole_ISO_DIF(cit:role/cit:CI_RoleCode/@codeListValue)">
                     <xsl:value-of select="current-grouping-key()"/>
@@ -243,7 +233,7 @@
             </xsl:choose>
             
             <xsl:choose>
-                <xsl:when test="count($nameGroupingKey[string-length() > 0]) and (count($namePart_sequence) > 0)">
+                <xsl:when test="(count($namePart_sequence) > 0)">
                     <First_Name>
                         <xsl:if test="count($namePart_sequence) > 1">
                             <xsl:value-of select="$namePart_sequence[2]"/>
