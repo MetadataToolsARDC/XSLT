@@ -63,11 +63,11 @@
         <xsl:apply-templates select="." mode="middleFilter"/>
     </xsl:template>
     
-    <!-- IMOS have requested that a dataset be indicated as 'open' access if it has licence CC_BY 
-            so this template overrides the core function in ISO19115-3_To)_RIFCS.xsl 
+    <!-- AODN have requested that a dataset be indicated as 'open' access if it has licence CC_BY 
+            so this template overrides the core function in ISO19115-3_To_RIFCS.xsl 
             Logic if: if licences contains CC_BY, so this includes CC_BY_NC etc..
-        Waiting to hear whether this is suitable for AODN too, in which case the below will be uncommented -->
-    <!--xsl:template match="*[contains(lower-case(name()),'identification')]" mode="registryObject_rights_access">
+        -->
+    <xsl:template match="*[contains(lower-case(name()),'identification')]" mode="registryObject_rights_access">
         
         
         <xsl:for-each select="mri:resourceConstraints/mco:MD_LegalConstraints[(count(mco:reference/cit:CI_Citation) > 0)]/mco:reference/cit:CI_Citation">
@@ -99,7 +99,7 @@
         </xsl:for-each>
             
         
-    </xsl:template-->
+    </xsl:template>
     
     
       
