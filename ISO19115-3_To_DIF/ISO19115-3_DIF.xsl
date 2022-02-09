@@ -64,7 +64,12 @@
             <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:citedResponsibleParty/cit:CI_Responsibility" mode="DIF_Personnel"/>
             -->
             
-            <xsl:for-each-group select="mdb:contact/cit:CI_Responsibility | mri:contact/cit:CI_Responsibility | mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:citedResponsibleParty/cit:CI_Responsibility" group-by="cit:party/cit:CI_Organisation/cit:individual/cit:CI_Individual/cit:name">
+            <xsl:for-each-group select="
+                mdb:contact/cit:CI_Responsibility | 
+                mri:contact/cit:CI_Responsibility | 
+                mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:citedResponsibleParty/cit:CI_Responsibility |
+                mdb:identificationInfo/mri:MD_DataIdentification/mri:pointOfContact/cit:CI_Responsibility" 
+                group-by="cit:party/cit:CI_Organisation/cit:individual/cit:CI_Individual/cit:name">
                 <xsl:apply-templates select="." mode="DIF_Personnel_Grouped"></xsl:apply-templates>
             </xsl:for-each-group>
             
@@ -214,13 +219,14 @@
         </Data_Set_Citation>
     </xsl:template>
     <xsl:template match="cit:CI_Responsibility" mode="DIF_Personnel_Grouped">
+        
         <xsl:variable name="namePart_sequence" select="local:nameSeparatedNoTitle_sequence(current-grouping-key())" as="xs:string*"/>
         
         <Personnel>
             <xsl:variable name="mapped_role_Sequence" as="xs:string*">
-                <xsl:for-each-group select="current-group()" group-by="local:mapRole_ISO_DIF(cit:role/cit:CI_RoleCode/@codeListValue)">
-                    <xsl:value-of select="current-grouping-key()"/>
-                </xsl:for-each-group>
+                <xsl:for-each select="current-group()/cit:role/cit:CI_RoleCode/@codeListValue">
+                    <xsl:value-of select="local:mapRole_ISO_DIF(.)"/>
+                </xsl:for-each>
             </xsl:variable>
             
             <xsl:choose>
