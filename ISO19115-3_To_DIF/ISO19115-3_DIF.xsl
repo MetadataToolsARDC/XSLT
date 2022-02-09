@@ -58,7 +58,15 @@
             
             <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification" mode="DIF_Data_Set_Citation"/>
             
+            <!--
             <xsl:apply-templates select="mdb:contact/cit:CI_Responsibility" mode="DIF_Personnel"/>
+            <xsl:apply-templates select="mri:contact/cit:CI_Responsibility" mode="DIF_Personnel"/>
+            <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:citedResponsibleParty/cit:CI_Responsibility" mode="DIF_Personnel"/>
+            -->
+            
+            <xsl:for-each-group select="mdb:contact/cit:CI_Responsibility | mri:contact/cit:CI_Responsibility | mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:citedResponsibleParty/cit:CI_Responsibility" group-by="cit:party/cit:CI_Organisation/cit:individual/cit:CI_Individual/cit:name">
+                <xsl:apply-templates select="." mode="DIF_Personnel_Grouped"></xsl:apply-templates>
+            </xsl:for-each-group>
             
             <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:descriptiveKeywords/mri:MD_Keywords[contains(lower-case(mri:thesaurusName/cit:CI_Citation/cit:title), 'gcmd')]/mri:keyword" mode="DIF_Parameters"/>
             
@@ -79,7 +87,23 @@
             
             <xsl:apply-templates select="mdb:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode" mode="DIF_Data_Set_Language"/>
             
-            <xsl:apply-templates select="mdb:contact/cit:CI_Responsibility/cit:party[contains(lower-case(*/cit:positionName), 'data manager')]" mode="DIF_Data_Centre"/>
+            <!--xsl:apply-templates select="mdb:contact/cit:CI_Responsibility/cit:party[contains(lower-case(*/cit:positionName), 'data manager')]" mode="DIF_Data_Centre"/-->
+            
+            <!-- Note defaulted area below needs to be changed if you aren't that data centre 0-->
+            
+            <Data_Center>
+                <Data_Center_Name>
+                    <Short_Name>AU/IMAS</Short_Name>
+                    <Long_Name>Institute for Marine and Antarctic Studies (IMAS)</Long_Name>
+                </Data_Center_Name>
+                <Personnel>
+                    <Role>DATA CENTER CONTACT</Role>
+                    <First_Name>Institute for Marine and Antarctic Studies (IMAS)</First_Name>
+                    <Middle_Name/>
+                    <Last_Name/>
+                    <Email>IMAS.DataManager@utas.edu.au</Email>
+                </Personnel>
+            </Data_Center>
             
             <xsl:apply-templates select="mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatSpecificationCitation/cit:CI_Citation/cit:title" mode="DIF_Distribution"/>
             
@@ -93,19 +117,20 @@
             <xsl:apply-templates select="mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions/mrd:onLine/cit:CI_OnlineResource
                 [not(contains(lower-case(cit:protocol), 'http--publication'))]"  mode="DIF_Related_URL_ExceptPublications"/>
             
+            <xsl:apply-templates select="mdb:metadataLinkage/cit:CI_OnlineResource"  mode="DIF_Related_URL_ExceptPublications"/>
+            
             <xsl:apply-templates select="mdb:distributionInfo/mrd:MD_Distribution/mrd:transferOptions/mrd:MD_DigitalTransferOptions"  mode="DIF_Related_URL_OnlyPublications"/>
             
             <xsl:apply-templates select="mdb:parentMetadata" mode="DIF_Parent_DIF"/>
             
-            <!-- Ask Emma whether the following defaults are still accurate -->
+            <!-- Note defaulted values here -->
             <Originating_Metadata_Node>GCMD</Originating_Metadata_Node>
             <Metadata_Name>CEOS IDN DIF</Metadata_Name>
             <Metadata_Version>VERSION 9.9.3</Metadata_Version>
             
-            <xsl:apply-templates select="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:date/cit:CI_Date[contains(lower-case(cit:dateTyp/cit:CI_DateTypeCode/@codeListValue), 'creation')]/cit:date/gco:Date" mode="DIF_Creation_Date"/>
+            <xsl:apply-templates select="mdb:dateInfo/cit:CI_Date[contains(lower-case(cit:dateType/cit:CI_DateTypeCode/@codeListValue), 'creation')]/cit:date/*[contains(local-name(), 'Date')]" mode="DIF_Creation_Date"/>
+            <xsl:apply-templates select="mdb:dateInfo/cit:CI_Date[contains(lower-case(cit:dateType/cit:CI_DateTypeCode/@codeListValue), 'revision')]/cit:date/*[contains(local-name(), 'Date')]" mode="DIF_Revision_Date"/>
             
-            <!-- Ask Emma about revision date -->
-            <!--xsl:apply-templates select="??" mode="DIF_Last_DIF_Revision_Date"/-->
         </DIF>
     </xsl:template>
         
@@ -188,15 +213,37 @@
             </Dataset_DOI>
         </Data_Set_Citation>
     </xsl:template>
-    
-    <xsl:template match="cit:CI_Responsibility" mode="DIF_Personnel">
+    <xsl:template match="cit:CI_Responsibility" mode="DIF_Personnel_Grouped">
+        <xsl:variable name="nameGroupingKey" select="current-grouping-key()"/>
+        <xsl:variable name="namePart_sequence" select="local:nameSeparatedNoTitle_sequence(current-grouping-key())" as="xs:string*"/>
+        <xsl:variable name="role_sequence">
+            <xsl:for-each-group select="current-group()" group-by="cit:role/cit:CI_RoleCode/@codeListValue">
+              <xsl:value-of select="current-grouping-key()"/>
+            </xsl:for-each-group>
+        </xsl:variable>
         
-        <xsl:variable name="namePart_sequence" select="local:nameSeparatedNoTitle_sequence(cit:party/cit:CI_Organisation/cit:individual/cit:CI_Individual/cit:name)" as="xs:string*"/>
-         
         <Personnel>
-            <Role><xsl:value-of select="local:mapRole_ISO_DIF(cit:role/cit:CI_RoleCode/@codeListValue)"/></Role>
+            <!--xsl:for-each select="$role_sequence">
+                <Role><xsl:value-of select="local:mapRole_ISO_DIF(.)"/></Role>
+            </xsl:for-each-->
+            
+            <xsl:variable name="mapped_role_Sequence" as="xs:string*">
+                <xsl:for-each-group select="current-group()" group-by="local:mapRole_ISO_DIF(cit:role/cit:CI_RoleCode/@codeListValue)">
+                    <xsl:value-of select="current-grouping-key()"/>
+                </xsl:for-each-group>
+            </xsl:variable>
+            
             <xsl:choose>
-                <xsl:when test="count(cit:party/cit:CI_Organisation/cit:individual/cit:CI_Individual/cit:name[string-length() > 0]) and (count($namePart_sequence) > 0)">
+                <xsl:when test="local:sequenceContains($mapped_role_Sequence, 'INVESTIGATOR')">
+                    <Role>INVESTIGATOR</Role>
+                </xsl:when>
+                <xsl:otherwise>
+                    <Role><xsl:value-of select="$mapped_role_Sequence[1]"/></Role>
+                </xsl:otherwise>
+            </xsl:choose>
+            
+            <xsl:choose>
+                <xsl:when test="count($nameGroupingKey[string-length() > 0]) and (count($namePart_sequence) > 0)">
                     <First_Name>
                         <xsl:if test="count($namePart_sequence) > 1">
                             <xsl:value-of select="$namePart_sequence[2]"/>
@@ -208,20 +255,8 @@
                         </xsl:if>
                     </Last_Name>
                 </xsl:when>
-                <xsl:when test="count(cit:party/cit:CI_Organisation/cit:individual/cit:CI_Individual/cit:positionName[string-length() > 0]) > 0">
-                    <!-- Check with Emma whether DIF has a position name, as made up in the next row -->
-                    <xsl:for-each select="cit:party/cit:CI_Organisation/cit:individual/cit:CI_Individual/cit:positionName">
-                     <Position_Name>
-                         <xsl:value-of select="."/>
-                     </Position_Name>
-                    </xsl:for-each>
-                </xsl:when>
-                <xsl:otherwise>
-                    
-                </xsl:otherwise>
-            </xsl:choose>
-            
-            <xsl:apply-templates select="cit:party/cit:CI_Organisation/cit:individual/cit:CI_Individual/cit:contactInfo/cit:CI_Contact/cit:address/cit:CI_Address" mode="DIF_Personnel_Address"/>
+               </xsl:choose>
+            <xsl:apply-templates select="current-group()[1]/cit:party/cit:CI_Organisation/cit:individual/cit:CI_Individual/cit:contactInfo/cit:CI_Contact/cit:address/cit:CI_Address" mode="DIF_Personnel_Address"/>
         </Personnel>
         
     </xsl:template>
@@ -262,28 +297,28 @@
         
                 <Category>
                     <xsl:if test="count($parameter_sequence) > 0">
-                        <xsl:value-of select="$parameter_sequence[1]"/>
+                        <xsl:value-of select="normalize-space($parameter_sequence[1])"/>
                     </xsl:if>
                 </Category>
                 <Topic>
                     <xsl:if test="count($parameter_sequence) > 1">
-                        <xsl:value-of select="$parameter_sequence[2]"/>
+                        <xsl:value-of select="normalize-space($parameter_sequence[2])"/>
                     </xsl:if>
                 </Topic>
                 <Term>
                     <xsl:if test="count($parameter_sequence) > 2">
-                        <xsl:value-of select="$parameter_sequence[3]"/>
+                        <xsl:value-of select="normalize-space($parameter_sequence[3])"/>
                     </xsl:if>
                 </Term>
                 <Variable_Level_1>
                     <xsl:if test="count($parameter_sequence) > 3">
-                       <xsl:value-of select="$parameter_sequence[4]"/>
+                        <xsl:value-of select="normalize-space($parameter_sequence[4])"/>
                     </xsl:if>
                 </Variable_Level_1>
                 
             <Variable_Level_2>
                 <xsl:if test="count($parameter_sequence) > 4">
-                    <xsl:value-of select="$parameter_sequence[5]"/>
+                    <xsl:value-of select="normalize-space($parameter_sequence[5])"/>
                 </xsl:if>
             </Variable_Level_2>
             
@@ -355,7 +390,7 @@
                 <xsl:value-of select="gex:geographicElement/gex:EX_GeographicBoundingBox/gex:eastBoundLongitude"/>
             </Easternmost_Longitude>
             
-            <xsl:apply-templates select="gex:EX_Extent/gex:verticalElement/gex:EX_VerticalExtent" mode="DIF_Spatial_Coverage_Vertical"/>
+            <xsl:apply-templates select="gex:verticalElement/gex:EX_VerticalExtent" mode="DIF_Spatial_Coverage_Vertical"/>
             
         </Spatial_Coverage>
         
@@ -402,12 +437,13 @@
         </Data_Set_Language>
     </xsl:template>
     
-   
+    <!--
+  
     <xsl:template match="cit:party" mode="DIF_Data_Centre">
         <Data_Center>
             <Data_Center_Name>
                 <Short_Name>
-                    <xsl:if test="contains(lower-case(cit:CI_Organisation/cit:name), 'aims') or contains(lower-case(cit:CI_Organisation/cit:name), 'institute for marine and antarctic studies')">
+                    <xsl:if test="contains(lower-case(cit:CI_Organisation/cit:name), 'imas') or contains(lower-case(cit:CI_Organisation/cit:name), 'institute for marine and antarctic studies')">
                         <xsl:text>AU/IMAS</xsl:text>
                     </xsl:if>
                 </Short_Name>
@@ -445,6 +481,7 @@
             </Personnel>
         </Data_Center>
     </xsl:template>
+    -->
     
     <xsl:template match="cit:title" mode="DIF_Distribution">
         <Distribution>
@@ -492,10 +529,16 @@
             <Description>
                 <xsl:choose>
                     <xsl:when test="contains(lower-case(cit:protocol), 'wfs') or contains(lower-case(cit:protocol), 'wms')">
-                        <xsl:value-of select="cit:name"/>
+                        <xsl:value-of select="cit:description"/>
+                        <xsl:if test="string-length(cit:name) > 0">
+                            <xsl:value-of select="concat(' (', cit:name, ')')"/>
+                        </xsl:if>
+                    </xsl:when>
+                    <xsl:when test="contains(lower-case(cit:protocol), 'http--metadata-url')">
+                        <xsl:value-of select="cit:description"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:value-of select="cit:description"/>
+                        <xsl:value-of select="cit:name"/>
                     </xsl:otherwise>
                 </xsl:choose>
             </Description>
@@ -508,11 +551,17 @@
             </Parent_DIF>
         </xsl:template>
         
-        <xsl:template match="gco:DateTime" mode="DIF_Creation_Date">
+        <xsl:template match="*[contains(local-name(), 'Date')]" mode="DIF_Creation_Date">
             <DIF_Creation_Date>
                 <xsl:value-of select="local:truncDate(.)"/>
              </DIF_Creation_Date>
         </xsl:template>
+    
+    <xsl:template match="*[contains(local-name(), 'Date')]" mode="DIF_Revision_Date">
+        <DIF_Revision_Date>
+            <xsl:value-of select="local:truncDate(.)"/>
+        </DIF_Revision_Date>
+    </xsl:template>
         
         <!--xsl:template match="??" mode="DIF_Last_DIF_Revision_Date">
             <Last_DIF_Revision_Date>
@@ -631,6 +680,9 @@
             <xsl:when test="contains(lower-case($role), 'pointofcontact')">
                 <xsl:text>TECHNICAL CONTACT</xsl:text>
             </xsl:when>
+            <xsl:otherwise>
+                <xsl:text>TECHNICAL CONTACT</xsl:text>
+            </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
     
@@ -661,6 +713,29 @@
         </xsl:choose>
     </xsl:function>
     
+    
+    <xsl:function name="local:sequenceContains" as="xs:boolean">
+        <xsl:param name="sequence" as="xs:string*"/>
+        <xsl:param name="str" as="xs:string"/>
+        
+        <xsl:variable name="true_sequence" as="xs:boolean*">
+            <xsl:for-each select="distinct-values($sequence)">
+                <xsl:if test="contains(lower-case(.), lower-case($str))">
+                    <xsl:copy-of select="true()"/>
+                </xsl:if>
+            </xsl:for-each>
+        </xsl:variable>
+        
+        <xsl:choose>
+            <xsl:when test="count($true_sequence) > 0">
+                <xsl:copy-of select="true()"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:copy-of select="false()"/>
+            </xsl:otherwise>
+        </xsl:choose>
+        
+    </xsl:function>
     
     
 </xsl:stylesheet>
