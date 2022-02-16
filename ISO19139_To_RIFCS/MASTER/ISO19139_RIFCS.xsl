@@ -1305,16 +1305,16 @@
                     
                     <xsl:variable name="dateValueAndType_sequence" as="xs:string*">
                         <xsl:choose>
-                            <xsl:when test="count(gmd:date/gmd:CI_Date[contains(gmd:dateType/gmd:CI_DateTypeCode/@codeListValue, 'publication')]/gmd:date/gco:Date[string-length(.) > 0]) > 0">
-                                <xsl:value-of select="gmd:date/gmd:CI_Date[contains(gmd:dateType/gmd:CI_DateTypeCode/@codeListValue, 'publication')]/gmd:date/gco:Date[string-length(.) > 0]"/> 
+                            <xsl:when test="count(gmd:date/gmd:CI_Date[contains(gmd:dateType/gmd:CI_DateTypeCode/@codeListValue, 'publication')]/gmd:date/*[contains(local-name(), 'Date')][string-length(.) > 0]) > 0">
+                                <xsl:value-of select="gmd:date/gmd:CI_Date[contains(gmd:dateType/gmd:CI_DateTypeCode/@codeListValue, 'publication')]/gmd:date/*[contains(local-name(), 'Date')][string-length(.) > 0]"/> 
                                 <xsl:text>publication</xsl:text>
                             </xsl:when>
-                            <xsl:when test="count(gmd:date/gmd:CI_Date[contains(gmd:dateType/gmd:CI_DateTypeCode/@codeListValue, 'revision')]/gmd:date/gco:Date[string-length(.) > 0]) > 0">
-                                <xsl:value-of select="gmd:date/gmd:CI_Date[contains(gmd:dateType/gmd:CI_DateTypeCode/@codeListValue, 'revision')]/gmd:date/gco:Date[string-length(.) > 0]"/> 
+                            <xsl:when test="count(gmd:date/gmd:CI_Date[contains(gmd:dateType/gmd:CI_DateTypeCode/@codeListValue, 'revision')]/gmd:date/*[contains(local-name(), 'Date')][string-length(.) > 0]) > 0">
+                                <xsl:value-of select="gmd:date/gmd:CI_Date[contains(gmd:dateType/gmd:CI_DateTypeCode/@codeListValue, 'revision')]/gmd:date/*[contains(local-name(), 'Date')][string-length(.) > 0]"/> 
                                 <xsl:text>revision</xsl:text>
                             </xsl:when>
-                            <xsl:when test="count(gmd:date/gmd:CI_Date[contains(gmd:dateType/gmd:CI_DateTypeCode/@codeListValue, 'creation')]/gmd:date/gco:Date[string-length(.) > 0]) > 0">
-                                <xsl:value-of select="gmd:date/gmd:CI_Date[contains(gmd:dateType/gmd:CI_DateTypeCode/@codeListValue, 'creation')]/gmd:date/gco:Date[string-length(.) > 0]"/> 
+                            <xsl:when test="count(gmd:date/gmd:CI_Date[contains(gmd:dateType/gmd:CI_DateTypeCode/@codeListValue, 'creation')]/gmd:date/*[contains(local-name(), 'Date')][string-length(.) > 0]) > 0">
+                                <xsl:value-of select="gmd:date/gmd:CI_Date[contains(gmd:dateType/gmd:CI_DateTypeCode/@codeListValue, 'creation')]/gmd:date/*[contains(local-name(), 'Date')][string-length(.) > 0]"/> 
                                 <xsl:text>creation</xsl:text>
                             </xsl:when>
                         </xsl:choose>
