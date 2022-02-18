@@ -73,6 +73,11 @@
                 <xsl:apply-templates select="." mode="DIF_Personnel_Grouped"></xsl:apply-templates>
             </xsl:for-each-group>
             
+            <!-- Note defaulted values here -->
+            <Discipline>
+                <Discipline_Name>EARTH SCIENCE</Discipline_Name>
+            </Discipline>
+            
             <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:descriptiveKeywords/mri:MD_Keywords[contains(lower-case(mri:thesaurusName/cit:CI_Citation/cit:title), 'gcmd')]/mri:keyword" mode="DIF_Parameters"/>
             
             <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:topicCategory/mri:MD_TopicCategoryCode" mode="DIF_ISO_Topic_Category"/>
@@ -80,15 +85,16 @@
             <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:descriptiveKeywords/mri:MD_Keywords[not (contains(lower-case(mri:thesaurusName/cit:CI_Citation/cit:title), 'gcmd'))]/mri:keyword" mode="DIF_Keyword"/>
             
             <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:extent/gex:EX_Extent/gex:temporalElement/gex:EX_TemporalExtent/gex:extent/gml:TimePeriod" mode="DIF_Temporal_Coverage"/>
-            
-            <!-- Ask Emma for an example of timePosition --> 
-            <!--xsl:apply-templates select="gmd:identificationInfo/*:MD_DataIdentification/gmd:extent/gmd:EX_Extent/gmd:temporalElement/*:EX_TemporalExtent/gmd:extent/gml:TimeInstant/gml:timePosition" mode="DIF_Temporal_Coverage"/-->
+               
+            <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:extent/gex:EX_Extent/gex:temporalElement/gex:EX_TemporalExtent/gex:extent/gml:TimeInstant/gml:timePosition[string-length() > 0]" mode="DIF_Temporal_Coverage_TimePosition"/>
             
             <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:status/mcc:MD_ProgressCode" mode="DIF_Data_Set_Progress"/>
             
             <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:extent/gex:EX_Extent" mode="DIF_Spatial_Coverage"/>
             
-            <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:resourceConstraints[3]/mco:MD_LegalConstraints/mco:otherConstraints" mode="DIF_Access_Constraints"/>
+            <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:resourceConstraints/mco:MD_LegalConstraints/mco:otherConstraints" mode="DIF_Use_Constraints"/>
+            
+            <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:resourceConstraints/mco:MD_LegalConstraints/mco:useLimitation" mode="DIF_Access_Constraints"/>
             
             <xsl:apply-templates select="mdb:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode" mode="DIF_Data_Set_Language"/>
             
@@ -101,14 +107,18 @@
                     <Short_Name>AU/IMAS</Short_Name>
                     <Long_Name>Institute for Marine and Antarctic Studies (IMAS)</Long_Name>
                 </Data_Center_Name>
+                
+                <Data_Center_URL>https://www.imas.utas.edu.au</Data_Center_URL>
+                
                 <Personnel>
                     <Role>DATA CENTER CONTACT</Role>
-                    <First_Name>Institute for Marine and Antarctic Studies (IMAS)</First_Name>
-                    <Middle_Name/>
-                    <Last_Name/>
+                    <First_Name>Data Manager</First_Name>
+                    <Last_Name>IMAS</Last_Name>
                     <Email>IMAS.DataManager@utas.edu.au</Email>
                 </Personnel>
             </Data_Center>
+            
+            
             
             <xsl:apply-templates select="mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatSpecificationCitation/cit:CI_Citation/cit:title" mode="DIF_Distribution"/>
             
@@ -129,7 +139,20 @@
             <xsl:apply-templates select="mdb:parentMetadata" mode="DIF_Parent_DIF"/>
             
             <!-- Note defaulted values here -->
-            <Originating_Metadata_Node>GCMD</Originating_Metadata_Node>
+            <Originating_Metadata_Node>IMAS</Originating_Metadata_Node>
+            <!-- Internal Directory Name (IDN) field is a specific keyword used by GCMD/CEOS to determine where record should be propagated to. The author may populate <IDN_Node> from a set of controlled keywords available at  https://gcmd.earthdata.nasa.gov/KeywordViewer (under ‘Other’) -->
+            <IDN_Node>
+                <Short_Name>AMD/AU</Short_Name>
+            </IDN_Node>
+            <IDN_Node>
+                <Short_Name>CEOS</Short_Name>
+            </IDN_Node>
+            <IDN_Node>
+                <Short_Name>AMD</Short_Name>
+            </IDN_Node>
+            <IDN_Node>
+                <Short_Name>ACE/CRC</Short_Name>
+            </IDN_Node>
             <Metadata_Name>CEOS IDN DIF</Metadata_Name>
             <Metadata_Version>VERSION 9.9.3</Metadata_Version>
             
@@ -153,7 +176,7 @@
             <xsl:for-each select="distinct-values(mri:citation/cit:CI_Citation/cit:citedResponsibleParty/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:individual/cit:CI_Individual/cit:name)">
                 <xsl:variable name="individualNamesOnlyNoTitle_sequence" select="local:nameSeparatedNoTitle_sequence(.)"/>
                 <xsl:for-each select="$individualNamesOnlyNoTitle_sequence">
-                    <xsl:message select="concat('string length of ', ., ' is ', string-length(.))"/>
+                    <!--xsl:message select="concat('string length of ', ., ' is ', string-length(.))"/-->
                     <xsl:choose>
                         <xsl:when test="position() = 1">
                             <xsl:value-of select="."/>
@@ -204,6 +227,12 @@
                     <xsl:value-of select="$citedResponsiblePartyOrganisationNames_sequence[1]"/>
                 </xsl:if>
             </Dataset_Publisher>
+            <xsl:if test="string-length(normalize-space(mri:citation/cit:CI_Citation/cit:edition)) > 0">
+                <Version>
+                    <xsl:value-of select="normalize-space(mri:citation/cit:CI_Citation/cit:edition)"/>
+                </Version>
+            </xsl:if>
+           
             <Dataset_DOI>
                 <xsl:variable name="doi" select="mri:citation/cit:CI_Citation/cit:identifier/mcc:MD_Identifier[contains(lower-case(mcc:authority/cit:CI_Citation/cit:title), 'digital object identifier')]/mcc:code[contains(., 'doi') or contains(., '10.')]"/>
                 <xsl:choose>
@@ -214,47 +243,88 @@
                         <xsl:value-of select="$doi"/>
                     </xsl:otherwise>
                 </xsl:choose>
-                
             </Dataset_DOI>
+            
+            <xsl:for-each select="ancestor::mdb:MD_Metadata/mdb:metadataLinkage/cit:CI_OnlineResource[contains(cit:protocol, 'http--metadata-URL')]/cit:linkage">
+                <Online_Resource>
+                    <xsl:value-of select="normalize-space(.)"/>
+                </Online_Resource>
+            </xsl:for-each>
         </Data_Set_Citation>
     </xsl:template>
     <xsl:template match="cit:CI_Responsibility" mode="DIF_Personnel_Grouped">
-        
+       
         <xsl:variable name="namePart_sequence" select="local:nameSeparatedNoTitle_sequence(current-grouping-key())" as="xs:string*"/>
         
-        <Personnel>
-            <xsl:variable name="mapped_role_Sequence" as="xs:string*">
-                <xsl:for-each select="current-group()/cit:role/cit:CI_RoleCode/@codeListValue">
-                    <xsl:value-of select="local:mapRole_ISO_DIF(.)"/>
+       <xsl:variable name="mapped_role_Sequence" as="xs:string*">
+                <!-- Retrieve DIF role per source ISO Role -->
+                <xsl:for-each select="current-group()/cit:role/cit:CI_RoleCode/@codeListValue[string-length() > 0]">
+                    <xsl:if test="string-length(local:mapRole_ISO_DIF(.)) > 0">
+                        <xsl:message select="concat('Mapped role: ', ., ' to ',  local:mapRole_ISO_DIF(.))"></xsl:message>
+                        <xsl:value-of select="local:mapRole_ISO_DIF(.)"/>
+                    </xsl:if>
                 </xsl:for-each>
-            </xsl:variable>
-            
-            <xsl:choose>
-                <xsl:when test="local:sequenceContains($mapped_role_Sequence, 'INVESTIGATOR')">
-                    <Role>INVESTIGATOR</Role>
-                </xsl:when>
-                <xsl:otherwise>
-                    <!-- Just take the first one if there is no INVESTIGATOR -->
-                    <Role><xsl:value-of select="$mapped_role_Sequence[1]"/></Role>
-                </xsl:otherwise>
-            </xsl:choose>
-            
-            <xsl:choose>
-                <xsl:when test="(count($namePart_sequence) > 0)">
-                    <First_Name>
-                        <xsl:if test="count($namePart_sequence) > 1">
-                            <xsl:value-of select="$namePart_sequence[2]"/>
-                        </xsl:if>
-                    </First_Name>
-                    <Last_Name>
-                        <xsl:if test="count($namePart_sequence) > 0">
-                            <xsl:value-of select="$namePart_sequence[1]"/>
-                        </xsl:if>
-                    </Last_Name>
-                </xsl:when>
-               </xsl:choose>
-            <xsl:apply-templates select="current-group()[1]/cit:party/cit:CI_Organisation/cit:individual/cit:CI_Individual/cit:contactInfo/cit:CI_Contact/cit:address/cit:CI_Address" mode="DIF_Personnel_Address"/>
-        </Personnel>
+                
+                <!-- If one of these cit:CI_Responsibilities for this person has parent mdb:contact, add "METADATA AUTHOR" to the mapping-->
+                <xsl:if test="count(current-group()[name(..) = 'mdb:contact']) > 0">
+                    <xsl:message select="concat('Adding METADATA AUTHOR to: ', current-grouping-key())"></xsl:message>
+                    
+                    <xsl:text>METADATA AUTHOR</xsl:text>
+                </xsl:if>
+        </xsl:variable>
+        
+        <!-- If a relevant role was not found in the mapping to DIF roles,
+            ignore this responsible party as they are not relevant for Personnel in this DIF -->
+        <xsl:if test="count($mapped_role_Sequence) > 0">
+          
+          <Personnel>
+              
+              <xsl:for-each select="distinct-values($mapped_role_Sequence)">
+                  <Role>
+                      <xsl:value-of select="."/>
+                  </Role>
+              </xsl:for-each>
+              
+              <!--xsl:message select="'XSLT update required: role has been added to local:mapRole_ISO_DIF, that hasn''t been added above in priority order'"/>
+                      <Role><xsl:value-of select="$mapped_role_Sequence[1]"/></Role>
+                  </xsl:otherwise>
+              </xsl:choose-->
+              
+              <!--xsl:choose>
+                  <xsl:when test="local:sequenceContains($mapped_role_Sequence, 'INVESTIGATOR')">
+                      <Role>INVESTIGATOR</Role>
+                  </xsl:when>
+                  <xsl:when test="local:sequenceContains($mapped_role_Sequence, 'TECHNICAL CONTACT')">
+                      <Role>TECHNICAL CONTACT</Role>
+                  </xsl:when>
+                  <xsl:when test="local:sequenceContains($mapped_role_Sequence, 'METADATA AUTHOR')">
+                      <Role>METADATA AUTHOR</Role>
+                  </xsl:when>
+                  <xsl:when test="local:sequenceContains($mapped_role_Sequence, 'DATA CENTER CONTACT')">
+                      <Role>DATA CENTER CONTACT</Role>
+                  </xsl:when> 
+                  <xsl:otherwise>
+                     <Role><xsl:value-of select="$mapped_role_Sequence[1]"/></Role>
+                  </xsl:otherwise>
+              </xsl:choose-->
+              
+              <xsl:choose>
+                  <xsl:when test="(count($namePart_sequence) > 0)">
+                      <First_Name>
+                          <xsl:if test="count($namePart_sequence) > 1">
+                              <xsl:value-of select="$namePart_sequence[2]"/>
+                          </xsl:if>
+                      </First_Name>
+                      <Last_Name>
+                          <xsl:if test="count($namePart_sequence) > 0">
+                              <xsl:value-of select="$namePart_sequence[1]"/>
+                          </xsl:if>
+                      </Last_Name>
+                  </xsl:when>
+                 </xsl:choose>
+              <xsl:apply-templates select="current-group()[1]/cit:party/cit:CI_Organisation/cit:individual/cit:CI_Individual/cit:contactInfo/cit:CI_Contact/cit:address/cit:CI_Address" mode="DIF_Personnel_Address"/>
+          </Personnel>
+        </xsl:if>
         
     </xsl:template>
        
@@ -291,33 +361,41 @@
         <Parameters>
             
         <xsl:if test="count($parameter_sequence) > 0">
-        
-                <Category>
-                    <xsl:if test="count($parameter_sequence) > 0">
-                        <xsl:value-of select="normalize-space($parameter_sequence[1])"/>
-                    </xsl:if>
-                </Category>
-                <Topic>
-                    <xsl:if test="count($parameter_sequence) > 1">
-                        <xsl:value-of select="normalize-space($parameter_sequence[2])"/>
-                    </xsl:if>
-                </Topic>
-                <Term>
-                    <xsl:if test="count($parameter_sequence) > 2">
-                        <xsl:value-of select="normalize-space($parameter_sequence[3])"/>
-                    </xsl:if>
-                </Term>
-                <Variable_Level_1>
-                    <xsl:if test="count($parameter_sequence) > 3">
-                        <xsl:value-of select="normalize-space($parameter_sequence[4])"/>
-                    </xsl:if>
-                </Variable_Level_1>
                 
-            <Variable_Level_2>
-                <xsl:if test="count($parameter_sequence) > 4">
+            <xsl:if test="(count($parameter_sequence) > 0) and string-length(normalize-space($parameter_sequence[1])) > 0">
+                <Category>
+                    <xsl:value-of select="normalize-space($parameter_sequence[1])"/>
+                </Category>
+            </xsl:if>
+        
+        
+            <xsl:if test="(count($parameter_sequence) > 1) and string-length(normalize-space($parameter_sequence[2])) > 0">
+                <Topic>
+                    <xsl:value-of select="normalize-space($parameter_sequence[2])"/>
+                </Topic>
+            </xsl:if>
+        
+        
+            <xsl:if test="(count($parameter_sequence) > 2) and string-length(normalize-space($parameter_sequence[3])) > 0">
+                <Term>
+                    <xsl:value-of select="normalize-space($parameter_sequence[3])"/>
+                </Term>
+            </xsl:if>
+        
+        
+            <xsl:if test="(count($parameter_sequence) > 3) and string-length(normalize-space($parameter_sequence[4])) > 0">
+                <Variable_Level_1>
+                    <xsl:value-of select="normalize-space($parameter_sequence[4])"/>
+                </Variable_Level_1>
+            </xsl:if>
+        
+      
+            <xsl:if test="(count($parameter_sequence) > 4) and string-length(normalize-space($parameter_sequence[5])) > 0">
+                <Variable_Level_2>
                     <xsl:value-of select="normalize-space($parameter_sequence[5])"/>
-                </xsl:if>
-            </Variable_Level_2>
+                </Variable_Level_2>
+            </xsl:if>
+        
             
             </xsl:if>
         </Parameters>
@@ -337,37 +415,68 @@
     
     <xsl:template match="gml:TimePeriod" mode="DIF_Temporal_Coverage">
     
-        <Temporal_Coverage>
-            <Start_Date>
-                <xsl:value-of select="local:truncDate(gml:beginPosition)"/>
-            </Start_Date>
-            <Stop_Date>
-                <xsl:value-of select="local:truncDate(gml:endPosition)"/>
-            </Stop_Date>
-        </Temporal_Coverage>
-        
+        <xsl:if test="(string-length(gml:beginPosition) > 0) or (string-length(gml:endPosition) > 0)">
+            <Temporal_Coverage>
+                <xsl:if test="(string-length(gml:beginPosition) > 0)">
+                 <Start_Date>
+                     <xsl:value-of select="local:truncDate(gml:beginPosition)"/>
+                 </Start_Date>
+                </xsl:if>
+                <xsl:if test=" (string-length(gml:endPosition) > 0)">
+                    <Stop_Date>
+                        <xsl:value-of select="local:truncDate(gml:endPosition)"/>
+                    </Stop_Date>
+                </xsl:if>
+            </Temporal_Coverage> 
+        </xsl:if>
     </xsl:template>
     
-    <!--xsl:template match="gml:timePosition" mode="DIF_Temporal_Coverage">
+    <xsl:template match="gml:timePosition" mode="DIF_Temporal_Coverage_TimePosition">
         
         <Temporal_Coverage>
-            <Start_Date>
-                <xsl:value-of select="local:truncDate(.)"/>
-            </Start_Date>
+            <xsl:if test="(string-length(.) > 0)">
+                <Start_Date>
+                    <xsl:value-of select="local:truncDate(.)"/>
+                </Start_Date>
+            </xsl:if>
         </Temporal_Coverage>
-    </xsl:template-->
+     </xsl:template>
     
-
     <xsl:template match="mcc:MD_ProgressCode" mode="DIF_Data_Set_Progress">
+        
         <Data_Set_Progress>
             <xsl:choose>
-                <xsl:when test="contains(lower-case(@codeListValue), 'ongoing')">
-                    <xsl:text>IN WORK</xsl:text>
+                <xsl:when test="string-length(@codeListValue) > 0">
+                    <xsl:choose>
+                        <xsl:when test="
+                            @codeListValue = 'planned' or
+                            @codeListValue = 'required' or
+                            @codeListValue = 'pending' or
+                            @codeListValue = 'proposed'">
+                            <xsl:text>PLANNED</xsl:text>
+                        </xsl:when>
+                        <xsl:when test="
+                            @codeListValue = 'underDevelopment' or
+                            @codeListValue = 'onGoing'">
+                            <xsl:text>IN WORK</xsl:text>
+                        </xsl:when>
+                        <xsl:when test="
+                            @codeListValue = 'completed' or
+                            @codeListValue = 'historicalArchive' or
+                            @codeListValue = 'obsolete' or
+                            @codeListValue = 'superseded'">
+                            <xsl:text>COMPLETE</xsl:text>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:text>COMPLETE</xsl:text>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </xsl:when>
-                <xsl:when test="contains(lower-case(@codeListValue), 'completed')">
+                <xsl:otherwise>
                     <xsl:text>COMPLETE</xsl:text>
-                </xsl:when>
+                </xsl:otherwise>
             </xsl:choose>
+           
         </Data_Set_Progress>
     </xsl:template>
     
@@ -396,33 +505,48 @@
     <xsl:template match="gex:EX_VerticalExtent" mode="DIF_Spatial_Coverage_Vertical">
         <xsl:variable name="units" select="local:unitsFromVerticalCRS(gex:verticalCRS/gml:VerticalCRS/gml:identifier)"/>
         
-        <xsl:apply-templates select="gex:minimumValue[string-length(.) > 0]" mode="DIF_Spatial_Coverage_Vertical_Minimum">
-            <xsl:with-param name="units" select="$units"/>
-        </xsl:apply-templates>
-    
-        <xsl:apply-templates select="gex:maximumValue[string-length(.) > 0]" mode="DIF_Spatial_Coverage_Vertical_Maximum">
-            <xsl:with-param name="units" select="$units"/>
-        </xsl:apply-templates>
+        <xsl:if test="matches(lower-case(gex:verticalCRS/gml:VerticalCRS/gml:identifier), 'epsg.*5715')">
+            <!-- Depth -->
+            <xsl:if test="string-length(gex:minimumValue) > 0">
+                <Minimum_Depth>
+                    <xsl:value-of select="concat(gex:minimumValue, ' ', $units)"/>
+                </Minimum_Depth>
+            </xsl:if>
+            <xsl:if test="string-length(gex:maximumValue) > 0">
+                 <Maximum_Depth>
+                     <xsl:value-of select="concat(gex:maximumValue, ' ', $units)"/>
+                 </Maximum_Depth>
+            </xsl:if>
+        </xsl:if> 
+        
+        <xsl:if test="matches(lower-case(gex:verticalCRS/gml:VerticalCRS/gml:identifier), 'epsg.*5714')">
+            <!-- Altitude -->
+            <!-- Depth -->
+            <xsl:if test="string-length(gex:minimumValue) > 0">
+                <Minimum_Altitude>
+                    <xsl:value-of select="concat(gex:minimumValue, ' ', $units)"/>
+                </Minimum_Altitude>
+            </xsl:if>
+            <xsl:if test="string-length(gex:maximumValue) > 0">
+                <Maximum_Altitude>
+                    <xsl:value-of select="concat(gex:maximumValue, ' ', $units)"/>
+                </Maximum_Altitude>
+            </xsl:if>
+            
+        </xsl:if> 
+            
     
     </xsl:template>
     
-    <xsl:template match="gex:minimumValue" mode="DIF_Spatial_Coverage_Vertical_Minimum">
-        <xsl:param name="units"/>
-        <Minimum_Depth>
-            <xsl:value-of select="concat(., $units)"/>
-        </Minimum_Depth>
-    </xsl:template>
-    
-    <xsl:template match="gex:maximumValue" mode="DIF_Spatial_Coverage_Vertical_Maximum">
-        <xsl:param name="units"/>
-        <Maximum_Depth>
-            <xsl:value-of select="concat(., $units)"/>
-        </Maximum_Depth>
-    </xsl:template>
-    
-    <xsl:template match="mco:otherConstraints" mode="DIF_Access_Constraints">
-        <Access_Constraints>
+    <xsl:template match="mco:otherConstraints" mode="DIF_Use_Constraints">
+        <Use_Constraints>
            <xsl:value-of select="."/>
+        </Use_Constraints>
+    </xsl:template>
+    
+    <xsl:template match="mco:useLimitation" mode="DIF_Access_Constraints">
+        <Access_Constraints>
+            <xsl:value-of select="."/>
         </Access_Constraints>
     </xsl:template>
     
@@ -482,7 +606,7 @@
     
     <xsl:template match="cit:title" mode="DIF_Distribution">
         <Distribution>
-            <Distribution_Media>FTP</Distribution_Media>
+            <Distribution_Media>HTTP</Distribution_Media>
             <Distribution_Format>
                 <xsl:value-of select="."/>
              </Distribution_Format>
@@ -588,8 +712,10 @@
     <xsl:function name="local:unitsFromVerticalCRS">
         <xsl:param name="verticalCRS_identifier"/>
         <xsl:choose>
-            <xsl:when test="contains(lower-case($verticalCRS_identifier), 'epsg::5715')">
-                <xsl:text>m</xsl:text>
+            <xsl:when test="
+                matches(lower-case($verticalCRS_identifier), 'epsg.*5715') or
+                matches(lower-case($verticalCRS_identifier), 'epsg.*5714')">
+                <xsl:text>Metres</xsl:text>
             </xsl:when>
         </xsl:choose>
     </xsl:function>
@@ -664,24 +790,40 @@
     <xsl:function name="local:mapRole_ISO_DIF">
         <xsl:param name="role"></xsl:param>
         <xsl:choose>
-            <!-- Check with Emma that 'AUTHOR' is correct here -->
-            <xsl:when test="contains(lower-case($role), 'author')">
-                <xsl:text>AUTHOR</xsl:text>
-            </xsl:when>
-            <xsl:when test="contains(lower-case($role), 'principalinvestigator')">
+            <!-- An entry here indicates that the Personnel with this role ought to be included in the DIF  -->
+            <xsl:when test="lower-case($role) = 'owner'">
                 <xsl:text>INVESTIGATOR</xsl:text>
             </xsl:when>
-            <xsl:when test="contains(lower-case($role), 'coinvestigator')">
+            <xsl:when test="lower-case($role) = 'principalinvestigator'">
                 <xsl:text>INVESTIGATOR</xsl:text>
             </xsl:when>
-            <xsl:when test="contains(lower-case($role), 'pointofcontact')">
+            <xsl:when test="lower-case($role) = 'resourceprovider'">
                 <xsl:text>TECHNICAL CONTACT</xsl:text>
             </xsl:when>
-            <xsl:otherwise>
+            <xsl:when test="lower-case($role) = 'distributor'">
                 <xsl:text>TECHNICAL CONTACT</xsl:text>
-            </xsl:otherwise>
+            </xsl:when>
+            <xsl:when test="lower-case($role) = 'pointofcontact'">
+                <xsl:text>TECHNICAL CONTACT</xsl:text>
+            </xsl:when>
+            <xsl:when test="lower-case($role) = 'originator'">
+                <xsl:text>METADATA AUTHOR</xsl:text>
+            </xsl:when>
+            <xsl:when test="lower-case($role) = 'author'">
+                <xsl:text>METADATA AUTHOR</xsl:text>
+            </xsl:when>
+            <xsl:when test="lower-case($role) = 'coauthor'">
+                <xsl:text>METADATA AUTHOR</xsl:text>
+            </xsl:when>
+            <xsl:when test="lower-case($role) = 'custodian'">
+                <xsl:text>DATA CENTER CONTACT</xsl:text>
+            </xsl:when>
+            <xsl:when test="lower-case($role) = 'publisher'">
+                <xsl:text>DATA CENTER CONTACT</xsl:text>
+            </xsl:when>
         </xsl:choose>
     </xsl:function>
+    
     
     <xsl:function name="local:nameSeparatedNoTitle_sequence" as="xs:string*">
         <xsl:param name="individualName"/>
