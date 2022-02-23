@@ -34,8 +34,10 @@
   <xsl:template match="/*[local-name()='eml' and namespace-uri()=$emlNamespace]">
     <!--<xsl:variable name="packageId" select="@packageId"/> -->
     <!--xsl:variable name="docid" select="concat(substring-before(string(@packageId),'.'),'.',substring-before(substring-after(string(@packageId),'.'),'.'))" /-->
-    <xsl:variable name="docid" select="concat(substring-before(string(@packageId),'.'),'.',substring-before(substring-after(string(@packageId),'.'),'.'))" />
-    <xsl:variable name="revid" select="substring-after(string(@packageId), concat($docid, '.'))" />
+    <!--xsl:variable name="revid" select="substring-after(string(@packageId), concat($docid, '.'))" /-->
+    
+    <xsl:variable name="docid" select="@packageId" />
+    <xsl:variable name="revid" select="''"/> <!-- TODO: obtain revid from somewhere if required -->
     
     <xsl:element name="registryObjects" xmlns="http://ands.org.au/standards/rif-cs/registryObjects">
       <xsl:apply-templates select="dataset">
@@ -90,7 +92,7 @@
     <xsl:element name="registryObject">
       <xsl:attribute name="group"><xsl:value-of select="$groupName" /></xsl:attribute>
       
-      <xsl:element name="key"><xsl:value-of select="$docid" /></xsl:element>
+      <xsl:element name="key"><xsl:value-of select="concat($groupName, '/', $docid)" /></xsl:element>
       
       <xsl:element name="originatingSource">
         <xsl:value-of select="$originatingSource" />
@@ -158,6 +160,18 @@
         </xsl:if>
         
         <!-- TODO:relatedInfo -->
+        
+        <xsl:if test="project/funding[contains(., ':')]">
+          <xsl:element name="relatedInfo">
+            <xsl:attribute name="type">activity</xsl:attribute>
+            <xsl:element name="identifier">
+              <xsl:attribute name="type">
+                <xsl:value-of select="substring-before(project/funding, ':')"/>
+              </xsl:attribute>
+              <xsl:value-of select="substring-after(project/funding, ':')"/>
+            </xsl:element>
+          </xsl:element>
+        </xsl:if>
 
         <!-- intellectualRights -->
         <xsl:element name="rights">
