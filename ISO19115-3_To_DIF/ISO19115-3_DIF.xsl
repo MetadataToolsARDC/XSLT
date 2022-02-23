@@ -60,13 +60,11 @@
             
             <!--
             <xsl:apply-templates select="mdb:contact/cit:CI_Responsibility" mode="DIF_Personnel"/>
-            <xsl:apply-templates select="mri:contact/cit:CI_Responsibility" mode="DIF_Personnel"/>
             <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:citedResponsibleParty/cit:CI_Responsibility" mode="DIF_Personnel"/>
             -->
             
             <xsl:for-each-group select="
                 mdb:contact/cit:CI_Responsibility | 
-                mri:contact/cit:CI_Responsibility | 
                 mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:citedResponsibleParty/cit:CI_Responsibility |
                 mdb:identificationInfo/mri:MD_DataIdentification/mri:pointOfContact/cit:CI_Responsibility" 
                 group-by="cit:party/cit:CI_Organisation/cit:individual/cit:CI_Individual/cit:name">
@@ -219,16 +217,24 @@
                 <xsl:value-of select="mri:citation/cit:CI_Citation/cit:date/cit:CI_Date[contains(cit:dateType/cit:CI_DateTypeCode/@codeListValue, 'publication')]/cit:date/gco:Date"/>
             </Dataset_Release_Date>
             
-            <xsl:for-each-group select="
-                ancestor::mdb:MD_Metadata/mdb:contact/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue = 'publisher'] | 
-                ancestor::mdb:MD_Metadata/mri:contact/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue = 'publisher'] | 
-                mri:citation/cit:CI_Citation/cit:citedResponsibleParty/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue = 'publisher'] |
-                mri:pointOfContact/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue = 'publisher']" 
-                group-by="cit:party/cit:CI_Organisation/cit:name">
-                <Dataset_Publisher>
-                    <xsl:value-of select="."/>
-                </Dataset_Publisher>
-            </xsl:for-each-group>
+            <xsl:choose>
+                <xsl:when test="count(ancestor::mdb:MD_Metadata/mdb:contact/cit:CI_Responsibility[(cit:role/cit:CI_RoleCode/@codeListValue = 'publisher') and (cit:party/cit:CI_Organisation/cit:name[string-length(.) > 0])]) > 0">
+                    <Dataset_Publisher>
+                        <xsl:value-of select="ancestor::mdb:MD_Metadata/mdb:contact/cit:CI_Responsibility[(cit:role/cit:CI_RoleCode/@codeListValue = 'publisher') and (cit:party/cit:CI_Organisation/cit:name[string-length(.) > 0])][1]/cit:party/cit:CI_Organisation/cit:name"/>
+                    </Dataset_Publisher>
+                </xsl:when>
+                <xsl:when test="count(mri:citation/cit:CI_Citation/cit:citedResponsibleParty/cit:CI_Responsibility[(cit:role/cit:CI_RoleCode/@codeListValue = 'publisher') and (cit:party/cit:CI_Organisation/cit:name[string-length(.) > 0])]) > 0">
+                    <Dataset_Publisher>
+                        <xsl:value-of select="mri:citation/cit:CI_Citation/cit:citedResponsibleParty[(cit:CI_Responsibility/cit:role/cit:CI_RoleCode/@codeListValue = 'publisher') and (cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name[string-length(.) > 0])][1]/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name"/>
+                    </Dataset_Publisher>
+                </xsl:when>
+                <xsl:when test="count(mri:pointOfContact/[(cit:CI_Responsibility/cit:role/cit:CI_RoleCode/@codeListValue = 'publisher') and (string-length(cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name))]) > 0">
+                    <Dataset_Publisher>
+                        <xsl:value-of select="mri:pointOfContact[(cit:CI_Responsibility/cit:role/cit:CI_RoleCode/@codeListValue = 'publisher') and (string-length(cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name))][1]/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name"/>
+                    </Dataset_Publisher>
+                    
+                </xsl:when>
+            </xsl:choose>
             
             <xsl:if test="string-length(normalize-space(mri:citation/cit:CI_Citation/cit:edition)) > 0">
                 <Version>
