@@ -219,14 +219,17 @@
                 <xsl:value-of select="mri:citation/cit:CI_Citation/cit:date/cit:CI_Date[contains(cit:dateType/cit:CI_DateTypeCode/@codeListValue, 'publication')]/cit:date/gco:Date"/>
             </Dataset_Release_Date>
             
-            <xsl:variable name="citedResponsiblePartyOrganisationNames_sequence"
-                select="mri:citation/cit:CI_Citation/cit:citedResponsibleParty/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name">
-            </xsl:variable>
-            <Dataset_Publisher>
-                <xsl:if test="count($citedResponsiblePartyOrganisationNames_sequence) > 0">
-                    <xsl:value-of select="$citedResponsiblePartyOrganisationNames_sequence[1]"/>
-                </xsl:if>
-            </Dataset_Publisher>
+            <xsl:for-each-group select="
+                ancestor::mdb:MD_Metadata/mdb:contact/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue = 'publisher'] | 
+                ancestor::mdb:MD_Metadata/mri:contact/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue = 'publisher'] | 
+                mri:citation/cit:CI_Citation/cit:citedResponsibleParty/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue = 'publisher'] |
+                mri:pointOfContact/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue = 'publisher']" 
+                group-by="cit:party/cit:CI_Organisation/cit:name">
+                <Dataset_Publisher>
+                    <xsl:value-of select="."/>
+                </Dataset_Publisher>
+            </xsl:for-each-group>
+            
             <xsl:if test="string-length(normalize-space(mri:citation/cit:CI_Citation/cit:edition)) > 0">
                 <Version>
                     <xsl:value-of select="normalize-space(mri:citation/cit:CI_Citation/cit:edition)"/>
