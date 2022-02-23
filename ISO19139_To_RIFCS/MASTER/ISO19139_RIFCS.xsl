@@ -27,11 +27,11 @@
     <xsl:variable name="licenseCodelist" select="document('license-codelist.xml')"/>
     <xsl:variable name="gmdCodelists" select="document('codelists.xml')"/>
     <!--xsl:variable name="anzsrcCodelist" select="document('anzsrc-for-2008.xml')"/-->
-    <xsl:param name="global_baseURI" select="'geonetwork.nci.org.au'"/>
-    <xsl:param name="global_acronym" select="'NCI'"/>
-    <xsl:param name="global_originatingSource" select="'National Computational Infrastructure'"/> <!-- Only used as originating source if organisation name cannot be determined from Point Of Contact -->
-    <xsl:param name="global_group" select="'National Computational Infrastructure'"/> 
-    <xsl:param name="global_path" select="'/geonetwork/srv/eng/catalog.search#/metadata/'"/>
+    <xsl:param name="global_baseURI" select="'{override required}'"/>
+    <xsl:param name="global_acronym" select="'{override required}'"/>
+    <xsl:param name="global_originatingSource" select="'{override required}'"/> <!-- Only used as originating source if organisation name cannot be determined from Point Of Contact -->
+    <xsl:param name="global_group" select="'{override required}'"/> 
+    <xsl:param name="global_path" select="'{override required}'"/>
     
     <xsl:param name="global_regex_URLinstring" select="'(https?:)(//([^#\s]*))?'"/>
     
