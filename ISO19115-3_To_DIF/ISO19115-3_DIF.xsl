@@ -37,14 +37,28 @@
     <xsl:output method="xml" version="1.0" encoding="UTF-8" omit-xml-declaration="yes" indent="yes"/>
     <xsl:strip-space elements="*"/>
     
-    <xsl:variable name="constant_unit_metres" select="'m'"/>
+    <!-- Conversion from ISO19115-3 XML to DIF 9.9.3 XML -->
+    <!-- Applies mapping rules provided by Emma Flukes emma.flukes@utas.edu.au -->
+    <!-- If you are using this for the first time, you are likely to need to update the default values below to suit your needs -->
+    
+    <xsl:param name="default_units_depth" select="'Metres'"/>
+    <xsl:param name="default_units_altitude" select="'Metres'"/>
+    <xsl:param name="default_discipline_name" select="'EARTH SCIENCE'"/>
+    <xsl:param name="default_data_centre_short_name" select="'AU/IMAS'"/>
+    <xsl:param name="default_data_centre_long_name" select="'Institute for Marine and Antarctic Studies (IMAS)'"/>
+    <xsl:param name="default_data_centre_url" select="'https://www.imas.utas.edu.au'"/>
+    <xsl:param name="default_data_centre_personnel_role" select="'DATA CENTER CONTACT'"/>
+    <xsl:param name="default_data_centre_personnel_first_name" select="'Data Manager'"/>
+    <xsl:param name="default_data_centre_personnel_last_name" select="'IMAS'"/>
+    <xsl:param name="default_data_centre_personnel_email" select="'IMAS.DataManager@utas.edu.au'"/>
+    <xsl:param name="default_originating_metadata_node" select="'IMAS'"/>
+    <xsl:param name="default_IDN_Node_sequence" select="'AMD/AU', 'CEOS', 'AMD', 'ACE/CRC'"/>
+    <xsl:param name="default_metadata_name" select="'CEOS IDN DIF'"/>
+    <xsl:param name="default_metadata_version" select="'VERSION 9.9.3'"/>
     
     <xsl:template match="/">
         <xsl:apply-templates select="//mdb:MD_Metadata" mode="DIF"/>
     </xsl:template>
-    
-    <!-- Conversion from ISO19115-3 XML to DIF 9.9.3 XML -->
-    <!-- Applies mapping rules provided by Emma Flukes emma.flukes@utas.edu.au -->
     
     <xsl:template match="mdb:MD_Metadata" mode="DIF">
         
@@ -58,11 +72,6 @@
             
             <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification" mode="DIF_Data_Set_Citation"/>
             
-            <!--
-            <xsl:apply-templates select="mdb:contact/cit:CI_Responsibility" mode="DIF_Personnel"/>
-            <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:citedResponsibleParty/cit:CI_Responsibility" mode="DIF_Personnel"/>
-            -->
-            
             <xsl:for-each-group select="
                 mdb:contact/cit:CI_Responsibility | 
                 mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:citedResponsibleParty/cit:CI_Responsibility |
@@ -71,9 +80,10 @@
                 <xsl:apply-templates select="." mode="DIF_Personnel_Grouped"></xsl:apply-templates>
             </xsl:for-each-group>
             
-            <!-- Note defaulted values here -->
             <Discipline>
-                <Discipline_Name>EARTH SCIENCE</Discipline_Name>
+                <Discipline_Name>
+                    <xsl:value-of select="$default_discipline_name"/>
+                </Discipline_Name>
             </Discipline>
             
             <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:descriptiveKeywords/mri:MD_Keywords[contains(lower-case(mri:thesaurusName/cit:CI_Citation/cit:title), 'gcmd')]/mri:keyword" mode="DIF_Parameters"/>
@@ -96,27 +106,36 @@
             
             <xsl:apply-templates select="mdb:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode" mode="DIF_Data_Set_Language"/>
             
-            <!--xsl:apply-templates select="mdb:contact/cit:CI_Responsibility/cit:party[contains(lower-case(*/cit:positionName), 'data manager')]" mode="DIF_Data_Centre"/-->
-            
-            <!-- Note defaulted area below needs to be changed if you aren't that data centre - you can use the line above if you want to make it conditional on actual values-->
             
             <Data_Center>
                 <Data_Center_Name>
-                    <Short_Name>AU/IMAS</Short_Name>
-                    <Long_Name>Institute for Marine and Antarctic Studies (IMAS)</Long_Name>
+                    <Short_Name>
+                        <xsl:value-of select="$default_data_centre_short_name"/>
+                    </Short_Name>
+                    <Long_Name>
+                        <xsl:value-of select="$default_data_centre_long_name"/>
+                    </Long_Name>
                 </Data_Center_Name>
                 
-                <Data_Center_URL>https://www.imas.utas.edu.au</Data_Center_URL>
+                <Data_Center_URL>
+                    <xsl:value-of select="$default_data_centre_url"/>
+                </Data_Center_URL>
                 
                 <Personnel>
-                    <Role>DATA CENTER CONTACT</Role>
-                    <First_Name>Data Manager</First_Name>
-                    <Last_Name>IMAS</Last_Name>
-                    <Email>IMAS.DataManager@utas.edu.au</Email>
+                    <Role>
+                        <xsl:value-of select="$default_data_centre_personnel_role"/>
+                    </Role>
+                    <First_Name>
+                        <xsl:value-of select="$default_data_centre_personnel_first_name"/>
+                    </First_Name>
+                    <Last_Name>
+                        <xsl:value-of select="$default_data_centre_personnel_last_name"/>
+                    </Last_Name>
+                    <Email>
+                        <xsl:value-of select="$default_data_centre_personnel_email"/>
+                    </Email>
                 </Personnel>
             </Data_Center>
-            
-            
             
             <xsl:apply-templates select="mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatSpecificationCitation/cit:CI_Citation/cit:title" mode="DIF_Distribution"/>
             
@@ -137,22 +156,26 @@
             <xsl:apply-templates select="mdb:parentMetadata" mode="DIF_Parent_DIF"/>
             
             <!-- Note defaulted values here -->
-            <Originating_Metadata_Node>IMAS</Originating_Metadata_Node>
+            <Originating_Metadata_Node>
+                <xsl:value-of select="$default_originating_metadata_node"/>
+            </Originating_Metadata_Node>
+            
             <!-- Internal Directory Name (IDN) field is a specific keyword used by GCMD/CEOS to determine where record should be propagated to. The author may populate <IDN_Node> from a set of controlled keywords available at  https://gcmd.earthdata.nasa.gov/KeywordViewer (under ‘Other’) -->
-            <IDN_Node>
-                <Short_Name>AMD/AU</Short_Name>
-            </IDN_Node>
-            <IDN_Node>
-                <Short_Name>CEOS</Short_Name>
-            </IDN_Node>
-            <IDN_Node>
-                <Short_Name>AMD</Short_Name>
-            </IDN_Node>
-            <IDN_Node>
-                <Short_Name>ACE/CRC</Short_Name>
-            </IDN_Node>
-            <Metadata_Name>CEOS IDN DIF</Metadata_Name>
-            <Metadata_Version>VERSION 9.9.3</Metadata_Version>
+            <xsl:for-each select="$default_IDN_Node_sequence">
+                <IDN_Node>
+                    <Short_Name>
+                        <xsl:value-of select="."/>
+                    </Short_Name>
+                </IDN_Node>
+            </xsl:for-each>
+            
+            <Metadata_Name>
+                <xsl:value-of select="$default_metadata_name"/>
+            </Metadata_Name>
+            
+            <Metadata_Version>
+                <xsl:value-of select="$default_metadata_version"/>
+            </Metadata_Version>
             
             <xsl:apply-templates select="mdb:dateInfo/cit:CI_Date[contains(lower-case(cit:dateType/cit:CI_DateTypeCode/@codeListValue), 'creation')]/cit:date/*[contains(local-name(), 'Date')]" mode="DIF_Creation_Date"/>
             <xsl:apply-templates select="mdb:dateInfo/cit:CI_Date[contains(lower-case(cit:dateType/cit:CI_DateTypeCode/@codeListValue), 'revision')]/cit:date/*[contains(local-name(), 'Date')]" mode="DIF_Revision_Date"/>
@@ -298,25 +321,6 @@
                       <Role><xsl:value-of select="$mapped_role_Sequence[1]"/></Role>
                   </xsl:otherwise>
               </xsl:choose-->
-              
-              <!--xsl:choose>
-                  <xsl:when test="local:sequenceContains($mapped_role_Sequence, 'INVESTIGATOR')">
-                      <Role>INVESTIGATOR</Role>
-                  </xsl:when>
-                  <xsl:when test="local:sequenceContains($mapped_role_Sequence, 'TECHNICAL CONTACT')">
-                      <Role>TECHNICAL CONTACT</Role>
-                  </xsl:when>
-                  <xsl:when test="local:sequenceContains($mapped_role_Sequence, 'METADATA AUTHOR')">
-                      <Role>METADATA AUTHOR</Role>
-                  </xsl:when>
-                  <xsl:when test="local:sequenceContains($mapped_role_Sequence, 'DATA CENTER CONTACT')">
-                      <Role>DATA CENTER CONTACT</Role>
-                  </xsl:when> 
-                  <xsl:otherwise>
-                     <Role><xsl:value-of select="$mapped_role_Sequence[1]"/></Role>
-                  </xsl:otherwise>
-              </xsl:choose-->
-              
               <xsl:choose>
                   <xsl:when test="(count($namePart_sequence) > 0)">
                       <First_Name>
@@ -722,9 +726,12 @@
         <xsl:param name="verticalCRS_identifier"/>
         <xsl:choose>
             <xsl:when test="
-                matches(lower-case($verticalCRS_identifier), 'epsg.*5715') or
+                matches(lower-case($verticalCRS_identifier), 'epsg.*5715')">
+                <xsl:value-of select="$default_units_depth"/>
+            </xsl:when>
+            <xsl:when test="
                 matches(lower-case($verticalCRS_identifier), 'epsg.*5714')">
-                <xsl:text>Metres</xsl:text>
+                <xsl:value-of select="$default_units_altitude"/>
             </xsl:when>
         </xsl:choose>
     </xsl:function>
