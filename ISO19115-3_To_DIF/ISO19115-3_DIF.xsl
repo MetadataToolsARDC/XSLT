@@ -100,9 +100,9 @@
             
             <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:extent/gex:EX_Extent" mode="DIF_Spatial_Coverage"/>
             
-            <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:resourceConstraints/mco:MD_LegalConstraints/mco:otherConstraints" mode="DIF_Use_Constraints"/>
-            
             <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:resourceConstraints/mco:MD_LegalConstraints/mco:useLimitation" mode="DIF_Access_Constraints"/>
+            
+            <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:resourceConstraints/mco:MD_LegalConstraints/mco:otherConstraints" mode="DIF_Use_Constraints"/>
             
             <xsl:apply-templates select="mdb:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode" mode="DIF_Data_Set_Language"/>
             
@@ -155,11 +155,6 @@
             
             <xsl:apply-templates select="mdb:parentMetadata" mode="DIF_Parent_DIF"/>
             
-            <!-- Note defaulted values here -->
-            <Originating_Metadata_Node>
-                <xsl:value-of select="$default_originating_metadata_node"/>
-            </Originating_Metadata_Node>
-            
             <!-- Internal Directory Name (IDN) field is a specific keyword used by GCMD/CEOS to determine where record should be propagated to. The author may populate <IDN_Node> from a set of controlled keywords available at  https://gcmd.earthdata.nasa.gov/KeywordViewer (under ‘Other’) -->
             <xsl:for-each select="$default_IDN_Node_sequence">
                 <IDN_Node>
@@ -168,6 +163,11 @@
                     </Short_Name>
                 </IDN_Node>
             </xsl:for-each>
+            
+            <!-- Note defaulted values here -->
+            <Originating_Metadata_Node>
+                <xsl:value-of select="$default_originating_metadata_node"/>
+            </Originating_Metadata_Node>
             
             <Metadata_Name>
                 <xsl:value-of select="$default_metadata_name"/>
@@ -178,8 +178,7 @@
             </Metadata_Version>
             
             <xsl:apply-templates select="mdb:dateInfo/cit:CI_Date[contains(lower-case(cit:dateType/cit:CI_DateTypeCode/@codeListValue), 'creation')]/cit:date/*[contains(local-name(), 'Date')]" mode="DIF_Creation_Date"/>
-            <xsl:apply-templates select="mdb:dateInfo/cit:CI_Date[contains(lower-case(cit:dateType/cit:CI_DateTypeCode/@codeListValue), 'revision')]/cit:date/*[contains(local-name(), 'Date')]" mode="DIF_Revision_Date"/>
-            
+            <xsl:apply-templates select="mdb:dateInfo/cit:CI_Date[contains(lower-case(cit:dateType/cit:CI_DateTypeCode/@codeListValue), 'revision')]/cit:date/*[contains(local-name(), 'Date')]" mode="DIF_Last_DIF_Revision_Date"/>
         </DIF>
     </xsl:template>
         
@@ -691,19 +690,11 @@
              </DIF_Creation_Date>
         </xsl:template>
     
-    <xsl:template match="*[contains(local-name(), 'Date')]" mode="DIF_Revision_Date">
-        <DIF_Revision_Date>
+    <xsl:template match="*[contains(local-name(), 'Date')]" mode="DIF_Last_DIF_Revision_Date">
+        <Last_DIF_Revision_Date>
             <xsl:value-of select="local:truncDate(.)"/>
-        </DIF_Revision_Date>
+        </Last_DIF_Revision_Date>
     </xsl:template>
-        
-        <!--xsl:template match="??" mode="DIF_Last_DIF_Revision_Date">
-            <Last_DIF_Revision_Date>
-                <xsl:value-of select="local:truncDate(.)"/>
-            </Last_DIF_Revision_Date>
-        </xsl:template-->
-    
-    
     
     <xsl:template match="mrd:MD_DigitalTransferOptions"  mode="DIF_Related_URL_OnlyPublications">
         
@@ -811,6 +802,12 @@
                 <xsl:text>INVESTIGATOR</xsl:text>
             </xsl:when>
             <xsl:when test="lower-case($role) = 'principalinvestigator'">
+                <xsl:text>INVESTIGATOR</xsl:text>
+            </xsl:when>
+            <xsl:when test="lower-case($role) = 'collaborator'">
+                <xsl:text>INVESTIGATOR</xsl:text>
+            </xsl:when>
+            <xsl:when test="lower-case($role) = 'contributor'">
                 <xsl:text>INVESTIGATOR</xsl:text>
             </xsl:when>
             <xsl:when test="lower-case($role) = 'resourceprovider'">
