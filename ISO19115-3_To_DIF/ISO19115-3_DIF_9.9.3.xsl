@@ -47,7 +47,7 @@
         sets the defaults (all it needs is a line: <xsl:import href="ISO19115-3_DIF.xsl"/> 
         followed by the defaults as shown below, but populated with your own values)
         See for example https://github.com/MetadataToolsARDC/XSLT/blob/master/ISO19115-3_To_DIF/ISO19115_3_DIF_IMAS_TopLevel.xsl 
-        that calls this file https://github.com/MetadataToolsARDC/XSLT/blob/master/ISO19115-3_To_DIF/ISO19115-3_DIF.xsl
+        that calls this file https://github.com/MetadataToolsARDC/XSLT/blob/master/ISO19115-3_To_DIF/ISO19115-3_DIF_9.9.3.xsl
     -->
     
     <xsl:param name="default_units_depth" select="''"/>
