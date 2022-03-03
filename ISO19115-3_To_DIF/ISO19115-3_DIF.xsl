@@ -173,7 +173,6 @@
                 </IDN_Node>
             </xsl:for-each>
             
-            <!-- Note defaulted values here -->
             <Originating_Metadata_Node>
                 <xsl:value-of select="$default_originating_metadata_node"/>
             </Originating_Metadata_Node>
@@ -205,7 +204,6 @@
             <xsl:for-each select="distinct-values(mri:citation/cit:CI_Citation/cit:citedResponsibleParty/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:individual/cit:CI_Individual/cit:name)">
                 <xsl:variable name="individualNamesOnlyNoTitle_sequence" select="local:nameSeparatedNoTitle_sequence(.)"/>
                 <xsl:for-each select="$individualNamesOnlyNoTitle_sequence">
-                    <!--xsl:message select="concat('string length of ', ., ' is ', string-length(.))"/-->
                     <xsl:choose>
                         <xsl:when test="position() = 1">
                             <xsl:value-of select="."/>
