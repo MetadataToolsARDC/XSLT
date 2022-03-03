@@ -2,7 +2,7 @@
 <xsl:stylesheet version="2.0" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     
-    <xsl:import href="ISO19115-3_DIF.xsl"/>
+    <xsl:import href="ISO19115-3_DIF_9.9.3.xsl"/>
     
     <xsl:param name="default_units_depth" select="'Metres'"/>
     <xsl:param name="default_units_altitude" select="'Metres'"/>
