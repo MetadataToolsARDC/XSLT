@@ -39,20 +39,29 @@
     
     <!-- Conversion from ISO19115-3 XML to DIF 9.9.3 XML -->
     <!-- Applies mapping rules provided by Emma Flukes emma.flukes@utas.edu.au -->
-    <!-- If you are using this for the first time, you are likely to need to update the default values below to suit your needs -->
     
-    <xsl:param name="default_units_depth" select="'Metres'"/>
-    <xsl:param name="default_units_altitude" select="'Metres'"/>
-    <xsl:param name="default_discipline_name" select="'EARTH SCIENCE'"/>
-    <xsl:param name="default_data_centre_short_name" select="'AU/IMAS'"/>
-    <xsl:param name="default_data_centre_long_name" select="'Institute for Marine and Antarctic Studies (IMAS)'"/>
-    <xsl:param name="default_data_centre_url" select="'https://www.imas.utas.edu.au'"/>
-    <xsl:param name="default_data_centre_personnel_role" select="'DATA CENTER CONTACT'"/>
-    <xsl:param name="default_data_centre_personnel_first_name" select="'Data Manager'"/>
-    <xsl:param name="default_data_centre_personnel_last_name" select="'IMAS'"/>
-    <xsl:param name="default_data_centre_personnel_email" select="'IMAS.DataManager@utas.edu.au'"/>
-    <xsl:param name="default_originating_metadata_node" select="'IMAS'"/>
-    <xsl:param name="default_IDN_Node_sequence" select="'AMD/AU', 'CEOS', 'AMD', 'ACE/CRC'"/>
+    <!-- If you are using this for the first time, you will need to provide default 
+        values within the params below, to suit your needs.  You can either update 
+        the values within your own copy of this file, or if you want to keep this 
+        as-is for multiple users, you can call this XSLT from another new XSLT that 
+        sets the defaults (all it needs is a line: <xsl:import href="ISO19115-3_DIF.xsl"/> 
+        followed by the defaults as shown below, but populated with your own values)
+        See for example https://github.com/MetadataToolsARDC/XSLT/blob/master/ISO19115-3_To_DIF/ISO19115_3_DIF_IMAS_TopLevel.xsl 
+        that calls this file https://github.com/MetadataToolsARDC/XSLT/blob/master/ISO19115-3_To_DIF/ISO19115-3_DIF.xsl
+    -->
+    
+    <xsl:param name="default_units_depth" select="''"/>
+    <xsl:param name="default_units_altitude" select="''"/>
+    <xsl:param name="default_discipline_name" select="''"/>
+    <xsl:param name="default_data_centre_short_name" select="''"/>
+    <xsl:param name="default_data_centre_long_name" select="''"/>
+    <xsl:param name="default_data_centre_url" select="''"/>
+    <xsl:param name="default_data_centre_personnel_role" select="''"/>
+    <xsl:param name="default_data_centre_personnel_first_name" select="''"/>
+    <xsl:param name="default_data_centre_personnel_last_name" select="''"/>
+    <xsl:param name="default_data_centre_personnel_email" select="''"/>
+    <xsl:param name="default_originating_metadata_node" select="''"/>
+    <xsl:param name="default_IDN_Node_sequence" select="'', '', '', ''"/>
     <xsl:param name="default_metadata_name" select="'CEOS IDN DIF'"/>
     <xsl:param name="default_metadata_version" select="'VERSION 9.9.3'"/>
     
@@ -316,11 +325,7 @@
                   </Role>
               </xsl:for-each>
               
-              <!--xsl:message select="'XSLT update required: role has been added to local:mapRole_ISO_DIF, that hasn''t been added above in priority order'"/>
-                      <Role><xsl:value-of select="$mapped_role_Sequence[1]"/></Role>
-                  </xsl:otherwise>
-              </xsl:choose-->
-              <xsl:choose>
+             <xsl:choose>
                   <xsl:when test="(count($namePart_sequence) > 0)">
                       <First_Name>
                           <xsl:if test="count($namePart_sequence) > 1">
@@ -533,7 +538,6 @@
         
         <xsl:if test="matches(lower-case(gex:verticalCRS/gml:VerticalCRS/gml:identifier), 'epsg.*5714')">
             <!-- Altitude -->
-            <!-- Depth -->
             <xsl:if test="string-length(gex:minimumValue) > 0">
                 <Minimum_Altitude>
                     <xsl:value-of select="concat(gex:minimumValue, ' ', $units)"/>
