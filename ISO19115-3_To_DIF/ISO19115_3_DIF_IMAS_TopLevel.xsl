@@ -15,8 +15,7 @@
     <xsl:param name="default_data_centre_personnel_last_name" select="'IMAS'"/>
     <xsl:param name="default_data_centre_personnel_email" select="'IMAS.DataManager@utas.edu.au'"/>
     <xsl:param name="default_originating_metadata_node" select="'IMAS'"/>
-    <xsl:param name="default_IDN_Node_sequence" select="'AMD/AU', 'CEOS', 'AMD', 'ACE/CRC'"/>
+    <xsl:param name="default_IDN_Node_sequence" select="'AMD/AU', 'CEOS', 'AMD'"/>
     <xsl:param name="default_metadata_name" select="'CEOS IDN DIF'"/>
-    <xsl:param name="default_metadata_version" select="'VERSION 9.9.3'"/>
       
 </xsl:stylesheet>
