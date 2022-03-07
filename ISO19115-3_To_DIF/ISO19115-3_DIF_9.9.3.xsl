@@ -148,7 +148,7 @@
             
             <xsl:apply-templates select="mdb:distributionInfo/mrd:MD_Distribution/mrd:distributionFormat/mrd:MD_Format/mrd:formatSpecificationCitation/cit:CI_Citation/cit:title" mode="DIF_Distribution"/>
             
-            <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:credit" mode="DIF_Reference"/>
+            <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:supplementalInformation" mode="DIF_Reference"/>
     
             <Summary>
                 <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:abstract" mode="DIF_Summary_Abstract"/>
@@ -164,7 +164,7 @@
             
             <xsl:apply-templates select="mdb:parentMetadata" mode="DIF_Parent_DIF"/>
             
-            <!-- Internal Directory Name (IDN) field is a specific keyword used by GCMD/CEOS to determine where record should be propagated to. The author may populate <IDN_Node> from a set of controlled keywords available at  https://gcmd.earthdata.nasa.gov/KeywordViewer (under ‘Other’) -->
+            <!-- Internal Directory Name (IDN) field is a specific keyword used by GCMD/CEOS to determine where record should be propagated to. The author may populate <IDN_Node> from a set of controlled keywords available at  https://gcmd.earthdata.nasa.gov/KeywordViewer (under 'Other') -->
             <xsl:for-each select="$default_IDN_Node_sequence">
                 <IDN_Node>
                     <Short_Name>
@@ -257,7 +257,7 @@
                         <xsl:value-of select="mri:citation/cit:CI_Citation/cit:citedResponsibleParty[(cit:CI_Responsibility/cit:role/cit:CI_RoleCode/@codeListValue = 'publisher') and (cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name[string-length(.) > 0])][1]/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name"/>
                     </Dataset_Publisher>
                 </xsl:when>
-                <xsl:when test="count(mri:pointOfContact/[(cit:CI_Responsibility/cit:role/cit:CI_RoleCode/@codeListValue = 'publisher') and (string-length(cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name))]) > 0">
+                <xsl:when test="count(mri:pointOfContact[(cit:CI_Responsibility/cit:role/cit:CI_RoleCode/@codeListValue = 'publisher') and (string-length(cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name))]) > 0">
                     <Dataset_Publisher>
                         <xsl:value-of select="mri:pointOfContact[(cit:CI_Responsibility/cit:role/cit:CI_RoleCode/@codeListValue = 'publisher') and (string-length(cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name))][1]/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name"/>
                     </Dataset_Publisher>
@@ -628,7 +628,7 @@
         
     </xsl:template>
     
-    <xsl:template match="mri:credit" mode="DIF_Reference">
+    <xsl:template match="mri:supplementalInformation" mode="DIF_Reference">
         <Reference>
            <xsl:value-of select="."/>
         </Reference>
@@ -700,7 +700,7 @@
     
     <xsl:template match="mrd:MD_DigitalTransferOptions"  mode="DIF_Related_URL_OnlyPublications">
         
-        <xsl:if test="count(mrd:onLine/cit:CI_OnlineResource[not(contains(lower-case(cit:protocol), 'http--publication'))]) > 0">
+        <xsl:if test="count(mrd:onLine/cit:CI_OnlineResource[contains(lower-case(cit:protocol), 'http--publication')]) > 0">
             <Related_URL>
                 <URL_Content_Type>
                     <Type>VIEW RELATED INFORMATION</Type>
@@ -775,7 +775,7 @@
                 <xsl:text>READ-ME</xsl:text>
             </xsl:when>
             <xsl:when test="contains(lower-case($protocol), 'http--manual')">
-                <xsl:text>USER’S MANUAL</xsl:text>
+                <xsl:text>USER'S GUIDE</xsl:text>
             </xsl:when>
             <xsl:when test="contains(lower-case($protocol), 'http--metadata-url')">
                 <xsl:text></xsl:text>
@@ -821,20 +821,20 @@
             <xsl:when test="lower-case($role) = 'pointofcontact'">
                 <xsl:text>TECHNICAL CONTACT</xsl:text>
             </xsl:when>
+            <xsl:when test="lower-case($role) = 'custodian'">
+                <xsl:text>TECHNICAL CONTACT</xsl:text>
+            </xsl:when>
             <xsl:when test="lower-case($role) = 'originator'">
-                <xsl:text>METADATA AUTHOR</xsl:text>
+                <xsl:text>DIF AUTHOR</xsl:text>
             </xsl:when>
             <xsl:when test="lower-case($role) = 'author'">
-                <xsl:text>METADATA AUTHOR</xsl:text>
+                <xsl:text>DIF AUTHOR</xsl:text>
             </xsl:when>
             <xsl:when test="lower-case($role) = 'coauthor'">
-                <xsl:text>METADATA AUTHOR</xsl:text>
-            </xsl:when>
-            <xsl:when test="lower-case($role) = 'custodian'">
-                <xsl:text>DATA CENTER CONTACT</xsl:text>
+                <xsl:text>DIF AUTHOR</xsl:text>
             </xsl:when>
             <xsl:when test="lower-case($role) = 'publisher'">
-                <xsl:text>DATA CENTER CONTACT</xsl:text>
+                <xsl:text>DIF AUTHOR</xsl:text>
             </xsl:when>
         </xsl:choose>
     </xsl:function>
