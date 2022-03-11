@@ -64,6 +64,7 @@
     <xsl:param name="default_IDN_Node_sequence" select="'', '', '', ''"/>
     <xsl:param name="default_metadata_name" select="'CEOS IDN DIF'"/>
     <xsl:param name="default_metadata_version" select="'VERSION 9.9.3'"/>
+    <xsl:param name="default_target_group" select="'gov.nasa.gsfc.gcmd'"/>
     
     <xsl:template match="/">
         <xsl:apply-templates select="//mdb:MD_Metadata" mode="DIF"/>
@@ -187,6 +188,7 @@
             
             <xsl:apply-templates select="mdb:dateInfo/cit:CI_Date[contains(lower-case(cit:dateType/cit:CI_DateTypeCode/@codeListValue), 'creation')]/cit:date/*[contains(local-name(), 'Date')]" mode="DIF_Creation_Date"/>
             <xsl:apply-templates select="mdb:dateInfo/cit:CI_Date[contains(lower-case(cit:dateType/cit:CI_DateTypeCode/@codeListValue), 'revision')]/cit:date/*[contains(local-name(), 'Date')]" mode="DIF_Last_DIF_Revision_Date"/>
+            <xsl:apply-templates select="." mode="DIF_Extended_Metadata"/>
         </DIF>
     </xsl:template>
         
@@ -271,17 +273,21 @@
                 </Version>
             </xsl:if>
            
-            <Dataset_DOI>
-                <xsl:variable name="doi" select="mri:citation/cit:CI_Citation/cit:identifier/mcc:MD_Identifier[contains(lower-case(mcc:authority/cit:CI_Citation/cit:title), 'digital object identifier')]/mcc:code[contains(., 'doi') or contains(., '10.')]"/>
-                <xsl:choose>
-                    <xsl:when test="contains($doi, 'doi:')">
-                        <xsl:value-of select="substring-after($doi, 'doi:')"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="$doi"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </Dataset_DOI>
+            
+            <xsl:variable name="doi" select="mri:citation/cit:CI_Citation/cit:identifier/mcc:MD_Identifier[contains(lower-case(mcc:authority/cit:CI_Citation/cit:title), 'digital object identifier')]/mcc:code[contains(., 'doi') or contains(., '10.')]"/>
+            <xsl:if test="string-length($doi) > 0">
+                <Dataset_DOI>
+                 <xsl:choose>
+                     <xsl:when test="contains($doi, 'doi:')">
+                         <xsl:value-of select="substring-after($doi, 'doi:')"/>
+                     </xsl:when>
+                     <xsl:otherwise>
+                         <xsl:value-of select="$doi"/>
+                     </xsl:otherwise>
+                 </xsl:choose>
+                </Dataset_DOI>
+            </xsl:if>
+            
             
             <xsl:for-each select="ancestor::mdb:MD_Metadata/mdb:metadataLinkage/cit:CI_OnlineResource[contains(cit:protocol, 'http--metadata-URL')]/cit:linkage">
                 <Online_Resource>
@@ -344,28 +350,46 @@
     </xsl:template>
        
     <xsl:template match="cit:CI_Address" mode="DIF_Personnel_Address">
+        <xsl:if test="string-length(cit:electronicMailAddress) > 0">
             <Email>
                 <xsl:value-of select="cit:electronicMailAddress"/>
             </Email>
+        </xsl:if>
+      
+        <xsl:if test="
+            (count(cit:deliveryPoint[string-length() > 0]) > 0) or
+            (string-length(cit:city) > 0) or
+            (string-length(cit:administrativeArea) > 0) or
+            (string-length(cit:postalCode) > 0) or
+            (string-length(cit:country) > 0) ">
             <Contact_Address>
                 <xsl:for-each select="cit:deliveryPoint">
                     <Address>
                         <xsl:value-of select="."/>
                     </Address>
                 </xsl:for-each>    
-                <City>
-                    <xsl:value-of select="cit:city"></xsl:value-of>
-                </City>
-                <Province_or_State>
-                    <xsl:value-of select="cit:administrativeArea"></xsl:value-of>
-                </Province_or_State>
-                <Postal_Code>
-                    <xsl:value-of select="cit:postalCode"></xsl:value-of>
-                </Postal_Code>
-                <Country>
-                        <xsl:value-of select="cit:country"></xsl:value-of>
-                </Country>
+                <xsl:if test="(string-length(cit:city) > 0)">
+                    <City>
+                        <xsl:value-of select="cit:city"></xsl:value-of>
+                    </City>
+                </xsl:if>
+                <xsl:if test="(string-length(cit:administrativeArea) > 0)">
+                    <Province_or_State>
+                        <xsl:value-of select="cit:administrativeArea"></xsl:value-of>
+                    </Province_or_State>
+                </xsl:if>
+                <xsl:if test="(string-length(cit:postalCode) > 0)">
+                    <Postal_Code>
+                        <xsl:value-of select="cit:postalCode"></xsl:value-of>
+                    </Postal_Code>
+                </xsl:if>
+                <xsl:if test="(string-length(cit:country) > 0)">
+                    <Country>
+                            <xsl:value-of select="cit:country"></xsl:value-of>
+                    </Country>
+                </xsl:if>
             </Contact_Address>
+        </xsl:if>
     </xsl:template>
 
 
@@ -696,6 +720,39 @@
         <Last_DIF_Revision_Date>
             <xsl:value-of select="local:truncDate(.)"/>
         </Last_DIF_Revision_Date>
+    </xsl:template>
+    
+    <xsl:template match="mdb:MD_Metadata" mode="DIF_Extended_Metadata">
+        <Extended_Metadata>
+            <Metadata>
+                <Group>
+                    <xsl:value-of select="$default_target_group"/>
+                </Group>
+                <Name>metadata.uuid</Name>
+                <Value>
+                    <xsl:value-of select="mdb:metadataIdentifier/mcc:MD_Identifier/mcc:code"/>
+                </Value>
+            </Metadata>
+            <Metadata>
+                <Group>
+                    <xsl:value-of select="$default_target_group"/>
+                </Group>
+                <Name>metadata.extraction_date</Name>
+                <Value>
+                    <xsl:value-of select="mdb:dateInfo/cit:CI_Date[contains(lower-case(cit:dateType/cit:CI_DateTypeCode/@codeListValue), 'revision')]/cit:date/*[contains(local-name(), 'Date')]"/>
+                </Value>
+            </Metadata>
+            <Metadata>
+                <Group>
+                    <xsl:value-of select="$default_target_group"/>
+                </Group>
+                <Name>metadata.keyword_version</Name>
+                <Value>
+                    <xsl:value-of select="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:descriptiveKeywords/mri:MD_Keywords/mri:thesaurusName/cit:CI_Citation[contains(lower-case(cit:title), 'gcmd')]/cit:edition"/>
+                </Value>
+            </Metadata>
+        </Extended_Metadata>
+        
     </xsl:template>
     
     <xsl:template match="mrd:MD_DigitalTransferOptions"  mode="DIF_Related_URL_OnlyPublications">
