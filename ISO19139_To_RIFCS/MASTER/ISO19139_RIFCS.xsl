@@ -112,8 +112,9 @@
                 </xsl:if>
                        
                 <xsl:apply-templates  select="gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:formatDistributor/gmd:MD_Distributor/gmd:distributorTransferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource[contains(gmd:name, 'Digital Object Identifier for dataset') and contains(gmd:name, gmd:fileIdentifier)]/gmd:linkage/gmd:URL" mode="registryObject_identifier"/>   
-                <xsl:apply-templates select="gmd:dataSetURI[string-length(.) > 0]" mode="registryObject_identifier"/>
-                <!--xsl:apply-templates select="gmd:identificationInfo/*[contains(lower-case(name()),'identification')]/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code"  mode="registryObject_identifier_local"/-->
+                <!--xsl:apply-templates select="gmd:dataSetURI[string-length(.) > 0]" mode="registryObject_identifier"/-->
+                <xsl:apply-templates select="gmd:identificationInfo/*[contains(lower-case(name()),'identification')]/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier[gmd:authority/gmd:CI_Citation/gmd:title = 'Digital Object Identifier']/gmd:code" mode="registryObject_identifier"/>
+                <xsl:apply-templates select="gmd:identificationInfo/*[contains(lower-case(name()),'identification')]/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code"  mode="registryObject_identifier_local"/>
                 <xsl:apply-templates select="gmd:fileIdentifier" mode="registryObject_identifier"/>
                 <xsl:apply-templates select="gmd:fileIdentifier" mode="registryObject_location_metadata"/>
                 <xsl:apply-templates select="gmd:parentIdentifier" mode="registryObject_related_object"/>
@@ -314,11 +315,11 @@
         </key>
     </xsl:template>
     
-    <!--xsl:template match="gmd:code" mode="registryObject_identifier_local">
+    <xsl:template match="gmd:code" mode="registryObject_identifier_local">
         <identifier type="local">
             <xsl:value-of select="."/>
         </identifier>
-    </xsl:template-->
+    </xsl:template>
 
     <xsl:template match="gmd:fileIdentifier" mode="registryObject_identifier">
         <xsl:if test="string-length(normalize-space(.)) > 0">
@@ -341,6 +342,12 @@
     </xsl:template>
     
     <xsl:template match="gmd:dataSetURI" mode="registryObject_identifier">
+        <identifier type="{localFunc:getIdentifierType(.)}">
+            <xsl:value-of select="normalize-space(.)"/>
+        </identifier>
+    </xsl:template>
+    
+    <xsl:template match="gmd:code" mode="registryObject_identifier">
         <identifier type="{localFunc:getIdentifierType(.)}">
             <xsl:value-of select="normalize-space(.)"/>
         </identifier>
@@ -1273,11 +1280,10 @@
                </xsl:choose>
            </xsl:for-each>
        </xsl:variable>
-        
+    
         <!-- We can only accept one DOI; howerver, first we will find all -->
         <xsl:variable name = "doiIdentifier_sequence" as="xs:string*">
-            <xsl:value-of select=" ../../../../gmd:dataSetURI"/>
-            <xsl:value-of select="gmd:identifier/gmd:MD_Identifier/gmd:code[contains(lower-case(.), 'doi')]"/>
+            <xsl:value-of select="gmd:identifier/gmd:MD_Identifier[gmd:authority/gmd:CI_Citation/gmd:title = 'Digital Object Identifier']/gmd:code"/>
         </xsl:variable> 
         <xsl:variable name="identifierToUse">
             <xsl:choose>
@@ -1302,6 +1308,17 @@
                     <title>
                         <xsl:value-of select="gmd:title"/>
                     </title>
+                    
+                    <version>
+                        <xsl:choose>
+                            <xsl:when test="string-length(gmd:edition) > 0">
+                                <xsl:value-of select="gmd:edition"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:text>v1</xsl:text>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </version>
                     
                     <xsl:variable name="dateValueAndType_sequence" as="xs:string*">
                         <xsl:choose>
@@ -1745,6 +1762,9 @@
                 <xsl:text>purl</xsl:text>
             </xsl:when>
             <xsl:when test="contains(lower-case($identifier), 'doi.org')">
+                <xsl:text>doi</xsl:text>
+            </xsl:when>
+            <xsl:when test="contains(lower-case($identifier), '10.')">
                 <xsl:text>doi</xsl:text>
             </xsl:when>
             <xsl:when test="contains(lower-case($identifier), 'scopus')">
