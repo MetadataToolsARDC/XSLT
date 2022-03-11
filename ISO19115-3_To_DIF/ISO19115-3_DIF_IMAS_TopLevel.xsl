@@ -17,5 +17,6 @@
     <xsl:param name="default_originating_metadata_node" select="'IMAS'"/>
     <xsl:param name="default_IDN_Node_sequence" select="'AMD/AU', 'CEOS', 'AMD'"/>
     <xsl:param name="default_metadata_name" select="'CEOS IDN DIF'"/>
+    <xsl:param name="default_target_group" select="'gov.nasa.gsfc.gcmd'"/>
       
 </xsl:stylesheet>
