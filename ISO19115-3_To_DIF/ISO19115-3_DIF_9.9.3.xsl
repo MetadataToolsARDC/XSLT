@@ -483,9 +483,9 @@
     
     <xsl:template match="mcc:MD_ProgressCode" mode="DIF_Data_Set_Progress">
         
-        <Data_Set_Progress>
-            <xsl:choose>
-                <xsl:when test="string-length(@codeListValue) > 0">
+        <xsl:choose>
+            <xsl:when test="string-length(@codeListValue) > 0">
+                <Data_Set_Progress>
                     <xsl:choose>
                         <xsl:when test="
                             @codeListValue = 'planned' or
@@ -506,17 +506,10 @@
                             @codeListValue = 'superseded'">
                             <xsl:text>COMPLETE</xsl:text>
                         </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:text>COMPLETE</xsl:text>
-                        </xsl:otherwise>
                     </xsl:choose>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:text>COMPLETE</xsl:text>
-                </xsl:otherwise>
-            </xsl:choose>
-           
-        </Data_Set_Progress>
+                </Data_Set_Progress>
+            </xsl:when>
+        </xsl:choose>
     </xsl:template>
     
     <xsl:template match="gex:EX_Extent" mode="DIF_Spatial_Coverage">
@@ -741,7 +734,7 @@
                 <Value>
                     <xsl:value-of select="mdb:dateInfo/cit:CI_Date[contains(lower-case(cit:dateType/cit:CI_DateTypeCode/@codeListValue), 'revision')]/cit:date/*[contains(local-name(), 'Date')]"/>
                 </Value>
-            </Metadata>
+            </Metadata>complete
             <Metadata>
                 <Group>
                     <xsl:value-of select="$default_target_group"/>
