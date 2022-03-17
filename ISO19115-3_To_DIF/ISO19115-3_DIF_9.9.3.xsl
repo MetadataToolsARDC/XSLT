@@ -72,7 +72,7 @@
     
     <xsl:template match="mdb:MD_Metadata" mode="DIF">
         
-        <DIF xmlns="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/" xmlns:dif="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/"
+        <DIF xmlns="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/" 
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/ https://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/dif_v9.9.3.xsd">
             
@@ -734,7 +734,7 @@
                 <Value>
                     <xsl:value-of select="mdb:dateInfo/cit:CI_Date[contains(lower-case(cit:dateType/cit:CI_DateTypeCode/@codeListValue), 'revision')]/cit:date/*[contains(local-name(), 'Date')]"/>
                 </Value>
-            </Metadata>complete
+            </Metadata>
             <Metadata>
                 <Group>
                     <xsl:value-of select="$default_target_group"/>
