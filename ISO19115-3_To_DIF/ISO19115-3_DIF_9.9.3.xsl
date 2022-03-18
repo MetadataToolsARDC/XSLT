@@ -65,7 +65,6 @@
     <xsl:param name="default_metadata_name" select="'CEOS IDN DIF'"/>
     <xsl:param name="default_metadata_version" select="'VERSION 9.9.3'"/>
     <xsl:param name="default_target_group" select="'gov.nasa.gsfc.gcmd'"/>
-    
     <xsl:template match="/">
         <xsl:apply-templates select="//mdb:MD_Metadata" mode="DIF"/>
     </xsl:template>
@@ -110,12 +109,9 @@
             
             <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:extent/gex:EX_Extent" mode="DIF_Spatial_Coverage"/>
             
-            <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:resourceConstraints/mco:MD_LegalConstraints/mco:useLimitation" mode="DIF_Access_Constraints"/>
-            
-            <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:resourceConstraints/mco:MD_LegalConstraints/mco:otherConstraints" mode="DIF_Use_Constraints"/>
+            <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification" mode="DIF_Constraints"/>
             
             <xsl:apply-templates select="mdb:defaultLocale/lan:PT_Locale/lan:language/lan:LanguageCode" mode="DIF_Data_Set_Language"/>
-            
             
             <Data_Center>
                 <Data_Center_Name>
@@ -397,47 +393,44 @@
         
         <xsl:variable name="parameter_sequence" select="tokenize(., '\|')"/>
         
-        <Parameters>
+        <!-- Category, Topic and Term are all required, so only do this if all three exist and construct
+            the element even if an empty string was found so that each element is included -->
+        <xsl:if test="count($parameter_sequence) > 2">
             
-        <xsl:if test="count($parameter_sequence) > 0">
-                
-            <xsl:if test="(count($parameter_sequence) > 0) and string-length(normalize-space($parameter_sequence[1])) > 0">
-                <Category>
-                    <xsl:value-of select="normalize-space($parameter_sequence[1])"/>
-                </Category>
-            </xsl:if>
-        
-        
-            <xsl:if test="(count($parameter_sequence) > 1) and string-length(normalize-space($parameter_sequence[2])) > 0">
-                <Topic>
-                    <xsl:value-of select="normalize-space($parameter_sequence[2])"/>
-                </Topic>
-            </xsl:if>
-        
-        
-            <xsl:if test="(count($parameter_sequence) > 2) and string-length(normalize-space($parameter_sequence[3])) > 0">
-                <Term>
-                    <xsl:value-of select="normalize-space($parameter_sequence[3])"/>
-                </Term>
-            </xsl:if>
-        
-        
-            <xsl:if test="(count($parameter_sequence) > 3) and string-length(normalize-space($parameter_sequence[4])) > 0">
-                <Variable_Level_1>
-                    <xsl:value-of select="normalize-space($parameter_sequence[4])"/>
-                </Variable_Level_1>
-            </xsl:if>
-        
-      
-            <xsl:if test="(count($parameter_sequence) > 4) and string-length(normalize-space($parameter_sequence[5])) > 0">
-                <Variable_Level_2>
-                    <xsl:value-of select="normalize-space($parameter_sequence[5])"/>
-                </Variable_Level_2>
-            </xsl:if>
-        
+             <Parameters>
+                     
+                 <Category>
+                         <xsl:value-of select="normalize-space($parameter_sequence[1])"/>
+                 </Category>
+             
+             
+                 <Topic>
+                         <xsl:value-of select="normalize-space($parameter_sequence[2])"/>
+                 </Topic>
+             
+             
+                 <Term>
+                     <xsl:value-of select="normalize-space($parameter_sequence[3])"/>
+                 </Term>
+             
+             
+                 <xsl:if test="(count($parameter_sequence) > 3) and string-length(normalize-space($parameter_sequence[4])) > 0">
+                     <Variable_Level_1>
+                         <xsl:value-of select="normalize-space($parameter_sequence[4])"/>
+                     </Variable_Level_1>
+                 </xsl:if>
+             
+           
+                 <xsl:if test="(count($parameter_sequence) > 4) and string-length(normalize-space($parameter_sequence[5])) > 0">
+                     <Variable_Level_2>
+                         <xsl:value-of select="normalize-space($parameter_sequence[5])"/>
+                     </Variable_Level_2>
+                 </xsl:if>
+             
+             </Parameters>
             
-            </xsl:if>
-        </Parameters>
+        </xsl:if>
+            
     </xsl:template>
     
     <xsl:template match="mri:MD_TopicCategoryCode" mode="DIF_ISO_Topic_Category">
@@ -565,20 +558,32 @@
             </xsl:if>
             
         </xsl:if> 
-            
-    
     </xsl:template>
     
-    <xsl:template match="mco:otherConstraints" mode="DIF_Use_Constraints">
-        <Use_Constraints>
-           <xsl:value-of select="."/>
-        </Use_Constraints>
-    </xsl:template>
-    
-    <xsl:template match="mco:useLimitation" mode="DIF_Access_Constraints">
-        <Access_Constraints>
-            <xsl:value-of select="."/>
-        </Access_Constraints>
+    <xsl:template match="mri:MD_DataIdentification" mode="DIF_Constraints">
+        
+        <xsl:if test="count(mri:resourceConstraints/mco:MD_Constraints/mco:useLimitation[string-length(.) > 0]) > 0">
+            <Access_Constraints>
+                <xsl:for-each select="mri:resourceConstraints/mco:MD_Constraints/mco:useLimitation[string-length(.) > 0]">
+                    <xsl:if test="position() != 1">
+                        <xsl:text> - </xsl:text>
+                    </xsl:if>
+                    <xsl:value-of select="."/>
+                </xsl:for-each>
+            </Access_Constraints>
+        </xsl:if>
+        
+        <xsl:if test="count(mri:resourceConstraints/mco:MD_LegalConstraints/mco:otherConstraints[string-length(.) > 0]) > 0">
+            <Use_Constraints>
+                <xsl:for-each select="mri:resourceConstraints/mco:MD_LegalConstraints/mco:otherConstraints">
+                    <xsl:if test="position() != 1">
+                        <xsl:text> - </xsl:text>
+                    </xsl:if>
+                    <xsl:value-of select="."/>
+                </xsl:for-each>
+            </Use_Constraints>
+        </xsl:if>
+        
     </xsl:template>
     
     <xsl:template match="lan:LanguageCode" mode="DIF_Data_Set_Language">
@@ -741,7 +746,7 @@
                 </Group>
                 <Name>metadata.keyword_version</Name>
                 <Value>
-                    <xsl:value-of select="/mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:descriptiveKeywords/mri:MD_Keywords/mri:thesaurusName/cit:CI_Citation[contains(lower-case(cit:title), 'gcmd')]/cit:edition"/>
+                    <xsl:value-of select="mdb:identificationInfo/mri:MD_DataIdentification/mri:descriptiveKeywords/mri:MD_Keywords/mri:thesaurusName/cit:CI_Citation[contains(lower-case(cit:title), 'gcmd')]/cit:edition"/>
                 </Value>
             </Metadata>
         </Extended_Metadata>
