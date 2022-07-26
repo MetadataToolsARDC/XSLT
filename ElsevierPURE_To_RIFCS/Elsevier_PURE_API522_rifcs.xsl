@@ -194,8 +194,11 @@
                     mode="collection_relatedInfo"/>
 
 
-                <xsl:apply-templates select="*:dataProductionPeriod"
+                <xsl:apply-templates select="*:temporalCoveragePeriod"
                     mode="collection_coverage_temporal"/>
+                
+                <xsl:apply-templates select="*:dataProductionPeriod"
+                    mode="collection_dates"/>
 
                 <xsl:apply-templates select="*:geographicalCoverage[string-length(.) > 0]"
                     mode="collection_coverage_spatial_text"/>
@@ -744,7 +747,7 @@
         </relatedInfo>
     </xsl:template>
 
-    <xsl:template match="*:dataProductionPeriod" mode="collection_coverage_temporal">
+    <xsl:template match="*:temporalCoveragePeriod" mode="collection_coverage_temporal">
         <xsl:if test="((string-length(*:startDate) > 0) or (string-length(*:endDate) > 0))">
             <coverage>
                 <temporal>
@@ -760,6 +763,23 @@
                     </xsl:if>
                 </temporal>
             </coverage>
+        </xsl:if>
+    </xsl:template>
+    
+    <xsl:template match="*:dataProductionPeriod" mode="collection_dates">
+        <xsl:if test="((string-length(*:startDate) > 0) or (string-length(*:endDate) > 0))">
+            <dates type="dc.created">
+                <xsl:if test="string-length(*:startDate) > 0">
+                    <date type="dateFrom" dateFormat="W3CDTF">
+                        <xsl:value-of select="local:formatDate(*:startDate)"/>
+                    </date>
+                </xsl:if>
+                <xsl:if test="string-length(*:endDate) > 0">
+                    <date type="dateTo" dateFormat="W3CDTF">
+                        <xsl:value-of select="local:formatDate(*:endDate)"/>
+                    </date>
+                </xsl:if>
+            </dates>
         </xsl:if>
     </xsl:template>
 
@@ -886,14 +906,14 @@
 
     <xsl:template match="*:equipment | *:dataSet" mode="collection_dates">
         <xsl:for-each select="*:publicationDate">
-            <dates type="issued">
+            <dates type="dc.issued">
                 <date type="dateFrom" dateFormat="W3CDTF">
                     <xsl:value-of select="local:formatDate(.)"/>
                 </date>
             </dates>
         </xsl:for-each>
 
-        <dates type="created">
+        <!--dates type="created">
             <xsl:for-each select="*:dateOfDataProduction">
                 <date type="dateFrom" dateFormat="W3CDTF">
                     <xsl:value-of select="local:formatDate(.)"/>
@@ -904,7 +924,7 @@
                     <xsl:value-of select="local:formatDate(.)"/>
                 </date>
             </xsl:for-each>
-        </dates>
+        </dates-->
 
     </xsl:template>
 
