@@ -2,48 +2,83 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" >
   <url>
     <loc>https://data.csiro.au/collection/csiro:6093</loc>
-    <!-- Dataset with a Handle and no DOI -->
+    <!--  https://data.csiro.au/dap/ws/v2/collections/csiro:6093/metadata/schemaOrg.json
+          Dataset with a Handle and no DOI -->
   </url>
   <url>
     <loc>https://data.csiro.au/collection/csiro:11028</loc>
-    <!-- Collection where the first author is a corporate name: -->
+    <!--  https://data.csiro.au/dap/ws/v2/collections/csiro:11028/metadata/schemaOrg.json
+          Collection where the first author is a corporate name: -->
   </url>
   <url>
     <loc>https://data.csiro.au/collection/csiro:17874</loc>
-    <!-- Software collection with a Handle and no DOI -->
+    <!--  https://data.csiro.au/dap/ws/v2/collections/csiro:17874/metadata/schemaOrg.json
+          Software collection with a Handle and no DOI -->
   </url>
   <url>
     <loc>https://data.csiro.au/collection/csiro:24192</loc>
-    <!-- Software collection with a DOI -->
+    <!--  https://data.csiro.au/dap/ws/v2/collections/csiro:24192/metadata/schemaOrg.json
+          Software collection with a DOI -->
   </url>
   <url>
     <loc>https://data.csiro.au/collection/csiro:37718</loc>
-    <!-- Service collection with a Handle and no DOI - NOTE: I don't 
-      think I looked at how to deal with services, will need to schedule some work on that -->
+    <!--  https://data.csiro.au/dap/ws/v2/collections/csiro:37718/metadata/schemaOrg.json
+          Service collection with a Handle and no DOI - NOTE: I don't 
+          think I looked at how to deal with services, will need to schedule some work on that -->
   </url>
   <url>
     <loc>https://data.csiro.au/collection/csiro:43722</loc>
-    <!-- Dataset with DOI and ORCIDS -->
+    <!--  https://data.csiro.au/dap/ws/v2/collections/csiro:43722/metadata/schemaOrg.json
+          Dataset with DOI and ORCIDS -->
   </url>
   <url>
     <loc>https://data.csiro.au/collection/csiro:50450</loc>
-    <!-- Dataset with ARC grant -->
+    <!--  https://data.csiro.au/dap/ws/v2/collections/csiro:50450/metadata/schemaOrg.json
+          Dataset with ARC grant -->
   </url>
   <url>
     <loc>https://data.csiro.au/collection/csiro:52217</loc>
-    <!-- Dataset where the user has entered two ARC grant IDs 
-      (this is a DAP side input issue, it will probably be broken for your purposes.  
-      I need to schedule some work to fix it.) -->
+    <!--  https://data.csiro.au/dap/ws/v2/collections/csiro:52217/metadata/schemaOrg.json
+          Dataset where the user has entered two ARC grant IDs 
+          (this is a DAP side input issue, it will probably be broken for your purposes.  
+          I need to schedule some work to fix it.) -->
   </url>
   <url>
     <loc>https://data.csiro.au/collection/csiro:MDBSY_Reporting_Regions</loc>
-    <!-- Dataset with no Handle and no DOI (this should be pretty rare, only the 
-      very earliest DAP publications would have this quality)-->
+    <!--  https://data.csiro.au/dap/ws/v2/collections/csiro:MDBSY_Reporting_Regions/metadata/schemaOrg.json
+          Dataset with no Handle and no DOI (this should be pretty rare, only the 
+          very earliest DAP publications would have this quality)-->
   </url>
   <url>
     <loc>https://data.csiro.au/collection/csiro:MDBSY_Scenario_A</loc>
-    <!-- Service collection with a DOI (this should be pretty rare) -->
+    <!--  https://data.csiro.au/dap/ws/v2/collections/csiro:MDBSY_Scenario_A/metadata/schemaOrg.json
+          Service collection with a DOI (this should be pretty rare) -->
   </url>  
 </urlset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
