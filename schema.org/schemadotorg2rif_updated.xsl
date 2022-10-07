@@ -3,6 +3,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0"
+    xmlns:local="schemadotorg2rif_updated"
     xmlns="http://ands.org.au/standards/rif-cs/registryObjects">
     <xsl:output indent="yes"/>
     <xsl:strip-space elements="*"/>
@@ -15,10 +16,10 @@
         <registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects {$xsd_url}">
-            <xsl:apply-templates select="dataset | datasets"/>
+            <xsl:apply-templates select="//dataset"/>
             <xsl:apply-templates select="//includedInDataCatalog" mode="catalog"/>
             <xsl:apply-templates select="//publisher | //funder | //contributor | //provider" mode="party"/>
-        </registryObjects>
+           </registryObjects>
     </xsl:template>
 
     <xsl:template match="publisher| funder | contributor | provider" mode="party">
@@ -97,45 +98,73 @@
             </xsl:element>
         </xsl:if>       
     </xsl:template>
+    
+    <xsl:function name="local:getTypeAndSubType" as="xs:string*">
+        <xsl:param name="sourceType"/>
+        <xsl:choose>
+            <xsl:when test="'dataset' = translate($sourceType, 'DATASET', 'dataset')">
+                <xsl:value-of select="'collection'"/>
+                <xsl:value-of select="'dataset'"/>
+            </xsl:when>
+            <xsl:when test="'software' = translate($sourceType, 'SOFTWARE', 'software')">
+                <xsl:value-of select="'collection'"/>
+                <xsl:value-of select="'software'"/>
+            </xsl:when>
+            <xsl:when test="'service' = translate($sourceType, 'SERVICE', 'service')">
+                <xsl:value-of select="'service'"/>
+                <xsl:value-of select="'report'"/>
+            </xsl:when>
+        </xsl:choose>
+        
+    </xsl:function>
 
-    <xsl:template match="dataset | datasets">
-        <xsl:variable name="type" select="translate(normalize-space(type), 'DATASET', 'dataset')"/>
-        <xsl:if test="$type = 'dataset'">
-            <xsl:element name="registryObject">
-                <xsl:attribute name="group">
-                    <xsl:value-of select="$group"/>
-                </xsl:attribute>
-                <xsl:call-template name="getKey"/>
-                <xsl:call-template name="getOriginatingSource"/>
-                <xsl:element name="collection">
-                    <xsl:attribute name="type">
-                        <xsl:value-of select="$type"/>
+    <xsl:template match="dataset">
+        <xsl:message select="concat('type: [', type, ']')"/>
+        <xsl:variable name="typeAndSubType_sequence" select="local:getTypeAndSubType(normalize-space(type))" as="xs:string*"/>
+        <xsl:choose>
+            <xsl:when test="count($typeAndSubType_sequence) != 2">
+                <xsl:message select="concat('Warning: type [', type, '] not recognised so not constructing a record')"></xsl:message>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:element name="registryObject">
+                    <xsl:attribute name="group">
+                        <xsl:value-of select="$group"/>
                     </xsl:attribute>
-                    <xsl:apply-templates select="name" mode="primary"/>
-                    <xsl:apply-templates select="alternateName"/>
-                    <xsl:call-template name="getKeyAsIdentifier"/>
-                    <xsl:apply-templates select="id" mode="identifier"/>
-                    <xsl:apply-templates select="identifier/id | identifier/value | identifier/url" mode="identifier"/>
-                    <xsl:apply-templates select="title" mode="primary"/>
-                    <xsl:apply-templates select="datePublished | dateCreated | temporalCoverage| spatialCoverage"/>
-                    <xsl:apply-templates select="keywords | description | license | publishingPrinciples | isAccessibleForFree | conditionsOfAccess | copyrightHolder"/>
-                    <xsl:apply-templates select="prov_wasAssociatedWith"/>
-                    <xsl:call-template name="addCitationMetadata"/>
-                    <xsl:if test="url | distribution">
-                        <xsl:element name="location">
-                            <xsl:element name="address">
-                                <xsl:apply-templates select="url"/>
-                                <xsl:apply-templates select="provider/contactPoint/email"/>
-                                <xsl:apply-templates select="distribution"/>
+                    <xsl:call-template name="getKey"/>
+                    <xsl:call-template name="getOriginatingSource"/>
+                    <xsl:element name="{$typeAndSubType_sequence[1]}">
+                        <xsl:attribute name="type">
+                            <xsl:value-of select="$typeAndSubType_sequence[2]"/>
+                        </xsl:attribute>
+                        <xsl:apply-templates select="name" mode="primary"/>
+                        <xsl:apply-templates select="alternateName"/>
+                        <xsl:call-template name="getKeyAsIdentifier"/>
+                        <xsl:apply-templates select="id | identifier | identifier/id | identifier/value | identifier/url" mode="identifier"/>
+                        <xsl:apply-templates select="title" mode="primary"/>
+                        <xsl:apply-templates select="datePublished | dateCreated"/>
+                        <xsl:apply-templates select="temporalCoverage| spatialCoverage"/>
+                        <xsl:apply-templates select="keywords"/>
+                        <xsl:apply-templates select="description"/>
+                        <xsl:apply-templates select="license"/>
+                        <xsl:apply-templates select="publishingPrinciples | conditionsOfAccess | copyrightHolder | copyrightNotice"/>
+                        <xsl:apply-templates select="isAccessibleForFree"/>
+                        <xsl:apply-templates select="prov_wasAssociatedWith"/>
+                        <xsl:call-template name="addCitationMetadata"/>
+                        <xsl:if test="url | distribution">
+                            <xsl:element name="location">
+                                <xsl:element name="address">
+                                    <xsl:apply-templates select="url"/>
+                                    <xsl:apply-templates select="provider/contactPoint/email"/>
+                                    <xsl:apply-templates select="distribution"/>
+                                </xsl:element>
                             </xsl:element>
-                        </xsl:element>
-                    </xsl:if>
-                    <xsl:apply-templates select="isPartOf | hasPart"/>
-                    <xsl:apply-templates select="publisher | funder | contributor | provider | includedInDataCatalog | citation | creator" mode="relatedInfo"/>
+                        </xsl:if>
+                        <xsl:apply-templates select="isPartOf | hasPart"/>
+                        <xsl:apply-templates select="publisher | funder | contributor | provider | includedInDataCatalog | citation | creator" mode="relatedInfo"/>
+                    </xsl:element>
                 </xsl:element>
-            </xsl:element>
-        </xsl:if>
-        <xsl:apply-templates select="dataset"/>
+           </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
 <!-- the group and originating source is mandatory 
@@ -384,13 +413,40 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template name="getKeyValue">
+    <!--xsl:template name="getKeyValue">
         <xsl:choose>
             <xsl:when test="identifier/value">
                 <xsl:value-of select="identifier[1]/value/text()"/>
             </xsl:when>
             <xsl:when test="identifier">
                 <xsl:value-of select="identifier[1]/text()"/>
+            </xsl:when>
+            <xsl:when test="id">
+                <xsl:value-of select="id[1]/text()"/>
+            </xsl:when>
+            <xsl:when test="url">
+                <xsl:value-of select="url/text()"/>
+            </xsl:when>
+            <xsl:when test="landingPage">
+                <xsl:value-of select="landingPage/text()"/>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:template-->
+    
+    <xsl:template name="getKeyValue">
+        <xsl:choose>
+            <!-- Find first identifier that has text node - rather than child element -->
+            <xsl:when test="count(identifier[text()])">
+                <xsl:value-of select="identifier[text()][1]/text()"/>
+            </xsl:when>
+            <xsl:when test="identifier/value">
+                <xsl:value-of select="identifier[1]/value/text()"/>
+            </xsl:when>
+            <xsl:when test="identifier/id">
+                <xsl:value-of select="identifier[1]/id/text()"/>
+            </xsl:when>
+            <xsl:when test="identifier/url">
+                <xsl:value-of select="identifier[1]/url/text()"/>
             </xsl:when>
             <xsl:when test="id">
                 <xsl:value-of select="id[1]/text()"/>
@@ -524,7 +580,7 @@
         </xsl:element>
     </xsl:template>
     
-    <xsl:template match="publishingPrinciples | conditionsOfAccess | copyrightHolder">
+    <xsl:template match="publishingPrinciples | conditionsOfAccess | copyrightHolder | copyrightNotice">
         <xsl:element name="rights">
             <xsl:choose>
                 <xsl:when test="url">
@@ -908,7 +964,7 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="id | value | url" mode="identifier">
+    <xsl:template match="identifier | id | value | url" mode="identifier">
         <xsl:element name="identifier">
             <xsl:attribute name="type">
                 <xsl:choose>
