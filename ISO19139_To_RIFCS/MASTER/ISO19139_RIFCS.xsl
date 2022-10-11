@@ -113,8 +113,8 @@
                        
                 <xsl:apply-templates  select="gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:formatDistributor/gmd:MD_Distributor/gmd:distributorTransferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource[contains(gmd:name, 'Digital Object Identifier for dataset') and contains(gmd:name, gmd:fileIdentifier)]/gmd:linkage/gmd:URL" mode="registryObject_identifier"/>   
                 <!--xsl:apply-templates select="gmd:dataSetURI[string-length(.) > 0]" mode="registryObject_identifier"/-->
-                <xsl:apply-templates select="gmd:identificationInfo/*[contains(lower-case(name()),'identification')]/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier[gmd:authority/gmd:CI_Citation/gmd:title = 'Digital Object Identifier']/gmd:code" mode="registryObject_identifier"/>
-                <xsl:apply-templates select="gmd:identificationInfo/*[contains(lower-case(name()),'identification')]/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code"  mode="registryObject_identifier_local"/>
+                <!--xsl:apply-templates select="gmd:identificationInfo/*[contains(lower-case(name()),'identification')]/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier[gmd:authority/gmd:CI_Citation/gmd:title = 'Digital Object Identifier']/gmd:code" mode="registryObject_identifier"/-->
+                <xsl:apply-templates select="gmd:identificationInfo/*[contains(lower-case(name()),'identification')]/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier"  mode="registryObject_identifier"/>
                 <xsl:apply-templates select="gmd:fileIdentifier" mode="registryObject_identifier"/>
                 <xsl:apply-templates select="gmd:fileIdentifier" mode="registryObject_location_metadata"/>
                 <xsl:apply-templates select="gmd:parentIdentifier" mode="registryObject_related_object"/>
@@ -315,11 +315,20 @@
         </key>
     </xsl:template>
     
-    <xsl:template match="gmd:code" mode="registryObject_identifier_local">
-        <identifier type="local">
-            <xsl:value-of select="."/>
-        </identifier>
-    </xsl:template>
+    <xsl:template match="gmd:MD_Identifier" mode="registryObject_identifier">
+        <xsl:choose>
+         <xsl:when test="count(gmd:authority) > 0">
+             <identifier type="{localFunc:getIdentifierTypeFromAuthority(gmd:authority)}">
+                 <xsl:value-of select="gmd:code"/>
+             </identifier>
+         </xsl:when>
+         <xsl:otherwise>
+             <identifier type="local">
+                 <xsl:value-of select="gmd:code"/>
+             </identifier>
+         </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template> 
 
     <xsl:template match="gmd:fileIdentifier" mode="registryObject_identifier">
         <xsl:if test="string-length(normalize-space(.)) > 0">
@@ -1064,7 +1073,7 @@
 
 
    <xsl:template match="*[contains(lower-case(name()),'identification')]"  mode="registryObject_rights_access">
-       <!-- if there is one or more MD_ClassificationCode of 'unclassified', and all occurences of MD_ClassificationCode are 'unclassified', set accessRights to 'open' -->
+       <!-- if there is one or more MD_ClassificationCode of 'unclassified', and all occurrences of MD_ClassificationCode are 'unclassified', set accessRights to 'open' -->
             <rights>
                 <accessRights>
                     <xsl:choose>
@@ -1748,6 +1757,20 @@
             </xsl:when>
             <xsl:otherwise>
                 <xsl:text>dataset</xsl:text>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
+    <xsl:function name="localFunc:getIdentifierTypeFromAuthority" as="xs:string">
+        <xsl:param name="authority" as="node()"/>
+        <xsl:message select="concat('Authority: ', name($authority))"/>
+        <xsl:variable name="authorityID" select="$authority/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier/gmd:code"/>
+        <xsl:choose>
+            <xsl:when test="($authorityID, 'ISO') and contains($authorityID, '26324:2012')">
+                <xsl:text>doi</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:text>local</xsl:text>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
