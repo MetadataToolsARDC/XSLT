@@ -17,7 +17,7 @@
     <xsl:param name="global_group" select="'University of New England DSpace'"/>
     <xsl:param name="global_acronym" select="'UNE'"/>
     <xsl:param name="global_publisherName" select="'University of New England'"/>
-    <xsl:param name="global_baseURI" select="'http://https://rune.une.edu.au'"/>
+    <xsl:param name="global_baseURI" select="'http://rune.une.edu.au'"/>
     <xsl:param name="global_path" select="'/web/handle/'"/>
     
     <!-- overrides -->
