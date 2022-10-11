@@ -2,7 +2,7 @@
 <!-- Mostly a copy of https://git.ands.org.au/projects/RD/repos/harvester/browse/resources/schemadotorg2rif.xsl but with a few additions -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.0"
     xmlns:local="schemadotorg2rif_updated"
     xmlns="http://ands.org.au/standards/rif-cs/registryObjects">
     <xsl:output indent="yes"/>
@@ -53,7 +53,7 @@
                         </xsl:if>
                         <xsl:apply-templates select="contactPoint"/>
                         <xsl:apply-templates select="identifier | id"/>
-                        <xsl:apply-templates select="url" mode="identifier"/>
+                        <xsl:apply-templates select="url" mode="identifier_determine_type_from_value_only"/>
                         <xsl:apply-templates select="description | logo"/>
                     </xsl:element>
                 </xsl:element>
@@ -84,7 +84,7 @@
                     </xsl:attribute>
                     <xsl:apply-templates select="name" mode="primary"/>
                     <xsl:apply-templates select="identifier | id"/>
-                    <xsl:apply-templates select="url" mode="identifier"/>
+                    <xsl:apply-templates select="url" mode="identifier_determine_type_from_value_only"/>
                     <xsl:apply-templates select="name" mode="description"/>
                     <xsl:if test="distribution | url">
                         <xsl:element name="location">
@@ -139,7 +139,7 @@
                         <xsl:apply-templates select="name" mode="primary"/>
                         <xsl:apply-templates select="alternateName"/>
                         <xsl:call-template name="getKeyAsIdentifier"/>
-                        <xsl:apply-templates select="id | identifier | identifier/id | identifier/value | identifier/url" mode="identifier"/>
+                        <xsl:apply-templates select="id | identifier"/>
                         <xsl:apply-templates select="title" mode="primary"/>
                         <xsl:apply-templates select="datePublished | dateCreated"/>
                         <xsl:apply-templates select="temporalCoverage| spatialCoverage"/>
@@ -228,7 +228,7 @@
     -->
     <xsl:template name="addCitationMetadata">
         <xsl:choose>  
-            <xsl:when test="creator and (identifier or id or  url) and publisher and (datePublished or dateCreated)">
+            <xsl:when test="creator and (identifier or id or url) and publisher and (datePublished or dateCreated)">
                 <xsl:element name="citationInfo">
                     <xsl:element name="citationMetadata">
                         <xsl:choose>
@@ -239,7 +239,7 @@
                                 <xsl:apply-templates select="id[1]"/>
                             </xsl:when>
                             <xsl:otherwise>
-                                <xsl:apply-templates select="url" mode="identifier"/>
+                                <xsl:apply-templates select="url" mode="identifier_determine_type_from_value_only"/>
                             </xsl:otherwise>
                         </xsl:choose>
                         <xsl:choose>
@@ -495,17 +495,54 @@
     </xsl:template>
 
     <xsl:template match="keywords">
-        <!-- TODO - handle type = "DefinedTerm" -->
-        <xsl:variable name="keywordsList" select="tokenize(text(),'\s?[,;:]\s?')" as="xs:string*"/>
-        <xsl:for-each select="$keywordsList">
+        
+        <!-- KeyWord has text node (whether or not other children) -->
+        <xsl:if test="string-length(text())">
             <xsl:element name="subject">
                 <xsl:attribute name="type">local</xsl:attribute>
-                <xsl:value-of select="normalize-space(.)"/>
+                <xsl:apply-templates select="text()"/>
             </xsl:element>
-        </xsl:for-each>
+        </xsl:if>
+        
+        <!-- KeyWord has child notes (whether or not a text node additionally -->
+        <xsl:if test="(count(*) > 0)">
+            <xsl:element name="subject">
+                <xsl:attribute name="type">
+                    <!--xsl:when test="string-length(type)">
+                            Could we always use source type or do we have to (always) map to RIF-CS subject types?
+                        </xsl:when-->
+                    <xsl:choose>
+                        <xsl:when test="contains(lower-case(.), 'anzsrc-for')">
+                             <xsl:text>anzsrc-for</xsl:text>
+                        </xsl:when>
+                        <xsl:when test="contains(lower-case(.), 'anzsrc-seo')">
+                            <xsl:text>anzsrc-seo</xsl:text>
+                        </xsl:when>
+                        <xsl:when test="contains(lower-case(.), 'anzsrc-toa')">
+                            <xsl:text>anzsrc-toa</xsl:text>
+                        </xsl:when>
+                        <xsl:when test="contains(lower-case(.), 'gcmd')">
+                            <xsl:text>gcmd</xsl:text>
+                        </xsl:when>
+                        <xsl:otherwise>
+                             <xsl:text>local</xsl:text>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:attribute>
+                <xsl:if test="string-length(url)">
+                    <xsl:attribute name="termIdentifier">
+                        <xsl:apply-templates select="url/text()"/>
+                    </xsl:attribute>
+                </xsl:if>
+                <xsl:if test="string-length(termCode)">
+                    <xsl:apply-templates select="termCode/text()"/>
+                </xsl:if>
+            </xsl:element>
+        </xsl:if>
+        
     </xsl:template>
-
-    <xsl:template match="contentSize">
+    
+     <xsl:template match="contentSize">
         <xsl:element name="byteSize">
             <xsl:apply-templates select="text()"/>
         </xsl:element>
@@ -630,68 +667,6 @@
             <xsl:element name="value">
                 <xsl:apply-templates select="text()"/>
             </xsl:element>
-        </xsl:element>
-    </xsl:template>
-
-    <xsl:template match="identifier">
-        <xsl:element name="identifier">
-            <xsl:choose>
-                <xsl:when test="propertyID">
-                    <xsl:attribute name="type">
-                        <xsl:choose>
-                            <xsl:when test="contains(propertyID/text(), 'registry.identifiers.org/registry/')">
-                                <xsl:value-of select="substring-after(propertyID/text(), 'registry.identifiers.org/registry/')"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:value-of select="propertyID/text()"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:attribute>
-                    <xsl:choose>
-                        <xsl:when test="value">
-                            <xsl:choose>
-                                <xsl:when test="contains(value/text(), concat(substring-after(propertyID/text(), 'registry.identifiers.org/registry/'),':'))">
-                                    <xsl:value-of select="substring-after(value/text(), concat(substring-after(propertyID/text(), 'registry.identifiers.org/registry/'),':'))"/>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:value-of select="value/text()"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:when>
-                        <xsl:when test="id">
-                            <xsl:value-of select="id/text()"/>
-                        </xsl:when>
-                        <xsl:when test="url">
-                            <xsl:value-of select="url/text()"/>
-                        </xsl:when>
-                    </xsl:choose>
-                </xsl:when>
-                <xsl:when test="id">
-                    <xsl:attribute name="type">
-                        <xsl:choose>
-                            <xsl:when test="propertyID">
-                                <xsl:value-of select="propertyID/text()"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:text>url</xsl:text>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:attribute>
-                    <xsl:value-of select="id/text()"/>
-                </xsl:when>
-                <xsl:when test="url">
-                    <xsl:attribute name="type">
-                        <xsl:text>url</xsl:text>
-                    </xsl:attribute>
-                    <xsl:apply-templates select="text()"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:attribute name="type">
-                        <xsl:text>local</xsl:text>
-                    </xsl:attribute>
-                    <xsl:apply-templates select="text()"/>
-                </xsl:otherwise>
-            </xsl:choose>
         </xsl:element>
     </xsl:template>
 
@@ -840,8 +815,8 @@
                 </xsl:attribute>
             </xsl:element>
             <xsl:apply-templates select="name"/>
-            <xsl:apply-templates select="id | identifier"/>
-            <xsl:apply-templates select="url" mode="identifier"/>
+            <xsl:apply-templates select="identifier | id"/>
+            <xsl:apply-templates select="url" mode="identifier_determine_type_from_value_only"/>
         </xsl:element>
     </xsl:template>
 
@@ -856,7 +831,7 @@
             </xsl:element>
             <xsl:apply-templates select="name"/>
             <xsl:apply-templates select="id | identifier"/>
-            <xsl:apply-templates select="url" mode="identifier"/>
+            <xsl:apply-templates select="url" mode="identifier_determine_type_from_value_only"/>
         </xsl:element>
     </xsl:template>
 
@@ -938,9 +913,8 @@
                 </xsl:choose>
                 
                 <xsl:apply-templates select="description" mode="notes"/>
-                <!--xsl:apply-templates select="id"/-->
-                <xsl:apply-templates select="identifier"/>
-                <xsl:apply-templates select="url" mode="identifier"/>
+                <xsl:apply-templates select="id | identifier"/>
+                <xsl:apply-templates select="url" mode="identifier_determine_type_from_value_only"/>
             </xsl:element>
         </xsl:if>
     </xsl:template>
@@ -963,8 +937,87 @@
             <xsl:apply-templates select="text()"/>
         </xsl:element>
     </xsl:template>
-
-    <xsl:template match="identifier | id | value | url" mode="identifier">
+    
+    <xsl:template match="id | identifier">
+        
+        <xsl:choose>
+            <!-- If element has just one text node and no child nodes, pass it on... -->
+            <xsl:when test="(count(*) = 0) and string-length(text())">
+                <xsl:apply-templates select="." mode="identifier_determine_type_from_value_only"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:element name="identifier">
+                    <!-- If there is a propertyID, determine type from it; otherwise, pass the value on for determining type from itself -->
+                    <xsl:if test="propertyID">
+                        <xsl:attribute name="type">
+                            <xsl:apply-templates select="propertyID/text()"/>
+                        </xsl:attribute>
+                       
+                        <xsl:choose>
+                    <xsl:choose>
+                        <xsl:when test="propertyID">
+                            <xsl:attribute name="type">
+                                <xsl:choose>
+                                    <xsl:when test="contains(propertyID/text(), 'registry.identifiers.org/registry/')">
+                                        <xsl:value-of select="substring-after(propertyID/text(), 'registry.identifiers.org/registry/')"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:apply-templates select="propertyID/text()"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:attribute>
+                            <xsl:choose>
+                                <xsl:when test="value">
+                                    <xsl:apply-templates select="value/text()"/>
+                                </xsl:when>
+                                <xsl:when test="id">
+                                    <xsl:value-of select="id/text()"/>
+                                </xsl:when>
+                                <xsl:when test="url">
+                                    <xsl:value-of select="url/text()"/>
+                                </xsl:when>
+                            </xsl:choose>
+                        </xsl:when>
+                        <xsl:when test="id">
+                            <xsl:attribute name="type">
+                                <xsl:choose>
+                                    <xsl:when test="propertyID">
+                                        <xsl:value-of select="propertyID/text()"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:text>url</xsl:text>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:attribute>
+                            <xsl:value-of select="id/text()"/>
+                        </xsl:when>
+                        <xsl:when test="url">
+                            <xsl:attribute name="type">
+                                <xsl:text>url</xsl:text>
+                            </xsl:attribute>
+                            <xsl:apply-templates select="text()"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:attribute name="type">
+                                <xsl:text>local</xsl:text>
+                            </xsl:attribute>
+                            <xsl:apply-templates select="text()"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:element>
+            </xsl:otherwise>
+            
+        </xsl:choose>     
+       
+    </xsl:template>
+    
+    <xsl:template match="id | value | url | identifier" mode="identifier_determine_type_from_value_only">
+        <!-- This function expects an element with no child nodes - only a text node - and it determines identifier type from the value itself -->
+        <xsl:choose>
+            <xsl:when test="(count(*) = 0) and string-length(text())">
+                <xsl:assert test="(count(*) = 0) and string-length(text())">ASSERT - Ought not get here - element has child nodes so it ought to be processed by the other identifier template</xsl:assert>
+            </xsl:when>
+        </xsl:choose>
         <xsl:element name="identifier">
             <xsl:attribute name="type">
                 <xsl:choose>
@@ -985,15 +1038,7 @@
                     </xsl:otherwise>
                 </xsl:choose>
            </xsl:attribute>
-            <xsl:choose>
-                <xsl:when test="(string-length(../propertyID/text()) > 0) and contains(text(), concat(substring-after(../propertyID/text(), 'registry.identifiers.org/registry/'),':'))">
-                    <xsl:value-of select="substring-after(text(), concat(substring-after(../propertyID/text(), 'registry.identifiers.org/registry/'),':'))"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="text()"/>
-                </xsl:otherwise>
-            </xsl:choose>
-            <!--xsl:apply-templates select="text()"/-->
+           <xsl:apply-templates select="text()"/>
         </xsl:element>
     </xsl:template>
     
