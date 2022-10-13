@@ -10,7 +10,6 @@
     <xsl:param name="originatingSource" select="'https://researchdata.ardc.edu.au'"/>
     <xsl:param name="group" select="'ARDC Sitemap Crawler - 1 March 2022'"/>
     <xsl:param name="debug" select="true()"/>
-    <!--xsl:variable name="xsd_url" select="'/Users/leomonus/dev/ands/registry/applications/registry/registry_object/schema/registryObjects.xsd'"/-->
     <xsl:variable name="xsd_url" select="'http://services.ands.org.au/documentation/rifcs/schema/registryObjects.xsd'"/>
     
     <xsl:template match="/">
@@ -19,7 +18,7 @@
             xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects {$xsd_url}">
             <xsl:apply-templates select="//dataset"/>
             <xsl:apply-templates select="//includedInDataCatalog" mode="catalog"/>
-            <xsl:apply-templates select="//publisher | //funder | //contributor | //provider" mode="party"/>
+            <!--xsl:apply-templates select="//publisher | //funder | //contributor | //provider" mode="party"/-->
            </registryObjects>
     </xsl:template>
 
@@ -101,12 +100,18 @@
     
     <xsl:function name="local:getTypeAndSubType" as="xs:string*">
         <xsl:param name="sourceType"/>
+        
         <xsl:choose>
             <xsl:when test="'dataset' = translate($sourceType, 'DATASET', 'dataset')">
                 <xsl:value-of select="'collection'"/>
                 <xsl:value-of select="'dataset'"/>
             </xsl:when>
-            <xsl:when test="'software' = translate($sourceType, 'SOFTWARE', 'software')">
+            <!--xsl:when test="'software' = translate($sourceType, 'SOFTWARE', 'software')">
+                <xsl:value-of select="'collection'"/>
+                <xsl:value-of select="'software'"/>
+            </xsl:when-->
+            <!-- Accepting antyhing containing 'software' so that for example SoftwareSourceCode is recognised -->
+            <xsl:when test="contains(translate($sourceType, 'SOFTWARE', 'software'), 'software')">
                 <xsl:value-of select="'collection'"/>
                 <xsl:value-of select="'software'"/>
             </xsl:when>
@@ -159,7 +164,8 @@
                             </xsl:element>
                         </xsl:if>
                         <xsl:apply-templates select="isPartOf | hasPart"/>
-                        <xsl:apply-templates select="publisher | funder | contributor | provider | includedInDataCatalog | citation | creator" mode="relatedInfo"/>
+                        <xsl:apply-templates select="publisher | funder | funding/funder | contributor | provider | includedInDataCatalog | citation | creator" mode="relatedInfo"/>
+                        <xsl:apply-templates select="funding" mode="relatedInfo"/>
                     </xsl:element>
                 </xsl:element>
            </xsl:otherwise>
@@ -176,11 +182,11 @@
                     <xsl:when test="sourceOrganization">
                         <xsl:apply-templates select="sourceOrganization" mode="originatingSource"/>
                     </xsl:when>
-                    <xsl:when test="includedInDataCatalog/url">
-                        <xsl:apply-templates select="includedInDataCatalog/url" mode="originatingSource"/>
-                    </xsl:when>
                     <xsl:when test="publisher">
                         <xsl:apply-templates select="publisher" mode="originatingSource"/>
+                    </xsl:when>
+                    <xsl:when test="includedInDataCatalog/url">
+                        <xsl:apply-templates select="includedInDataCatalog/url" mode="originatingSource"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="$originatingSource"/>
@@ -1021,12 +1027,20 @@
         <xsl:variable name="allIdentifiers" as="xs:string*">
             <xsl:call-template name="getAllIdentifiers"/>
         </xsl:variable> 
-     
+        
         <!-- don't create relatedInfo if we can't add an identifier  -->
         <xsl:if test="count($allIdentifiers) > 0">
             <xsl:element name="relatedInfo">
                 <xsl:attribute name="type">
                     <xsl:choose>
+                        <xsl:when test=
+                           "local-name(.) = 'publisher' or
+                            local-name(.) = 'provider' or
+                            local-name(.) = 'funder' or
+                            local-name(.) = 'contributor' or
+                            local-name(.) = 'creator'">
+                             <xsl:text>party</xsl:text>
+                        </xsl:when>
                         <xsl:when test="type = 'WebPage'">
                             <xsl:text>website</xsl:text>
                         </xsl:when>
@@ -1039,10 +1053,7 @@
                         <xsl:when test="name() = 'includedInDataCatalog'">
                             <xsl:text>collection</xsl:text>
                         </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:text>party</xsl:text>
-                        </xsl:otherwise>
-                    </xsl:choose>
+                     </xsl:choose>
                 </xsl:attribute>
                 <xsl:element name="relation">
                     <xsl:attribute name="type">
@@ -1074,6 +1085,9 @@
                             <xsl:when test="name() = 'creator'">
                                 <xsl:text>hasCollector</xsl:text>
                             </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:text>hasAssociationWith</xsl:text>
+                            </xsl:otherwise>
                         </xsl:choose>
                     </xsl:attribute>
                 </xsl:element>
@@ -1094,8 +1108,49 @@
                     </xsl:when>
                 </xsl:choose>
                 
-                <xsl:apply-templates select="description" mode="notes"/>
                 <xsl:call-template name="identifiers"/>
+                <xsl:apply-templates select="description" mode="notes"/>
+                
+            </xsl:element>
+        </xsl:if>
+    </xsl:template>
+    
+    <xsl:template match="funding" mode="relatedInfo">
+        <xsl:variable name="allIdentifiers" as="xs:string*">
+            <xsl:call-template name="getAllIdentifiers"/>
+        </xsl:variable> 
+        
+        <!-- don't create relatedInfo if we can't add an identifier  -->
+        <xsl:if test="count($allIdentifiers) > 0">
+            <xsl:element name="relatedInfo">
+                <xsl:attribute name="type">
+                    <xsl:text>activity</xsl:text>
+                </xsl:attribute>
+                <xsl:element name="relation">
+                    <xsl:attribute name="type">
+                       <xsl:text>isOutputOf</xsl:text>
+                    </xsl:attribute>
+                </xsl:element>
+                <xsl:choose>
+                    <xsl:when test="string-length(name) > 0">
+                        <xsl:apply-templates select="name"/>
+                    </xsl:when>
+                    <xsl:when test="(string-length(givenName) + string-length(familyName)) > 0">
+                        <!--xsl:call-template name="title">
+                            <xsl:with-param name="value">
+                                <xsl:value-of select="concat(givenName, ' ', familyName)"/>
+                            </xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:when-->
+                        <xsl:element name="title">
+                            <xsl:apply-templates select="concat(givenName, ' ', familyName)"/>
+                        </xsl:element>
+                    </xsl:when>
+                </xsl:choose>
+                
+                <xsl:call-template name="identifiers"/>
+                <xsl:apply-templates select="description" mode="notes"/>
+                
             </xsl:element>
         </xsl:if>
     </xsl:template>
