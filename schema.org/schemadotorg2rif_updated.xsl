@@ -976,10 +976,10 @@
                     <xsl:when test="string-length($type)">
                         <xsl:choose>
                             <xsl:when test="$match">
-                                <xsl:copy-of select="concat('.[count(*[name() = ''propertyID''][contains(., ', $type, ')]) > 0]', '')"/>
+                                <xsl:copy-of select="concat('.[count(*[name() = ''propertyID'' and contains(., ''', $type, ''')]) > 0]', '')"/>
                             </xsl:when>
                             <xsl:otherwise>
-                                <xsl:copy-of select="concat('.[count(*[name() = ''propertyID''][not(contains(., ', $type, '))]) > 0]', '')"/>
+                                <xsl:copy-of select="concat('.[count(*[name() = ''propertyID'' and not(contains(., ''', $type, '''))]) > 0]', '')"/>
                             </xsl:otherwise>
                         </xsl:choose>
                         
@@ -1063,9 +1063,6 @@
         <xsl:param name="total" as="xs:integer" select="-1"/>
         
         <xsl:variable name="contextNode" as="node()" select="."/>
-        <xsl:message select="concat('total: ', $total)"/>
-        <xsl:message select="concat('contextNode: ', name($contextNode))"/>
-        
         
         <xsl:variable name="identifiersRetrieved" as="node()*">
             <xsl:choose>
@@ -1076,15 +1073,15 @@
                          <xsl:for-each select="tokenize($priority, '\|')">
                              <xsl:variable name="priorityType" select="."/>
                              
-                             <xsl:message select="concat('priority type: ', $priorityType)"/>
+                             <xsl:message select="concat('Seeking identifier of priority type: ', $priorityType)"/>
                              
-                              <xsl:apply-templates select="$contextNode/identifier" mode="byType">
+                             <xsl:apply-templates select="$contextNode/identifier" mode="byType">
                                    <xsl:with-param name="type" select="$priorityType"/>
-                              </xsl:apply-templates>
+                             </xsl:apply-templates>
                                
-                              <xsl:apply-templates select="$contextNode" mode="byType">
+                             <xsl:apply-templates select="$contextNode" mode="byType">
                                    <xsl:with-param name="type" select="$priorityType"/>
-                              </xsl:apply-templates>
+                             </xsl:apply-templates>
                          </xsl:for-each>
                     </xsl:variable>
                     
