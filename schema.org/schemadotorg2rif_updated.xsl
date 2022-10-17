@@ -232,18 +232,18 @@
     don't proceed unless the json-ld has all 4
     -->
     <xsl:template name="addCitationMetadata">
-        <xsl:variable name="allIdentifiers" as="xs:string*">
-            <xsl:call-template name="getAllIdentifiers"/>
+        <xsl:variable name="identifier_elements" as="node()*">
+            <xsl:call-template name="identifiers">
+                <xsl:with-param name="priority" select="'doi|handle'"/>
+                <xsl:with-param name="total" select="3" as="xs:integer"/>
+            </xsl:call-template>
         </xsl:variable> 
         
         <xsl:choose>  
-            <xsl:when test="count($allIdentifiers) and creator and publisher and (datePublished or dateCreated)">
+            <xsl:when test="count($identifier_elements) and creator and publisher and (datePublished or dateCreated)">
                 <xsl:element name="citationInfo">
                     <xsl:element name="citationMetadata">
-                        <xsl:call-template name="identifiers">
-                            <xsl:with-param name="priority" select="'doi|handle|*'"/>
-                            <xsl:with-param name="total" select="1" as="xs:integer"/>
-                        </xsl:call-template>
+                        <xsl:copy-of select="$identifier_elements"/>
                         <xsl:choose>
                             <xsl:when test="name">
                                 <xsl:apply-templates select="name[1]"/>
@@ -436,14 +436,15 @@
     </xsl:template-->
     
     <xsl:template name="getKeyValue">
-        <xsl:variable name="priorityIdentifiers" as="xs:string*">
-            <xsl:call-template name="getPriorityIdentifiers">
-                <xsl:with-param name="priority" select="'doi|handle|*'"/>
+        <xsl:variable name="identifier_elements" as="node()*">
+            <xsl:call-template name="identifiers">
+                <xsl:with-param name="priority" select="'handle|doi'"/>
+                <xsl:with-param name="total" select="1" as="xs:integer"/>
             </xsl:call-template>
         </xsl:variable> 
         <xsl:choose>
-            <xsl:when test="count($priorityIdentifiers)">
-                <xsl:value-of select="tokenize($priorityIdentifiers[1], '\|')[2]"/>
+            <xsl:when test="count($identifier_elements)">
+                <xsl:value-of select="$identifier_elements[1]"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:assert test="0">WARNING: No Key determined - required for registry object</xsl:assert>
@@ -452,237 +453,6 @@
         
     </xsl:template>
     
-    <!--
-        getPriorityIdentifiers Gets identifiers from node in order of priority provided by 
-        param "priorityTypes".  If priority is empty, default priority is: doi|handle|*
-        
-        Returns sequence populated like so in order of priority provided
-        if possible for example where priority="doi|handle|url":
-            "doi|https://doi.org/10.25919/j503-ft52"
-            "handle|handle:10.25919/j503-73452"
-            "url"https://doi.org/10.25919/j503-ft52"
-            
-         If no doi was found, response would be as follows:
-            "handle|handle:10.25919/j503-73452"
-            "url"https://doi.org/10.25919/j503-ft52"
-            
-         If a '*' is provided, any identifier is found regardless
-         of type, so you might get something that you already have - i.e. it doesn't 
-         try to find an identifier of a type not specified (but the function
-         could be enhanced to do this). 
-         
-         So, if "doi|handle|*" is provided, returned sequence could be any 
-         of the following patterns, and more:
-         
-            "doi|https://doi.org/10.25919/j503-ft52"    (doi found)
-            "handle|handle:10.25919/j503-73452"         (handle found)
-            "doi|https://doi.org/10.25919/j503-ft52"    (first of all identifiers for '*')
-            
-            "doi|https://doi.org/10.25919/j503-ft52"    (doi found)
-            "handle|handle:10.25919/j503-73452"         (handle found)
-            "handle|handle:10.25919/j503-73452"         (first of all identifiers for '*')
-            
-            "doi|https://doi.org/10.25919/j503-ft52"    (doi found)
-            "handle|handle:10.25919/j503-73452"         (handle found)
-            "url|http://address.in.here"                (first of all identifiers for '*')
-            
-            "handle|handle:10.25919/j503-73452"         (no doi, so handle first)
-            "handle|handle:10.25919/j503-73452"         (first of all identifiers for '*')
-            
-            "handle|handle:10.25919/j503-73452"         (no doi, so handle first)
-            "url|http://address.in.here"                (first of all identifiers for '*')
-            
-            "doi|https://doi.org/10.25919/j503-ft52"    (no handle, and no other identifiers besides this doi)
-            
-            "url|http://address.in.here"                (no doi nor handle, so first of all identifiers returned)
-            
-            Note that you could also get:
-            "doi|https://doi.org/10.25919/j503-ft52"    (doi found)
-            "doi|doi:10.25919/j503-ft52"                (second doi found)
-            "doi|https://doi.org/10.25919/j503-ft52"    (first of all identifiers for '*')
-           
-            
-            Providing priority of "*|handle|doi" would result any type of
-            identifier in the first value, then the handle then the doi, so this might not be ideal
-            (i.e. it won't give you a not-handle or a not-doi in the first entry, whether or not this was available)
-         
-            
-    -->
-          
-    <xsl:template name="getPriorityIdentifiers" as="xs:string*">
-        <xsl:param name="priority" as="xs:string*"/>
-        
-        <xsl:variable name="allIdentifiers" as="xs:string*">
-            <xsl:call-template name="getAllIdentifiers"/>
-        </xsl:variable> 
-        
-        <xsl:variable name="priorityIdentifiers" as="xs:string*">
-               <xsl:if test="count($allIdentifiers) > 0">
-                 <xsl:choose>
-                    <xsl:when test="not(string-length($priority))">
-                        <!-- priority not provided, so use default priority: doi, handle
-                             and only a random if neither doi nor handle were found -->
-                        <!-- return doi identifier for 'doi' default -->
-                        <xsl:call-template name="getIdentifiersByType">
-                            <xsl:with-param name="allIdentifiers" select="$allIdentifiers"/>
-                            <xsl:with-param name="type" select="'doi'"/>
-                        </xsl:call-template>
-                        
-                        <!-- return handle identifier for 'handle' default -->
-                        <xsl:call-template name="getIdentifiersByType">
-                            <xsl:with-param name="allIdentifiers" select="$allIdentifiers"/>
-                            <xsl:with-param name="type" select="'handle'"/>
-                        </xsl:call-template>
-                        
-                        <!-- return first identifier for '*' default -->
-                        <xsl:value-of select="$allIdentifiers[1]"/>  
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <!-- Return identifiers according to priority provided -->
-                        <xsl:for-each select="tokenize($priority, '\|')">
-                            <xsl:call-template name="getIdentifiersByType">
-                                <xsl:with-param name="allIdentifiers" select="$allIdentifiers"/>
-                                <xsl:with-param name="type" select="."/>
-                            </xsl:call-template>
-                        </xsl:for-each>
-                    </xsl:otherwise>
-                 </xsl:choose>
-               </xsl:if>
-        </xsl:variable>
-        
-        <xsl:sequence select="distinct-values($priorityIdentifiers)"/>
-    </xsl:template>
-    
-    <!-- Returns sequence of identifiers by type requested -
-        each entry in the sequence is in format "type|identifier" -->
-    <xsl:template name="getIdentifiersByType" as="xs:string*">
-        <xsl:param name="allIdentifiers" as="xs:string*"/>
-        <xsl:param name="type" as="xs:string*"/>
-        
-        <xsl:assert test="string-length($type)"/>
-        
-        <xsl:variable name="identifiersByType" as="xs:string*">
-             <xsl:if test="count($allIdentifiers)">
-                 <xsl:choose>
-                     <xsl:when test="$type = '*'">
-                         <xsl:value-of select="$allIdentifiers[1]"/> <!-- just return the first -->
-                     </xsl:when>
-                     <xsl:otherwise>
-                         <xsl:for-each select="$allIdentifiers">
-                             <xsl:if test="tokenize(.,'\|')[1] = $type">
-                                 <xsl:value-of select="."/>
-                             </xsl:if>
-                         </xsl:for-each>
-                     </xsl:otherwise>
-                 </xsl:choose>
-             </xsl:if>
-        </xsl:variable>
-        
-        <xsl:sequence select="distinct-values($identifiersByType)"/>
-    </xsl:template>
-    
-    <!-- Returns sequence of identifiers with their type if determinable, 
-        format: type|value - e.g:  
-            "doi|https://doi.org/10.25919/j503-ft52"
-            "doi|doi:10.25919/j503-ft52"
-            "url"https://doi.org/10.25919/j503-ft52"
-            "orcid|https://orcid.org/0000-0003-2718-2329"
-            "orcid|0000-0003-2718-2329" -->
-        
-    <xsl:template name="getAllIdentifiers" as="xs:string*">
-        
-        <xsl:variable name="allIdentifiers" as="xs:string*">
-            <!-- Find first identifier that has text node - rather than child element -->
-            <xsl:if test="count(identifier[text()])">
-                <xsl:for-each select="identifier/text()">
-                    <xsl:call-template name="concatTypeAndIdentifier">
-                        <xsl:with-param name="identifier" select="."/>
-                    </xsl:call-template>
-                </xsl:for-each>
-            </xsl:if>
-            
-            <!-- Then check whether there is a propertyId - this is for when the class is PropertyValue-->
-            <xsl:variable name="typeFromPropertyID" as="xs:string*">
-                <xsl:if test="(count(identifier/propertyID) > 0)">
-                  <xsl:choose>
-                      <xsl:when test="contains(identifier/propertyID/text(), 'registry.identifiers.org/registry/')">
-                           <xsl:value-of select="substring-after(propertyID/text(), 'registry.identifiers.org/registry/')"/>
-                       </xsl:when>
-                       <xsl:otherwise>
-                           <xsl:value-of select="identifier/propertyID/text()"/>
-                       </xsl:otherwise>
-                  </xsl:choose>
-                </xsl:if>
-            </xsl:variable>
-            
-            <xsl:call-template name="concatTypeAndIdentifier">
-                <xsl:with-param name="type" select="$typeFromPropertyID"/>
-                <xsl:with-param name="identifier" select="identifier/value"/>
-            </xsl:call-template>
-            
-            <xsl:call-template name="concatTypeAndIdentifier">
-                <xsl:with-param name="type" select="$typeFromPropertyID"/>
-                <xsl:with-param name="identifier" select="identifier/id"/>
-            </xsl:call-template>
-            
-            <xsl:call-template name="concatTypeAndIdentifier">
-                <xsl:with-param name="type" select="$typeFromPropertyID"/>
-                <xsl:with-param name="identifier" select="identifier/url"/>
-            </xsl:call-template>
-            
-            <xsl:call-template name="concatTypeAndIdentifier">
-                <xsl:with-param name="identifier" select="id"/>
-            </xsl:call-template>
-            
-            <xsl:call-template name="concatTypeAndIdentifier">
-                <xsl:with-param name="identifier" select="url"/>
-            </xsl:call-template>
-            
-            <xsl:call-template name="concatTypeAndIdentifier">
-                <xsl:with-param name="identifier" select="sameAs"/>
-            </xsl:call-template>
-            
-        </xsl:variable>
-        
-        <xsl:sequence select="distinct-values($allIdentifiers)"/>
-        
-    </xsl:template>
-    
-    <!-- Return type and identifier in format: {type|identifier}
-         Uses type param if not empty; otherwise, determine type from identifier itself -->
-    <xsl:template name="concatTypeAndIdentifier" as="xs:string*">
-        <xsl:param name="type"/>
-        <xsl:param name="identifier"/>
-        
-        <xsl:choose>
-            <xsl:when test="string-length($identifier)">
-                
-                <xsl:variable name="typeToUse" as="xs:string">
-                    <xsl:choose>
-                        <xsl:when test="string-length($type)">
-                            <xsl:value-of select="$type"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:value-of select="local:getTypeFromIdentifier($identifier)"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:variable>
-                <xsl:value-of select="concat($typeToUse, '|', $identifier)"/>
-            </xsl:when>
-            <!--xsl:otherwise>
-                <xsl:text></xsl:text>
-            </xsl:otherwise-->
-        </xsl:choose>
-        
-    </xsl:template>
-
-
-     <xsl:template match="type">
-        <xsl:attribute name="type">
-            <xsl:apply-templates select="text()"/>
-        </xsl:attribute>
-    </xsl:template>
-
     <xsl:template match="keywords">
         
         <!-- KeyWord has text node (whether or not other children) -->
@@ -1024,12 +794,15 @@
 
 
     <xsl:template match="publisher | provider | funder | contributor | includedInDataCatalog | citation | creator" mode="relatedInfo">
-        <xsl:variable name="allIdentifiers" as="xs:string*">
-            <xsl:call-template name="getAllIdentifiers"/>
+        <xsl:variable name="identifier_elements" as="node()*">
+            <xsl:call-template name="identifiers">
+                <xsl:with-param name="priority" select="'doi|handle'"/>
+                <xsl:with-param name="total" select="3" as="xs:integer"/>
+            </xsl:call-template>
         </xsl:variable> 
         
         <!-- don't create relatedInfo if we can't add an identifier  -->
-        <xsl:if test="count($allIdentifiers) > 0">
+        <xsl:if test="count($identifier_elements) > 0">
             <xsl:element name="relatedInfo">
                 <xsl:attribute name="type">
                     <xsl:choose>
@@ -1108,7 +881,7 @@
                     </xsl:when>
                 </xsl:choose>
                 
-                <xsl:call-template name="identifiers"/>
+                <xsl:copy-of select="$identifier_elements"/>
                 <xsl:apply-templates select="description" mode="notes"/>
                 
             </xsl:element>
@@ -1116,12 +889,15 @@
     </xsl:template>
     
     <xsl:template match="funding" mode="relatedInfo">
-        <xsl:variable name="allIdentifiers" as="xs:string*">
-            <xsl:call-template name="getAllIdentifiers"/>
+        <xsl:variable name="identifier_elements" as="node()*">
+            <xsl:call-template name="identifiers">
+                <xsl:with-param name="priority" select="'doi|handle'"/>
+                <xsl:with-param name="total" select="1" as="xs:integer"/>
+            </xsl:call-template>
         </xsl:variable> 
         
         <!-- don't create relatedInfo if we can't add an identifier  -->
-        <xsl:if test="count($allIdentifiers) > 0">
+        <xsl:if test="count($identifier_elements) > 0">
             <xsl:element name="relatedInfo">
                 <xsl:attribute name="type">
                     <xsl:text>activity</xsl:text>
@@ -1148,7 +924,7 @@
                     </xsl:when>
                 </xsl:choose>
                 
-                <xsl:call-template name="identifiers"/>
+                <xsl:copy-of select="$identifier_elements"/>
                 <xsl:apply-templates select="description" mode="notes"/>
                 
             </xsl:element>
@@ -1174,42 +950,189 @@
         </xsl:element>
     </xsl:template>
     
-    
     <!-- Construct identifier element with identifiers,
         - if priority is provided, only identifers of specified priority (see rules of getPriorityIdentifiers)
         - if total is provided, only add that many identifiers, as found in order of priority 
          (-1) is considered uninitialised, in which case all identifiers are added (no limit)-->
        
-    <xsl:template name="identifiers">
-        <xsl:param name="priority"/>
-        <xsl:param name="total" as="xs:integer" select="-1"/> 
+       
+     <xsl:template match="*" mode="byType" as="node()*">
+         <xsl:param name="type" as="xs:string" select="''"/> <!-- if type is empty string, match will succeed so all types will be provided -->
+         <xsl:param name="match" as="xs:boolean" select="true()"/> <!-- set to "false()" if you want to _not_ match on type -->
+         
+         <xsl:apply-templates select="id | url | value" mode="identifier">
+             <xsl:with-param name="type" select="$type"/> 
+             <xsl:with-param name="match" select="$match"/> 
+         </xsl:apply-templates>
+     </xsl:template>
+    
+       
+    <xsl:template match="identifier" mode="byType" as="node()*">
+        <xsl:param name="type" as="xs:string" select="''"/> <!-- if type is empty string, match will succeed so all types will be provided -->
+        <xsl:param name="match" as="xs:boolean" select="true()"/> <!-- set to "false()" if you want to _not_ match on type -->
         
-        <xsl:variable name="identifiersToUse" as="xs:string*">
+           <xsl:variable name="xpathString">
+                <xsl:choose>
+                    <xsl:when test="string-length($type)">
+                        <xsl:choose>
+                            <xsl:when test="$match">
+                                <xsl:copy-of select="concat('.[count(*[name() = ''propertyID''][contains(., ', $type, ')]) > 0]', '')"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:copy-of select="concat('.[count(*[name() = ''propertyID''][not(contains(., ', $type, '))]) > 0]', '')"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:copy-of select="'.[count(*[name() = ''propertyID'']) > 0]'"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable> 
+            <xsl:variable name="resultNodes" as="node()*">
+                <xsl:evaluate xpath="$xpathString" as="node()*" context-item="."/>
+            </xsl:variable>
+            
+            <xsl:for-each select="$resultNodes">
+                <xsl:element name="identifier">
+                    <xsl:attribute name="type">
+                        <xsl:value-of select="propertyID"/>
+                    </xsl:attribute>
+                    <xsl:choose>
+                        <xsl:when test="value">
+                            <xsl:apply-templates select="value/text()"/>
+                        </xsl:when>
+                        <xsl:when test="url">
+                            <xsl:apply-templates select="url/text()"/>
+                        </xsl:when>
+                    </xsl:choose>
+                </xsl:element>
+            </xsl:for-each>
+            
+            <!-- For each identifier (current context) without a propertyID, where text node or other child contains value 'doi' -->
+            <xsl:for-each select=".[count(*[name() = 'propertyID']) = 0]">
+                <xsl:apply-templates select="text() | id | url | value" mode="identifier">
+                    <xsl:with-param name="type" as="xs:string" select="$type"/>
+                    <xsl:with-param name="match" as="xs:boolean" select="$match"/> 
+                </xsl:apply-templates>
+            </xsl:for-each>
+            
+        </xsl:template>
+    
+    <xsl:template match="text() | url | id | value" mode="identifier" as="node()*">
+        <xsl:param name="type" as="xs:string"/> <!-- if type is empty string, match will succeed so all types will be provided -->
+        <xsl:param name="match" as="xs:boolean" select="true()"/> <!-- set to "false()" if you want to _not_ match on type -->
+        
+        <!-- If match==true()
+                - populate if value contains type (even if type is empty string)
+                
+             If match==false
+                - if type is empty string: not(contains(value, '')) will be false(), so no populate
+                - if type is not empty string: not(contains(value, $type), populate if true()
+        -->
+          
+        <xsl:choose>
+            <xsl:when test="$match">
+                <xsl:if test="contains(., $type)">
+                  <xsl:element name="identifier">
+                      <xsl:attribute name="type">
+                          <xsl:value-of select="local:getTypeFromIdentifier(.)"/>
+                      </xsl:attribute>
+                      <xsl:value-of select="."/>
+                  </xsl:element>
+                </xsl:if>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:if test="not(contains(., $type))">
+                    <xsl:element name="identifier">
+                        <xsl:attribute name="type">
+                            <xsl:value-of select="local:getTypeFromIdentifier(.)"/>
+                        </xsl:attribute>
+                        <xsl:value-of select="."/>
+                    </xsl:element>
+                </xsl:if>
+            </xsl:otherwise>
+        </xsl:choose>
+        
+    </xsl:template>
+    
+   
+    
+    <xsl:template name="identifiers" as="node()*">
+        <xsl:param name="priority" select="''" as="xs:string"/>
+        <xsl:param name="total" as="xs:integer" select="-1"/>
+        
+        <xsl:variable name="contextNode" as="node()" select="."/>
+        <xsl:message select="concat('total: ', $total)"/>
+        <xsl:message select="concat('contextNode: ', name($contextNode))"/>
+        
+        
+        <xsl:variable name="identifiersRetrieved" as="node()*">
             <xsl:choose>
                 <xsl:when test="string-length($priority)">
-                    <xsl:call-template name="getPriorityIdentifiers">
-                        <xsl:with-param name="priority" select="$priority"/>
-                    </xsl:call-template>
+                    
+                    <xsl:variable name="identifiersByType" as="node()*">
+                        
+                         <xsl:for-each select="tokenize($priority, '\|')">
+                             <xsl:variable name="priorityType" select="."/>
+                             
+                             <xsl:message select="concat('priority type: ', $priorityType)"/>
+                             
+                              <xsl:apply-templates select="$contextNode/identifier" mode="byType">
+                                   <xsl:with-param name="type" select="$priorityType"/>
+                              </xsl:apply-templates>
+                               
+                              <xsl:apply-templates select="$contextNode" mode="byType">
+                                   <xsl:with-param name="type" select="$priorityType"/>
+                              </xsl:apply-templates>
+                         </xsl:for-each>
+                    </xsl:variable>
+                    
+                    <xsl:variable name="identifiersSupplementary" as="node()*">
+                        <xsl:if test="$total > count($identifiersByType)">
+                        
+                            <xsl:for-each select="tokenize($priority, '\|')">
+                                <xsl:variable name="priorityType" select="."/>
+                                <xsl:apply-templates select="$contextNode/identifier" mode="byType">
+                                    <xsl:with-param name="type" select="$priorityType"/>
+                                    <xsl:with-param name="match" select="false()"/>
+                                </xsl:apply-templates>
+                                
+                                <xsl:apply-templates select="$contextNode" mode="byType">
+                                    <xsl:with-param name="type" select="$priorityType"/>
+                                    <xsl:with-param name="match" select="false()"/>
+                                </xsl:apply-templates>
+                            </xsl:for-each>
+                        </xsl:if>
+                    </xsl:variable>
+                    
+                    <xsl:copy-of select="$identifiersByType"/> 
+                    <xsl:copy-of select="$identifiersSupplementary"/> 
+                    
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:call-template name="getAllIdentifiers"/>
+                    <xsl:variable name="identifiersAnyType" as="node()*">
+                        <xsl:apply-templates select="$contextNode" mode="byType"/>
+                        <xsl:apply-templates select="$contextNode/identifier" mode="byType"/>
+                    </xsl:variable>
+                    
+                    <xsl:copy-of select="$identifiersAnyType"/> 
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
         
-       <xsl:for-each select="$identifiersToUse">
-            <xsl:if test="($total = -1) or (position() &lt; $total+1)">
-                 <xsl:element name="identifier">
-                     <xsl:attribute name="type">
-                         <xsl:value-of select="tokenize(., '\|')[1]"/>
-                     </xsl:attribute>
-                     <xsl:value-of select="tokenize(., '\|')[2]"/>
-                 </xsl:element>
-            </xsl:if>
-        </xsl:for-each>
+        <xsl:sequence>
+            <xsl:for-each select="$identifiersRetrieved">
+                <xsl:if test="(0 > $total) or ($total >= position())">
+                   <xsl:copy-of select="."/> 
+                </xsl:if>
+            </xsl:for-each>
+        </xsl:sequence>
         
+       
     </xsl:template>
-    
+        
+        
     <xsl:function name="local:getTypeFromIdentifier">
         <xsl:param name="identifier"/>
         <xsl:choose>
