@@ -444,13 +444,52 @@
         </xsl:variable> 
         <xsl:choose>
             <xsl:when test="count($identifier_elements)">
-                <xsl:value-of select="$identifier_elements[1]"/>
+                <xsl:call-template name="identifier_core">
+                    <xsl:with-param name="identifier" select="$identifier_elements[1]"/>
+                    <xsl:with-param name="core" select="true()"/>
+                </xsl:call-template>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:assert test="0">WARNING: No Key determined - required for registry object</xsl:assert>
             </xsl:otherwise>
         </xsl:choose>
         
+    </xsl:template>
+    
+    
+    <xsl:template name="identifier_core">
+        <xsl:param name="identifier" as="node()"/>
+        <xsl:param name="core" select="true()" as="xs:boolean"/>
+        
+        
+        <xsl:choose>
+            <xsl:when test="$core = true()">
+                 <xsl:variable name="identifierCore">
+                     <xsl:analyze-string select="$identifier" regex="(.net/|.org/.au/|:)([\w\.]+/[\w\.]+)">
+                         <xsl:matching-substring>
+                             <xsl:if test="string-length(regex-group(2))">
+                                 <xsl:copy-of select="regex-group(2)"/>
+                             </xsl:if>
+                         </xsl:matching-substring>
+                     </xsl:analyze-string>
+                 </xsl:variable>
+                
+                <xsl:choose>
+                    <xsl:when test="string-length($identifierCore)">
+                        <xsl:message select="concat('Extracted core: ', $identifierCore)"/>  
+                        <xsl:value-of select="$identifierCore"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:message select="concat('No core, using entire: ', $identifier)"/>  
+                        <xsl:value-of select="$identifier"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:message select="concat('No coring required, using entire: ', $identifier)"/>  
+                <xsl:value-of select="$identifier"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     
     <xsl:template match="keywords">
@@ -1073,7 +1112,7 @@
                          <xsl:for-each select="tokenize($priority, '\|')">
                              <xsl:variable name="priorityType" select="."/>
                              
-                             <xsl:message select="concat('Seeking identifier of priority type: ', $priorityType)"/>
+                             <!--xsl:message select="concat('Seeking identifier of priority type: ', $priorityType)"/-->
                              
                              <xsl:apply-templates select="$contextNode/identifier" mode="byType">
                                    <xsl:with-param name="type" select="$priorityType"/>
@@ -1121,7 +1160,7 @@
         <xsl:sequence>
             <xsl:for-each select="$identifiersRetrieved">
                 <xsl:if test="(0 > $total) or ($total >= position())">
-                   <xsl:copy-of select="."/> 
+                   <xsl:copy-of select="."/>
                 </xsl:if>
             </xsl:for-each>
         </xsl:sequence>
