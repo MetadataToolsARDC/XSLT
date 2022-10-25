@@ -236,7 +236,7 @@
         <xsl:variable name="identifier_elements" as="node()*">
             <xsl:call-template name="identifiers">
                 <xsl:with-param name="priorityTypes" select="'doi|handle'"/>
-                <xsl:with-param name="numRequired" select="3" as="xs:integer"/>
+                <xsl:with-param name="numRequired" select="1" as="xs:integer"/>
             </xsl:call-template>
         </xsl:variable> 
         
@@ -244,7 +244,7 @@
             <xsl:when test="count($identifier_elements) and creator and publisher and (datePublished or dateCreated)">
                 <xsl:element name="citationInfo">
                     <xsl:element name="citationMetadata">
-                        <xsl:copy-of select="$identifier_elements"/>
+                        <xsl:copy-of select="$identifier_elements[1]"/>
                         <xsl:choose>
                             <xsl:when test="name">
                                 <xsl:apply-templates select="name[1]"/>
