@@ -254,7 +254,8 @@
                             </xsl:when>
                         </xsl:choose>
                         <xsl:apply-templates select="publisher" mode="CitationMetadata"/>
-                        <xsl:apply-templates select="locationCreated | version | url" mode="CitationMetadata"/>
+                        <!--xsl:apply-templates select="locationCreated | version | url" mode="CitationMetadata"/-->
+                        <xsl:apply-templates select="version" mode="CitationMetadata"/>
                         <xsl:apply-templates select="datePublished | dateCreated" mode="CitationMetadata"/>
                         <xsl:for-each select="creator">
                             <xsl:element name="contributor">
