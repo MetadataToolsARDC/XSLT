@@ -164,7 +164,7 @@
                             </xsl:element>
                         </xsl:if>
                         <xsl:apply-templates select="isPartOf | hasPart"/>
-                        <xsl:apply-templates select="publisher | funder | funding/funder | contributor | provider | includedInDataCatalog | citation | creator" mode="relatedInfo"/>
+                        <xsl:apply-templates select="producer | publisher | funder | funding/funder | contributor | provider | includedInDataCatalog | citation | creator" mode="relatedInfo"/>
                         <xsl:apply-templates select="funding" mode="relatedInfo"/>
                     </xsl:element>
                 </xsl:element>
@@ -234,8 +234,8 @@
     <xsl:template name="addCitationMetadata">
         <xsl:variable name="identifier_elements" as="node()*">
             <xsl:call-template name="identifiers">
-                <xsl:with-param name="priority" select="'doi|handle'"/>
-                <xsl:with-param name="total" select="3" as="xs:integer"/>
+                <xsl:with-param name="priorityTypes" select="'doi|handle'"/>
+                <xsl:with-param name="numRequired" select="3" as="xs:integer"/>
             </xsl:call-template>
         </xsl:variable> 
         
@@ -438,8 +438,8 @@
     <xsl:template name="getKeyValue">
         <xsl:variable name="identifier_elements" as="node()*">
             <xsl:call-template name="identifiers">
-                <xsl:with-param name="priority" select="'handle|doi'"/>
-                <xsl:with-param name="total" select="1" as="xs:integer"/>
+                <xsl:with-param name="priorityTypes" select="'handle|doi'"/>
+                <xsl:with-param name="numRequired" select="1" as="xs:integer"/>
             </xsl:call-template>
         </xsl:variable> 
         <xsl:choose>
@@ -465,7 +465,7 @@
         <xsl:choose>
             <xsl:when test="$core = true()">
                  <xsl:variable name="identifierCore">
-                     <xsl:analyze-string select="$identifier" regex="(.net/|.org/.au/|:)([\w\.]+/[\w\.]+)">
+                     <xsl:analyze-string select="$identifier" regex="(.net/|.org/.au/|doi:|handle:)([\w\.\-/]+)">
                          <xsl:matching-substring>
                              <xsl:if test="string-length(regex-group(2))">
                                  <xsl:copy-of select="regex-group(2)"/>
@@ -832,11 +832,11 @@
     </xsl:template>
 
 
-    <xsl:template match="publisher | provider | funder | contributor | includedInDataCatalog | citation | creator" mode="relatedInfo">
+    <xsl:template match="producer | publisher | provider | funder | contributor | includedInDataCatalog | citation | creator" mode="relatedInfo">
         <xsl:variable name="identifier_elements" as="node()*">
             <xsl:call-template name="identifiers">
-                <xsl:with-param name="priority" select="'doi|handle'"/>
-                <xsl:with-param name="total" select="3" as="xs:integer"/>
+                <xsl:with-param name="priorityTypes" select="'doi|handle'"/>
+                <xsl:with-param name="numRequired" select="3" as="xs:integer"/>
             </xsl:call-template>
         </xsl:variable> 
         
@@ -845,13 +845,14 @@
             <xsl:element name="relatedInfo">
                 <xsl:attribute name="type">
                     <xsl:choose>
-                        <xsl:when test=
-                           "local-name(.) = 'publisher' or
-                            local-name(.) = 'provider' or
-                            local-name(.) = 'funder' or
-                            local-name(.) = 'contributor' or
-                            local-name(.) = 'creator'">
+                        <xsl:when test="type = 'Organization'">
                              <xsl:text>party</xsl:text>
+                        </xsl:when>
+                        <xsl:when test="type = 'Organization'">
+                            <xsl:text>party</xsl:text>
+                        </xsl:when>
+                        <xsl:when test="type = 'ResearchProject'">
+                            <xsl:text>activity</xsl:text>
                         </xsl:when>
                         <xsl:when test="type = 'WebPage'">
                             <xsl:text>website</xsl:text>
@@ -870,6 +871,9 @@
                 <xsl:element name="relation">
                     <xsl:attribute name="type">
                         <xsl:choose>
+                            <xsl:when test="type = 'ResearchProject'">
+                                <xsl:text>isOutputOf</xsl:text>
+                            </xsl:when>
                             <xsl:when test="type = 'WebPage'">
                                 <xsl:text>isSupplementTo</xsl:text>
                             </xsl:when>
@@ -930,8 +934,8 @@
     <xsl:template match="funding" mode="relatedInfo">
         <xsl:variable name="identifier_elements" as="node()*">
             <xsl:call-template name="identifiers">
-                <xsl:with-param name="priority" select="'doi|handle'"/>
-                <xsl:with-param name="total" select="1" as="xs:integer"/>
+                <xsl:with-param name="priorityTypes" select="'doi|handle'"/>
+                <xsl:with-param name="numRequired" select="1" as="xs:integer"/>
             </xsl:call-template>
         </xsl:variable> 
         
@@ -991,88 +995,121 @@
     
     <!-- Construct identifier element with identifiers,
         - if priority is provided, only identifers of specified priority (see rules of getPriorityIdentifiers)
-        - if total is provided, only add that many identifiers, as found in order of priority 
+        - if numRequired is provided, only add that many identifiers, as found in order of priority 
          (-1) is considered uninitialised, in which case all identifiers are added (no limit)-->
        
        
-     <xsl:template match="*" mode="byType" as="node()*">
-         <xsl:param name="type" as="xs:string" select="''"/> <!-- if type is empty string, match will succeed so all types will be provided -->
+     <xsl:template match="*" mode="byTypes" as="node()*">
+         <xsl:param name="priorityTypes" as="xs:string" select="''"/> <!-- if type is empty string, match will succeed so all types will be provided -->
          <xsl:param name="match" as="xs:boolean" select="true()"/> <!-- set to "false()" if you want to _not_ match on type -->
          
          <xsl:apply-templates select="id | url | value" mode="identifier">
-             <xsl:with-param name="type" select="$type"/> 
+             <xsl:with-param name="priorityTypes" select="$priorityTypes"/> 
              <xsl:with-param name="match" select="$match"/> 
          </xsl:apply-templates>
      </xsl:template>
     
        
-    <xsl:template match="identifier" mode="byType" as="node()*">
-        <xsl:param name="type" as="xs:string" select="''"/> <!-- if type is empty string, match will succeed so all types will be provided -->
+    <xsl:template match="identifier" mode="byTypes" as="node()*">
+        <xsl:param name="priorityTypes" as="xs:string" select="''"/> <!-- if type is empty string, match will succeed so all types will be provided -->
         <xsl:param name="match" as="xs:boolean" select="true()"/> <!-- set to "false()" if you want to _not_ match on type -->
         
-           <xsl:variable name="xpathString">
-                <xsl:choose>
-                    <xsl:when test="string-length($type)">
+        
+        <xsl:variable name="contextIdentifier" as="item()" select="."/>
+        
+        <xsl:choose>
+            <xsl:when test="$match">
+                    <xsl:variable name="xpathStrings" as="xs:string*">
                         <xsl:choose>
-                            <xsl:when test="$match">
-                                <xsl:copy-of select="concat('.[count(*[name() = ''propertyID'' and contains(., ''', $type, ''')]) > 0]', '')"/>
+                            <xsl:when test="string-length($priorityTypes)">
+                                <xsl:copy-of select="concat('.[count(*[name() = ''propertyID'' and matches(., ''', $priorityTypes, ''')]) > 0]', '')"/>
                             </xsl:when>
                             <xsl:otherwise>
-                                <xsl:copy-of select="concat('.[count(*[name() = ''propertyID'' and not(contains(., ''', $type, '''))]) > 0]', '')"/>
+                                <xsl:copy-of select="'.[count(*[name() = ''propertyID'']) > 0]'"/>
                             </xsl:otherwise>
                         </xsl:choose>
-                        
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:copy-of select="'.[count(*[name() = ''propertyID'']) > 0]'"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:variable> 
-            <xsl:variable name="resultNodes" as="node()*">
-                <xsl:evaluate xpath="$xpathString" as="node()*" context-item="."/>
-            </xsl:variable>
-            
-            <xsl:for-each select="$resultNodes">
-                <xsl:element name="identifier">
-                    <xsl:attribute name="type">
-                        <xsl:value-of select="propertyID"/>
-                    </xsl:attribute>
-                    <xsl:choose>
-                        <xsl:when test="value">
-                            <xsl:apply-templates select="value/text()"/>
-                        </xsl:when>
-                        <xsl:when test="url">
-                            <xsl:apply-templates select="url/text()"/>
-                        </xsl:when>
-                    </xsl:choose>
-                </xsl:element>
-            </xsl:for-each>
-            
-            <!-- For each identifier (current context) without a propertyID, where text node or other child contains value 'doi' -->
-            <xsl:for-each select=".[count(*[name() = 'propertyID']) = 0]">
-                <xsl:apply-templates select="text() | id | url | value" mode="identifier">
-                    <xsl:with-param name="type" as="xs:string" select="$type"/>
-                    <xsl:with-param name="match" as="xs:boolean" select="$match"/> 
-                </xsl:apply-templates>
-            </xsl:for-each>
-            
-        </xsl:template>
+                    </xsl:variable> 
+                    
+                    
+                    <xsl:variable name="resultNodes" as="node()*">
+                        <xsl:for-each select="$xpathStrings">
+                            <xsl:evaluate xpath="." as="node()*" context-item="$contextIdentifier"/>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    
+                    <xsl:for-each select="$resultNodes">
+                        <xsl:element name="identifier">
+                            <xsl:attribute name="type">
+                                <xsl:value-of select="propertyID"/>
+                            </xsl:attribute>
+                            <xsl:choose>
+                                <xsl:when test="value">
+                                    <xsl:apply-templates select="value/text()"/>
+                                </xsl:when>
+                                <xsl:when test="url">
+                                    <xsl:apply-templates select="url/text()"/>
+                                </xsl:when>
+                            </xsl:choose>
+                        </xsl:element>
+                    </xsl:for-each>
+                    
+            </xsl:when>
+            <xsl:otherwise>
+                <!-- match == false() -->
+                <xsl:if test="string-length($priorityTypes)">
+                    <xsl:variable name="xpathStrings" as="xs:string*" select="concat('.[count(*[name() = ''propertyID'' and not(matches(., ''', $priorityTypes, '''))]) > 0]', '')"/>
+                    
+                    <xsl:variable name="resultNodes" as="node()*">
+                        <xsl:for-each select="$xpathStrings">
+                            <xsl:evaluate xpath="." as="node()*" context-item="$contextIdentifier"/>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    
+                    <xsl:for-each select="$resultNodes">
+                        <xsl:element name="identifier">
+                            <xsl:attribute name="type">
+                                <xsl:value-of select="propertyID"/>
+                            </xsl:attribute>
+                            <xsl:choose>
+                                <xsl:when test="value">
+                                    <xsl:apply-templates select="value/text()"/>
+                                </xsl:when>
+                                <xsl:when test="url">
+                                    <xsl:apply-templates select="url/text()"/>
+                                </xsl:when>
+                            </xsl:choose>
+                        </xsl:element>
+                    </xsl:for-each>
+                </xsl:if>
+            </xsl:otherwise>
+        </xsl:choose>
+        
+        <!-- For each identifier (current context) without a propertyID, where text node or other child contains value {$type} -->
+        <xsl:for-each select="$contextIdentifier[count(*[name() = 'propertyID']) = 0]">
+            <xsl:apply-templates select="$contextIdentifier/text() | $contextIdentifier/id | $contextIdentifier/url | $contextIdentifier/value" mode="identifier">
+                <xsl:with-param name="priorityTypes" as="xs:string" select="$priorityTypes"/> 
+                <xsl:with-param name="match" as="xs:boolean" select="$match"/> 
+            </xsl:apply-templates>
+        </xsl:for-each>
+        
+    </xsl:template>
+          
     
     <xsl:template match="text() | url | id | value" mode="identifier" as="node()*">
-        <xsl:param name="type" as="xs:string"/> <!-- if type is empty string, match will succeed so all types will be provided -->
+        <xsl:param name="priorityTypes" as="xs:string"/> <!-- if type is empty string, match will succeed so all types will be provided -->
         <xsl:param name="match" as="xs:boolean" select="true()"/> <!-- set to "false()" if you want to _not_ match on type -->
         
         <!-- If match==true()
-                - populate if value contains type (even if type is empty string)
+                - populate if value contains type (even if type is empty string - this is how to get all regardless of type)
                 
              If match==false
-                - if type is empty string: not(contains(value, '')) will be false(), so no populate
-                - if type is not empty string: not(contains(value, $type), populate if true()
+                - if type is empty string: not(matches(value, '')) will be false(), so no populate
+                - if type is not empty string: not(matches(value, $type), populate if true()
         -->
-          
+        
         <xsl:choose>
             <xsl:when test="$match">
-                <xsl:if test="contains(., $type)">
+                <xsl:if test="matches(., $priorityTypes)">
                   <xsl:element name="identifier">
                       <xsl:attribute name="type">
                           <xsl:value-of select="local:getTypeFromIdentifier(.)"/>
@@ -1082,7 +1119,7 @@
                 </xsl:if>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:if test="not(contains(., $type))">
+                <xsl:if test="not(matches(., $priorityTypes))">
                     <xsl:element name="identifier">
                         <xsl:attribute name="type">
                             <xsl:value-of select="local:getTypeFromIdentifier(.)"/>
@@ -1098,47 +1135,42 @@
    
     
     <xsl:template name="identifiers" as="node()*">
-        <xsl:param name="priority" select="''" as="xs:string"/>
-        <xsl:param name="total" as="xs:integer" select="-1"/>
+        <xsl:param name="priorityTypes" select="''" as="xs:string"/>
+        <xsl:param name="numRequired" as="xs:integer" select="-1"/>
         
         <xsl:variable name="contextNode" as="node()" select="."/>
         
         <xsl:variable name="identifiersRetrieved" as="node()*">
             <xsl:choose>
-                <xsl:when test="string-length($priority)">
+                <xsl:when test="string-length($priorityTypes)">
                     
                     <xsl:variable name="identifiersByType" as="node()*">
                         
-                         <xsl:for-each select="tokenize($priority, '\|')">
-                             <xsl:variable name="priorityType" select="."/>
-                             
-                             <!--xsl:message select="concat('Seeking identifier of priority type: ', $priorityType)"/-->
-                             
-                             <xsl:apply-templates select="$contextNode/identifier" mode="byType">
-                                   <xsl:with-param name="type" select="$priorityType"/>
+                        <xsl:for-each select="tokenize($priorityTypes, '\|')">
+                            <xsl:variable name="priorityType" select="."/>
+                        
+                            <xsl:apply-templates select="$contextNode/identifier" mode="byTypes">
+                                <xsl:with-param name="priorityTypes" select="$priorityType"/>
                              </xsl:apply-templates>
                                
-                             <xsl:apply-templates select="$contextNode" mode="byType">
-                                   <xsl:with-param name="type" select="$priorityType"/>
+                             <xsl:apply-templates select="$contextNode" mode="byTypes">
+                                 <xsl:with-param name="priorityTypes" select="$priorityType"/>
                              </xsl:apply-templates>
-                         </xsl:for-each>
+                        </xsl:for-each>
                     </xsl:variable>
                     
                     <xsl:variable name="identifiersSupplementary" as="node()*">
-                        <xsl:if test="$total > count($identifiersByType)">
+                        <xsl:if test="$numRequired > count($identifiersByType)">
                         
-                            <xsl:for-each select="tokenize($priority, '\|')">
-                                <xsl:variable name="priorityType" select="."/>
-                                <xsl:apply-templates select="$contextNode/identifier" mode="byType">
-                                    <xsl:with-param name="type" select="$priorityType"/>
-                                    <xsl:with-param name="match" select="false()"/>
-                                </xsl:apply-templates>
-                                
-                                <xsl:apply-templates select="$contextNode" mode="byType">
-                                    <xsl:with-param name="type" select="$priorityType"/>
-                                    <xsl:with-param name="match" select="false()"/>
-                                </xsl:apply-templates>
-                            </xsl:for-each>
+                            <xsl:apply-templates select="$contextNode/identifier" mode="byTypes">
+                                <xsl:with-param name="priorityTypes" select="$priorityTypes"/>
+                                <xsl:with-param name="match" select="false()"/>
+                            </xsl:apply-templates>
+                            
+                            <xsl:apply-templates select="$contextNode" mode="byTypes">
+                                <xsl:with-param name="priorityTypes" select="$priorityTypes"/>
+                                <xsl:with-param name="match" select="false()"/>
+                            </xsl:apply-templates>
                         </xsl:if>
                     </xsl:variable>
                     
@@ -1148,8 +1180,8 @@
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:variable name="identifiersAnyType" as="node()*">
-                        <xsl:apply-templates select="$contextNode" mode="byType"/>
-                        <xsl:apply-templates select="$contextNode/identifier" mode="byType"/>
+                        <xsl:apply-templates select="$contextNode" mode="byTypes"/>
+                        <xsl:apply-templates select="$contextNode/identifier" mode="byTypes"/>
                     </xsl:variable>
                     
                     <xsl:copy-of select="$identifiersAnyType"/> 
@@ -1158,8 +1190,9 @@
         </xsl:variable>
         
         <xsl:sequence>
+            
             <xsl:for-each select="$identifiersRetrieved">
-                <xsl:if test="(0 > $total) or ($total >= position())">
+                <xsl:if test="(0 > $numRequired) or ($numRequired >= position())">
                    <xsl:copy-of select="."/>
                 </xsl:if>
             </xsl:for-each>
