@@ -836,7 +836,7 @@
     <xsl:template match="producer | publisher | provider | funder | contributor | includedInDataCatalog | citation | creator" mode="relatedInfo">
         <xsl:variable name="identifier_elements" as="node()*">
             <xsl:call-template name="identifiers">
-                <xsl:with-param name="priorityTypes" select="'doi|handle'"/>
+                <xsl:with-param name="priorityTypes" select="'doi|handle|orcid'"/>
                 <xsl:with-param name="numRequired" select="3" as="xs:integer"/>
             </xsl:call-template>
         </xsl:variable> 
@@ -866,6 +866,9 @@
                         </xsl:when>
                         <xsl:when test="name() = 'includedInDataCatalog'">
                             <xsl:text>collection</xsl:text>
+                        </xsl:when>
+                        <xsl:when test="name() = 'creator'">
+                            <xsl:text>party</xsl:text>
                         </xsl:when>
                      </xsl:choose>
                 </xsl:attribute>
@@ -913,12 +916,6 @@
                         <xsl:apply-templates select="name"/>
                     </xsl:when>
                     <xsl:when test="(string-length(givenName) + string-length(familyName)) > 0">
-                        <!--xsl:call-template name="title">
-                            <xsl:with-param name="value">
-                                <xsl:value-of select="concat(givenName, ' ', familyName)"/>
-                            </xsl:with-param>
-                        </xsl:call-template>
-                    </xsl:when-->
                         <xsl:element name="title">
                             <xsl:apply-templates select="concat(givenName, ' ', familyName)"/>
                         </xsl:element>
@@ -1004,7 +1001,7 @@
          <xsl:param name="priorityTypes" as="xs:string" select="''"/> <!-- if type is empty string, match will succeed so all types will be provided -->
          <xsl:param name="match" as="xs:boolean" select="true()"/> <!-- set to "false()" if you want to _not_ match on type -->
          
-         <xsl:apply-templates select="id | url | value" mode="identifier">
+         <xsl:apply-templates select="text() | id | url | value | sameAs" mode="identifier">
              <xsl:with-param name="priorityTypes" select="$priorityTypes"/> 
              <xsl:with-param name="match" select="$match"/> 
          </xsl:apply-templates>
@@ -1048,7 +1045,7 @@
         
         <!-- For each identifier (current context) without a propertyID, where text node or other child contains value {$type} -->
         <xsl:for-each select=".[count(*[name() = 'propertyID']) = 0]">
-            <xsl:apply-templates select="text() | id | url | value" mode="identifier">
+            <xsl:apply-templates select="text() | id | url | value | sameAs" mode="identifier">
                 <xsl:with-param name="priorityTypes" as="xs:string" select="$priorityTypes"/> 
                 <xsl:with-param name="match" as="xs:boolean" select="$match"/> 
             </xsl:apply-templates>
@@ -1088,7 +1085,7 @@
     </xsl:template>
           
     
-    <xsl:template match="text() | url | id | value" mode="identifier" as="node()*">
+    <xsl:template match="text() | url | id | value | sameAs" mode="identifier" as="node()*">
         <xsl:param name="priorityTypes" as="xs:string"/> <!-- if type is empty string, match will succeed so all types will be provided -->
         <xsl:param name="match" as="xs:boolean" select="true()"/> <!-- set to "false()" if you want to _not_ match on type -->
         
