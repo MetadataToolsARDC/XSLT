@@ -154,10 +154,11 @@
                         <xsl:apply-templates select="isAccessibleForFree"/>
                         <xsl:apply-templates select="prov_wasAssociatedWith"/>
                         <xsl:call-template name="addCitationMetadata"/>
+                        <xsl:call-template name="landingPage"/>
                         <xsl:if test="url | distribution">
                             <xsl:element name="location">
                                 <xsl:element name="address">
-                                    <xsl:apply-templates select="url"/>
+                                    <!--xsl:apply-templates select="url"/-->
                                     <xsl:apply-templates select="provider/contactPoint/email"/>
                                     <xsl:apply-templates select="distribution"/>
                                 </xsl:element>
@@ -680,7 +681,7 @@
             </xsl:element>
         </xsl:if>
     </xsl:template>
-
+    
     <xsl:template match="contactPoint">
         <xsl:if test="email/text() != '' or url/text() != ''">
             <xsl:element name="location">
@@ -1015,11 +1016,9 @@
         <xsl:param name="match" as="xs:boolean" select="true()"/> <!-- set to "false()" if you want to _not_ match on type -->
         
         
-        <xsl:variable name="contextIdentifier" as="item()" select="."/>
-        
         <xsl:choose>
             <xsl:when test="$match">
-                    <xsl:variable name="xpathStrings" as="xs:string*">
+                    <xsl:variable name="xpathString" as="xs:string">
                         <xsl:choose>
                             <xsl:when test="string-length($priorityTypes)">
                                 <xsl:copy-of select="concat('.[count(*[name() = ''propertyID'' and matches(., ''', $priorityTypes, ''')]) > 0]', '')"/>
@@ -1030,68 +1029,62 @@
                         </xsl:choose>
                     </xsl:variable> 
                     
-                    
-                    <xsl:variable name="resultNodes" as="node()*">
-                        <xsl:for-each select="$xpathStrings">
-                            <xsl:evaluate xpath="." as="node()*" context-item="$contextIdentifier"/>
-                        </xsl:for-each>
-                    </xsl:variable>
-                    
-                    <xsl:for-each select="$resultNodes">
-                        <xsl:element name="identifier">
-                            <xsl:attribute name="type">
-                                <xsl:value-of select="propertyID"/>
-                            </xsl:attribute>
-                            <xsl:choose>
-                                <xsl:when test="value">
-                                    <xsl:apply-templates select="value/text()"/>
-                                </xsl:when>
-                                <xsl:when test="url">
-                                    <xsl:apply-templates select="url/text()"/>
-                                </xsl:when>
-                            </xsl:choose>
-                        </xsl:element>
-                    </xsl:for-each>
+                   <xsl:call-template name="resultFromXPATH">
+                       <xsl:with-param name="xpathString" select="$xpathString"/>
+                   </xsl:call-template>
                     
             </xsl:when>
             <xsl:otherwise>
                 <!-- match == false() -->
                 <xsl:if test="string-length($priorityTypes)">
-                    <xsl:variable name="xpathStrings" as="xs:string*" select="concat('.[count(*[name() = ''propertyID'' and not(matches(., ''', $priorityTypes, '''))]) > 0]', '')"/>
+                    <xsl:variable name="xpathString" as="xs:string" select="concat('.[count(*[name() = ''propertyID'' and not(matches(., ''', $priorityTypes, '''))]) > 0]', '')"/>
                     
-                    <xsl:variable name="resultNodes" as="node()*">
-                        <xsl:for-each select="$xpathStrings">
-                            <xsl:evaluate xpath="." as="node()*" context-item="$contextIdentifier"/>
-                        </xsl:for-each>
-                    </xsl:variable>
-                    
-                    <xsl:for-each select="$resultNodes">
-                        <xsl:element name="identifier">
-                            <xsl:attribute name="type">
-                                <xsl:value-of select="propertyID"/>
-                            </xsl:attribute>
-                            <xsl:choose>
-                                <xsl:when test="value">
-                                    <xsl:apply-templates select="value/text()"/>
-                                </xsl:when>
-                                <xsl:when test="url">
-                                    <xsl:apply-templates select="url/text()"/>
-                                </xsl:when>
-                            </xsl:choose>
-                        </xsl:element>
-                    </xsl:for-each>
+                    <xsl:call-template name="resultFromXPATH">
+                        <xsl:with-param name="xpathString" select="$xpathString"/>
+                    </xsl:call-template>
                 </xsl:if>
             </xsl:otherwise>
         </xsl:choose>
         
         <!-- For each identifier (current context) without a propertyID, where text node or other child contains value {$type} -->
-        <xsl:for-each select="$contextIdentifier[count(*[name() = 'propertyID']) = 0]">
-            <xsl:apply-templates select="$contextIdentifier/text() | $contextIdentifier/id | $contextIdentifier/url | $contextIdentifier/value" mode="identifier">
+        <xsl:for-each select=".[count(*[name() = 'propertyID']) = 0]">
+            <xsl:apply-templates select="text() | id | url | value" mode="identifier">
                 <xsl:with-param name="priorityTypes" as="xs:string" select="$priorityTypes"/> 
                 <xsl:with-param name="match" as="xs:boolean" select="$match"/> 
             </xsl:apply-templates>
         </xsl:for-each>
         
+    </xsl:template>
+    
+    <xsl:template name="resultFromXPATH" as="node()*">
+        <xsl:param name="xpathString" as="xs:string"/>
+        
+        <xsl:variable name="resultNodes" as="node()*">
+            <xsl:evaluate xpath="$xpathString" as="node()*" context-item="."/>
+        </xsl:variable>
+        
+        <xsl:for-each select="$resultNodes">
+            <xsl:element name="identifier">
+                <xsl:attribute name="type">
+                    <xsl:choose>
+                        <xsl:when test="contains(propertyID, 'registry.identifiers.org/registry/')">
+                            <xsl:value-of select="substring-after(propertyID, 'registry.identifiers.org/registry/')"/>                            
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="propertyID"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:attribute>
+                <xsl:choose>
+                    <xsl:when test="url">
+                        <xsl:apply-templates select="url/text()"/>
+                    </xsl:when>
+                    <xsl:when test="value">
+                        <xsl:apply-templates select="value/text()"/>
+                    </xsl:when>
+                </xsl:choose>
+            </xsl:element>
+        </xsl:for-each>
     </xsl:template>
           
     
@@ -1131,6 +1124,31 @@
         </xsl:choose>
         
     </xsl:template>
+    
+    <xsl:template name="landingPage">
+        <xsl:variable name="identifier_elements" as="node()*">
+            <xsl:call-template name="identifiers">
+                <xsl:with-param name="priorityTypes" select="'doi|handle'"/>
+                <xsl:with-param name="numRequired" select="1" as="xs:integer"/>
+            </xsl:call-template>
+        </xsl:variable> 
+        
+        <xsl:if test="count($identifier_elements)">
+            <xsl:element name="location">
+                <xsl:element name="address">
+                    <xsl:element name="electronic">
+                        <xsl:attribute name="type">
+                            <xsl:value-of select="'url'"/>
+                        </xsl:attribute>
+                        <xsl:element name="value">
+                            <xsl:value-of select="$identifier_elements[1]"/>
+                        </xsl:element>
+                    </xsl:element>
+                </xsl:element>
+            </xsl:element>
+        </xsl:if>
+    </xsl:template>
+        
     
    
     
