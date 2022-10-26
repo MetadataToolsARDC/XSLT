@@ -482,7 +482,6 @@
                         <xsl:value-of select="$identifierCore"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:message select="concat('No core, using entire: ', $identifier)"/>  
                         <xsl:value-of select="$identifier"/>
                     </xsl:otherwise>
                 </xsl:choose>
