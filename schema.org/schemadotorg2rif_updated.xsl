@@ -946,7 +946,7 @@
                     </xsl:if>
                 </xsl:element>
                 <xsl:if test="string-length(name)">
-                    <xsl:apply-templates select="name/text()"/>
+                    <xsl:apply-templates select="name"/>
                 </xsl:if>
                 
                 
