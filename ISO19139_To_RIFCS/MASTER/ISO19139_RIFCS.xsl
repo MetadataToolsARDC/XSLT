@@ -1398,14 +1398,17 @@
                                 </xsl:if>
                             </xsl:for-each>
                         </xsl:variable>
-                        <xsl:choose>
+                        <xsl:if test="count($publisherOrganisationName_sequence) > 0">
+                            <xsl:value-of select="$publisherOrganisationName_sequence[1]"/>
+                        </xsl:if>
+                        <!--xsl:choose>
                             <xsl:when test="count($publisherOrganisationName_sequence) > 0">
                                 <xsl:value-of select="$publisherOrganisationName_sequence[1]"/>
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:value-of select="$originatingSource"/>
                             </xsl:otherwise>
-                        </xsl:choose>
+                        </xsl:choose-->
                     </xsl:variable>
                     
                     <xsl:choose>

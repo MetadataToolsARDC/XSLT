@@ -63,6 +63,7 @@
                 <xsl:apply-templates select="*:stdyDscr/*:othrStdyMat/*:relPubl" mode="registryObject_relatedInfo"/>
                 <xsl:apply-templates select="*:stdyDscr/*:citation/*:rspStmt/*:AuthEnty[(string-length(.) > 0)]" mode="registryObject_relatedObject"/>
                 <xsl:apply-templates select="*:stdyDscr/*:citation/*:prodStmt/*:producer[(string-length(.) > 0)]" mode="registryObject_relatedObject"/>
+                <xsl:apply-templates select="*:stdyDscr/*:citation/*:prodStmt/*:grantNo[(string-length(.) > 0)]" mode="registryObject_relatedInfo_activity"/>
                 <xsl:apply-templates select="*:stdyDscr/*:citation/*:rspStmt/*:AuthEnty/@affiliation[(string-length(.) > 0)]" mode="registryObject_relatedObject"/>
                 <xsl:apply-templates select="*:stdyDscr/*:citation/*:prodStmt/*:producer/@affiliation[(string-length(.) > 0)]" mode="registryObject_relatedObject"/>
                 <xsl:apply-templates select="*:stdyDscr/*:citation/*:titlStmt/*:altTitl[(string-length(.) > 0)]" mode="registryObject_altname"/>
@@ -333,6 +334,28 @@
                 </key>
                 <relation type="isOwnedBy"/>
             </relatedObject>
+        </xsl:if>   
+    </xsl:template>
+    
+    <xsl:template match="*:grantNo" mode="registryObject_relatedInfo_activity">
+        <xsl:message select="concat('producer for relatedObject: ', .)"/>
+        <xsl:if test="string-length(.) > 0">
+            <relatedInfo type="activity">
+                <identifier>
+                    <xsl:attribute name="type">
+                        <xsl:choose>
+                            <xsl:when test="contains(lower-case(@agency), 'australian research council')">
+                                <xsl:text>ARC</xsl:text>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="@agency"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:attribute>
+                    <xsl:value-of select="text()"/> 
+                </identifier>
+                <relation type="isOutputOf"/>
+            </relatedInfo>
         </xsl:if>   
     </xsl:template>
     
