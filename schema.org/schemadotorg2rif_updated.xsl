@@ -8,7 +8,7 @@
     <xsl:output indent="yes"/>
     <xsl:strip-space elements="*"/>
     <xsl:param name="originatingSource" select="'https://researchdata.ardc.edu.au'"/>
-    <xsl:param name="group" select="'ARDC Sitemap Crawler - 1 March 2022'"/>
+    <xsl:param name="group" select="'ARDC Sitemap Crawler - 27 October 2022'"/>
     <xsl:param name="debug" select="true()"/>
     <xsl:variable name="xsd_url" select="'http://services.ands.org.au/documentation/rifcs/schema/registryObjects.xsd'"/>
     
@@ -166,6 +166,7 @@
                         </xsl:if>
                         <xsl:apply-templates select="isPartOf | hasPart"/>
                         <xsl:apply-templates select="producer | publisher | funder | funding/funder | contributor | provider | includedInDataCatalog | citation | creator" mode="relatedInfo"/>
+                        <xsl:apply-templates select="potentialAction/target" mode="relatedInfo"/>
                         <xsl:apply-templates select="funding" mode="relatedInfo"/>
                     </xsl:element>
                 </xsl:element>
@@ -504,7 +505,7 @@
         </xsl:if>
         
         <!-- KeyWord has child notes (whether or not a text node additionally -->
-        <xsl:if test="(count(*) > 0)">
+        <xsl:if test="(count(*))">
             <xsl:element name="subject">
                 <xsl:attribute name="type">
                     <!--xsl:when test="string-length(type)">
@@ -842,7 +843,7 @@
         </xsl:variable> 
         
         <!-- don't create relatedInfo if we can't add an identifier  -->
-        <xsl:if test="count($identifier_elements) > 0">
+        <xsl:if test="count($identifier_elements)">
             <xsl:element name="relatedInfo">
                 <xsl:attribute name="type">
                     <xsl:choose>
@@ -862,6 +863,12 @@
                             <xsl:text>publication</xsl:text>
                         </xsl:when>
                         <xsl:when test="type = 'SoftwareSourceCode'">
+                            <xsl:text>collection</xsl:text>
+                        </xsl:when>
+                        <xsl:when test="type = 'CreativeWork'">
+                            <xsl:text>collection</xsl:text>
+                        </xsl:when>
+                        <xsl:when test="type = 'Dataset'">
                             <xsl:text>collection</xsl:text>
                         </xsl:when>
                         <xsl:when test="name() = 'includedInDataCatalog'">
@@ -912,15 +919,47 @@
                     </xsl:attribute>
                 </xsl:element>
                 <xsl:choose>
-                    <xsl:when test="string-length(name) > 0">
+                    <xsl:when test="string-length(name)">
                         <xsl:apply-templates select="name"/>
                     </xsl:when>
-                    <xsl:when test="(string-length(givenName) + string-length(familyName)) > 0">
+                    <xsl:when test="(string-length(givenName) + string-length(familyName))">
                         <xsl:element name="title">
                             <xsl:apply-templates select="concat(givenName, ' ', familyName)"/>
                         </xsl:element>
                     </xsl:when>
                 </xsl:choose>
+                
+                <xsl:copy-of select="$identifier_elements"/>
+                <xsl:apply-templates select="description" mode="notes"/>
+                
+            </xsl:element>
+        </xsl:if>
+    </xsl:template>
+    
+    <xsl:template match="potentialAction/target" mode="relatedInfo">
+        <xsl:variable name="identifier_elements" as="node()*">
+            <xsl:call-template name="identifiers"/>
+        </xsl:variable> 
+        
+        <!-- don't create relatedInfo if we can't add an identifier  -->
+        <xsl:if test="count($identifier_elements)">
+            <xsl:element name="relatedInfo">
+                <xsl:attribute name="type">
+                    <xsl:text>service</xsl:text>
+                </xsl:attribute>
+                <xsl:element name="relation">
+                    <xsl:attribute name="type">
+                        <xsl:text>supports</xsl:text>
+                    </xsl:attribute>
+                    <xsl:if test="string-length(urlTemplate)">
+                        <xsl:element name="url">
+                            <xsl:apply-templates select="urlTemplate/text()"/>
+                        </xsl:element>
+                    </xsl:if>
+                </xsl:element>
+                <xsl:if test="string-length(name)">
+                    <xsl:apply-templates select="name/text()"/>
+                </xsl:if>
                 
                 <xsl:copy-of select="$identifier_elements"/>
                 <xsl:apply-templates select="description" mode="notes"/>
@@ -938,7 +977,7 @@
         </xsl:variable> 
         
         <!-- don't create relatedInfo if we can't add an identifier  -->
-        <xsl:if test="count($identifier_elements) > 0">
+        <xsl:if test="count($identifier_elements)">
             <xsl:element name="relatedInfo">
                 <xsl:attribute name="type">
                     <xsl:text>activity</xsl:text>
@@ -949,10 +988,10 @@
                     </xsl:attribute>
                 </xsl:element>
                 <xsl:choose>
-                    <xsl:when test="string-length(name) > 0">
+                    <xsl:when test="string-length(name)">
                         <xsl:apply-templates select="name"/>
                     </xsl:when>
-                    <xsl:when test="(string-length(givenName) + string-length(familyName)) > 0">
+                    <xsl:when test="(string-length(givenName) + string-length(familyName))">
                         <!--xsl:call-template name="title">
                             <xsl:with-param name="value">
                                 <xsl:value-of select="concat(givenName, ' ', familyName)"/>
@@ -964,8 +1003,24 @@
                         </xsl:element>
                     </xsl:when>
                 </xsl:choose>
+                <xsl:variable name="funderName" select="funder/name"/>
+                    
+                <xsl:for-each select="$identifier_elements">
+                    <xsl:element name="identifier">
+                        <xsl:attribute name="type">
+                            <xsl:choose>
+                                <xsl:when test="string-length($funderName)">
+                                    <xsl:value-of select="$funderName"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="local"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:attribute>
+                        <xsl:apply-templates select="text()"/>
+                    </xsl:element>
+                </xsl:for-each>
                 
-                <xsl:copy-of select="$identifier_elements"/>
                 <xsl:apply-templates select="description" mode="notes"/>
                 
             </xsl:element>
@@ -1001,7 +1056,7 @@
          <xsl:param name="priorityTypes" as="xs:string" select="''"/> <!-- if type is empty string, match will succeed so all types will be provided -->
          <xsl:param name="match" as="xs:boolean" select="true()"/> <!-- set to "false()" if you want to _not_ match on type -->
          
-         <xsl:apply-templates select="text() | id | url | value | sameAs" mode="identifier">
+         <xsl:apply-templates select="identifier[count(*[name() = 'propertyID']) = 0] | id | url | value | sameAs" mode="identifier">
              <xsl:with-param name="priorityTypes" select="$priorityTypes"/> 
              <xsl:with-param name="match" select="$match"/> 
          </xsl:apply-templates>
@@ -1018,10 +1073,10 @@
                     <xsl:variable name="xpathString" as="xs:string">
                         <xsl:choose>
                             <xsl:when test="string-length($priorityTypes)">
-                                <xsl:copy-of select="concat('.[count(*[name() = ''propertyID'' and matches(., ''', $priorityTypes, ''')]) > 0]', '')"/>
+                                <xsl:copy-of select="concat('.[count(*[name() = ''propertyID'' and matches(., ''', $priorityTypes, ''')])]', '')"/>
                             </xsl:when>
                             <xsl:otherwise>
-                                <xsl:copy-of select="'.[count(*[name() = ''propertyID'']) > 0]'"/>
+                                <xsl:copy-of select="'.[count(*[name() = ''propertyID''])]'"/>
                             </xsl:otherwise>
                         </xsl:choose>
                     </xsl:variable> 
@@ -1034,7 +1089,7 @@
             <xsl:otherwise>
                 <!-- match == false() -->
                 <xsl:if test="string-length($priorityTypes)">
-                    <xsl:variable name="xpathString" as="xs:string" select="concat('.[count(*[name() = ''propertyID'' and not(matches(., ''', $priorityTypes, '''))]) > 0]', '')"/>
+                    <xsl:variable name="xpathString" as="xs:string" select="concat('.[count(*[name() = ''propertyID'' and not(matches(., ''', $priorityTypes, '''))])]', '')"/>
                     
                     <xsl:call-template name="resultFromXPATH">
                         <xsl:with-param name="xpathString" select="$xpathString"/>
@@ -1044,12 +1099,12 @@
         </xsl:choose>
         
         <!-- For each identifier (current context) without a propertyID, where text node or other child contains value {$type} -->
-        <xsl:for-each select=".[count(*[name() = 'propertyID']) = 0]">
-            <xsl:apply-templates select="text() | id | url | value | sameAs" mode="identifier">
+        <!--xsl:for-each select=".[count(*[name() = 'propertyID']) = 0]">
+            <xsl:apply-templates select="." mode="identifier">
                 <xsl:with-param name="priorityTypes" as="xs:string" select="$priorityTypes"/> 
                 <xsl:with-param name="match" as="xs:boolean" select="$match"/> 
             </xsl:apply-templates>
-        </xsl:for-each>
+        </xsl:for-each-->
         
     </xsl:template>
     
@@ -1085,7 +1140,7 @@
     </xsl:template>
           
     
-    <xsl:template match="text() | url | id | value | sameAs" mode="identifier" as="node()*">
+    <xsl:template match="identifier | url | id | value | sameAs" mode="identifier" as="node()*">
         <xsl:param name="priorityTypes" as="xs:string"/> <!-- if type is empty string, match will succeed so all types will be provided -->
         <xsl:param name="match" as="xs:boolean" select="true()"/> <!-- set to "false()" if you want to _not_ match on type -->
         
@@ -1125,7 +1180,7 @@
     <xsl:template name="landingPage">
         <xsl:variable name="identifier_elements" as="node()*">
             <xsl:call-template name="identifiers">
-                <xsl:with-param name="priorityTypes" select="'doi|handle'"/>
+                <xsl:with-param name="priorityTypes" select="'handle|doi'"/>
                 <xsl:with-param name="numRequired" select="1" as="xs:integer"/>
             </xsl:call-template>
         </xsl:variable> 
@@ -1164,7 +1219,7 @@
                         <xsl:for-each select="tokenize($priorityTypes, '\|')">
                             <xsl:variable name="priorityType" select="."/>
                         
-                            <xsl:apply-templates select="$contextNode/identifier" mode="byTypes">
+                            <xsl:apply-templates select="$contextNode/identifier[count(*[name() = 'propertyID'])]" mode="byTypes">
                                 <xsl:with-param name="priorityTypes" select="$priorityType"/>
                              </xsl:apply-templates>
                                
@@ -1175,9 +1230,9 @@
                     </xsl:variable>
                     
                     <xsl:variable name="identifiersSupplementary" as="node()*">
-                        <xsl:if test="$numRequired > count($identifiersByType)">
+                        <xsl:if test="(0 > $numRequired) or ($numRequired > count($identifiersByType))">
                         
-                            <xsl:apply-templates select="$contextNode/identifier" mode="byTypes">
+                            <xsl:apply-templates select="$contextNode/identifier[count(*[name() = 'propertyID'])]" mode="byTypes">
                                 <xsl:with-param name="priorityTypes" select="$priorityTypes"/>
                                 <xsl:with-param name="match" select="false()"/>
                             </xsl:apply-templates>
@@ -1195,8 +1250,8 @@
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:variable name="identifiersAnyType" as="node()*">
+                        <xsl:apply-templates select="$contextNode/identifier[count(*[name() = 'propertyID'])]" mode="byTypes"/>
                         <xsl:apply-templates select="$contextNode" mode="byTypes"/>
-                        <xsl:apply-templates select="$contextNode/identifier" mode="byTypes"/>
                     </xsl:variable>
                     
                     <xsl:copy-of select="$identifiersAnyType"/> 
