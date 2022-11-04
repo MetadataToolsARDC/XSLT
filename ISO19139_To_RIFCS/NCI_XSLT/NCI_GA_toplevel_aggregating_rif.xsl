@@ -28,6 +28,9 @@
     <xsl:param name="global_originatingSource" select="'Geoscience Australia'"/> <!-- Only used as originating source if organisation name cannot be determined from Point Of Contact -->
     <xsl:param name="global_group" select="'Geoscience Australia (Hosted at National Computational Infrastructure)'"/> 
     <xsl:param name="global_path" select="'/geonetwork/srv/eng/catalog.search#/metadata/'"/>
+    <xsl:param name="global_publisher" select="'National Computational Infrastructure'"/>
+    <xsl:param name="global_DOI_prefix_sequence" select="'10.25914|10.4225/41'" as="xs:string"/>
+   
     
     <!-- stylesheet to convert iso19139 in OAI-PMH ListRecords response to RIF-CS -->
     
