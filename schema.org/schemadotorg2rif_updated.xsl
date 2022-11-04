@@ -925,7 +925,10 @@
     
     <xsl:template match="potentialAction/target" mode="relatedInfo">
         <xsl:variable name="identifier_elements" as="node()*">
-            <xsl:call-template name="identifiers"/>
+            <xsl:call-template name="identifiers">
+                <xsl:with-param name="priorityTypes" select="'doi|handle'"/>
+                <xsl:with-param name="numRequired" select="1" as="xs:integer"/>
+            </xsl:call-template>
         </xsl:variable> 
         
         <!-- don't create relatedInfo if we can't add an identifier  -->
@@ -934,7 +937,15 @@
                 <xsl:attribute name="type">
                     <xsl:text>service</xsl:text>
                 </xsl:attribute>
-                <xsl:copy-of select="$identifier_elements"/>
+                <!--xsl:copy-of select="$identifier_elements[1]"/-->
+                <!-- It looks like the link from collection to service (and back) in RDA
+                    only works if the types is 'uri'?  Not sure - maybe it was just 
+                    that indexing hadn't completed - so for now, make this 'uri' 
+                    because it doesn't cause any problems and might fix the linking -->
+                <xsl:element name="identifier">
+                    <xsl:attribute name="type" select="'uri'"/>
+                    <xsl:value-of select="$identifier_elements[1]"/>
+                </xsl:element>
                 <xsl:element name="relation">
                     <xsl:attribute name="type">
                         <xsl:text>supports</xsl:text>
