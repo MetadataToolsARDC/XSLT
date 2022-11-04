@@ -1195,7 +1195,7 @@
         <xsl:variable name="publisher_sequence" as="node()*" select="
             gmd:citedResponsibleParty/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'publisher'] |
             ancestor::gmd:MD_Metadata/gmd:distributionInfo/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'publisher'] |
-            ancestor::gmd:MD_Metadata/gmd:identificationInfo/gmd:pointOfContact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'publisher']"/>
+            ancestor::gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'publisher']"/>
         
         <xsl:variable name="first_try_ContributorName_sequence" as="xs:string*">
             
@@ -1220,17 +1220,37 @@
         <xsl:variable name="second_try_ContributorName_sequence" as="xs:string*">
             <xsl:if test="count($first_try_ContributorName_sequence) = 0">
                 
+                <!-- principalInvestigator -->
                 <xsl:sequence select="ancestor::gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:formatDistributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'principalInvestigator']/gmd:individualName"/>
                 <xsl:sequence select="ancestor::gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:formatDistributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'principalInvestigator' and string-length(gmd:individualName) = 0]/gmd:organisationName"/>
-                
+                <xsl:sequence select="ancestor::gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'principalInvestigator']/gmd:individualName"/>
+                <xsl:sequence select="ancestor::gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'principalInvestigator' and string-length(gmd:individualName) = 0]/gmd:organisationName"/>
+                <xsl:sequence select="ancestor::gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'principalInvestigator']/gmd:individualName"/>
+                <xsl:sequence select="ancestor::gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'principalInvestigator' and string-length(gmd:individualName) = 0]/gmd:organisationName"/>
+                   
+                <!-- author -->
                 <xsl:sequence select="ancestor::gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:formatDistributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'author']/gmd:individualName"/>
                 <xsl:sequence select="ancestor::gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:formatDistributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'author' and string-length(gmd:individualName) = 0]/gmd:organisationName"/>
+                <xsl:sequence select="ancestor::gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'author']/gmd:individualName"/>
+                <xsl:sequence select="ancestor::gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'author' and string-length(gmd:individualName) = 0]/gmd:organisationName"/>
+                <xsl:sequence select="ancestor::gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'author']/gmd:individualName"/>
+                <xsl:sequence select="ancestor::gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'author' and string-length(gmd:individualName) = 0]/gmd:organisationName"/>
                 
+                <!-- owner -->
                 <xsl:sequence select="ancestor::gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:formatDistributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'owner']/gmd:individualName"/>
                 <xsl:sequence select="ancestor::gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:formatDistributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'owner' and string-length(gmd:individualName) = 0]/gmd:organisationName"/>
+                <xsl:sequence select="ancestor::gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'owner']/gmd:individualName"/>
+                <xsl:sequence select="ancestor::gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'owner' and string-length(gmd:individualName) = 0]/gmd:organisationName"/>
+                <xsl:sequence select="ancestor::gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'owner']/gmd:individualName"/>
+                <xsl:sequence select="ancestor::gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'owner' and string-length(gmd:individualName) = 0]/gmd:organisationName"/>
                 
+                <!-- custodian -->
                 <xsl:sequence select="ancestor::gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:formatDistributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'custodian']/gmd:individualName"/>
                 <xsl:sequence select="ancestor::gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:formatDistributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'custodian' and string-length(gmd:individualName) = 0]/gmd:organisationName"/>
+                <xsl:sequence select="ancestor::gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'custodian']/gmd:individualName"/>
+                <xsl:sequence select="ancestor::gmd:MD_Metadata/gmd:identificationInfo/gmd:MD_DataIdentification/gmd:pointOfContact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'custodian' and string-length(gmd:individualName) = 0]/gmd:organisationName"/>
+                <xsl:sequence select="ancestor::gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'custodian']/gmd:individualName"/>
+                <xsl:sequence select="ancestor::gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'custodian' and string-length(gmd:individualName) = 0]/gmd:organisationName"/>
                 
             </xsl:if>
         </xsl:variable>
