@@ -232,8 +232,16 @@
                     </xsl:otherwise>
                 </xsl:choose>
                 
+                <xsl:apply-templates 
+                    select="mdb:identificationInfo/mri:MD_DataIdentification/mri:status/mcc:MD_ProgressCode[string-length(.) > 0]"
+                    mode="registryObject_description_lineage"/>
+                
+                <xsl:apply-templates 
+                    select="mdb:identificationInfo/mri:MD_DataIdentification/mri:resourceMaintenance/mmi:MD_MaintenanceInformation/mmi:maintenanceAndUpdateFrequency/mmi:MD_MaintenanceFrequencyCode"
+                    mode="registryObject_description_lineage"/>
+                
                 <xsl:apply-templates
-                    select="mdb:resourceLineage/mrl:LI_Lineage/mrl:statement[string-length(.) > 0]"
+                    select="mdb:resourceLineage"
                     mode="registryObject_description_lineage"/>
                 
                 <xsl:apply-templates
@@ -308,8 +316,7 @@
              select="mri:abstract[string-length(.) > 0]"
             mode="registryObject_description_brief"/>
         
-        <xsl:apply-templates select="mri:extent/gex:EX_Extent/gex:geographicElement/gex:EX_GeographicBoundingBox" mode="registryObject_coverage_spatial"/>
-        <xsl:apply-templates select="mri:extent/gex:EX_Extent/gex:geographicElement/gex:EX_BoundingPolygon//gml:Polygon" mode="registryObject_coverage_spatial"/>
+        <xsl:apply-templates select="mri:extent" mode="registryObject_coverage_spatial"/>
        
        
         <xsl:apply-templates
@@ -822,13 +829,45 @@
         </xsl:if>
     </xsl:template>
     
-    <!-- RegistryObject - Decription Element - lineage -->
-    <xsl:template match="mrl:statement" mode="registryObject_description_lineage">
-        <xsl:if test="string-length(normalize-space(.)) > 0">
+    <xsl:template match="mcc:MD_ProgressCode" mode="registryObject_description_lineage">
+        
+        <description type="lineage">
+            <xsl:value-of select="concat('Progress Code: ',.)"/>
+        </description>
+        
+    </xsl:template>
+    
+    <xsl:template match="mmi:MD_MaintenanceFrequencyCode" mode="registryObject_description_lineage">
+        
+        <xsl:if test="string-length(@codeListValue) > 0">
             <description type="lineage">
-                <xsl:value-of select="."/>
+                <xsl:value-of select="concat('Maintenance and Update Frequency: ', @codeListValue)"/>
             </description>
         </xsl:if>
+        
+    </xsl:template>
+    
+    <!-- RegistryObject - Decription Element - lineage -->
+    <xsl:template match="mdb:resourceLineage" mode="registryObject_description_lineage">
+        
+        <description type="lineage">
+            <xsl:if test="string-length(normalize-space(mrl:LI_Lineage/mrl:statement[string-length(.) > 0])) > 0">
+                <xsl:value-of select="concat('Statement: ', mrl:LI_Lineage/mrl:statement)"/>
+            </xsl:if>
+        </description>
+        
+        <relatedInfo type="reuseInformation">
+            <title>
+                <xsl:value-of select="mrl:LI_Lineage/mrl:additionalDocumentation/cit:CI_Citation/cit:title"/>
+            </title>
+            <identifier type="uri">
+                <xsl:value-of select="mrl:LI_Lineage/mrl:additionalDocumentation/cit:CI_Citation/cit:onlineResource/cit:CI_OnlineResource/cit:linkage"/>
+            </identifier>
+            <relation type="isSupplementTo"></relation>
+            <notes>
+                <xsl:value-of select="mrl:LI_Lineage/mrl:additionalDocumentation/cit:CI_Citation/cit:onlineResource/cit:CI_OnlineResource/cit:description"/>
+            </notes>
+        </relatedInfo>
     </xsl:template>
     
     <xsl:template match="mri:credit" mode="registryObject_description_notes">
@@ -851,7 +890,14 @@
         </xsl:if>
     </xsl:template>
     
-    <xsl:template match="gml:Polygon" mode="registryObject_coverage_spatial">
+    <xsl:template match="mri:extent" mode="registryObject_coverage_spatial">
+        <xsl:for-each select="gex:EX_Extent/gex:geographicElement">
+            <xsl:apply-templates select="." mode="registryObject_coverage_spatial"/>
+            <xsl:apply-templates select="gml:Polygon" mode="registryObject_coverage_spatial"/>
+        </xsl:for-each>
+   </xsl:template>
+    
+   <xsl:template match="gml:Polygon" mode="registryObject_coverage_spatial">
         <!-- RDA doesn't handle altitude yet and if altitude is provided, the shapes aren't shown on the
             map so I'm removing altitude from the map coords but keeping them in the text if they are there -->
         
@@ -877,25 +923,25 @@
     
     
    <!-- RegistryObject - Coverage Spatial Element -->
-    <xsl:template match="gex:EX_GeographicBoundingBox" mode="registryObject_coverage_spatial">
-        
-        <xsl:if test="string-length(normalize-space(gex:northBoundLatitude/gco:Decimal)) > 0"/>
+    <xsl:template match="gex:geographicElement" mode="registryObject_coverage_spatial">
+        <!-- Be aware that following-sibling verticalElement uplimit, lowlimit and reference, will apply to each -->
+        <xsl:if test="string-length(normalize-space(gex:EX_GeographicBoundingBox/gex:northBoundLatitude/gco:Decimal)) > 0"/>
         <xsl:if
              test="
-                (string-length(normalize-space(gex:northBoundLatitude/gco:Decimal)) > 0) and
-                (string-length(normalize-space(gex:southBoundLatitude/gco:Decimal)) > 0) and
-                (string-length(normalize-space(gex:westBoundLongitude/gco:Decimal)) > 0) and
-                (string-length(normalize-space(gex:eastBoundLongitude/gco:Decimal)) > 0)">
+             (string-length(normalize-space(gex:EX_GeographicBoundingBox/gex:northBoundLatitude/gco:Decimal)) > 0) and
+             (string-length(normalize-space(gex:EX_GeographicBoundingBox/gex:southBoundLatitude/gco:Decimal)) > 0) and
+             (string-length(normalize-space(gex:EX_GeographicBoundingBox/gex:westBoundLongitude/gco:Decimal)) > 0) and
+             (string-length(normalize-space(gex:EX_GeographicBoundingBox/gex:eastBoundLongitude/gco:Decimal)) > 0)">
                  <xsl:variable name="spatialString">
                      <xsl:value-of
-                         select="normalize-space(concat('northlimit=',gex:northBoundLatitude/gco:Decimal,'; southlimit=',gex:southBoundLatitude/gco:Decimal,'; westlimit=',gex:westBoundLongitude/gco:Decimal,'; eastLimit=',gex:eastBoundLongitude/gco:Decimal))"/>
+                         select="normalize-space(concat('northlimit=',gex:EX_GeographicBoundingBox/gex:northBoundLatitude/gco:Decimal,'; southlimit=',gex:EX_GeographicBoundingBox/gex:southBoundLatitude/gco:Decimal,'; westlimit=',gex:EX_GeographicBoundingBox/gex:westBoundLongitude/gco:Decimal,'; eastLimit=',gex:EX_GeographicBoundingBox/gex:eastBoundLongitude/gco:Decimal))"/>
                      
                      <xsl:if
                          test="
-                         (string-length(normalize-space(gex:EX_VerticalExtent/gex:maximumValue/gco:Real)) > 0) and
-                         (string-length(normalize-space(gex:EX_VerticalExtent/gex:minimumValue/gco:Real)) > 0)">
+                         (string-length(normalize-space(following-sibling::gex:verticalElement/gex:EX_VerticalExtent/gex:maximumValue/gco:Real)) > 0) and
+                         (string-length(normalize-space(following-sibling::gex:verticalElement/gex:EX_VerticalExtent/gex:minimumValue/gco:Real)) > 0)">
                          <xsl:value-of
-                             select="normalize-space(concat('; uplimit=',gex:EX_VerticalExtent/gex:maximumValue/gco:Real,'; downlimit=',gex:EX_VerticalExtent/gex:minimumValue/gco:Real))"
+                             select="normalize-space(concat('; uplimit=',following-sibling::gex:verticalElement/gex:EX_VerticalExtent/gex:maximumValue/gco:Real,'; downlimit=', following-sibling::gex:verticalElement/gex:EX_VerticalExtent/gex:minimumValue/gco:Real, '; projection=', following-sibling::gex:verticalElement/gex:EX_VerticalExtent/gex:verticalCRSId/mrs:MD_ReferenceSystem/mrs:referenceSystemIdentifier/mcc:MD_Identifier/mcc:code ))"
                          />
                      </xsl:if>
                  </xsl:variable>
@@ -915,7 +961,7 @@
                  </coverage>
         </xsl:if>
     </xsl:template>
-
+    
     <!-- RegistryObject - Coverage Temporal Element -->
     <xsl:template match="gex:EX_TemporalExtent" mode="registryObject_coverage_temporal">
         <xsl:if
