@@ -3,12 +3,12 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:gmd="http://www.isotc211.org/2005/gmd" 
     xmlns:srv="http://www.isotc211.org/2005/srv"
+    xmlns:oai="http://www.openarchives.org/OAI/2.0/" 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
     xmlns:gco="http://www.isotc211.org/2005/gco" 
     xmlns:gts="http://www.isotc211.org/2005/gts"
     xmlns:geonet="http://www.fao.org/geonetwork" 
     xmlns:gmx="http://www.isotc211.org/2005/gmx"
-    xmlns:oai="http://www.openarchives.org/OAI/2.0/" 
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:localFunc="http://iso19139.nowhere.yet"
     xmlns:customGMD="http://customGMD.nowhere.yet"
@@ -118,7 +118,7 @@
                 <!--xsl:apply-templates select="gmd:identificationInfo/*[contains(lower-case(name()),'identification')]/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier[gmd:authority/gmd:CI_Citation/gmd:title = 'Digital Object Identifier']/gmd:code" mode="registryObject_identifier"/-->
                 <xsl:apply-templates select="gmd:identificationInfo/*[contains(lower-case(name()),'identification')]/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier"  mode="registryObject_identifier"/>
                 <xsl:apply-templates select="gmd:fileIdentifier" mode="registryObject_identifier"/>
-                <xsl:apply-templates select="gmd:dataSetURI[starts-with(gco:CharacterString, '10.') or contains(gco:CharacterString, 'doi')]" mode="registryObject_identifier"/>
+                <xsl:apply-templates select="gmd:dataSetURI[starts-with(gco:CharacterString, '10.') or contains(gco:CharacterString, 'doi')]" mode="registryObject_identifier_doi"/>
                 <xsl:apply-templates select="gmd:fileIdentifier" mode="registryObject_location_metadata"/>
                 <xsl:apply-templates select="gmd:parentIdentifier" mode="registryObject_related_object"/>
                 <xsl:apply-templates select="gmd:children/gmd:childIdentifier" mode="registryObject_related_object"/>
@@ -318,7 +318,7 @@
         </key>
     </xsl:template>
     
-    <xsl:template match="gmd:dataSetURI" mode="registryObject_identifier">
+    <xsl:template match="gmd:dataSetURI" mode="registryObject_identifier_doi">
         <identifier type="doi">
             <xsl:value-of select="."/>
         </identifier>
@@ -1194,8 +1194,8 @@
          
         <xsl:variable name="publisher_sequence" as="node()*" select="
             gmd:citedResponsibleParty/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'publisher'] |
-            ../../../../gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'publisher'] |
-            ../../gmd:pointOfContact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'publisher']"/>
+            ancestor::gmd:MD_Metadata/gmd:distributionInfo/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'publisher'] |
+            ancestor::gmd:MD_Metadata/gmd:identificationInfo/gmd:pointOfContact/gmd:CI_ResponsibleParty[gmd:role/gmd:CI_RoleCode/@codeListValue = 'publisher']"/>
         
         <xsl:variable name="first_try_ContributorName_sequence" as="xs:string*">
             
@@ -1267,154 +1267,135 @@
         </xsl:variable>
         
         <xsl:variable name="allContributorName_sequence" as="xs:string*">
-            <xsl:if test="count($first_try_ContributorName_sequence)">
-                <xsl:for-each select="$first_try_ContributorName_sequence">
-                    <xsl:value-of select="."/>
-                </xsl:for-each>
-            </xsl:if>
-            <xsl:if test="count($second_try_ContributorName_sequence)">
-                <xsl:for-each select="$second_try_ContributorName_sequence">
-                    <xsl:value-of select="."/>
-                </xsl:for-each>
-            </xsl:if>
-            <xsl:if test="count($third_try_ContributorName_sequence)">
-                <xsl:for-each select="$third_try_ContributorName_sequence">
-                    <xsl:value-of select="."/>
-                </xsl:for-each>
-            </xsl:if>
+            <xsl:sequence select="$first_try_ContributorName_sequence"/>
+            <xsl:sequence select="$second_try_ContributorName_sequence"/>
+            <xsl:sequence select="$third_try_ContributorName_sequence"/>
         </xsl:variable>
              
-        <xsl:if test="count($allContributorName_sequence) > 0">
-           <citationInfo>
-                <citationMetadata>
-                    <xsl:if test="string-length($identifierToUse) > 0">
-                        <identifier type="{localFunc:getIdentifierType($identifierToUse)}">
-                            <xsl:value-of select='$identifierToUse'/>
-                        </identifier>
-                    </xsl:if>
-    
-                    <title>
-                        <xsl:value-of select="gmd:title"/>
-                    </title>
-                    
-                    <version>
-                        <xsl:choose>
-                            <xsl:when test="string-length(gmd:edition) > 0">
-                                <xsl:value-of select="gmd:edition"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:text>v1</xsl:text>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </version>
-                    
-                    <xsl:variable name="dateValueAndType_sequence" as="xs:string*">
-                        <xsl:choose>
-                            <xsl:when test="count(gmd:date/gmd:CI_Date[contains(gmd:dateType/gmd:CI_DateTypeCode/@codeListValue, 'publication')]/gmd:date/*[contains(local-name(), 'Date')][string-length(.) > 0]) > 0">
-                                <xsl:value-of select="gmd:date/gmd:CI_Date[contains(gmd:dateType/gmd:CI_DateTypeCode/@codeListValue, 'publication')]/gmd:date/*[contains(local-name(), 'Date')][string-length(.) > 0]"/> 
-                                <xsl:text>publication</xsl:text>
-                            </xsl:when>
-                            <xsl:when test="count(gmd:date/gmd:CI_Date[contains(gmd:dateType/gmd:CI_DateTypeCode/@codeListValue, 'revision')]/gmd:date/*[contains(local-name(), 'Date')][string-length(.) > 0]) > 0">
-                                <xsl:value-of select="gmd:date/gmd:CI_Date[contains(gmd:dateType/gmd:CI_DateTypeCode/@codeListValue, 'revision')]/gmd:date/*[contains(local-name(), 'Date')][string-length(.) > 0]"/> 
-                                <xsl:text>revision</xsl:text>
-                            </xsl:when>
-                            <xsl:when test="count(gmd:date/gmd:CI_Date[contains(gmd:dateType/gmd:CI_DateTypeCode/@codeListValue, 'creation')]/gmd:date/*[contains(local-name(), 'Date')][string-length(.) > 0]) > 0">
-                                <xsl:value-of select="gmd:date/gmd:CI_Date[contains(gmd:dateType/gmd:CI_DateTypeCode/@codeListValue, 'creation')]/gmd:date/*[contains(local-name(), 'Date')][string-length(.) > 0]"/> 
-                                <xsl:text>creation</xsl:text>
-                            </xsl:when>
-                        </xsl:choose>
-                    </xsl:variable>
-                    
-                    <xsl:if test="count($dateValueAndType_sequence) > 0">
-                        <xsl:variable name="dateValue" select="$dateValueAndType_sequence[1]"/>
-                        <xsl:variable name="dateTypeFromSource" select="$dateValueAndType_sequence[2]"/>
-                        
-                        <xsl:if test="$global_debug">
-                            <xsl:message select="concat('Using ', $dateTypeFromSource, ' date : ', $dateValue)"/>
-                        </xsl:if>
-                        
-                        <xsl:variable name="codelist" select="$gmdCodelists/codelists/codelist[@name = 'gmd:CI_DateTypeCode']"/>
-                        
-                         <date>
-                            <xsl:attribute name="type">
-                                <xsl:choose>
-                                 <xsl:when test="string-length($codelist/entry[code = $dateTypeFromSource]/description) > 0">
-                                     <xsl:value-of select="$codelist/entry[code = $dateTypeFromSource]/description"/>
-                                 </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:text>publicationDate</xsl:text>
-                                </xsl:otherwise>
-                                </xsl:choose>
-                            </xsl:attribute>
-                            <xsl:choose>
-                                <xsl:when test="contains($dateValue, '/')">
-                                    <xsl:value-of select="tokenize($dateValue, '/')[count(tokenize($dateValue, '/'))]"/>
-                                </xsl:when>
-                                <xsl:when test="contains($dateValue, '-')">
-                                    <xsl:value-of select="tokenize($dateValue, '-')[1]"/>
-                                </xsl:when>
-                                <xsl:when test="string-length($dateValue) > 3">
-                                    <xsl:value-of select="substring($dateValue, 1, 4)"/>
-                                 </xsl:when>
-                                <xsl:when test="string-length($dateValue) > 0">
-                                    <xsl:value-of select="$dateValue"/>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:text><!-- never getting here with current code--></xsl:text>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </date>
-                    </xsl:if>    
-                    
-                  <!-- If there is more than one contributor, and publisher 
-                  name is within contributor list, remove it -->
-                    
-                    <xsl:variable name="publisherOrganisationName" as="xs:string">
-                        <xsl:variable name="publisherOrganisationName_sequence" as="xs:string*">
-                            <xsl:for-each select="$publisher_sequence">
-                                <xsl:if test="string-length(gmd:organisationName) > 0">
-                                    <xsl:copy-of select="gmd:organisationName"/>
-                                </xsl:if>
-                            </xsl:for-each>
-                        </xsl:variable>
-                        <xsl:choose>
-                            <xsl:when test="count($publisherOrganisationName_sequence) > 0">
-                                <xsl:value-of select="$publisherOrganisationName_sequence[1]"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <!-- If the DOI was minted by this contributor, default publisher -->
-                                <xsl:for-each select="tokenize($global_DOI_prefix_sequence, '\|')">
-                                    <xsl:message select="concat('Defaulting publisher if ', $identifierToUse ,' contains ', .)"/>
-                                    <xsl:if test="contains($identifierToUse, .)">
-                                        <xsl:value-of select="$global_publisher"/>
-                                        <xsl:message select="'Defaulted publisher'"/>
-                                    </xsl:if>
-                                </xsl:for-each>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:variable>
-                                
-                           
-                    
+       <citationInfo>
+            <citationMetadata>
+                <xsl:if test="string-length($identifierToUse) > 0">
+                    <identifier type="{localFunc:getIdentifierType($identifierToUse)}">
+                        <xsl:value-of select='$identifierToUse'/>
+                    </identifier>
+                </xsl:if>
+
+                <title>
+                    <xsl:value-of select="gmd:title"/>
+                </title>
+                
+                <version>
                     <xsl:choose>
-                        <xsl:when test="count($allContributorName_sequence) > 0">
-                            <xsl:for-each select="$allContributorName_sequence">
-                                <contributor seq="{position()}">
-                                    <namePart>
-                                        <xsl:value-of select="."/>
-                                    </namePart>
-                                </contributor>
-                            </xsl:for-each>
+                        <xsl:when test="string-length(gmd:edition) > 0">
+                            <xsl:value-of select="gmd:edition"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:text>v1</xsl:text>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </version>
+                
+                <xsl:variable name="dateValueAndType_sequence" as="xs:string*">
+                    <xsl:choose>
+                        <xsl:when test="count(gmd:date/gmd:CI_Date[contains(gmd:dateType/gmd:CI_DateTypeCode/@codeListValue, 'publication')]/gmd:date/*[contains(local-name(), 'Date')][string-length(.) > 0]) > 0">
+                            <xsl:value-of select="gmd:date/gmd:CI_Date[contains(gmd:dateType/gmd:CI_DateTypeCode/@codeListValue, 'publication')]/gmd:date/*[contains(local-name(), 'Date')][string-length(.) > 0]"/> 
+                            <xsl:text>publication</xsl:text>
+                        </xsl:when>
+                        <xsl:when test="count(gmd:date/gmd:CI_Date[contains(gmd:dateType/gmd:CI_DateTypeCode/@codeListValue, 'revision')]/gmd:date/*[contains(local-name(), 'Date')][string-length(.) > 0]) > 0">
+                            <xsl:value-of select="gmd:date/gmd:CI_Date[contains(gmd:dateType/gmd:CI_DateTypeCode/@codeListValue, 'revision')]/gmd:date/*[contains(local-name(), 'Date')][string-length(.) > 0]"/> 
+                            <xsl:text>revision</xsl:text>
+                        </xsl:when>
+                        <xsl:when test="count(gmd:date/gmd:CI_Date[contains(gmd:dateType/gmd:CI_DateTypeCode/@codeListValue, 'creation')]/gmd:date/*[contains(local-name(), 'Date')][string-length(.) > 0]) > 0">
+                            <xsl:value-of select="gmd:date/gmd:CI_Date[contains(gmd:dateType/gmd:CI_DateTypeCode/@codeListValue, 'creation')]/gmd:date/*[contains(local-name(), 'Date')][string-length(.) > 0]"/> 
+                            <xsl:text>creation</xsl:text>
                         </xsl:when>
                     </xsl:choose>
+                </xsl:variable>
+                
+                <xsl:if test="count($dateValueAndType_sequence) > 0">
+                    <xsl:variable name="dateValue" select="$dateValueAndType_sequence[1]"/>
+                    <xsl:variable name="dateTypeFromSource" select="$dateValueAndType_sequence[2]"/>
                     
-                    <publisher>
-                        <xsl:value-of select="$publisherOrganisationName"/>
-                    </publisher>
+                    <xsl:if test="$global_debug">
+                        <xsl:message select="concat('Using ', $dateTypeFromSource, ' date : ', $dateValue)"/>
+                    </xsl:if>
                     
-               </citationMetadata>
-            </citationInfo>
-        </xsl:if>
+                    <xsl:variable name="codelist" select="$gmdCodelists/codelists/codelist[@name = 'gmd:CI_DateTypeCode']"/>
+                    
+                     <date>
+                        <xsl:attribute name="type">
+                            <xsl:choose>
+                             <xsl:when test="string-length($codelist/entry[code = $dateTypeFromSource]/description) > 0">
+                                 <xsl:value-of select="$codelist/entry[code = $dateTypeFromSource]/description"/>
+                             </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:text>publicationDate</xsl:text>
+                            </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:attribute>
+                        <xsl:choose>
+                            <xsl:when test="contains($dateValue, '/')">
+                                <xsl:value-of select="tokenize($dateValue, '/')[count(tokenize($dateValue, '/'))]"/>
+                            </xsl:when>
+                            <xsl:when test="contains($dateValue, '-')">
+                                <xsl:value-of select="tokenize($dateValue, '-')[1]"/>
+                            </xsl:when>
+                            <xsl:when test="string-length($dateValue) > 3">
+                                <xsl:value-of select="substring($dateValue, 1, 4)"/>
+                             </xsl:when>
+                            <xsl:when test="string-length($dateValue) > 0">
+                                <xsl:value-of select="$dateValue"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:text><!-- never getting here with current code--></xsl:text>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </date>
+                </xsl:if>    
+                
+                <xsl:variable name="publisherOrganisationName" as="xs:string*">
+                    <xsl:variable name="publisherOrganisationName_sequence" as="xs:string*">
+                        <xsl:for-each select="$publisher_sequence">
+                            <xsl:if test="string-length(gmd:organisationName) > 0">
+                                <xsl:copy-of select="gmd:organisationName"/>
+                            </xsl:if>
+                        </xsl:for-each>
+                    </xsl:variable>
+                    <xsl:choose>
+                        <xsl:when test="count($publisherOrganisationName_sequence) > 0">
+                            <xsl:value-of select="$publisherOrganisationName_sequence[1]"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <!-- If the DOI was minted by this contributor, default publisher -->
+                            <xsl:for-each select="tokenize($global_DOI_prefix_sequence, '\|')">
+                                <xsl:message select="concat('Defaulting publisher if ', $identifierToUse ,' contains ', .)"/>
+                                <xsl:if test="contains($identifierToUse, .)">
+                                    <xsl:value-of select="$global_publisher"/>
+                                    <xsl:message select="'Defaulted publisher'"/>
+                                </xsl:if>
+                            </xsl:for-each>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                            
+                <xsl:choose>
+                    <xsl:when test="count($allContributorName_sequence) > 0">
+                        <xsl:for-each select="$allContributorName_sequence">
+                            <contributor seq="{position()}">
+                                <namePart>
+                                    <xsl:value-of select="."/>
+                                </namePart>
+                            </contributor>
+                        </xsl:for-each>
+                    </xsl:when>
+                </xsl:choose>
+                
+                <publisher>
+                    <xsl:value-of select="$publisherOrganisationName[1]"/>
+                </publisher>
+                
+           </citationMetadata>
+        </citationInfo>
     </xsl:template>
 
 
