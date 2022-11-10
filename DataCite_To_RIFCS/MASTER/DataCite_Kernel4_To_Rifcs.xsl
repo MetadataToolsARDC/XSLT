@@ -17,6 +17,7 @@
     <xsl:param name="global_acronym" select="'DataCite'"/>
     <xsl:param name="global_publisherName" select="''"/>
     <xsl:param name="global_rightsStatement" select="''"/>
+    <xsl:param name="global_project_identifier_strings" select="'raid'" as="xs:string*"/>
     <!--xsl:param name="global_baseURI" select="''"/-->
     <!--xsl:param name="global_path" select="''"/-->
       
@@ -123,7 +124,9 @@
                 
                 <xsl:apply-templates select="relatedIdentifiers/relatedIdentifier" mode="collection_relatedInfo"/>
                 
-                <xsl:apply-templates select="creators/creator[string-length(.) > 0]" mode="collection_relatedInfo"/>
+               <xsl:apply-templates select="relatedItems/relatedItem" mode="collection_relatedInfo"/>
+               
+               <xsl:apply-templates select="creators/creator[string-length(.) > 0]" mode="collection_relatedInfo"/>
                
                 <xsl:apply-templates select="contributors/contributor[string-length(.) > 0]" mode="collection_relatedInfo"/>
                 
@@ -246,15 +249,102 @@
     
     <xsl:template match="relatedIdentifier" mode="collection_relatedInfo">
         <relatedInfo>
+            <xsl:attribute name="type">
+                <xsl:apply-templates select="." mode="related_item_type"/>
+            </xsl:attribute>
+            
             <xsl:apply-templates select="." mode="identifier"/>
             <xsl:apply-templates select="." mode="relation"/>
             
         </relatedInfo>
     </xsl:template>
     
-    <xsl:template match="relatedIdentifier" mode="relation">
-        <relation type="{@relationType}"/>
+    <xsl:template match="relatedItem" mode="collection_relatedInfo">
+        <relatedInfo>
+            <xsl:attribute name="type">
+                <xsl:apply-templates select="." mode="related_item_type_core"/>
+            </xsl:attribute>
+              
+            <xsl:apply-templates select="relatedItemIdentifier" mode="identifier"/>
+            <xsl:apply-templates select="relatedItemIdentifier" mode="relation"/>
+            <title>
+                <xsl:value-of select="fn:string-join(titles/title, ' - ')"/>
+            </title>
+        </relatedInfo>
     </xsl:template>
+    
+    <xsl:template match="relatedIdentifier | relatedItemIdentifier" mode="relation">
+        <xsl:variable name="currentNode" select="." as="node()"/>
+        <relation>
+            <xsl:attribute name="type">
+                <xsl:apply-templates select="." mode="relation_core"/>
+            </xsl:attribute>
+        </relation>
+    </xsl:template>
+    
+    <xsl:template match="relatedIdentifier | relatedItemIdentifier" mode="relation_core">
+        <xsl:variable name="currentNode" select="." as="node()"/>
+        
+        <xsl:variable name="inferredRelation" as="xs:string*">
+            <xsl:for-each select="tokenize($global_project_identifier_strings, '\|')">
+                <xsl:variable name="testString" select="." as="xs:string"/>
+                <xsl:if test="string-length($testString)">
+                    <xsl:if test="count($currentNode[contains(lower-case(.), $testString)])">
+                        <xsl:text>isOutputOf</xsl:text>
+                    </xsl:if>
+                </xsl:if>
+            </xsl:for-each>
+        </xsl:variable>
+        
+        <xsl:choose>
+            <xsl:when test="string-length($inferredRelation[1])">
+                <xsl:value-of select="$inferredRelation[1]"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:choose>
+                    <xsl:when test="string-length(@relationType)">
+                        <xsl:value-of select="@relationType"/>
+                    </xsl:when>
+                    <xsl:when test="'relatedItemIdentifier' = local-name(.)">
+                        <xsl:if test="string-length(parent::relatedItem/@relationType)">
+                            <xsl:value-of select="parent::relatedItem/@relationType"/>
+                        </xsl:if>
+                    </xsl:when>
+                </xsl:choose>
+               
+            </xsl:otherwise>
+        </xsl:choose>
+        
+      </xsl:template>
+    
+    <xsl:template match="relatedItem" mode="related_item_type_core">
+        <xsl:choose>
+            <xsl:when test="'studyregistration' = lower-case(@relatedItemType)">
+                <xsl:text>activity</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:apply-templates select="relatedItemIdentifier" mode="related_item_type"/>
+                <xsl:value-of select="@relatedItemType"/> <!-- Add as last entry after any inferred -->
+            </xsl:otherwise>
+        </xsl:choose>
+        
+    </xsl:template>
+    
+    <xsl:template match="relatedIdentifier | relatedItemIdentifier" mode="related_item_type">
+        <xsl:apply-templates select="." mode="related_item_type_core"/>
+    </xsl:template>
+    
+    <xsl:template match="relatedIdentifier | relatedItemIdentifier" mode="related_item_type_core">
+        <xsl:variable name="currentNode" select="." as="node()"/>
+        <xsl:for-each select="tokenize($global_project_identifier_strings, '\|')">
+            <xsl:variable name="testString" select="." as="xs:string"/>
+            <xsl:if test="count($currentNode[contains(lower-case(.), $testString)])">
+                <xsl:text>activity</xsl:text>
+            </xsl:if>
+        </xsl:for-each>
+    </xsl:template>
+    
+    
     
    <!--xsl:template match="dc:identifier.orcid" mode="collection_relatedInfo">
         <xsl:message select="concat('orcidId : ', .)"/>

@@ -91,10 +91,13 @@
             <xsl:when test="contains(lower-case($identifier), 'orcid')">
                 <xsl:text>orcid</xsl:text>
             </xsl:when>
+            <xsl:when test="contains(lower-case($identifier), 'raid')">
+                <xsl:text>raid</xsl:text>
+            </xsl:when>
             <xsl:when test="contains(lower-case($identifier), 'purl.org')">
                 <xsl:text>purl</xsl:text>
             </xsl:when>
-            <xsl:when test="contains(lower-case($identifier), 'doi.org')">
+            <xsl:when test="contains(lower-case($identifier), 'doi')">
                 <xsl:text>doi</xsl:text>
             </xsl:when>
             <xsl:when test="starts-with($identifier, '10.')"> <!-- in case it doesn't contain doi.org -->

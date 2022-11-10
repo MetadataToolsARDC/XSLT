@@ -34,29 +34,52 @@
         </xsl:for-each>
     </xsl:template>
     
-    <xsl:template match="relatedIdentifier" mode="relation">
-        <xsl:variable name="inferredRelation" as="xs:string*">
+    <xsl:template match="relatedIdentifier | relatedItemIdentifier" mode="relation">
+        <xsl:variable name="currentNode" select="." as="node()"/>
+        <relation>
+            <xsl:attribute name="type">
+                <xsl:variable name="inferredRelation" as="xs:string*">
+                    <xsl:for-each select="tokenize($global_hesanda_identifier_strings, '\|')">
+                        <xsl:variable name="testString" select="." as="xs:string"/>
+                        <xsl:if test="string-length($testString)">
+                            <xsl:if test="count($currentNode/[contains(lower-case(.), $testString)])">
+                                <xsl:text>isOutputOf</xsl:text>
+                            </xsl:if>
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:apply-templates select="." mode="relation_core"/>
+                </xsl:variable>
+                
+                <xsl:choose>
+                     <xsl:when test="string-length($inferredRelation[1])">
+                         <xsl:value-of select="$inferredRelation[1]"/>
+                     </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="@relationType"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:attribute>
+        </relation>
+        
+    </xsl:template>
+    
+    <xsl:template match="relatedIdentifier | relatedItemIdentifier" mode="related_item_type">
+        <xsl:variable name="currentNode" select="." as="node()"/>
+        
+        <xsl:variable name="inferredType" as="xs:string*">
             <xsl:for-each select="tokenize($global_hesanda_identifier_strings, '\|')">
                 <xsl:variable name="testString" select="." as="xs:string"/>
-                <xsl:if test="count(.[contains(lower-case(.), $testString)])">
-                    <xsl:text>isOutputOf</xsl:text>
+                <xsl:if test="count($currentNode[contains(lower-case(.), $testString)])">
+                    <xsl:text>activity</xsl:text>
                 </xsl:if>
             </xsl:for-each>
-            <xsl:for-each select="tokenize($global_project_identifier_strings, '\|')">
-                <xsl:variable name="testString" select="." as="xs:string"/>
-                <xsl:if test="count(.[contains(lower-case(.), $testString)])">
-                    <xsl:text>isOutputOf</xsl:text>
-                </xsl:if>
-            </xsl:for-each>
+            <xsl:apply-templates select="." mode="related_item_type_core"/>
         </xsl:variable>
         
         <xsl:choose>
-            <xsl:when test="string-length($inferredRelation[1])">
-                <relation type="{$inferredRelation[1]}"/>
+            <xsl:when test="string-length($inferredType[1])">
+                <xsl:value-of select="$inferredType[1]"/>
             </xsl:when>
-            <xsl:otherwise>
-                <relation type="{@relationType}"/>
-            </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
     

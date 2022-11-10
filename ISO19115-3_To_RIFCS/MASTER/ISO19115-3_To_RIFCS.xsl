@@ -934,7 +934,7 @@
              (string-length(normalize-space(gex:EX_GeographicBoundingBox/gex:eastBoundLongitude/gco:Decimal)) > 0)">
                  <xsl:variable name="spatialString">
                      <xsl:value-of
-                         select="normalize-space(concat('northlimit=',gex:EX_GeographicBoundingBox/gex:northBoundLatitude/gco:Decimal,'; southlimit=',gex:EX_GeographicBoundingBox/gex:southBoundLatitude/gco:Decimal,'; westlimit=',gex:EX_GeographicBoundingBox/gex:westBoundLongitude/gco:Decimal,'; eastLimit=',gex:EX_GeographicBoundingBox/gex:eastBoundLongitude/gco:Decimal))"/>
+                         select="normalize-space(concat('westlimit=',gex:EX_GeographicBoundingBox/gex:westBoundLongitude/gco:Decimal,'; southlimit=',gex:EX_GeographicBoundingBox/gex:southBoundLatitude/gco:Decimal, '; eastlimit=',gex:EX_GeographicBoundingBox/gex:eastBoundLongitude/gco:Decimal,'; northlimit=',gex:EX_GeographicBoundingBox/gex:northBoundLatitude/gco:Decimal))"/>
                      
                      <xsl:if
                          test="
