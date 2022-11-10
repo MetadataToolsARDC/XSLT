@@ -20,28 +20,45 @@
     <!--xsl:param name="global_baseURI" select="''"/-->
     <!--xsl:param name="global_path" select="''"/-->
       
-    
-
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 
     <xsl:template match="/">
+        <xsl:message select="'DataCite_Kernel4_To_Rifcs'"/>
         
         <xsl:apply-templates select="resource" mode="datacite_4_to_rifcs_collection">
             <xsl:with-param name="dateAccessioned"/>
         </xsl:apply-templates>
         
-        <xsl:apply-templates select="//resource/contributors/contributor" mode="datacite_4_to_rifcs_party">
-            <xsl:with-param name="dateAccessioned"/>
-        </xsl:apply-templates>
-        
-        <xsl:apply-templates select="//resource/creators/creator" mode="datacite_4_to_rifcs_party">
-            <xsl:with-param name="dateAccessioned"/>
-        </xsl:apply-templates>
-            
+    </xsl:template>
+    
+    <xsl:template match="resource" mode="resourceSubType">
+        <xsl:choose>
+            <xsl:when test="boolean(custom:sequenceContains(resourceType/@resourceTypeGeneral, 'dataset')) = true()">
+                <xsl:value-of select="'dataset'"/>
+            </xsl:when>
+            <xsl:when test="boolean(custom:sequenceContains(resourceType/@resourceTypeGeneral, 'text')) = true()">
+                <xsl:value-of select="'publication'"/>
+            </xsl:when>
+            <xsl:when test="boolean(custom:sequenceContains(resourceType/@resourceTypeGeneral, 'software')) = true()">
+                <xsl:value-of select="'software'"/>
+            </xsl:when>
+            <xsl:when test="boolean(custom:sequenceContains(resourceType/@resourceTypeGeneral, 'service')) = true()">
+                <xsl:value-of select="'report'"/>
+            </xsl:when>
+            <xsl:when test="boolean(custom:sequenceContains(resourceType/@resourceTypeGeneral, 'website')) = true()">
+                <xsl:value-of select="'report'"/>
+            </xsl:when>
+            <xsl:when test="boolean(custom:sequenceContains(resourceType/@resourceTypeGeneral, 'model')) = true()">
+                <xsl:value-of select="'generate'"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="'collection'"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     
   
-    <xsl:template match="*" mode="datacite_4_to_rifcs_collection">
+    <xsl:template match="resource" mode="datacite_4_to_rifcs_collection">
         <xsl:param name="dateAccessioned"/>
         
         <xsl:message select="'datacite_4_to_rifcs_collection'"/>
@@ -50,7 +67,7 @@
             <xsl:attribute name="group" select="$global_group"/>
             
             <key>
-                <xsl:value-of select="substring(string-join(for $n in fn:reverse(fn:string-to-codepoints(identifier[@identifierType = 'DOI'])) return string($n), ''), 0, 50)"/>
+                <xsl:value-of select="concat('DataCite/', substring(string-join(for $n in fn:reverse(fn:string-to-codepoints(identifier[@identifierType = 'DOI'])) return string($n), ''), 0, 50))"/>
             </key>
             
             <originatingSource>
@@ -74,32 +91,10 @@
                 </xsl:choose>
             </xsl:variable>
             
-            <xsl:element name="{$class}">
+           <xsl:element name="{$class}">
                 
             <xsl:attribute name="type">
-                <xsl:choose>
-                    <xsl:when test="boolean(custom:sequenceContains(resourceType/@resourceTypeGeneral, 'dataset')) = true()">
-                        <xsl:value-of select="'dataset'"/>
-                    </xsl:when>
-                    <xsl:when test="boolean(custom:sequenceContains(resourceType/@resourceTypeGeneral, 'text')) = true()">
-                        <xsl:value-of select="'publication'"/>
-                    </xsl:when>
-                    <xsl:when test="boolean(custom:sequenceContains(resourceType/@resourceTypeGeneral, 'software')) = true()">
-                        <xsl:value-of select="'software'"/>
-                    </xsl:when>
-                    <xsl:when test="boolean(custom:sequenceContains(resourceType/@resourceTypeGeneral, 'service')) = true()">
-                        <xsl:value-of select="'report'"/>
-                    </xsl:when>
-                    <xsl:when test="boolean(custom:sequenceContains(resourceType/@resourceTypeGeneral, 'website')) = true()">
-                        <xsl:value-of select="'report'"/>
-                    </xsl:when>
-                    <xsl:when test="boolean(custom:sequenceContains(resourceType/@resourceTypeGeneral, 'model')) = true()">
-                        <xsl:value-of select="'generate'"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="'collection'"/>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:apply-templates select="." mode="resourceSubType"/>
             </xsl:attribute>
              
                 <xsl:apply-templates select="@todo[string-length(.) > 0]" mode="collection_date_modified"/>
@@ -128,9 +123,9 @@
                 
                 <xsl:apply-templates select="relatedIdentifiers/relatedIdentifier" mode="collection_relatedInfo"/>
                 
-                <xsl:apply-templates select="creators/creator[string-length(.) > 0]" mode="collection_relatedObject"/>
+                <xsl:apply-templates select="creators/creator[string-length(.) > 0]" mode="collection_relatedInfo"/>
                
-                <xsl:apply-templates select="contributors/contributor[string-length(.) > 0]" mode="collection_relatedObject"/>
+                <xsl:apply-templates select="contributors/contributor[string-length(.) > 0]" mode="collection_relatedInfo"/>
                 
                 <xsl:apply-templates select="subjects/subject" mode="collection_subject"/>
                 
@@ -252,8 +247,13 @@
     <xsl:template match="relatedIdentifier" mode="collection_relatedInfo">
         <relatedInfo>
             <xsl:apply-templates select="." mode="identifier"/>
-            <relation type="{@relationType}"/>
+            <xsl:apply-templates select="." mode="relation"/>
+            
         </relatedInfo>
+    </xsl:template>
+    
+    <xsl:template match="relatedIdentifier" mode="relation">
+        <relation type="{@relationType}"/>
     </xsl:template>
     
    <!--xsl:template match="dc:identifier.orcid" mode="collection_relatedInfo">
@@ -269,22 +269,34 @@
     
    
     
-    <xsl:template match="creator" mode="collection_relatedObject">
-            <relatedObject>
-                <key>
-                    <xsl:value-of select="dcrifcsFunc:formatKey(dcrifcsFunc:formatName(.))"/> 
-                </key>
-                <relation type="hasCollector"/>
-            </relatedObject>
+     <xsl:template match="creator" mode="collection_relatedInfo">
+        <relatedInfo>
+            <identifier>
+                <xsl:attribute name="type">
+                    <xsl:value-of select="nameIdentifier/@nameIdentifierScheme"/>
+                </xsl:attribute>
+                <xsl:value-of select="nameIdentifier"/>
+            </identifier>
+            <title>
+                <xsl:value-of select="dcrifcsFunc:formatName(creatorName)"/> 
+            </title>
+            <relation type="hasCollector"/>
+        </relatedInfo>
     </xsl:template>
     
-    <xsl:template match="contributor" mode="collection_relatedObject">
-        <relatedObject>
-            <key>
-                <xsl:value-of select="dcrifcsFunc:formatKey(dcrifcsFunc:formatName(.))"/> 
-            </key>
+    <xsl:template match="contributor" mode="collection_relatedInfo">
+        <relatedInfo>
+            <identifier>
+                <xsl:attribute name="type">
+                    <xsl:value-of select="nameIdentifier/@nameIdentifierScheme"/>
+                </xsl:attribute>
+                <xsl:value-of select="nameIdentifier"/>
+            </identifier>
+            <title>
+                <xsl:value-of select="dcrifcsFunc:formatName(contributorName)"/> 
+            </title>
             <relation type="hasCollector"/>
-        </relatedObject>
+        </relatedInfo>
     </xsl:template>
     
     <xsl:template match="date" mode="collection_dates">
@@ -402,11 +414,11 @@
                     </xsl:when>
                 </xsl:choose>
                 
-                <xsl:for-each select="creators/creator/creatorName">
+                <xsl:for-each select="creators/creator">
                     <xsl:apply-templates select="." mode="citationMetadata_contributor"/>
                 </xsl:for-each>
                 
-                <xsl:for-each select="contributors/contributor/contributorName">
+                <xsl:for-each select="contributors/contributor">
                     <xsl:apply-templates select="." mode="citationMetadata_contributor"/>
                 </xsl:for-each>
                 
@@ -437,121 +449,130 @@
         
     </xsl:template>
     
-    <xsl:template match="contributorName | creatorName" mode="citationMetadata_contributor">
+    <xsl:template match="contributor" mode="citationMetadata_contributor">
         <contributor>
-            <namePart type="family">
-                <xsl:choose>
-                    <xsl:when test="contains(., ',')">
-                        <xsl:value-of select="normalize-space(substring-before(.,','))"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="normalize-space(.)"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </namePart>
-            <namePart type="given">
-                <xsl:if test="contains(., ',')">
-                    <xsl:value-of select="normalize-space(substring-after(.,','))"/>
-                </xsl:if>
-            </namePart>
+            <xsl:choose>
+                <xsl:when test="'Organizational' = contributorName/@nameType">
+                    <namePart type="family">
+                        <xsl:value-of select="normalize-space(contributorName)"/>
+                    </namePart>
+                </xsl:when>
+                <xsl:otherwise>
+                    <namePart type="family">
+                        <xsl:choose>
+                            <xsl:when test="string-length(familyName) > 0">
+                                <xsl:value-of select="familyName"/>
+                            </xsl:when>
+                            <xsl:when test="contains(contributorName, ',')">
+                                <xsl:value-of select="normalize-space(substring-before(contributorName,','))"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="normalize-space(contributorName)"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </namePart>
+                    <namePart type="given">
+                        <xsl:choose>
+                            <xsl:when test="string-length(givenName)">
+                                <xsl:value-of select="givenName"/>
+                            </xsl:when>
+                            <xsl:when test="contains(contributorName, ',')">
+                                <xsl:value-of select="normalize-space(substring-after(contributorName,','))"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="normalize-space(contributorName)"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </namePart>
+        
+                </xsl:otherwise>
+            </xsl:choose>
         </contributor>
     </xsl:template>
     
-    <xsl:template match="creator" mode="datacite_4_to_rifcs_party">
-        
-            
-            <xsl:variable name="name" select="normalize-space(.)"/>
-            
-            <xsl:if test="(string-length(.) > 0)">
-            
-                   <xsl:if test="string-length(normalize-space(.)) > 0">
-                     <registryObject group="{$global_group}">
-                        <key>
-                            <xsl:value-of select="dcrifcsFunc:formatKey(dcrifcsFunc:formatName(creatorName))"/> 
-                        </key>
-                        <originatingSource>
-                             <xsl:value-of select="$global_originatingSource"/>
-                        </originatingSource>
-                        
-                         <party>
-                            <xsl:attribute name="type" select="'person'"/>
-                             
-                             <name type="primary">
-                                 <namePart>
-                                     <xsl:value-of select="dcrifcsFunc:formatName(normalize-space(creatorName))"/>
-                                 </namePart>   
-                             </name>
-                         </party>
-                     </registryObject>
-                   </xsl:if>
-                </xsl:if>
-        </xsl:template>
-    
-    <xsl:template match="contributor" mode="datacite_4_to_rifcs_party">
-        <xsl:param name="dateAccessioned"/>
-        
-        
-        <xsl:variable name="name" select="normalize-space(.)"/>
-        
-        <xsl:if test="(string-length(.) > 0)">
-            
-            <xsl:if test="string-length(normalize-space(.)) > 0">
-                <registryObject group="{$global_group}">
-                    <key>
-                        <xsl:value-of select="dcrifcsFunc:formatKey(dcrifcsFunc:formatName(.))"/> 
-                    </key>
-                    <originatingSource>
-                        <xsl:value-of select="$global_originatingSource"/>
-                    </originatingSource>
+    <xsl:template match="creator" mode="citationMetadata_contributor">
+        <contributor>
+            <xsl:choose>
+                <xsl:when test="'Organizational' = creatorName/@nameType">
+                    <namePart type="family">
+                        <xsl:value-of select="normalize-space(creatorName)"/>
+                    </namePart>
+                </xsl:when>
+                <xsl:otherwise>
+                    <namePart type="family">
+                        <xsl:choose>
+                            <xsl:when test="string-length(familyName) > 0">
+                                <xsl:value-of select="familyName"/>
+                            </xsl:when>
+                            <xsl:when test="contains(creatorName, ',')">
+                                <xsl:value-of select="normalize-space(substring-before(creatorName,','))"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="normalize-space(creatorName)"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </namePart>
+                    <namePart type="given">
+                        <xsl:choose>
+                            <xsl:when test="string-length(givenName)">
+                                <xsl:value-of select="givenName"/>
+                            </xsl:when>
+                            <xsl:when test="contains(creatorName, ',')">
+                                <xsl:value-of select="normalize-space(substring-after(creatorName,','))"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="normalize-space(creatorName)"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </namePart>
                     
-                    <party>
-                        <xsl:attribute name="type" select="'person'"/>
-                        
-                        <xsl:attribute name="dateAccessioned" select="$dateAccessioned"/>
-                        
-                        <name type="primary">
-                            <namePart>
-                                <xsl:value-of select="dcrifcsFunc:formatName(normalize-space(.))"/>
-                            </namePart>   
-                        </name>
-                    </party>
-                </registryObject>
-            </xsl:if>
-        </xsl:if>
+                </xsl:otherwise>
+            </xsl:choose>
+        </contributor>
     </xsl:template>
-                   
+    
     <xsl:function name="dcrifcsFunc:formatName">
-        <xsl:param name="name"/>
+        <xsl:param name="nameNode" as="node()"/>
         
-        <xsl:variable name="namePart_sequence" as="xs:string*">
-            <xsl:analyze-string select="$name" regex="[A-Za-z()-]+">
-                <xsl:matching-substring>
-                    <xsl:if test="regex-group(0) != '-'">
-                        <xsl:value-of select="regex-group(0)"/>
-                    </xsl:if>
-                </xsl:matching-substring>
-            </xsl:analyze-string>
-        </xsl:variable>
+        <xsl:message select="concat('formatName input: ', $nameNode/text())"/>
         
+        <!-- If name is organizational, leave as is -->
         <xsl:choose>
-            <xsl:when test="count($namePart_sequence) = 0">
-                <xsl:value-of select="$name"/>
+            <xsl:when test="'Organizational' = $nameNode/@nameType">
+                <xsl:value-of select="$nameNode/text()"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:variable name="orderedNamePart_sequence" as="xs:string*">
-                    <!--  we are going to presume that we have surnames first - otherwise, it's not possible to determine by being
-                            prior to a comma because we get:  "surname, firstname, 1924-" sort of thing -->
-                    <!-- all names except surname -->
-                    <xsl:for-each select="$namePart_sequence">
-                        <xsl:if test="position() > 1">
-                            <xsl:value-of select="."/>
-                        </xsl:if>
-                    </xsl:for-each>
-                    <xsl:value-of select="$namePart_sequence[1]"/>
+                <xsl:variable name="namePart_sequence" as="xs:string*">
+                    <xsl:analyze-string select="$nameNode/text()" regex="[A-Za-z()-]+">
+                        <xsl:matching-substring>
+                            <xsl:if test="regex-group(0) != '-'">
+                                <xsl:value-of select="regex-group(0)"/>
+                            </xsl:if>
+                        </xsl:matching-substring>
+                    </xsl:analyze-string>
                 </xsl:variable>
-                <xsl:message select="concat('formatName returning: ', string-join(for $i in $orderedNamePart_sequence return $i, ' '))"/>
-                <xsl:value-of select="string-join(for $i in $orderedNamePart_sequence return $i, ' ')"/>
-    
+                
+                <xsl:choose>
+                    <xsl:when test="count($namePart_sequence) = 0">
+                        <xsl:value-of select="$nameNode/text()"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:variable name="orderedNamePart_sequence" as="xs:string*">
+                            <!--  we are going to presume that we have surnames first - otherwise, it's not possible to determine by being
+                            prior to a comma because we get:  "surname, firstname, 1924-" sort of thing -->
+                            <!-- all names except surname -->
+                            <xsl:for-each select="$namePart_sequence">
+                                <xsl:if test="position() > 1">
+                                    <xsl:value-of select="."/>
+                                </xsl:if>
+                            </xsl:for-each>
+                            <xsl:value-of select="$namePart_sequence[1]"/>
+                        </xsl:variable>
+                        <xsl:message select="concat('formatName returning: ', string-join(for $i in $orderedNamePart_sequence return $i, ' '))"/>
+                        <xsl:value-of select="string-join(for $i in $orderedNamePart_sequence return $i, ' ')"/>
+                        
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
