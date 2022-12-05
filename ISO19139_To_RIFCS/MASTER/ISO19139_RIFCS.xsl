@@ -331,11 +331,12 @@
                  <xsl:value-of select="gmd:code"/>
              </identifier>
          </xsl:when>
-         <xsl:otherwise>
+            <!-- Ignore if no authority, because if it is project code, records will be indicated as linked where not suitable -->
+         <!--xsl:otherwise>
              <identifier type="local">
                  <xsl:value-of select="gmd:code"/>
              </identifier>
-         </xsl:otherwise>
+         </xsl:otherwise-->
         </xsl:choose>
     </xsl:template> 
 
@@ -1265,9 +1266,12 @@
            
         <!-- We can only accept one DOI; however, first we will find all -->
         <xsl:variable name = "doiIdentifier_sequence" as="xs:string*">
-            <xsl:if test="string-length(gmd:identifier/gmd:MD_Identifier[gmd:authority/gmd:CI_Citation/gmd:title = 'Digital Object Identifier']/gmd:code)">
+            <xsl:for-each select="gmd:identifier/gmd:MD_Identifier[gmd:authority/gmd:CI_Citation/gmd:title = 'Digital Object Identifier']/gmd:code[string-length(gco:CharacterString)]">
+                <xsl:value-of select="."/>
+            </xsl:for-each>
+            <!--xsl:if test="string-length(gmd:identifier/gmd:MD_Identifier[gmd:authority/gmd:CI_Citation/gmd:title = 'Digital Object Identifier']/gmd:code)">
                 <xsl:value-of select="gmd:identifier/gmd:MD_Identifier[gmd:authority/gmd:CI_Citation/gmd:title = 'Digital Object Identifier']/gmd:code"/>
-            </xsl:if>
+            </xsl:if-->
             <xsl:for-each select="ancestor::gmd:MD_Metadata/gmd:dataSetURI[starts-with(gco:CharacterString, '10.') or contains(gco:CharacterString, 'doi')]">
                 <xsl:if test="string-length(gco:CharacterString)">
                     <xsl:value-of select="gco:CharacterString"/>
@@ -1332,46 +1336,36 @@
                     </xsl:choose>
                 </xsl:variable>
                 
-                <xsl:if test="count($dateValueAndType_sequence) > 0">
-                    <xsl:variable name="dateValue" select="$dateValueAndType_sequence[1]"/>
-                    <xsl:variable name="dateTypeFromSource" select="$dateValueAndType_sequence[2]"/>
-                    
-                    <xsl:if test="$global_debug">
-                        <xsl:message select="concat('Using ', $dateTypeFromSource, ' date : ', $dateValue)"/>
-                    </xsl:if>
-                    
-                    <xsl:variable name="codelist" select="$gmdCodelists/codelists/codelist[@name = 'gmd:CI_DateTypeCode']"/>
-                    
-                     <date>
+               <xsl:variable name="dateValue" select="$dateValueAndType_sequence[1]"/>
+                <!--xsl:variable name="dateTypeFromSource" select="$dateValueAndType_sequence[2]"/-->
+                
+                <xsl:variable name="codelist" select="$gmdCodelists/codelists/codelist[@name = 'gmd:CI_DateTypeCode']"/>
+                
+                <xsl:variable name="formattedYear">
+                    <xsl:choose>
+                        <xsl:when test="string-length(localFunc:getYear($dateValue))">
+                            <xsl:message select="concat('For publication date, using date :[', localFunc:getYear($dateValue), ']')"/>
+                            <xsl:value-of select="localFunc:getYear($dateValue)"/>
+                        </xsl:when>
+                        <xsl:when test="string-length(localFunc:getYear(ancestor::gmd:MD_Metadata/gmd:dateStamp[1]/gco:DateTime[1]))">
+                            <xsl:message select="concat('Obtaining date from metadata because no citation publication date :', ancestor::gmd:MD_Metadata/gmd:dateStamp[1]/gco:DateTime[1])"/>
+                            <xsl:message select="concat('Formatted: [', localFunc:getYear(ancestor::gmd:MD_Metadata/gmd:dateStamp[1]/gco:DateTime[1]), ']')"/>
+                            <!-- No publication date in citation, so use metadata date stamp -->
+                            <xsl:value-of select="localFunc:getYear(ancestor::gmd:MD_Metadata/gmd:dateStamp[1]/gco:DateTime[1])"/>
+                        </xsl:when>
+                    </xsl:choose>
+                </xsl:variable>
+                
+                <xsl:if test="string-length($formattedYear)">
+                    <date>
                         <xsl:attribute name="type">
-                            <xsl:choose>
-                             <xsl:when test="string-length($codelist/entry[code = $dateTypeFromSource]/description) > 0">
-                                 <xsl:value-of select="$codelist/entry[code = $dateTypeFromSource]/description"/>
-                             </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:text>publicationDate</xsl:text>
-                            </xsl:otherwise>
-                            </xsl:choose>
+                            <xsl:text>publicationDate</xsl:text>
                         </xsl:attribute>
-                        <xsl:choose>
-                            <xsl:when test="contains($dateValue, '/')">
-                                <xsl:value-of select="tokenize($dateValue, '/')[count(tokenize($dateValue, '/'))]"/>
-                            </xsl:when>
-                            <xsl:when test="contains($dateValue, '-')">
-                                <xsl:value-of select="tokenize($dateValue, '-')[1]"/>
-                            </xsl:when>
-                            <xsl:when test="string-length($dateValue) > 3">
-                                <xsl:value-of select="substring($dateValue, 1, 4)"/>
-                             </xsl:when>
-                            <xsl:when test="string-length($dateValue) > 0">
-                                <xsl:value-of select="$dateValue"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:text><!-- never getting here with current code--></xsl:text>
-                            </xsl:otherwise>
-                        </xsl:choose>
+                        <xsl:value-of select="$formattedYear"/>
                     </date>
-                </xsl:if>    
+                </xsl:if>
+                     
+   
                 
                 <xsl:variable name="publisherOrganisationName" as="xs:string*">
                     <xsl:variable name="publisherOrganisationName_sequence" as="xs:string*">
@@ -1417,6 +1411,46 @@
            </citationMetadata>
         </citationInfo>
     </xsl:template>
+    
+    <xsl:function name="localFunc:getYear">
+        <xsl:param name="dateValue"/>
+        
+        <xsl:if test="string-length($dateValue)">
+            
+            <xsl:variable name="year">
+            
+                  <xsl:choose>
+                       <xsl:when test="contains($dateValue, '/')">
+                           <xsl:value-of select="substring(tokenize($dateValue, '/')[count(tokenize($dateValue, '/'))], 1, 4)"/>
+                       </xsl:when>
+                       <xsl:when test="contains($dateValue, '-')">
+                           <xsl:value-of select="substring(tokenize($dateValue, '-')[1], 1, 4)"/>
+                       </xsl:when>
+                      <xsl:when test="string-length($dateValue) > 3">
+                           <xsl:value-of select="substring($dateValue, 1, 4)"/>
+                       </xsl:when>
+                      <xsl:when test="string-length($dateValue) > 0">
+                          <xsl:message select="concat('Returning date unchanged [', $dateValue ,']')"/>
+                          <xsl:value-of select="$dateValue"/>
+                       </xsl:when>
+                       <xsl:otherwise>
+                           <xsl:text><!-- never getting here with current code--></xsl:text>
+                       </xsl:otherwise>
+                   </xsl:choose>
+            </xsl:variable>
+            
+            <!-- Return year only if it is fully numeric -->
+            <xsl:choose>
+                <xsl:when test="matches($year, '^[0-9]*$')">
+                    <xsl:value-of select="$year"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:text></xsl:text>
+                </xsl:otherwise>
+            </xsl:choose>
+            
+        </xsl:if>
+    </xsl:function>
 
 
 
