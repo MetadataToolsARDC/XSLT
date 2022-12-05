@@ -24,10 +24,10 @@
                     <identifier type="global">
                         <xsl:value-of select="gmd:nci_source_id"/>
                     </identifier>
-                    <relation type="isDerivedFrom">
+                    <relation type="hasAssociationWith">
                         <xsl:if test="string-length(gmd:nci_source_provider) > 0">
                             <description>
-                                <xsl:value-of select="concat('Source resource link from ', gmd:nci_source_provider)"/>
+                                <xsl:value-of select="concat('Source record url from ', gmd:nci_source_provider)"/>
                             </description>
                         </xsl:if>
                         <xsl:if test="string-length(gmd:nci_data_link) > 0">
@@ -38,7 +38,7 @@
                     </relation>
                     <xsl:if test="string-length(gmd:nci_source_provider) > 0">
                         <title>
-                            <xsl:value-of select="concat('Resource provided by ', gmd:nci_source_provider)"/>
+                            <xsl:value-of select="concat('Source record provided by ', gmd:nci_source_provider)"/>
                         </title>
                     </xsl:if>
                 </relatedInfo>
