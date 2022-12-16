@@ -17,7 +17,6 @@
     <xsl:param name="global_publisherName" select="''"/>
     <xsl:param name="global_rightsStatement" select="''"/>
     <xsl:param name="global_hesanda_identifier_strings" select="'anzctr|actrn'" as="xs:string*"/>
-    <xsl:param name="global_project_identifier_strings" select="'raid'" as="xs:string*"/>
     <!--xsl:param name="global_baseURI" select="''"/-->
     <!--xsl:param name="global_path" select="''"/-->
       

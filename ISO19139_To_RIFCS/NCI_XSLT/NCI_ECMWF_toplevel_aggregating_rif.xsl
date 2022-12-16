@@ -22,12 +22,12 @@
     <xsl:output method="xml" version="1.0" encoding="UTF-8" omit-xml-declaration="yes" indent="yes"/>
     <xsl:strip-space elements="*"/>
     
+    <xsl:param name="global_debug" select="false()" as="xs:boolean"/>
     <xsl:param name="global_baseURI" select="'geonetwork.nci.org.au'"/>
     <xsl:param name="global_acronym" select="'NCI'"/>
-    <xsl:param name="global_originatingSource" select="'European Centre for Medium-Range Weather Forecasts (ECMWF)'"/> <!-- Only used as originating source if organisation name cannot be determined from Point Of Contact -->
     <xsl:param name="global_group" select="'European Centre for Medium-Range Weather Forecasts (Hosted at National Computational Infrastructure)'"/> 
     <xsl:param name="global_path" select="'/geonetwork/srv/eng/catalog.search#/metadata/'"/>
-    <xsl:param name="global_publisher" select="'National Computational Infrastructure'"/>
+    <xsl:param name="global_publisher" select="'NCI Australia'"/>
     <xsl:param name="global_DOI_prefix_sequence" select="'10.25914|10.4225/41'" as="xs:string"/>
     
     <!-- stylesheet to convert iso19139 in OAI-PMH ListRecords response to RIF-CS -->
@@ -51,16 +51,7 @@
     
     <xsl:template match="*:MD_Metadata" mode="TOP_LEVEL">
         <xsl:message>NCI_ECMWF_toplevel_aggregating</xsl:message>
-        
-        <xsl:variable name="originatingSourceOrganisation" select="customGMD:originatingSourceOrganisation(.)"/>
-        <xsl:message select="concat('$originatingSourceOrganisation: ', $originatingSourceOrganisation)"/>
-        
-        <xsl:variable name="metadataPointOfTruth_sequence" select="gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:linkage[contains(lower-case(following-sibling::gmd:protocol/gco:CharacterString), 'metadata-url')]/gmd:URL" as="xs:string*"/>
-        
-        <xsl:for-each select="distinct-values($metadataPointOfTruth_sequence)">
-            <xsl:message select="concat('$metadataPointOfTruth_sequence: ', .)"/>
-        </xsl:for-each>
-        
+       
         <xsl:apply-templates select="." mode="ISO19139_TO_RIFCS">
             <xsl:with-param name="aggregatingGroup" select="$global_group"/>
         </xsl:apply-templates>

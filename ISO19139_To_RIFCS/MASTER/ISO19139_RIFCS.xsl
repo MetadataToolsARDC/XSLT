@@ -22,23 +22,23 @@
     <!-- stylesheet to convert iso19139 in OAI-PMH ListRecords response to RIF-CS -->
     <xsl:output method="xml" version="1.0" encoding="UTF-8" omit-xml-declaration="yes" indent="yes"/>
     <xsl:strip-space elements="*"/>
-    <xsl:param name="global_debug" select="true()" as="xs:boolean"/>
+    <xsl:param name="global_debug" select="false()" as="xs:boolean"/>
     <xsl:param name="global_debugExceptions" select="true()" as="xs:boolean"/>
     <xsl:variable name="licenseCodelist" select="document('license-codelist.xml')"/>
     <xsl:variable name="gmdCodelists" select="document('codelists.xml')"/>
     <!--xsl:variable name="anzsrcCodelist" select="document('anzsrc-for-2008.xml')"/-->
-    <xsl:param name="global_baseURI" select="'{override required}'"/>
-    <xsl:param name="global_acronym" select="'{override required}'"/>
-    <xsl:param name="global_originatingSource" select="'{override required}'"/> <!-- Only used as originating source if organisation name cannot be determined from Point Of Contact -->
-    <xsl:param name="global_group" select="'{override required}'"/> 
-    <xsl:param name="global_path" select="'{override required}'"/>
+    <xsl:param name="global_baseURI" select="'undetermined'"/>
+    <xsl:param name="global_acronym" select="'undetermined'"/>
+    <xsl:param name="global_originatingSource" select="'undetermined'"/> <!-- Only used as originating source if organisation name cannot be determined from Point Of Contact -->
+    <xsl:param name="global_group" select="'undetermined'"/> 
+    <xsl:param name="global_path" select="'undetermined'"/>
     
     <xsl:param name="global_regex_URLinstring" select="'(https?:)(//([^#\s]*))?'"/>
     
     <xsl:param name="global_includeDataServiceLinks" select="false()" as="xs:boolean"/>
     
-    <xsl:param name="global_publisher" select="'{override required}'"/>
-    <xsl:param name="global_DOI_prefix_sequence" select="'{override required}'" as="xs:string"/>
+    <xsl:param name="global_publisher" select="'undetermined'"/>
+    <xsl:param name="global_DOI_prefix_sequence" select="'undetermined'" as="xs:string"/>
     
     <!-- =========================================== -->
     <!-- RegistryObjects (root) Template             -->
@@ -65,19 +65,18 @@
         
         <xsl:if test="$global_debug">
             <xsl:message select="concat('licenseCodelist loaded: ', count($licenseCodelist))"/>
-            <xsl:message select="concat('Aggregating group: ', $global_group)"/>
+            <!--xsl:message select="concat('Aggregating group: ', $global_group)"-->
         </xsl:if>
         
-        <xsl:variable name="originatingSourceOrganisation" select="customGMD:originatingSourceOrganisation(.)"/>
+        <xsl:variable name="originatingSourceOrganisation">
+            
+            <xsl:variable name="attemptGetOrganisation" select="customGMD:originatingSourceOrganisation(.)"/>
         
-        
-        
-         <xsl:variable name="originatingSourceOrganisation">
             <xsl:choose>
-                <xsl:when test="string-length(customGMD:originatingSourceOrganisation(.)) > 0">
-                    <xsl:value-of select="customGMD:originatingSourceOrganisation(.)"/>
+                <xsl:when test="string-length($attemptGetOrganisation) > 0">
+                    <xsl:value-of select="$attemptGetOrganisation"/>
                     <xsl:if test="$global_debug">
-                         <xsl:message select="concat('OriginatingSourceOrganisation: ', customGMD:originatingSourceOrganisation(.))"/>
+                        <xsl:message select="concat('OriginatingSourceOrganisation: ', $attemptGetOrganisation)"/>
                     </xsl:if>
                 </xsl:when>
                 <xsl:otherwise>
@@ -113,7 +112,7 @@
                             
                 </xsl:if>
                        
-                <xsl:apply-templates  select="gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:formatDistributor/gmd:MD_Distributor/gmd:distributorTransferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource[contains(gmd:name, 'Digital Object Identifier for dataset') and contains(gmd:name, gmd:fileIdentifier)]/gmd:linkage/gmd:URL" mode="registryObject_identifier"/>   
+                <!--xsl:apply-templates  select="gmd:distributionInfo/gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:formatDistributor/gmd:MD_Distributor/gmd:distributorTransferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource[contains(gmd:name, 'Digital Object Identifier for dataset') and contains(gmd:name, gmd:fileIdentifier)]/gmd:linkage/gmd:URL" mode="registryObject_identifier"/-->   
                 <!--xsl:apply-templates select="gmd:dataSetURI[string-length(.) > 0]" mode="registryObject_identifier"/-->
                 <!--xsl:apply-templates select="gmd:identificationInfo/*[contains(lower-case(name()),'identification')]/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier[gmd:authority/gmd:CI_Citation/gmd:title = 'Digital Object Identifier']/gmd:code" mode="registryObject_identifier"/-->
                 <xsl:apply-templates select="gmd:identificationInfo/*[contains(lower-case(name()),'identification')]/gmd:citation/gmd:CI_Citation/gmd:identifier/gmd:MD_Identifier"  mode="registryObject_identifier"/>
@@ -150,9 +149,10 @@
     <xsl:template match="gmd:distributionInfo">
           
         <xsl:apply-templates select="gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource[contains(lower-case(gmd:protocol), 'metadata-url')]/gmd:linkage/gmd:URL" mode="registryObject_identifier"/>
+        <xsl:apply-templates select="gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:formatDistributor/gmd:MD_Distributor/gmd:distributorTransferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource[contains(lower-case(gmd:protocol), 'metadata-url')]/gmd:linkage/gmd:URL" mode="registryObject_identifier"/>
         
         <xsl:apply-templates select="gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource" mode="registryObject_relatedInfo"/>
-        
+        <xsl:apply-templates select="gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:formatDistributor/gmd:MD_Distributor/gmd:distributorTransferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource" mode="registryObject_relatedInfo"/>
      </xsl:template>
     
    <xsl:template match="*[contains(lower-case(name()),'identification')]" mode="registryObject">
@@ -731,6 +731,8 @@
         <xsl:param name="landingPage"/>
         <description type="brief">
             <xsl:value-of select="concat('This record was harvested by RDA at ',  current-dateTime(), ' from &lt;a href=''', $landingPage ,'''&gt;', $landingPage, '&lt;/a&gt; in ', $global_acronym, '''s Data Catalogue')"/>
+            <!-- Replace above line with line below, if preferred by contributor -->
+            <!--xsl:value-of select="concat('This record was harvested by RDA at ',  current-dateTime(), ' from &lt;a href=''', $landingPage ,'''&gt;', $global_acronym, '''s Data Catalogue', '&lt;/a&gt;')"/-->
             <xsl:if test="count(ancestor::gmd:MD_Metadata/gmd:dateStamp/*[contains(local-name(), 'Date')][string-length(.)> 0]) > 0">
                 <xsl:value-of select="concat(' where it was last modified at ', ancestor::gmd:MD_Metadata/gmd:dateStamp/*[contains(local-name(), 'Date')][string-length(.)> 0][1] , '')"/>
             </xsl:if>
@@ -939,11 +941,18 @@
     <xsl:template match="gmd:CI_OnlineResource" mode="registryObject_relatedInfo">         
         
         <xsl:choose>
-            <xsl:when test="($global_includeDataServiceLinks = true()) and (contains(gmd:protocol, 'OGC:') or contains(lower-case(gmd:linkage/gmd:URL), 'thredds') or contains(lower-case(gmd:linkage/gmd:URL), 'ftp'))">
-                <xsl:apply-templates select="." mode="relatedInfo_service"/>
+            <xsl:when test="
+                contains(gmd:protocol, 'OGC:') or 
+                contains(lower-case(gmd:linkage/gmd:URL), 'thredds') or 
+                contains(lower-case(gmd:linkage/gmd:URL), 'ftp')">
+                <xsl:if test="$global_includeDataServiceLinks = true()">
+                    <xsl:apply-templates select="." mode="relatedInfo_service"/>
+                </xsl:if>
             </xsl:when>
-            <xsl:when test="not(contains(lower-case(gmd:description), 'point of truth url of this metadata record') and not(contains(gmd:protocol, 'OGC:'))) and not(contains(lower-case(gmd:linkage/gmd:URL), 'thredds')) and not(contains(lower-case(gmd:linkage/gmd:URL), 'ftp'))">
-                <xsl:apply-templates select=".[string-length(gmd:linkage/gmd:URL) > 0]" mode="relatedInfo_relatedInformation"/>
+            <xsl:when test="
+                not(contains(lower-case(gmd:protocol), 'metadata-url')) or
+                not(contains(lower-case(gmd:description), 'point of truth url of this metadata record'))">
+                <xsl:apply-templates select="." mode="relatedInfo_relatedInformation"/>
             </xsl:when>
             
         </xsl:choose>
@@ -1006,20 +1015,22 @@
     <xsl:template match="gmd:CI_OnlineResource" mode="relatedInfo_relatedInformation">       
         
         <xsl:variable name="identifierValue" select="normalize-space(gmd:linkage/gmd:URL)"/>
-        <relatedInfo>
-       
-            <xsl:attribute name="type">
-                <xsl:text>relatedInformation</xsl:text>
-            </xsl:attribute> 
-            
-            <identifier type="{localFunc:getIdentifierType($identifierValue)}">
-                <xsl:value-of select="$identifierValue"/>
-            </identifier>
-            
-            <relation type="hasAssociationWith"/>
-            
-            <xsl:apply-templates select="." mode="relatedInfo_all"/>
-        </relatedInfo>
+        <xsl:if test="string-length($identifierValue)">
+         <relatedInfo>
+        
+             <xsl:attribute name="type">
+                 <xsl:text>relatedInformation</xsl:text>
+             </xsl:attribute> 
+             
+             <identifier type="{localFunc:getIdentifierType($identifierValue)}">
+                 <xsl:value-of select="$identifierValue"/>
+             </identifier>
+             
+             <relation type="hasAssociationWith"/>
+             
+             <xsl:apply-templates select="." mode="relatedInfo_all"/>
+         </relatedInfo>
+        </xsl:if>
         
     </xsl:template>
     
@@ -1088,14 +1099,13 @@
                 <accessRights>
                     <xsl:choose>
                         <xsl:when test="count(gmd:resourceConstraints/gmd:MD_SecurityConstraints/gmd:classification/gmd:MD_ClassificationCode[@codeListValue = 'unclassified']) > 0 and
-                            count(gmd:resourceConstraints/gmd:MD_SecurityConstraints/gmd:classification/gmd:MD_ClassificationCode/@codeListValue) = 
-                            count(gmd:resourceConstraints/gmd:MD_SecurityConstraints/gmd:classification/gmd:MD_ClassificationCode[@codeListValue = 'unclassified'])">
+                            count(gmd:resourceConstraints/gmd:MD_SecurityConstraints/gmd:classification/gmd:MD_ClassificationCode[not(@codeListValue = 'unclassified') and not(string-length(normalize-space(@codeListValue)) = 0)]) = 0">
                             <xsl:attribute name="type">
                                 <xsl:text>open</xsl:text>
                             </xsl:attribute>
                         </xsl:when>
                         <!-- when MD_ClassificationCode is populated, but not as above -->
-                        <xsl:when test="count(gmd:resourceConstraints/gmd:MD_SecurityConstraints/gmd:classification/gmd:MD_ClassificationCode/@codeListValue[string-length(.) > 0]) > 0">
+                        <xsl:when test="count(gmd:resourceConstraints/gmd:MD_SecurityConstraints/gmd:classification/gmd:MD_ClassificationCode[not(@codeListValue = 'unclassified') and not(string-length(normalize-space(@codeListValue)) = 0)]) > 0">
                             <xsl:attribute name="type">
                                 <xsl:text>restricted</xsl:text>
                             </xsl:attribute>
@@ -1128,7 +1138,7 @@
             </xsl:analyze-string>
         </xsl:variable>
         <xsl:if test="$global_debug">
-            <xsl:message select="concat('Count extracted one license link : ', count($licenseLink_sequence))"/>
+            <xsl:message select="concat('Count extracted license link : ', count($licenseLink_sequence))"/>
         </xsl:if>
         
         <xsl:for-each select="distinct-values($licenseLink_sequence)">
@@ -1344,12 +1354,16 @@
                 <xsl:variable name="formattedYear">
                     <xsl:choose>
                         <xsl:when test="string-length(localFunc:getYear($dateValue))">
-                            <xsl:message select="concat('For publication date, using date :[', localFunc:getYear($dateValue), ']')"/>
+                            <xsl:if test="$global_debug">
+                                <xsl:message select="concat('For publication date, using date :[', localFunc:getYear($dateValue), ']')"/>
+                            </xsl:if>
                             <xsl:value-of select="localFunc:getYear($dateValue)"/>
                         </xsl:when>
                         <xsl:when test="string-length(localFunc:getYear(ancestor::gmd:MD_Metadata/gmd:dateStamp[1]/gco:DateTime[1]))">
-                            <xsl:message select="concat('Obtaining date from metadata because no citation publication date :', ancestor::gmd:MD_Metadata/gmd:dateStamp[1]/gco:DateTime[1])"/>
-                            <xsl:message select="concat('Formatted: [', localFunc:getYear(ancestor::gmd:MD_Metadata/gmd:dateStamp[1]/gco:DateTime[1]), ']')"/>
+                            <xsl:if test="$global_debug">
+                                <xsl:message select="concat('Obtaining date from metadata because no citation publication date :', ancestor::gmd:MD_Metadata/gmd:dateStamp[1]/gco:DateTime[1])"/>
+                                <xsl:message select="concat('Formatted: [', localFunc:getYear(ancestor::gmd:MD_Metadata/gmd:dateStamp[1]/gco:DateTime[1]), ']')"/>
+                            </xsl:if>
                             <!-- No publication date in citation, so use metadata date stamp -->
                             <xsl:value-of select="localFunc:getYear(ancestor::gmd:MD_Metadata/gmd:dateStamp[1]/gco:DateTime[1])"/>
                         </xsl:when>
@@ -1382,10 +1396,8 @@
                         <xsl:otherwise>
                             <!-- If the DOI was minted by this contributor, default publisher -->
                             <xsl:for-each select="tokenize($global_DOI_prefix_sequence, '\|')">
-                                <xsl:message select="concat('Defaulting publisher if ', $identifierToUse ,' contains ', .)"/>
                                 <xsl:if test="contains($identifierToUse, .)">
                                     <xsl:value-of select="$global_publisher"/>
-                                    <xsl:message select="'Defaulted publisher'"/>
                                 </xsl:if>
                             </xsl:for-each>
                         </xsl:otherwise>

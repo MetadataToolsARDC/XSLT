@@ -109,7 +109,6 @@
         <xsl:param name="MD_Metadata" as="node()"/>
         
         
-        
          <xsl:variable name="originatingSourceURL" select="customGMD:originatingSourceURL($MD_Metadata)"/>
          
          <xsl:variable name="originatingSourceOrgFromURL_sequence" select="customGMD:originatingSourceOrganisationFromURL($originatingSourceURL)"/>
@@ -120,94 +119,55 @@
                 <xsl:value-of select="$originatingSourceOrgFromURL_sequence[1]"/>
             </xsl:when>
            <xsl:otherwise>
-                <xsl:variable name="originatingSourceOrgansationFromParties" select="customGMD:originatingSourceOrganisationFromParties($MD_Metadata)"/>
+                <xsl:variable name="originatingSourceOrgansationFromParties" select="customGMD:originatingSourceOrganisationFromParties($MD_Metadata)" as="xs:string"/>
+                <xsl:if test="$global_debug">
+                    <xsl:message select="concat('Originating source org from parties: ', $originatingSourceOrgansationFromParties)"/>
+                </xsl:if>
                 <xsl:value-of select="$originatingSourceOrgansationFromParties"/>
             </xsl:otherwise>
             
          </xsl:choose>
             
     </xsl:function>
-        
+     
+     
+     <xsl:function name="customGMD:getOrganisationNamesForRole" as="xs:string*">
+         <xsl:param name="MD_Metadata" as="node()"/>
+         <xsl:param name="role" as="xs:string"/>
+         
+         <xsl:if test="string-length($role)">
+             <xsl:variable name="name_sequence" as="xs:string*">
+                 <xsl:sequence select="
+                    $MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty[(lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue) = $role) and (string-length(gmd:organisationName) > 0)]/gmd:organisationName/gco:CharacterString |
+                    $MD_Metadata/gmd:identificationInfo/*[contains(lower-case(name()),'identification')]/gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty/gmd:CI_ResponsibleParty[(lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue) = $role) and (string-length(gmd:organisationName) > 0)]/gmd:organisationName/gco:CharacterString |
+                    $MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty[(lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue) = $role) and (string-length(gmd:organisationName) > 0)]/gmd:organisationName/gco:CharacterString |
+                    $MD_Metadata/gmd:identificationInfo/*[contains(lower-case(name()),'identification')]/gmd:pointOfContact/gmd:CI_ResponsibleParty[(lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue) = $role) and (string-length(gmd:organisationName) > 0)]/gmd:organisationName/gco:CharacterString"/>
+             </xsl:variable>
+             <xsl:copy-of select="$name_sequence"/>
+         </xsl:if>
+     </xsl:function>
         
    <xsl:function name="customGMD:originatingSourceOrganisationFromParties" as="xs:string">
         <xsl:param name="MD_Metadata" as="node()"/>
+       
+       <xsl:variable name="organisationName_sequence" as="xs:string*">
+           <xsl:sequence select="customGMD:getOrganisationNamesForRole($MD_Metadata, 'originator')"/>
+           <xsl:sequence select="customGMD:getOrganisationNamesForRole($MD_Metadata, 'author')"/>
+           <xsl:sequence select="customGMD:getOrganisationNamesForRole($MD_Metadata, 'creator')"/>
+           <xsl:sequence select="customGMD:getOrganisationNamesForRole($MD_Metadata, 'resourceprovider')"/>
+           <xsl:sequence select="customGMD:getOrganisationNamesForRole($MD_Metadata, 'owner')"/>
+           <xsl:sequence select="customGMD:getOrganisationNamesForRole($MD_Metadata, 'custodian')"/>
+           <xsl:sequence select="customGMD:getOrganisationNamesForRole($MD_Metadata, 'pointofcontact')"/>
+           <xsl:sequence select="customGMD:getOrganisationNamesForRole($MD_Metadata, 'principalinvestigator')"/>
+           <xsl:sequence select="$MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty[string-length(gmd:organisationName)]/gmd:organisationName"/>
+       </xsl:variable>
         
-          <xsl:variable name="originator_sequence" as="node()*" select="
-                $MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty[lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue) = 'originator'] |
-                $MD_Metadata/gmd:identificationInfo/*[contains(lower-case(name()),'identification')]/gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty/gmd:CI_ResponsibleParty[(lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue) = 'originator')] |
-                $MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty[lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue) = 'originator'] |
-                $MD_Metadata/gmd:identificationInfo/*[contains(lower-case(name()),'identification')]/gmd:pointOfContact/gmd:CI_ResponsibleParty[lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue) = 'originator']"/>
-            
-            <xsl:variable name="author_sequence" as="node()*" select="
-                $MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty[lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue) = 'author'] |
-                $MD_Metadata/gmd:identificationInfo/*[contains(lower-case(name()),'identification')]/gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty/gmd:CI_ResponsibleParty[(lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue) = 'author')] |
-                $MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty[lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue) = 'author'] |
-                $MD_Metadata/gmd:identificationInfo/*[contains(lower-case(name()),'identification')]/gmd:pointOfContact/gmd:CI_ResponsibleParty[lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue) = 'author']"/>
-            
-            <xsl:variable name="creator_sequence" as="node()*" select="
-                $MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty[lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue) = 'creator'] |
-                $MD_Metadata/gmd:identificationInfo/*[contains(lower-case(name()),'identification')]/gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty/gmd:CI_ResponsibleParty[(lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue) = 'creator')] |
-                $MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty[lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue) = 'creator'] |
-                $MD_Metadata/gmd:identificationInfo/*[contains(lower-case(name()),'identification')]/gmd:pointOfContact/gmd:CI_ResponsibleParty[lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue) = 'creator']"/>
-            
-            <xsl:variable name="resourceProvider_sequence" as="node()*" select="
-                $MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty[lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue) = 'resourceprovider'] |
-                $MD_Metadata/gmd:identificationInfo/*[contains(lower-case(name()),'identification')]/gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty/gmd:CI_ResponsibleParty[lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue) = 'resourceprovider'] |
-                $MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty[lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue) = 'resourceprovider'] |
-                $MD_Metadata/gmd:identificationInfo/*[contains(lower-case(name()),'identification')]/gmd:pointOfContact/gmd:CI_ResponsibleParty[lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue) = 'resourceprovider']"/>
-            
-            <xsl:variable name="owner_sequence" as="node()*" select="
-                $MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty[lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue) = 'owner'] |
-                $MD_Metadata/gmd:identificationInfo/*[contains(lower-case(name()),'identification')]/gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty/gmd:CI_ResponsibleParty[lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue) = 'owner'] |
-                $MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty[lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue) = 'owner'] |
-                $MD_Metadata/gmd:identificationInfo/*[contains(lower-case(name()),'identification')]/gmd:pointOfContact/gmd:CI_ResponsibleParty[lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue) = 'owner']"/>
-            
-            <xsl:variable name="custodian_sequence" as="node()*" select="
-                $MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty[lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue) = 'custodian'] |
-                $MD_Metadata/gmd:identificationInfo/*[contains(lower-case(name()),'identification')]/gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty/gmd:CI_ResponsibleParty[lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue) = 'custodian'] |
-                $MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty[lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue) = 'custodian'] |
-                $MD_Metadata/gmd:identificationInfo/*[contains(lower-case(name()),'identification')]/gmd:pointOfContact/gmd:CI_ResponsibleParty[lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue) = 'custodian']"/>
-            
-            <xsl:variable name="pointOfContact_sequence" as="node()*" select="
-                $MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty[contains(lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue), 'contact')] |
-                $MD_Metadata/gmd:identificationInfo/*[contains(lower-case(name()),'identification')]/gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty/gmd:CI_ResponsibleParty[contains(lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue), 'contact')] |
-                $MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty[contains(lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue), 'contact')] |
-                $MD_Metadata/gmd:identificationInfo/*[contains(lower-case(name()),'identification')]/gmd:pointOfContact/gmd:CI_ResponsibleParty[contains(lower-case(gmd:role/gmd:CI_RoleCode/@codeListValue), 'contact')]"/>
-            
-            
-            <xsl:variable name="contact_sequence" as="node()*" select="
-                $MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty"/>
-            
-            <xsl:choose>
-                <xsl:when test="(count($originator_sequence) > 0) and string-length($originator_sequence[1]/gmd:organisationName) > 0">
-                    <xsl:value-of select="$originator_sequence[1]/gmd:organisationName"/>
-                </xsl:when>
-                <xsl:when test="(count($author_sequence) > 0) and string-length($author_sequence[1]/gmd:organisationName) > 0">
-                    <xsl:value-of select="$author_sequence[1]/gmd:organisationName"/>
-                </xsl:when>
-                <xsl:when test="(count($creator_sequence) > 0) and string-length($creator_sequence[1]/gmd:organisationName) > 0">
-                    <xsl:value-of select="$creator_sequence[1]/gmd:organisationName"/>
-                </xsl:when>
-                <xsl:when test="(count($resourceProvider_sequence) > 0) and string-length($resourceProvider_sequence[1]/gmd:organisationName) > 0">
-                    <xsl:value-of select="$resourceProvider_sequence[1]/gmd:organisationName"/>
-                </xsl:when>
-                <xsl:when test="(count($owner_sequence) > 0) and string-length($owner_sequence[1]/gmd:organisationName) > 0">
-                    <xsl:value-of select="$owner_sequence[1]/gmd:organisationName"/>
-                </xsl:when>
-                <xsl:when test="(count($custodian_sequence) > 0) and string-length($custodian_sequence[1]/gmd:organisationName) > 0">
-                    <xsl:value-of select="$custodian_sequence[1]/gmd:organisationName"/>
-                </xsl:when>
-                <xsl:when test="(count($pointOfContact_sequence) > 0) and string-length($pointOfContact_sequence[1]/gmd:organisationName) > 0">
-                    <xsl:value-of select="$pointOfContact_sequence[1]/gmd:organisationName"/>
-                </xsl:when>
-                <xsl:when test="(count($contact_sequence) > 0) and string-length($contact_sequence[1]/gmd:organisationName) > 0">
-                    <xsl:value-of select="$contact_sequence[1]/gmd:organisationName"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="''"/>
-                </xsl:otherwise>
-              </xsl:choose>
-              
+       <xsl:if test="$global_debug">
+            <xsl:message select="concat('Count originating source sequence: ', count($organisationName_sequence))"/>
+       </xsl:if>
+       
+       <xsl:value-of select="$organisationName_sequence[1]"/>
+          
     </xsl:function>
     
     <xsl:function name="customGMD:replaceOWS_specificProtocol">

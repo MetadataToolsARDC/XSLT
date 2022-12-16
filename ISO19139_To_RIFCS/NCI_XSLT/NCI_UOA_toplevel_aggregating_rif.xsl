@@ -24,12 +24,11 @@
     
     <xsl:param name="global_baseURI" select="'geonetwork.nci.org.au'"/>
     <xsl:param name="global_acronym" select="'NCI'"/>
-    <xsl:param name="global_originatingSource" select="'The University of Adelaide'"/> <!-- Only used as originating source if organisation name cannot be determined from Point Of Contact -->
-    <xsl:param name="global_group" select="'National Computational Infrastructure'"/> 
+    <xsl:param name="global_group" select="'University of Adelaide (Hosted at National Computational Infrastructure)'"/> 
     <xsl:param name="global_path" select="'/geonetwork/srv/eng/catalog.search#/metadata/'"/>
     <xsl:param name="global_includeDataServiceLinks" select="false()" as="xs:boolean"/>
     <xsl:param name="global_debug" select="false()" as="xs:boolean"/>
-    <xsl:param name="global_publisher" select="'National Computational Infrastructure'"/>
+    <xsl:param name="global_publisher" select="'NCI Australia'"/>
     <xsl:param name="global_DOI_prefix_sequence" select="'10.25914|10.4225/41'" as="xs:string"/>
     
     
@@ -54,15 +53,6 @@
     
     <xsl:template match="*:MD_Metadata" mode="TOP_LEVEL">
         <xsl:message>NCI_UOA_toplevel_aggregating</xsl:message>
-        
-        <xsl:variable name="originatingSourceOrganisation" select="customGMD:originatingSourceOrganisation(.)"/>
-        <xsl:message select="concat('$originatingSourceOrganisation: ', $originatingSourceOrganisation)"/>
-        
-        <xsl:variable name="metadataPointOfTruth_sequence" select="gmd:distributionInfo/gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource/gmd:linkage[contains(lower-case(following-sibling::gmd:protocol/gco:CharacterString), 'metadata-url')]/gmd:URL" as="xs:string*"/>
-        
-        <xsl:for-each select="distinct-values($metadataPointOfTruth_sequence)">
-            <xsl:message select="concat('$metadataPointOfTruth_sequence: ', .)"/>
-        </xsl:for-each>
         
         <xsl:apply-templates select="." mode="ISO19139_TO_RIFCS">
             <xsl:with-param name="aggregatingGroup" select="$global_group"/>
