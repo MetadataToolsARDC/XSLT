@@ -46,6 +46,8 @@
     <xsl:strip-space elements='*'/>
     <xsl:param name="global_debug" select="false()" as="xs:boolean"/>
     <xsl:param name="global_debugExceptions" select="false()" as="xs:boolean"/>
+    <xsl:param name="global_regex_URLinstring" select="'(https?:)(//([^#\s]*))?'"/>
+    
     
     <!-- Override the following by constructing a stylesheet with the params below populated appropriately, then import this stylesheet.  Run the stylesheet with the params, on your source XML -->
     <xsl:param name="global_originatingSource" select="''"/>
@@ -316,16 +318,23 @@
              select="mri:abstract[string-length(.) > 0]"
             mode="registryObject_description_brief"/>
         
-        <xsl:apply-templates select="mri:extent" mode="registryObject_coverage_spatial"/>
+        <xsl:apply-templates select="mri:extent/gex:EX_Extent" mode="registryObject_coverage_spatial"/>
        
        
         <xsl:apply-templates
             select="mri:extent/gex:EX_Extent/gex:temporalElement/gex:EX_TemporalExtent"
             mode="registryObject_coverage_temporal"/>
+        
+        <xsl:apply-templates select="mri:resourceConstraints/*" mode="registryObject_rights_licence_type_and_uri"/>
+        
          
-        <xsl:apply-templates
-            select="mri:resourceConstraints/mco:MD_LegalConstraints[(count(mco:reference/cit:CI_Citation) = 0) and (mco:useConstraints/mco:MD_RestrictionCode/@codeListValue = 'license') and (count(mco:otherConstraints[string-length() > 0]) > 0)]"
+        <!--xsl:apply-templates
+            select="mri:resourceConstraints/mco:MD_LegalConstraints[(count(mco:reference/cit:CI_Citation) = 0) and matches(mco:useConstraints/mco:MD_RestrictionCode/@codeListValue,  'licen.e') and (count(mco:otherConstraints[string-length() > 0]) > 0)]"
             mode="registryObject_rights_license_otherConstraint"/>
+        
+        <xsl:apply-templates
+            select="mri:resourceConstraints/mco:MD_LegalConstraints[(count(mco:reference/cit:CI_Citation) = 0) and matches(mco:useConstraints/mco:MD_RestrictionCode/@codeListValue,  'licen.e') and (count(mco:useLimitation[string-length() > 0]) > 0)]"
+            mode="registryObject_rights_license_useLimitation"/-->
        
         <xsl:apply-templates
             select="mri:resourceConstraints/mco:MD_LegalConstraints[(count(mco:reference/cit:CI_Citation) > 0)]"
@@ -890,12 +899,9 @@
         </xsl:if>
     </xsl:template>
     
-    <xsl:template match="mri:extent" mode="registryObject_coverage_spatial">
-        <xsl:for-each select="gex:EX_Extent/gex:geographicElement">
-            <xsl:apply-templates select="." mode="registryObject_coverage_spatial"/>
-            <xsl:apply-templates select="gml:Polygon" mode="registryObject_coverage_spatial"/>
-        </xsl:for-each>
-   </xsl:template>
+    
+       
+   
     
    <xsl:template match="gml:Polygon" mode="registryObject_coverage_spatial">
         <!-- RDA doesn't handle altitude yet and if altitude is provided, the shapes aren't shown on the
@@ -903,7 +909,6 @@
         
         <xsl:variable name="coordsFormatted" select="custom:convertCoordinatesLatLongToLongLat(normalize-space(.), false())"/>
         
-        <coverage>
             <spatial>
                 <xsl:attribute name="type">
                     <xsl:text>kmlPolyCoords</xsl:text>
@@ -918,49 +923,93 @@
                 <xsl:value-of select="normalize-space(.)"/>
             </spatial>
             -->
-        </coverage>
     </xsl:template>
     
     
    <!-- RegistryObject - Coverage Spatial Element -->
-    <xsl:template match="gex:geographicElement" mode="registryObject_coverage_spatial">
-        <!-- Be aware that following-sibling verticalElement uplimit, lowlimit and reference, will apply to each -->
-        <xsl:if test="string-length(normalize-space(gex:EX_GeographicBoundingBox/gex:northBoundLatitude/gco:Decimal)) > 0"/>
-        <xsl:if
-             test="
-             (string-length(normalize-space(gex:EX_GeographicBoundingBox/gex:northBoundLatitude/gco:Decimal)) > 0) and
-             (string-length(normalize-space(gex:EX_GeographicBoundingBox/gex:southBoundLatitude/gco:Decimal)) > 0) and
-             (string-length(normalize-space(gex:EX_GeographicBoundingBox/gex:westBoundLongitude/gco:Decimal)) > 0) and
-             (string-length(normalize-space(gex:EX_GeographicBoundingBox/gex:eastBoundLongitude/gco:Decimal)) > 0)">
-                 <xsl:variable name="spatialString">
-                     <xsl:value-of
-                         select="normalize-space(concat('westlimit=',gex:EX_GeographicBoundingBox/gex:westBoundLongitude/gco:Decimal,'; southlimit=',gex:EX_GeographicBoundingBox/gex:southBoundLatitude/gco:Decimal, '; eastlimit=',gex:EX_GeographicBoundingBox/gex:eastBoundLongitude/gco:Decimal,'; northlimit=',gex:EX_GeographicBoundingBox/gex:northBoundLatitude/gco:Decimal))"/>
-                     
-                     <xsl:if
-                         test="
-                         (string-length(normalize-space(following-sibling::gex:verticalElement/gex:EX_VerticalExtent/gex:maximumValue/gco:Real)) > 0) and
-                         (string-length(normalize-space(following-sibling::gex:verticalElement/gex:EX_VerticalExtent/gex:minimumValue/gco:Real)) > 0)">
+    <xsl:template match="gex:EX_Extent" mode="registryObject_coverage_spatial">
+        
+        
+       
+       
+        <coverage>
+            
+            <xsl:apply-templates select=".//gml:Polygon" mode="registryObject_coverage_spatial"/>
+        
+            <xsl:for-each select="gex:geographicElement/gex:EX_GeographicBoundingBox">
+            
+             <xsl:if
+                 test="
+                 (string-length(normalize-space(gex:northBoundLatitude/gco:Decimal)) > 0) and
+                 (string-length(normalize-space(gex:southBoundLatitude/gco:Decimal)) > 0) and
+                 (string-length(normalize-space(gex:westBoundLongitude/gco:Decimal)) > 0) and
+                 (string-length(normalize-space(gex:eastBoundLongitude/gco:Decimal)) > 0)">
+                     <xsl:variable name="horizontalCoordinatesWithProjection">
                          <xsl:value-of
-                             select="normalize-space(concat('; uplimit=',following-sibling::gex:verticalElement/gex:EX_VerticalExtent/gex:maximumValue/gco:Real,'; downlimit=', following-sibling::gex:verticalElement/gex:EX_VerticalExtent/gex:minimumValue/gco:Real, '; projection=', following-sibling::gex:verticalElement/gex:EX_VerticalExtent/gex:verticalCRSId/mrs:MD_ReferenceSystem/mrs:referenceSystemIdentifier/mcc:MD_Identifier/mcc:code ))"
-                         />
-                     </xsl:if>
-                 </xsl:variable>
-                 <coverage>
-                     <spatial>
-                         <xsl:attribute name="type">
-                             <xsl:text>iso19139dcmiBox</xsl:text>
-                         </xsl:attribute>
-                         <xsl:value-of select="$spatialString"/>
-                     </spatial>
-                     <spatial>
-                         <xsl:attribute name="type">
-                             <xsl:text>text</xsl:text>
-                         </xsl:attribute>
-                         <xsl:value-of select="$spatialString"/>
-                     </spatial>
-                 </coverage>
-        </xsl:if>
+                             select="normalize-space(concat('westlimit=', gex:westBoundLongitude/gco:Decimal,'; southlimit=', gex:southBoundLatitude/gco:Decimal, '; eastlimit=', gex:eastBoundLongitude/gco:Decimal,'; northlimit=', gex:northBoundLatitude/gco:Decimal))"/>
+                            <xsl:if test="count(ancestor::mdb:MD_Metadata/mdb:referenceSystemInfo/mrs:MD_ReferenceSystem/mrs:referenceSystemIdentifier/mcc:MD_Identifier/mcc:code[string-length(.) > 0]) = 1">
+                                <xsl:value-of select="concat('; projection=', ancestor::mdb:MD_Metadata/mdb:referenceSystemInfo/mrs:MD_ReferenceSystem/mrs:referenceSystemIdentifier/mcc:MD_Identifier/mcc:code[string-length(.) > 0])"/>
+                            </xsl:if>
+                     </xsl:variable>
+                
+                    <xsl:if test="string-length($horizontalCoordinatesWithProjection) > 0">
+                            <spatial>
+                                <xsl:attribute name="type">
+                                    <xsl:text>iso19139dcmiBox</xsl:text>
+                                </xsl:attribute>
+                                <xsl:value-of select="$horizontalCoordinatesWithProjection"/>
+                            </spatial>
+                            <spatial>
+                                <xsl:attribute name="type">
+                                    <xsl:text>text</xsl:text>
+                                </xsl:attribute>
+                                <xsl:value-of select="$horizontalCoordinatesWithProjection"/>
+                            </spatial>
+                    </xsl:if>
+                         
+                </xsl:if>     
+        </xsl:for-each>
+                         
+                
+            <xsl:for-each select="gex:verticalElement/gex:EX_VerticalExtent">
+                
+                <xsl:variable name="verticalLimitsWithProjection">
+                    
+                    <xsl:if test="
+                        (string-length(normalize-space(gex:maximumValue/gco:Real[string-length(.) > 0])) > 0) or
+                        (string-length(normalize-space(gex:minimumValue/gco:Real[string-length(.) > 0])) > 0)">
+                        
+                        <xsl:value-of select="concat('uplimit=', gex:maximumValue/gco:Real)"/>
+                        <xsl:value-of select="concat('; downlimit=', gex:minimumValue/gco:Real)"/>
+                        
+                        <xsl:if test="string-length(gex:verticalCRSId/mrs:MD_ReferenceSystem/mrs:referenceSystemIdentifier/mcc:MD_Identifier/mcc:code) > 0">
+                             <xsl:value-of select="concat('; projection=', gex:verticalCRSId/mrs:MD_ReferenceSystem/mrs:referenceSystemIdentifier/mcc:MD_Identifier/mcc:code)"/>
+                         </xsl:if>
+                    </xsl:if>
+                       
+                </xsl:variable>
+                
+                <xsl:if test="string-length($verticalLimitsWithProjection) > 0">
+                    <spatial>
+                            <xsl:attribute name="type">
+                                <xsl:text>iso19139dcmiBox</xsl:text>
+                            </xsl:attribute>
+                            <xsl:value-of select="$verticalLimitsWithProjection"/>
+                    </spatial>
+                    <spatial>
+                            <xsl:attribute name="type">
+                                <xsl:text>text</xsl:text>
+                            </xsl:attribute>
+                            <xsl:value-of select="$verticalLimitsWithProjection"/>
+                    </spatial>
+                
+                </xsl:if>
+                
+            </xsl:for-each>
+        </coverage>
     </xsl:template>
+    
+      
     
     <!-- RegistryObject - Coverage Temporal Element -->
     <xsl:template match="gex:EX_TemporalExtent" mode="registryObject_coverage_temporal">
@@ -1107,7 +1156,7 @@
         </xsl:choose>
     </xsl:template>
     
-    <xsl:template match="mco:MD_LegalConstraints" mode="registryObject_rights_license_otherConstraint">
+    <!--xsl:template match="mco:MD_LegalConstraints" mode="registryObject_rights_license_otherConstraint">
         
         <xsl:if test="$global_debug = true()">
             <xsl:message select="'registryObject_rights_license_otherConstraint'"/>
@@ -1118,8 +1167,21 @@
                 <xsl:with-param name="licenceText" select="$licenceText"/>
             </xsl:call-template>
         </xsl:for-each>
-     </xsl:template>
+     </xsl:template-->
     
+    <!--xsl:template match="mco:MD_LegalConstraints" mode="registryObject_rights_license_useLimitation">
+        
+        <xsl:if test="$global_debug = true()">
+            <xsl:message select="'registryObject_rights_license_useLimitation'"/>
+        </xsl:if>
+        <xsl:for-each select="mco:useLimitation">
+            <xsl:variable name="licenceText" select="."/>
+            <xsl:call-template name="populateLicence">
+                <xsl:with-param name="licenceText" select="$licenceText"/>
+            </xsl:call-template>
+        </xsl:for-each>
+    </xsl:template-->
+   
     <xsl:template match="mco:MD_LegalConstraints" mode="registryObject_rights_license_citation">
         
         <xsl:if test="$global_debug = true()">
@@ -1221,6 +1283,83 @@
                     </xsl:choose>
      </xsl:template>
     
+    <xsl:template match="*" mode="registryObject_rights_licence_type_and_uri">
+        <xsl:variable name="topNode" select="." as="node()"/>
+        
+        <xsl:if test="$global_debug">
+            <xsl:message select="concat('Extracting urls from : ', string-join(.//*[contains(name(), 'CharacterString')],  '&#xA;'))"/>
+        </xsl:if>
+        
+        <xsl:variable name="licenseLink_sequence" as="xs:string*">
+            <xsl:analyze-string select="string-join(.//*[contains(name(), 'CharacterString')],  '&#xA;')" regex="(https?:)(//([^#\s]*))?(licens?c?)+(([^#\s]*))?">
+                <xsl:matching-substring>
+                    <matching0>
+                        <xsl:value-of select="regex-group(0)"/>
+                    </matching0>
+                </xsl:matching-substring>
+            </xsl:analyze-string>
+        </xsl:variable>
+        <xsl:if test="$global_debug">
+            <xsl:message select="concat('Count extracted license link : ', count($licenseLink_sequence))"/>
+        </xsl:if>
+        
+        <xsl:for-each select="distinct-values($licenseLink_sequence)">
+            <xsl:variable name="licenseLink" select="."/>
+            <xsl:variable name="licenseLinkTransformed">
+                <xsl:variable name="normalized" select="normalize-space(replace(replace(., 'icence', 'icense', 'i'), 'https', 'http', 'i'))"/>
+                <xsl:choose>
+                    <xsl:when test="contains($normalized, 'creativecommons') and contains($normalized, '/legalcode')">
+                        <xsl:value-of select="substring-before($normalized, '/legalcode')"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="$normalized"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <rights>
+                <licence>
+                    <xsl:if test="count($licenseCodelist/gmx:CT_CodelistCatalogue/gmx:codelistItem/gmx:CodeListDictionary[(@*:id='LicenseCodeAustralia') or (@*:id='LicenseCodeInternational')]/gmx:codeEntry/gmx:CodeDefinition[contains(lower-case($licenseLinkTransformed), lower-case(replace(*:remarks, '\{n\}', '')))]/*:identifier) > 0">
+                        <xsl:attribute name="type" select="$licenseCodelist/gmx:CT_CodelistCatalogue/gmx:codelistItem/gmx:CodeListDictionary[(@*:id='LicenseCodeAustralia') or (@*:id='LicenseCodeInternational')]/gmx:codeEntry/gmx:CodeDefinition[contains(lower-case($licenseLinkTransformed), lower-case(replace(*:remarks, '\{n\}', '')))]/*:identifier[1]"/>
+                        <xsl:attribute name="rightsUri" select="$licenseLink"/>
+                        
+                        <!-- Find all character strings that contained this link, and add them to licence text if they contain more text than only the link itself (otherwise we double up with rightsUri) -->
+                        <xsl:value-of select="string-join($topNode//*[contains(name(), 'CharacterString') and contains(text(), $licenseLink) and (string-length(text()) > string-length($licenseLink))], '&#xA;')"/>
+                    </xsl:if>
+                </licence>
+            </rights>
+        </xsl:for-each>
+        
+        <!-- Add rightsStatement for each character string that did not contain a known license link and therefore was not handled above -->
+        <xsl:for-each select="$topNode//*[contains(name(), 'CharacterString')][string-length(.) > 0]">
+            
+            <xsl:variable name="currentText" select="." as="xs:string"/>
+            
+            <xsl:variable name="alreadyWritten_booleanSequence" as="xs:boolean*">
+                <xsl:for-each select="distinct-values($licenseLink_sequence)">
+                    <xsl:variable name="licenseLink" select="."/>
+                    <xsl:variable name="licenseLinkTransformed" select="normalize-space(replace(replace(., 'icence', 'icense', 'i'), 'https', 'http', 'i'))"/>
+                    <xsl:if test="count($licenseCodelist/gmx:CT_CodelistCatalogue/gmx:codelistItem/gmx:CodeListDictionary[(@*:id='LicenseCodeAustralia') or (@*:id='LicenseCodeInternational')]/gmx:codeEntry/gmx:CodeDefinition[contains(lower-case($licenseLinkTransformed), lower-case(replace(*:remarks, '\{n\}', '')))]/*:identifier) > 0">
+                        <xsl:if test="contains($currentText, $licenseLink)">
+                            <xsl:value-of select="true()"/>
+                        </xsl:if>
+                    </xsl:if>
+                </xsl:for-each>
+            </xsl:variable>
+            
+            <xsl:if test="count($alreadyWritten_booleanSequence) = 0">
+                <rights>
+                    <rightsStatement>
+                        <xsl:value-of select="$currentText"/>
+                    </rightsStatement>
+                </rights>
+            </xsl:if>
+            
+        </xsl:for-each>
+        
+        
+        
+    </xsl:template>
+    
     <!-- RegistryObject - Rights Statement Access -->
     <xsl:template match="*[contains(lower-case(name()),'identification')]" mode="registryObject_rights_access">
         <!-- if there is one or more MD_ClassificationCode of 'unclassified', and all occurences of MD_ClassificationCode are 'unclassified', set accessRights to 'open' -->
@@ -1228,14 +1367,13 @@
             <accessRights>
                 <xsl:choose>
                     <xsl:when test="count(mri:resourceConstraints/mco:MD_SecurityConstraints/mco:classification/mco:MD_ClassificationCode[@codeListValue = 'unclassified']) > 0 and
-                        count(mri:resourceConstraints/mco:MD_SecurityConstraints/mco:classification/mco:MD_ClassificationCode/@codeListValue) = 
-                        count(mri:resourceConstraints/mco:MD_SecurityConstraints/mco:classification/mco:MD_ClassificationCode[@codeListValue = 'unclassified'])">
+                        count(mri:resourceConstraints/mco:MD_SecurityConstraints/mco:classification/mco:MD_ClassificationCode[not(@codeListValue = 'unclassified') and (string-length(normalize-space(@codeListValue)) > 0)]) = 0">
                         <xsl:attribute name="type">
                             <xsl:text>open</xsl:text>
                         </xsl:attribute>
                     </xsl:when>
                     <!-- when MD_ClassificationCode is populated, but not as above -->
-                    <xsl:when test="count(mri:resourceConstraints/mco:MD_SecurityConstraints/mco:classification/mco:MD_ClassificationCode/@codeListValue) > 0">
+                    <xsl:when test="count(mri:resourceConstraints/mco:MD_SecurityConstraints/mco:classification/mco:MD_ClassificationCode[not(@codeListValue = 'unclassified') and (string-length(normalize-space(@codeListValue)) > 0)]) > 0">
                         <xsl:attribute name="type">
                             <xsl:text>restricted</xsl:text>
                         </xsl:attribute>
