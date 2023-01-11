@@ -43,8 +43,6 @@
   
     <xsl:template match="record">
         <xsl:apply-templates select="metadata/record" mode="collection"/>
-        <!--  xsl:apply-templates select="metadata/resource/dc:funding" mode="funding_party"/-->
-        <!--xsl:apply-templates select="." mode="party"/--> 
      </xsl:template>
     
     <xsl:template match="record"  mode="collection">
@@ -114,6 +112,8 @@
                 
                 <!--xsl:apply-templates select="identifier" mode="collection_identifier"/-->
                 
+                <xsl:apply-templates select="@priref[boolean(string-length(.))][1]" mode="collection_identifier"/>
+                
                 <xsl:choose>
                     <xsl:when test="count(identifier[(@identifierType = 'DOI') and (string-length(.) > 0)]) > 0">
                         <xsl:apply-templates select="identifier[(@identifierType = 'DOI') and (string-length(.) > 0)]" mode="collection_location_doi"/>
@@ -152,57 +152,7 @@
                 
                 <xsl:apply-templates select="Production_date" mode="collection_coverage_temporal"/>
                 
-                <!--
-                
-               
-                
-                <xsl:apply-templates select="alternateIdentifiers/alternateIdentifier" mode="collection_alt_identifier"/>
-                
-                
-                <xsl:apply-templates select="creators/creator[string-length(.) > 0]" mode="collection_relatedObject_party"/>
-               
-                <xsl:apply-templates select="contributors/contributor[string-length(.) > 0]" mode="collection_relatedObject_party"/>
-                
-                <xsl:apply-templates select="relatedIdentifiers/relatedIdentifier[string-length(.) > 0]" mode="collection_relatedInfo"/>
-                
-                <xsl:apply-templates select="subjects/subject" mode="collection_subject"/>
-                
-                <xsl:apply-templates select="dates/date[string-length(.) > 0]" mode="collection_dates_date"/>
-                
-                
-                
-                
-                <xsl:apply-templates select="rights[string-length(.) > 0]" mode="collection_rights"/>
-                
-                <xsl:apply-templates select="licenseCondition[string-length(.) > 0]" mode="collection_rights_license"/>
-                
-                <xsl:call-template name="rightsStatement"/>
-                
-                <xsl:choose>
-                    <xsl:when test="count(dc:description[string-length(.) > 0]) > 0">
-                        <xsl:apply-templates select="dc:description[string-length(.) > 0]" mode="collection_description_full"/>
-                    </xsl:when>
-                    <xsl:when test="count(titles/title[string-length(.) > 0]) > 0">
-                        <xsl:apply-templates select="titles/title[string-length(.) > 0]" mode="collection_description_brief"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:call-template name="collection_description_default"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-                
-                <xsl:apply-templates select="dc:coverage[string-length(.) > 0]" mode="collection_coverage"/>
-                
-                <xsl:apply-templates select="geoLocations//geoLocationPlace[string-length(.) > 0]" mode="collection_coverage_spatial_text"/>
-                
-                <xsl:apply-templates select="geoLocations/*/geoLocationPoint[string-length(.) > 0]" mode="collection_coverage_spatial_point"/>
-                
-                <xsl:apply-templates select="geoLocations/*/geoLocationPolygon[string-length(.) > 0]" mode="collection_coverage_spatial_polygon"/>
-                
-                <xsl:apply-templates select="geoLocations/*/geoLocationBox[string-length(.) > 0]" mode="collection_coverage_spatial_box"/>
-                
-                <xsl:apply-templates select="fundingReferences/fundingReference[string-length(awardNumber) > 0]" mode="collection_relatedInfo_activity"/>
-                
-                <xsl:apply-templates select="." mode="collection_citationInfo_citationMetadata"/-->
+                <xsl:apply-templates select="." mode="collection_citationInfo_citationMetadata"/>
                 
             </xsl:element>
         </registryObject>
@@ -275,6 +225,12 @@
         </location> 
     </xsl:template>
     
+    <xsl:template match="@priref" mode="collection_identifier">
+        <identifier type="uri">
+            <xsl:value-of select="concat($global_baseURI, $global_path, normalize-space(.))"/>
+        </identifier>
+    </xsl:template>
+    
     <xsl:template match="Title" mode="collection_name">
         <name type="primary">
             <namePart>
@@ -341,124 +297,7 @@
         </coverage>
         
     </xsl:template>
-    
-    
-    
-   <!--xsl:template match="dc:identifier.orcid" mode="collection_relatedInfo">
-        <xsl:message select="concat('orcidId : ', .)"/>
-                            
-        <relatedInfo type='party'>
-            <identifier type="{custom:getIdentifierType(.)}">
-                <xsl:value-of select="normalize-space(.)"/>
-            </identifier>
-            <relation type="hasCollector"/>
-        </relatedInfo>
-    <xsl:template-->
-    
-    <xsl:template match="creator" mode="collection_relatedObject_party">
-        <xsl:variable name="nameToUseForKey">
-            <xsl:choose>
-                <xsl:when test="(string-length(givenName) + string-length(familyName)) > 0">
-                    <xsl:value-of select="concat(givenName, familyName)"/>
-                </xsl:when>
-                <xsl:when test="(string-length(creatorName)) > 0">
-                    <xsl:value-of select="creatorName"/>
-                </xsl:when>
-            </xsl:choose>
-        </xsl:variable>
-        
-        <xsl:if test="string-length($nameToUseForKey) > 0">
-            <relatedObject>
-                <key>
-                    <xsl:value-of select="murFunc:formatKey(murFunc:formatName($nameToUseForKey))"/> 
-                </key>
-                <relation type="hasCollector"/>
-            </relatedObject>
-        </xsl:if>
-    </xsl:template>
-    
-    <xsl:template match="contributor" mode="collection_relatedObject_party">
-        <xsl:variable name="nameToUseForKey">
-            <xsl:choose>
-                <xsl:when test="(string-length(givenName) + string-length(familyName)) > 0">
-                    <xsl:value-of select="concat(givenName, familyName)"/>
-                </xsl:when>
-                <xsl:when test="(string-length(contributorName)) > 0">
-                    <xsl:value-of select="contributorName"/>
-                </xsl:when>
-            </xsl:choose>
-        </xsl:variable>
-        
-        <xsl:if test="string-length($nameToUseForKey) > 0">
-            
-            <relatedObject>
-                <key>
-                    <xsl:value-of select="murFunc:formatKey(murFunc:formatName($nameToUseForKey))"/> 
-                </key>
-                <relation>
-                    <xsl:attribute name="type">
-                        <xsl:choose>
-                            <xsl:when test="string-length(@contributorType) > 0">
-                                <xsl:value-of select="@contributorType"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:text>hasAssociationWith</xsl:text>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                        
-                    </xsl:attribute>
-                </relation>
-            </relatedObject>
-        </xsl:if>
-    </xsl:template>
-    
-    <xsl:template match="subject" mode="collection_subject">
-        <xsl:if test="string-length(.) > 0">
-            <subject>
-                <xsl:attribute name="type">
-                    <xsl:choose>
-                        <xsl:when test="string-length(@subjectScheme) > 0">
-                            <xsl:value-of select="@subjectScheme"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:text>local</xsl:text>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                    
-                </xsl:attribute>
-            
-                <xsl:if test="string-length(@valueURI) > 0">
-                    <xsl:attribute name="termIdentifier">
-                     <xsl:value-of select="@valueURI"/>
-                    </xsl:attribute>
-                </xsl:if>
-                
-                <xsl:value-of select="normalize-space(.)"/>
-            </subject>
-        </xsl:if>
-    </xsl:template>
-    
-    <xsl:template match="date" mode="collection_dates_date">
-        <dates type="{lower-case(@dateType)}">
-            <date type="dateFrom" dateFormat="W3CDTF">
-                <xsl:value-of select="."/>
-            </date>
-        </dates>
-    </xsl:template>
-
-    
-    <!--xsl:template match="dc:coverage" mode="collection_spatial_coverage">
-        <coverage>
-            <spatial type='text'>
-                <xsl:value-of select='normalize-space(.)'/>
-            </spatial>
-        </coverage>
-    </xsl:template-->
-   
-    <xsl:template name="rightsStatement">
-        <!-- override with rights statement for all in if required -->
-    </xsl:template>
-   
+  
     <xsl:template match="Access_Directions" mode="collection_rights_access">
         <rights>
             <accessRights>
@@ -527,15 +366,6 @@
         
     </xsl:template>
     
-    <xsl:template match="licenseCondition" mode="collection_rights_license">
-        <rights>
-            <licence rightsUri="{@uri}" type="{.}">
-                <xsl:value-of select="concat('Licence ', .,' commencing ', @startDate)"/>
-            </licence>
-        </rights>
-    </xsl:template>
-                
-    
     <xsl:template name="collection_description_default">
         <description type="brief">
             <xsl:value-of select="'(no description)'"/>
@@ -554,111 +384,8 @@
             <xsl:value-of select="normalize-space(.)"/>
         </description>
     </xsl:template>
-    
-    <xsl:template match="dc:coverage" mode="collection_coverage">
-        <coverage>
-            <temporal>
-                <text>
-                    <xsl:value-of select="normalize-space(.)"/>
-                </text>
-            </temporal>
-        </coverage>
-    </xsl:template>
-    
-    <xsl:template match="geoLocationPlace" mode="collection_coverage_spatial_text">
-        <coverage>
-            <spatial type="text">
-                <xsl:value-of select="normalize-space(.)"/>
-            </spatial>
-        </coverage>
-    </xsl:template>
-    
-    
-    <xsl:template match="geoLocationPoint" mode="collection_coverage_spatial_point">
-        
-         <coverage>
-            <spatial type="gmlKmlPolyCoords">
-                <xsl:value-of select="concat(pointLongitude, ',', pointLatitude)"/>
-            </spatial>
-        </coverage>
-           
-    </xsl:template>
-    
-    <xsl:template match="geoLocationPolygon" mode="collection_coverage_spatial_polygon">
-        
-        <coverage>
-            <spatial type="gmlKmlPolyCoords">
-                <xsl:for-each select="geoLocationPoint">
-                    <xsl:value-of select="concat(pointLongitude, ',', pointLatitude)"/>
-                    <xsl:text> </xsl:text>
-                </xsl:for-each>
-            </spatial>
-        </coverage>
-    </xsl:template>
-    
-    
-    <xsl:template match="geoLocationBox" mode="collection_coverage_spatial_box">
-        <xsl:message select="concat('processing point coordinates input: ', normalize-space(.))"/>
-        
-        <coverage>
-            <spatial type="iso19139dcmiBox">
-                <xsl:value-of select="concat('northlimit=',northBoundLongitude,'; westlimit=',westBoundLongitude,'; eastlimit=',eastBoundLongitude,'; southlimit=',southBoundLongitude)"/>
-            </spatial>
-        </coverage>
-        
-    </xsl:template>
-    
-    <xsl:template match="relatedIdentifier" mode="collection_relatedInfo">
-        <relatedInfo>
-            <identifier type="{@relatedIdentifierType}">
-                <xsl:value-of select="."/>
-            </identifier>
-            <relation type="{@relationType}"/>
-        </relatedInfo>
-    </xsl:template>
-        
   
-    
-    <xsl:template match="fundingReference" mode="collection_relatedInfo_activity">
-        <relatedInfo type="activity">
-            <identifier>
-                <xsl:attribute name="type">
-                    <xsl:choose>
-                        <xsl:when test="
-                            (contains(lower-case(funderName),'australian research council')) or
-                            (contains(lower-case(funderName),'arc'))">
-                            <xsl:text>arc</xsl:text>
-                        </xsl:when>
-                        <xsl:when test="
-                            (contains(lower-case(funderName),'national health and medical research council')) or
-                            (contains(lower-case(funderName),'nhmrc'))">
-                            <xsl:text>nhmrc</xsl:text>
-                        </xsl:when>
-                        <xsl:when test="contains(awardNumber,'http')">
-                            <xsl:text>uri</xsl:text>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:text>local</xsl:text>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:attribute>
-                <xsl:value-of select="awardNumber"/>
-            </identifier>
-            <xsl:if test="string-length(awardTitle) > 0">
-                 <title>
-                     <xsl:value-of select="awardTitle"/>
-                 </title>
-            </xsl:if>
-            <xsl:if test="string-length(funderName) > 0">
-                <notes>
-                    <xsl:value-of select="concat('Funder: ', funderName)"/>
-                </notes>
-            </xsl:if>
-            <relation type="isOutputOf"/>
-        </relatedInfo>
-    </xsl:template>
-    
-    <xsl:template match="resource" mode="collection_citationInfo_citationMetadata">
+     <xsl:template match="record" mode="collection_citationInfo_citationMetadata">
         <citationInfo>
             <citationMetadata>
                 <xsl:choose>
@@ -738,94 +465,6 @@
     </xsl:template>
     
              
-     <xsl:template match="*" mode="party">
-        
-         <xsl:for-each select="creators/creator | contributors/contributor">
-            
-            <xsl:variable name="name" select="normalize-space(.)"/>
-            
-            <xsl:if test="(string-length(.) > 0)">
-            
-                   <xsl:if test="string-length(normalize-space(.)) > 0">
-                     <registryObject group="{$global_group}">
-                        <key>
-                            <xsl:value-of select="murFunc:formatKey(murFunc:formatName(creatorName | contributorName))"/> 
-                        </key>
-                        <originatingSource>
-                             <xsl:value-of select="$global_originatingSource"/>
-                        </originatingSource>
-                        
-                         <party>
-                            <xsl:attribute name="type" select="'person'"/>
-                             
-                             <name type="primary">
-                                 <namePart>
-                                     <xsl:value-of select="murFunc:formatName(normalize-space(creatorName | contributorName))"/>
-                                 </namePart>   
-                             </name>
-                             <xsl:for-each select="nameIdentifier">
-                                 <identifier type="{lower-case(@nameIdentifierScheme)}">
-                                    <xsl:value-of select="normalize-space(.)"/>
-                                 </identifier>
-                             </xsl:for-each>
-                         </party>
-                     </registryObject>
-                   </xsl:if>
-                </xsl:if>
-            </xsl:for-each>
-        </xsl:template>
-                   
-    <xsl:function name="murFunc:formatName">
-        <xsl:param name="name"/>
-        
-        <xsl:variable name="namePart_sequence" as="xs:string*">
-            <xsl:analyze-string select="$name" regex="[A-Za-z()-]+">
-                <xsl:matching-substring>
-                    <xsl:if test="regex-group(0) != '-'">
-                        <xsl:value-of select="regex-group(0)"/>
-                    </xsl:if>
-                </xsl:matching-substring>
-            </xsl:analyze-string>
-        </xsl:variable>
-        
-        <xsl:choose>
-            <xsl:when test="count($namePart_sequence) = 0">
-                <xsl:value-of select="$name"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:variable name="orderedNamePart_sequence" as="xs:string*">
-                    <!--  we are going to presume that we have surnames first - otherwise, it's not possible to determine by being
-                            prior to a comma because we get:  "surname, firstname, 1924-" sort of thing -->
-                    <!-- all names except surname -->
-                    <xsl:for-each select="$namePart_sequence">
-                        <xsl:if test="position() > 1">
-                            <xsl:value-of select="."/>
-                        </xsl:if>
-                    </xsl:for-each>
-                    <xsl:value-of select="$namePart_sequence[1]"/>
-                </xsl:variable>
-                <xsl:message select="concat('formatName returning: ', string-join(for $i in $orderedNamePart_sequence return $i, ' '))"/>
-                <xsl:value-of select="string-join(for $i in $orderedNamePart_sequence return $i, ' ')"/>
-    
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:function>
-    
-    <xsl:function name="murFunc:formatKey">
-        <xsl:param name="input"/>
-        <xsl:variable name="raw" select="translate(normalize-space($input), ' ', '')"/>
-        <xsl:variable name="temp">
-            <xsl:choose>
-                <xsl:when test="substring($raw, string-length($raw), 1) = '.'">
-                    <xsl:value-of select="substring($raw, 0, string-length($raw))"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="$raw"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
-        <xsl:value-of select="concat($global_acronym, '/', $temp)"/>
-    </xsl:function>
-    
-</xsl:stylesheet>
+     
+   </xsl:stylesheet>
     
