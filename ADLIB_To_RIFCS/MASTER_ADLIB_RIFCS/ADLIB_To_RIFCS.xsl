@@ -5,7 +5,6 @@
     xmlns:murFunc="http://mur.nowhere.yet"
     xmlns:custom="http://custom.nowhere.yet"
     xmlns:dc="http://purl.org/dc/elements/1.1/" 
-    xmlns:datacite="http://datacite.org/schema/kernel-4"
     xmlns:oai="http://www.openarchives.org/OAI/2.0/" 
     xmlns:fn="http://www.w3.org/2005/xpath-functions"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -28,10 +27,10 @@
    <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 
     <xsl:template match="/">
-        <registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects" 
+        <registryObjects 
+            xmlns="http://ands.org.au/standards/rif-cs/registryObjects" 
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-            xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects 
-            http://services.ands.org.au/documentation/rifcs/schema/registryObjects.xsd">
+            xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd">
           
             <xsl:message select="concat('name(OAI-PMH): ', name(OAI-PMH))"/>
             <xsl:message select="concat('num record element: ', count(OAI-PMH/ListRecords/record))"/>
