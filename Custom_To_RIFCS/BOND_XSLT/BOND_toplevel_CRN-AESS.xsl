@@ -17,7 +17,7 @@
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 
     <xsl:template match="/">
-        <registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects http://services.ands.org.au/documentation/rifcs/schema/registryObjects.xsd">
+        <registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd">
             <xsl:apply-templates select="//oai:record[not(custom:sequenceContains(oai:header/oai:setSpec, 'publication:crn_publications')) and (custom:sequenceContains(oai:header/oai:setSpec, 'publication:crn_videos'))]/oai:metadata/*:document-export/*:documents/*:document" mode="collection">
                 <xsl:with-param name="parentIdentifier" select="$global_parentIdentifierCRN_videos"/>
             </xsl:apply-templates>

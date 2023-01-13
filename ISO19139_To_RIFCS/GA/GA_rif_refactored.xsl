@@ -41,7 +41,7 @@
     <xsl:template match="/">
         <registryObjects>
             <xsl:attribute name="xsi:schemaLocation">
-                <xsl:text>http://ands.org.au/standards/rif-cs/registryObjects http://services.ands.org.au/documentation/rifcs/schema/registryObjects.xsd</xsl:text>
+                <xsl:text>http://ands.org.au/standards/rif-cs/registryObjects https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd</xsl:text>
             </xsl:attribute>
             <xsl:apply-templates select="//*:MD_Metadata" mode="collection"/>
             <xsl:apply-templates select="//*:MD_Metadata" mode="party"/>

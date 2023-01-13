@@ -47,7 +47,7 @@
     <xsl:template match="/">
         <registryObjects>
             <xsl:attribute name="xsi:schemaLocation">
-                <xsl:text>http://ands.org.au/standards/rif-cs/registryObjects http://services.ands.org.au/documentation/rifcs/schema/registryObjects.xsd</xsl:text>
+                <xsl:text>http://ands.org.au/standards/rif-cs/registryObjects https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd</xsl:text>
             </xsl:attribute>
             <!-- layers only -->
             <xsl:for-each select="//gmd:MD_Metadata[count(*) > 0]">

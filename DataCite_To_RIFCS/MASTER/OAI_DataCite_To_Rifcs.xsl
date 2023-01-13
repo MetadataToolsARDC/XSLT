@@ -29,7 +29,7 @@
         <registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects" 
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
             xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects 
-            http://services.ands.org.au/documentation/rifcs/schema/registryObjects.xsd">
+            https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd">
           
             <xsl:message select="concat('name(oai:OAI-PMH): ', name(oai:OAI-PMH))"/>
             <xsl:apply-templates select="oai:OAI-PMH/*/oai:record"/>

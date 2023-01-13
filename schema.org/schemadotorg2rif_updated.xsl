@@ -10,7 +10,7 @@
     <xsl:param name="originatingSource" select="'https://researchdata.ardc.edu.au'"/>
     <xsl:param name="group" select="'ARDC Sitemap Crawler - 27 October 2022'"/>
     <xsl:param name="debug" select="true()"/>
-    <xsl:variable name="xsd_url" select="'http://services.ands.org.au/documentation/rifcs/schema/registryObjects.xsd'"/>
+    <xsl:variable name="xsd_url" select="'https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd'"/>
     
     <xsl:template match="/">
         <registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects"
