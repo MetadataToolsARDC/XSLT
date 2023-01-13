@@ -34,9 +34,10 @@
         
         <!--xsl:variable name="documentReplacedNamespace" select="fn:parse-xml($identity)"/-->
         
-        <registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects"
-            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects http://services.ands.org.au/documentation/rifcs/schema/registryObjects.xsd">
+        <registryObjects 
+            xmlns="http://ands.org.au/standards/rif-cs/registryObjects" 
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+            xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd">
             
             <xsl:apply-templates select="$identity" mode="filter"/>
         </registryObjects>
