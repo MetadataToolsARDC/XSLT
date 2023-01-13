@@ -5,7 +5,7 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-    <xsl:import href="ADLIB_To_Rifcs.xsl"/>
+    <xsl:import href="ADLIB_To_RIFCS.xsl"/>
     
     <xsl:param name="global_originatingSource" select="'Museums of History NSW'"/>
     <xsl:param name="global_group" select="'Museums of History NSW'"/>

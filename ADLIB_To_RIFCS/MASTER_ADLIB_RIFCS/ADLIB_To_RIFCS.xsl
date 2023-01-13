@@ -46,7 +46,6 @@
      </xsl:template>
     
     <xsl:template match="record"  mode="collection">
-        <xsl:message select="concat('current: ', name(.))"/>
         <xsl:variable name="class">
             <!--xsl:choose>
                 <xsl:when test="boolean(custom:sequenceContains(resourceType/@resourceTypeGeneral, 'dataset')) = true()">
@@ -113,16 +112,13 @@
                 <!--xsl:apply-templates select="identifier" mode="collection_identifier"/-->
                 
                 <xsl:apply-templates select="@priref[boolean(string-length(.))][1]" mode="collection_identifier"/>
-                
+               
                 <xsl:choose>
                     <xsl:when test="count(identifier[(@identifierType = 'DOI') and (string-length(.) > 0)]) > 0">
                         <xsl:apply-templates select="identifier[(@identifierType = 'DOI') and (string-length(.) > 0)]" mode="collection_location_doi"/>
                     </xsl:when>
                     <xsl:when test="count(@priref[boolean(string-length(.))]) > 0">
                         <xsl:apply-templates select="@priref[boolean(string-length(.))][1]" mode="collection_location_url"/>
-                    </xsl:when>
-                    <xsl:when test="count(alternateIdentifiers/alternateIdentifier[(@alternateIdentifierType = 'URL') and (string-length(.) > 0)]) > 0">
-                        <xsl:apply-templates select="alternateIdentifiers/alternateIdentifier[(@alternateIdentifierType = 'URL') and (string-length(.) > 0)][1]" mode="collection_location_url"/>
                     </xsl:when>
                 </xsl:choose>
                
@@ -187,14 +183,7 @@
         </identifier>    
     </xsl:template>
     
-    <xsl:template match="alternateIdentifier" mode="collection_alt_identifier">
-        <identifier>
-            <xsl:attribute name="type" select="custom:getIdentifierType(.)"/>
-            <xsl:value-of select="normalize-space(.)"/>
-        </identifier>    
-    </xsl:template>
-    
-    <xsl:template match="identifier" mode="collection_location_doi">
+   <xsl:template match="identifier" mode="collection_location_doi">
         <location>
             <address>
                 <electronic type="url" target="landingPage">
@@ -246,7 +235,7 @@
             </identifier>
             <relation type="isManagedBy"/>
             <title>
-                <xsl:value-of select="concat(series.agency.control.name, '[', series.agency.control.no, ']')"/>
+                <xsl:value-of select="concat(series.agency.control.name, ' [', series.agency.control.no, ']')"/>
             </title>
         </relatedInfo>
     </xsl:template>
@@ -258,7 +247,7 @@
             </identifier>
             <relation type="hasCollector"/>
             <title>
-                <xsl:value-of select="concat(agency.name, '[', series.agency.create.no, ']')"/>
+                <xsl:value-of select="concat(normalize-space(agency.name), ' [', series.agency.create.no, ']')"/>
             </title>
         </relatedInfo>
     </xsl:template>
@@ -332,7 +321,7 @@
     <xsl:template match="item_control_status" mode="collection_rights_access">
         <rights>
             <accessRights>
-                <xsl:value-of select="."/>
+                <xsl:value-of select="normalize-space(.)"/>
             </accessRights>
         </rights>
     </xsl:template>
@@ -389,23 +378,11 @@
         <citationInfo>
             <citationMetadata>
                 <xsl:choose>
-                    <xsl:when test="count(identifier[(@identifierType = 'DOI') and (string-length() > 0)]) > 0">
-                        <xsl:apply-templates select="identifier[(@identifierType = 'DOI')][1]" mode="collection_identifier"/>
+                    <xsl:when test="count(identifier[(@identifierType = 'DOI') and (string-length(.) > 0)]) > 0">
+                        <xsl:apply-templates select="identifier[(@identifierType = 'DOI') and (string-length(.) > 0)]" mode="collection_identifier"/>
                     </xsl:when>
-                    <xsl:when test="count(alternateIdentifiers/alternateIdentifier[(@alternateIdentifierType = 'Permalink') and (string-length() > 0)]) > 0">
-                        <xsl:apply-templates select="alternateIdentifiers/alternateIdentifier[(@alternateIdentifierType = 'Permalink')][1]" mode="collection_alt_identifier"/>
-                    </xsl:when>
-                    <xsl:when test="count(identifier[(string-length() > 0)]) > 0">
-                        <xsl:apply-templates select="identifier[(string-length() > 0)][1]" mode="collection_identifier"/>
-                    </xsl:when>
-                    <xsl:when test="count(alternateIdentifiers/alternateIdentifier[(@alternateIdentifierType = 'URL') and (string-length() > 0)]) > 0">
-                        <xsl:apply-templates select="alternateIdentifiers/alternateIdentifier[(@alternateIdentifierType = 'URL')][1]" mode="collection_alt_identifier"/>
-                    </xsl:when>
-                    <xsl:when test="count(alternateIdentifiers/alternateIdentifier[(@alternateIdentifierType = 'PURL') and (string-length() > 0)]) > 0">
-                        <xsl:apply-templates select="alternateIdentifiers/alternateIdentifier[(@alternateIdentifierType = 'PURL')][1]" mode="collection_alt_identifier"/>
-                    </xsl:when>
-                    <xsl:when test="count(alternateIdentifiers/alternateIdentifier[(string-length() > 0)]) > 0">
-                        <xsl:apply-templates select="alternateIdentifiers/alternateIdentifier[(string-length() > 0)][1]" mode="collection_alt_identifier"/>
+                    <xsl:when test="count(@priref[boolean(string-length(.))]) > 0">
+                        <xsl:apply-templates select="@priref[boolean(string-length(.))][1]" mode="collection_identifier"/>
                     </xsl:when>
                 </xsl:choose>
                             
@@ -413,18 +390,18 @@
                     <xsl:apply-templates select="." mode="citationMetadata_contributor"/>
                 </xsl:for-each>
                 
-                <xsl:for-each select="contributors/contributor/contributorName">
-                    <xsl:apply-templates select="." mode="citationMetadata_contributor"/>
+                <xsl:for-each select="Create.Agency[boolean(string-length(agency.name))]">
+                    <xsl:apply-templates select="agency.name" mode="citationMetadata_contributor"/>
                 </xsl:for-each>
                 
                 <title>
-                    <xsl:value-of select="string-join(titles/title, ' - ')"/>
+                    <xsl:value-of select="normalize-space(string-join(Title, ' - '))"/>
                 </title>
                 
                 <!--version></version-->
                 <!--placePublished></placePublished-->
                 <publisher>
-                    <xsl:value-of select="dc:publisher"/>
+                    <xsl:value-of select="normalize-space(string-join(control.agency/series.agency.control.name, ', '))"/>
                 </publisher>
                 <date type="publicationDate">
                     <xsl:value-of select="publicationYear"/>
@@ -444,24 +421,12 @@
         
     </xsl:template>
     
-    <xsl:template match="contributorName | creatorName" mode="citationMetadata_contributor">
+    <xsl:template match="agency.name" mode="citationMetadata_contributor">
         <contributor>
             <namePart type="family">
-                <xsl:choose>
-                    <xsl:when test="contains(., ',')">
-                        <xsl:value-of select="normalize-space(substring-before(.,','))"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="normalize-space(.)"/>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:value-of select="normalize-space(.)"/>
             </namePart>
-            <namePart type="given">
-                <xsl:if test="contains(., ',')">
-                    <xsl:value-of select="normalize-space(substring-after(.,','))"/>
-                </xsl:if>
-            </namePart>
-        </contributor>
+         </contributor>
     </xsl:template>
     
              
