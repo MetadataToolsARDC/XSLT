@@ -36,9 +36,9 @@
     xmlns:geonet="http://www.fao.org/geonetwork" 
     xmlns:oai="http://www.openarchives.org/OAI"
     xmlns:custom="http://custom.nowhere.yet"
-    xmlns:gaFunc="http://gafunc.nowhere.yet"
+    xmlns:fn="http://www.w3.org/2005/xpath-functions"
     xmlns="http://ands.org.au/standards/rif-cs/registryObjects"
-    exclude-result-prefixes="ows xs csw gaFunc oai lan mrc xlink srv mrd geonet mas mri mcc mrl xs mco mrs xsi mda msr mdb mds mdq cat mdt mac cit mex gco gcx mmi gmx gex mpc gml custom">
+    exclude-result-prefixes="ows xs csw fn oai lan mrc xlink srv mrd geonet mas mri mcc mrl xs mco mrs xsi mda msr mdb mds mdq cat mdt mac cit mex gco gcx mmi gmx gex mpc gml custom">
     
     <xsl:import href="CustomFunctions.xsl"/>
     
@@ -78,7 +78,7 @@
     <!-- RegistryObject RegistryObject Template          -->
     <!-- =========================================== -->
     
-    <xsl:template match="mdb:MD_Metadata" mode="process">
+   <xsl:template match="mdb:MD_Metadata" mode="process">
         
         <xsl:variable name="originatingSource">
             <xsl:choose>
@@ -1091,7 +1091,7 @@
                 </xsl:attribute>
                 <xsl:if test="not(string-length($identifierToUse) = string-length(cit:linkage))">
                     <url>
-                        <xsl:value-of select="cit:linkage"/>
+                        <xsl:value-of select="fn:iri-to-uri(cit:linkage)"/>
                     </url>
                 </xsl:if>
             </relation>
