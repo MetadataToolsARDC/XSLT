@@ -631,7 +631,8 @@
         <xsl:if test="(count($dateValue_sequence) > 0) and (string-length($dateValue_sequence[1]) > 0)">
             <dates>
                 
-                    <xsl:if test="count($dateCode_sequence) > 0 and (string-length($dateCode_sequence[1]) > 0)">
+                <xsl:choose>
+                    <xsl:when test="count($dateCode_sequence) > 0 and (string-length($dateCode_sequence[1]) > 0)">
                         <xsl:attribute name="type">
                             <xsl:choose>
                                 <xsl:when test="contains(lower-case($dateCode_sequence[1]), 'creation')">
@@ -643,9 +644,16 @@
                                 <xsl:when test="contains(lower-case($dateCode_sequence[1]), 'revision')">
                                     <xsl:text>modified</xsl:text>
                                 </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="$dateCode_sequence[1]"/>
+                                </xsl:otherwise>
                             </xsl:choose>
                         </xsl:attribute>
-                    </xsl:if>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:attribute name="type" select="'unknown'"/>
+                    </xsl:otherwise>
+                </xsl:choose>
                 
                 <date>
                     <xsl:attribute name="type">
