@@ -136,6 +136,10 @@
                 <xsl:apply-templates
                     select="managingOrganisationalUnit[(string-length(@uuid) > 0)]"
                     mode="collection_relatedObject"/>
+                
+                <!--xsl:apply-templates
+                    select="publisher[(string-length(@uuid) > 0)]"
+                    mode="collection_relatedObject"/-->
 
                 <xsl:apply-templates
                     select="organisationalUnits/organisation[(string-length(@uuid) > 0)]"
@@ -156,7 +160,11 @@
                 <xsl:apply-templates select="personAssociations"
                     mode="collection_description_notes_internal_or_external_privateProfile_and_external_publicProfile"/>
 
-
+                <xsl:apply-templates select="relatedDataSets/relatedDataSets"
+                    mode="collection_relatedObject_dataset"/>
+                
+                <xsl:apply-templates select="relatedProjects/relatedProjects"
+                    mode="collection_relatedInfo_project"/>
 
                 <!-- xsl:apply-templates select="personAssociations" mode="collection_description_notes_external_publicProfile"/-->
 
@@ -175,7 +183,7 @@
 
                 <!-- if no description, use name in description to avoid display error currently in RDA -->
                 <xsl:if
-                    test="(count(description[string-length(.) > 0]) = 0) and (count(descriptions/description[string-length(.) > 0]) = 0)">
+                    test="(count(description/value/text[@locale='en_GB'and string-length(.) > 0]) = 0) and (count(descriptions/description/value/text[@locale='en_GB'and string-length(.) > 0]) = 0)">
                     <xsl:apply-templates select="title[string-length(.) > 0]"
                         mode="collection_description_full"/>
                 </xsl:if>
@@ -557,6 +565,27 @@
             </description>
         </xsl:if>
     </xsl:template>
+    
+    <xsl:template match="relatedDataSets" mode="collection_relatedObject_dataset">
+        <relatedObject>
+            <key>
+                <xsl:value-of select="concat('UWA_PURE:', @uuid)"/>
+            </key>
+            <relation type="hasAssociationWith"/>
+        </relatedObject>
+    </xsl:template>
+    
+    <xsl:template match="relatedProjects" mode="collection_relatedInfo_project">
+        <relatedInfo type="activity">
+            <identifier type="url">
+                <xsl:value-of select="concat('http://', $global_baseURI, $global_path, 'projects/', @uuid)"/>
+            </identifier>
+            <relation type="isOutputOf"/>
+            <title>
+                <xsl:value-of select="name/text[@locale='en_GB']"/>
+            </title>
+        </relatedInfo>
+    </xsl:template>
 
     <!-- xsl:template match="personAssociations" mode="collection_description_notes_external_publicProfile">
         <xsl:message select="concat('count external persons public profile: ', count(personAssociation[(string-length(externalPerson/@uuid) > 0)]))"/>
@@ -619,6 +648,17 @@
             </relatedObject>
         </xsl:if>
     </xsl:template>
+    
+    <!--xsl:template match="publisher" mode="collection_relatedObject">
+        <xsl:if test="string-length(@uuid) > 0">
+            <relatedObject>
+                <key>
+                    <xsl:value-of select="concat($global_acronym, ':', normalize-space(@uuid))"/>
+                </key>
+                <relation type="isPublishedBy"/>
+            </relatedObject>
+        </xsl:if>
+    </xsl:template-->
 
     <!--xsl:template match="freeKeyword" mode="collection_subject">
         <subject type="local">
@@ -663,7 +703,7 @@
 
     <xsl:template match="description" mode="collection_description_full">
         <description type="full">
-            <xsl:value-of select="value/text/text()"/>
+            <xsl:value-of select="value/text[@locale='en_GB']/text()"/>
         </description>
     </xsl:template>
 
@@ -681,9 +721,9 @@
                     <xsl:value-of select="normalize-space(url)"/>
                 </identifier>
             </xsl:if>
-            <xsl:if test="string-length(normalize-space(description)) > 0">
+            <xsl:if test="string-length(normalize-space(description/text[@locale='en_GB'])) > 0">
                 <title>
-                    <xsl:value-of select="normalize-space(description)"/>
+                    <xsl:value-of select="normalize-space(description/text[@locale='en_GB'])"/>
                 </title>
             </xsl:if>
         </relatedInfo>
@@ -1163,6 +1203,8 @@
 
         <xsl:apply-templates select="managingOrganisationalUnit[(string-length(@uuid) > 0)]"
             mode="party_managing_organisation"/>
+        <!--xsl:apply-templates select="publisher[(string-length(@uuid) > 0)]"
+            mode="party_publisher"/-->
         <xsl:apply-templates
             select="organisationalUnits/organisationalUnit[(string-length(@uuid) > 0)]"
             mode="party_organisation"/>
@@ -1361,6 +1403,38 @@
                     </identifier>
                 </xsl:if>
 
+                <name type="primary">
+                    <namePart>
+                        <xsl:value-of select="normalize-space(name)"/>
+                    </namePart>
+                </name>
+            </party>
+        </registryObject>
+    </xsl:template>
+    
+    <xsl:template match="publisher" mode="party_publisher">
+        
+        <registryObject group="{$global_group}">
+            <key>
+                <xsl:value-of select="concat($global_acronym, ':', normalize-space(@uuid))"/>
+            </key>
+            <originatingSource>
+                <xsl:value-of select="$global_originatingSource"/>
+            </originatingSource>
+            
+            <party>
+                <xsl:attribute name="type" select="'group'"/>
+                
+                <xsl:if test="string-length(@uuid) > 0">
+                    <identifier type="global">
+                        <xsl:value-of select="@uuid"/>
+                    </identifier>
+                    <identifier type="url">
+                        <xsl:value-of select="concat('http://', $global_baseURI, $global_path, 'publishers/', @uuid)"
+                        />
+                    </identifier>
+                </xsl:if>
+                
                 <name type="primary">
                     <namePart>
                         <xsl:value-of select="normalize-space(name)"/>
