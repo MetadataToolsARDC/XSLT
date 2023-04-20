@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0"
                 xmlns="http://ands.org.au/standards/rif-cs/registryObjects"
+                xmlns:local="http://local/function" 
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                 xmlns:date="http://exslt.org/dates-and-times"
@@ -9,10 +10,8 @@
   <!-- the registry object group -->
   <xsl:param name="groupName">AirHealth</xsl:param>
   <xsl:param name="emlNamespace">eml://ecoinformatics.org/eml-2.1.1</xsl:param>
-  <xsl:param name="repositoryIdentifier"/>
   <xsl:param name="serverUrl"/>
   <xsl:param name="contextUrl"/>
-  <xsl:param name="servletUrl" select="'http://cardat.github.io/data_inventory'"/>
   <xsl:param name="lastModified" />
   <xsl:param name="dateCreated" />
   <xsl:param name="predefinedLicences"/>
@@ -21,7 +20,7 @@
   <xsl:variable name="rifcsVersion" select="1.5"/>
   <xsl:variable name="smallcase" select="'abcdefghijklmnopqrstuvwxyz'" />
   <xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
-
+ 
   <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" omit-xml-declaration="yes" />
 
   <xsl:strip-space elements="*" />
@@ -39,7 +38,7 @@
     <xsl:variable name="docid" select="@packageId" />
     <xsl:variable name="revid" select="''"/> <!-- TODO: obtain revid from somewhere if required -->
     
-    <xsl:element name="registryObjects" xmlns="http://ands.org.au/standards/rif-cs/registryObjects">
+    <xsl:element name="registryObjects">
       <xsl:apply-templates select="dataset">
         <xsl:with-param name="docid" select="$docid" />
         <xsl:with-param name="revid" select="$revid" />
@@ -70,9 +69,14 @@
     </xsl:call-template>
     
     <!-- party -->
-    <xsl:apply-templates select="(creator|associatedParty|metadataProvider|contact|publisher)[generate-id()=generate-id(key('keyPartyUnique', concat(individualName, organizationName, positionName, address, phone, electronicMailAddress))[1])]">
+    <xsl:apply-templates select="(creator|associatedParty|metadataProvider|contact|publisher)">
       <xsl:with-param name="docid" select="$docid" />
       <xsl:with-param name="originatingSource" select="$originatingSource" />
+    </xsl:apply-templates>
+    
+    <xsl:apply-templates select="(project|project/relatedProject)" mode="activity_registryObject">
+      <xsl:with-param name="docid" select="$docid" />
+      <xsl:with-param name="originatingSource" select="$originatingSource"/>
     </xsl:apply-templates>
   </xsl:template>
   
@@ -83,16 +87,13 @@
     <xsl:param name="revid"/>
     <xsl:param name="originatingSource"/>
     
-    <!-- This is the one change from TERN's apart from some condition checking -->
-    <!--xsl:variable name="datasetUrl" select="concat($servletUrl,'/', $docid ,'/html')"/-->
-    <xsl:variable name="datasetUrl" select="concat($servletUrl,'/', $docid)"/>
     
-      <xsl:variable name="doi" select="alternateIdentifier[@system='doi']"/>
+    <xsl:variable name="doi_sequence" select="alternateIdentifier[(@system='doi') and (string-length(text()) > 0)]"/>
     
     <xsl:element name="registryObject">
       <xsl:attribute name="group"><xsl:value-of select="$groupName" /></xsl:attribute>
       
-      <xsl:element name="key"><xsl:value-of select="concat($groupName, '/', $docid)" /></xsl:element>
+      <xsl:element name="key"><xsl:value-of select="concat($groupName, '/Collection/', $docid)" /></xsl:element>
       
       <xsl:element name="originatingSource">
         <xsl:value-of select="$originatingSource" />
@@ -107,14 +108,17 @@
         
         <xsl:element name="identifier">
           <xsl:attribute name="type">local</xsl:attribute>
-          <xsl:value-of select="$docid" />
+          <!-- xsl:value-of select="$docid" / This ID is for the whole packages, which can contain dataset, software etc. so it is higher than this object-->
+          <xsl:value-of select="@id" />
         </xsl:element>
         
-        <xsl:if test="$doi!=''">
-          <xsl:element name='identifier'>
-            <xsl:attribute name="type">doi</xsl:attribute>
-            <xsl:value-of select="$doi" />
-          </xsl:element>
+        <xsl:if test="count($doi_sequence) > 0">
+          <xsl:for-each select="$doi_sequence">
+            <xsl:element name='identifier'>
+              <xsl:attribute name="type">doi</xsl:attribute>
+                <xsl:value-of select="local:format_doi(.)"/>
+            </xsl:element>
+          </xsl:for-each>
         </xsl:if>
 
         <xsl:element name="name">
@@ -133,12 +137,9 @@
               <xsl:attribute name="type">url</xsl:attribute>
               <xsl:element name="value">
                 <xsl:choose>
-                  <xsl:when test="normalize-space($doi)">
-                    <xsl:text>http://dx.doi.org/</xsl:text><xsl:value-of select="$doi"/>
+                  <xsl:when test="normalize-space($doi_sequence[1])">
+                    <xsl:value-of select="local:format_doi($doi_sequence[1])"/>
                   </xsl:when>
-                  <xsl:otherwise>
-                    <xsl:value-of select="$datasetUrl"/>
-                  </xsl:otherwise>
                 </xsl:choose>
               </xsl:element>
             </xsl:element>
@@ -159,118 +160,45 @@
           </xsl:element>
         </xsl:if>
         
-        <!-- TODO:relatedInfo -->
+       <xsl:apply-templates select="project"/>
         
-        <xsl:if test="project/funding[contains(., ':')]">
-          <xsl:element name="relatedInfo">
-            <xsl:attribute name="type">activity</xsl:attribute>
-            <xsl:element name="identifier">
+       <xsl:apply-templates select="intellectualRights"/>
+        
+        <!-- Determined with AirHealth that if no access element, 
+          accessRights/@type be set to 'restricted'; otherwise, leave unset
+          
+          Justification for this is that according to the EML spec, access is recommended 
+          to be set for the eml-package (metadata and any inline data) because not doing 
+          so implies the default:
+            "If this access element is omitted from the document, then the package submitter should be given full access to the package but all other users should be denied all access.
+            To allow the package to be publicly viewable, the EML author must explicitly include a rule stating so. "
+            https://sbclter.msi.ucsb.edu/external/InformationManagement/EML_211_schema/docs/eml-2.1.1/eml-access.html
+            
+          This package-level access is then overriden per distribution underneath one of either:
+          dataTable; spatialRaster; spatialVector; storedProcedure; view; otherEntity.  
+        
+        -->
+        
+        <xsl:if test="count(//access) = 0">
+          <xsl:element name="rights">
+            <xsl:element name="accessRights">
               <xsl:attribute name="type">
-                <xsl:value-of select="substring-before(project/funding, ':')"/>
+                <xsl:text>restricted</xsl:text>
               </xsl:attribute>
-              <xsl:value-of select="substring-after(project/funding, ':')"/>
             </xsl:element>
           </xsl:element>
         </xsl:if>
-
-        <!-- intellectualRights -->
-        <xsl:element name="rights">
-          <xsl:for-each select="intellectualRights">
-            <!--parse the first line of licence paragraph-->
-            <xsl:variable name="firstLine" select="normalize-space(substring-before(concat(para, '&#x0A;'), '&#x0A;'))"/>
-            <xsl:variable name="licenceCode">
-              <xsl:choose>
-                <xsl:when test="$firstLine!=''">
-                  <xsl:choose>
-                    <xsl:when test="string-length($firstLine) &lt; 25">
-                      <xsl:value-of select="translate($firstLine, $uppercase, $smallcase)" />
-                    </xsl:when>
-                    <xsl:otherwise>
-                      <xsl:text>Other</xsl:text>
-                    </xsl:otherwise>
-                  </xsl:choose>
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:value-of select="$defaultLicence" />
-                </xsl:otherwise>
-              </xsl:choose>
-            </xsl:variable>
-            <xsl:choose>
-              <xsl:when test="string-length($predefinedLicences) > 0">
-                <xsl:variable name="licences" select="exslt:node-set($predefinedLicences)" as="node()*"/>
-                <xsl:variable name="licence1" select="$licences//*[local-name()=$licenceCode]" as="node()*"/>
-              
-                <xsl:message> 
-                  <xsl:value-of select="concat('Count: ', count($licence1))"/>           
-                </xsl:message>
-                
-                <xsl:variable name="licence2">
-                  <xsl:if test="not($licence1)">
-                    <xsl:variable name="licenceText" select="para"/>
-                    <xsl:for-each select="$licences/*">
-                      <xsl:variable name="uriPart" select="substring-after(@uri, '://')"/>
-                      <xsl:if test="contains($licenceText, $uriPart)">
-                        <xsl:copy-of select="." />
-                      </xsl:if>
-                    </xsl:for-each>
-                  </xsl:if>
-                </xsl:variable>
-                <xsl:variable name="licence" select="$licence1 | exslt:node-set($licence2)/*"/>
-                <xsl:variable name="type">
-                  <xsl:choose>
-                    <xsl:when test="$licence">
-                      <!--xsl:value-of select="$licenceCode"/-->
-                      <xsl:value-of select="local-name($licence)"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                      <xsl:text>Other</xsl:text>
-                    </xsl:otherwise>
-                  </xsl:choose>
-                </xsl:variable>
-      
-                <xsl:if test="normalize-space($licence/@name)">
-                  <xsl:element name="rightsStatement">
-                    <xsl:value-of select="$licence/@name" />
-                  </xsl:element>
-                </xsl:if>
-                <xsl:element name="licence">
-                  <xsl:if test="normalize-space($type)">
-                    <xsl:attribute name="type"><xsl:value-of select="$type" /></xsl:attribute>
-                  </xsl:if>
-                  <xsl:if test="normalize-space($licence/@uri)">
-                    <xsl:attribute name="rightsUri"><xsl:value-of select="$licence/@uri" /></xsl:attribute>
-                  </xsl:if>
-                  <xsl:choose>
-                    <xsl:when test="$licence1">
-                      <xsl:value-of select="$licence"/>
-                      <xsl:value-of select="substring-after(para, $firstLine)"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                      <xsl:value-of select="para"/>
-                      <xsl:if test="para=''">
-                        <xsl:text>Permission required from data owner</xsl:text>
-                      </xsl:if>
-                    </xsl:otherwise>
-                  </xsl:choose>
-                </xsl:element>
-              </xsl:when>
-              <xsl:when test="string-length(para) > 0">
-                <xsl:element name="rightsStatement">
-                  <xsl:value-of select="para" />
-                </xsl:element>
-              </xsl:when>
-            </xsl:choose>
-          </xsl:for-each>
-        </xsl:element> <!--rights-->
         
-        <!-- citationInfo -->
+        
+        
+       <!-- citationInfo -->
         <xsl:element name="citationInfo">
           <xsl:element name="citationMetadata">
             <xsl:element name="identifier">
               <xsl:choose>
-                <xsl:when test="normalize-space($doi)">
+                <xsl:when test="normalize-space($doi_sequence[1])">
                   <xsl:attribute name="type">doi</xsl:attribute>
-                  <xsl:value-of select="$doi"/>
+                  <xsl:value-of select="local:format_doi($doi_sequence[1])"/>
                 </xsl:when>
                 <xsl:otherwise>
                   <xsl:attribute name="type">local</xsl:attribute>
@@ -304,22 +232,115 @@
                 <xsl:value-of select="$dateCreated"/>
               </xsl:if>
             </xsl:element>
-            <xsl:element name="url">
+            <!--xsl:element name="url">
               <xsl:choose>
-                <xsl:when test="normalize-space($doi)">
-                  <xsl:text>http://dx.doi.org/</xsl:text><xsl:value-of select="$doi"/>
+                <xsl:when test="normalize-space($doi_sequence[1])">
+                  <xsl:value-of select="local:format_doi($doi_sequence[1])"/>
                 </xsl:when>
-                <xsl:otherwise>
-                  <xsl:value-of select="$datasetUrl"/>
-                </xsl:otherwise>
-              </xsl:choose>
-            </xsl:element>
-            <xsl:element name="context"></xsl:element>
+             </xsl:choose>
+            </xsl:element-->
+            <!--xsl:element name="context"></xsl:element-->
           </xsl:element>
         </xsl:element> <!-- citationInfo -->
       </xsl:element> <!--collection-->
     </xsl:element> <!--registryObject-->
   </xsl:template>  <!--name="collection"-->
+  
+  <xsl:function name="local:format_doi">
+    <xsl:param name="doi"/>
+    <xsl:choose>
+      <xsl:when test="starts-with($doi, '10.')">
+        <xsl:value-of select="concat('https://doi.org/', $doi)"/>
+      </xsl:when>
+      <xsl:when test="starts-with($doi, 'DOI:')">
+        <xsl:value-of select="concat('https://doi.org/', substring-after($doi, 'DOI:'))"/>
+      </xsl:when>
+      <xsl:when test="starts-with($doi, 'doi:')">
+        <xsl:value-of select="concat('https://doi.org/', substring-after($doi, 'doi:'))"/>
+      </xsl:when>
+      <xsl:when test="starts-with($doi, 'http')">
+        <xsl:value-of select="$doi"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$doi"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:function>
+  
+  <xsl:template match="project">
+      
+      <!-- Related Project -->
+      <xsl:element name="relatedObject">
+        <xsl:element name="key">
+          <xsl:value-of select="concat($groupName, '/Activity/', local:format_keystring(@id))" />
+        </xsl:element>
+        <xsl:element name="relation">
+          <xsl:attribute name="type">
+            <xsl:text>isOutputOf</xsl:text>
+          </xsl:attribute>
+        </xsl:element>
+      </xsl:element>
+      
+    <xsl:apply-templates select="funding[string-length(para/ulink/@url) > 0]"/>
+    <xsl:apply-templates select="relatedProject"/>
+    
+  </xsl:template>
+  
+  <xsl:template match="funding">
+    <!-- Related Activity(grant) -->
+      <xsl:element name="relatedInfo">
+        <xsl:attribute name="type">activity</xsl:attribute>
+        <xsl:element name="identifier">
+          <xsl:attribute name="type">
+            <xsl:value-of select="'uri'"/>
+          </xsl:attribute>
+          <xsl:value-of select="para/ulink/@url"/>
+        </xsl:element>
+        <xsl:element name="relation">
+          <xsl:attribute name="type">
+            <xsl:text>isFundedBy</xsl:text>
+          </xsl:attribute>
+        </xsl:element>
+        <xsl:element name="title">
+          <xsl:choose>
+            <xsl:when test="string-length(para/value) > 0">
+              <xsl:value-of select="para/value"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:text>Funding Grant</xsl:text>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:element>
+      </xsl:element>
+  </xsl:template>
+  
+  <xsl:template match="relatedProject">
+    <!-- Related Activity(grant) -->
+    <xsl:element name="relatedObject">
+      <xsl:element name="key">
+        <xsl:value-of select="concat($groupName, '/Activity/', local:format_keystring(@id))" />
+      </xsl:element>
+      <xsl:element name="relation">
+        <xsl:attribute name="type">
+          <xsl:text>isOutputOf</xsl:text>
+        </xsl:attribute>
+      </xsl:element>
+    </xsl:element>
+    
+    <xsl:apply-templates select="funding[string-length(para/ulink/@url) > 0]"/>
+    
+  </xsl:template>
+      
+ 
+  
+  <!-- intellectualRights -->
+  <xsl:template match="intellectualRights">
+    <xsl:element name="rights">
+      <xsl:element name="rightsStatement">
+        <xsl:value-of select="." />
+      </xsl:element>
+    </xsl:element>
+  </xsl:template>
 
   <xsl:template name="citationMetadataVersion">
     <xsl:param name="revid"/>
@@ -356,8 +377,10 @@
     <xsl:param name="docid"/>
     <xsl:param name="originatingSource"/>
     
-    <xsl:element name="registryObject" xmlns="http://ands.org.au/standards/rif-cs/registryObjects">
-      <xsl:attribute name="group"><xsl:value-of select="$groupName" /></xsl:attribute>
+    <xsl:element name="registryObject">
+      <xsl:attribute name="group">
+        <xsl:value-of select="$groupName"/>
+      </xsl:attribute>
       
       <xsl:element name="key">
         <xsl:call-template name="partyKey"/>
@@ -386,14 +409,14 @@
 
         <xsl:call-template name="fillOutAddress"/>
 
-        <xsl:element name="relatedObject">
+        <!--xsl:element name="relatedObject">
           <xsl:element name="key">
-            <xsl:value-of select="$docid" />
-          </xsl:element>
+            <xsl:value-of select="concat($groupName, '/', $docid)" />
+          </xsl:element-->
 
-          <xsl:apply-templates select="key('keyPartyUnique', concat(individualName, organizationName, positionName, address, phone, electronicMailAddress))" mode="relationParty" />
-          <xsl:apply-templates select="../*[references = current()/@id]" mode="relationParty"/>
-        </xsl:element>
+          <!--xsl:apply-templates select="key('keyPartyUnique', concat(individualName, organizationName, positionName, address, phone, electronicMailAddress))" mode="relationParty" /-->
+          <!--xsl:apply-templates select="../*[references = current()/@id]" mode="relationParty"/-->
+        <!--/xsl:element-->
       </xsl:element>
       
     </xsl:element> <!--registryObject-->
@@ -402,16 +425,103 @@
   <xsl:template name="partyKey">
     <xsl:choose>
       <xsl:when test="individualName">
-        <xsl:value-of select="concat('urn:person:', $repositoryIdentifier, ':', individualName/givenName, individualName/surName)" />
+        <xsl:value-of select="concat($groupName, '/Party/', local:format_keystring(individualName/givenName), local:format_keystring(individualName/surName))" />
       </xsl:when>
       <xsl:when test="organizationName">
-        <xsl:value-of select="concat('urn:org:', $repositoryIdentifier, ':', organizationName)" />
+        <xsl:value-of select="concat($groupName, '/Party/', local:format_keystring(organizationName))" />
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="concat('urn:role:', $repositoryIdentifier, ':', positionName)" />
+        <xsl:value-of select="concat($groupName, '/Party/', local:format_keystring(positionName))" />
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
+  
+  <xsl:template match="project | relatedProject" mode="activity_registryObject">
+    <xsl:param name="docid"/>
+    <xsl:param name="originatingSource"/>
+    
+    <xsl:element name="registryObject">
+      <xsl:attribute name="group">
+        <xsl:value-of select="$groupName" />
+      </xsl:attribute>
+      
+      <xsl:element name="key">
+        <xsl:value-of select="concat($groupName, '/Activity/', local:format_keystring(@id))" />
+      </xsl:element>
+      
+      <xsl:element name="originatingSource">
+        <xsl:value-of select="$originatingSource"/>
+      </xsl:element>
+      
+      <xsl:element name="activity">
+        <xsl:attribute name="type">
+          <xsl:text>project</xsl:text>
+        </xsl:attribute>
+        
+        <xsl:if test="string-length(title) > 0">
+          <xsl:apply-templates select="title" mode="activity_registryobject_name"/>
+        </xsl:if>
+        
+        <xsl:if test="string-length(abstract) > 0">
+          <xsl:apply-templates select="abstract" mode="activity_registryobject_description"/>
+        </xsl:if>
+        
+        <xsl:apply-templates select="funding[string-length(para/ulink/@url) > 0]"/>
+        
+        <xsl:for-each select="personnel/userId">
+          <xsl:element name="relatedInfo">
+            <xsl:attribute name="type">
+              <xsl:text>party</xsl:text>
+            </xsl:attribute>
+            <xsl:element name="identifier">
+              <xsl:attribute name="type">
+                <xsl:text>uri</xsl:text>
+              </xsl:attribute>
+              <xsl:value-of select="."/>
+            </xsl:element>
+            <xsl:element name="relation">
+              <xsl:attribute name="type">
+                <xsl:choose>
+                  <xsl:when test="ancestor::personnel/role[string-length(text()) > 0]">
+                    <xsl:value-of select="ancestor::personnel/role"/>
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:text>hasAssociationWith</xsl:text>
+                  </xsl:otherwise>
+                </xsl:choose>
+              </xsl:attribute>
+            </xsl:element>
+            <xsl:element name="title">
+              <xsl:value-of select="ancestor::personnel/organizationName"/>
+            </xsl:element>
+          </xsl:element>
+        </xsl:for-each>
+      </xsl:element>
+      
+    </xsl:element> <!--registryObject-->
+  </xsl:template> <!--name="project"-->
+  
+  <xsl:template match="title" mode="activity_registryobject_name">
+    <xsl:element name="name">
+      <xsl:element name="namePart">
+        <xsl:value-of select="." />
+      </xsl:element>
+    </xsl:element>
+  </xsl:template>
+  
+  <xsl:template match="abstract" mode="activity_registryobject_description">
+    <xsl:element name="description">
+        <xsl:attribute name="type">
+          <xsl:text>full</xsl:text>
+        </xsl:attribute>
+        <xsl:value-of select="." />
+    </xsl:element>
+  </xsl:template>
+  
+  <xsl:function name="local:format_keystring">
+    <xsl:param name="str"/>
+    <xsl:value-of select="replace($str, ' |,', '_')"/>
+  </xsl:function>
   
   <xsl:template match="creator" mode="citationContributor">
     <xsl:element name="contributor">
@@ -483,7 +593,7 @@
   </xsl:template>
   
   <xsl:template match="individualName" mode="partyKey">
-    <xsl:value-of select="concat('urn:person:', $repositoryIdentifier, ':', givenName, surName)" />
+    <xsl:value-of select="concat($groupName, '/', givenName, surName)" />
   </xsl:template>
 
   <xsl:template match="positionName">
@@ -641,7 +751,7 @@
     <xsl:apply-templates select="boundingCoordinates"/>
   </xsl:template>
   
-  <xsl:template match="geographicCoverage/boundingCoordinates">
+  <xsl:template match="boundingCoordinates">
     <xsl:variable name="isPointData" select="normalize-space(eastBoundingCoordinate)=normalize-space(westBoundingCoordinate) 
                                              and normalize-space(northBoundingCoordinate)=normalize-space(southBoundingCoordinate)"/>
       <!--xsl:call-template name="isPointData"/-->
@@ -663,7 +773,7 @@
     </xsl:element>    
   </xsl:template>
 
-  <xsl:template match="geographicCoverage/geographicDescription">
+  <xsl:template match="geographicDescription">
     <xsl:element name="spatial">
       <xsl:attribute name="type">text</xsl:attribute>
       <xsl:value-of select="." />
