@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0"
                 xmlns="http://ands.org.au/standards/rif-cs/registryObjects"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:local="http://local/function" 
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -26,7 +27,7 @@
   <xsl:strip-space elements="*" />
   
   <!--key for selecting a nodeset of identical parties based on the details-->
-  <xsl:key name="keyPartyUnique" match="creator|associatedParty|metadataProvider|contact|publisher" 
+  <xsl:key name="keyPartyUnique" match="creator|associatedParty|metadataProvider|contact" 
            use="concat(individualName, organizationName, positionName, address, phone, electronicMailAddress)"/>
   
   <!--dynamically match the root eml element based on the eml namespace that contains the version-->
@@ -69,7 +70,7 @@
     </xsl:call-template>
     
     <!-- party -->
-    <xsl:apply-templates select="(creator|associatedParty|metadataProvider|contact|publisher)">
+    <xsl:apply-templates select="(creator|associatedParty|metadataProvider|contact)">
       <xsl:with-param name="docid" select="$docid" />
       <xsl:with-param name="originatingSource" select="$originatingSource" />
     </xsl:apply-templates>
@@ -147,7 +148,7 @@
         </xsl:element>
 
         <!--generate relationships to parties, implied by name of element -->
-        <xsl:apply-templates select="(creator|associatedParty|metadataProvider|contact|publisher)[generate-id()=generate-id(key('keyPartyUnique', concat(individualName, organizationName, positionName, address, phone, electronicMailAddress))[1])]"
+        <xsl:apply-templates select="(creator|associatedParty|metadataProvider|contact)[generate-id()=generate-id(key('keyPartyUnique', concat(individualName, organizationName, positionName, address, phone, electronicMailAddress))[1])]"
                              mode="relatedObject"/>
 
         <xsl:apply-templates select="keywordSet" />
@@ -160,7 +161,9 @@
           </xsl:element>
         </xsl:if>
         
-       <xsl:apply-templates select="project"/>
+       <xsl:apply-templates select="project">
+         <xsl:with-param name="relation" select="'isOutputOf'"/>
+       </xsl:apply-templates>
         
        <xsl:apply-templates select="intellectualRights"/>
         
@@ -189,62 +192,82 @@
           </xsl:element>
         </xsl:if>
         
+        <xsl:variable name="datasetId" select="@id" as="xs:string"/>
         
-        
-       <!-- citationInfo -->
+        <!-- If suggested citation, use it -->
         <xsl:element name="citationInfo">
-          <xsl:element name="citationMetadata">
-            <xsl:element name="identifier">
-              <xsl:choose>
-                <xsl:when test="normalize-space($doi_sequence[1])">
-                  <xsl:attribute name="type">doi</xsl:attribute>
-                  <xsl:value-of select="local:format_doi($doi_sequence[1])"/>
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:attribute name="type">local</xsl:attribute>
-                  <xsl:value-of select="$docid"/>
-                </xsl:otherwise>
-              </xsl:choose>
-            </xsl:element>
-            <xsl:apply-templates select="creator" mode="citationContributor"/>
-            <xsl:element name="title">
-              <xsl:value-of select="title[1]"/>
-            </xsl:element>
+          
+          <xsl:choose>
+          
+          
+            <!--xsl:when test="count(following-sibling::additionalMetadata[(metadata/citeAs[string-length(text()) > 0] and (describes = @id))]) > 0"-->
+            <xsl:when test="count(following-sibling::additionalMetadata[(metadata/citeAs[string-length(text()) > 0]) and (describes = $datasetId)]) > 0">
+              <xsl:for-each select="following-sibling::additionalMetadata[(metadata/citeAs[string-length(text()) > 0]) and (describes = $datasetId)]">
+                <xsl:for-each select="metadata/citeAs">
+                  <xsl:element name="fullCitation">
+                    <xsl:value-of select="."/>
+                  </xsl:element>
+                </xsl:for-each>
+              </xsl:for-each>
+          </xsl:when>
+          <xsl:otherwise>
+          
+            <!-- Otherwise construct citation metadata -->
+            <!-- citationInfo -->
             
-            <xsl:call-template name="citationMetadataVersion">
-              <xsl:with-param name="revid" select="$revid" />
-            </xsl:call-template>
-            
-            <xsl:element name="publisher">
-              <xsl:choose><xsl:when test="publisher/organizationName">
-                <xsl:value-of select="publisher/organizationName"/>
-              </xsl:when><xsl:otherwise>
-                <xsl:value-of select="$groupName"/>
-              </xsl:otherwise></xsl:choose>
-            </xsl:element>
-            <xsl:element name="placePublished">
-              <xsl:value-of select="pubPlace"/>
-            </xsl:element>
-            <xsl:element name="date">
-              <xsl:attribute name="type">publicationDate</xsl:attribute>
-              <xsl:value-of select="pubDate"/>
-              <xsl:if test="not(normalize-space(pubDate))">
-                <xsl:value-of select="$dateCreated"/>
-              </xsl:if>
-            </xsl:element>
-            <!--xsl:element name="url">
-              <xsl:choose>
-                <xsl:when test="normalize-space($doi_sequence[1])">
-                  <xsl:value-of select="local:format_doi($doi_sequence[1])"/>
-                </xsl:when>
-             </xsl:choose>
-            </xsl:element-->
-            <!--xsl:element name="context"></xsl:element-->
-          </xsl:element>
-        </xsl:element> <!-- citationInfo -->
-      </xsl:element> <!--collection-->
-    </xsl:element> <!--registryObject-->
-  </xsl:template>  <!--name="collection"-->
+              <xsl:element name="citationMetadata">
+                <xsl:element name="identifier">
+                  <xsl:choose>
+                    <xsl:when test="normalize-space($doi_sequence[1])">
+                      <xsl:attribute name="type">doi</xsl:attribute>
+                      <xsl:value-of select="local:format_doi($doi_sequence[1])"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:attribute name="type">local</xsl:attribute>
+                      <xsl:value-of select="$docid"/>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </xsl:element>
+                <xsl:apply-templates select="creator" mode="citationContributor"/>
+                <xsl:element name="title">
+                  <xsl:value-of select="title[1]"/>
+                </xsl:element>
+                
+                <xsl:call-template name="citationMetadataVersion">
+                  <xsl:with-param name="revid" select="$revid" />
+                </xsl:call-template>
+                
+                <xsl:for-each select="publisher/organizationName">
+                  <xsl:element name="publisher">
+                    <xsl:value-of select="."/>
+                  </xsl:element>
+                </xsl:for-each>
+                
+                <xsl:element name="placePublished">
+                  <xsl:value-of select="pubPlace"/>
+                </xsl:element>
+                <xsl:element name="date">
+                  <xsl:attribute name="type">publicationDate</xsl:attribute>
+                  <xsl:value-of select="pubDate"/>
+                  <xsl:if test="not(normalize-space(pubDate))">
+                    <xsl:value-of select="$dateCreated"/>
+                  </xsl:if>
+                </xsl:element>
+                <!--xsl:element name="url">
+                  <xsl:choose>
+                    <xsl:when test="normalize-space($doi_sequence[1])">
+                      <xsl:value-of select="local:format_doi($doi_sequence[1])"/>
+                    </xsl:when>
+                 </xsl:choose>
+                </xsl:element-->
+                <!--xsl:element name="context"></xsl:element-->
+              </xsl:element>
+          </xsl:otherwise>
+        </xsl:choose>
+        </xsl:element>
+      </xsl:element>
+    </xsl:element>
+  </xsl:template>
   
   <xsl:function name="local:format_doi">
     <xsl:param name="doi"/>
@@ -268,7 +291,7 @@
   </xsl:function>
   
   <xsl:template match="project">
-      
+    
       <!-- Related Project -->
       <xsl:element name="relatedObject">
         <xsl:element name="key">
@@ -281,20 +304,28 @@
         </xsl:element>
       </xsl:element>
       
-    <xsl:apply-templates select="funding[string-length(para/ulink/@url) > 0]"/>
+    <xsl:apply-templates select="funding">
+      <xsl:with-param name="relation" select="'isOutputOf'"/>
+    </xsl:apply-templates>
+    
     <xsl:apply-templates select="relatedProject"/>
     
   </xsl:template>
   
   <xsl:template match="funding">
+    <xsl:param name="relation"/>
+    
     <!-- Related Activity(grant) -->
+    
+    <!-- Process text value if that's all we have -->
+    <xsl:if test="string-length(text()) > 0">
       <xsl:element name="relatedInfo">
         <xsl:attribute name="type">activity</xsl:attribute>
         <xsl:element name="identifier">
           <xsl:attribute name="type">
             <xsl:value-of select="'uri'"/>
           </xsl:attribute>
-          <xsl:value-of select="para/ulink/@url"/>
+          <xsl:value-of select="text()"/>
         </xsl:element>
         <xsl:element name="relation">
           <xsl:attribute name="type">
@@ -302,16 +333,58 @@
           </xsl:attribute>
         </xsl:element>
         <xsl:element name="title">
-          <xsl:choose>
-            <xsl:when test="string-length(para/value) > 0">
-              <xsl:value-of select="para/value"/>
-            </xsl:when>
-            <xsl:otherwise>
-              <xsl:text>Funding Grant</xsl:text>
-            </xsl:otherwise>
-          </xsl:choose>
+          <xsl:text>Funding Grant</xsl:text>
         </xsl:element>
       </xsl:element>
+    </xsl:if>
+    
+    <!-- Process para/value nodes if we have them -->
+    <xsl:apply-templates select="para" mode="relatedInfo_activity">
+      <xsl:with-param name="relation" select="$relation"/>
+    </xsl:apply-templates>
+    
+  </xsl:template>
+  
+  <xsl:template match="para" mode="relatedInfo_activity">
+    <xsl:param name="relation"/>
+    
+    <xsl:for-each select=".[ulink/@url[string-length(.) > 0]]">
+    
+      <!-- Related Activity(grant) -->
+      <xsl:element name="relatedInfo">
+        <xsl:attribute name="type">activity</xsl:attribute>
+        <xsl:element name="identifier">
+          <xsl:attribute name="type">
+            <xsl:value-of select="'uri'"/>
+          </xsl:attribute>
+          <xsl:value-of select="ulink/@url"/>
+        </xsl:element>
+        <xsl:element name="relation">
+          <xsl:attribute name="type">
+            <xsl:value-of select="$relation"/>
+          </xsl:attribute>
+        </xsl:element>
+        
+        <xsl:choose>
+            <xsl:when test="string-length(value[1]) > 0">
+              <xsl:element name="title">
+                <xsl:value-of select="value[1]"/>
+              </xsl:element>
+            </xsl:when>
+             <xsl:otherwise>
+               <xsl:text>Funding Grant</xsl:text>
+             </xsl:otherwise>
+        </xsl:choose>
+        
+        <xsl:if test="string-length(value[2]) > 0">
+          <xsl:element name="notes">
+            <xsl:value-of select="value[2]"/>
+          </xsl:element>
+        </xsl:if>
+        
+      </xsl:element>
+    </xsl:for-each>
+    
   </xsl:template>
   
   <xsl:template match="relatedProject">
@@ -327,7 +400,7 @@
       </xsl:element>
     </xsl:element>
     
-    <xsl:apply-templates select="funding[string-length(para/ulink/@url) > 0]"/>
+    <xsl:apply-templates select="funding"/>
     
   </xsl:template>
       
@@ -350,7 +423,7 @@
   </xsl:template>
 
   <!--this will match all possible party nodes except the ones that contain references, overriden by template *[references] defined later-->
-  <xsl:template match="creator|associatedParty|metadataProvider|contact|publisher">
+  <xsl:template match="creator|associatedParty|metadataProvider|contact">
     <xsl:param name="docid"/>
     <xsl:param name="originatingSource"/>
     <xsl:call-template name="party">
@@ -359,7 +432,7 @@
     </xsl:call-template>
   </xsl:template>
 
-  <xsl:template match="creator|associatedParty|metadataProvider|contact|publisher" mode="relatedObject">
+  <xsl:template match="creator|associatedParty|metadataProvider|contact" mode="relatedObject">
     <xsl:element name="relatedObject">
       <xsl:element name="key">
         <xsl:call-template name="partyKey"/>
@@ -466,7 +539,9 @@
           <xsl:apply-templates select="abstract" mode="activity_registryobject_description"/>
         </xsl:if>
         
-        <xsl:apply-templates select="funding[string-length(para/ulink/@url) > 0]"/>
+        <xsl:apply-templates select="funding">
+          <xsl:with-param name="relation" select="'isFundedBy'"/>
+        </xsl:apply-templates>
         
         <xsl:for-each select="personnel/userId">
           <xsl:element name="relatedInfo">

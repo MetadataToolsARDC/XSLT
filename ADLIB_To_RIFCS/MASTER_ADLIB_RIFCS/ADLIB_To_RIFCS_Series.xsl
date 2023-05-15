@@ -23,6 +23,7 @@
     <xsl:param name="global_baseURI" select="''"/>
     <xsl:param name="global_path" select="''"/>
     <xsl:param name="global_path_organisations" select="''"/>
+    <xsl:param name="global_path_persons" select="''"/>
       
    <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 
@@ -69,17 +70,7 @@
         <registryObject>
             <xsl:attribute name="group" select="$global_group"/>
             <!-- Generate key from doi if there is one (this means key will stay the same in future harvests even if harvest api or source xml changes form-->
-            <xsl:choose>
-                <xsl:when test="count(identifier[(@identifierType = 'DOI') and (string-length(.) > 0)]) > 0">
-                    <xsl:apply-templates select="identifier[(@identifierType = 'DOI') and (string-length(.) > 0)]" mode="collection_key"/>
-                </xsl:when>
-                <xsl:when test="count(@priref) > 0">
-                    <xsl:apply-templates select="@priref" mode="collection_key"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:apply-templates select="ancestor::record/header/identifier" mode="collection_key"/>
-                </xsl:otherwise>
-            </xsl:choose>
+            <xsl:apply-templates select="object_number" mode="collection_key"/>
             <originatingSource>
                 <xsl:value-of select="$global_originatingSource"/>
             </originatingSource>
@@ -121,7 +112,7 @@
                     </xsl:when>
                 </xsl:choose>
                
-                <xsl:apply-templates select="Title[boolean(string-length(.))]" mode="collection_name"/>
+                <xsl:apply-templates select="." mode="collection_name"/>
                 
                 <xsl:choose>
                     <xsl:when test="count(Description/description[boolean(string-length(.))]) > 0">
@@ -138,14 +129,17 @@
                 <xsl:apply-templates select="Access_Directions[boolean(string-length(.))]" mode="collection_rights_access"/>
                 <xsl:apply-templates select="item_control_status[boolean(string-length(.))]" mode="collection_rights_access"/>
                 
-                <xsl:apply-templates select="control.agency" mode="relatedInfo_agency"/>
-                <xsl:apply-templates select="Create.Agency" mode="relatedInfo_agency"/>
-                <xsl:apply-templates select="Part_of" mode="relatedInfo_partOf"/>
+                <xsl:apply-templates select="control.agency" mode="relatedObject_agency"/>
+                <xsl:apply-templates select="Create.Agency" mode="relatedObject_agency"/>
+                <xsl:apply-templates select="series.person.related" mode="relatedObject_person"/>
+                <!--xsl:apply-templates select="Part_of" mode="relatedInfo_partOf"/-->
                 
                 
                 <xsl:apply-templates select="Production_date" mode="collection_date"/>
                 
                 <xsl:apply-templates select="Production_date" mode="collection_coverage_temporal"/>
+                
+                <xsl:apply-templates select="Related_object[boolean(string-length(related_object.reference.lref))]" mode="collection_related_object"/>
                 
                 <xsl:apply-templates select="." mode="collection_citationInfo_citationMetadata"/>
                 
@@ -153,16 +147,17 @@
         </registryObject>
     </xsl:template>
     
-    <xsl:template match="identifier" mode="collection_key">
+   <xsl:template match="object_number" mode="collection_key">
         <key>
-            <xsl:value-of select="concat($global_acronym, '/', substring(string-join(for $n in fn:reverse(fn:string-to-codepoints(.)) return string($n), ''), 0, 50))"/>
-        </key>
-    </xsl:template>
-   
-   
-    <xsl:template match="@priref" mode="collection_key">
-        <key>
-            <xsl:value-of select="concat($global_acronym, '/', .)"/>
+            <xsl:value-of select="concat($global_acronym, '/series/')"/>
+            <xsl:choose>
+                <xsl:when test="starts-with(., 'NRS-')">
+                    <xsl:value-of select="substring-after(., 'NRS-')"></xsl:value-of>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="."/>
+                </xsl:otherwise>
+            </xsl:choose>
         </key>
     </xsl:template>
     
@@ -219,46 +214,82 @@
         </identifier>
     </xsl:template>
     
-    <xsl:template match="Title" mode="collection_name">
+    <xsl:template match="record" mode="collection_name">
         <name type="primary">
             <namePart>
-                <xsl:value-of select="normalize-space(.)"/>
+                <xsl:if test="count(object_number[boolean(string-length(.))]) > 0">
+                    <xsl:value-of select="normalize-space(object_number[boolean(string-length(.))][1])"/>
+                </xsl:if>
+                <xsl:if test="count(Title[boolean(string-length(.))]) > 0">
+                    <xsl:text> | </xsl:text>
+                    <xsl:value-of select="normalize-space(Title[boolean(string-length(.))][1])"/>
+                </xsl:if>
+                
             </namePart>
         </name>
     </xsl:template>
     
-    <xsl:template match="control.agency" mode="relatedInfo_agency">
-        <relatedInfo type="party">
-            <identifier type="uri">
-                <xsl:value-of select="concat($global_baseURI, $global_path_organisations, series.agency.control.no.lref)"/>
-            </identifier>
-            <relation type="isManagedBy"/>
-            <title>
-                <xsl:value-of select="concat(series.agency.control.name, ' [', series.agency.control.no, ']')"/>
-            </title>
-        </relatedInfo>
+    <xsl:template match="control.agency" mode="relatedObject_agency">
+        <relatedObject>
+            <key>
+                <xsl:if test="starts-with(series.agency.control.no, 'AGY-')">
+                    <xsl:value-of select="$global_acronym"/>
+                    <xsl:value-of select="'/agencies/'"/>
+                    <xsl:value-of select="substring-after(series.agency.control.no, 'AGY-')"/>
+                </xsl:if>
+            </key>
+            <relation type="hasAssociationWith"/>
+        </relatedObject>
     </xsl:template>
     
-    <xsl:template match="Create.Agency" mode="relatedInfo_agency">
-        <relatedInfo type="party">
-            <identifier type="uri">
-                <xsl:value-of select="concat($global_baseURI, $global_path_organisations, series.agency.create.no.lref)"/>
-            </identifier>
-            <relation type="hasCollector"/>
-            <title>
-                <xsl:value-of select="concat(normalize-space(agency.name), ' [', series.agency.create.no, ']')"/>
-            </title>
-        </relatedInfo>
+    <xsl:template match="series.person.related" mode="relatedObject_person">
+        <relatedObject>
+            <key>
+                <xsl:if test="starts-with(series.person.related.no, 'PER-')">
+                    <xsl:value-of select="$global_acronym"/>
+                    <xsl:value-of select="'/persons/'"/>
+                    <xsl:value-of select="substring-after(series.person.related.no, 'PER-')"/>
+                </xsl:if>
+            </key>
+            <relation type="hasAssociationWith"/>
+        </relatedObject>
     </xsl:template>
     
-    <xsl:template match="Part_of" mode="relatedInfo_partOf">
+    <xsl:template match="Create.Agency" mode="relatedObject_agency">
+        <relatedObject>
+            <key>
+                <xsl:if test="starts-with(series.agency.create.no, 'AGY-')">
+                    <xsl:value-of select="$global_acronym"/>
+                    <xsl:value-of select="'/agencies/'"/>
+                    <xsl:value-of select="substring-after(series.agency.create.no, 'AGY-')"/>
+                </xsl:if>
+            </key>
+            <relation type="hasAssociationWith"/>
+        </relatedObject>
+    </xsl:template>
+    
+    <!--xsl:template match="Part_of" mode="relatedInfo_partOf">
         <relatedInfo type="{lower-case(part_of.description_level)}">
             <identifier type="uri">
                 <xsl:value-of select="concat($global_baseURI, $global_path, part_of_reference.lref)"/>
             </identifier>
-            <relation type="isPartOf"/>
+            <relation>
+                <xsl:attribute name="type">
+                    <xsl:choose>
+                        <xsl:when test="lower-case(part_of.description_level) = 'activity'">
+                            <xsl:text>isOutputOf</xsl:text>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:text>isPartOf</xsl:text>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:attribute>
+            </relation>
+            <title>
+                <xsl:value-of select="concat(part_of.title, '[',part_of_reference,'] (', part_of_reference.date.start, ' to ', part_of_reference.date.end, ')')"/>
+            </title>
         </relatedInfo>
-    </xsl:template>
+    </xsl:template-->
     
     <xsl:template match="Production_date" mode="collection_date">
         <dates type="dc.created">
@@ -285,6 +316,20 @@
         </coverage>
         
     </xsl:template>
+    
+    <xsl:template match="Related_object" mode="collection_related_object">
+        <relatedObject>
+            <key>
+                <xsl:if test="starts-with(related_object.reference, 'NRS-')">
+                    <xsl:value-of select="$global_acronym"/>
+                    <xsl:value-of select="'/series/'"/>
+                    <xsl:value-of select="substring-after(related_object.reference, 'NRS-')"></xsl:value-of>
+                </xsl:if>
+            </key>
+            <relation type="hasAssociationWith"/>
+        </relatedObject>
+    </xsl:template>     
+ 
   
     <xsl:template match="Access_Directions" mode="collection_rights_access">
         <rights>
@@ -389,9 +434,7 @@
                     <xsl:apply-templates select="." mode="citationMetadata_contributor"/>
                 </xsl:for-each>
                 
-                <xsl:for-each select="Create.Agency[boolean(string-length(agency.name))]">
-                    <xsl:apply-templates select="agency.name" mode="citationMetadata_contributor"/>
-                </xsl:for-each>
+                <xsl:apply-templates select="Create.Agency" mode="citationMetadata_contributor"/>
                 
                 <title>
                     <xsl:value-of select="normalize-space(string-join(Title, ' - '))"/>
@@ -420,10 +463,16 @@
         
     </xsl:template>
     
-    <xsl:template match="agency.name" mode="citationMetadata_contributor">
+    <xsl:template match="Create.Agency" mode="citationMetadata_contributor">
         <contributor>
             <namePart type="family">
-                <xsl:value-of select="normalize-space(.)"/>
+                <xsl:if test="count(series.agency.create.no[boolean(string-length(.))]) > 0">
+                    <xsl:value-of select="normalize-space(series.agency.create.no[boolean(string-length(.))][1])"/>
+                </xsl:if>
+                <xsl:if test="count(agency.name[boolean(string-length(.))]) > 0">
+                    <xsl:text> | </xsl:text>
+                    <xsl:value-of select="normalize-space(agency.name[boolean(string-length(.))][1])"/>
+                </xsl:if>
             </namePart>
          </contributor>
     </xsl:template>

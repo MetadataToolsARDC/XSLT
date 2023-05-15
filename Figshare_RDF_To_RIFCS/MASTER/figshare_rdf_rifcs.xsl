@@ -23,7 +23,7 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
     exclude-result-prefixes="oai dc bibo datacite fabio foaf literal obo rdf rdfs vcard vivo xs fn local exslt xsi figFunc">
    
-    <xsl:variable name="categoryCodeList" select="document('api_figshare_com_v2_categories.xml')"/>
+    <xsl:variable name="categoryCodeList" select="document('https://raw.githubusercontent.com/MetadataToolsARDC/XSLT/master/Figshare_RDF_To_RIFCS/MASTER/figshare_categories.xml')"/>
     
     <xsl:param name="global_originatingSource" select="''"/>
     <xsl:param name="global_baseURI" select="''"/>
@@ -529,8 +529,8 @@
     </xsl:template>
     
     <xsl:template match="oai:setSpec" mode="collection_subject">
-        <xsl:variable name="categoryId" select="substring-after(., 'category_')" as="xs:string"/>
-        <xsl:variable name="mappedValue" select="$categoryCodeList/root/row[id = $categoryId]/title"/>
+       <xsl:variable name="categoryId" select="substring-after(., 'category_')" as="xs:string"/>
+       <xsl:variable name="mappedValue" select="$categoryCodeList/root/row[id = $categoryId]/title"/>
        
             
             

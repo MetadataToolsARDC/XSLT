@@ -327,7 +327,8 @@
         
         <xsl:apply-templates select="mri:resourceConstraints/*" mode="registryObject_rights_licence_type_and_uri"/>
         
-         
+        <xsl:apply-templates select="mri:associatedResource/mri:MD_AssociatedResource" mode="registryObject_relatedInfo_associatedResource"/>
+        
         <!--xsl:apply-templates
             select="mri:resourceConstraints/mco:MD_LegalConstraints[(count(mco:reference/cit:CI_Citation) = 0) and matches(mco:useConstraints/mco:MD_RestrictionCode/@codeListValue,  'licen.e') and (count(mco:otherConstraints[string-length() > 0]) > 0)]"
             mode="registryObject_rights_license_otherConstraint"/>
@@ -1099,7 +1100,14 @@
                 </xsl:attribute>
                 <xsl:if test="not(string-length($identifierToUse) = string-length(cit:linkage))">
                     <url>
-                        <xsl:value-of select="fn:iri-to-uri(cit:linkage)"/>
+                     <xsl:choose>
+                            <xsl:when test="contains(cit:linkage, '?')">
+                                <xsl:value-of select="concat(fn:iri-to-uri(substring-before(cit:linkage, '?')), '?', fn:encode-for-uri(substring-after(cit:linkage, '?')))"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="fn:iri-to-uri(cit:linkage)"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </url>
                 </xsl:if>
             </relation>
@@ -1366,6 +1374,47 @@
         
         
         
+    </xsl:template>
+    
+    <xsl:template match="mri:MD_AssociatedResource" mode="registryObject_relatedInfo_associatedResource">
+        <relatedInfo>
+            <xsl:attribute name="type">
+                <xsl:choose>
+                    <xsl:when test="matches(lower-case(mri:initiativeType/mri:DS_InitiativeTypeCode/@codeListValue), 'project')">
+                        <xsl:text>activity</xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="mri:initiativeType/mri:DS_InitiativeTypeCode/@codeListValue"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:attribute>
+            
+            <!-- There ought only be one of the following, but just in case there are more... -->
+                <xsl:for-each select="mri:name/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:code[string-length(.) > 0]">
+                    <identifier type="uri">
+                        <xsl:value-of select="."/>
+                    </identifier>
+                </xsl:for-each>
+                
+                <relation>
+                    <xsl:attribute name="type">
+                        <xsl:choose>
+                            <xsl:when test="matches(lower-case(mri:initiativeType/mri:DS_InitiativeTypeCode/@codeListValue), 'project')">
+                                <xsl:text>isOutputOf</xsl:text>
+                            </xsl:when>
+                            <xsl:otherwise>hasAssociationWith</xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:attribute>
+                </relation>
+            
+            <xsl:if test="boolean(count(mri:name/cit:CI_Citation/cit:title[string-length(.) > 0]))">
+                <title>
+                    <xsl:value-of select="string-join(mri:name/cit:CI_Citation/cit:title[string-length(.) > 0], ' - ')"/>
+                </title>
+            </xsl:if>
+            
+        </relatedInfo>
+    
     </xsl:template>
     
     <!-- RegistryObject - Rights Statement Access -->

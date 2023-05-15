@@ -757,9 +757,9 @@
         <xsl:text>&lt;h4&gt;Credit&lt;/h4&gt;</xsl:text>    
         <xsl:for-each select="gmd:credit[string-length(.) > 0]">
             <xsl:if test="position() > 1">
-                <xsl:text>; </xsl:text>
+                <xsl:text>&lt;br/&gt;</xsl:text>
             </xsl:if>    
-            <xsl:value-of select="."/>
+            <xsl:value-of select="replace(., '&#xD;', '&lt;br/&gt;')"/>
         </xsl:for-each>
     </xsl:template>
     
