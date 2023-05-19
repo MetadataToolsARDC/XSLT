@@ -238,7 +238,7 @@
                     <xsl:value-of select="substring-after(series.agency.control.no, 'AGY-')"/>
                 </xsl:if>
             </key>
-            <relation type="hasAssociationWith"/>
+            <relation type="hasManager"/>
         </relatedObject>
     </xsl:template>
     
@@ -251,7 +251,7 @@
                     <xsl:value-of select="substring-after(series.person.related.no, 'PER-')"/>
                 </xsl:if>
             </key>
-            <relation type="hasAssociationWith"/>
+            <relation type="hasCollector"/>
         </relatedObject>
     </xsl:template>
     
@@ -264,7 +264,7 @@
                     <xsl:value-of select="substring-after(series.agency.create.no, 'AGY-')"/>
                 </xsl:if>
             </key>
-            <relation type="hasAssociationWith"/>
+            <relation type="hasCollector"/>
         </relatedObject>
     </xsl:template>
     
