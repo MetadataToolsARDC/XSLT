@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0"
     xpath-default-namespace="http://www.openarchives.org/OAI/2.0/"
-    xmlns:solr="http://wiki.apache.org/solr/" 
+    xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" 
     xmlns="http://ands.org.au/standards/rif-cs/registryObjects" 
     xmlns:dc="http://purl.org/dc/elements/1.1/"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    
-    <xsl:strip-space elements="*" />
 
-    <xsl:import href="PROV_SOLR_To_RIFCS_Series.xsl"/>
-    <xsl:import href="PROV_SOLR_To_RIFCS_Agency.xsl"/>
+    <xsl:import href="PROV_OAI_DC_To_RIFCS_Series.xsl"/>
+    <xsl:import href="PROV_OAI_DC_To_RIFCS_Agency.xsl"/>
     
     <xsl:param name="global_originatingSource" select="'Public Record Office Victoria'"/>
     <xsl:param name="global_group" select="'Public Record Office Victoria'"/>
     <xsl:param name="global_acronym" select="'PROV'"/>
     <xsl:param name="global_publisherName" select="'Public Record Office Victoria'"/>
-    <xsl:param name="global_baseURI" select="'https://prov.vic.gov.au/archive'"/>
-    <xsl:param name="global_path" select="''"/>
+    <xsl:param name="global_baseURI" select="'https://prov.vic.gov.au'"/>
+    <xsl:param name="global_path" select="'/archive/'"/>
     
     <xsl:template match="/">
         <registryObjects 
@@ -35,12 +33,11 @@
     
     
     <xsl:template match="record">
-        <xsl:apply-templates select="metadata/solr:doc[contains(lower-case(solr:str[@name='category']), 'series')]" mode="collection">
-            <xsl:with-param name="metadata_datestamp" select="header/datestamp"/>
-        </xsl:apply-templates>
-        <xsl:apply-templates select="metadata/solr:doc[contains(lower-case(solr:str[@name='category']), 'agency')]" mode="party">
-            <xsl:with-param name="metadata_datestamp" select="header/datestamp"/>
-        </xsl:apply-templates>
+        <xsl:message select="concat('num oai_dc:dc collection element: ', count(metadata/oai_dc:dc[contains(lower-case(dc:type), 'collection')]))"/>
+        <xsl:apply-templates select="metadata/oai_dc:dc[contains(lower-case(dc:type), 'collection')]" mode="collection"/>
+        
+        <xsl:message select="concat('num oai_dc:dc party element: ', count(metadata/oai_dc:dc[contains(lower-case(dc:type), 'party')]))"/>
+        <xsl:apply-templates select="metadata/oai_dc:dc[contains(lower-case(dc:type), 'party')]" mode="party"/>
     </xsl:template>
     
     

@@ -247,11 +247,11 @@
        <xsl:apply-templates select="gmd:extent/gmd:EX_Extent/gmd:geographicElement/gmd:EX_BoundingPolygon/gmd:polygon" mode="registryObject_coverage_spatial"/>
        
         <xsl:apply-templates
-            select="gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent"
+            select=".//gmd:temporalElement/gmd:EX_TemporalExtent"
             mode="registryObject_coverage_temporal"/>
         
         <xsl:apply-templates
-            select="gmd:extent/gmd:EX_Extent/gmd:temporalElement/gmd:EX_TemporalExtent"
+            select=".//gmd:temporalElement/gmd:EX_TemporalExtent"
             mode="registryObject_coverage_temporal_period"/>
         
       <xsl:apply-templates select="gmd:resourceConstraints/*" mode="registryObject_rights_licence_type_and_uri"/>

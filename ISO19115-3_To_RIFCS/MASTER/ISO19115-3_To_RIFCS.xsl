@@ -943,7 +943,7 @@
        
         <coverage>
             
-            <xsl:apply-templates select=".//gml:Polygon" mode="registryObject_coverage_spatial"/>
+            <xsl:apply-templates select=".//*:Polygon" mode="registryObject_coverage_spatial"/>
         
             <xsl:for-each select="gex:geographicElement/gex:EX_GeographicBoundingBox">
             

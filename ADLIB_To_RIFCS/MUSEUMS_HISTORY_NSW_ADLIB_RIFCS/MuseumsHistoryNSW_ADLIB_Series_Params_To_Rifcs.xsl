@@ -15,5 +15,8 @@
     <xsl:param name="global_path" select="'/permalink/f/1ednqkf/ADLIB_RNSW'"/>
     <xsl:param name="global_path_organisations" select="'/permalink/f/1e5kcq1/ORGANISATIONS'"/>
     <xsl:param name="global_path_persons" select="'/permalink/f/1b042j/ORGANISATIONS'"/>
+    
+    <xsl:strip-space elements="*" />
+    
 </xsl:stylesheet>
     

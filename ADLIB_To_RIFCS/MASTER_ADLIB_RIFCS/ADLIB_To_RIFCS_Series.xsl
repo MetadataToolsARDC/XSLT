@@ -101,33 +101,33 @@
                 
                 <!--xsl:apply-templates select="identifier" mode="collection_identifier"/-->
                 
-                <xsl:apply-templates select="@priref[boolean(string-length(.))][1]" mode="collection_identifier"/>
+                <xsl:apply-templates select="@priref[1]" mode="collection_identifier"/>
                
                 <xsl:choose>
                     <xsl:when test="count(identifier[(@identifierType = 'DOI') and (string-length(.) > 0)]) > 0">
                         <xsl:apply-templates select="identifier[(@identifierType = 'DOI') and (string-length(.) > 0)]" mode="collection_location_doi"/>
                     </xsl:when>
-                    <xsl:when test="count(@priref[boolean(string-length(.))]) > 0">
-                        <xsl:apply-templates select="@priref[boolean(string-length(.))][1]" mode="collection_location_url"/>
+                    <xsl:when test="count(@priref) > 0">
+                        <xsl:apply-templates select="@priref[1]" mode="collection_location_url"/>
                     </xsl:when>
                 </xsl:choose>
                
                 <xsl:apply-templates select="." mode="collection_name"/>
                 
                 <xsl:choose>
-                    <xsl:when test="count(Description/description[boolean(string-length(.))]) > 0">
-                        <xsl:apply-templates select="Description/description[boolean(string-length(.))]" mode="collection_description_full"/>
+                    <xsl:when test="count(Description/description) > 0">
+                        <xsl:apply-templates select="Description/description" mode="collection_description_full"/>
                     </xsl:when>
-                    <xsl:when test="count(Title[boolean(string-length(.))]) > 0">
-                        <xsl:apply-templates select="Title[boolean(string-length(.))]" mode="collection_description_brief"/>
+                    <xsl:when test="count(Title) > 0">
+                        <xsl:apply-templates select="Title" mode="collection_description_brief"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:call-template name="collection_description_default"/>
                     </xsl:otherwise>
                 </xsl:choose>
                 
-                <xsl:apply-templates select="Access_Directions[boolean(string-length(.))]" mode="collection_rights_access"/>
-                <xsl:apply-templates select="item_control_status[boolean(string-length(.))]" mode="collection_rights_access"/>
+                <xsl:apply-templates select="Access_Directions" mode="collection_rights_access"/>
+                <xsl:apply-templates select="item_control_status" mode="collection_rights_access"/>
                 
                 <xsl:apply-templates select="control.agency" mode="relatedObject_agency"/>
                 <xsl:apply-templates select="Create.Agency" mode="relatedObject_agency"/>
@@ -217,12 +217,12 @@
     <xsl:template match="record" mode="collection_name">
         <name type="primary">
             <namePart>
-                <xsl:if test="count(object_number[boolean(string-length(.))]) > 0">
-                    <xsl:value-of select="normalize-space(object_number[boolean(string-length(.))][1])"/>
+                <xsl:if test="count(object_number) > 0">
+                    <xsl:value-of select="normalize-space(object_number[1])"/>
                 </xsl:if>
-                <xsl:if test="count(Title[boolean(string-length(.))]) > 0">
+                <xsl:if test="count(Title) > 0">
                     <xsl:text> | </xsl:text>
-                    <xsl:value-of select="normalize-space(Title[boolean(string-length(.))][1])"/>
+                    <xsl:value-of select="normalize-space(Title[1])"/>
                 </xsl:if>
                 
             </namePart>
@@ -425,8 +425,8 @@
                     <xsl:when test="count(identifier[(@identifierType = 'DOI') and (string-length(.) > 0)]) > 0">
                         <xsl:apply-templates select="identifier[(@identifierType = 'DOI') and (string-length(.) > 0)]" mode="collection_identifier"/>
                     </xsl:when>
-                    <xsl:when test="count(@priref[boolean(string-length(.))]) > 0">
-                        <xsl:apply-templates select="@priref[boolean(string-length(.))][1]" mode="collection_identifier"/>
+                    <xsl:when test="count(@priref) > 0">
+                        <xsl:apply-templates select="@priref[1]" mode="collection_identifier"/>
                     </xsl:when>
                 </xsl:choose>
                             
@@ -466,12 +466,12 @@
     <xsl:template match="Create.Agency" mode="citationMetadata_contributor">
         <contributor>
             <namePart type="family">
-                <xsl:if test="count(series.agency.create.no[boolean(string-length(.))]) > 0">
-                    <xsl:value-of select="normalize-space(series.agency.create.no[boolean(string-length(.))][1])"/>
+                <xsl:if test="count(series.agency.create.no) > 0">
+                    <xsl:value-of select="normalize-space(series.agency.create.no[1])"/>
                 </xsl:if>
-                <xsl:if test="count(agency.name[boolean(string-length(.))]) > 0">
+                <xsl:if test="count(agency.name) > 0">
                     <xsl:text> | </xsl:text>
-                    <xsl:value-of select="normalize-space(agency.name[boolean(string-length(.))][1])"/>
+                    <xsl:value-of select="normalize-space(agency.name[1])"/>
                 </xsl:if>
             </namePart>
          </contributor>

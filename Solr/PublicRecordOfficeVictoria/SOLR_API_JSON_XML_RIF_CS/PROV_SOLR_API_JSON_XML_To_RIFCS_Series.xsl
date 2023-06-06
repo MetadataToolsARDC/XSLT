@@ -7,7 +7,6 @@
     xmlns:fn="http://www.w3.org/2005/xpath-functions"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xpath-default-namespace="http://wiki.apache.org/solr/"
     exclude-result-prefixes="xsl murFunc custom fn xs xsi">
 	
 	
@@ -23,8 +22,8 @@
       
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 
-    <xsl:template match="doc"  mode="collection">
-        <xsl:param name="metadata_datestamp"/>
+    <xsl:template match="docs" mode="collection">
+        <xsl:message select="'here'"/>
         
         <xsl:variable name="class">
             <xsl:value-of select="'collection'"/>
@@ -33,7 +32,7 @@
         <registryObject>
             <xsl:attribute name="group" select="$global_group"/>
             <!-- Generate key from doi if there is one (this means key will stay the same in future harvests even if harvest api or source xml changes form-->
-            <xsl:apply-templates select="str[@name='citation']" mode="collection_key"/>
+            <xsl:apply-templates select="citation" mode="collection_key"/>
             <originatingSource>
                 <xsl:value-of select="$global_originatingSource"/>
             </originatingSource>
@@ -43,43 +42,43 @@
                     <xsl:value-of select="'collection'"/>
                 </xsl:attribute>
              
-                <xsl:apply-templates select="$metadata_datestamp" mode="date_modified"/>
+                <!--xsl:apply-templates select="$metadata_datestamp" mode="date_modified"/-->
                 
-                <xsl:apply-templates select="str[@name='identifier.PROV_ACM.id']" mode="collection_identifier"/>
-                <xsl:apply-templates select="str[@name='series_id']" mode="collection_identifier"/>
+                <xsl:apply-templates select="identifier.PROV_ACM.id" mode="collection_identifier"/>
                 
                 <xsl:choose>
-                    <xsl:when test="count(str[@name='doi']) > 0">
-                        <xsl:apply-templates select="str[@name='doi'][1]" mode="collection_location_doi"/>
+                    <xsl:when test="count(doi) > 0">
+                        <xsl:apply-templates select="doi[1]" mode="collection_location_doi"/>
                     </xsl:when>
-                    <xsl:when test="count(str[@name='citation']) > 0">
-                        <xsl:apply-templates select="str[@name='citation'][1]" mode="collection_location_url"/>
+                    <xsl:when test="count(citation) > 0">
+                        <xsl:apply-templates select="citation[1]" mode="collection_location_url"/>
                     </xsl:when>
                 </xsl:choose>
                
-                <xsl:apply-templates select="str[@name='title']" mode="collection_name"/>
+                <xsl:apply-templates select="title" mode="collection_name"/>
                 
                 <xsl:choose>
-                    <xsl:when test="count(arr[@name='function_content']/str) > 0">
-                        <xsl:apply-templates select="arr[@name='function_content']/str" mode="collection_description_full"/>
+                    <xsl:when test="count(function_content/str) > 0">
+                        <xsl:apply-templates select="function_content" mode="collection_description_full"/>
                     </xsl:when>
-                    <xsl:when test="count(str[@name='title']) > 0">
-                        <xsl:apply-templates select="str[@name='title']" mode="collection_description_brief"/>
+                    <xsl:when test="count(title) > 0">
+                        <xsl:apply-templates select="title" mode="collection_description_brief"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:call-template name="collection_description_default"/>
                     </xsl:otherwise>
                 </xsl:choose>
                 
-                <xsl:apply-templates select="arr[@name='rights_status']" mode="collection_rights_access"/>
+                <xsl:apply-templates select="rights_status" mode="collection_rights_access"/>
                 
-                <xsl:apply-templates select="str[@name='creator']" mode="collection_relatedObject_agency"/>
+                <xsl:apply-templates select="responsible_agents.resp_agency_id" mode="collection_relatedObject_agency"/>
+                <xsl:apply-templates select="creating_agents.creating_agency_id" mode="collection_relatedObject_agency"/>
                 
             </xsl:element>
         </registryObject>
     </xsl:template>
     
-   <xsl:template match="str" mode="collection_key">
+   <xsl:template match="citation" mode="collection_key">
         <key>
             <xsl:value-of select="concat($global_acronym, ' ', normalize-space(.))"/>
         </key>
@@ -90,14 +89,14 @@
         <xsl:attribute name="dateModified" select="normalize-space(.)"/>
     </xsl:template>
     
-    <xsl:template match="str" mode="collection_identifier">
+    <xsl:template match="identifier.PROV_ACM.id" mode="collection_identifier">
         <identifier>
             <xsl:attribute name="type" select="custom:getIdentifierType(.)"/>
             <xsl:value-of select="normalize-space(.)"/>
         </identifier>    
     </xsl:template>
     
-   <xsl:template match="str" mode="collection_location_doi">
+    <xsl:template match="doi" mode="collection_location_doi">
         <location>
             <address>
                 <electronic type="url" target="landingPage">
@@ -116,7 +115,7 @@
         </location> 
     </xsl:template>
     
-    <xsl:template match="str" mode="collection_location_url">
+    <xsl:template match="citation" mode="collection_location_url">
         <location>
             <address>
                 <electronic type="url" target="landingPage">
@@ -128,25 +127,12 @@
         </location> 
     </xsl:template>
     
-    <xsl:template match="str" mode="collection_name">
+    <xsl:template match="title" mode="collection_name">
         <name type="primary">
             <namePart>
                 <xsl:value-of select="."/>
             </namePart>
         </name>
-    </xsl:template>
-    
-    <xsl:template match="str" mode="collection_relatedObject_agency">
-        <relatedObject>
-            <key>
-                <xsl:if test="starts-with(series.agency.control.no, 'AGY-')">
-                    <xsl:value-of select="$global_acronym"/>
-                    <xsl:value-of select="'/agencies/'"/>
-                    <xsl:value-of select="substring-after(series.agency.control.no, 'AGY-')"/>
-                </xsl:if>
-            </key>
-            <relation type="hasManager"/>
-        </relatedObject>
     </xsl:template>
     
     <xsl:template match="series.person.related" mode="relatedObject_person">
@@ -162,118 +148,42 @@
         </relatedObject>
     </xsl:template>
     
-    <xsl:template match="Create.Agency" mode="relatedObject_agency">
+    <xsl:template match="responsible_agents.resp_agency_id" mode="collection_relatedObject_agency">
         <relatedObject>
             <key>
-                <xsl:if test="starts-with(series.agency.create.no, 'AGY-')">
-                    <xsl:value-of select="$global_acronym"/>
-                    <xsl:value-of select="'/agencies/'"/>
-                    <xsl:value-of select="substring-after(series.agency.create.no, 'AGY-')"/>
-                </xsl:if>
+                <xsl:value-of select="$global_acronym"/>
+                <xsl:value-of select="'_VA_'"/>
+                <xsl:value-of select="."/>
+            </key>
+            <relation type="hasManager"/>
+        </relatedObject>
+    </xsl:template>
+    
+    <xsl:template match="creating_agents.creating_agency_id" mode="collection_relatedObject_agency">
+        <relatedObject>
+            <key>
+                <xsl:value-of select="$global_acronym"/>
+                <xsl:value-of select="' VA '"/>
+                <xsl:value-of select="."/>
             </key>
             <relation type="hasCollector"/>
         </relatedObject>
     </xsl:template>
     
-    <!--xsl:template match="Part_of" mode="relatedInfo_partOf">
-        <relatedInfo type="{lower-case(part_of.description_level)}">
-            <identifier type="uri">
-                <xsl:value-of select="concat($global_baseURI, $global_path, part_of_reference.lref)"/>
-            </identifier>
-            <relation>
-                <xsl:attribute name="type">
-                    <xsl:choose>
-                        <xsl:when test="lower-case(part_of.description_level) = 'activity'">
-                            <xsl:text>isOutputOf</xsl:text>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:text>isPartOf</xsl:text>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:attribute>
-            </relation>
-            <title>
-                <xsl:value-of select="concat(part_of.title, '[',part_of_reference,'] (', part_of_reference.date.start, ' to ', part_of_reference.date.end, ')')"/>
-            </title>
-        </relatedInfo>
-    </xsl:template-->
-    
-    <xsl:template match="Production_date" mode="collection_date">
-        <dates type="dc.created">
-            <date type="dateFrom" dateFormat="W3CDTF">
-                <xsl:value-of select="production.date.start"/>
-            </date>
-            <date type="dateTo" dateFormat="W3CDTF">
-                <xsl:value-of select="production.date.end"/>
-            </date>
-        </dates>
-    </xsl:template>
-    
-    <xsl:template match="Production_date" mode="collection_coverage_temporal">
-        
-        <coverage>
-            <temporal>
-                <date type="dateFrom" dateFormat="W3CDTF">
-                    <xsl:value-of select="content_start_date"/>
-                </date>
-                <date type="dateTo" dateFormat="W3CDTF">
-                    <xsl:value-of select="content_end_date"/>
-                </date>
-            </temporal>
-        </coverage>
-        
-    </xsl:template>
-    
-    <xsl:template match="Related_object" mode="collection_related_object">
-        <relatedObject>
-            <key>
-                <xsl:if test="starts-with(related_object.reference, 'NRS-')">
-                    <xsl:value-of select="$global_acronym"/>
-                    <xsl:value-of select="'/series/'"/>
-                    <xsl:value-of select="substring-after(related_object.reference, 'NRS-')"></xsl:value-of>
-                </xsl:if>
-            </key>
-            <relation type="hasAssociationWith"/>
-        </relatedObject>
-    </xsl:template>     
- 
-    <xsl:template match="arr" mode="collection_rights_access">
-        <rights>
-            <accessRights type="other">
-                <xsl:text>Series Access Rights: </xsl:text>
-                <xsl:variable name="count" select="count(str)"/>
-                   
-                    <xsl:for-each select="str">
-                        <xsl:value-of select="."/>
-                        <xsl:if test="$count > fn:position()">
-                            <xsl:text>; </xsl:text>
-                        </xsl:if>
-                    </xsl:for-each>
-            </accessRights>
-        </rights>
-        
-    </xsl:template>
-    
-    <xsl:template match="rights" mode="collection_rights">
+    <xsl:template match="rights_status" mode="collection_rights_access">
         <rights>
             <accessRights>
-                <xsl:attribute name="rightsUri">
-                    <xsl:value-of select="@rightsURI"/>
-                </xsl:attribute>
                 <xsl:attribute name="type">
                     <xsl:choose>
-                        <xsl:when test="(lower-case(.) = 'open access')">
+                        <xsl:when test="(lower-case(.) = 'open')">
                             <xsl:text>open</xsl:text>
                         </xsl:when>
-                        <xsl:when test="(lower-case(.) = 'embargoed access')">
+                        <xsl:when test="(lower-case(.) = 'closed')">
                             <xsl:text>restricted</xsl:text>
                         </xsl:when>
-                        <xsl:when test="(lower-case(.) = 'restricted access')">
-                            <xsl:text>restricted</xsl:text>
-                        </xsl:when>
-                        <xsl:when test="(lower-case(.) = 'metadata only access')">
-                            <xsl:text>conditional</xsl:text>
-                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:text>other</xsl:text>
+                        </xsl:otherwise>
                     </xsl:choose>
                 </xsl:attribute>
                 
@@ -289,14 +199,14 @@
         </description>
     </xsl:template>
     
-    <xsl:template match="str" mode="collection_description_full">
+    <xsl:template match="function_content" mode="collection_description_full">
         <description type="full">
             <xsl:value-of select="normalize-space(.)"/>
         </description>
     </xsl:template>
     
     <!-- for when there is no description - use title in brief description -->
-    <xsl:template match="str" mode="collection_description_brief">
+    <xsl:template match="title" mode="collection_description_brief">
         <description type="brief">
             <xsl:value-of select="normalize-space(.)"/>
         </description>
@@ -305,14 +215,7 @@
     <xsl:template match="record" mode="collection_citationInfo_citationMetadata">
         <citationInfo>
             <citationMetadata>
-                <xsl:choose>
-                    <xsl:when test="count(str[@name='doi']) > 0">
-                        <xsl:apply-templates select="str[@name='doi'][1]" mode="collection_identifier"/>
-                    </xsl:when>
-                    <xsl:when test="count(str[@name='citation']) > 0">
-                        <xsl:apply-templates select="str[@name='citation'][1]" mode="collection_identifier"/>
-                    </xsl:when>
-                </xsl:choose>
+                <xsl:apply-templates select="identifier.PROV_ACM.id" mode="collection_identifier"/>
                 
                 <xsl:for-each select="creators/creator/creatorName">
                     <xsl:apply-templates select="." mode="citationMetadata_contributor"/>

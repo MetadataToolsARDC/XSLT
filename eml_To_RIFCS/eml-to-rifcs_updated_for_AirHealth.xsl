@@ -54,8 +54,15 @@
     <xsl:variable name="originatingSource">
       <xsl:choose>
         <xsl:when test="not($serverUrl)">
-          <xsl:value-of select="creator[1]/organizationName" />
-        </xsl:when>
+            <xsl:choose>
+              <xsl:when test="count(creator/organizationName) > 0">
+                <xsl:value-of select="creator/organizationName[1]"/>
+              </xsl:when>
+              <xsl:when test="count(publisher/organizationName) > 0">
+                <xsl:value-of select="publisher/organizationName[1]"/>
+              </xsl:when>
+            </xsl:choose>
+       </xsl:when>
         <xsl:otherwise>
           <xsl:value-of select="$serverUrl" />
         </xsl:otherwise>
@@ -165,7 +172,9 @@
          <xsl:with-param name="relation" select="'isOutputOf'"/>
        </xsl:apply-templates>
         
-       <xsl:apply-templates select="intellectualRights"/>
+        <xsl:apply-templates select="additionalInfo/section"  mode="relatedInfo"/>
+       
+        <xsl:apply-templates select="intellectualRights"/>
         
         <!-- Determined with AirHealth that if no access element, 
           accessRights/@type be set to 'restricted'; otherwise, leave unset
@@ -304,71 +313,45 @@
         </xsl:element>
       </xsl:element>
       
-    <xsl:apply-templates select="funding">
-      <xsl:with-param name="relation" select="'isOutputOf'"/>
-    </xsl:apply-templates>
+    <xsl:apply-templates select="funding/section" mode="relatedInfo"/>
     
     <xsl:apply-templates select="relatedProject"/>
     
   </xsl:template>
   
-  <xsl:template match="funding">
-    <xsl:param name="relation"/>
-    
-    <!-- Related Activity(grant) -->
-    
-    <!-- Process text value if that's all we have -->
-    <xsl:if test="string-length(text()) > 0">
-      <xsl:element name="relatedInfo">
-        <xsl:attribute name="type">activity</xsl:attribute>
-        <xsl:element name="identifier">
-          <xsl:attribute name="type">
-            <xsl:value-of select="'uri'"/>
-          </xsl:attribute>
-          <xsl:value-of select="text()"/>
-        </xsl:element>
-        <xsl:element name="relation">
-          <xsl:attribute name="type">
-            <xsl:text>isFundedBy</xsl:text>
-          </xsl:attribute>
-        </xsl:element>
-        <xsl:element name="title">
-          <xsl:text>Funding Grant</xsl:text>
-        </xsl:element>
-      </xsl:element>
-    </xsl:if>
-    
-    <!-- Process para/value nodes if we have them -->
-    <xsl:apply-templates select="para" mode="relatedInfo_activity">
-      <xsl:with-param name="relation" select="$relation"/>
-    </xsl:apply-templates>
-    
-  </xsl:template>
   
-  <xsl:template match="para" mode="relatedInfo_activity">
-    <xsl:param name="relation"/>
+  <xsl:template match="section" mode="relatedInfo">
     
-    <xsl:for-each select=".[ulink/@url[string-length(.) > 0]]">
-    
-      <!-- Related Activity(grant) -->
       <xsl:element name="relatedInfo">
-        <xsl:attribute name="type">activity</xsl:attribute>
+        <xsl:attribute name="type">
+          <xsl:value-of select="title[1]"/>
+        </xsl:attribute>
         <xsl:element name="identifier">
           <xsl:attribute name="type">
             <xsl:value-of select="'uri'"/>
           </xsl:attribute>
-          <xsl:value-of select="ulink/@url"/>
+          <xsl:value-of select="para[1]/ulink[1]/@url"/>
         </xsl:element>
         <xsl:element name="relation">
           <xsl:attribute name="type">
-            <xsl:value-of select="$relation"/>
+            <xsl:choose>
+              <xsl:when test="lower-case(title) = 'publication'">
+                <xsl:text>isCitedBy</xsl:text>
+              </xsl:when>
+              <xsl:when test="lower-case(title) = 'activity'">
+                <xsl:text>isOutputOf</xsl:text>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:text>hasAssociationWith</xsl:text>
+              </xsl:otherwise>
+            </xsl:choose>
           </xsl:attribute>
         </xsl:element>
         
         <xsl:choose>
-            <xsl:when test="string-length(value[1]) > 0">
+            <xsl:when test="string-length(para[1]/value[1]) > 0">
               <xsl:element name="title">
-                <xsl:value-of select="value[1]"/>
+                <xsl:value-of select="para[1]/value[1]"/>
               </xsl:element>
             </xsl:when>
              <xsl:otherwise>
@@ -376,14 +359,7 @@
              </xsl:otherwise>
         </xsl:choose>
         
-        <xsl:if test="string-length(value[2]) > 0">
-          <xsl:element name="notes">
-            <xsl:value-of select="value[2]"/>
-          </xsl:element>
-        </xsl:if>
-        
       </xsl:element>
-    </xsl:for-each>
     
   </xsl:template>
   
@@ -475,7 +451,7 @@
           </xsl:choose>
         </xsl:attribute>
 
-        <xsl:apply-templates select="userId[@directory='ORCID']"/>
+        <xsl:apply-templates select="userId"/>
         <xsl:apply-templates select="individualName"/>
         <xsl:apply-templates select="positionName"/>
         <xsl:apply-templates select="organizationName"/>
@@ -644,8 +620,27 @@
   
   <xsl:template match="userId">
     <xsl:element name="identifier">
-      <xsl:attribute name="type">orcid</xsl:attribute>
-      <xsl:value-of select="."/>
+      <xsl:attribute name="type">
+        <xsl:choose>
+          <xsl:when test="string-length(@directory) > 0">
+            <xsl:value-of select="@directory"/>
+          </xsl:when>
+          <xsl:when test="starts-with(@directory, 'http')">
+            <xsl:text>uri</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:text>local</xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:attribute>
+      <xsl:choose>
+        <xsl:when test="contains(., 'orcid.org/')">
+          <xsl:value-of select="substring-after(., 'orcid.org/')"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="."/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:element>
   </xsl:template>
   

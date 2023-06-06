@@ -58,18 +58,18 @@
                 
                 <!--xsl:apply-templates select="identifier" mode="party_identifier"/-->
                 
-                <xsl:apply-templates select="@priref[boolean(string-length(.))][1]" mode="party_identifier"/>
+                <xsl:apply-templates select="@priref" mode="party_identifier"/>
                
-                <xsl:apply-templates select="@priref[boolean(string-length(.))][1]" mode="party_location_url"/>
+                <xsl:apply-templates select="@priref" mode="party_location_url"/>
                
-                <xsl:apply-templates select="reference_number[boolean(string-length(.))]" mode="party_name"/>
+                <xsl:apply-templates select="." mode="party_name"/>
                 
                 <xsl:choose>
-                    <xsl:when test="count(biography[boolean(string-length(.))]) > 0">
-                        <xsl:apply-templates select="biography[boolean(string-length(.))]" mode="party_description_full"/>
+                    <xsl:when test="count(biography) > 0">
+                        <xsl:apply-templates select="biography" mode="party_description_full"/>
                     </xsl:when>
-                    <xsl:when test="count(reference_number[boolean(string-length(.))]) > 0">
-                        <xsl:apply-templates select="reference_number[boolean(string-length(.))]" mode="party_description_brief"/>
+                    <xsl:when test="count(reference_number) > 0">
+                        <xsl:apply-templates select="reference_number" mode="party_description_brief"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:call-template name="party_description_default"/>
@@ -126,12 +126,23 @@
         <identifier type="uri">
             <xsl:value-of select="concat($global_baseURI, $global_path_organisations, normalize-space(.))"/>
         </identifier>
+        
+        <identifier type="local">
+            <xsl:value-of select="."/>
+        </identifier>
     </xsl:template>
     
-    <xsl:template match="reference_number" mode="party_name">
+    <xsl:template match="record" mode="party_name">
         <name type="primary">
             <namePart>
-                <xsl:value-of select="normalize-space(.)"/>
+                <xsl:if test="count(reference_number) > 0">
+                    <xsl:value-of select="normalize-space(reference_number[1])"/>
+                </xsl:if>
+                <xsl:if test="count(Name/name) > 0">
+                    <xsl:text> | </xsl:text>
+                    <xsl:value-of select="normalize-space(Name/name[1])"/>
+                </xsl:if>
+                
             </namePart>
         </name>
     </xsl:template>
@@ -144,7 +155,7 @@
     
     <xsl:template match="biography" mode="party_description_full">
         <description type="full">
-            <xsl:value-of select="normalize-space(.)"/>
+            <xsl:value-of select="."/>
         </description>
     </xsl:template>
     

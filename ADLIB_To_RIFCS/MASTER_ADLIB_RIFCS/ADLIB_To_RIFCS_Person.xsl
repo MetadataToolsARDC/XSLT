@@ -58,17 +58,17 @@
                 
                 <!--xsl:apply-templates select="identifier" mode="party_identifier"/-->
                 
-                <xsl:apply-templates select="@priref[boolean(string-length(.))][1]" mode="party_identifier"/>
+                <xsl:apply-templates select="@priref[1]" mode="party_identifier"/>
                 
-                <xsl:apply-templates select="@priref[boolean(string-length(.))][1]" mode="party_location_url"/>
+                <xsl:apply-templates select="@priref[1]" mode="party_location_url"/>
                 
                 <xsl:apply-templates select="." mode="party_name"/>
                 
                 <xsl:apply-templates select="." mode="party_existence_dates"/>
                 
-                <xsl:apply-templates select="biography[boolean(string-length(.))]" mode="party_description_full"/>
+                <xsl:apply-templates select="biography" mode="party_description_full"/>
                 
-                <xsl:apply-templates select="reference_number[boolean(string-length(.))]" mode="party_description_brief"/>
+                <xsl:apply-templates select="reference_number" mode="party_description_brief"/>
                 
                 <xsl:apply-templates select="person_office_held/person_office_held" mode="party_description_notes"/>
                 
