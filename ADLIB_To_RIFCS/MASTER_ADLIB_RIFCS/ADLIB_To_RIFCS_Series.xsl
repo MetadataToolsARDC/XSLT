@@ -238,7 +238,7 @@
                     <xsl:value-of select="substring-after(series.agency.control.no, 'AGY-')"/>
                 </xsl:if>
             </key>
-            <relation type="hasManager"/>
+../../../projects/MuseumsOfHistoryNSW/InReview/FromOAI_EndPoints/oai.archives.nsw.gov.au_oai.ashx_verb=ListRecords%26metadataPrefix=adlib%26set=Series.xml
         </relatedObject>
     </xsl:template>
     
