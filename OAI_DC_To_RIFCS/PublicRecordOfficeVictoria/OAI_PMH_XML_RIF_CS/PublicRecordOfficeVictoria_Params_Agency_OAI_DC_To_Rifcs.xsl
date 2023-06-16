@@ -8,7 +8,6 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-    <xsl:import href="PROV_OAI_DC_To_RIFCS_Series.xsl"/>
     <xsl:import href="PROV_OAI_DC_To_RIFCS_Agency.xsl"/>
     
     <xsl:param name="global_originatingSource" select="'Public Record Office Victoria'"/>
@@ -33,9 +32,6 @@
     
     
     <xsl:template match="record">
-        <xsl:message select="concat('num oai_dc:dc collection element: ', count(metadata/oai_dc:dc[contains(lower-case(dc:type), 'collection')]))"/>
-        <xsl:apply-templates select="metadata/oai_dc:dc[contains(lower-case(dc:type), 'collection')]" mode="collection"/>
-        
         <xsl:message select="concat('num oai_dc:dc party element: ', count(metadata/oai_dc:dc[contains(lower-case(dc:type), 'party')]))"/>
         <xsl:apply-templates select="metadata/oai_dc:dc[contains(lower-case(dc:type), 'party')]" mode="party"/>
     </xsl:template>

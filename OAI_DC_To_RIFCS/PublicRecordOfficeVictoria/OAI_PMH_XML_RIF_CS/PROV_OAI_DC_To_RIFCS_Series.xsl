@@ -52,7 +52,8 @@
                     <xsl:value-of select="ancestor::oai:record/oai:header/oai:datestamp"/>
                 </xsl:attribute>
                 
-                <xsl:apply-templates select="identifier.uri" mode="collection_identifier"/>
+                <!-- Do not map handles yet - until PROV advises to do so -->
+                <xsl:apply-templates select="identifier.uri[not(contains(text(), 'hdl.handle'))]" mode="collection_identifier"/>
                 <xsl:apply-templates select="dcterms:bibliographicCitation" mode="collection_identifier"/>
                 
                 <xsl:choose>
@@ -64,7 +65,7 @@
                     </xsl:when>
                 </xsl:choose>
                 
-                <xsl:apply-templates select="title" mode="collection_name"/>
+                <xsl:apply-templates select="." mode="collection_name"/>
                 
                 <xsl:choose>
                     <xsl:when test="count(description) > 0">
@@ -82,7 +83,7 @@
                 
                 <xsl:apply-templates select="rights.accessRights" mode="collection_rights_access"/>
                 
-                <xsl:apply-templates select="creator" mode="collection_relatedObject_agency"/>
+                <xsl:apply-templates select="creator[starts-with(text(), 'PROV VA')]" mode="collection_relatedObject_agency"/>
                 
                 <xsl:apply-templates select="." mode="collection_citationInfo_citationMetadata"/>
                 
@@ -140,10 +141,10 @@
         </location> 
     </xsl:template>
     
-    <xsl:template match="title" mode="collection_name">
+    <xsl:template match="oai_dc:dc" mode="collection_name">
         <name type="primary">
             <namePart>
-                <xsl:value-of select="."/>
+                <xsl:value-of select="concat(dcterms:bibliographicCitation, ' ', title)"/>
             </namePart>
         </name>
     </xsl:template>
@@ -202,11 +203,9 @@
             <key>
                 <xsl:choose>
                     <xsl:when test="matches(., '[\d]+')">
-                        <xsl:analyze-string select="normalize-space(.)" regex="[\d]+">
+                        <xsl:analyze-string select="normalize-space(.)" regex="[\d]+\s">
                             <xsl:matching-substring>
-                                <xsl:value-of select="$global_acronym"/>
-                                <xsl:value-of select="' VA '"/>
-                                <xsl:value-of select="regex-group(0)"/>
+                                <xsl:value-of select="normalize-space(concat('PROV VA ', regex-group(0)))"/>
                             </xsl:matching-substring>
                         </xsl:analyze-string>
                     </xsl:when>
@@ -223,8 +222,9 @@
         <citationInfo>
             <citationMetadata>
                 <xsl:choose>
-                    <xsl:when test="count(identifier.uri) > 0">
-                        <xsl:apply-templates select="identifier.uri" mode="collection_identifier"/>
+                    <!-- Do not map handles yet - until PROV advises to do so -->
+                    <xsl:when test="count(identifier.uri[not(contains(text(), 'hdl.handle'))]) > 0">
+                        <xsl:apply-templates select="identifier.uri[not(contains(text(), 'hdl.handle'))]" mode="collection_identifier"/>
                     </xsl:when>
                     <xsl:when test="count(dcterms:bibliographicCitation) > 0">
                         <xsl:apply-templates select="dcterms:bibliographicCitation" mode="collection_identifier"/>
@@ -236,7 +236,7 @@
                 </xsl:for-each>
                 
                 <title>
-                    <xsl:value-of select="normalize-space(string-join(title, ' - '))"/>
+                    <xsl:value-of select="concat(dcterms:bibliographicCitation, ' ', title)"/>
                 </title>
                 
                 <!--version></version-->
@@ -244,9 +244,9 @@
                 <publisher>
                     <xsl:value-of select="normalize-space(string-join(publisher, ', '))"/>
                 </publisher>
-                <date type="publicationDate">
+                <!--date type="publicationDate">
                     <xsl:value-of select="publicationYear"/>
-                </date>
+                </date-->
                 <!--url>
                     <xsl:choose>
                         <xsl:when test="count(alternateIdentifier[(@alternateIdentifierType = 'URL') and (string-length() > 0)]) > 0">
@@ -265,8 +265,13 @@
     <xsl:template match="creator" mode="citationMetadata_contributor">
         <contributor>
             <namePart type="family">
-                <xsl:value-of select="."/>
+                <xsl:analyze-string select="." regex="PROV VA [\d]+ ">
+                    <xsl:non-matching-substring>
+                        <xsl:value-of select="."/>
+                    </xsl:non-matching-substring>
+                </xsl:analyze-string>
             </namePart>
+            
         </contributor>
     </xsl:template>
     

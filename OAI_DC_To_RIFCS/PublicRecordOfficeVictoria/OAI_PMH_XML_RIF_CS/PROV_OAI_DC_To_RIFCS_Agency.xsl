@@ -38,7 +38,12 @@
             <party>
                 <xsl:attribute name="type" select="'group'"/>
                 
-                <xsl:apply-templates select="identifier.uri" mode="party_identifier"/>
+                <xsl:attribute name="dateModified">
+                    <xsl:value-of select="ancestor::oai:record/oai:header/oai:datestamp"/>
+                </xsl:attribute>
+                
+                <!-- Do not map handles yet - until PROV advises to do so -->
+                <xsl:apply-templates select="identifier.uri[not(contains(text(), 'hdl.handle'))]" mode="party_identifier"/>
                 <xsl:apply-templates select="dcterms:bibliographicCitation" mode="party_identifier"/>
                 
                 <xsl:choose>
