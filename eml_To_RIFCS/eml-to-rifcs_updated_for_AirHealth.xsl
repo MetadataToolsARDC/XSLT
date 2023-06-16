@@ -206,6 +206,8 @@
         <!-- If suggested citation, use it -->
         <xsl:element name="citationInfo">
           
+          <xsl:message select="concat('Result: ', count(following-sibling::additionalMetadata[(metadata/citeAs[string-length(text()) > 0]) and (describes = $datasetId)]) > 0)"></xsl:message>
+          
           <xsl:choose>
           
           
@@ -855,12 +857,12 @@
     <xsl:variable name="typeGcmd" select="'gcmd'"/>
     <xsl:apply-templates select="keyword">
       <xsl:with-param name="keywordThesaurus">
-        <xsl:variable name="subjectType" select="translate(normalize-space(./keywordThesaurus), $uppercase, $smallcase)" />
+        <xsl:variable name="subjectType" select="normalize-space(lower-case(keywordThesaurus))" />
         <xsl:choose>
           <xsl:when test="contains($subjectType, $typeAnzsrc)">
-            <xsl:value-of select="$typeAnzsrc" />
+            <xsl:value-of select="$typeAnzsrc"/>
           </xsl:when>
-          <xsl:when test="contains($subjectType, $typeGcmd)">
+         <xsl:when test="contains($subjectType, $typeGcmd)">
             <xsl:value-of select="$typeGcmd" />
           </xsl:when>
 <!--
@@ -877,12 +879,26 @@
   </xsl:template>
   
   <xsl:template match="keyword">
-    <xsl:param name="keywordThesaurus">local</xsl:param>
+    <xsl:param name="keywordThesaurus"/>
     <xsl:element name="subject">
       <xsl:attribute name="type">
         <xsl:value-of select="$keywordThesaurus" />
       </xsl:attribute>
-      <xsl:value-of select="." />
+      <xsl:if test="starts-with(., 'http')">
+          <xsl:attribute name="termIdentifier">
+            <xsl:value-of select="." />
+          </xsl:attribute>
+      </xsl:if>
+      <xsl:choose>
+        <xsl:when test="starts-with(., 'http')">
+          <xsl:variable name="numChars" select="count(tokenize(., '/'))" as="xs:integer"/>
+          <xsl:value-of select="tokenize(., '/')[$numChars]"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="." />
+        </xsl:otherwise>
+      </xsl:choose>
+      
     </xsl:element>
   </xsl:template>
 
