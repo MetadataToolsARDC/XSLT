@@ -14,12 +14,12 @@
     <xsl:strip-space elements="*"/>   
     
     <xsl:param name="global_originatingSource" select="'Crossref'"/>
-    <xsl:param name="global_group" select="'Crossref Grants'"/>
+    <xsl:param name="global_group" select="'Australian Research Data Commons'"/>
     <xsl:param name="global_acronym" select="'Crossref'"/>
     <xsl:param name="global_publisherName" select="''"/>
     <xsl:param name="global_rightsStatement" select="''"/>
     <xsl:param name="global_project_identifier_strings" select="'raid'" as="xs:string*"/>
-    <xsl:param name="global_schemeFilter" select="'National Data Assets'"/>
+    <xsl:param name="global_schemeFilter" select="'(Public Sector to Research Sector)|(National Data Assets)'" as="xs:string"/>
     <!--xsl:param name="global_schemeFilter" select="'Public Sector to Research Sector'"/-->
     <!--xsl:param name="global_baseURI" select="''"/-->
     <!--xsl:param name="global_path" select="''"/-->
@@ -28,11 +28,12 @@
 
     <xsl:template match="/">
         <xsl:message select="'Crossref_Grant_0.1.1_To_Rifcs'"/>
-        <xsl:message select="concat('Creating ', count(JSON/message/items[contains(project/array/funding/array/scheme, $global_schemeFilter)]), ' Activity records where scheme contains :', $global_schemeFilter)"/>
-        
-        <xsl:apply-templates select="JSON/message/items[contains(project/array/funding/array/scheme, $global_schemeFilter)]" mode="Crossref_0.1.1_to_rifcs_collection">
-            <xsl:with-param name="originatingSource" select="$global_originatingSource"/>
-        </xsl:apply-templates>
+        <xsl:message select="concat('Creating ', count(JSON/message/items[matches(project/array/funding/array/scheme, $global_schemeFilter)]), ' Activity records where scheme contains :', $global_schemeFilter)"/>
+        <registryObjects>
+            <xsl:apply-templates select="JSON/message/items[matches(project/array/funding/array/scheme, $global_schemeFilter)]" mode="Crossref_0.1.1_to_rifcs_collection">
+                <xsl:with-param name="originatingSource" select="$global_originatingSource"/>
+            </xsl:apply-templates>  
+        </registryObjects>
         
     </xsl:template>
     
@@ -68,7 +69,7 @@
     <xsl:template match="items" mode="Crossref_0.1.1_to_rifcs_collection">
         <xsl:param name="originatingSource" as="xs:string*"/>
         <registryObject>
-            <xsl:attribute name="group" select="concat($global_group, ' - ', $global_schemeFilter)"/>
+            <xsl:attribute name="group" select="$global_group"/>
             
             <key>
                 <xsl:value-of select="concat($global_acronym, '/', DOI[1])"/>
@@ -407,10 +408,7 @@
            </title>
         </relatedInfo>
         
-        <xsl:apply-templates select="affiliation/array" mode="activity_relatedInfo_party_affiliation"/>
-        
-        
-        
+        <xsl:apply-templates select="affiliation/array[string-length(id/array/id) > 0]" mode="activity_relatedInfo_party_affiliation"/>
     </xsl:template>
     
     <xsl:template match="affiliation/array" mode="activity_relatedInfo_party_affiliation">
