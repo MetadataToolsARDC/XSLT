@@ -127,9 +127,9 @@
             <xsl:value-of select="concat($global_baseURI, $global_path_organisations, normalize-space(.))"/>
         </identifier>
         
-        <identifier type="local">
+        <!--identifier type="local">
             <xsl:value-of select="."/>
-        </identifier>
+        </identifier-->
     </xsl:template>
     
     <xsl:template match="record" mode="party_name">

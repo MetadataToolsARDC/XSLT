@@ -125,7 +125,7 @@
                     </xsl:otherwise>
                 </xsl:choose>
 
-                <xsl:apply-templates select="Access_Directions" mode="collection_rights_access"/>
+                <!--xsl:apply-templates select="Access_Directions" mode="collection_rights_access"/-->
                 <xsl:apply-templates select="item_control_status" mode="collection_rights_access"/>
 
                 <xsl:apply-templates select="control.agency" mode="relatedObject_agency"/>
