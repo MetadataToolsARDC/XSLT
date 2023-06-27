@@ -108,7 +108,9 @@
                 
                 <xsl:apply-templates select="." mode="activity_name"/>
                
-                <xsl:apply-templates select="project/array/funding/array/scheme" mode="activity_description_brief"/>
+                <xsl:apply-templates select="project/array/funding/array/scheme" mode="activity_description_scheme"/>
+               
+               <xsl:apply-templates select="project/array/award-amount" mode="activity_description_amount"/>
                 
                 <xsl:apply-templates select="project/array/funding/array/funder" mode="activity_relatedInfo_funder"/>
                
@@ -117,9 +119,9 @@
                    
                <!--xsl:apply-templates select="created" mode="activity_dates"/-->
                
-               <xsl:apply-templates select="created" mode="activity_dates_coverage"/>
+               <xsl:apply-templates select="created" mode="activity_dates_existenceDates"/>
                
-               <xsl:apply-templates select="project/array/project-description/array/description" mode="activity_description_full"/>
+               <xsl:apply-templates select="project/array/project-description/array/description" mode="activity_description_brief"/>
                
                <!--
                <xsl:apply-templates select="relatedIdentifiers/relatedIdentifier" mode="activity_relatedInfo"/>
@@ -418,7 +420,7 @@
              <identifier type="{id/array/id-type}">
                  <xsl:value-of select="normalize-space(id/array/id)"/>
              </identifier>
-             <relation type="hasPrincipalInvestigator"/>
+             <relation type="isManagedBy"/>
              <title>
                  <xsl:value-of select="name"/>
              </title>
@@ -485,12 +487,14 @@
                 <xsl:value-of select="name"/> 
             </title>
             
-            <!-- Currently using vocab term 'isEnrichedBy' to relate this Collection to the (funder) Party, 
+            <!-- Was using vocab term 'isEnrichedBy' to relate this Collection to the (funder) Party, 
                  noting that the vocabs documentation specifies that 'isFundedBy' ought only be for where:
                 - a Party is funded by a Party
                 - a Party is funded by a (program) Activity
-                - an Activity is funded by a (program) Activity -->
-            <relation type="isEnrichedBy"/>
+                - an Activity is funded by a (program) Activity 
+            
+                Now using newly proposed "isInvestedBy" -->
+            <relation type="isInvestedBy"/>
         </relatedInfo>
     </xsl:template>
     
@@ -502,14 +506,12 @@
         </dates>
     </xsl:template>
     
-    <xsl:template match="created" mode="activity_dates_coverage">
-        <coverage>
-            <temporal>
-                <date type="dateFrom" dateFormat="W3CDTF">
-                    <xsl:value-of select="date-time"/>
-                </date>
-            </temporal>
-        </coverage>
+    <xsl:template match="created" mode="activity_dates_existenceDates">
+        <existenceDates>
+            <startDate dateFormat="W3CDTF">
+                <xsl:value-of select="date-time"/>
+            </startDate>
+        </existenceDates>
     </xsl:template>
 
     
@@ -555,8 +557,8 @@
         </description>
     </xsl:template>
     
-    <xsl:template match="description" mode="activity_description_full">
-        <description type="full">
+    <xsl:template match="description" mode="activity_description_brief">
+        <description type="brief">
             <xsl:value-of select="normalize-space(.)"/>
         </description>
     </xsl:template>
@@ -568,9 +570,15 @@
         </description>
     </xsl:template>
     
-    <xsl:template match="scheme" mode="activity_description_brief">
-        <description type="brief">
-            <xsl:value-of select="concat('Scheme: ', normalize-space(.))"/>
+    <xsl:template match="scheme" mode="activity_description_scheme">
+        <description type="fundingScheme">
+            <xsl:value-of select="normalize-space(.)"/>
+        </description>
+    </xsl:template>
+    
+    <xsl:template match="award-amount" mode="activity_description_amount">
+        <description type="fundingAmount">
+            <xsl:value-of select="concat(amount, ' ', currency)"/>
         </description>
     </xsl:template>
     
