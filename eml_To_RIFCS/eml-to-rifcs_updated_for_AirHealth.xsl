@@ -101,7 +101,7 @@
     <xsl:element name="registryObject">
       <xsl:attribute name="group"><xsl:value-of select="$groupName" /></xsl:attribute>
       
-      <xsl:element name="key"><xsl:value-of select="concat($groupName, '/Collection/', $docid)" /></xsl:element>
+      <xsl:element name="key"><xsl:value-of select="concat($groupName, '/Collection/', @id)" /></xsl:element>
       
       <xsl:element name="originatingSource">
         <xsl:value-of select="$originatingSource" />
