@@ -67,6 +67,16 @@
                 
                 <xsl:apply-templates select="." mode="collection_name"/>
                 
+                <xsl:apply-templates select="subject" mode="collection_subject"/>
+                
+                <!-- Default subject required by PROV -->
+                <subject type="anzsrc-for" termIdentifier="http://purl.org/au-research/vocabulary/anzsrc-for/2008/2103">2103</subject>
+                
+                <!-- Default coverage (Victoria, Australia) required by PROV -->
+                <coverage>
+                    <spatial type="kmlPolyCoords">141.000000,-34.000000 142.919336,-34.145604 144.582129,-35.659230 147.742627,-35.873175 150.024219,-37.529041 150.200000,-39.200000 141.000000,-39.200000 141.000000,-34.000000 141.000000,-34.000000</spatial>
+                </coverage>
+                
                 <xsl:choose>
                     <xsl:when test="count(description) > 0">
                         <xsl:apply-templates select="description" mode="collection_description_full"/>
@@ -149,11 +159,19 @@
         </name>
     </xsl:template>
     
+    <xsl:template match="subject" mode="collection_subject">
+        <subject type="local">
+            <xsl:value-of select="normalize-space(.)"/>
+        </subject>
+    </xsl:template>
+    
     <xsl:template match="description" mode="collection_description_full">
         <description type="full">
             <xsl:value-of select="normalize-space(.)"/>
         </description>
     </xsl:template>
+    
+    
     
     <!-- for when there is no description - use title in brief description -->
     <xsl:template match="title" mode="collection_description_brief">
