@@ -112,6 +112,11 @@
 
                 <xsl:apply-templates select="." mode="collection_name"/>
 
+                <xsl:apply-templates select="subject" mode="collection_subject"/>
+                
+                <!-- Default subject required  -->
+                <subject type="anzsrc-for" termIdentifier="http://purl.org/au-research/vocabulary/anzsrc-for/2008/2103">2103</subject>
+                
                 <xsl:choose>
                     <xsl:when test="count(Description/description) > 0">
                         <xsl:apply-templates select="Description/description"

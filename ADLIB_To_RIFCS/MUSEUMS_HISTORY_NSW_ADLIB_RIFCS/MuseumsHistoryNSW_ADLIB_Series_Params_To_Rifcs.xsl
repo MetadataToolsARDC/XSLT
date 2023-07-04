@@ -7,10 +7,10 @@
 
     <xsl:import href="ADLIB_To_RIFCS_Series.xsl"/>
     
-    <xsl:param name="global_originatingSource" select="'Museums of History NSW'"/>
-    <xsl:param name="global_group" select="'Museums of History NSW'"/>
+    <xsl:param name="global_originatingSource" select="'NSW State Archives Collection'"/>
+    <xsl:param name="global_group" select="'NSW State Archives Collection'"/>
     <xsl:param name="global_acronym" select="'http://search.records.nsw.gov.au'"/>
-    <xsl:param name="global_publisherName" select="'Museums of History NSW'"/>
+    <xsl:param name="global_publisherName" select="'NSW State Archives Collection'"/>
     <xsl:param name="global_baseURI" select="'https://search.records.nsw.gov.au'"/>
     <xsl:param name="global_path" select="'/permalink/f/1ednqkf/ADLIB_RNSW'"/>
     <xsl:param name="global_path_organisations" select="'/permalink/f/1e5kcq1/ORGANISATIONS'"/>
