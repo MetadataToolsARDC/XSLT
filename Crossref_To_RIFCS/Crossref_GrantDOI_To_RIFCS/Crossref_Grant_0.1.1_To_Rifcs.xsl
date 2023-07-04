@@ -98,9 +98,12 @@
             
            <xsl:element name="{$class}">
                 
-            <xsl:attribute name="type">
-                <xsl:apply-templates select="." mode="resourceSubType"/>
-            </xsl:attribute>
+                <xsl:attribute name="type">
+                    <xsl:apply-templates select="." mode="resourceSubType"/>
+                </xsl:attribute>
+               
+               <!--xsl:apply-templates select="created" mode="activity_dates"/-->
+               
              
                 <xsl:apply-templates select="DOI" mode="activity_identifier_doi"/>  
                 
@@ -117,59 +120,14 @@
                
                <xsl:apply-templates select="project/array/lead-investigator/array[string-length(ORCID) > 0]" mode="activity_relatedInfo_party_orcid"/>
                    
-               <!--xsl:apply-templates select="created" mode="activity_dates"/-->
-               
-               <xsl:apply-templates select="created" mode="activity_dates_existenceDates"/>
+               <xsl:apply-templates select="award-start-date" mode="activity_dates_existenceDates"/>
                
                <xsl:apply-templates select="project/array/project-description/array/description" mode="activity_description_brief"/>
-               
-               <!--
-               <xsl:apply-templates select="relatedIdentifiers/relatedIdentifier" mode="activity_relatedInfo"/>
-               
-               <xsl:apply-templates select="relatedItems/relatedItem" mode="activity_relatedInfo"/>
-               
-               
-               <xsl:apply-templates select="creators/creator[boolean(string-length(nameIdentifier))]" mode="activity_relatedInfo"/>
-               <xsl:apply-templates select="contributors/contributor[boolean(string-length(nameIdentifier))]" mode="activity_relatedInfo"/>
-               
-               <xsl:apply-templates select="fundingReferences/fundingReference[boolean(string-length(awardNumber)) or boolean(string-length(awardNumber/@awardURI))]"  mode="activity_relatedInfo_grant"/>
-               
-               <xsl:apply-templates select="fundingReferences/fundingReference[boolean(string-length(awardTitle)) and (not(boolean(string-length(awardNumber))) and not(boolean(string-length(awardNumber/@awardURI))))]"  mode="activity_relatedObject_grant"/>
-               
-                <xsl:apply-templates select="subjects/subject" mode="activity_subject"/>
-                
-                <xsl:apply-templates select="geoLocations/geoLocation/geoLocationPlace[boolean(string-length(.))]" mode="activity_spatial_coverage"/>
-                
-                
-                <xsl:apply-templates select="rightsList/rights[boolean(string-length(.))]" mode="activity_rights"/>
-                
-                <xsl:call-template name="rightsStatement"/>
-                
-                <xsl:choose>
-                    <xsl:when test="count(descriptions/description[boolean(string-length(.))]) > 0">
-                        <xsl:apply-templates select="descriptions/description[boolean(string-length(.))]" mode="activity_description_full"/>
-                    </xsl:when>
-                    <xsl:when test="count(titles/title[boolean(string-length(.))]) > 0">
-                        <xsl:apply-templates select="titles/title[boolean(string-length(.))]" mode="activity_description_brief"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:call-template name="activity_description_default"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-               
-               
-                <xsl:apply-templates select="dates/date[(@dateType='Collected') and (boolean(string-length(.)))]" mode="activity_dates_coverage"/>  
-                
-                
-                -->
+              
             </xsl:element>
         </registryObject>
     </xsl:template>
     
-    
-     <xsl:template match="@todo" mode="activity_date_modified">
-        <xsl:attribute name="dateModified" select="normalize-space(.)"/>
-    </xsl:template>
     
     <xsl:template match="identifier" mode="activity_extract_DOI_identifier">
         <!-- override to extract identifier from full citation, custom per provider -->
@@ -506,10 +464,10 @@
         </dates>
     </xsl:template>
     
-    <xsl:template match="created" mode="activity_dates_existenceDates">
+    <xsl:template match="award-start-date" mode="activity_dates_existenceDates">
         <existenceDates>
             <startDate dateFormat="W3CDTF">
-                <xsl:value-of select="date-time"/>
+                <xsl:value-of select="@start-date"/>
             </startDate>
         </existenceDates>
     </xsl:template>
