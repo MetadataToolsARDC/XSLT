@@ -1527,17 +1527,14 @@
         </registryObject>
     </xsl:template>
         
-    <!-- Party Registry Object (Individuals (person) and Organisations (group)) -->
+    <!-- Party Registry Object for Organisations (group) -->
     <xsl:template name="partyGroup">
         <xsl:param name="originatingSource"/>
         
         <registryObject group="{$global_group}">
             
-            <!--
-            <xsl:message select="concat('Creating key: ', translate(normalize-space(current-grouping-key()),' ',''))"/>
-            <xsl:message select="concat('Individual name: ', gmd:individualName)"/>
-            <xsl:message select="concat('Organisation name: ', gmd:organisationName)"/>
-            -->
+            <xsl:message select="concat('Creating key: ', translate(normalize-space(current-grouping-key()),' ',''), '; Count individual name: ', count(current-group()/gmd:individualName), '; Count group members: ', count(current-group()), '; Count group members with no individual name: ', count(current-group()[count(gmd:individualName) = 0]))"/>
+            
             <key>
                 <xsl:value-of select="concat($global_acronym, '/', translate(normalize-space(current-grouping-key()),' ',''))"/>
             </key>
@@ -1553,14 +1550,18 @@
                     </namePart>
                 </name>
                 
-              <!-- If we are dealing with an Organisation with no individual name, phone and email must pertain to this organisation -->
-                <xsl:variable name="individualName" select="normalize-space(gmd:individualName)"/>
-                <xsl:if test="string-length($individualName) = 0">
-                    <xsl:call-template name="onlineResource"/>
-                    <xsl:call-template name="telephone"/>
-                    <xsl:call-template name="facsimile"/>
-                    <xsl:call-template name="email"/>
-                </xsl:if>
+                <!--Create subgroup of ResponsibleParties that don't have an individualName
+                    because we can presume that Contact only pertains to the Organisation when there is no invidualName 
+                    (otherwise it pertains to the Individual) -->
+                <xsl:for-each-group 
+                    select="current-group()[count(gmd:individualName) = 0]"
+                    group-by="gmd:organisationName">
+                        <xsl:call-template name="onlineResource"/>
+                        <xsl:call-template name="telephone"/>
+                        <xsl:call-template name="facsimile"/>
+                        <xsl:call-template name="email"/>
+                </xsl:for-each-group>
+   
                 
                 <!-- We are dealing with an organisation, so always include the address -->
                 <xsl:call-template name="physicalAddress"/>
