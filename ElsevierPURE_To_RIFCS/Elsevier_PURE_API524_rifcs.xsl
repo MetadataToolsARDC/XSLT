@@ -699,8 +699,6 @@
         </xsl:for-each>
     </xsl:template>
     
-    <subject type="anzsrc-for" termIdentifier="https://linked.data.gov.au/def/anzsrc-for/2020/370509" xml:lang="en">370509</subject>
-
     <xsl:template match="description" mode="collection_description_full">
         <description type="full">
             <xsl:value-of select="value/text[@locale='en_GB']/text()"/>
