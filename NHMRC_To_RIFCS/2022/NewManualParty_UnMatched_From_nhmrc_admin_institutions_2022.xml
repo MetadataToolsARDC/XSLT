@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects http://services.ands.org.au/documentation/rifcs/schema/registryObjects.xsd">
+    <registryObject group="Australian Research Institutions">
+        <key>ands.org.au-institution-0218</key>
+        <originatingSource>ands.org.au</originatingSource>
+        <party type="group">
+            <identifier type="AU-ANL:PEAU">http://nla.gov.au/nla.party-485593</identifier>
+            <name type="primary">
+                <namePart>Family Planning NSW</namePart>
+            </name>
+            <location>
+                <address>
+                    <electronic type="url">
+                        <value>https://www.fpnsw.org.au</value>
+                    </electronic>
+                </address>
+            </location>
+        </party>
+    </registryObject>
+    <registryObject group="Australian Research Institutions">
+        <key>ands.org.au-institution-0219</key>
+        <originatingSource>ands.org.au</originatingSource>
+        <party type="group">
+            <identifier type="AU-ANL:PEAU">http://nla.gov.au/nla.party-1310131</identifier>
+            <name type="primary">
+                <namePart>Cabrini Health</namePart>
+            </name>
+            <location>
+                <address>
+                    <electronic type="url">
+                        <value>https://www.cabrini.com.au/</value>
+                    </electronic>
+                </address>
+            </location>
+        </party>
+    </registryObject>
+    <registryObject group="Australian Research Institutions">
+        <key>ands.org.au-institution-0220</key>
+        <originatingSource>ands.org.au</originatingSource>
+        <party type="group">
+            <identifier type="AU-ANL:PEAU">http://nla.gov.au/nla.party-623462</identifier>
+            <name type="primary">
+                <namePart>QIMR Berghofer Medical Research Institute</namePart>
+            </name>
+            <location>
+                <address>
+                    <electronic type="url">
+                        <value>https://www.qimrberghofer.edu.au</value>
+                    </electronic>
+                </address>
+            </location>
+        </party>
+    </registryObject>
+    <registryObject group="Australian Research Institutions">
+        <key>ands.org.au-institution-0221</key>
+        <originatingSource>ands.org.au</originatingSource>
+        <party type="group">
+            <identifier type="AU-ANL:PEAU"></identifier>
+            <name type="primary">
+                <namePart>South Australian Health and Medical Research Institute</namePart>
+            </name>
+            <location>
+                <address>
+                    <electronic type="url">
+                        <value>https://sahmri.org.au</value>
+                    </electronic>
+                </address>
+            </location>
+        </party>
+    </registryObject>
+    <registryObject group="Australian Research Institutions">
+        <key>ands.org.au-institution-0222</key>
+        <originatingSource>ands.org.au</originatingSource>
+        <party type="group">
+            <identifier type="AU-ANL:PEAU">http://nla.gov.au/nla.party-1602497</identifier>
+            <name type="primary">
+                <namePart>Florey Institute of Neuroscience and Mental Health</namePart>
+            </name>
+            <location>
+                <address>
+                    <electronic type="url">
+                        <value>https://florey.edu.au</value>
+                    </electronic>
+                </address>
+            </location>
+        </party>
+    </registryObject>
+    <registryObject group="Australian Research Institutions">
+        <key>ands.org.au-institution-0223</key>
+        <originatingSource>ands.org.au</originatingSource>
+        <party type="group">
+            <identifier type="AU-ANL:PEAU">todo</identifier>
+            <name type="primary">
+                <namePart>VCS Foundation Limited</namePart>
+            </name>
+            <location>
+                <address>
+                    <electronic type="url">
+                        <value>vcs.org.au</value>
+                    </electronic>
+                </address>
+            </location>
+        </party>
+    </registryObject>
+    <registryObject group="Australian Research Institutions">
+        <key>ands.org.au-institution-0224</key>
+        <originatingSource>ands.org.au</originatingSource>
+        <party type="group">
+            <identifier type="AU-ANL:PEAU">http://nla.gov.au/nla.party-783616</identifier>
+            <name type="primary">
+                <namePart>The Sax Institute</namePart>
+            </name>
+            <location>
+                <address>
+                    <electronic type="url">
+                        <value>https://www.saxinstitute.org.au</value>
+                    </electronic>
+                </address>
+            </location>
+        </party>
+    </registryObject>
+    <registryObject group="Australian Research Institutions">
+        <key>ands.org.au-institution-0225</key>
+        <originatingSource>ands.org.au</originatingSource>
+        <party type="group">
+            <identifier type="AU-ANL:PEAU">http://nla.gov.au/nla.party-1870292</identifier>
+            <name type="primary">
+                <namePart>The George Institute for Global Health</namePart>
+            </name>
+            <location>
+                <address>
+                    <electronic type="url">
+                        <value>https://www.georgeinstitute.org.au/</value>
+                    </electronic>
+                </address>
+            </location>
+        </party>
+    </registryObject>
+   <registryObject group="Australian Research Institutions">
+        <key>ands.org.au-institution-0226</key>
+        <originatingSource>ands.org.au</originatingSource>
+        <party type="group">
+            <identifier type="AU-ANL:PEAU"></identifier>
+            <name type="primary">
+                <namePart>ANZAC Research Institute</namePart>
+            </name>
+            <location>
+                <address>
+                    <electronic type="url">
+                        <value>https://anzac.edu.au/</value>
+                    </electronic>
+                </address>
+            </location>
+        </party>
+    </registryObject>
+    <registryObject group="Australian Research Institutions">
+        <key>ands.org.au-institution-0227</key>
+        <originatingSource>ands.org.au</originatingSource>
+        <party type="group">
+            <identifier type="AU-ANL:PEAU"></identifier>
+            <name type="primary">
+                <namePart>Melanoma Institute Australia</namePart>
+            </name>
+            <location>
+                <address>
+                    <electronic type="url">
+                        <value>https://melanoma.org.au/</value>
+                    </electronic>
+                </address>
+            </location>
+        </party>
+    </registryObject>
+   <registryObject group="Australian Research Institutions">
+        <key>ands.org.au-institution-0228</key>
+        <originatingSource>ands.org.au</originatingSource>
+        <party type="group">
+            <identifier type="AU-ANL:PEAU">http://nla.gov.au/nla.party-1307127</identifier>
+            <name type="primary">
+                <namePart>Cancer Council VIC</namePart>
+            </name>
+            <location>
+                <address>
+                    <electronic type="url">
+                        <value>https://www.cancervic.org.au</value>
+                    </electronic>
+                </address>
+            </location>
+        </party>
+    </registryObject>
+    <registryObject group="Australian Research Institutions">
+        <key>ands.org.au-institution-0229</key>
+        <originatingSource>ands.org.au</originatingSource>
+        <party type="group">
+            <identifier type="AU-ANL:PEAU">http://nla.gov.au/nla.party-616242</identifier>
+            <name type="primary">
+                <namePart>National Acoustic Laboratories</namePart>
+            </name>
+            <location>
+                <address>
+                    <electronic type="url">
+                        <value>https://www.nal.gov.au</value>
+                    </electronic>
+                </address>
+            </location>
+        </party>
+    </registryObject>
+</registryObjects>
