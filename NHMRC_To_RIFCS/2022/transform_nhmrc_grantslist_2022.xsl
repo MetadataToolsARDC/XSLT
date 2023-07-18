@@ -10,7 +10,7 @@
 
     <xsl:output method="xml"/>
     <xsl:variable name="AdminInstitutions" select="document('nhmrc_admin_institutions_manual_update_nla_id_2022.xml')"/>
-    <xsl:variable name="grantpubs" select="document('nhmrc_grantpubs_2022.xml')"/> <!-- I don't have one of these until I update the API call in trove_harvest_2022_requires_API_update.xsl -->
+    <xsl:variable name="grantpubs" select="document('nhmrc_grantpubs_2022.xml')"/> <!-- I don't have one of these until I update the API call in trove_harvest_2022.xsl -->
 
     <xsl:template match="/root">
         <xsl:text>&#xA;</xsl:text>
