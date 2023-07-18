@@ -1,625 +1,423 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd">
+<registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd">
     <registryObject group="National Health and Medical Research Council">
-        <key>http://purl.org/au-research/grants/nhmrc/2022203</key>
-        <originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
-        <activity type="grant">
-            <identifier type="purl">http://purl.org/au-research/grants/nhmrc/2022203</identifier>
-            <identifier type="nhmrc">2022203</identifier>
-            <name type="primary">
-                <namePart>Exploring biomarkers, therapeutic targets, and modifiable risk factors for non-Alzheimer's dementia</namePart>
-            </name>
-            <name type="alternative">
-                <namePart>International Collaborations</namePart>
-            </name>
-            <relatedObject>
-                <key>http://dx.doi.org/10.13039/501100000925</key>
-                <relation type="isFundedBy"/>
-            </relatedObject>
-            <relatedObject>
-                <key>http://nla.gov.au/nla.party-561291</key>
-                <relation type="isManagedBy"/>
-            </relatedObject>
-            <subject type="local">Clinical Medicine and Science Research</subject>
-            <subject type="anzsrc-for">biomedical and clinical sciences | neurosciences | cellular nervous system | </subject>
-            <subject type="local">dementia </subject>
-            <subject type="local">biomarkers </subject>
-            <subject type="local">therapeutic target </subject>
-            <subject type="local">lifestyle factors </subject>
-            <subject type="local">risk management </subject>
-            <description type="full">There are various form of dementia, e.g. Alzheimer's disease (AD), vascular dementia (VaD), and frontotemporal dementia (FTD). AD has been a research focus in the last decade as it is the major form of dementia, while there is far less research progress in VaD and FTD. Our project aims to improve understanding on VaD and FTD, focusing on accurate diagnosis, potential therapeutic targets and modifiable risk factors, with the ultimate goal to improve quality of life of people living with dementia.</description>
-            <description type="fundingAmount">$499,806.80.00</description>
-        </activity>
-    </registryObject>
+<key>http://purl.org/au-research/grants/nhmrc/2022203</key>
+<originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
+<activity type="grant">
+<identifier type="purl">http://purl.org/au-research/grants/nhmrc/2022203</identifier>
+<identifier type="nhmrc">2022203</identifier>
+<name type="primary"><namePart>Exploring biomarkers, therapeutic targets, and modifiable risk factors for non-Alzheimer's dementia</namePart></name>
+<name type="alternative"><namePart>International Collaborations</namePart></name>
+<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
+<relatedObject><key>http://nla.gov.au/nla.party-561291</key><relation type="isManagedBy"/></relatedObject>
+<subject type="local">Clinical Medicine and Science Research</subject><subject type="anzsrc-for">biomedical and clinical sciences | neurosciences | cellular nervous system | </subject>
+<subject type="local">dementia </subject>
+<subject type="local">biomarkers </subject>
+<subject type="local">therapeutic target </subject>
+<subject type="local">lifestyle factors </subject>
+<subject type="local">risk management </subject>
+<description type="Chief Investigator">Dr Yijun Pan</description>
+<description type="full">There are various form of dementia, e.g. Alzheimer's disease (AD), vascular dementia (VaD), and frontotemporal dementia (FTD). AD has been a research focus in the last decade as it is the major form of dementia, while there is far less research progress in VaD and FTD. Our project aims to improve understanding on VaD and FTD, focusing on accurate diagnosis, potential therapeutic targets and modifiable risk factors, with the ultimate goal to improve quality of life of people living with dementia.</description>
+<description type="fundingAmount">$499,806.80.00</description>
+</activity>
+</registryObject>
     <registryObject group="National Health and Medical Research Council">
-        <key>http://purl.org/au-research/grants/nhmrc/2022535</key>
-        <originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
-        <activity type="grant">
-            <identifier type="purl">http://purl.org/au-research/grants/nhmrc/2022535</identifier>
-            <identifier type="nhmrc">2022535</identifier>
-            <name type="primary">
-                <namePart>Novel therapeutic strategies to intervene in tau-associated neurodegeneration by modulating tau clearance and neuroinflammation</namePart>
-            </name>
-            <name type="alternative">
-                <namePart>International Collaborations</namePart>
-            </name>
-            <relatedObject>
-                <key>http://dx.doi.org/10.13039/501100000925</key>
-                <relation type="isFundedBy"/>
-            </relatedObject>
-            <relatedObject>
-                <key>http://nla.gov.au/nla.party-561291</key>
-                <relation type="isManagedBy"/>
-            </relatedObject>
-            <subject type="local">Basic Science Research</subject>
-            <subject type="anzsrc-for">biomedical and clinical sciences | immunology | innate immunity | biomedical and clinical sciences | neurosciences | central nervous system  | </subject>
-            <subject type="local">neuroinflammation </subject>
-            <subject type="local">dementia </subject>
-            <subject type="local">frontotemporal dementia </subject>
-            <subject type="local">neurodegeneration </subject>
-            <subject type="local">alzheimer disease </subject>
-            <description type="full">Research has shown that abnormal build-up of tau protein triggers neuron death and the onset of dementia. Investigators in this project will develop the rationale to link pathways that contribute to dangerous levels of tau protein trash and examine if our candidate therapeutics can block these damaging cascades and thus delay the progression of dementia. A positive outcome for this study will be to identify specific and effective therapies to transition to a phase 1 clinical trial for dementia.</description>
-            <description type="fundingAmount">$499,644.00.00</description>
-        </activity>
-    </registryObject>
+<key>http://purl.org/au-research/grants/nhmrc/2022535</key>
+<originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
+<activity type="grant">
+<identifier type="purl">http://purl.org/au-research/grants/nhmrc/2022535</identifier>
+<identifier type="nhmrc">2022535</identifier>
+<name type="primary"><namePart>Novel therapeutic strategies to intervene in tau-associated neurodegeneration by modulating tau clearance and neuroinflammation</namePart></name>
+<name type="alternative"><namePart>International Collaborations</namePart></name>
+<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
+<relatedObject><key>http://nla.gov.au/nla.party-561291</key><relation type="isManagedBy"/></relatedObject>
+<subject type="local">Basic Science Research</subject><subject type="anzsrc-for">biomedical and clinical sciences | immunology | innate immunity | biomedical and clinical sciences | neurosciences | central nervous system  | </subject>
+<subject type="local">neuroinflammation </subject>
+<subject type="local">dementia </subject>
+<subject type="local">frontotemporal dementia </subject>
+<subject type="local">neurodegeneration </subject>
+<subject type="local">alzheimer disease </subject>
+<description type="Chief Investigator">Dr Chien-Hsiung Yu</description>
+<description type="full">Research has shown that abnormal build-up of tau protein triggers neuron death and the onset of dementia. Investigators in this project will develop the rationale to link pathways that contribute to dangerous levels of tau protein trash and examine if our candidate therapeutics can block these damaging cascades and thus delay the progression of dementia. A positive outcome for this study will be to identify specific and effective therapies to transition to a phase 1 clinical trial for dementia.</description>
+<description type="fundingAmount">$499,644.00.00</description>
+</activity>
+</registryObject>
     <registryObject group="National Health and Medical Research Council">
-        <key>http://purl.org/au-research/grants/nhmrc/2022961</key>
-        <originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
-        <activity type="grant">
-            <identifier type="purl">http://purl.org/au-research/grants/nhmrc/2022961</identifier>
-            <identifier type="nhmrc">2022961</identifier>
-            <name type="primary">
-                <namePart>Reducing Cognitive impairment by management of Heart Failure as a Modifiable Risk Factor: the Cog-HF trial</namePart>
-            </name>
-            <name type="alternative">
-                <namePart>International Collaborations</namePart>
-            </name>
-            <relatedObject>
-                <key>http://dx.doi.org/10.13039/501100000925</key>
-                <relation type="isFundedBy"/>
-            </relatedObject>
-            <relatedObject>
-                <key>http://nla.gov.au/nla.party-583275</key>
-                <relation type="isManagedBy"/>
-            </relatedObject>
-            <subject type="local">Health Services Research</subject>
-            <subject type="anzsrc-for">biomedical and clinical sciences | clinical sciences | geriatrics and gerontology  | </subject>
-            <subject type="local">cognitive decline </subject>
-            <subject type="local">chronic heart failure (chf) </subject>
-            <subject type="local">clinical trial </subject>
-            <subject type="local">cardiac rehabilitation </subject>
-            <subject type="local">health services research </subject>
-            <description type="full">This study will test the feasibility and effectiveness of an innovative model of care for cognitively impaired patients with heart failure. The program aims to improve cognition, reduce dementia risk and cardiovascular events, and will be supported by innovative technology for wide scale rollout and implementation. These findings will transform the way healthcare is delivered to cognitively-impaired patients with heart disease, and substantially reduce dementia in Australia and Japan.</description>
-            <description type="fundingAmount">$499,487.40.00</description>
-        </activity>
-    </registryObject>
+<key>http://purl.org/au-research/grants/nhmrc/2022961</key>
+<originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
+<activity type="grant">
+<identifier type="purl">http://purl.org/au-research/grants/nhmrc/2022961</identifier>
+<identifier type="nhmrc">2022961</identifier>
+<name type="primary"><namePart>Reducing Cognitive impairment by management of Heart Failure as a Modifiable Risk Factor: the Cog-HF trial</namePart></name>
+<name type="alternative"><namePart>International Collaborations</namePart></name>
+<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
+<relatedObject><key>http://nla.gov.au/nla.party-583275</key><relation type="isManagedBy"/></relatedObject>
+<subject type="local">Health Services Research</subject><subject type="anzsrc-for">biomedical and clinical sciences | clinical sciences | geriatrics and gerontology  | </subject>
+<subject type="local">cognitive decline </subject>
+<subject type="local">chronic heart failure (chf) </subject>
+<subject type="local">clinical trial </subject>
+<subject type="local">cardiac rehabilitation </subject>
+<subject type="local">health services research </subject>
+<description type="Chief Investigator">Dr Quan Huynh</description>
+<description type="full">This study will test the feasibility and effectiveness of an innovative model of care for cognitively impaired patients with heart failure. The program aims to improve cognition, reduce dementia risk and cardiovascular events, and will be supported by innovative technology for wide scale rollout and implementation. These findings will transform the way healthcare is delivered to cognitively-impaired patients with heart disease, and substantially reduce dementia in Australia and Japan.</description>
+<description type="fundingAmount">$499,487.40.00</description>
+</activity>
+</registryObject>
     <registryObject group="National Health and Medical Research Council">
-        <key>http://purl.org/au-research/grants/nhmrc/2020410</key>
-        <originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
-        <activity type="grant">
-            <identifier type="purl">http://purl.org/au-research/grants/nhmrc/2020410</identifier>
-            <identifier type="nhmrc">2020410</identifier>
-            <name type="primary">
-                <namePart>Implementing a life course approach in antenatal and postnatal care settings for prevention and reduction of non-communicable disease risks in Nepal (IpreventNCD)</namePart>
-            </name>
-            <name type="alternative">
-                <namePart>International Collaborations</namePart>
-            </name>
-            <relatedObject>
-                <key>http://dx.doi.org/10.13039/501100000925</key>
-                <relation type="isFundedBy"/>
-            </relatedObject>
-            <relatedObject>
-                <key>http://nla.gov.au/nla.party-460867</key>
-                <relation type="isManagedBy"/>
-            </relatedObject>
-            <subject type="local">Health Services Research</subject>
-            <subject type="anzsrc-for">health sciences | health services and systems | primary health care | </subject>
-            <subject type="local">implementation </subject>
-            <subject type="local">antenatal care</subject>
-            <subject type="local">pregnancy</subject>
-            <subject type="local">behaviour change</subject>
-            <subject type="local">health systems</subject>
-            <description type="full">IpreventNCD takes a life course approach to reduce the risks for noncommunicable diseases (NCDs) in young people and the next generation. Our implementation research aims at strengthening the reduction of premature mortality from NCDs; reduction of health inequities; and advancing preventive health programs and policies in Nepal. Findings will provide the missing evidence for the implementation of evidence-based integration of primary health care and health promotion in low resource settings.</description>
-            <description type="fundingAmount">$1,211,303.90.00</description>
-        </activity>
-    </registryObject>
+<key>http://purl.org/au-research/grants/nhmrc/2020410</key>
+<originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
+<activity type="grant">
+<identifier type="purl">http://purl.org/au-research/grants/nhmrc/2020410</identifier>
+<identifier type="nhmrc">2020410</identifier>
+<name type="primary"><namePart>Implementing a life course approach in antenatal and postnatal care settings for prevention and reduction of non-communicable disease risks in Nepal (IpreventNCD)</namePart></name>
+<name type="alternative"><namePart>International Collaborations</namePart></name>
+<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
+<relatedObject><key>http://nla.gov.au/nla.party-460867</key><relation type="isManagedBy"/></relatedObject>
+<subject type="local">Health Services Research</subject><subject type="anzsrc-for">health sciences | health services and systems | primary health care | </subject>
+<subject type="local">implementation </subject>
+<subject type="local">antenatal care</subject>
+<subject type="local">pregnancy</subject>
+<subject type="local">behaviour change</subject>
+<subject type="local">health systems</subject>
+<description type="Chief Investigator">Assoc Prof Abdullah Mamun</description>
+<description type="full">IpreventNCD takes a life course approach to reduce the risks for noncommunicable diseases (NCDs) in young people and the next generation. Our implementation research aims at strengthening the reduction of premature mortality from NCDs; reduction of health inequities; and advancing preventive health programs and policies in Nepal. Findings will provide the missing evidence for the implementation of evidence-based integration of primary health care and health promotion in low resource settings.</description>
+<description type="fundingAmount">$1,211,303.90.00</description>
+</activity>
+</registryObject>
     <registryObject group="National Health and Medical Research Council">
-        <key>http://purl.org/au-research/grants/nhmrc/2022036</key>
-        <originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
-        <activity type="grant">
-            <identifier type="purl">http://purl.org/au-research/grants/nhmrc/2022036</identifier>
-            <identifier type="nhmrc">2022036</identifier>
-            <name type="primary">
-                <namePart>Structured Health Interventions to reduce cardiometaboLic risk among adoLescents and yOuNG adults in tribal communities in North-eastern India (SHILLONG): A type 2 hybrid Cluster-Randomized Trial</namePart>
-            </name>
-            <name type="alternative">
-                <namePart>International Collaborations</namePart>
-            </name>
-            <relatedObject>
-                <key>http://dx.doi.org/10.13039/501100000925</key>
-                <relation type="isFundedBy"/>
-            </relatedObject>
-            <relatedObject>
-                <key>http://nla.gov.au/nla.party-583275</key>
-                <relation type="isManagedBy"/>
-            </relatedObject>
-            <subject type="local">Public Health Research</subject>
-            <subject type="anzsrc-for">health sciences | health services and systems | implementation science and evaluation | </subject>
-            <subject type="local">implementation </subject>
-            <subject type="local">adolescent health</subject>
-            <subject type="local">physical activity</subject>
-            <subject type="local">dietary factors</subject>
-            <subject type="local">cardiovascular disease</subject>
-            <description type="full">Meghalaya is a hilly state in north-eastern India where many Indigenous people from the Khasi tribe live. Our recent study with residents from this state found that high blood sugar, high blood pressure and overweight are very common. The development of heart disease and diabetes starts early in life and lifelong patterns of behaviour are well established by early adulthood. Our program will evaluate a lifestyle change program with young people from these communities.</description>
-            <description type="fundingAmount">$1,499,746.00.00</description>
-        </activity>
-    </registryObject>
+<key>http://purl.org/au-research/grants/nhmrc/2022036</key>
+<originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
+<activity type="grant">
+<identifier type="purl">http://purl.org/au-research/grants/nhmrc/2022036</identifier>
+<identifier type="nhmrc">2022036</identifier>
+<name type="primary"><namePart>Structured Health Interventions to reduce cardiometaboLic risk among adoLescents and yOuNG adults in tribal communities in North-eastern India (SHILLONG): A type 2 hybrid Cluster-Randomized Trial</namePart></name>
+<name type="alternative"><namePart>International Collaborations</namePart></name>
+<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
+<relatedObject><key>http://nla.gov.au/nla.party-583275</key><relation type="isManagedBy"/></relatedObject>
+<subject type="local">Public Health Research</subject><subject type="anzsrc-for">health sciences | health services and systems | implementation science and evaluation | </subject>
+<subject type="local">implementation </subject>
+<subject type="local">adolescent health</subject>
+<subject type="local">physical activity</subject>
+<subject type="local">dietary factors</subject>
+<subject type="local">cardiovascular disease</subject>
+<description type="Chief Investigator">Prof Brian Oldenburg</description>
+<description type="full">Meghalaya is a hilly state in north-eastern India where many Indigenous people from the Khasi tribe live. Our recent study with residents from this state found that high blood sugar, high blood pressure and overweight are very common. The development of heart disease and diabetes starts early in life and lifelong patterns of behaviour are well established by early adulthood. Our program will evaluate a lifestyle change program with young people from these communities.</description>
+<description type="fundingAmount">$1,499,746.00.00</description>
+</activity>
+</registryObject>
     <registryObject group="National Health and Medical Research Council">
-        <key>http://purl.org/au-research/grants/nhmrc/2022355</key>
-        <originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
-        <activity type="grant">
-            <identifier type="purl">http://purl.org/au-research/grants/nhmrc/2022355</identifier>
-            <identifier type="nhmrc">2022355</identifier>
-            <name type="primary">
-                <namePart>Adolescent resilience-building in urban slums - a multifaceted trial of life skills education in India (ANUMATI)</namePart>
-            </name>
-            <name type="alternative">
-                <namePart>International Collaborations</namePart>
-            </name>
-            <relatedObject>
-                <key>http://dx.doi.org/10.13039/501100000925</key>
-                <relation type="isFundedBy"/>
-            </relatedObject>
-            <relatedObject>
-                <key>http://nla.gov.au/nla.party-1870292</key>
-                <relation type="isManagedBy"/>
-            </relatedObject>
-            <subject type="local">Health Services Research</subject>
-            <subject type="anzsrc-for">health sciences | health services and systems | primary health care | </subject>
-            <subject type="local">adolescent health </subject>
-            <subject type="local">resilience</subject>
-            <subject type="local">psychological stress</subject>
-            <subject type="local">primary care</subject>
-            <subject type="local">chronic diseases</subject>
-            <description type="full">India’s 12 million+ adolescents who live in slums are exposed to many stressors which affect current and future well-being. Life skills education programs can enhance young people’s resilience to these stressors, but little is known about how to implement them in resource-constrained setting like slums. We will test two strategies to improve uptake of life skills education in 102 slums in New Delhi and Hyderabad, assess their cost-effectiveness and use the findings to inform policy.</description>
-            <description type="fundingAmount">$1,658,669.24.00</description>
-        </activity>
-    </registryObject>
+<key>http://purl.org/au-research/grants/nhmrc/2022355</key>
+<originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
+<activity type="grant">
+<identifier type="purl">http://purl.org/au-research/grants/nhmrc/2022355</identifier>
+<identifier type="nhmrc">2022355</identifier>
+<name type="primary"><namePart>Adolescent resilience-building in urban slums - a multifaceted trial of life skills education in India (ANUMATI)</namePart></name>
+<name type="alternative"><namePart>International Collaborations</namePart></name>
+<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
+<relatedObject><key>http://nla.gov.au/nla.party-1870292</key><relation type="isManagedBy"/></relatedObject>
+<subject type="local">Health Services Research</subject><subject type="anzsrc-for">health sciences | health services and systems | primary health care | </subject>
+<subject type="local">adolescent health </subject>
+<subject type="local">resilience</subject>
+<subject type="local">psychological stress</subject>
+<subject type="local">primary care</subject>
+<subject type="local">chronic diseases</subject>
+<description type="Chief Investigator">Prof David Peiris</description>
+<description type="full">India’s 12 million+ adolescents who live in slums are exposed to many stressors which affect current and future well-being. Life skills education programs can enhance young people’s resilience to these stressors, but little is known about how to implement them in resource-constrained setting like slums. We will test two strategies to improve uptake of life skills education in 102 slums in New Delhi and Hyderabad, assess their cost-effectiveness and use the findings to inform policy.</description>
+<description type="fundingAmount">$1,658,669.24.00</description>
+</activity>
+</registryObject>
     <registryObject group="National Health and Medical Research Council">
-        <key>http://purl.org/au-research/grants/nhmrc/2022566</key>
-        <originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
-        <activity type="grant">
-            <identifier type="purl">http://purl.org/au-research/grants/nhmrc/2022566</identifier>
-            <identifier type="nhmrc">2022566</identifier>
-            <name type="primary">
-                <namePart>Evaluating the impact, investment case and scale-up of 'Health Promoting Schools' in Fiji</namePart>
-            </name>
-            <name type="alternative">
-                <namePart>International Collaborations</namePart>
-            </name>
-            <relatedObject>
-                <key>http://dx.doi.org/10.13039/501100000925</key>
-                <relation type="isFundedBy"/>
-            </relatedObject>
-            <relatedObject>
-                <key>http://nla.gov.au/nla.party-1870292</key>
-                <relation type="isManagedBy"/>
-            </relatedObject>
-            <subject type="local">Public Health Research</subject>
-            <subject type="anzsrc-for">health sciences | health services and systems | implementation science and evaluation | health sciences | public health | health promotion | health sciences | public health | preventative health care | </subject>
-            <subject type="local">school health promotion </subject>
-            <subject type="local">physical activity</subject>
-            <subject type="local">dietary lifestyle</subject>
-            <subject type="local">mental health promotion</subject>
-            <subject type="local">health education</subject>
-            <description type="full">Health Promoting Schools was implemented in a selection of schools in Fiji in 2016 to improve long term health and well-being by addressing lifestyle-related risk factors. This Australia-Fiji collaboration will assess the lessons from that initial rollout, co-design with communities the next phase to 200 schools, and then assess effectiveness, investment case and sustainability. The findings will ensure the potential for sustainable health and social benefits from the program are realised.</description>
-            <description type="fundingAmount">$1,388,931.80.00</description>
-        </activity>
-    </registryObject>
+<key>http://purl.org/au-research/grants/nhmrc/2022566</key>
+<originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
+<activity type="grant">
+<identifier type="purl">http://purl.org/au-research/grants/nhmrc/2022566</identifier>
+<identifier type="nhmrc">2022566</identifier>
+<name type="primary"><namePart>Evaluating the impact, investment case and scale-up of 'Health Promoting Schools' in Fiji</namePart></name>
+<name type="alternative"><namePart>International Collaborations</namePart></name>
+<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
+<relatedObject><key>http://nla.gov.au/nla.party-1870292</key><relation type="isManagedBy"/></relatedObject>
+<subject type="local">Public Health Research</subject><subject type="anzsrc-for">health sciences | health services and systems | implementation science and evaluation | health sciences | public health | health promotion | health sciences | public health | preventative health care | </subject>
+<subject type="local">school health promotion </subject>
+<subject type="local">physical activity</subject>
+<subject type="local">dietary lifestyle</subject>
+<subject type="local">mental health promotion</subject>
+<subject type="local">health education</subject>
+<description type="Chief Investigator">Dr Bindu Patel</description>
+<description type="full">Health Promoting Schools was implemented in a selection of schools in Fiji in 2016 to improve long term health and well-being by addressing lifestyle-related risk factors. This Australia-Fiji collaboration will assess the lessons from that initial rollout, co-design with communities the next phase to 200 schools, and then assess effectiveness, investment case and sustainability. The findings will ensure the potential for sustainable health and social benefits from the program are realised.</description>
+<description type="fundingAmount">$1,388,931.80.00</description>
+</activity>
+</registryObject>
     <registryObject group="National Health and Medical Research Council">
-        <key>http://purl.org/au-research/grants/nhmrc/2018718</key>
-        <originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
-        <activity type="grant">
-            <identifier type="purl">http://purl.org/au-research/grants/nhmrc/2018718</identifier>
-            <identifier type="nhmrc">2018718</identifier>
-            <name type="primary">
-                <namePart>Advancing Women in Healthcare Leadership- Implementation research</namePart>
-            </name>
-            <name type="alternative">
-                <namePart>Partnership Projects</namePart>
-            </name>
-            <relatedObject>
-                <key>http://dx.doi.org/10.13039/501100000925</key>
-                <relation type="isFundedBy"/>
-            </relatedObject>
-            <relatedObject>
-                <key>http://nla.gov.au/nla.party-507067</key>
-                <relation type="isManagedBy"/>
-            </relatedObject>
-            <subject type="local">Health Services Research</subject>
-            <subject type="anzsrc-for">health sciences | health services and systems | implementation science and evaluation | health sciences | health services and systems | health services and systems not elsewhere classified | </subject>
-            <subject type="local">implementation </subject>
-            <subject type="local">health services research </subject>
-            <subject type="local">gender </subject>
-            <subject type="local">health systems </subject>
-            <subject type="local">organisational processes </subject>
-            <description type="full">Women comprise 75% of the healthcare workforce, yet are highly under-represented in leadership, impacting equity and health outcomes. With unprecedented partnership, we have generated evidence on effective organisational interventions to advance women in healthcare leadership. Here we aim to address partner priorities with implementation research on evidence-based organisational interventions, generating an implementation toolkit for scale to advance leadership equity and improve healthcare.</description>
-            <description type="fundingAmount">$1,494,778.00.00</description>
-        </activity>
-    </registryObject>
+<key>http://purl.org/au-research/grants/nhmrc/2018718</key>
+<originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
+<activity type="grant">
+<identifier type="purl">http://purl.org/au-research/grants/nhmrc/2018718</identifier>
+<identifier type="nhmrc">2018718</identifier>
+<name type="primary"><namePart>Advancing Women in Healthcare Leadership- Implementation research</namePart></name>
+<name type="alternative"><namePart>Partnership Projects</namePart></name>
+<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
+<relatedObject><key>http://nla.gov.au/nla.party-507067</key><relation type="isManagedBy"/></relatedObject>
+<subject type="local">Health Services Research</subject><subject type="anzsrc-for">health sciences | health services and systems | implementation science and evaluation | health sciences | health services and systems | health services and systems not elsewhere classified | </subject>
+<subject type="local">implementation </subject>
+<subject type="local">health services research </subject>
+<subject type="local">gender </subject>
+<subject type="local">health systems </subject>
+<subject type="local">organisational processes </subject>
+<description type="Chief Investigator">Prof Helena Teede</description>
+<description type="full">Women comprise 75% of the healthcare workforce, yet are highly under-represented in leadership, impacting equity and health outcomes. With unprecedented partnership, we have generated evidence on effective organisational interventions to advance women in healthcare leadership. Here we aim to address partner priorities with implementation research on evidence-based organisational interventions, generating an implementation toolkit for scale to advance leadership equity and improve healthcare.</description>
+<description type="fundingAmount">$1,494,778.00.00</description>
+</activity>
+</registryObject>
     <registryObject group="National Health and Medical Research Council">
-        <key>http://purl.org/au-research/grants/nhmrc/2022546</key>
-        <originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
-        <activity type="grant">
-            <identifier type="purl">http://purl.org/au-research/grants/nhmrc/2022546</identifier>
-            <identifier type="nhmrc">2022546</identifier>
-            <name type="primary">
-                <namePart>Eliminating harm from devices across the life span in critical illness: The DEFENCE study.</namePart>
-            </name>
-            <name type="alternative">
-                <namePart>Partnership Projects</namePart>
-            </name>
-            <relatedObject>
-                <key>http://dx.doi.org/10.13039/501100000925</key>
-                <relation type="isFundedBy"/>
-            </relatedObject>
-            <relatedObject>
-                <key>http://nla.gov.au/nla.party-536697</key>
-                <relation type="isManagedBy"/>
-            </relatedObject>
-            <subject type="local">Health Services Research</subject>
-            <subject type="anzsrc-for">health sciences | nursing | acute care | health sciences | health services and systems | patient safety | </subject>
-            <subject type="local">nursing care </subject>
-            <subject type="local">early prevention </subject>
-            <subject type="local">pressure ulcers </subject>
-            <subject type="local">critical care </subject>
-            <subject type="local">evidence-based clinical practice </subject>
-            <description type="full">Therapeutic monitoring devices are essential to guide clinical care in all intensive care units. Skin injury (harm) from devices is a constant threat. This study aims to eliminate device-related patient harm. Working with our partners we will co-develop implementation strategies to guide local execution of evidence-based practices and then test and evaluate these in critically ill patients of all ages. Our disseminated results will advance practice, and improve patient safety and outcomes.</description>
-            <description type="fundingAmount">$1,499,947.60.00</description>
-        </activity>
-    </registryObject>
+<key>http://purl.org/au-research/grants/nhmrc/2022546</key>
+<originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
+<activity type="grant">
+<identifier type="purl">http://purl.org/au-research/grants/nhmrc/2022546</identifier>
+<identifier type="nhmrc">2022546</identifier>
+<name type="primary"><namePart>Eliminating harm from devices across the life span in critical illness: The DEFENCE study.</namePart></name>
+<name type="alternative"><namePart>Partnership Projects</namePart></name>
+<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
+<relatedObject><key>http://nla.gov.au/nla.party-536697</key><relation type="isManagedBy"/></relatedObject>
+<subject type="local">Health Services Research</subject><subject type="anzsrc-for">health sciences | nursing | acute care | health sciences | health services and systems | patient safety | </subject>
+<subject type="local">nursing care </subject>
+<subject type="local">early prevention </subject>
+<subject type="local">pressure ulcers </subject>
+<subject type="local">critical care </subject>
+<subject type="local">evidence-based clinical practice </subject>
+<description type="Chief Investigator">Prof Fiona Coyer</description>
+<description type="full">Therapeutic monitoring devices are essential to guide clinical care in all intensive care units. Skin injury (harm) from devices is a constant threat. This study aims to eliminate device-related patient harm. Working with our partners we will co-develop implementation strategies to guide local execution of evidence-based practices and then test and evaluate these in critically ill patients of all ages. Our disseminated results will advance practice, and improve patient safety and outcomes.</description>
+<description type="fundingAmount">$1,499,947.60.00</description>
+</activity>
+</registryObject>
     <registryObject group="National Health and Medical Research Council">
-        <key>http://purl.org/au-research/grants/nhmrc/2023359</key>
-        <originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
-        <activity type="grant">
-            <identifier type="purl">http://purl.org/au-research/grants/nhmrc/2023359</identifier>
-            <identifier type="nhmrc">2023359</identifier>
-            <name type="primary">
-                <namePart>safe@home: effectiveness and cost effectiveness of telemonitoring and virtual care supported by primary care for people living with chronic disease in low socioeconomic neighbourhoods for reducing ambulance ramping, readmission and GP clinic block.</namePart>
-            </name>
-            <name type="alternative">
-                <namePart>Partnership Projects</namePart>
-            </name>
-            <relatedObject>
-                <key>http://dx.doi.org/10.13039/501100000925</key>
-                <relation type="isFundedBy"/>
-            </relatedObject>
-            <relatedObject>
-                <key>http://nla.gov.au/nla.party-593299</key>
-                <relation type="isManagedBy"/>
-            </relatedObject>
-            <subject type="local">Health Services Research</subject>
-            <subject type="anzsrc-for">health sciences | health services and systems | digital health | </subject>
-            <subject type="local">readmission rates </subject>
-            <subject type="local">chronic diseases </subject>
-            <subject type="local">economic analysis </subject>
-            <subject type="local">primary care </subject>
-            <subject type="local">telementoring </subject>
-            <description type="full">This project will contribute to a substantial breakthrough in the care of patients with chronic conditions living in low socioeconomic neighbourhoods. Safe@home model of care will directly address barriers to access and health inequalities. Through augmenting the opportunities for care provision at home and integration with the primary and secondary care, the model of care has the potential to reduce health care utilisation of hospitals and EDs and improve survivorship and quality of life.</description>
-            <description type="fundingAmount">$1,096,999.00.00</description>
-        </activity>
-    </registryObject>
+<key>http://purl.org/au-research/grants/nhmrc/2023359</key>
+<originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
+<activity type="grant">
+<identifier type="purl">http://purl.org/au-research/grants/nhmrc/2023359</identifier>
+<identifier type="nhmrc">2023359</identifier>
+<name type="primary"><namePart>safe@home: effectiveness and cost effectiveness of telemonitoring and virtual care supported by primary care for people living with chronic disease in low socioeconomic neighbourhoods for reducing ambulance ramping, readmission and GP clinic block.</namePart></name>
+<name type="alternative"><namePart>Partnership Projects</namePart></name>
+<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
+<relatedObject><key>http://nla.gov.au/nla.party-593299</key><relation type="isManagedBy"/></relatedObject>
+<subject type="local">Health Services Research</subject><subject type="anzsrc-for">health sciences | health services and systems | digital health | </subject>
+<subject type="local">readmission rates </subject>
+<subject type="local">chronic diseases </subject>
+<subject type="local">economic analysis </subject>
+<subject type="local">primary care </subject>
+<subject type="local">telementoring </subject>
+<description type="Chief Investigator">Prof Robyn A Clark</description>
+<description type="full">This project will contribute to a substantial breakthrough in the care of patients with chronic conditions living in low socioeconomic neighbourhoods. Safe@home model of care will directly address barriers to access and health inequalities. Through augmenting the opportunities for care provision at home and integration with the primary and secondary care, the model of care has the potential to reduce health care utilisation of hospitals and EDs and improve survivorship and quality of life.</description>
+<description type="fundingAmount">$1,096,999.00.00</description>
+</activity>
+</registryObject>
     <registryObject group="National Health and Medical Research Council">
-        <key>http://purl.org/au-research/grants/nhmrc/2023737</key>
-        <originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
-        <activity type="grant">
-            <identifier type="purl">http://purl.org/au-research/grants/nhmrc/2023737</identifier>
-            <identifier type="nhmrc">2023737</identifier>
-            <name type="primary">
-                <namePart>Systems Thinking with Active Implementation Research (STAIR) to prevent childhood obesity: an effectiveness-implementation trial</namePart>
-            </name>
-            <name type="alternative">
-                <namePart>Partnership Projects</namePart>
-            </name>
-            <relatedObject>
-                <key>http://dx.doi.org/10.13039/501100000925</key>
-                <relation type="isFundedBy"/>
-            </relatedObject>
-            <relatedObject>
-                <key>http://nla.gov.au/nla.party-469109</key>
-                <relation type="isManagedBy"/>
-            </relatedObject>
-            <subject type="local">Public Health Research</subject>
-            <subject type="anzsrc-for">health sciences | public health | health promotion | </subject>
-            <subject type="local">overweight/obesity </subject>
-            <subject type="local">implementation </subject>
-            <subject type="local">primary school-aged children </subject>
-            <subject type="local">social determinants of health </subject>
-            <subject type="local">preventive health </subject>
-            <description type="full">Society asks a lot of schools, including that they protect children's health and wellbeing. This trial will work out the best way of supporting schools, teachers and school communities to create and sustain school environments that protect children's physical and mental health. We will measure the impact and return on investment of this support on children's health and education outcomes as well as on the schools themselves.</description>
-            <description type="fundingAmount">$1,406,917.90.00</description>
-        </activity>
-    </registryObject>
+<key>http://purl.org/au-research/grants/nhmrc/2023737</key>
+<originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
+<activity type="grant">
+<identifier type="purl">http://purl.org/au-research/grants/nhmrc/2023737</identifier>
+<identifier type="nhmrc">2023737</identifier>
+<name type="primary"><namePart>Systems Thinking with Active Implementation Research (STAIR) to prevent childhood obesity: an effectiveness-implementation trial</namePart></name>
+<name type="alternative"><namePart>Partnership Projects</namePart></name>
+<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
+<relatedObject><key>http://nla.gov.au/nla.party-469109</key><relation type="isManagedBy"/></relatedObject>
+<subject type="local">Public Health Research</subject><subject type="anzsrc-for">health sciences | public health | health promotion | </subject>
+<subject type="local">overweight/obesity </subject>
+<subject type="local">implementation </subject>
+<subject type="local">primary school-aged children </subject>
+<subject type="local">social determinants of health </subject>
+<subject type="local">preventive health </subject>
+<description type="Chief Investigator">Prof Andrew Bell</description>
+<description type="full">Society asks a lot of schools, including that they protect children's health and wellbeing. This trial will work out the best way of supporting schools, teachers and school communities to create and sustain school environments that protect children's physical and mental health. We will measure the impact and return on investment of this support on children's health and education outcomes as well as on the schools themselves.</description>
+<description type="fundingAmount">$1,406,917.90.00</description>
+</activity>
+</registryObject>
     <registryObject group="National Health and Medical Research Council">
-        <key>http://purl.org/au-research/grants/nhmrc/2023842</key>
-        <originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
-        <activity type="grant">
-            <identifier type="purl">http://purl.org/au-research/grants/nhmrc/2023842</identifier>
-            <identifier type="nhmrc">2023842</identifier>
-            <name type="primary">
-                <namePart>EValuating the Impact Of DigitaLly Enhancing Australian Youth Mental Health SerVicEs (the EVOLVE project): A Large Scale, Controlled, Process and Economic Evaluation of a Blended Digital Intervention</namePart>
-            </name>
-            <name type="alternative">
-                <namePart>Partnership Projects</namePart>
-            </name>
-            <relatedObject>
-                <key>http://dx.doi.org/10.13039/501100000925</key>
-                <relation type="isFundedBy"/>
-            </relatedObject>
-            <relatedObject>
-                <key>http://nla.gov.au/nla.party-561291</key>
-                <relation type="isManagedBy"/>
-            </relatedObject>
-            <subject type="local">Health Services Research</subject>
-            <subject type="anzsrc-for">psychology | clinical and health psychology | clinical psychology | </subject>
-            <subject type="local">mental health services </subject>
-            <subject type="local">youth </subject>
-            <subject type="local">implementation </subject>
-            <subject type="local">clinical psychology </subject>
-            <subject type="local">economic evaluation </subject>
-            <description type="full">The mental health system is overwhelmed and has catastrophically failed to meet the needs of those with mental-ill health. Despite the potential for digital technology to be a pillar of a modern, sustainable, and effective mental health system, digital interventions have not been integrated into mental health services. This aim of this project is to address this global failure by evaluating the real world impact of digitally enhancing a a large network of mental health services.</description>
-            <description type="fundingAmount">$1,498,289.80.00</description>
-        </activity>
-    </registryObject>
+<key>http://purl.org/au-research/grants/nhmrc/2023842</key>
+<originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
+<activity type="grant">
+<identifier type="purl">http://purl.org/au-research/grants/nhmrc/2023842</identifier>
+<identifier type="nhmrc">2023842</identifier>
+<name type="primary"><namePart>EValuating the Impact Of DigitaLly Enhancing Australian Youth Mental Health SerVicEs (the EVOLVE project): A Large Scale, Controlled, Process and Economic Evaluation of a Blended Digital Intervention</namePart></name>
+<name type="alternative"><namePart>Partnership Projects</namePart></name>
+<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
+<relatedObject><key>http://nla.gov.au/nla.party-561291</key><relation type="isManagedBy"/></relatedObject>
+<subject type="local">Health Services Research</subject><subject type="anzsrc-for">psychology | clinical and health psychology | clinical psychology | </subject>
+<subject type="local">mental health services </subject>
+<subject type="local">youth </subject>
+<subject type="local">implementation </subject>
+<subject type="local">clinical psychology </subject>
+<subject type="local">economic evaluation </subject>
+<description type="Chief Investigator">Prof Mario Alvarez-Jimenez</description>
+<description type="full">The mental health system is overwhelmed and has catastrophically failed to meet the needs of those with mental-ill health. Despite the potential for digital technology to be a pillar of a modern, sustainable, and effective mental health system, digital interventions have not been integrated into mental health services. This aim of this project is to address this global failure by evaluating the real world impact of digitally enhancing a a large network of mental health services.</description>
+<description type="fundingAmount">$1,498,289.80.00</description>
+</activity>
+</registryObject>
     <registryObject group="National Health and Medical Research Council">
-        <key>http://purl.org/au-research/grants/nhmrc/2023898</key>
-        <originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
-        <activity type="grant">
-            <identifier type="purl">http://purl.org/au-research/grants/nhmrc/2023898</identifier>
-            <identifier type="nhmrc">2023898</identifier>
-            <name type="primary">
-                <namePart>Quality coaching to implement a hospital fall prevention strategy: intervention development and evaluation in a stepped wedge trial</namePart>
-            </name>
-            <name type="alternative">
-                <namePart>Partnership Projects</namePart>
-            </name>
-            <relatedObject>
-                <key>http://dx.doi.org/10.13039/501100000925</key>
-                <relation type="isFundedBy"/>
-            </relatedObject>
-            <relatedObject>
-                <key>http://nla.gov.au/nla.party-593941</key>
-                <relation type="isManagedBy"/>
-            </relatedObject>
-            <subject type="local">Health Services Research</subject>
-            <subject type="anzsrc-for">health sciences | health services and systems | implementation science and evaluation | </subject>
-            <subject type="local">falls prevention </subject>
-            <subject type="local">implementation </subject>
-            <subject type="local">quality improvement </subject>
-            <subject type="local">aged health </subject>
-            <subject type="local">hospitals </subject>
-            <description type="full">This project will assess whether the use of a quality coaching approach enhances implementation and effectiveness of falls prevention initiatives in partner Sydney Local Health District (SLHD). Stage 1 of the project will involve co-design of a quality coaching approach for falls prevention in wards of partner Sydney Local Health District using data from pilot work in our two partner Health Districts. Stage 2 of the project will involve a stepped wedge trial to test the quality coaching approach.</description>
-            <description type="fundingAmount">$979,506.10.00</description>
-        </activity>
-    </registryObject>
+<key>http://purl.org/au-research/grants/nhmrc/2023898</key>
+<originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
+<activity type="grant">
+<identifier type="purl">http://purl.org/au-research/grants/nhmrc/2023898</identifier>
+<identifier type="nhmrc">2023898</identifier>
+<name type="primary"><namePart>Quality coaching to implement a hospital fall prevention strategy: intervention development and evaluation in a stepped wedge trial</namePart></name>
+<name type="alternative"><namePart>Partnership Projects</namePart></name>
+<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
+<relatedObject><key>http://nla.gov.au/nla.party-593941</key><relation type="isManagedBy"/></relatedObject>
+<subject type="local">Health Services Research</subject><subject type="anzsrc-for">health sciences | health services and systems | implementation science and evaluation | </subject>
+<subject type="local">falls prevention </subject>
+<subject type="local">implementation </subject>
+<subject type="local">quality improvement </subject>
+<subject type="local">aged health </subject>
+<subject type="local">hospitals </subject>
+<description type="Chief Investigator">Prof Catherine Sherrington</description>
+<description type="full">This project will assess whether the use of a quality coaching approach enhances implementation and effectiveness of falls prevention initiatives in partner Sydney Local Health District (SLHD). Stage 1 of the project will involve co-design of a quality coaching approach for falls prevention in wards of partner Sydney Local Health District using data from pilot work in our two partner Health Districts. Stage 2 of the project will involve a stepped wedge trial to test the quality coaching approach.</description>
+<description type="fundingAmount">$979,506.10.00</description>
+</activity>
+</registryObject>
     <registryObject group="National Health and Medical Research Council">
-        <key>http://purl.org/au-research/grants/nhmrc/2024551</key>
-        <originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
-        <activity type="grant">
-            <identifier type="purl">http://purl.org/au-research/grants/nhmrc/2024551</identifier>
-            <identifier type="nhmrc">2024551</identifier>
-            <name type="primary">
-                <namePart>A ‘culturally tailored iSupport model’ for carers of people with dementia</namePart>
-            </name>
-            <name type="alternative">
-                <namePart>Targeted Call for Research</namePart>
-            </name>
-            <relatedObject>
-                <key>http://dx.doi.org/10.13039/501100000925</key>
-                <relation type="isFundedBy"/>
-            </relatedObject>
-            <relatedObject>
-                <key>http://nla.gov.au/nla.party-593299</key>
-                <relation type="isManagedBy"/>
-            </relatedObject>
-            <subject type="local">Health Services Research</subject>
-            <subject type="anzsrc-for">health sciences | nursing | aged care nursing | health sciences | health services and systems | aged health care | economics | applied economics | health economics  | </subject>
-            <subject type="local">dementia care </subject>
-            <subject type="local">cultural perceptions </subject>
-            <subject type="local">health service accessibility </subject>
-            <subject type="local">translational research </subject>
-            <subject type="local">health economics </subject>
-            <description type="full">Our study aims to co-design and embed a culturally tailored iSupport model in dementia care services and evaluate its effectiveness with stakeholders. The model is designed to enhance culturally and linguistically congruent support for carers and improve their ability to manage dementia at home and relieve pressure on dementia care services. The expected outcomes are improved quality of life and health for carers and people with dementia, improved quality of care and cost-effective care.</description>
-            <description type="fundingAmount">$1,555,078.05.00</description>
-        </activity>
-    </registryObject>
+<key>http://purl.org/au-research/grants/nhmrc/2024551</key>
+<originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
+<activity type="grant">
+<identifier type="purl">http://purl.org/au-research/grants/nhmrc/2024551</identifier>
+<identifier type="nhmrc">2024551</identifier>
+<name type="primary"><namePart>A ‘culturally tailored iSupport model’ for carers of people with dementia</namePart></name>
+<name type="alternative"><namePart>Targeted Call for Research</namePart></name>
+<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
+<relatedObject><key>http://nla.gov.au/nla.party-593299</key><relation type="isManagedBy"/></relatedObject>
+<subject type="local">Health Services Research</subject><subject type="anzsrc-for">health sciences | nursing | aged care nursing | health sciences | health services and systems | aged health care | economics | applied economics | health economics  | </subject>
+<subject type="local">dementia care </subject>
+<subject type="local">cultural perceptions </subject>
+<subject type="local">health service accessibility </subject>
+<subject type="local">translational research </subject>
+<subject type="local">health economics </subject>
+<description type="Chief Investigator">Prof Lily Dongxia Xiao</description>
+<description type="full">Our study aims to co-design and embed a culturally tailored iSupport model in dementia care services and evaluate its effectiveness with stakeholders. The model is designed to enhance culturally and linguistically congruent support for carers and improve their ability to manage dementia at home and relieve pressure on dementia care services. The expected outcomes are improved quality of life and health for carers and people with dementia, improved quality of care and cost-effective care.</description>
+<description type="fundingAmount">$1,555,078.05.00</description>
+</activity>
+</registryObject>
     <registryObject group="National Health and Medical Research Council">
-        <key>http://purl.org/au-research/grants/nhmrc/2024575</key>
-        <originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
-        <activity type="grant">
-            <identifier type="purl">http://purl.org/au-research/grants/nhmrc/2024575</identifier>
-            <identifier type="nhmrc">2024575</identifier>
-            <name type="primary">
-                <namePart>A community based participatory approach to decreasing dementia stigma and increasing help-seeking</namePart>
-            </name>
-            <name type="alternative">
-                <namePart>Targeted Call for Research</namePart>
-            </name>
-            <relatedObject>
-                <key>http://dx.doi.org/10.13039/501100000925</key>
-                <relation type="isFundedBy"/>
-            </relatedObject>
-            <relatedObject>
-                <key>http://nla.gov.au/nla.party-593941</key>
-                <relation type="isManagedBy"/>
-            </relatedObject>
-            <subject type="local">Public Health Research</subject>
-            <subject type="anzsrc-for">health sciences | public health | health promotion | </subject>
-            <subject type="local">culturally appropriate methodology </subject>
-            <subject type="local">ethnic health promotion </subject>
-            <subject type="local">diagnosis </subject>
-            <subject type="local">translation </subject>
-            <subject type="local">social and cultural issues </subject>
-            <description type="full">This project brings together multicultural community organisations, public health campaigners, and researchers to decrease stigma and increase help-seeking for dementia diagnosis. We will be working with the Chinese, Vietnamese, Indian and Arabic communities in South Western Sydney. We will co-design and deliver a community-based campaign, and evaluate whether it increases dementia help-seeking, assessment and diagnosis rates in comparison to a non-campaign region.</description>
-            <description type="fundingAmount">$1,520,259.60.00</description>
-        </activity>
-    </registryObject>
+<key>http://purl.org/au-research/grants/nhmrc/2024575</key>
+<originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
+<activity type="grant">
+<identifier type="purl">http://purl.org/au-research/grants/nhmrc/2024575</identifier>
+<identifier type="nhmrc">2024575</identifier>
+<name type="primary"><namePart>A community based participatory approach to decreasing dementia stigma and increasing help-seeking</namePart></name>
+<name type="alternative"><namePart>Targeted Call for Research</namePart></name>
+<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
+<relatedObject><key>http://nla.gov.au/nla.party-593941</key><relation type="isManagedBy"/></relatedObject>
+<subject type="local">Public Health Research</subject><subject type="anzsrc-for">health sciences | public health | health promotion | </subject>
+<subject type="local">culturally appropriate methodology </subject>
+<subject type="local">ethnic health promotion </subject>
+<subject type="local">diagnosis </subject>
+<subject type="local">translation </subject>
+<subject type="local">social and cultural issues </subject>
+<description type="Chief Investigator">Prof Lee-Fay Low</description>
+<description type="full">This project brings together multicultural community organisations, public health campaigners, and researchers to decrease stigma and increase help-seeking for dementia diagnosis. We will be working with the Chinese, Vietnamese, Indian and Arabic communities in South Western Sydney. We will co-design and deliver a community-based campaign, and evaluate whether it increases dementia help-seeking, assessment and diagnosis rates in comparison to a non-campaign region.</description>
+<description type="fundingAmount">$1,520,259.60.00</description>
+</activity>
+</registryObject>
     <registryObject group="National Health and Medical Research Council">
-        <key>http://purl.org/au-research/grants/nhmrc/2024768</key>
-        <originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
-        <activity type="grant">
-            <identifier type="purl">http://purl.org/au-research/grants/nhmrc/2024768</identifier>
-            <identifier type="nhmrc">2024768</identifier>
-            <name type="primary">
-                <namePart>Transforming inclusive multidomain dementia prevention lifestyle initiatives for culturally and linguistically diverse older Australians</namePart>
-            </name>
-            <name type="alternative">
-                <namePart>Targeted Call for Research</namePart>
-            </name>
-            <relatedObject>
-                <key>http://dx.doi.org/10.13039/501100000925</key>
-                <relation type="isFundedBy"/>
-            </relatedObject>
-            <relatedObject>
-                <key>http://nla.gov.au/nla.party-485355</key>
-                <relation type="isManagedBy"/>
-            </relatedObject>
-            <subject type="local">Public Health Research</subject>
-            <subject type="anzsrc-for">health sciences | public health | health promotion | </subject>
-            <subject type="local">public health impact </subject>
-            <subject type="local">ethnic health promotion </subject>
-            <subject type="local">brain ageing </subject>
-            <subject type="local">healthy ageing </subject>
-            <subject type="local">health psychology </subject>
-            <description type="full">Australia's population is multiculturally and linguistically diverse, with Western Sydney being the epicentre of Australian migration. Yet much research targeting dementia prevention does not address diversity challenges such as cultural and language barriers. This project will run co-designed pop-up brain health campaigns targeting dementia risk reduction awareness for Western Sydney's top three cultural communities (Arabic, Chinese and Vietnamese) to drive dementia risk change.</description>
-            <description type="fundingAmount">$418,433.40.00</description>
-        </activity>
-    </registryObject>
+<key>http://purl.org/au-research/grants/nhmrc/2024768</key>
+<originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
+<activity type="grant">
+<identifier type="purl">http://purl.org/au-research/grants/nhmrc/2024768</identifier>
+<identifier type="nhmrc">2024768</identifier>
+<name type="primary"><namePart>Transforming inclusive multidomain dementia prevention lifestyle initiatives for culturally and linguistically diverse older Australians</namePart></name>
+<name type="alternative"><namePart>Targeted Call for Research</namePart></name>
+<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
+<relatedObject><key>http://nla.gov.au/nla.party-485355</key><relation type="isManagedBy"/></relatedObject>
+<subject type="local">Public Health Research</subject><subject type="anzsrc-for">health sciences | public health | health promotion | </subject>
+<subject type="local">public health impact </subject>
+<subject type="local">ethnic health promotion </subject>
+<subject type="local">brain ageing </subject>
+<subject type="local">healthy ageing </subject>
+<subject type="local">health psychology </subject>
+<description type="Chief Investigator">Dr Joyce Siette</description>
+<description type="full">Australia's population is multiculturally and linguistically diverse, with Western Sydney being the epicentre of Australian migration. Yet much research targeting dementia prevention does not address diversity challenges such as cultural and language barriers. This project will run co-designed pop-up brain health campaigns targeting dementia risk reduction awareness for Western Sydney's top three cultural communities (Arabic, Chinese and Vietnamese) to drive dementia risk change.</description>
+<description type="fundingAmount">$418,433.40.00</description>
+</activity>
+</registryObject>
     <registryObject group="National Health and Medical Research Council">
-        <key>http://purl.org/au-research/grants/nhmrc/2024751</key>
-        <originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
-        <activity type="grant">
-            <identifier type="purl">http://purl.org/au-research/grants/nhmrc/2024751</identifier>
-            <identifier type="nhmrc">2024751</identifier>
-            <name type="primary">
-                <namePart>Targeting mechanisms underlying loneliness in chronic conditions</namePart>
-            </name>
-            <name type="alternative">
-                <namePart>Targeted Call for Research</namePart>
-            </name>
-            <relatedObject>
-                <key>http://dx.doi.org/10.13039/501100000925</key>
-                <relation type="isFundedBy"/>
-            </relatedObject>
-            <relatedObject>
-                <key>http://nla.gov.au/nla.party-501485</key>
-                <relation type="isManagedBy"/>
-            </relatedObject>
-            <subject type="local">Public Health Research</subject>
-            <subject type="anzsrc-for">psychology | clinical and health psychology | clinical psychology | </subject>
-            <subject type="local">chronic diseases </subject>
-            <subject type="local">mental health </subject>
-            <subject type="local">psychosocial </subject>
-            <subject type="local">clinical psychology </subject>
-            <subject type="local">behavioural intervention </subject>
-            <description type="full">This project aims to understand the causal psychological mechanisms that underlie the relationship between social isolation, loneliness and poorer outcomes in chronic disease populations. This study will identify the causal factors and then use this information to develop and evaluate a psychological intervention that targets these factors to better treat social isolation and loneliness in a chronic disease population. This project is likely to lead to improved chronic disease management.</description>
-            <description type="fundingAmount">$787,880.00.00</description>
-        </activity>
-    </registryObject>
+<key>http://purl.org/au-research/grants/nhmrc/2024751</key>
+<originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
+<activity type="grant">
+<identifier type="purl">http://purl.org/au-research/grants/nhmrc/2024751</identifier>
+<identifier type="nhmrc">2024751</identifier>
+<name type="primary"><namePart>Targeting mechanisms underlying loneliness in chronic conditions</namePart></name>
+<name type="alternative"><namePart>Targeted Call for Research</namePart></name>
+<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
+<relatedObject><key>http://nla.gov.au/nla.party-501485</key><relation type="isManagedBy"/></relatedObject>
+<subject type="local">Public Health Research</subject><subject type="anzsrc-for">psychology | clinical and health psychology | clinical psychology | </subject>
+<subject type="local">chronic diseases </subject>
+<subject type="local">mental health </subject>
+<subject type="local">psychosocial </subject>
+<subject type="local">clinical psychology </subject>
+<subject type="local">behavioural intervention </subject>
+<description type="Chief Investigator">Prof Viviana Wuthrich</description>
+<description type="full">This project aims to understand the causal psychological mechanisms that underlie the relationship between social isolation, loneliness and poorer outcomes in chronic disease populations. This study will identify the causal factors and then use this information to develop and evaluate a psychological intervention that targets these factors to better treat social isolation and loneliness in a chronic disease population. This project is likely to lead to improved chronic disease management.</description>
+<description type="fundingAmount">$787,880.00.00</description>
+</activity>
+</registryObject>
     <registryObject group="National Health and Medical Research Council">
-        <key>http://purl.org/au-research/grants/nhmrc/2024805</key>
-        <originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
-        <activity type="grant">
-            <identifier type="purl">http://purl.org/au-research/grants/nhmrc/2024805</identifier>
-            <identifier type="nhmrc">2024805</identifier>
-            <name type="primary">
-                <namePart>Towards a holistic priority setting approach for chronic disease management to tackle loneliness and social isolation in Australia</namePart>
-            </name>
-            <name type="alternative">
-                <namePart>Targeted Call for Research</namePart>
-            </name>
-            <relatedObject>
-                <key>http://dx.doi.org/10.13039/501100000925</key>
-                <relation type="isFundedBy"/>
-            </relatedObject>
-            <relatedObject>
-                <key>http://nla.gov.au/nla.party-507067</key>
-                <relation type="isManagedBy"/>
-            </relatedObject>
-            <subject type="local">Public Health Research</subject>
-            <subject type="anzsrc-for">health sciences | public health | preventative health care | economics | applied economics | health economics  | health sciences | epidemiology | epidemiological modelling | </subject>
-            <subject type="local">health economics </subject>
-            <subject type="local">chronic diseases </subject>
-            <subject type="local">epidemiology </subject>
-            <subject type="local">mental health </subject>
-            <subject type="local">population health </subject>
-            <description type="full">Loneliness and social isolation are two of the most pressing public health challenges of our society. Our goal is to provide planners with the knowledge and tools to successfully implement acceptable, targeted, equitable and cost-effective strategies for tackling loneliness and social isolation as part of a more holistic approach to chronic disease management in Australia. We will do this via a program of research that involves a diverse team with the consumer and community voice at its core.</description>
-            <description type="fundingAmount">$1,703,439.75.00</description>
-        </activity>
-    </registryObject>
+<key>http://purl.org/au-research/grants/nhmrc/2024805</key>
+<originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
+<activity type="grant">
+<identifier type="purl">http://purl.org/au-research/grants/nhmrc/2024805</identifier>
+<identifier type="nhmrc">2024805</identifier>
+<name type="primary"><namePart>Towards a holistic priority setting approach for chronic disease management to tackle loneliness and social isolation in Australia</namePart></name>
+<name type="alternative"><namePart>Targeted Call for Research</namePart></name>
+<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
+<relatedObject><key>http://nla.gov.au/nla.party-507067</key><relation type="isManagedBy"/></relatedObject>
+<subject type="local">Public Health Research</subject><subject type="anzsrc-for">health sciences | public health | preventative health care | economics | applied economics | health economics  | health sciences | epidemiology | epidemiological modelling | </subject>
+<subject type="local">health economics </subject>
+<subject type="local">chronic diseases </subject>
+<subject type="local">epidemiology </subject>
+<subject type="local">mental health </subject>
+<subject type="local">population health </subject>
+<description type="Chief Investigator">Prof Cathrine Mihalopoulos</description>
+<description type="full">Loneliness and social isolation are two of the most pressing public health challenges of our society. Our goal is to provide planners with the knowledge and tools to successfully implement acceptable, targeted, equitable and cost-effective strategies for tackling loneliness and social isolation as part of a more holistic approach to chronic disease management in Australia. We will do this via a program of research that involves a diverse team with the consumer and community voice at its core.</description>
+<description type="fundingAmount">$1,703,439.75.00</description>
+</activity>
+</registryObject>
     <registryObject group="National Health and Medical Research Council">
-        <key>http://purl.org/au-research/grants/nhmrc/2024853</key>
-        <originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
-        <activity type="grant">
-            <identifier type="purl">http://purl.org/au-research/grants/nhmrc/2024853</identifier>
-            <identifier type="nhmrc">2024853</identifier>
-            <name type="primary">
-                <namePart>SIncere: Developing resources to support Socially INClusivE caRE for mental ill-health</namePart>
-            </name>
-            <name type="alternative">
-                <namePart>Targeted Call for Research</namePart>
-            </name>
-            <relatedObject>
-                <key>http://dx.doi.org/10.13039/501100000925</key>
-                <relation type="isFundedBy"/>
-            </relatedObject>
-            <relatedObject>
-                <key>http://nla.gov.au/nla.party-561291</key>
-                <relation type="isManagedBy"/>
-            </relatedObject>
-            <subject type="local">Clinical Medicine and Science Research</subject>
-            <subject type="anzsrc-for">biomedical and clinical sciences | clinical sciences | psychiatry (incl. psychotherapy)  | health sciences | public health | social determinants of health | </subject>
-            <subject type="local">social determinants of health </subject>
-            <subject type="local">mental illness </subject>
-            <subject type="local">psychosocial factors </subject>
-            <subject type="local">outcome measures </subject>
-            <subject type="local">clinical practice guidelines </subject>
-            <description type="full">Chronic mental disorders are disabling disorders with high rates of social isolation and loneliness. The Social INClusion focusEd caRE (SIncere) project will develop and test the acceptability of much-needed resources to support mental health services to identify and address social exclusion as part of routine mental healthcare. Addressing social exclusion in care will help improve social and clinical outcomes for people with mental disorders, by providing more holistic and personalised care.</description>
-            <description type="fundingAmount">$1,783,246.90.00</description>
-        </activity>
-    </registryObject>
+<key>http://purl.org/au-research/grants/nhmrc/2024853</key>
+<originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
+<activity type="grant">
+<identifier type="purl">http://purl.org/au-research/grants/nhmrc/2024853</identifier>
+<identifier type="nhmrc">2024853</identifier>
+<name type="primary"><namePart>SIncere: Developing resources to support Socially INClusivE caRE for mental ill-health</namePart></name>
+<name type="alternative"><namePart>Targeted Call for Research</namePart></name>
+<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
+<relatedObject><key>http://nla.gov.au/nla.party-561291</key><relation type="isManagedBy"/></relatedObject>
+<subject type="local">Clinical Medicine and Science Research</subject><subject type="anzsrc-for">biomedical and clinical sciences | clinical sciences | psychiatry (incl. psychotherapy)  | health sciences | public health | social determinants of health | </subject>
+<subject type="local">social determinants of health </subject>
+<subject type="local">mental illness </subject>
+<subject type="local">psychosocial factors </subject>
+<subject type="local">outcome measures </subject>
+<subject type="local">clinical practice guidelines </subject>
+<description type="Chief Investigator">Dr Kate Filia</description>
+<description type="full">Chronic mental disorders are disabling disorders with high rates of social isolation and loneliness. The Social INClusion focusEd caRE (SIncere) project will develop and test the acceptability of much-needed resources to support mental health services to identify and address social exclusion as part of routine mental healthcare. Addressing social exclusion in care will help improve social and clinical outcomes for people with mental disorders, by providing more holistic and personalised care.</description>
+<description type="fundingAmount">$1,783,246.90.00</description>
+</activity>
+</registryObject>
     <registryObject group="National Health and Medical Research Council">
-        <key>http://purl.org/au-research/grants/nhmrc/2024872</key>
-        <originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
-        <activity type="grant">
-            <identifier type="purl">http://purl.org/au-research/grants/nhmrc/2024872</identifier>
-            <identifier type="nhmrc">2024872</identifier>
-            <name type="primary">
-                <namePart>Groups for Belonging: a parallel cluster randomised controlled trial of a group-based loneliness intervention for people attending treatment for alcohol or substance use disorders</namePart>
-            </name>
-            <name type="alternative">
-                <namePart>Targeted Call for Research</namePart>
-            </name>
-            <relatedObject>
-                <key>http://dx.doi.org/10.13039/501100000925</key>
-                <relation type="isFundedBy"/>
-            </relatedObject>
-            <relatedObject>
-                <key>http://nla.gov.au/nla.party-464691</key>
-                <relation type="isManagedBy"/>
-            </relatedObject>
-            <subject type="local">Clinical Medicine and Science Research</subject>
-            <subject type="anzsrc-for">psychology | clinical and health psychology | health psychology | </subject>
-            <subject type="local">substance dependence </subject>
-            <subject type="local">alcohol dependence </subject>
-            <subject type="local">health psychology </subject>
-            <subject type="local">group therapy </subject>
-            <subject type="local">clinical psychology </subject>
-            <description type="full">Loneliness is a significant issue for people accessing drug and alcohol treatment. Re-establishing meaningful social relationships is a core process of recovery. Our team developed Groups for Belonging. It is the first loneliness intervention developed for people accessing alcohol and other drug treatment. We plan to conduct a randomised controlled trial examining the effectiveness of Groups for Belonging for people accessing community-based and residential substance use treatment.</description>
-            <description type="fundingAmount">$1,290,844.65.00</description>
-        </activity>
-    </registryObject>
+<key>http://purl.org/au-research/grants/nhmrc/2024872</key>
+<originatingSource>www.nhmrc.gov.au/grants/research-funding-statistics-and-data</originatingSource>
+<activity type="grant">
+<identifier type="purl">http://purl.org/au-research/grants/nhmrc/2024872</identifier>
+<identifier type="nhmrc">2024872</identifier>
+<name type="primary"><namePart>Groups for Belonging: a parallel cluster randomised controlled trial of a group-based loneliness intervention for people attending treatment for alcohol or substance use disorders</namePart></name>
+<name type="alternative"><namePart>Targeted Call for Research</namePart></name>
+<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
+<relatedObject><key>http://nla.gov.au/nla.party-464691</key><relation type="isManagedBy"/></relatedObject>
+<subject type="local">Clinical Medicine and Science Research</subject><subject type="anzsrc-for">psychology | clinical and health psychology | health psychology | </subject>
+<subject type="local">substance dependence </subject>
+<subject type="local">alcohol dependence </subject>
+<subject type="local">health psychology </subject>
+<subject type="local">group therapy </subject>
+<subject type="local">clinical psychology </subject>
+<description type="Chief Investigator">Prof Peter Kelly</description>
+<description type="full">Loneliness is a significant issue for people accessing drug and alcohol treatment. Re-establishing meaningful social relationships is a core process of recovery. Our team developed Groups for Belonging. It is the first loneliness intervention developed for people accessing alcohol and other drug treatment. We plan to conduct a randomised controlled trial examining the effectiveness of Groups for Belonging for people accessing community-based and residential substance use treatment.</description>
+<description type="fundingAmount">$1,290,844.65.00</description>
+</activity>
+</registryObject>
 </registryObjects>

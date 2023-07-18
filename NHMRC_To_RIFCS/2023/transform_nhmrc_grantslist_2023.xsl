@@ -212,6 +212,15 @@
                     </xsl:if>
                     
                     <!-- Descriptions -->
+                    <!-- Chief Investigator -->
+                    <xsl:if test="CIA_Name != '' and CIA_Name != 'NULL'">
+                        <xsl:element name="description">
+                            <xsl:attribute name="type">Chief Investigator</xsl:attribute>
+                            <xsl:value-of select="normalize-space(CIA_Name)"/>
+                        </xsl:element>
+                        <xsl:text>&#xA;</xsl:text>
+                    </xsl:if>
+                    
                     <!-- brief -->
                     <xsl:if test="Media_Summary != '' and Media_Summary != 'NULL'">
                         <xsl:element name="description">
