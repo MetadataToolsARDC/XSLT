@@ -16,9 +16,7 @@
         <xsl:text>&#xA;</xsl:text>
         <xsl:element name="registryObjects"
             xmlns="http://ands.org.au/standards/rif-cs/registryObjects">
-            <xsl:attribute name="xsi:schemaLocation"
-                >http://ands.org.au/standards/rif-cs/registryObjects
-                http://services.ands.org.au/documentation/rifcs/schema/registryObjects.xsd</xsl:attribute>
+            <xsl:attribute name="xsi:schemaLocation">http://ands.org.au/standards/rif-cs/registryObjects https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd</xsl:attribute>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
@@ -181,7 +179,7 @@
                     <xsl:if test="Broad_Research_Area != ''">
                         <xsl:variable name="subjectArea" select="Broad_Research_Area"/>
                         <xsl:element name="subject">
-                            <xsl:attribute name="type">anzsrc-for</xsl:attribute>
+                            <xsl:attribute name="type">local</xsl:attribute>
                             <xsl:value-of select="$subjectArea"/>
                         </xsl:element>
                     </xsl:if>
