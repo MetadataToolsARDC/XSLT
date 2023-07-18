@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<institutions>
+    <institution>
+        <name>University of Melbourne</name>
+        <key>http://nla.gov.au/nla.party-561291</key>
+    </institution>
+    <institution>
+        <name>Baker Heart and Diabetes Institute</name>
+        <key>http://nla.gov.au/nla.party-583275</key>
+    </institution>
+    <institution>
+        <name>The University of Queensland</name>
+        <key>http://nla.gov.au/nla.party-460867</key>
+    </institution>
+    <institution>
+        <name>The George Institute for Global Health</name>
+    </institution>
+    <institution>
+        <name>Monash University</name>
+        <key>http://nla.gov.au/nla.party-507067</key>
+    </institution>
+    <institution>
+        <name>Queensland University of Technology</name>
+        <key>http://nla.gov.au/nla.party-536697</key>
+    </institution>
+    <institution>
+        <name>Flinders University</name>
+        <key>http://nla.gov.au/nla.party-593299</key>
+    </institution>
+    <institution>
+        <name>Deakin University</name>
+        <key>http://nla.gov.au/nla.party-469109</key>
+    </institution>
+    <institution>
+        <name>University of Sydney</name>
+        <key>http://nla.gov.au/nla.party-593941</key>
+    </institution>
+    <institution>
+        <name>Western Sydney University</name>
+        <key>http://nla.gov.au/nla.party-485355</key>
+    </institution>
+    <institution>
+        <name>Macquarie University</name>
+        <key>http://nla.gov.au/nla.party-501485</key>
+    </institution>
+    <institution>
+        <name>University of Wollongong</name>
+        <key>http://nla.gov.au/nla.party-464691</key>
+    </institution>
+</institutions>

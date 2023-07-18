@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<institutions>
+    <institution>
+        <name>University of Melbourne</name>
+        <key>http://nla.gov.au/nla.party-561291</key>
+    </institution>
+    <institution>
+        <name>University of South Australia</name>
+        <key>http://nla.gov.au/nla.party-574210</key>
+    </institution>
+    <institution>
+        <name>Australian National University</name>
+        <key>http://nla.gov.au/nla.party-637546</key>
+    </institution>
+    <institution>
+        <name>University of Sydney</name>
+        <key>http://nla.gov.au/nla.party-593941</key>
+    </institution>
+    <institution>
+        <name>Family Planning NSW</name>
+    </institution>
+    <institution>
+        <name>University of Western Australia</name>
+        <key>http://nla.gov.au/nla.party-464686</key>
+    </institution>
+    <institution>
+        <name>University of Queensland</name>
+        <key>http://nla.gov.au/nla.party-460867</key>
+    </institution>
+    <institution>
+        <name>University of New South Wales</name>
+        <key>http://nla.gov.au/nla.party-593921</key>
+    </institution>
+    <institution>
+        <name>University of Adelaide</name>
+        <key>http://nla.gov.au/nla.party-460832</key>
+    </institution>
+    <institution>
+        <name>Macquarie University</name>
+        <key>http://nla.gov.au/nla.party-501485</key>
+    </institution>
+    <institution>
+        <name>Monash University</name>
+        <key>http://nla.gov.au/nla.party-507067</key>
+    </institution>
+    <institution>
+        <name>Edith Cowan University</name>
+        <key>http://nla.gov.au/nla.party-578358</key>
+    </institution>
+    <institution>
+        <name>Curtin University</name>
+        <key>http://nla.gov.au/nla.party-611898</key>
+    </institution>
+    <institution>
+        <name>The University of Notre Dame Australia</name>
+        <key>https://nla.gov.au/nla.party-566410</key>
+    </institution>
+    <institution>
+        <name>Swinburne University of Technology</name>
+        <key>http://nla.gov.au/nla.party-482768</key>
+    </institution>
+    <institution>
+        <name>Murdoch Childrens Research Institute</name>
+        <key>http://nla.gov.au/nla.party-1306438</key>
+    </institution>
+    <institution>
+        <name>University of Tasmania</name>
+        <key>http://nla.gov.au/nla.party-460913</key>
+    </institution>
+    <institution>
+        <name>Menzies School of Health Research</name>
+        <key>http://nla.gov.au/nla.party-1310551</key>
+    </institution>
+    <institution>
+        <name>Institute for Breathing and Sleep</name>
+        <key>ands.org.au-institution-0075</key>
+    </institution>
+    <institution>
+        <name>Cabrini Health</name>
+    </institution>
+    <institution>
+        <name>Deakin University</name>
+        <key>http://nla.gov.au/nla.party-469109</key>
+    </institution>
+    <institution>
+        <name>Queensland University of Technology</name>
+        <key>http://nla.gov.au/nla.party-536697</key>
+    </institution>
+    <institution>
+        <name>Burnet Institute</name>
+        <key>http://nla.gov.au/nla.party-641471</key>
+    </institution>
+    <institution>
+        <name>Walter and Eliza Hall Institute of Medical Research</name>
+        <key>http://nla.gov.au/nla.party-540369</key>
+    </institution>
+    <institution>
+        <name>University of Newcastle</name>
+        <key>http://nla.gov.au/nla.party-565275</key>
+    </institution>
+    <institution>
+        <name>Baker Heart and Diabetes Institute</name>
+        <key>http://nla.gov.au/nla.party-583275</key>
+    </institution>
+    <institution>
+        <name>Flinders University</name>
+        <key>http://nla.gov.au/nla.party-593299</key>
+    </institution>
+    <institution>
+        <name>La Trobe University</name>
+        <key>http://nla.gov.au/nla.party-528764</key>
+    </institution>
+    <institution>
+        <name>QIMR Berghofer Medical Research Institute</name>
+    </institution>
+    <institution>
+        <name>Australian Catholic University</name>
+        <key>http://nla.gov.au/nla.party-581184</key>
+    </institution>
+    <institution>
+        <name>Griffith University</name>
+        <key>http://nla.gov.au/nla.party-465942</key>
+    </institution>
+    <institution>
+        <name>South Australian Health and Medical Research Institute</name>
+    </institution>
+    <institution>
+        <name>University of Technology Sydney</name>
+        <key>http://nla.gov.au/nla.party-502828</key>
+    </institution>
+    <institution>
+        <name>St Vincents Institute of Medical Research</name>
+        <key>http://nla.gov.au/nla.party-1452254</key>
+    </institution>
+    <institution>
+        <name>Garvan Institute of Medical Research</name>
+        <key>http://nla.gov.au/nla.party-502273</key>
+    </institution>
+    <institution>
+        <name>Melbourne Health</name>
+        <key>http://nla.gov.au/nla.party-1477251</key>
+    </institution>
+    <institution>
+        <name>University of Western Sydney</name>
+        <key>http://nla.gov.au/nla.party-485355</key>
+    </institution>
+    <institution>
+        <name>Centre for Eye Research Australia</name>
+        <key>http://nla.gov.au/nla.party-1471277</key>
+    </institution>
+    <institution>
+        <name>RMIT University</name>
+        <key>http://nla.gov.au/nla.party-1307378</key>
+    </institution>
+    <institution>
+        <name>Bionics Institute</name>
+        <key>ands.org.au-institution-0031</key>
+    </institution>
+    <institution>
+        <name>National Ageing Research Institute</name>
+        <key>http://nla.gov.au/nla.party-1474941</key>
+    </institution>
+    <institution>
+        <name>Florey Institute of Neuroscience and Mental Health</name>
+    </institution>
+    <institution>
+        <name>VCS Foundation Limited</name>
+    </institution>
+    <institution>
+        <name>The Sax Institute</name>
+    </institution>
+    <institution>
+        <name>The George Institute for Global Health</name>
+    </institution>
+    <institution>
+        <name>ANZAC Research Institute</name>
+    </institution>
+    <institution>
+        <name>Royal Brisbane and Women's Hospital Foundation</name>
+        <key>http://nla.gov.au/nla.party-573429</key>
+    </institution>
+    <institution>
+        <name>Melanoma Institute Australia</name>
+    </institution>
+    <institution>
+        <name>Children's Medical Research Institute</name>
+        <key>http://nla.gov.au/nla.party-469790</key>
+    </institution>
+    <institution>
+        <name>Centenary Institute of Cancer Medicine and Cell Biology</name>
+        <key>ands.org.au-institution-0041</key>
+    </institution>
+    <institution>
+        <name>Cancer Council VIC</name>
+    </institution>
+    <institution>
+        <name>Bond University</name>
+        <key>http://nla.gov.au/nla.party-501110</key>
+    </institution>
+    <institution>
+        <name>Victoria University</name>
+        <key>http://nla.gov.au/nla.party-1440823</key>
+    </institution>
+    <institution>
+        <name>University of Wollongong</name>
+        <key>http://nla.gov.au/nla.party-464691</key>
+    </institution>
+    <institution>
+        <name>Murdoch University</name>
+        <key>http://nla.gov.au/nla.party-589763</key>
+    </institution>
+    <institution>
+        <name>James Cook University</name>
+        <key>http://nla.gov.au/nla.party-642603</key>
+    </institution>
+    <institution>
+        <name>Charles Darwin University</name>
+        <key>http://nla.gov.au/nla.party-641982</key>
+    </institution>
+    <institution>
+        <name>National Acoustic Laboratories</name>
+    </institution>
+    <institution>
+        <name>Central Queensland University</name>
+        <key>http://nla.gov.au/nla.party-511578</key>
+    </institution>
+</institutions>
