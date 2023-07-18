@@ -14,8 +14,8 @@
     <xsl:param name="global_debugExceptions" select="true()" as="xs:boolean"/>
     <xsl:param name="global_originatingSource" select="'AuScope'"/>
     <xsl:param name="global_acronym" select="'AuScope'"/>
-    <xsl:param name="global_baseURI" select="'http://portal.auscope.org/'"/>
-    <xsl:param name="global_path" select="'/geonetwork/srv/eng/search?uuid='"/>
+    <xsl:param name="global_baseURI" select="'auportal.geoanalytics.group'"/>
+    <xsl:param name="global_path" select="'/geonetwork/srv/eng/catalog.search#/metadata/'"/>
     <xsl:param name="global_group" select="'AuScope'"/>
     
     
