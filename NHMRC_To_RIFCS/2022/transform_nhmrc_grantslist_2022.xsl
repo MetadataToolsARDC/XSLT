@@ -220,11 +220,21 @@
                         </xsl:element>
                         <xsl:text>&#xA;</xsl:text>
                     </xsl:if>
+                    
+                    <!-- full -->
+                    <xsl:if test="Plain_Description != '' and Plain_Description != 'NULL'">
+                        <xsl:element name="description">
+                            <xsl:attribute name="type">full</xsl:attribute>
+                            <xsl:value-of select="normalize-space(Plain_Description)"/>
+                        </xsl:element>
+                        <xsl:text>&#xA;</xsl:text>
+                    </xsl:if>
+                    
                     <!-- Funding Amount -->
-                    <xsl:if test="Funding_Commitment != ''">
+                    <xsl:if test="Total != ''">
                         <xsl:element name="description">
                             <xsl:attribute name="type">fundingAmount</xsl:attribute>
-                            <xsl:value-of select="concat(Funding_Commitment, '.00')"/>
+                            <xsl:value-of select="concat(Total, '.00')"/>
                         </xsl:element>
                         <xsl:text>&#xA;</xsl:text>
                     </xsl:if>
