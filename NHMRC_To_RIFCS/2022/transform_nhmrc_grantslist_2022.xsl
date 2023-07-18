@@ -10,7 +10,7 @@
 
     <xsl:output method="xml"/>
     <xsl:variable name="AdminInstitutions" select="document('nhmrc_admin_institutions_manual_update_nla_id_2022.xml')"/>
-    <xsl:variable name="grantpubs" select="document('nhmrc_grantpubs_2022.xml')"/> <!-- I don't have one of these until I update the API call in trove_harvest_2022.xsl -->
+    <xsl:variable name="grantpubs" select="document('nhmrc_grantpubs_2022.xml')"/> <!-- I don't have one of these until I update the API call in https://github.com/MetadataToolsARDC/XSLT/blob/7b4e454b03b308331a686ac5f672be3192ce0c10/NHMRC_To_RIFCS/2022/trove_harvest_2022.xsl -->
 
     <xsl:template match="/root">
         <xsl:text>&#xA;</xsl:text>
@@ -189,8 +189,19 @@
                             <xsl:attribute name="type">anzsrc-for</xsl:attribute>
                             <xsl:value-of select="$subjectArea"/>
                         </xsl:element>
+                        <xsl:text>&#xA;</xsl:text>
                     </xsl:if>
-
+                    
+                    <xsl:if test="count(*[contains(name(), 'Res_KW')]) > 0">
+                        <xsl:for-each select="*[contains(name(), 'Res_KW')]">
+                            <xsl:element name="subject">
+                                <xsl:attribute name="type">local</xsl:attribute>
+                                <xsl:value-of select="."/>
+                            </xsl:element>
+                            <xsl:text>&#xA;</xsl:text>
+                        </xsl:for-each>
+                    </xsl:if>
+                    
                     <xsl:if test="Keywords != '' and Keywords != 'NULL'">
                         <xsl:variable name="keyword" select="Keywords"/>
                         <xsl:element name="subject">
@@ -268,6 +279,7 @@
                     </xsl:if>
                     
                 </xsl:element>
+                <xsl:text>&#xA;</xsl:text>
                 <!-- activity -->
             </xsl:element>
             <!-- registryObject -->

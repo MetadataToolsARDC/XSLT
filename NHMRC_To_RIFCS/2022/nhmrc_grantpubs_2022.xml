@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <troveGrants>
-    <!-- TODO - populate this when trove_harvest_2022_requires_API_update.xsl is fixed with new API-->
+    <!-- TODO - available when I have updated the API call in https://github.com/MetadataToolsARDC/XSLT/blob/7b4e454b03b308331a686ac5f672be3192ce0c10/NHMRC_To_RIFCS/2022/trove_harvest_2022.xsl which generates this-->
 </troveGrants>
