@@ -9,7 +9,7 @@
 
 
     <xsl:output method="xml"/>
-    <xsl:variable name="AdminInstitutions" select="document('nhmrc_admin_institutions_manual_update_nla_id2023.xml')"/>
+    <xsl:variable name="AdminInstitutions" select="document('nhmrc_admin_institutions_manual_update_nla_id_2023.xml')"/>
     <xsl:variable name="grantpubs" select="document('nhmrc_grantpubs_2023.xml')"/> <!-- I don't have one of these until I update the API call in trove_harvest_2022_requires_API_update.xsl -->
 
     <xsl:template match="/root">
@@ -38,8 +38,7 @@
                     <xsl:value-of select="$key"/>
                 </xsl:element>
                 <xsl:text>&#xA;</xsl:text>
-                <xsl:element name="originatingSource"
-                    >www.nhmrc.gov.au/grants/research-funding-statistics-and-data</xsl:element>
+                <xsl:element name="originatingSource">www.nhmrc.gov.au/grants/research-funding-statistics-and-data</xsl:element>
                 <xsl:text>&#xA;</xsl:text>
 
                 <xsl:element name="activity">

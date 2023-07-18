@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated from nhmrc_extract_institutional_keys_2022.xsl but then manually updated with NLA identifiers where they were missing and could be found at https://trove.nla.gov.au/search/category/people -->
+<!--    Copied from:
+            https://github.com/MetadataToolsARDC/XSLT/blob/e9b95d93504a976a1e357b6166822775fcb8c7a2/NHMRC_To_RIFCS/2022/nhmrc_admin_institutions_nla_id_2022.xml 
+        and manually updated with NLA identifiers where they were missing and could be found at https://trove.nla.gov.au/search/category/people 
+-->
 <institutions>
     <institution>
         <name>University of Melbourne</name>
