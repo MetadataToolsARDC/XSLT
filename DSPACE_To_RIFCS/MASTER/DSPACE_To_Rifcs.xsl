@@ -61,6 +61,12 @@
         
         <xsl:variable name="identifierBase">
             <xsl:choose>
+                <xsl:when test="count(element[@name ='dc']/element[@name ='identifier']/element[@name='doi'][string-length(.) > 0]) > 0">
+                    <xsl:value-of select="normalize-space(element[@name ='dc']/element[@name ='identifier']/element[@name='doi'][string-length(.) > 0][1])"/>
+                </xsl:when>
+                <xsl:when test="count(element[@name ='dc']/element[@name ='identifier']/element[@name='uri'][string-length(.) > 0]) > 1">
+                    <xsl:value-of select="normalize-space(element[@name ='dc']/element[@name ='identifier']/element[@name='uri'][string-length(.) > 0][1])"/>
+                </xsl:when>
                 <xsl:when test="string-length(ancestor::oai:record/oai:header/oai:identifier) > 0">
                     <xsl:choose>
                         <xsl:when test="matches(ancestor::oai:record/oai:header/oai:identifier, '[\d]+')">
@@ -84,9 +90,7 @@
             
         </xsl:variable>
         
-        <xsl:variable name="key" select="concat($global_acronym, custom:registryObjectKeyFromString($identifierBase))"/>
-        <xsl:variable name="key" select="concat($identifierBase, ':', $identifierBase)"/>
-        
+        <xsl:variable name="key" select="concat($global_acronym, '/', custom:registryObjectKeyFromString($identifierBase))"/>
         
         <registryObject>
             <xsl:attribute name="group" select="$global_group"/>
@@ -133,11 +137,11 @@
                 
                <!-- if no doi, use handle as location -->
                 <xsl:choose>
-                    <xsl:when test="count(element[@name ='dc']/element[@name ='identifier']/element[@name='doi'][string-length(.) > 0]) = 0">
-                        <xsl:apply-templates select="element[@name ='dc']/element[@name ='identifier']/element[@name='uri'][string-length(.) > 0]" mode="collection_location_uri"/>
+                    <xsl:when test="count(element[@name ='dc']/element[@name ='identifier']/element[@name='doi'][string-length(.) > 0]) > 0">
+                        <xsl:apply-templates select="element[@name ='dc']/element[@name ='identifier']/element[@name='doi'][string-length(.) > 0]" mode="collection_location_doi"/>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:apply-templates select="element[@name ='dc']/element[@name ='identifier']/element[@name='doi'][string-length(.) > 0]" mode="collection_location_doi"/>
+                        <xsl:apply-templates select="element[@name ='dc']/element[@name ='identifier']/element[@name='uri'][string-length(.) > 0]" mode="collection_location_uri"/>
                     </xsl:otherwise>
                 </xsl:choose>
                 
@@ -163,9 +167,11 @@
                 
                 <xsl:apply-templates select="element[@name ='dc']/element[@name ='coverage']/element[@name ='spatial'][string-length(.) > 0]" mode="collection_spatial_coverage"/>
                 
-                <xsl:apply-templates select="element[(@name ='local') or (@name ='dc') or (@name ='dcterms')]/element[@name ='rights'][string-length(.) > 0]" mode="collection_rights"/>
+                <xsl:apply-templates select="element[(@name ='local') or (@name ='gro') or (@name ='dc') or (@name ='dcterms')]/element[@name ='rights'][string-length(.) > 0]" mode="collection_rights"/>
                 
                 <xsl:apply-templates select="element[(@name ='dcterms')]/element[lower-case(@name) ='rightsholder'][string-length(.) > 0]" mode="collection_rights"/>
+                
+                <xsl:apply-templates select="element[(@name ='dcterms')]/element[lower-case(@name) ='license'][string-length(.) > 0]" mode="collection_rights"/>
                 
                 <xsl:apply-templates select="element[@name ='dcterms']/element[@name ='accessRights'][string-length(.) > 0]" mode="collection_rights_accessRights"/>
                 
@@ -563,21 +569,59 @@
     </xsl:template>
     
     <xsl:template match="element[@name ='rights']" mode="collection_rights">
-        <xsl:for-each select="element[lower-case(@name)='rightsholder']/element/field[@name='value']">
-            <rights>
-                <rightsStatement>
-                    <xsl:value-of select="concat('Rights holder: ', normalize-space(.))"/>
-                </rightsStatement>
-            </rights>
-        </xsl:for-each>
-        <xsl:for-each select="element[@name='statement']/element/field[@name='value']">
-            <rights>
-                <rightsStatement>
-                    <xsl:value-of select="normalize-space(.)"/>
-                </rightsStatement>
-            </rights>
-        </xsl:for-each>
         
+        <xsl:for-each select="element">
+            <xsl:choose>
+                <xsl:when test="@name = 'accessRights'">
+                    <rights>
+                        <accessRights>
+                            <xsl:attribute name="type">
+                                <xsl:choose>
+                                    <xsl:when test="contains(lower-case(.), 'open access')">
+                                        <xsl:text>open</xsl:text>
+                                    </xsl:when>
+                                </xsl:choose>
+                                <xsl:choose>
+                                    <xsl:when test="contains(lower-case(.), 'mediated access')">
+                                        <xsl:text>conditional</xsl:text>
+                                    </xsl:when>
+                                </xsl:choose>
+                                <xsl:choose>
+                                    <xsl:when test="contains(lower-case(.), 'restricted access')">
+                                        <xsl:text>restricted</xsl:text>
+                                    </xsl:when>
+                                </xsl:choose>
+                            </xsl:attribute>
+                            <xsl:value-of select="normalize-space(element/field[@name='value'])"/>
+                        </accessRights>
+                    </rights>
+                </xsl:when>
+                <xsl:otherwise>
+                    <rights>
+                        <rightsStatement>
+                            <xsl:value-of select="normalize-space(element/field[@name='value'])"/>
+                        </rightsStatement>
+                    </rights>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xsl:template match="element[lower-case(@name) ='license']" mode="collection_rights">
+        <xsl:for-each select="element/field[@name='value']">
+            <xsl:if test="string-length(murFunc:getLicenseTypeFromUri(normalize-space(.))) > 0">
+                <rights>
+                    <licence rightsUri="{normalize-space(.)}">
+                        <xsl:attribute name="type">
+                            <xsl:value-of select="murFunc:getLicenseTypeFromUri(normalize-space(.))"/>
+                        </xsl:attribute>
+                    </licence>
+                </rights>
+            </xsl:if>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <!--xsl:template>
         <xsl:for-each select="element[@name='uri']/element[(@name='*') or (@name='en')]/field[@name='value']">
             <rights>
                 <rightsStatement rightsUri="{normalize-space(.)}"/>
@@ -593,7 +637,7 @@
                 </rights>
             </xsl:if>
         </xsl:for-each>
-    </xsl:template>
+    </xsl:template-->
     
     <xsl:template match="element[@name ='accessRights']" mode="collection_rights_accessRights">
         <rights>
