@@ -40,6 +40,7 @@
     xmlns="http://ands.org.au/standards/rif-cs/registryObjects"
     exclude-result-prefixes="ows xs csw fn oai lan mrc xlink srv mrd geonet mas mri mcc mrl xs mco mrs xsi mda msr mdb mds mdq cat mdt mac cit mex gco gcx mmi gmx gex mpc gml custom">
     
+    <xsl:strip-space elements="*"/>
     <xsl:import href="CustomFunctions.xsl"/>
     
     <xsl:output method="xml" version="1.0" encoding="UTF-8" omit-xml-declaration="yes" indent="yes"/>
@@ -310,8 +311,9 @@
             select="mri:topicCategory/mri:MD_TopicCategoryCode[string-length(.) > 0]"
             mode="registryObject_subject"/>
         
+        
         <xsl:apply-templates
-            select="mri:descriptiveKeywords/mri:MD_Keywords/mri:keyword[string-length(.) > 0]"
+            select="mri:descriptiveKeywords/mri:MD_Keywords"
             mode="registryObject_subject"/>
         
          <xsl:apply-templates
@@ -822,20 +824,50 @@
     
     
 
-    <xsl:template match="mri:keyword" mode="registryObject_subject">
-        <subject>
-            <xsl:attribute name="type">
+    <xsl:template match="mri:MD_Keywords" mode="registryObject_subject">
+        <!-- Grab thesaurus citation if there is one - in case there is more than one, grab the one that has a title or an identifier -->
+        <xsl:variable name="thesaurusCitation" select="mri:thesaurusName/cit:CI_Citation[(string-length(cit:title) > 0) or (count(cit:identifier/mcc:MD_Identifier/mcc:code) > 0)]" as="node()*"/>
+        
+        <xsl:for-each select="mri:keyword[string-length(gco:CharacterString) > 0]">
+            <subject>
                 <xsl:choose>
-                    <xsl:when test="contains(lower-case(following-sibling::mri:thesaurusName/cit:CI_Citation/cit:title), 'anzsrc')">
-                        <xsl:text>anzsrc-for</xsl:text>    
+                    <xsl:when test="count($thesaurusCitation) > 0"> <!-- Can only be one according to spec but if there are more, just take the first -->
+                        <xsl:variable name="thesaurusTitle" select="$thesaurusCitation[1]/cit:title"/>
+                        <xsl:variable name="thesaurusID" select="$thesaurusCitation[1]/cit:identifier[1]/mcc:MD_Identifier[1]/mcc:code[1]"/>
+                        
+                        <xsl:attribute name="type">
+                            <xsl:choose>
+                                <xsl:when test="
+                                    contains(lower-case($thesaurusTitle), 'anzsrc') or
+                                    (contains(lower-case($thesaurusTitle), 'australian and new zealand standard research classification') and contains(lower-case($thesaurusTitle), 'fields of research')) or
+                                    contains(lower-case($thesaurusID), 'anzsrc')"> <!-- Not technically FOR, could be SEO, but Geonetwork tends to prefer the FOR? -->
+                                    <xsl:text>anzsrc-for</xsl:text>  
+                                </xsl:when>
+                                <xsl:when test="
+                                    contains(lower-case($thesaurusTitle), 'global change master directory')"> 
+                                    <xsl:text>GCMD</xsl:text>  
+                                </xsl:when>
+                                <xsl:when test="string-length($thesaurusTitle) > 0">
+                                    <xsl:value-of select="$thesaurusTitle"/>
+                                </xsl:when>
+                                <xsl:when test="string-length($thesaurusID) > 0">
+                                    <xsl:value-of select="$thesaurusID"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:text>local</xsl:text>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:attribute>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:text>local</xsl:text>
+                        <xsl:attribute name="type">
+                            <xsl:text>local</xsl:text>
+                        </xsl:attribute>
                     </xsl:otherwise>
                 </xsl:choose>
-            </xsl:attribute>
-            <xsl:value-of select="normalize-space(.)"></xsl:value-of>
-        </subject>
+                <xsl:value-of select="normalize-space(.)"/>
+            </subject>
+        </xsl:for-each>
     </xsl:template>
     
     <!-- RegistryObject - Decription Element -->
@@ -912,7 +944,7 @@
        
    
     
-   <xsl:template match="gml:Polygon" mode="registryObject_coverage_spatial">
+   <xsl:template match="*:Polygon" mode="registryObject_coverage_spatial">
         <!-- RDA doesn't handle altitude yet and if altitude is provided, the shapes aren't shown on the
             map so I'm removing altitude from the map coords but keeping them in the text if they are there -->
         
