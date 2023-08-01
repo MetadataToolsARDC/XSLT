@@ -33,8 +33,8 @@
     <!--xsl:variable name="otherDatasourceRifCS" select="document('~/projects/SouthernCrossUniversity/InProdNew/SCU-Esploro-RIF-CS-Export_ProductionPublishedCollections_360.xml')"/-->
     <!--xsl:variable name="otherDatasourceRifCS" select="document('~/projects/RMIT/RMIT-Redbox-RIF-CS-Export_ProdRedBox_PublishedCollections_Figshare_357.xml')"/-->
     <!--xsl:variable name="otherDatasourceRifCS" select="document('~/projects/ACU_Victoria/ACU_20202/CompareDemoProd/ACU_InProdRDA.xml')"/-->
-    <xsl:variable name="otherDatasourceRifCS" select="document('~/projects/CQU_Project/CompareKeys/Central-Queensland-University-RIF-CS-Export_OldProd.xml')"/>
-  
+    <!--xsl:variable name="otherDatasourceRifCS" select="document('~/projects/CQU_Project/CompareKeys/Central-Queensland-University-RIF-CS-Export_OldProd.xml')"/-->
+    <xsl:variable name="otherDatasourceRifCS" select="fn:document('file:/Users/ada168/git/projects/GriffithUniversity/From_PROD_GriffithUniversity_61/Griffith-University-RIF-CS-Export_PROD_Collections_PUBLISHED.xml')"/>
     <xsl:template match="node()|@*">
         <xsl:copy>
             <xsl:apply-templates select="node()|@*"/>
@@ -231,12 +231,19 @@
                     <xsl:value-of select="$columnSeparator"/>
                     
                     <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="$otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/identifier[contains(lower-case(.), lower-case($doiPostFixFromDoi))]]/key"/>
+                    <xsl:value-of select="string-join($otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/identifier[contains(lower-case(.), lower-case($doiPostFixFromDoi))]]/key, ',')"/>
                     <xsl:text>&quot;</xsl:text>
                     <xsl:value-of select="$columnSeparator"/>
                     
                     <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="concat('https://', $registry_address_other, '/view?key=', $otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/identifier[contains(lower-case(.), lower-case($doiPostFixFromDoi))]]/key)"/>
+                    <xsl:variable name="count" select="count($otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/identifier[contains(lower-case(.), lower-case($doiPostFixFromDoi))]]/key)"/>
+                    <xsl:for-each select="$otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/identifier[contains(lower-case(.), lower-case($doiPostFixFromDoi))]]/key">
+                        <xsl:value-of select="concat('https://', $registry_address_other, '/view?key=', .)"/>
+                        <xsl:if test="$count &gt; fn:position()">
+                            <xsl:value-of select="$valueSeparator"/>
+                        </xsl:if>
+                    </xsl:for-each>
+                    
                     <xsl:text>&quot;</xsl:text>
                     <xsl:value-of select="$columnSeparator"/>
                     
@@ -311,15 +318,23 @@
                     <xsl:value-of select="$columnSeparator"/>
                     
                     <xsl:text>&quot;</xsl:text>
+                    <xsl:variable name="count" select="count($otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/name[lower-case(normalize-space(namePart)) = lower-case(normalize-space($objectNamePart))]]/key)" as="xs:integer"/>
                     <xsl:for-each select="$otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/name[lower-case(normalize-space(namePart)) = lower-case(normalize-space($objectNamePart))]]/key">
                         <xsl:value-of select="."/>
+                        <xsl:if test="$count &gt; fn:position()">
+                            <xsl:value-of select="$valueSeparator"/>
+                        </xsl:if>
                     </xsl:for-each>
                     <xsl:text>&quot;</xsl:text>
                     <xsl:value-of select="$columnSeparator"/>
                     
                     <xsl:text>&quot;</xsl:text>
+                    <xsl:variable name="count" select="count($otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/name[lower-case(normalize-space(namePart)) = lower-case(normalize-space($objectNamePart))]]/key)"/>
                     <xsl:for-each select="$otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/name[lower-case(normalize-space(namePart)) = lower-case(normalize-space($objectNamePart))]]/key">
-                        <xsl:value-of select="concat('https://', $registry_address_other, '/view?key=', ., ' ')"/>
+                        <xsl:value-of select="concat('https://', $registry_address_other, '/view?key=', .)"/>
+                        <xsl:if test="$count &gt; fn:position()">
+                            <xsl:value-of select="$valueSeparator"/>
+                        </xsl:if>
                     </xsl:for-each>
                     <xsl:text>&quot;</xsl:text>
                     <xsl:value-of select="$columnSeparator"/>

@@ -35,7 +35,6 @@
             xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects 
             https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd">
           
-            <xsl:message select="concat('name(oai:OAI-PMH): ', name(oai:OAI-PMH))"/>
             <xsl:apply-templates select="oai:OAI-PMH/*/oai:record"/>
             
         </registryObjects>
@@ -43,54 +42,27 @@
     
   
     <xsl:template match="oai:OAI-PMH/*/oai:record">
-        <xsl:message select="concat('name(.): ', name(.))"/>
-        <xsl:message select="concat('name(.): ', name(oai:metadata/metadata))"/>
-           <xsl:apply-templates select="oai:metadata/metadata" mode="collection"/>
+        <xsl:variable name="oai_identifier" select="oai:header/oai:identifier"/>
+        <xsl:message select="concat('identifier: ', oai:header/oai:identifier)"/>
+        <xsl:if test="string-length($oai_identifier) > 0">
+            <xsl:apply-templates select="oai:metadata/metadata" mode="collection">
+                <xsl:with-param name="oai_identifier" select="$oai_identifier"/>
+            </xsl:apply-templates>
             <!--  xsl:apply-templates select="oai:metadata/metadata/dc:funding" mode="funding_party"/-->
-        <xsl:apply-templates select="oai:metadata/metadata/element[@name ='dc']/element[@name ='contributor']/element[(@name ='author') or (@name ='publisher')]" mode="party_person"/> 
-        <xsl:apply-templates select="oai:metadata/metadata/element[@name ='local']/element[@name ='datasetcontact']/element[@name ='name']" mode="party_person"/> 
-        <xsl:apply-templates select="oai:metadata/metadata/element[@name ='local']/element[@name ='datasetcustodian']/element[@name ='name']" mode="party_person"/> 
-        
-        <xsl:apply-templates select="oai:metadata/metadata/element[@name ='dc']/element[@name ='contributor']/element[@name ='corporate']" mode="party_group"/> 
+            <xsl:apply-templates select="oai:metadata/metadata/element[@name ='dc']/element[@name ='contributor']/element[(@name ='author') or (@name ='publisher')]" mode="party_person"/> 
+            <xsl:apply-templates select="oai:metadata/metadata/element[@name ='local']/element[@name ='datasetcontact']/element[@name ='name']" mode="party_person"/> 
+            <xsl:apply-templates select="oai:metadata/metadata/element[@name ='local']/element[@name ='datasetcustodian']/element[@name ='name']" mode="party_person"/> 
+            
+            <xsl:apply-templates select="oai:metadata/metadata/element[@name ='dc']/element[@name ='contributor']/element[@name ='corporate']" mode="party_group"/> 
+        </xsl:if>
     </xsl:template>
     
     <xsl:template match="metadata" mode="collection">
+        <xsl:param name="oai_identifier" as="xs:string"/>
+        
         <xsl:variable name="class" select="'collection'"/>
         
-        <xsl:message select="concat('name(oai:element[@name=''dc'']): ', name(element[@name ='dc']))"/>
-        
-        <xsl:variable name="identifierBase">
-            <xsl:choose>
-                <xsl:when test="count(element[@name ='dc']/element[@name ='identifier']/element[@name='doi'][string-length(.) > 0]) > 0">
-                    <xsl:value-of select="normalize-space(element[@name ='dc']/element[@name ='identifier']/element[@name='doi'][string-length(.) > 0][1])"/>
-                </xsl:when>
-                <xsl:when test="count(element[@name ='dc']/element[@name ='identifier']/element[@name='uri'][string-length(.) > 0]) > 1">
-                    <xsl:value-of select="normalize-space(element[@name ='dc']/element[@name ='identifier']/element[@name='uri'][string-length(.) > 0][1])"/>
-                </xsl:when>
-                <xsl:when test="string-length(ancestor::oai:record/oai:header/oai:identifier) > 0">
-                    <xsl:choose>
-                        <xsl:when test="matches(ancestor::oai:record/oai:header/oai:identifier, '[\d]+')">
-                            <xsl:analyze-string select="normalize-space(ancestor::oai:record/oai:header/oai:identifier)" regex="[\d]+">
-                                <xsl:matching-substring>
-                                    <xsl:value-of select="regex-group(0)"/>
-                                </xsl:matching-substring>
-                            </xsl:analyze-string>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:value-of select="normalize-space(ancestor::oai:record/oai:header/oai:identifier)"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="fn:generate-id(.)"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>   
-        <xsl:variable name="numbersFromKey">
-            
-        </xsl:variable>
-        
-        <xsl:variable name="key" select="concat($global_acronym, '/', custom:registryObjectKeyFromString($identifierBase))"/>
+        <xsl:variable name="key" select="$oai_identifier"/>
         
         <registryObject>
             <xsl:attribute name="group" select="$global_group"/>
@@ -163,7 +135,9 @@
                
                 <xsl:apply-templates select="element[@name ='dc']/element[@name ='publisher'][string-length(.) > 0]" mode="collection_relatedObject"/>
                 
-                <xsl:apply-templates select="element[@name ='local']/element[@name ='subject'][string-length(.) > 0]" mode="collection_subject"/>
+                <xsl:apply-templates select="element[@name ='dc']/element[@name ='subject'][string-length(.) > 0]" mode="collection_subject"/>
+                
+                <xsl:apply-templates select="element[@name ='dc']/element[@name ='coverage']/element[@name ='spatial'][string-length(.) > 0]" mode="collection_spatial_coverage"/>
                 
                 <xsl:apply-templates select="element[@name ='dc']/element[@name ='coverage']/element[@name ='spatial'][string-length(.) > 0]" mode="collection_spatial_coverage"/>
                 
@@ -477,19 +451,13 @@
     </xsl:template>
     
     <xsl:template match="element[@name ='subject']" mode="collection_subject">
-        <xsl:for-each select="element[@name = 'for2008']/element[@name = 'en']/field[@name = 'value']">
+        <xsl:for-each select="element[@name = 'fieldofresearch']/element/field[@name = 'value']">
             <subject type="anzsrc-for">
                 <xsl:value-of select="normalize-space(.)"/>
             </subject>
         </xsl:for-each>
         
-        <xsl:for-each select="element[@name = 'seo2008']/element[@name = 'en']/field[@name = 'value']">
-            <subject type="anzsrc-seo">
-                <xsl:value-of select="normalize-space(.)"/>
-            </subject>
-        </xsl:for-each>
-        
-        <xsl:for-each select="element[not(@name = 'seo2008') and not(@name = 'for2008')]/element[@name = 'en']/field[@name = 'value']">
+        <xsl:for-each select="element[@name = 'keywords']/element/field[@name = 'value']">
             <subject type="local">
                 <xsl:value-of select="normalize-space(.)"/>
             </subject>
@@ -668,7 +636,7 @@
             </xsl:for-each>
             
             <xsl:for-each select="$licenseCodelist/custom:CT_CodelistCatalogue/custom:codelistItem/custom:CodeListDictionary[(@custom:id='LicenseCodeInternational')]/custom:codeEntry/custom:CodeDefinition">
-                <xsl:message select="concat('remarks no {n}: ', normalize-space(replace(custom:remarks, '\{n\}', '')))"/>
+                <!--xsl:message select="concat('remarks no {n}: ', normalize-space(replace(custom:remarks, '\{n\}', '')))"/-->
                 <xsl:if test="contains(replace($currentValueHttpNotHttps, '\d.\d', ''), normalize-space(replace(custom:remarks, '\{n\}', '')))">
                     <xsl:message select="concat('Match on remarks :', custom:remarks) "/>
                     <xsl:if test="string-length(custom:identifier) > 0">
@@ -690,7 +658,7 @@
             </xsl:for-each>
             
             <xsl:for-each select="$licenseCodelist/custom:CT_CodelistCatalogue/custom:codelistItem/custom:CodeListDictionary[(@custom:id='LicenseCodeInternational')]/custom:codeEntry/custom:CodeDefinition">
-                <xsl:message select="concat('current value no  -: ', translate($currentValueHttpNotHttps, ' ', '-'))"/>
+                <xsl:message select="concat('current value no -: ', translate($currentValueHttpNotHttps, ' ', '-'))"/>
                 <xsl:message select="concat('custom:identifier: ', normalize-space(custom:identifier))"/>
                 
                 <xsl:if test="contains(normalize-space(custom:identifier), translate($currentValueHttpNotHttps, ' ', '-'))">
@@ -839,8 +807,6 @@
     <xsl:function name="murFunc:formatName">
         <xsl:param name="name"/>
         
-        <xsl:message select="concat('formatName input: ', $name)"/>
-        
         <xsl:variable name="namePart_sequence" as="xs:string*">
             <xsl:analyze-string select="$name" regex="[A-Za-zÀ-ÿ()-]+">
                 <xsl:matching-substring>
@@ -867,7 +833,6 @@
                     </xsl:for-each>
                     <xsl:value-of select="$namePart_sequence[1]"/>
                 </xsl:variable>
-                <xsl:message select="concat('formatName returning: ', string-join(for $i in $orderedNamePart_sequence return $i, ' '))"/>
                 <xsl:value-of select="string-join(for $i in $orderedNamePart_sequence return $i, ' ')"/>
     
             </xsl:otherwise>
