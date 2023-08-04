@@ -15,13 +15,11 @@
     <xsl:strip-space elements="*"/>  
     
     <xsl:import href="CustomFunctions.xsl"/>
-        
-       
     
     <xsl:variable name="keyPrefix" select="'e-publications.une.edu.au/'"/>
     <!--xsl:variable name="keyPrefix" select="''"/-->
     
-    <xsl:param name="compareWithOtherDatasource" select="true()"/>
+    <xsl:param name="compareWithOtherDatasource" select="false()"/>
     <!--xsl:param name="registry_address_input" select="'demo.researchdata.ardc.edu.au'"/-->
     <xsl:param name="registry_address_input" select="'researchdata.edu.au'"/>
     <xsl:param name="registry_address_other" select="'researchdata.edu.au'"/>
@@ -34,7 +32,7 @@
     <!--xsl:variable name="otherDatasourceRifCS" select="document('~/projects/RMIT/RMIT-Redbox-RIF-CS-Export_ProdRedBox_PublishedCollections_Figshare_357.xml')"/-->
     <!--xsl:variable name="otherDatasourceRifCS" select="document('~/projects/ACU_Victoria/ACU_20202/CompareDemoProd/ACU_InProdRDA.xml')"/-->
     <!--xsl:variable name="otherDatasourceRifCS" select="document('~/projects/CQU_Project/CompareKeys/Central-Queensland-University-RIF-CS-Export_OldProd.xml')"/-->
-    <xsl:variable name="otherDatasourceRifCS" select="fn:document('file:/Users/ada168/git/projects/GriffithUniversity/From_PROD_GriffithUniversity_61/Griffith-University-RIF-CS-Export_PROD_Collections_PUBLISHED.xml')"/>
+    <xsl:variable name="otherDatasourceRifCS" select="fn:document('file:/Users/ada168/git/projects/GriffithUniversity/From_PROD_GriffithUniversity_61/Griffith-University-RIF-CS-Export_PROD_Collections_Published_AfterDelete.xml')"/>
     <xsl:template match="node()|@*">
         <xsl:copy>
             <xsl:apply-templates select="node()|@*"/>
@@ -68,9 +66,9 @@
             <xsl:text>doi_other_datasource</xsl:text><xsl:value-of select="$columnSeparator"/>
         </xsl:if>
         
-        <xsl:message select="concat('result: ', count(//registryObject[count(collection|service) > 0]))"></xsl:message>
+        <xsl:message select="concat('result: ', count(//registryObject[count(collection|service|party|activity) > 0]))"></xsl:message>
         
-        <xsl:apply-templates select="//registryObject[count(collection|service) > 0]"/>
+        <xsl:apply-templates select="//registryObject[count(collection|service|party|activity) > 0]"/>
     
     </xsl:template>
     
@@ -160,7 +158,7 @@
         
         <xsl:variable name="doi">
             <xsl:choose>
-                <xsl:when test="string-length((collection|service|party|activity)/identifier[lower-case(@type)='doi']) > 0">
+                <xsl:when test="count((collection|service|party|activity)/identifier[lower-case(@type)='doi']) > 0">
                     <xsl:value-of select="(collection|service|party|activity)/identifier[lower-case(@type)='doi']"/>
                 </xsl:when>
                 <xsl:otherwise>
