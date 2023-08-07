@@ -88,7 +88,7 @@
                     <xsl:apply-templates select="fields/field[@name='longitude']"/>
                     <xsl:apply-templates select="native-url"/>
                     <xsl:apply-templates select="fields/field[@name='custom_citation']/value"/>
-                    <xsl:apply-templates select="fields/field[@name='related_content']" mode="collection"/>
+                    <xsl:apply-templates select="fields/field[@name='related_pubs']" mode="collection"/>
                     <xsl:apply-templates select="fields/field[@name='grant_num']" mode="collection"/>
                     <xsl:apply-templates select="fields/field[@name='project_links']" mode="collection"/>
                     <xsl:apply-templates select="fields/field[@name='contact']"/>
@@ -141,7 +141,7 @@
                             <xsl:apply-templates select="keywords"/>
                             <xsl:apply-templates select="disciplines"/>
                             <xsl:apply-templates select="fields/field[@name='for_code']"/>
-                            <xsl:apply-templates select="fields/field[@name='related_content']" mode="activity"/>
+                            <xsl:apply-templates select="fields/field[@name='related_pubs']" mode="activity"/>
                             <xsl:apply-templates select="fields/field[@name='grant_num']" mode="activity"/>
                             <xsl:apply-templates select="fields/field[@name='project_links']" mode="activity"/>
                             <xsl:apply-templates select="fields/field[@name='contact']"/>
@@ -561,7 +561,7 @@
     </xsl:template>
     
 
-    <xsl:template match="field[@name='related_content']" mode="collection">
+    <xsl:template match="field[@name='related_pubs']" mode="collection">
 
         <xsl:analyze-string select="value" regex="href=&quot;(http.+?)&quot;">
           <xsl:matching-substring>
@@ -610,7 +610,7 @@
         </xsl:choose>
     </xsl:template>
     
-    <xsl:template match="field[@name='related_content']" mode="activity">
+    <xsl:template match="field[@name='related_pubs']" mode="activity">
         
         <xsl:analyze-string select="value" regex="href=&quot;(http.+?)&quot;">
             <xsl:matching-substring>
