@@ -12,7 +12,7 @@
     <xsl:param name="global_baseURI" select="'ro.ecu.edu.au'"/>
     <xsl:param name="global_group" select="'Edith Cowan University'"/>
     <xsl:param name="global_publisherName" select="'Edith Cowan University'"/>
-    <xsl:param name="global_debug" select="false()"/>
+    <xsl:param name="global_debug" select="true()"/>
 
   <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 
@@ -89,7 +89,8 @@
                     <xsl:apply-templates select="native-url"/>
                     <xsl:apply-templates select="fields/field[@name='custom_citation']/value"/>
                     <xsl:apply-templates select="fields/field[@name='related_pubs']" mode="collection"/>
-                    <xsl:apply-templates select="fields/field[@name='grant_num']" mode="collection"/>
+                    <!--xsl:apply-templates select="fields/field[@name='grant_num']" mode="collection"/-->
+                    <xsl:apply-templates select="fields/field[@name='grant_purl']" mode="collection"/>
                     <xsl:apply-templates select="fields/field[@name='project_links']" mode="collection"/>
                     <xsl:apply-templates select="fields/field[@name='contact']"/>
                     <xsl:apply-templates select="coverpage-url"/>
@@ -191,7 +192,7 @@
                      
                      <xsl:attribute name="type" select="$type"/>
                      
-                     <xsl:variable name="html_sequence" select="normalize-space(../../fields/field[@name='comments']/value[contains(text(), '&lt;')])" as="xs:string*"/>
+                     <xsl:variable name="html_sequence" select="normalize-space(ancestor::document/fields/field[@name='identifier']/value[contains(text(), '&lt;')])" as="xs:string*"/>
                       
                      
                      <xsl:for-each select="$html_sequence">
@@ -576,7 +577,25 @@
 
     </xsl:template>
     
-    <xsl:template match="field[@name='grant_num']" mode="collection">
+    <xsl:template match="field[@name='grant_purl']" mode="collection">
+        <xsl:variable name="grantID_sequence" as="xs:string*">
+            <xsl:analyze-string select="normalize-space(value)" regex="(&quot;)(http.+?)(&quot;)">
+                <xsl:matching-substring>
+                    <xsl:value-of select="regex-group(2)"/>
+                </xsl:matching-substring>
+            </xsl:analyze-string>
+        </xsl:variable>
+        <xsl:for-each select="$grantID_sequence">
+            <relatedInfo type="activity">
+                 <identifier type="purl">
+                     <xsl:value-of select="."/>
+                 </identifier>
+                 <relation type="isOutputOf"/>
+             </relatedInfo>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <!--xsl:template match="field[@name='grant_num']" mode="collection">
        <xsl:variable name="funder">
            <xsl:analyze-string select="../field[@name='funding']" regex="(&gt;)(.*)(&lt;)">
                 <xsl:matching-substring>
@@ -608,7 +627,7 @@
                 </relatedInfo>
             </xsl:when>
         </xsl:choose>
-    </xsl:template>
+    </xsl:template-->
     
     <xsl:template match="field[@name='related_pubs']" mode="activity">
         
