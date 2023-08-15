@@ -12,7 +12,7 @@
     <xsl:param name="global_baseURI" select="'ro.ecu.edu.au'"/>
     <xsl:param name="global_group" select="'Edith Cowan University'"/>
     <xsl:param name="global_publisherName" select="'Edith Cowan University'"/>
-    <xsl:param name="global_debug" select="true()"/>
+    <xsl:param name="global_debug" select="false()"/>
 
   <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 
@@ -884,7 +884,7 @@
         <xsl:param name="lastName" as="xs:string"/>
         <xsl:param name="input" as="xs:string"/>
         
-        <xsl:analyze-string select="$input" regex="({$firstName}[-\w\s.]+{$lastName}).+href=.(http.+?).target">
+        <xsl:analyze-string select="$input" regex="({$firstName}[-\w\s.]+{$lastName}.+?)(http.*?)(&quot;)">
             <xsl:matching-substring>
                 <matching>
                     <xsl:value-of select="regex-group(2)"/>
