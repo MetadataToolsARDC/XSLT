@@ -24,7 +24,7 @@
     
     <xsl:param name="global_originatingSource" select="'Flinders University'"/>
     <xsl:param name="global_baseURI" select="'flinders.edu.au/'"/>
-    <xsl:param name="global_group" select="'Flinders University Figshare'"/>
+    <xsl:param name="global_group" select="'Flinders University'"/>
     
   <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 
