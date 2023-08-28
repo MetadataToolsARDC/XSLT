@@ -5,7 +5,7 @@
                  xmlns:xlink="http://www.w3.org/1999/xlink"
                  xmlns:dwc="http://rs.tdwg.org/dwc/terms/"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                 xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects http://services.ands.org.au/documentation/rifcs/schema/registryObjects.xsd">
+                 xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd">
    <registryObject group="University of Tasmania, Australia">
       <key>UTAS/75fc95bf-e4b4-4d39-9ac3-0433669648de</key>
       <originatingSource>Tasmanian Aquaculture and Fisheries Institute (TAFI)</originatingSource>
