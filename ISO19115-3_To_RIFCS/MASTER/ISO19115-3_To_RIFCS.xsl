@@ -1415,6 +1415,9 @@
                     <xsl:when test="matches(lower-case(mri:initiativeType/mri:DS_InitiativeTypeCode/@codeListValue), 'project')">
                         <xsl:text>activity</xsl:text>
                     </xsl:when>
+                    <xsl:when test="matches(lower-case(mri:initiativeType/mri:DS_InitiativeTypeCode/@codeListValue), 'program')">
+                        <xsl:text>activity</xsl:text>
+                    </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="mri:initiativeType/mri:DS_InitiativeTypeCode/@codeListValue"/>
                     </xsl:otherwise>
@@ -1422,8 +1425,12 @@
             </xsl:attribute>
             
             <!-- There ought only be one of the following, but just in case there are more... -->
-                <xsl:for-each select="mri:name/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:code[string-length(.) > 0]">
-                    <identifier type="uri">
+                <xsl:for-each select="mri:name/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:code">
+                    
+                    <identifier>
+                        <xsl:attribute name="type">
+                            <xsl:value-of select="custom:getIdentifierType(.)"/>
+                        </xsl:attribute>
                         <xsl:value-of select="."/>
                     </identifier>
                 </xsl:for-each>
@@ -1432,6 +1439,9 @@
                     <xsl:attribute name="type">
                         <xsl:choose>
                             <xsl:when test="matches(lower-case(mri:initiativeType/mri:DS_InitiativeTypeCode/@codeListValue), 'project')">
+                                <xsl:text>isOutputOf</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="matches(lower-case(mri:initiativeType/mri:DS_InitiativeTypeCode/@codeListValue), 'program')">
                                 <xsl:text>isOutputOf</xsl:text>
                             </xsl:when>
                             <xsl:otherwise>hasAssociationWith</xsl:otherwise>
