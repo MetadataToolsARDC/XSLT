@@ -941,42 +941,72 @@
     </xsl:template>
     
     
-       
+    <xsl:template match="*:polygon | *:Polygon" mode="registryObject_coverage_spatial">
+        <xsl:call-template name="writeYoungestChildTextNode">
+            <xsl:with-param name="currentNode" select="."/>
+        </xsl:call-template>
+    </xsl:template>
    
     
-   <xsl:template match="*:Polygon" mode="registryObject_coverage_spatial">
-        <!-- RDA doesn't handle altitude yet and if altitude is provided, the shapes aren't shown on the
-            map so I'm removing altitude from the map coords but keeping them in the text if they are there -->
+    <xsl:template name="writeYoungestChildTextNode">
+        <xsl:param name="currentNode" as="node()"/>
         
-        <xsl:variable name="coordsFormatted" select="custom:convertCoordinatesLatLongToLongLat(normalize-space(.), false())"/>
+        <xsl:for-each select="$currentNode/child::node()">
+            <xsl:choose>
+                <xsl:when test="string-length(self::text()) > 0">
+                    <xsl:call-template name="outputLineString">
+                        <xsl:with-param name="lineString" select="normalize-space(self::text())"/>
+                    </xsl:call-template>
+                </xsl:when>
+                <!-- ignore any addition child called (case insensitive) 'polygon' because we are handling each lowest-level 
+                    polygon element because otherwise, if a polygon has a child polygon, this will be repeated if we don't filter it out -->
+                <xsl:when test="boolean(not(contains(lower-case(name(.)), 'polygon')))">
+                    <xsl:call-template name="writeYoungestChildTextNode">
+                        <xsl:with-param name="currentNode" select="."/>
+                    </xsl:call-template>
+                </xsl:when>
+            </xsl:choose>
+            
+        </xsl:for-each>
+       
+    </xsl:template>
+    
+    <xsl:template name="outputLineString">
+        <xsl:param name="lineString" as="xs:string"/>
         
+        <xsl:if test="string-length($lineString) > 0">
+        
+          <!-- RDA doesn't handle altitude yet and if altitude is provided, the shapes aren't shown on the
+              map so I'm removing altitude from the map coords but keeping them in the text if they are there -->
+          
+            <xsl:variable name="coordsFormatted" select="custom:convertCoordinatesLatLongToLongLat(normalize-space(.), false())"/>
             <spatial>
-                <xsl:attribute name="type">
-                    <xsl:text>kmlPolyCoords</xsl:text>
-                </xsl:attribute>
-                <xsl:value-of select="$coordsFormatted"/>
-            </spatial>
-            <!--
-            <spatial>
-                <xsl:attribute name="type">
-                    <xsl:text>text</xsl:text>
-                </xsl:attribute>
-                <xsl:value-of select="normalize-space(.)"/>
-            </spatial>
-            -->
+              <xsl:attribute name="type">
+                  <xsl:text>kmlPolyCoords</xsl:text>
+              </xsl:attribute>
+              <xsl:value-of select="$coordsFormatted"/>
+          </spatial>
+          <!--
+              <spatial>
+                  <xsl:attribute name="type">
+                      <xsl:text>text</xsl:text>
+                  </xsl:attribute>
+                  <xsl:value-of select="normalize-space(.)"/>
+              </spatial>
+              -->
+        </xsl:if>
+        
     </xsl:template>
     
     
    <!-- RegistryObject - Coverage Spatial Element -->
     <xsl:template match="gex:EX_Extent" mode="registryObject_coverage_spatial">
         
-        
-       
-       
         <coverage>
             
-            <xsl:apply-templates select=".//*:Polygon" mode="registryObject_coverage_spatial"/>
-        
+            <xsl:apply-templates select=".//gex:polygon" mode="registryObject_coverage_spatial"/>
+            <xsl:apply-templates select=".//gml:Polygon" mode="registryObject_coverage_spatial"/>
+            
             <xsl:for-each select="gex:geographicElement/gex:EX_GeographicBoundingBox">
             
              <xsl:if
