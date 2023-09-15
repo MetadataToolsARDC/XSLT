@@ -225,7 +225,7 @@
                     [lat,long,elevation]
                     [long,lat]
                     [lat,long]
-                    We are just going to use the first to (and flip lat long to long lat - if the param told us too)
+                    We are just going to use the first two (and flip lat long to long lat - if the param told us too)
                     -->
                 <xsl:for-each select="tokenize(., ',')">
                     <xsl:if test="position() &lt; 3">
@@ -257,12 +257,13 @@
             <xsl:message select="concat('latCoords ', string-join(for $i in $latCoords return $i, ' '))"/>
         </xsl:if>
         
-        
+        <!-- This method used to leave off the last coord which was often the first coord to close the polygon 
+             Not sure if this was on purpose because of RDA, but I've altered the below to not do that anymore -->
         <xsl:variable name="coordinatePair_sequence" as="xs:string*">
             <xsl:choose>
                 <xsl:when test="$flip = true()">
                     <xsl:for-each select="$longCoords">
-                        <xsl:if test="count($latCoords) > position()">
+                        <xsl:if test="count($latCoords) >= position()">
                             <xsl:variable name="index" select="position()" as="xs:integer"/>
                             <xsl:value-of select="concat(., ',', normalize-space($latCoords[$index]))"/>
                         </xsl:if>
@@ -270,7 +271,7 @@
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:for-each select="$latCoords">
-                        <xsl:if test="count($longCoords) > position()">
+                        <xsl:if test="count($longCoords) >= position()">
                             <xsl:variable name="index" select="position()" as="xs:integer"/>
                             <xsl:value-of select="concat(., ',', normalize-space($longCoords[$index]))"/>
                         </xsl:if>
@@ -278,6 +279,12 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
+        
+        <xsl:if test="$global_debug">
+            <xsl:message select="concat('count(longCoords) ', count($longCoords))"/>
+            <xsl:message select="concat('count(latCoords) ', count($latCoords))"/>
+            <xsl:message select="concat('count(coordinatePair_sequence) ', count($coordinatePair_sequence))"/>
+        </xsl:if>
         
         <xsl:choose>    
             <xsl:when test="count($coordinatePair_sequence) > 0"> 
