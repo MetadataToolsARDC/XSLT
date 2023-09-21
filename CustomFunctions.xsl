@@ -213,6 +213,7 @@
             "lat,long,elevation lat,long,elevation ..." (cannot work out to flip yet, so needs to be told with param 'flip')
             "long,lat long,lat" 
             "lat,long lat,long" (cannot work out to flip yet, so needs to be told with param 'flip'
+            "long lat long lat" 
             
             First, separate into sequence each item between a space (and the last item)
         -->
@@ -224,19 +225,23 @@
                     [long,lat,elevation]
                     [lat,long,elevation]
                     [long,lat]
-                    [lat,long]
-                    We are just going to use the first two (and flip lat long to long lat - if the param told us too)
+                    or just [lat] OR [long]
+                    or just [lat,] OR [long,]
+                    
+                    We are just going to use the first two (and flip lat long to long lat - if the param told us to)
                     -->
                 <xsl:for-each select="tokenize(., ',')">
                     <xsl:if test="position() &lt; 3">
-                        <xsl:value-of select="."/>    
+                        <xsl:if test="string-length(.) > 0">
+                            <xsl:value-of select="."/>    
+                        </xsl:if>
                     </xsl:if>
                 </xsl:for-each>
             </xsl:for-each>
         </xsl:variable>
         
         
-        <xsl:variable name="latCoords" as="xs:string*">
+        <xsl:variable name="firstCoords" as="xs:string*">
             <xsl:for-each select="$coordinateSequence">
                 <xsl:if test="(position() mod 2) > 0">
                     <xsl:value-of select="."/>    
@@ -244,7 +249,7 @@
             </xsl:for-each>
         </xsl:variable>
         
-        <xsl:variable name="longCoords" as="xs:string*">
+        <xsl:variable name="secondCoords" as="xs:string*">
             <xsl:for-each select="$coordinateSequence">
                 <xsl:if test="(position() mod 2) = 0">
                     <xsl:value-of select="."/>    
@@ -253,27 +258,41 @@
         </xsl:variable>
         
         <xsl:if test="$global_debug">
-            <xsl:message select="concat('longCoords ', string-join(for $i in $longCoords return $i, ' '))"/>
-            <xsl:message select="concat('latCoords ', string-join(for $i in $latCoords return $i, ' '))"/>
+            <xsl:message select="concat('firstCoords ', string-join(for $i in $firstCoords return $i, ' '))"/>
+            <xsl:message select="concat('secondCoords ', string-join(for $i in $secondCoords return $i, ' '))"/>
         </xsl:if>
         
         <!-- This method used to leave off the last coord which was often the first coord to close the polygon 
              Not sure if this was on purpose because of RDA, but I've altered the below to not do that anymore -->
         <xsl:variable name="coordinatePair_sequence" as="xs:string*">
+            
+            <xsl:variable name="error" as="xs:boolean*">
+                <xsl:choose>
+                    <xsl:when test="$flip">
+                        <xsl:for-each select="$firstCoords">
+                            <!-- Check whether any of these longCoord that are going to be latCoord, are greater than 90 or less than -90 -->
+                            <xsl:if test="(number(.) &gt; 90) or (number(.) &lt; -90)">
+                                <xsl:message select="concat('ERROR: Asked to flip coordinates, but will not because there is a value [',., '] that is not correct to use as latitute')"/>
+                                <xsl:value-of select="true()"/>
+                            </xsl:if>
+                        </xsl:for-each> 
+                    </xsl:when>
+                 </xsl:choose>
+            </xsl:variable>
             <xsl:choose>
-                <xsl:when test="$flip = true()">
-                    <xsl:for-each select="$longCoords">
-                        <xsl:if test="count($latCoords) >= position()">
+                <xsl:when test="$flip and (count($error) = 0)">
+                    <xsl:for-each select="$secondCoords">
+                        <xsl:if test="count($firstCoords) >= position()">
                             <xsl:variable name="index" select="position()" as="xs:integer"/>
-                            <xsl:value-of select="concat(., ',', normalize-space($latCoords[$index]))"/>
+                            <xsl:value-of select="concat(., ',', normalize-space($firstCoords[$index]))"/>
                         </xsl:if>
                     </xsl:for-each> 
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:for-each select="$latCoords">
-                        <xsl:if test="count($longCoords) >= position()">
+                    <xsl:for-each select="$firstCoords">
+                        <xsl:if test="count($secondCoords) >= position()">
                             <xsl:variable name="index" select="position()" as="xs:integer"/>
-                            <xsl:value-of select="concat(., ',', normalize-space($longCoords[$index]))"/>
+                            <xsl:value-of select="concat(., ',', normalize-space($secondCoords[$index]))"/>
                         </xsl:if>
                     </xsl:for-each> 
                 </xsl:otherwise>
@@ -281,8 +300,8 @@
         </xsl:variable>
         
         <xsl:if test="$global_debug">
-            <xsl:message select="concat('count(longCoords) ', count($longCoords))"/>
-            <xsl:message select="concat('count(latCoords) ', count($latCoords))"/>
+            <xsl:message select="concat('count(longCoords) ', count($firstCoords))"/>
+            <xsl:message select="concat('count(latCoords) ', count($secondCoords))"/>
             <xsl:message select="concat('count(coordinatePair_sequence) ', count($coordinatePair_sequence))"/>
         </xsl:if>
         

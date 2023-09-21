@@ -32,16 +32,17 @@
     xmlns:gmx="http://www.isotc211.org/2005/gmx"
     xmlns:gml="http://www.opengis.net/gml" 
     xmlns:ows="http://www.opengis.net/ows"
-    xmlns:xlink="http://www.w3.org/1999/xlink" 
+    xmlns:xlink="http://www.w3.org/1999/xlink"
     xmlns:geonet="http://www.fao.org/geonetwork" 
     xmlns:oai="http://www.openarchives.org/OAI"
     xmlns:custom="http://custom.nowhere.yet"
     xmlns:fn="http://www.w3.org/2005/xpath-functions"
     xmlns="http://ands.org.au/standards/rif-cs/registryObjects"
     exclude-result-prefixes="ows xs csw fn oai lan mrc xlink srv mrd geonet mas mri mcc mrl xs mco mrs xsi mda msr mdb mds mdq cat mdt mac cit mex gco gcx mmi gmx gex mpc gml custom">
+   
+    <xsl:import href="CustomFunctions.xsl"/>
     
     <xsl:strip-space elements="*"/>
-    <xsl:import href="CustomFunctions.xsl"/>
     
     <xsl:output method="xml" version="1.0" encoding="UTF-8" omit-xml-declaration="yes" indent="yes"/>
     <xsl:strip-space elements='*'/>
@@ -310,7 +311,6 @@
         <xsl:apply-templates
             select="mri:topicCategory/mri:MD_TopicCategoryCode[string-length(.) > 0]"
             mode="registryObject_subject"/>
-        
         
         <xsl:apply-templates
             select="mri:descriptiveKeywords/mri:MD_Keywords"
@@ -827,14 +827,15 @@
     <xsl:template match="mri:MD_Keywords" mode="registryObject_subject">
         <!-- Grab thesaurus citation if there is one - in case there is more than one, grab the one that has a title or an identifier -->
         <xsl:variable name="thesaurusCitation" select="mri:thesaurusName/cit:CI_Citation[(string-length(cit:title) > 0) or (count(cit:identifier/mcc:MD_Identifier/mcc:code) > 0)]" as="node()*"/>
+        <xsl:variable name="thesaurusTitle" select="$thesaurusCitation[1]/cit:title"/>
+        <xsl:variable name="thesaurusID" select="$thesaurusCitation[1]/cit:identifier[1]/mcc:MD_Identifier[1]/mcc:code[1]"/>
         
-        <xsl:for-each select="mri:keyword[string-length(gco:CharacterString) > 0]">
+        <xsl:variable name="keywordChildNode_Sequence" as="node()*" select="mri:keyword/node()"/>
+       
+        <xsl:for-each select="$keywordChildNode_Sequence">
             <subject>
                 <xsl:choose>
                     <xsl:when test="count($thesaurusCitation) > 0"> <!-- Can only be one according to spec but if there are more, just take the first -->
-                        <xsl:variable name="thesaurusTitle" select="$thesaurusCitation[1]/cit:title"/>
-                        <xsl:variable name="thesaurusID" select="$thesaurusCitation[1]/cit:identifier[1]/mcc:MD_Identifier[1]/mcc:code[1]"/>
-                        
                         <xsl:attribute name="type">
                             <xsl:choose>
                                 <xsl:when test="
@@ -865,7 +866,12 @@
                         </xsl:attribute>
                     </xsl:otherwise>
                 </xsl:choose>
-                <xsl:value-of select="normalize-space(.)"/>
+                <xsl:if test="boolean(string-length(@xlink:href))">
+                    <xsl:attribute name="termIdentifier">
+                        <xsl:value-of select="@xlink:href"/>
+                    </xsl:attribute>
+                </xsl:if>
+                <xsl:value-of select="normalize-space(text())"/>
             </subject>
         </xsl:for-each>
     </xsl:template>
@@ -942,10 +948,13 @@
     
     
     <xsl:template match="*:polygon | *:Polygon" mode="registryObject_coverage_spatial">
+        
+        
         <xsl:call-template name="writeYoungestChildTextNode">
             <xsl:with-param name="currentNode" select="."/>
         </xsl:call-template>
     </xsl:template>
+    
    
     
     <xsl:template name="writeYoungestChildTextNode">
@@ -975,11 +984,26 @@
         <xsl:param name="lineString" as="xs:string"/>
         
         <xsl:if test="string-length($lineString) > 0">
+            
+            <xsl:variable name="srsNameAncestor_sequence" select="ancestor::node()[string-length(@srsName) > 0]/@srsName" as="xs:string*"/>
+            <xsl:variable name="lastIndex" as="xs:integer" select="count($srsNameAncestor_sequence)"/>
+            <xsl:variable name="srsNameLowest" select="$srsNameAncestor_sequence[$lastIndex]"/>
         
           <!-- RDA doesn't handle altitude yet and if altitude is provided, the shapes aren't shown on the
               map so I'm removing altitude from the map coords but keeping them in the text if they are there -->
           
-            <xsl:variable name="coordsFormatted" select="custom:convertCoordinatesLatLongToLongLat(normalize-space(.), false())"/>
+          <xsl:variable name="flip" as="xs:boolean">
+              <xsl:choose>
+                <xsl:when test="contains(lower-case($srsNameLowest), 'epsg') and contains(lower-case($srsNameLowest), '4326')">
+                     <xsl:copy-of select="true()"/>
+                 </xsl:when>
+                <xsl:otherwise>
+                    <xsl:copy-of select="false()"/>
+                </xsl:otherwise>
+              </xsl:choose>
+          </xsl:variable>
+            
+            <xsl:variable name="coordsFormatted" select="custom:convertCoordinatesLatLongToLongLat(normalize-space(.), $flip)"/>
             <spatial>
               <xsl:attribute name="type">
                   <xsl:text>kmlPolyCoords</xsl:text>
@@ -1004,7 +1028,7 @@
         
         <coverage>
             
-            <xsl:apply-templates select=".//gex:polygon" mode="registryObject_coverage_spatial"/>
+            <xsl:apply-templates select=".//gex:polygon[count(child::gml:Polygon) = 0]" mode="registryObject_coverage_spatial"/>
             <xsl:apply-templates select=".//gml:Polygon" mode="registryObject_coverage_spatial"/>
             
             <xsl:for-each select="gex:geographicElement/gex:EX_GeographicBoundingBox">
