@@ -987,23 +987,14 @@
             
             <xsl:variable name="srsNameAncestor_sequence" select="ancestor::node()[string-length(@srsName) > 0]/@srsName" as="xs:string*"/>
             <xsl:variable name="lastIndex" as="xs:integer" select="count($srsNameAncestor_sequence)"/>
-            <xsl:variable name="srsNameLowest" select="$srsNameAncestor_sequence[$lastIndex]"/>
+            <xsl:variable name="coordinateReferenceSystem" select="$srsNameAncestor_sequence[$lastIndex]"/>
         
           <!-- RDA doesn't handle altitude yet and if altitude is provided, the shapes aren't shown on the
               map so I'm removing altitude from the map coords but keeping them in the text if they are there -->
           
-          <xsl:variable name="flip" as="xs:boolean">
-              <xsl:choose>
-                <xsl:when test="contains(lower-case($srsNameLowest), 'epsg') and contains(lower-case($srsNameLowest), '4326')">
-                     <xsl:copy-of select="true()"/>
-                 </xsl:when>
-                <xsl:otherwise>
-                    <xsl:copy-of select="false()"/>
-                </xsl:otherwise>
-              </xsl:choose>
-          </xsl:variable>
+          
             
-            <xsl:variable name="coordsFormatted" select="custom:convertCoordinatesLatLongToLongLat(normalize-space(.), $flip)"/>
+          <xsl:variable name="coordsFormatted" select="custom:formatCoordinates(normalize-space(.), $coordinateReferenceSystem)"/>
             <spatial>
               <xsl:attribute name="type">
                   <xsl:text>kmlPolyCoords</xsl:text>

@@ -5,10 +5,13 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:fn="http://www.w3.org/2005/xpath-functions"
+    xmlns:math="http://www.w3.org/2005/xpath-functions/math"
     xmlns:custom="http://custom.nowhere.yet"
     exclude-result-prefixes="custom">
     
     <xsl:param name="global_debug" select="false()"/>
+    <!-- Approx coordinate extent of earth - See Geodetic Reference System 1980 - "global" haha, coz "earth"-->
+    <xsl:param name="global_earthExtent" select="2 * math:pi() * 6378137 div 2.0"  as="xs:double"/>  
     
     <xsl:function name="custom:sequenceContains" as="xs:boolean">
         <xsl:param name="sequence" as="xs:string*"/>
@@ -194,67 +197,111 @@
         <!--xsl:value-of select="substring-before(substring-before((substring-after($url, '://')), '/'), ':')"/-->
     </xsl:function>
     
-    <xsl:function name="custom:convertCoordinatesLatLongToLongLat" as="xs:string">
+    <xsl:function name="custom:formatCoordinates" as="xs:string">
         <xsl:param name="coordinates" as="xs:string"/>
-        <xsl:param name="flipParam" as="xs:boolean"/>
+        <xsl:param name="CRC_sequence" as="xs:string*"/>
         
-        <xsl:variable name="flip" as="xs:boolean">
+        <xsl:variable name="CRC" as="xs:string">
             <xsl:choose>
-                <xsl:when test="$flipParam = true()">
-                    <xsl:value-of select="true()"/>
+                <xsl:when test="count($CRC_sequence) > 0">
+                    <xsl:copy-of select="$CRC_sequence[1]"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:copy-of select="string('')"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        
+        
+        <xsl:variable name="swap" as="xs:boolean">
+            <xsl:choose>
+                <xsl:when test="contains(lower-case($CRC), 'epsg') and (contains(lower-case($CRC), '4326'))">
+                    <xsl:copy-of select="true()"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="false()"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <!-- to handle:
+        
+       <!-- to handle:
+            "(lat,long),"
+            "(long,lat),"
             "long,lat,elevation long,lat,elevation ..." 
-            "lat,long,elevation lat,long,elevation ..." (cannot work out to flip yet, so needs to be told with param 'flip')
+            "lat,long,elevation lat,long,elevation ..." (swap depends on $CRC value)
             "long,lat long,lat" 
-            "lat,long lat,long" (cannot work out to flip yet, so needs to be told with param 'flip'
+            "lat,long lat,long" (swap depends on $CRC value)
             "long lat long lat" 
             
             First, separate into sequence each item between a space (and the last item)
         -->
-        <xsl:variable name="coordinatePairOrTrioSequence" as="xs:string*" select="tokenize($coordinates, ' ')"/>
         
-        <xsl:variable name="coordinateSequence" as="xs:string*">
-            <xsl:for-each select="$coordinatePairOrTrioSequence">
-                <!-- per each item in this sequence here we have either just one of the following patterns
-                    [long,lat,elevation]
-                    [lat,long,elevation]
-                    [long,lat]
-                    or just [lat] OR [long]
-                    or just [lat,] OR [long,]
-                    
-                    We are just going to use the first two (and flip lat long to long lat - if the param told us to)
-                    -->
-                <xsl:for-each select="tokenize(., ',')">
-                    <xsl:if test="position() &lt; 3">
-                        <xsl:if test="string-length(.) > 0">
-                            <xsl:value-of select="."/>    
-                        </xsl:if>
-                    </xsl:if>
-                </xsl:for-each>
-            </xsl:for-each>
-        </xsl:variable>
-        
+        <!--xsl:variable name="coordinatePairOrTrioSequence" as="xs:string*">
+            <xsl:choose>
+                <xsl:when test="not(contains($coordinates, ','))">
+                    <xsl:choose>
+                        <xsl:when test="matches($coordinates, '\s+')">
+                            <xsl:for-each select="tokenize($coordinates, '\s+')">
+                                <xsl:value-of select="."/>
+                            </xsl:for-each>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <xsl:when test="matches($coordinates, '\s+')">
+                    <xsl:for-each select="tokenize($coordinates, '\s+')">
+                        <xsl:value-of select="."/>
+                    </xsl:for-each>
+                </xsl:when>
+                <xsl:when test="contains($coordinates, '\),\(')">
+                    <xsl:for-each select="tokenize($coordinates, '\),\(')">
+                        <xsl:value-of select="."/>
+                    </xsl:for-each>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="$coordinates"/> 
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable--> 
         
         <xsl:variable name="firstCoords" as="xs:string*">
-            <xsl:for-each select="$coordinateSequence">
-                <xsl:if test="(position() mod 2) > 0">
-                    <xsl:value-of select="."/>    
-                </xsl:if>
-            </xsl:for-each>
+            <xsl:choose>
+                <xsl:when test="contains($coordinates,',')">
+                    <xsl:analyze-string select="$coordinates" regex="(-*\d+\.*\d*),\s*(-*\d+\.*\d*)">
+                        <xsl:matching-substring>
+                            <xsl:value-of select="regex-group(1)"/>
+                         </xsl:matching-substring>
+                    </xsl:analyze-string>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:analyze-string select="$coordinates" regex="(-*\d+\.*\d*)\s(-*\d+\.*\d*)">
+                        <xsl:matching-substring>
+                            <xsl:value-of select="regex-group(1)"/>
+                        </xsl:matching-substring>
+                    </xsl:analyze-string>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:variable>
         
         <xsl:variable name="secondCoords" as="xs:string*">
-            <xsl:for-each select="$coordinateSequence">
-                <xsl:if test="(position() mod 2) = 0">
-                    <xsl:value-of select="."/>    
-                </xsl:if>
-            </xsl:for-each>
+            <xsl:choose>
+                <xsl:when test="contains($coordinates,',')">
+                    <xsl:analyze-string select="$coordinates" regex="(-*\d+\.*\d*),\s*(-*\d+\.*\d*)">
+                        <xsl:matching-substring>
+                            <xsl:value-of select="regex-group(2)"/>
+                        </xsl:matching-substring>
+                    </xsl:analyze-string>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:analyze-string select="$coordinates" regex="(-*\d+\.*\d*)\s(-*\d+\.*\d*)">
+                        <xsl:matching-substring>
+                            <xsl:value-of select="regex-group(2)"/>
+                        </xsl:matching-substring>
+                    </xsl:analyze-string>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:variable>
         
         <xsl:if test="$global_debug">
@@ -262,29 +309,53 @@
             <xsl:message select="concat('secondCoords ', string-join(for $i in $secondCoords return $i, ' '))"/>
         </xsl:if>
         
-        <!-- This method used to leave off the last coord which was often the first coord to close the polygon 
-             Not sure if this was on purpose because of RDA, but I've altered the below to not do that anymore -->
         <xsl:variable name="coordinatePair_sequence" as="xs:string*">
             
             <xsl:variable name="error" as="xs:boolean*">
                 <xsl:choose>
-                    <xsl:when test="$flip">
-                        <xsl:for-each select="$firstCoords">
-                            <!-- Check whether any of these longCoord that are going to be latCoord, are greater than 90 or less than -90 -->
-                            <xsl:if test="(number(.) &gt; 90) or (number(.) &lt; -90)">
-                                <xsl:message select="concat('ERROR: Asked to flip coordinates, but will not because there is a value [',., '] that is not correct to use as latitute')"/>
+                    <xsl:when test="$swap">
+                        <xsl:variable name="proposedLat_sequence" as="xs:double*">
+                            <xsl:for-each select="$firstCoords">
+                                <xsl:choose>
+                                    <xsl:when test="contains(lower-case($CRC), 'epsg') and contains(lower-case($CRC), '3857')">
+                                        <xsl:value-of select="xs:double(custom:convertLatCoordFromEPSG3857(.))"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:value-of select="xs:double(.)"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </xsl:for-each>
+                        </xsl:variable>
+                        
+                        <xsl:choose>
+                            <xsl:when test="count($proposedLat_sequence[. &lt; -90]) &gt; 0">
+                                <xsl:message select="concat('ERROR: Expected to swap coordinates due to CRC [', $CRC,'] but will not because there is at least one value [',$proposedLat_sequence[xs:double(.) &lt; -90][1], '] that is not correct to use as latitute')"/>
                                 <xsl:value-of select="true()"/>
-                            </xsl:if>
-                        </xsl:for-each> 
+                            </xsl:when>
+                            <xsl:when test="count($proposedLat_sequence[. &gt; 90]) &gt; 0">
+                                <xsl:message select="concat('ERROR: Expected to swap coordinates due to CRC [', $CRC,'] but will not because there is at least one value [',$proposedLat_sequence[xs:double(.) &gt; 90][1], '] that is not correct to use as latitute')"/>
+                                <xsl:value-of select="true()"/>
+                            </xsl:when>
+                        </xsl:choose>
                     </xsl:when>
-                 </xsl:choose>
+                </xsl:choose>
             </xsl:variable>
+                            
             <xsl:choose>
-                <xsl:when test="$flip and (count($error) = 0)">
+                <xsl:when test="$swap and (count($error) = 0)">
                     <xsl:for-each select="$secondCoords">
                         <xsl:if test="count($firstCoords) >= position()">
                             <xsl:variable name="index" select="position()" as="xs:integer"/>
-                            <xsl:value-of select="concat(., ',', normalize-space($firstCoords[$index]))"/>
+                            <xsl:variable name="first" select="normalize-space($firstCoords[$index])"/>
+                            <xsl:variable name="second" select="normalize-space(.)"/>
+                            <xsl:choose>
+                                <xsl:when test="contains(lower-case($CRC), 'epsg') and contains(lower-case($CRC), '3857')">
+                                    <xsl:value-of select="concat(custom:convertLongCoordFromEPSG3857($second), ',', custom:convertLatCoordFromEPSG3857($first))"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="concat($second, ',', $first)"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
                         </xsl:if>
                     </xsl:for-each> 
                 </xsl:when>
@@ -292,7 +363,16 @@
                     <xsl:for-each select="$firstCoords">
                         <xsl:if test="count($secondCoords) >= position()">
                             <xsl:variable name="index" select="position()" as="xs:integer"/>
-                            <xsl:value-of select="concat(., ',', normalize-space($secondCoords[$index]))"/>
+                            <xsl:variable name="first" select="normalize-space(.)"/>
+                            <xsl:variable name="second" select="normalize-space($secondCoords[$index])"/>
+                            <xsl:choose>
+                                <xsl:when test="contains(lower-case($CRC), 'epsg') and contains(lower-case($CRC), '3857')">
+                                    <xsl:value-of select="concat(custom:convertLongCoordFromEPSG3857($first), ',', custom:convertLatCoordFromEPSG3857($second))"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="concat($first, ',', $second)"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
                         </xsl:if>
                     </xsl:for-each> 
                 </xsl:otherwise>
@@ -311,11 +391,47 @@
                 <xsl:value-of select="string-join(for $i in $coordinatePair_sequence return $i, ' ')"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:value-of select="''"/>
+                <xsl:value-of select="$coordinates"/> 
             </xsl:otherwise>
         </xsl:choose>
+            
+        
         
     </xsl:function>
+    
+    <xsl:function name="custom:convertLatCoordFromEPSG3857" as="xs:double">
+        <xsl:param name="latCoordStr" as="xs:string"/>
+        
+        <xsl:variable name="e" select="xs:double(2.7182818284)" as="xs:double"/> <!-- Approx Euler's value -->
+        <xsl:variable name="lat3857" select="xs:double($latCoordStr)" as="xs:double"/>
+        
+        <xsl:variable name="temp1" select="xs:double($lat3857 div ($global_earthExtent div 180))" as="xs:double"/>
+        <xsl:variable name="exponent" select="(math:pi() div 180) * $temp1" as="xs:double"/>
+        
+        <xsl:variable name="temp2" select="math:atan(math:pow($e, $exponent))" as="xs:double"/>
+        <xsl:variable name="temp3" select="$temp2 div (math:pi() div 360)"/>
+        <xsl:variable name="lat4326" select="$temp3 - 90 "/>
+        
+        <xsl:if test="$global_debug"><xsl:message select="concat('Converted lat from [', $latCoordStr, '] to [', $lat4326, ']')"/></xsl:if>
+        
+        
+        <xsl:copy-of select="$lat4326"/>
+            
+    </xsl:function>
+    
+    <xsl:function name="custom:convertLongCoordFromEPSG3857" as="xs:double">
+        <xsl:param name="longCoordStr" as="xs:string"/>
+        
+        <xsl:variable name="temp" select="xs:double($longCoordStr)" as="xs:double"/>
+        
+        <xsl:variable name="long4326" select="($temp*180) div $global_earthExtent"/>
+        
+        <!--xsl:if test="$global_debug"><xsl:message select="concat('Converted long from [', $longCoordStr, '] to [', $long4326, ']')"/></xsl:if-->
+        
+        <xsl:copy-of select="$long4326"/>
+            
+    </xsl:function>
+    
     
     <xsl:function name="custom:formatName">
         <xsl:param name="name"/>
