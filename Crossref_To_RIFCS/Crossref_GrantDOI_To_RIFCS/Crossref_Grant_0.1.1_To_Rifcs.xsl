@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="2.0"
+<xsl:stylesheet 
     xmlns="http://ands.org.au/standards/rif-cs/registryObjects" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:custom="http://custom.nowhere.yet"
     xmlns:fn="http://www.w3.org/2005/xpath-functions"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:custom="http://custom.nowhere.yet"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:dcrifcsFunc="http://dcrifcsFunc.nowhere.yet"
+    version="2.0"
     exclude-result-prefixes="xsl custom fn xs xsi dcrifcsFunc">
 	
     <xsl:import href="CustomFunctions.xsl"/>
@@ -19,8 +20,7 @@
     <xsl:param name="global_publisherName" select="''"/>
     <xsl:param name="global_rightsStatement" select="''"/>
     <xsl:param name="global_project_identifier_strings" select="'raid'" as="xs:string*"/>
-    <xsl:param name="global_schemeFilter" select="'(Public Sector to Research Sector)|(National Data Assets)'" as="xs:string"/>
-    <!--xsl:param name="global_schemeFilter" select="'Public Sector to Research Sector'"/-->
+    <xsl:param name="global_schemeFilter" select="'(Public Sector to Research Sector)|(National Data Assets)|(Translational Research Data Challenges)'" as="xs:string"/>
     <!--xsl:param name="global_baseURI" select="''"/-->
     <!--xsl:param name="global_path" select="''"/-->
       
@@ -28,9 +28,9 @@
 
     <xsl:template match="/">
         <xsl:message select="'Crossref_Grant_0.1.1_To_Rifcs'"/>
-        <xsl:message select="concat('Creating ', count(JSON/message/items[matches(project/array/funding/array/scheme, $global_schemeFilter)]), ' Activity records where scheme contains :', $global_schemeFilter)"/>
+        <xsl:message select="concat('Creating ', count(//items[matches(project/funding/scheme[1], $global_schemeFilter)]), ' Activity records where scheme contains :', $global_schemeFilter)"/>
         <registryObjects>
-            <xsl:apply-templates select="JSON/message/items[matches(project/array/funding/array/scheme, $global_schemeFilter)]" mode="Crossref_0.1.1_to_rifcs_collection">
+            <xsl:apply-templates select="//items[matches(project/funding/scheme, $global_schemeFilter)]" mode="Crossref_0.1.1_to_rifcs_collection">
                 <xsl:with-param name="originatingSource" select="$global_originatingSource"/>
             </xsl:apply-templates>  
         </registryObjects>
@@ -111,18 +111,18 @@
                 
                 <xsl:apply-templates select="." mode="activity_name"/>
                
-                <xsl:apply-templates select="project/array/funding/array/scheme" mode="activity_description_scheme"/>
+                <xsl:apply-templates select="project/funding/scheme" mode="activity_description_scheme"/>
                
-               <xsl:apply-templates select="project/array/award-amount" mode="activity_description_amount"/>
+               <xsl:apply-templates select="project/award-amount" mode="activity_description_amount"/>
                 
-                <xsl:apply-templates select="project/array/funding/array/funder" mode="activity_relatedInfo_funder"/>
+                <xsl:apply-templates select="project/funding/funder" mode="activity_relatedInfo_funder"/>
                
                
-               <xsl:apply-templates select="project/array/lead-investigator/array[string-length(ORCID) > 0]" mode="activity_relatedInfo_party_orcid"/>
+               <xsl:apply-templates select="project/lead-investigator[string-length(ORCID) > 0]" mode="activity_relatedInfo_party_orcid"/>
                    
                <xsl:apply-templates select="award-start-date" mode="activity_dates_existenceDates"/>
                
-               <xsl:apply-templates select="project/array/project-description/array/description" mode="activity_description_brief"/>
+               <xsl:apply-templates select="project/project-description/description" mode="activity_description_brief"/>
               
             </xsl:element>
         </registryObject>
@@ -162,10 +162,29 @@
         </location> 
     </xsl:template>
     
+    <!-- Get text in between two quotes, or after one quote, or before one quote -->
+    
     <xsl:template match="items" mode="activity_name">
+        <xsl:variable name="titleExtracted">
+            <xsl:variable name="input" select="normalize-space(replace(project/project-title/title, '\\n', ''))" as="xs:string"/>
+            <xsl:variable name="results" as="node()*">
+                <xsl:sequence select="fn:analyze-string($input, '(&amp;quot;)*(.+?(?=(&amp;quot;$|$)))', ';j')"/>
+            </xsl:variable>
+            <xsl:if test="string-length($results/fn:match/fn:group[@nr='2']) > 0">
+                <xsl:value-of select="$results/fn:match/fn:group[@nr='2']"/>
+            </xsl:if>
+        </xsl:variable>
+        
         <name type="primary">
             <namePart>
-                <xsl:value-of select="concat(award, ' - ', normalize-space(project/array/project-title/array/title))"/>
+             <xsl:choose>
+                 <xsl:when test="boolean(fn:string-length($titleExtracted))">
+                    <xsl:value-of select="concat(award, ' - ', $titleExtracted)"/> 
+                 </xsl:when>
+                 <xsl:otherwise>
+                     <xsl:value-of select="concat('ARDC Investment http://doi.org/', DOI)"/>
+                 </xsl:otherwise>
+             </xsl:choose>
             </namePart>
         </name>
     </xsl:template>
@@ -356,7 +375,7 @@
     
     
     
-    <xsl:template match="lead-investigator/array" mode="activity_relatedInfo_party_orcid">
+    <xsl:template match="lead-investigator" mode="activity_relatedInfo_party_orcid">
        <!-- Person -->
         <relatedInfo type='party'>
             <identifier type="ORCID">
@@ -368,15 +387,15 @@
            </title>
         </relatedInfo>
         
-        <xsl:apply-templates select="affiliation/array[string-length(id/array/id) > 0]" mode="activity_relatedInfo_party_affiliation"/>
+        <xsl:apply-templates select="affiliation[string-length(id/id) > 0]" mode="activity_relatedInfo_party_affiliation"/>
     </xsl:template>
     
-    <xsl:template match="affiliation/array" mode="activity_relatedInfo_party_affiliation">
+    <xsl:template match="affiliation" mode="activity_relatedInfo_party_affiliation">
         
          <!-- Affiliated Group -->
          <relatedInfo type='party'>
-             <identifier type="{id/array/id-type}">
-                 <xsl:value-of select="normalize-space(id/array/id)"/>
+             <identifier type="{id/id-type}">
+                 <xsl:value-of select="normalize-space(id/id)"/>
              </identifier>
              <relation type="isManagedBy"/>
              <title>
@@ -437,9 +456,9 @@
             </xsl:attribute>
             <identifier>
                 <xsl:attribute name="type">
-                    <xsl:value-of select="id/array/id-type"/>
+                    <xsl:value-of select="id/id-type"/>
                 </xsl:attribute>
-                <xsl:value-of select="id/array/id"/>
+                <xsl:value-of select="id/id"/>
             </identifier>
             <title>
                 <xsl:value-of select="name"/> 
