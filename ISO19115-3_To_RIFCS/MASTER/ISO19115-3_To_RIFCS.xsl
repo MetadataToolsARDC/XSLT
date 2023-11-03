@@ -1032,7 +1032,7 @@
                  (string-length(normalize-space(gex:eastBoundLongitude/gco:Decimal)) > 0)">
                      <xsl:variable name="horizontalCoordinatesWithProjection">
                          <xsl:value-of
-                             select="normalize-space(concat('westlimit=', gex:westBoundLongitude/gco:Decimal,'; southlimit=', gex:southBoundLatitude/gco:Decimal, '; eastlimit=', gex:eastBoundLongitude/gco:Decimal,'; northlimit=', gex:northBoundLatitude/gco:Decimal))"/>
+                             select="normalize-space(concat('westlimit=', custom:convertLongitude(gex:westBoundLongitude/gco:Decimal),'; southlimit=', gex:southBoundLatitude/gco:Decimal, '; eastlimit=', custom:convertLongitude(gex:eastBoundLongitude/gco:Decimal),'; northlimit=', gex:northBoundLatitude/gco:Decimal))"/>
                             <xsl:if test="count(ancestor::mdb:MD_Metadata/mdb:referenceSystemInfo/mrs:MD_ReferenceSystem/mrs:referenceSystemIdentifier/mcc:MD_Identifier/mcc:code[string-length(.) > 0]) = 1">
                                 <xsl:value-of select="concat('; projection=', ancestor::mdb:MD_Metadata/mdb:referenceSystemInfo/mrs:MD_ReferenceSystem/mrs:referenceSystemIdentifier/mcc:MD_Identifier/mcc:code[string-length(.) > 0])"/>
                             </xsl:if>
@@ -1456,17 +1456,7 @@
     <xsl:template match="mri:MD_AssociatedResource" mode="registryObject_relatedInfo_associatedResource">
         <relatedInfo>
             <xsl:attribute name="type">
-                <xsl:choose>
-                    <xsl:when test="matches(lower-case(mri:initiativeType/mri:DS_InitiativeTypeCode/@codeListValue), 'project')">
-                        <xsl:text>activity</xsl:text>
-                    </xsl:when>
-                    <xsl:when test="matches(lower-case(mri:initiativeType/mri:DS_InitiativeTypeCode/@codeListValue), 'program')">
-                        <xsl:text>activity</xsl:text>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="mri:initiativeType/mri:DS_InitiativeTypeCode/@codeListValue"/>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:value-of select="mri:initiativeType/mri:DS_InitiativeTypeCode/@codeListValue"/>
             </xsl:attribute>
             
             <!-- There ought only be one of the following, but just in case there are more... -->
@@ -1483,13 +1473,12 @@
                 <relation>
                     <xsl:attribute name="type">
                         <xsl:choose>
-                            <xsl:when test="matches(lower-case(mri:initiativeType/mri:DS_InitiativeTypeCode/@codeListValue), 'project')">
+                            <xsl:when test="matches(lower-case(mri:associationType/mri:DS_AssociationTypeCode/@codeListValue), 'dependency')">
                                 <xsl:text>isOutputOf</xsl:text>
                             </xsl:when>
-                            <xsl:when test="matches(lower-case(mri:initiativeType/mri:DS_InitiativeTypeCode/@codeListValue), 'program')">
-                                <xsl:text>isOutputOf</xsl:text>
-                            </xsl:when>
-                            <xsl:otherwise>hasAssociationWith</xsl:otherwise>
+                           <xsl:otherwise>
+                               <xsl:text>hasAssociationWith</xsl:text>
+                           </xsl:otherwise>
                         </xsl:choose>
                     </xsl:attribute>
                 </relation>
