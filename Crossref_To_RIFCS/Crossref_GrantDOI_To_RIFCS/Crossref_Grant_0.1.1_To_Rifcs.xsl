@@ -168,7 +168,7 @@
         <xsl:variable name="titleExtracted">
             <xsl:variable name="input" select="normalize-space(replace(project/project-title/title, '\\n', ''))" as="xs:string"/>
             <xsl:variable name="results" as="node()*">
-                <xsl:sequence select="fn:analyze-string($input, '(&amp;quot;)*(.+?(?=(&amp;quot;$|$)))', ';j')"/>
+                <xsl:sequence select="fn:analyze-string($input, '(&amp;quot;|&quot;)*(.+?(?=(&amp;quot;$|&quot;$|$)))', ';j')"/>
             </xsl:variable>
             <xsl:if test="string-length($results/fn:match/fn:group[@nr='2']) > 0">
                 <xsl:value-of select="$results/fn:match/fn:group[@nr='2']"/>
