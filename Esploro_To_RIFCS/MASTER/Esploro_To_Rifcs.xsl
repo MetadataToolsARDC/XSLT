@@ -38,7 +38,7 @@
             <key>
                 <!--xsl:value-of select="custom:registryObjectKeyFromString(concat(title, articleid, context-key))"/-->
                 <xsl:value-of
-                    select="concat($global_acronym, custom:registryObjectKeyFromString(ancestor::oai:record/oai:header/oai:identifier))"
+                    select="ancestor::oai:record/oai:header/oai:identifier"
                 />
             </key>
             <originatingSource>
@@ -52,11 +52,11 @@
                     mode="collection_date_modified"/>
 
                 <xsl:apply-templates
-                    select="../../../oai:header/oai:datestamp[string-length(.) > 0]"
+                    select="ancestor::oai:record/oai:header/oai:datestamp[string-length(.) > 0]"
                     mode="collection_date_accessioned"/>
 
                 <xsl:apply-templates
-                    select="../../../oai:header/oai:identifier[string-length(.) > 0]"
+                    select="ancestor::oai:record/oai:header/oai:identifier[string-length(.) > 0]"
                     mode="collection_identifier_oai"/>
 
                 <xsl:apply-templates
@@ -165,16 +165,19 @@
     </xsl:template>
 
     <xsl:template match="*[starts-with(local-name(), 'identifier')]" mode="collection_identifier">
-        <identifier type="{substring-after(local-name(.), 'identifier.')}">
-            <xsl:choose>
-                <xsl:when test="starts-with(., '10.')">
-                    <xsl:value-of select="concat('http://doi.org/', .)"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="normalize-space(.)"/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </identifier>
+        <xsl:variable name="type" select="substring-after(local-name(.), 'identifier.')"/>
+        <xsl:if test="@type != 'additional02'">
+            <identifier type="$type">
+                <xsl:choose>
+                    <xsl:when test="starts-with(., '10.')">
+                        <xsl:value-of select="concat('http://doi.org/', .)"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="normalize-space(.)"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </identifier>
+        </xsl:if>
     </xsl:template>
 
     <xsl:template match="oai:identifier" mode="collection_identifier_oai">
@@ -374,7 +377,51 @@
         <xsl:if test="
                 (count(relatedidentifiers/relatedidentifier/relatedIdentifer[string-length() > 0]) > 0) or
                 (count(relatedurl[string-length() > 0]) > 0)">
-            <relatedInfo type="reuseInformation">
+          <xsl:variable name="type">
+                <xsl:choose>
+                    <xsl:when test="
+                        starts-with(relatedResourceType, 'publication') or
+                        starts-with(relatedResourceType, 'conference') or
+                        starts-with(relatedResourceType, 'etd') or
+                        starts-with(relatedResourceType, 'patent') or
+                        starts-with(relatedResourceType, 'postedContent')">
+                        <xsl:text>publication</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="
+                        starts-with(relatedResourceType, 'interactiveResource')">
+                        <xsl:text>website</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="
+                        starts-with(relatedResourceType, 'teaching.activity') or
+                        starts-with(relatedResourceType, 'teaching.tutorial') or
+                        starts-with(relatedResourceType, 'teaching.demonstration') or
+                        starts-with(relatedResourceType, 'teaching.assignment') or
+                        starts-with(relatedResourceType, 'teaching.casestudy') or
+                        starts-with(relatedResourceType, 'teaching.coursemodule') or
+                        starts-with(relatedResourceType, 'teaching.lecture')">
+                        <xsl:text>activity</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="
+                        starts-with(relatedResourceType, 'dataset') or
+                        starts-with(relatedResourceType, 'creativeWork') or
+                        starts-with(relatedResourceType, 'software') or
+                        starts-with(relatedResourceType, 'other') or
+                        starts-with(relatedResourceType, 'teaching.flashcards') or
+                        starts-with(relatedResourceType, 'teaching.manual') or
+                        starts-with(relatedResourceType, 'teaching.other') or
+                        starts-with(relatedResourceType, 'teaching.outline') or
+                        starts-with(relatedResourceType, 'teaching.questionbank') or
+                        starts-with(relatedResourceType, 'teaching.studyguide') or
+                        starts-with(relatedResourceType, 'teaching.syllabus') or
+                        starts-with(relatedResourceType, 'teaching.textbook')">
+                        <xsl:text>collection</xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:text>reuseInformation</xsl:text>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:variable>
+            <relatedInfo type="{$type}">
                 <title>
                     <xsl:value-of select="relationtitle"/>
                 </title>
@@ -396,7 +443,18 @@
                         <!-- ought not ever get here due to test at beginning of template -->
                     </xsl:otherwise>
                 </xsl:choose>
-                <relation type="{relationtype}"/>
+                <relation>
+                    <xsl:attribute name="type">
+                        <xsl:choose>
+                            <xsl:when test="starts-with(relatedResourceType, 'publication')">
+                                <xsl:text>isCitedBy</xsl:text>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="relationtype"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:attribute>
+                </relation>
             </relatedInfo>
         </xsl:if>
     </xsl:template>
@@ -502,9 +560,21 @@
 
     <xsl:template match="date.collected" mode="collection_dates_collected">
         <dates type="created">
-            <date type="dateFrom" dateFormat="W3CDTF">
-                <xsl:value-of select="normalize-space(.)"/>
-            </date>
+            <xsl:choose>
+                <xsl:when test="contains(., '-')">
+                    <date type="dateFrom" dateFormat="W3CDTF">
+                        <xsl:value-of select="normalize-space(substring-before(., '-'))"/>
+                    </date>
+                    <date type="dateTo" dateFormat="W3CDTF">
+                        <xsl:value-of select="normalize-space(substring-after(., '-'))"/>
+                    </date>
+                </xsl:when>
+                <xsl:otherwise>
+                    <date type="dateFrom" dateFormat="W3CDTF">
+                        <xsl:value-of select="normalize-space(.)"/>
+                    </date>
+                </xsl:otherwise>
+            </xsl:choose>
         </dates>
     </xsl:template>
 
