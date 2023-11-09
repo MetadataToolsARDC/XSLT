@@ -158,6 +158,7 @@
         <xsl:value-of select="$columnSeparator"/>
         
         <xsl:variable name="doi">
+            <!-- TODO xsl:variable name="sequence" select="here:getRegObjDOI_sequence(.)" as="xs:string*"/-->
             <xsl:choose>
                 <xsl:when test="count((collection|service|party|activity)/identifier[lower-case(@type)='doi']) > 0">
                     <xsl:value-of select="(collection|service|party|activity)/identifier[lower-case(@type)='doi']"/>
@@ -325,14 +326,14 @@
     </xsl:template>
     
     <xsl:function name="here:getRegObjDOI_sequence" as="xs:string*">
-        <xsl:param name="regObj" as="node()"></xsl:param>
+        <xsl:param name="regObj"/>
        
-        <xsl:value-of select="$regObj/*/identifier[lower-case(@type)='doi']"/>
+        <xsl:value-of select="$regObj/*/identifier[lower-case(@type)='doi']/text()"/>
         <xsl:value-of select="$regObj/*/identifier[starts-with(text(), '10.')]"/>
-        <xsl:value-of select="$regObj/*/citationInfo/citationMetadata/identifier[lower-case(@type)='doi']"/>
-        <xsl:value-of select="$regObj/*/citationInfo/citationMetadata/identifier[starts-with(text(), '10.')]"/>
-        <xsl:value-of select="$regObj/*/location/address/electronic/value[lower-case(@type)='doi']"/>
-        <xsl:value-of select="$regObj/*/location/address/electronic/value[starts-with(text(), '10.')]"/>
+        <xsl:value-of select="$regObj/*/citationInfo/citationMetadata/identifier[lower-case(@type)='doi']/text()"/>
+        <xsl:value-of select="$regObj/*/citationInfo/citationMetadata/identifier[starts-with(text(), '10.')]/text()"/>
+        <xsl:value-of select="$regObj/*/location/address/electronic/value[lower-case(@type)='doi']/text()"/>
+        <xsl:value-of select="$regObj/*/location/address/electronic/value[starts-with(text(), '10.')]/text()"/>
         <xsl:copy-of select="custom:getDOIFromString(normalize-space($regObj/*/citationInfo/fullCitation))"/>
         
     </xsl:function>
