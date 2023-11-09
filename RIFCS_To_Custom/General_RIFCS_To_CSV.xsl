@@ -16,10 +16,10 @@
     
     <xsl:import href="CustomFunctions.xsl"/>
     
-    <xsl:variable name="keyPrefix" select="'e-publications.une.edu.au/'"/>
+    <xsl:variable name="keyPrefix" select="'usc.edu.au/'"/>
     <!--xsl:variable name="keyPrefix" select="''"/-->
     
-    <xsl:param name="compareWithOtherDatasource" select="false()"/>
+    <xsl:param name="compareWithOtherDatasource" select="true()"/>
     <!--xsl:param name="registry_address_input" select="'demo.researchdata.ardc.edu.au'"/-->
     <xsl:param name="registry_address_input" select="'researchdata.edu.au'"/>
     <xsl:param name="registry_address_other" select="'researchdata.edu.au'"/>
@@ -32,7 +32,8 @@
     <!--xsl:variable name="otherDatasourceRifCS" select="document('~/projects/RMIT/RMIT-Redbox-RIF-CS-Export_ProdRedBox_PublishedCollections_Figshare_357.xml')"/-->
     <!--xsl:variable name="otherDatasourceRifCS" select="document('~/projects/ACU_Victoria/ACU_20202/CompareDemoProd/ACU_InProdRDA.xml')"/-->
     <!--xsl:variable name="otherDatasourceRifCS" select="document('~/projects/CQU_Project/CompareKeys/Central-Queensland-University-RIF-CS-Export_OldProd.xml')"/-->
-    <xsl:variable name="otherDatasourceRifCS" select="fn:document('file:/Users/ada168/git/projects/GriffithUniversity/From_PROD_GriffithUniversity_61/Griffith-University-RIF-CS-Export_PROD_Collections_Published_AfterDelete.xml')"/>
+    <!--xsl:variable name="otherDatasourceRifCS" select="fn:document('file:/Users/ada168/git/projects/GriffithUniversity/From_PROD_GriffithUniversity_61/Griffith-University-RIF-CS-Export_PROD_Collections_Published_AfterDelete.xml')"/-->
+    <xsl:variable name="otherDatasourceRifCS" select="fn:document('file:/Users/ada168/git/projects/University%20of%20Sunshine%20Coast%20(USC)/202310/DownloadFromRDA/University-of-the-Sunshine-Coast-RIF-CS-Export_PROD_139_COLLECTIONS_PUBLISHED.xml')"/>
     <xsl:template match="node()|@*">
         <xsl:copy>
             <xsl:apply-templates select="node()|@*"/>
@@ -161,6 +162,15 @@
                 <xsl:when test="count((collection|service|party|activity)/identifier[lower-case(@type)='doi']) > 0">
                     <xsl:value-of select="(collection|service|party|activity)/identifier[lower-case(@type)='doi']"/>
                 </xsl:when>
+                <xsl:when test="count((collection|service|party|activity)/identifier[starts-with(text(), '10.')]) > 0">
+                    <xsl:value-of select="(collection|service|party|activity)/identifier[starts-with(text(), '10.')][1]"/>
+                </xsl:when>
+                <xsl:when test="count((collection|service|party|activity)/citationInfo/citationMetadata/identifier[lower-case(@type)='doi']) > 0">
+                    <xsl:value-of select="(collection|service|party|activity)/citationInfo/citationMetadata/identifier[lower-case(@type)='doi']"/>
+                </xsl:when>
+                <xsl:when test="count((collection|service|party|activity)/citationInfo/citationMetadata/identifier[starts-with(text(), '10.')]) > 0">
+                    <xsl:value-of select="(collection|service|party|activity)/citationInfo/citationMetadata/identifier[starts-with(text(), '10.')][1]"/>
+                </xsl:when>
                 <xsl:otherwise>
                     <xsl:variable name="doiValue_Sequence" select="custom:getDOIFromString(normalize-space((collection|service|party|activity)/citationInfo/fullCitation))" as="xs:string*"/>
                     <xsl:if test="count($doiValue_Sequence) > 0">
@@ -176,7 +186,7 @@
         <xsl:text>&quot;</xsl:text>
         <xsl:value-of select="$columnSeparator"/>
         
-        <xsl:variable name="objectNamePart" select="(collection|service|party|activity)/name[contains(lower-case(@type), 'primary')]/namePart"/>
+        <xsl:variable name="objectNamePart" select="string-join((collection|service|party|activity)/name[contains(lower-case(@type), 'primary')]/namePart, ' ')" as="xs:string"/>
         
         <xsl:variable name="handlePostFixFromKey" select="substring-after(key, $keyPrefix)"/>
         <xsl:message select="concat('$handlePostFixFromKey ', $handlePostFixFromKey)"/>
@@ -192,196 +202,153 @@
             <!--	column: other_datasource_url_if_exists (mandatory) -->
             <!-- Find record in other datasource that has matching name -->
            
+            <xsl:variable name="regObjFound_NameMatch_sequence" as="element()*">
+                <xsl:if test="(string-length($objectNamePart) > 0)">
+                    <xsl:copy-of select="$otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/name[lower-case(string-join(normalize-space(namePart), ' ')) = lower-case(normalize-space($objectNamePart))]]"/>
+                </xsl:if>
+            </xsl:variable>
+            
+            <xsl:variable name="regObjFound_HandleMatch_sequence" as="element()*">
+                <xsl:if test="(string-length($handlePostFixFromKey) > 0)">
+                    <xsl:copy-of select="$otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/identifier[contains(lower-case(.), lower-case($handlePostFixFromHandle))]]"/>
+                 </xsl:if>
+            </xsl:variable>
+            
+            <xsl:variable name="regObjFound_DoiMatch_sequence" as="element()*">
+                <xsl:if test="(string-length($doiPostFixFromDoi) > 0)">
+                    <xsl:copy-of select="$otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/identifier[contains(lower-case(.), lower-case($doiPostFixFromDoi))]]"/>
+                </xsl:if>
+            </xsl:variable>
+            
+              
             
             <xsl:choose>
-                <xsl:when test="(string-length($doiPostFixFromKey) > 0) and count($otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/identifier[contains(lower-case(.), lower-case($doiPostFixFromKey))]]/key) > 0">
-                    <xsl:message select="concat('doi found: ', $doiPostFixFromKey)"/>
+                <xsl:when test="count($regObjFound_DoiMatch_sequence) > 0">
                     
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="$otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/identifier[contains(lower-case(.), lower-case($doiPostFixFromKey))]]/(collection|service|party|activity)/name[contains(lower-case(@type), 'primary')]/namePart"/>
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="$columnSeparator"/>
+                    <xsl:message select="concat('Using first regObj found by doi match [', $doiPostFixFromDoi, ']- has key: ', $regObjFound_NameMatch_sequence[1]/key)"/>
                     
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="$otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/identifier[contains(lower-case(.), lower-case($doiPostFixFromKey))]]/key"/>
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="$columnSeparator"/>
+                    <xsl:call-template name="writeRegObjValues">
+                        <xsl:with-param name="matchVariable">
+                            <xsl:value-of select="'doi'"/>
+                        </xsl:with-param>
+                        <xsl:with-param name="matchValue">
+                            <xsl:value-of select="$doiPostFixFromDoi"/>
+                        </xsl:with-param>
+                        <xsl:with-param name="regObjMatched" as="element()">
+                            <xsl:copy-of select="$regObjFound_NameMatch_sequence[1]"/>
+                        </xsl:with-param>
+                    </xsl:call-template>
                     
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="concat('https://', $registry_address_other, '/view?key=', $otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/identifier[contains(lower-case(.), lower-case($doiPostFixFromKey))]]/key)"/>
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="$columnSeparator"/>
-                    
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:text>doi</xsl:text>
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="$columnSeparator"/>
-                    <xsl:for-each select="($otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/identifier[contains(lower-case(.), lower-case($doiPostFixFromKey))]])[1]">
-                        <xsl:call-template name="here:populateOtherDatasourceDOI"/>
-                    </xsl:for-each>
                 </xsl:when>
-                <xsl:when test="(string-length($doiPostFixFromDoi) > 0) and count($otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/identifier[contains(lower-case(.), lower-case($doiPostFixFromDoi))]]/key) > 0">
-                    <xsl:message select="concat('doi found: ', $doiPostFixFromDoi)"/>
-                   
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="$otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/identifier[contains(lower-case(.), lower-case($doiPostFixFromDoi))]]/(collection|service|party|activity)/name[contains(lower-case(@type), 'primary')]/namePart"/>
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="$columnSeparator"/>
+                <xsl:when test="count($regObjFound_HandleMatch_sequence) > 0">
                     
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="string-join($otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/identifier[contains(lower-case(.), lower-case($doiPostFixFromDoi))]]/key, ',')"/>
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="$columnSeparator"/>
+                    <xsl:message select="concat('Using first regObj found by handle match [', $handlePostFixFromKey, ']- has key: ', $regObjFound_NameMatch_sequence[1]/key)"/>
                     
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:variable name="count" select="count($otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/identifier[contains(lower-case(.), lower-case($doiPostFixFromDoi))]]/key)"/>
-                    <xsl:for-each select="$otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/identifier[contains(lower-case(.), lower-case($doiPostFixFromDoi))]]/key">
-                        <xsl:value-of select="concat('https://', $registry_address_other, '/view?key=', .)"/>
-                        <xsl:if test="$count &gt; fn:position()">
-                            <xsl:value-of select="$valueSeparator"/>
-                        </xsl:if>
-                    </xsl:for-each>
+                    <xsl:call-template name="writeRegObjValues">
+                        <xsl:with-param name="matchVariable">
+                            <xsl:value-of select="'handle'"/>
+                        </xsl:with-param>
+                        <xsl:with-param name="matchValue">
+                            <xsl:value-of select="$handlePostFixFromKey"/>
+                        </xsl:with-param>
+                        <xsl:with-param name="regObjMatched" as="element()">
+                            <xsl:copy-of select="$regObjFound_NameMatch_sequence[1]"/>
+                        </xsl:with-param>
+                    </xsl:call-template>
                     
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="$columnSeparator"/>
-                    
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:text>doi</xsl:text>
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="$columnSeparator"/>
-                    <xsl:for-each select="($otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/identifier[contains(lower-case(.), lower-case($doiPostFixFromDoi))]])[1]">
-                        <xsl:call-template name="here:populateOtherDatasourceDOI"/>
-                    </xsl:for-each>
                 </xsl:when>
-                 <xsl:when test="(string-length($handlePostFixFromHandle) > 0) and count($otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/identifier[contains(lower-case(.), lower-case($handlePostFixFromHandle))]]/key) > 0">
-                    <xsl:message select="concat('handle found: ', $handlePostFixFromHandle)"/>
+                <xsl:when test="count($regObjFound_NameMatch_sequence) > 0">
                     
-                    <xsl:text>&quot;</xsl:text>
-                     <xsl:value-of select="$otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/identifier[contains(lower-case(.), lower-case($handlePostFixFromHandle))]]/(collection|service|party|activity)/name[contains(lower-case(@type), 'primary')]/namePart"/>
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="$columnSeparator"/>
-                     
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="$otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/identifier[contains(lower-case(.), lower-case($handlePostFixFromHandle))]]/key"/>
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="$columnSeparator"/>
-                     
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="concat('https://', $registry_address_other, '/view?key=', $otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/identifier[contains(lower-case(.), lower-case($handlePostFixFromHandle))]]/key)"/>
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="$columnSeparator"/>
+                    <xsl:variable name="regObjTest" select="$regObjFound_NameMatch_sequence[1]"/>
                     
-                     <xsl:text>&quot;</xsl:text>
-                    <xsl:text>handle</xsl:text>
-                     <xsl:text>&quot;</xsl:text>
-                     <xsl:value-of select="$columnSeparator"/>
-                     <xsl:for-each select="($otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/identifier[contains(lower-case(.), lower-case($handlePostFixFromHandle))]])[1]">
-                         <xsl:call-template name="here:populateOtherDatasourceDOI"/>
-                     </xsl:for-each>
-                 </xsl:when>
-                <xsl:when test="(string-length($handlePostFixFromKey) > 0) and count($otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/identifier[contains(lower-case(.), lower-case($handlePostFixFromKey))]]/key) > 0">
-                    <xsl:message select="concat('handle found: ', $handlePostFixFromKey)"/>
-                    
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="$otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/identifier[contains(lower-case(.), lower-case($handlePostFixFromKey))]]/(collection|service|party|activity)/name[contains(lower-case(@type), 'primary')]/namePart"/>
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="$columnSeparator"/>
-                    
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="$otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/identifier[contains(lower-case(.), lower-case($handlePostFixFromKey))]]/key"/>
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="$columnSeparator"/>
-                    
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="concat('https://', $registry_address_other, '/view?key=', $otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/identifier[contains(lower-case(.), lower-case($handlePostFixFromKey))]]/key)"/>
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="$columnSeparator"/>
-                    
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:text>handle</xsl:text>
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="$columnSeparator"/>
-                    <xsl:for-each select="($otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/identifier[contains(lower-case(.), lower-case($handlePostFixFromKey))]])[1]">
-                        <xsl:call-template name="here:populateOtherDatasourceDOI"/>
-                    </xsl:for-each>
-                </xsl:when>
-                <xsl:when test="count($otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/name[lower-case(normalize-space(namePart)) = lower-case(normalize-space($objectNamePart))]]/key) > 0">
-                    <xsl:message select="concat('Found ', count($otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/name[lower-case(normalize-space(namePart)) = lower-case(normalize-space($objectNamePart))]]/key), ' collection(s) from other datasource with name: ', $objectNamePart)"/>
-                    
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:for-each select="$otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/name[lower-case(normalize-space(namePart)) = lower-case(normalize-space($objectNamePart))]]/(collection|service|party|activity)/name[contains(lower-case(@type), 'primary')]/namePart">
-                        <xsl:value-of select="."/>
-                    </xsl:for-each>
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="$columnSeparator"/>
-                    
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:variable name="count" select="count($otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/name[lower-case(normalize-space(namePart)) = lower-case(normalize-space($objectNamePart))]]/key)" as="xs:integer"/>
-                    <xsl:for-each select="$otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/name[lower-case(normalize-space(namePart)) = lower-case(normalize-space($objectNamePart))]]/key">
-                        <xsl:value-of select="."/>
-                        <xsl:if test="$count &gt; fn:position()">
-                            <xsl:value-of select="$valueSeparator"/>
-                        </xsl:if>
-                    </xsl:for-each>
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="$columnSeparator"/>
-                    
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:variable name="count" select="count($otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/name[lower-case(normalize-space(namePart)) = lower-case(normalize-space($objectNamePart))]]/key)"/>
-                    <xsl:for-each select="$otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/name[lower-case(normalize-space(namePart)) = lower-case(normalize-space($objectNamePart))]]/key">
-                        <xsl:value-of select="concat('https://', $registry_address_other, '/view?key=', .)"/>
-                        <xsl:if test="$count &gt; fn:position()">
-                            <xsl:value-of select="$valueSeparator"/>
-                        </xsl:if>
-                    </xsl:for-each>
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="$columnSeparator"/>
-                    
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:text>namePart</xsl:text>
-                    <xsl:text>&quot;</xsl:text>
-                    <xsl:value-of select="$columnSeparator"/>
-                    <xsl:for-each select="($otherDatasourceRifCS/registryObjects/registryObject[(collection|service|party|activity)/name[lower-case(normalize-space(namePart)) = lower-case(normalize-space($objectNamePart))]])[1]">
-                        <xsl:call-template name="here:populateOtherDatasourceDOI"/>
-                    </xsl:for-each>
+                    <xsl:call-template name="writeRegObjValues">
+                        <xsl:with-param name="matchVariable">
+                            <xsl:value-of select="'namePart'"/>
+                        </xsl:with-param>
+                        <xsl:with-param name="matchValue">
+                            <xsl:value-of select="$objectNamePart"/>
+                        </xsl:with-param>
+                        <xsl:with-param name="regObjMatched" as="element()">
+                            <xsl:copy-of select="$regObjFound_NameMatch_sequence[1]"/>
+                        </xsl:with-param>
+                    </xsl:call-template>
                     
                 </xsl:when>
                 
                 <xsl:otherwise>
-                    <xsl:message select="concat('No match found for: ', (collection|service|party|activity)/name/namePart)"/>
+                    <xsl:message select="concat('No match found for: ', string-join((collection|service|party|activity)/name/namePart, ' '))"/>
                 </xsl:otherwise>
             </xsl:choose>
-        
-            
-            
            
         </xsl:if>
          
     </xsl:template>
     
-    <xsl:template name="here:populateOtherDatasourceDOI">
-       
-        <xsl:variable name="doiOtherDatasource">
-            <xsl:choose>
-                <xsl:when test="string-length(./(collection|service|party|activity)/identifier[lower-case(@type)='doi']) > 0">
-                    <xsl:value-of select="./(collection|service|party|activity)/identifier[lower-case(@type)='doi']"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:variable name="doiValue_Sequence" select="custom:getDOIFromString(normalize-space(./(collection|service|party|activity)/citationInfo/fullCitation))" as="xs:string*"/>
-                    <xsl:if test="count($doiValue_Sequence) > 0">
-                        <xsl:value-of select="$doiValue_Sequence[1]"/>
-                    </xsl:if>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:variable>
+    
+    
+    <xsl:template name="writeRegObjValues">
+        <xsl:param name="matchVariable"/>
+        <xsl:param name="matchValue"/>
+        <xsl:param name="regObjMatched"/>
         
-        <xsl:message select="concat('populateOtherDatasourceDOI: ', $doiOtherDatasource)"/>
+        <xsl:message select="concat('Using first regObj found by [', $matchVariable, '] match value: [', $matchValue, '] - has key: ', $regObjMatched/key)"/>
+        
+        <!-- registry_match_name_if_exists -->
+        <xsl:text>&quot;</xsl:text>
+        <xsl:value-of select="string-join($regObjMatched/*/name, $valueSeparator)"/>
+        <xsl:text>&quot;</xsl:text>
+        <xsl:value-of select="$columnSeparator"/>
+        
+        <!-- registry_match_key_if_exists -->
+        <xsl:text>&quot;</xsl:text>
+        <xsl:value-of select="$regObjMatched/key"/>
+        <xsl:text>&quot;</xsl:text>
+        <xsl:value-of select="$columnSeparator"/>
+        
+        <!-- registry_match_url_if_exists -->
+        <xsl:text>&quot;</xsl:text>
+        <xsl:value-of select="concat('https://', $registry_address_other, '/view?key=', $regObjMatched/key)"/>
+        <xsl:text>&quot;</xsl:text>
+        <xsl:value-of select="$columnSeparator"/>
+        
+        <!-- match_element_if_match_in_other_datasource_found -->
+        <xsl:text>&quot;</xsl:text>
+        <xsl:value-of select="$matchVariable"/>
+        <xsl:text>&quot;</xsl:text>
+        <xsl:value-of select="$columnSeparator"/>
         
         <!--	column: doi_otherDatasource -->
         <xsl:text>&quot;</xsl:text>
-        <xsl:value-of select="$doiOtherDatasource"/>
+        <xsl:value-of select="here:getOtherDatasourceDOI($regObjMatched)"/>
         <xsl:text>&quot;</xsl:text>
         <xsl:value-of select="$columnSeparator"/>
     </xsl:template>
+    
+    <xsl:function name="here:getOtherDatasourceDOI" as="xs:string">
+        <xsl:param name="regObjMatched" as="node()"></xsl:param>
+       
+        <xsl:choose>
+            <xsl:when test="string-length($regObjMatched/*/identifier[lower-case(@type)='doi']) > 0">
+                <xsl:value-of select="$regObjMatched/*/identifier[lower-case(@type)='doi'][1]"/>
+            </xsl:when>
+            <xsl:when test="count($regObjMatched/*[starts-with(identifier, '10.')]) > 0">
+                <xsl:value-of select="$regObjMatched/*[starts-with(identifier, '10.')][1]"/>
+            </xsl:when>
+            <xsl:when test="count($regObjMatched/*/citationInfo/citationMetadata/identifier[lower-case(@type)='doi']) > 0">
+                <xsl:value-of select="$regObjMatched/*/citationInfo/citationMetadata/identifier[lower-case(@type)='doi'][1]"/>
+            </xsl:when>
+            <xsl:when test="count($regObjMatched/*/citationInfo/citationMetadata[starts-with(identifier, '10.')]) > 0">
+                <xsl:value-of select="$regObjMatched/*/citationInfo/citationMetadata[starts-with(identifier, '10.')][1]"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:variable name="doiValue_Sequence" select="custom:getDOIFromString(normalize-space($regObjMatched/*/citationInfo/fullCitation))" as="xs:string*"/>
+                <xsl:if test="count($doiValue_Sequence) > 0">
+                    <xsl:value-of select="$doiValue_Sequence[1]"/>
+                </xsl:if>
+            </xsl:otherwise>
+        </xsl:choose>
+        
+        
+    </xsl:function>
     
 </xsl:stylesheet>
