@@ -319,35 +319,21 @@
         
         <!--	column: doi_otherDatasource -->
         <xsl:text>&quot;</xsl:text>
-        <xsl:value-of select="here:getOtherDatasourceDOI($regObjMatched)"/>
+        <xsl:value-of select="here:getRegObjDOI_sequence($regObjMatched)[1]"/>
         <xsl:text>&quot;</xsl:text>
         <xsl:value-of select="$columnSeparator"/>
     </xsl:template>
     
-    <xsl:function name="here:getOtherDatasourceDOI" as="xs:string">
-        <xsl:param name="regObjMatched" as="node()"></xsl:param>
+    <xsl:function name="here:getRegObjDOI_sequence" as="xs:string*">
+        <xsl:param name="regObj" as="node()"></xsl:param>
        
-        <xsl:choose>
-            <xsl:when test="string-length($regObjMatched/*/identifier[lower-case(@type)='doi']) > 0">
-                <xsl:value-of select="$regObjMatched/*/identifier[lower-case(@type)='doi'][1]"/>
-            </xsl:when>
-            <xsl:when test="count($regObjMatched/*[starts-with(identifier, '10.')]) > 0">
-                <xsl:value-of select="$regObjMatched/*[starts-with(identifier, '10.')][1]"/>
-            </xsl:when>
-            <xsl:when test="count($regObjMatched/*/citationInfo/citationMetadata/identifier[lower-case(@type)='doi']) > 0">
-                <xsl:value-of select="$regObjMatched/*/citationInfo/citationMetadata/identifier[lower-case(@type)='doi'][1]"/>
-            </xsl:when>
-            <xsl:when test="count($regObjMatched/*/citationInfo/citationMetadata[starts-with(identifier, '10.')]) > 0">
-                <xsl:value-of select="$regObjMatched/*/citationInfo/citationMetadata[starts-with(identifier, '10.')][1]"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:variable name="doiValue_Sequence" select="custom:getDOIFromString(normalize-space($regObjMatched/*/citationInfo/fullCitation))" as="xs:string*"/>
-                <xsl:if test="count($doiValue_Sequence) > 0">
-                    <xsl:value-of select="$doiValue_Sequence[1]"/>
-                </xsl:if>
-            </xsl:otherwise>
-        </xsl:choose>
-        
+        <xsl:value-of select="$regObj/*/identifier[lower-case(@type)='doi']"/>
+        <xsl:value-of select="$regObj/*/identifier[starts-with(text(), '10.')]"/>
+        <xsl:value-of select="$regObj/*/citationInfo/citationMetadata/identifier[lower-case(@type)='doi']"/>
+        <xsl:value-of select="$regObj/*/citationInfo/citationMetadata/identifier[starts-with(text(), '10.')]"/>
+        <xsl:value-of select="$regObj/*/location/address/electronic/value[lower-case(@type)='doi']"/>
+        <xsl:value-of select="$regObj/*/location/address/electronic/value[starts-with(text(), '10.')]"/>
+        <xsl:copy-of select="custom:getDOIFromString(normalize-space($regObj/*/citationInfo/fullCitation))"/>
         
     </xsl:function>
     
