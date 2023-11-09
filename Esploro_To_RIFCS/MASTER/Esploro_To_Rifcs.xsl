@@ -377,7 +377,7 @@
         <xsl:if test="
                 (count(relatedidentifiers/relatedidentifier/relatedIdentifer[string-length() > 0]) > 0) or
                 (count(relatedurl[string-length() > 0]) > 0)">
-          <xsl:variable name="type">
+          <xsl:variable name="type_relation_pair" as="xs:string*">
                 <xsl:choose>
                     <xsl:when test="
                         starts-with(relatedResourceType, 'publication') or
@@ -386,10 +386,12 @@
                         starts-with(relatedResourceType, 'patent') or
                         starts-with(relatedResourceType, 'postedContent')">
                         <xsl:text>publication</xsl:text>
+                        <xsl:text>isCitedBy</xsl:text>
                     </xsl:when>
                     <xsl:when test="
                         starts-with(relatedResourceType, 'interactiveResource')">
                         <xsl:text>website</xsl:text>
+                        <xsl:text>hasAssociationWith</xsl:text>
                     </xsl:when>
                     <xsl:when test="
                         starts-with(relatedResourceType, 'teaching.activity') or
@@ -400,6 +402,7 @@
                         starts-with(relatedResourceType, 'teaching.coursemodule') or
                         starts-with(relatedResourceType, 'teaching.lecture')">
                         <xsl:text>activity</xsl:text>
+                        <xsl:text>isOutputOf</xsl:text>
                     </xsl:when>
                     <xsl:when test="
                         starts-with(relatedResourceType, 'dataset') or
@@ -415,13 +418,15 @@
                         starts-with(relatedResourceType, 'teaching.syllabus') or
                         starts-with(relatedResourceType, 'teaching.textbook')">
                         <xsl:text>collection</xsl:text>
+                        <xsl:text>hasAssociationWith</xsl:text>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:text>reuseInformation</xsl:text>
+                        <xsl:text>hasAssociationWith</xsl:text>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
-            <relatedInfo type="{$type}">
+            <relatedInfo type="{$type_relation_pair[1]}">
                 <title>
                     <xsl:value-of select="relationtitle"/>
                 </title>
@@ -445,14 +450,7 @@
                 </xsl:choose>
                 <relation>
                     <xsl:attribute name="type">
-                        <xsl:choose>
-                            <xsl:when test="starts-with(relatedResourceType, 'publication')">
-                                <xsl:text>isCitedBy</xsl:text>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:value-of select="relationtype"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
+                        <xsl:value-of select="$type_relation_pair[2]"/>
                     </xsl:attribute>
                 </relation>
             </relatedInfo>
