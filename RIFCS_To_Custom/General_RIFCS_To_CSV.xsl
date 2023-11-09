@@ -157,33 +157,16 @@
         <xsl:text>&quot;</xsl:text>
         <xsl:value-of select="$columnSeparator"/>
         
-        <xsl:variable name="doi">
-            <!-- TODO xsl:variable name="sequence" select="here:getRegObjDOI_sequence(.)" as="xs:string*"/-->
-            <xsl:choose>
-                <xsl:when test="count((collection|service|party|activity)/identifier[lower-case(@type)='doi']) > 0">
-                    <xsl:value-of select="(collection|service|party|activity)/identifier[lower-case(@type)='doi']"/>
-                </xsl:when>
-                <xsl:when test="count((collection|service|party|activity)/identifier[starts-with(text(), '10.')]) > 0">
-                    <xsl:value-of select="(collection|service|party|activity)/identifier[starts-with(text(), '10.')][1]"/>
-                </xsl:when>
-                <xsl:when test="count((collection|service|party|activity)/citationInfo/citationMetadata/identifier[lower-case(@type)='doi']) > 0">
-                    <xsl:value-of select="(collection|service|party|activity)/citationInfo/citationMetadata/identifier[lower-case(@type)='doi']"/>
-                </xsl:when>
-                <xsl:when test="count((collection|service|party|activity)/citationInfo/citationMetadata/identifier[starts-with(text(), '10.')]) > 0">
-                    <xsl:value-of select="(collection|service|party|activity)/citationInfo/citationMetadata/identifier[starts-with(text(), '10.')][1]"/>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:variable name="doiValue_Sequence" select="custom:getDOIFromString(normalize-space((collection|service|party|activity)/citationInfo/fullCitation))" as="xs:string*"/>
-                    <xsl:if test="count($doiValue_Sequence) > 0">
-                        <xsl:value-of select="$doiValue_Sequence[1]"/>
-                    </xsl:if>
-                </xsl:otherwise>
-            </xsl:choose>
+        <xsl:variable name="doi_sequence" as="xs:string*">
+            <xsl:copy-of select="here:getRegObjDOI_sequence(.)"/>
         </xsl:variable>
+        <xsl:message select="concat('DOIs found: ', count($doi_sequence))"/>
+        <xsl:message select="concat('First DOI: ', $doi_sequence[1])"/>
         
+            
         <!--	column: doi-->
         <xsl:text>&quot;</xsl:text>
-        <xsl:value-of select="$doi"/>
+        <xsl:value-of select="distinct-values($doi_sequence)[1]"/>
         <xsl:text>&quot;</xsl:text>
         <xsl:value-of select="$columnSeparator"/>
         
@@ -193,7 +176,16 @@
         <xsl:message select="concat('$handlePostFixFromKey ', $handlePostFixFromKey)"/>
         
         <xsl:variable name="doiPostFixFromKey" select="substring-after(key, 'doi.org/')"/>
-        <xsl:variable name="doiPostFixFromDoi" select="substring-after($doi, 'doi.org/')"/>
+        <xsl:variable name="doiPostFixFromDoi">
+            <xsl:choose>
+                <xsl:when test="contains(distinct-values($doi_sequence)[1], 'doi.org/')">
+                    <xsl:copy-of select="substring-after(distinct-values($doi_sequence)[1], 'doi.org/')"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:copy-of select="distinct-values($doi_sequence)[1]"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
         
         <xsl:variable name="handlePostFixFromHandle" select="substring-after((collection|service|party|activity)/identifier[lower-case(@type)='handle'], 'e-publications.une.edu.au/')"/>
         <xsl:message select="concat('$handlePostFixFromHandle ', $handlePostFixFromHandle)"/>
@@ -236,7 +228,7 @@
                             <xsl:value-of select="$doiPostFixFromDoi"/>
                         </xsl:with-param>
                         <xsl:with-param name="regObjMatched" as="element()">
-                            <xsl:copy-of select="$regObjFound_NameMatch_sequence[1]"/>
+                            <xsl:copy-of select="$regObjFound_DoiMatch_sequence[1]"/>
                         </xsl:with-param>
                     </xsl:call-template>
                     
@@ -327,15 +319,27 @@
     
     <xsl:function name="here:getRegObjDOI_sequence" as="xs:string*">
         <xsl:param name="regObj"/>
+        
+        <xsl:variable name="sequence" as="xs:string*">
        
-        <xsl:value-of select="$regObj/*/identifier[lower-case(@type)='doi']/text()"/>
-        <xsl:value-of select="$regObj/*/identifier[starts-with(text(), '10.')]"/>
-        <xsl:value-of select="$regObj/*/citationInfo/citationMetadata/identifier[lower-case(@type)='doi']/text()"/>
-        <xsl:value-of select="$regObj/*/citationInfo/citationMetadata/identifier[starts-with(text(), '10.')]/text()"/>
-        <xsl:value-of select="$regObj/*/location/address/electronic/value[lower-case(@type)='doi']/text()"/>
-        <xsl:value-of select="$regObj/*/location/address/electronic/value[starts-with(text(), '10.')]/text()"/>
-        <xsl:copy-of select="custom:getDOIFromString(normalize-space($regObj/*/citationInfo/fullCitation))"/>
+            <xsl:copy-of select="$regObj/(collection|service|party|activity)/identifier[(lower-case(@type)='doi')]/text()"/>
+            <xsl:copy-of select="$regObj/(collection|service|party|activity)/identifier[starts-with(text(), '10.')]/text()"/>
+            <xsl:copy-of select="$regObj/(collection|service|party|activity)/citationInfo/citationMetadata/identifier[lower-case(@type)='doi']"/>
+            <xsl:copy-of select="$regObj/(collection|service|party|activity)/citationInfo/citationMetadata/identifier[starts-with(text(), '10.')]"/>
+            <xsl:copy-of select="$regObj/(collection|service|party|activity)/location/address/electronic/value[lower-case(@type)='doi']"/>
+            <xsl:copy-of select="$regObj/(collection|service|party|activity)/location/address/electronic/value[starts-with(text(), '10.')]"/>
+            <xsl:copy-of select="custom:getDOIFromString_sequence(normalize-space($regObj/*/citationInfo/fullCitation))[1]"/>
+            
+        </xsl:variable>
+        
+        <xsl:message select="concat('Function - DOIs found: ', count($sequence))"/>
+        <xsl:message select="concat('Function - First DOI: ', $sequence[1])"/>
+        
+        <xsl:copy-of select="$sequence"/>
         
     </xsl:function>
+    
+    
+   
     
 </xsl:stylesheet>
