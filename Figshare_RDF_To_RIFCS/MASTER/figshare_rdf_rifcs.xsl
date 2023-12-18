@@ -21,7 +21,7 @@
     xmlns:exslt="http://exslt.org/common"
     xmlns:rifcis="http://ands.org.au/standards/rif-cs/registryObjects"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
-    exclude-result-prefixes="oai dc bibo datacite fabio foaf literal obo rdf rdfs vcard vivo xs fn local exslt xsi figFunc">
+    exclude-result-prefixes="oai dc bibo datacite fabio foaf literal obo rdf rdfs vcard vivo xs fn local exslt xsi figFunc rifcis">
    
     <xsl:variable name="categoryCodeList" select="document('https://raw.githubusercontent.com/MetadataToolsARDC/XSLT/master/Figshare_RDF_To_RIFCS/MASTER/figshare_categories.xml')"/>
     
@@ -307,14 +307,21 @@
            
             <xsl:apply-templates select="*/bibo:abstract[string-length(.) > 0]" mode="collection_description_full"/>
            
+            <xsl:apply-templates select="rifcis:registryObjects/rifcis:registryObject/rifcis:relatedInfo" mode="collection_relatedInfo"/>
+            
             <xsl:apply-templates select="*/vivo:datePublished/@rdf:resource[string-length(.) > 0]" mode="collection_dates_issued"/>  
          
             <xsl:apply-templates select="*/vivo:dateCreated/@rdf:resource[string-length(.) > 0]" mode="collection_dates_created"/>  
             
+            <!-- RDA Harvest import reports error if you have fullCitation and also citationMetadata, so 
+                if there is a fullCitation, use just that - otherwise, use citationMetadata -->
             <xsl:choose>
-                <xsl:when test="string-length(rifcis:registryObjects/rifcis:registryObject/rifcis:citationInfo/rifcis:fullCitation[1]) > 0">
-                    <xsl:apply-templates select="rifcis:registryObjects/rifcis:registryObject/rifcis:citationInfo/rifcis:fullCitation[1]" mode="collection_citationInfo_fullCitation"/>
+                <xsl:when test="count(rifcis:registryObjects/rifcis:registryObject/rifcis:citationInfo/rifcis:fullCitation[string-length(text()) > 0]) > 0">
+                    <xsl:apply-templates select="rifcis:registryObjects/rifcis:registryObject/rifcis:citationInfo/rifcis:fullCitation" mode="collection_citationInfo_fullCitation"/>
                 </xsl:when>
+                <!--xsl:when test="count(rifcis:registryObjects/rifcis:registryObject/rifcis:citationInfo/rifcis:citationMetadata) > 0">
+                    <xsl:apply-templates select="rifcis:registryObjects/rifcis:registryObject/rifcis:citationInfo/rifcis:citationMetadata" mode="collection_citationInfo_citationMetadata"/>
+                </xsl:when-->
                 <xsl:otherwise>
                     <xsl:apply-templates select="." mode="collection_citationInfo_citationMetadata"/>
                 </xsl:otherwise>
@@ -574,11 +581,22 @@
     
     <xsl:template match="rifcis:fullCitation" mode="collection_citationInfo_fullCitation">
         <citationInfo>
-            <fullCitation>
-                <xsl:value-of select="normalize-space(.)"/>
-            </fullCitation>
+            <xsl:copy-of copy-namespaces="no" select="."></xsl:copy-of>
         </citationInfo>
     </xsl:template>
+
+    <!-- Don't use the following template because the source isn't always complete, so best 
+        instead to construct manually with collection_citationInfo_citationMetadata for now 
+        - but only if there is no fullCitation (to use as first priority)
+    <xsl:template match="rifcis:citationMetadata" mode="collection_citationInfo_citationMetadata">
+        <citationInfo>
+            <xsl:copy-of copy-namespaces="no" select="."></xsl:copy-of>
+        </citationInfo>
+    </xsl:template-->
+    
+    <xsl:template match="rifcis:relatedInfo" mode="collection_relatedInfo">
+        <xsl:copy-of copy-namespaces="no" select="."></xsl:copy-of>
+     </xsl:template>
     
     <xsl:template match="rdf:RDF" mode="collection_citationInfo_citationMetadata">
         <citationInfo>
@@ -603,14 +621,14 @@
                 <!--version></version-->
                 <!--placePublished></placePublished-->
                 <xsl:choose>
-                    <xsl:when test="string-length(dc:publisher) > 0">
+                    <xsl:when test="string-length(dc:publisher[1]) > 0">
                         <publisher>
-                            <xsl:value-of select="dc:publisher"/>
+                            <xsl:value-of select="dc:publisher[1]"/>
                         </publisher>
                     </xsl:when>
-                    <xsl:when test="string-length(vivo:publisher) > 0">
+                    <xsl:when test="string-length(vivo:publisher[1]) > 0">
                         <publisher>
-                            <xsl:value-of select="vivo:publisher"/>
+                            <xsl:value-of select="vivo:publisher[1]"/>
                         </publisher>
                     </xsl:when>
                     <xsl:when test="string-length(rifcis:registryObjects/rifcis:registryObject/rifcis:citationInfo/rifcis:citationMetadata/rifcis:publisher[1]) > 0">

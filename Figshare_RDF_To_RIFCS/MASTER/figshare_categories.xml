@@ -1604,7 +1604,7 @@
         <is_selectable>true</is_selectable>
         <has_children>false</has_children>
         <id>24298</id>
-        <title>Gene expression (incl. microrow and other genome-wide approaches)</title>
+        <title>Gene expression (incl. microarray and other genome-wide approaches)</title>
         <parent_id>24283</parent_id>
         <path>/24130/24283/24298</path>
         <source_id>310505</source_id>

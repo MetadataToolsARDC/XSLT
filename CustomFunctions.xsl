@@ -84,8 +84,8 @@
     
     <xsl:function name="custom:convertLongitude">
         <xsl:param name="input" as="xs:decimal"/>
-        <!--Convert Longitude 0-360 to -180 to 180 or 180W-180E -->
-        <xsl:value-of select="(($input+180) mod 360)-180"/>
+        <!--Convert Longitude -360 to 360 to -180 to 180 or 180W-180E -->
+        <xsl:value-of select="(($input + 540) mod 360) - 180"/>
     </xsl:function>
     
     <xsl:function name="custom:getIdentifierType" as="xs:string">
@@ -133,7 +133,7 @@
         </xsl:choose>
     </xsl:function>
     
-    <xsl:function name="custom:getDOIFromString" as="xs:string">
+    <xsl:function name="custom:getDOIFromString_sequence" as="xs:string*">
         <xsl:param name="fullString" as="xs:string"/>
         <xsl:variable name="result">
             <xsl:choose>
@@ -155,11 +155,8 @@
         </xsl:variable>
         <xsl:choose>
             <xsl:when test="string-length(normalize-space($result)) > 0">
-                <xsl:value-of select="normalize-space($result)"/>
+                <xsl:copy-of select="normalize-space($result)"/>
             </xsl:when>
-            <xsl:otherwise>
-                <xsl:text></xsl:text> <!-- return emtpy string because function won't allow empty sequence returned -->
-            </xsl:otherwise>
         </xsl:choose>
     </xsl:function>
    
