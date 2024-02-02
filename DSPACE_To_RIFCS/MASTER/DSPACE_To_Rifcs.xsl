@@ -560,14 +560,14 @@
                                     </xsl:when>
                                 </xsl:choose>
                             </xsl:attribute>
-                            <xsl:value-of select="normalize-space(element/field[@name='value'])"/>
+                            <xsl:value-of select="string-join(element/field[@name='value'], '&#xd;')"/>
                         </accessRights>
                     </rights>
                 </xsl:when>
                 <xsl:otherwise>
                     <rights>
                         <rightsStatement>
-                            <xsl:value-of select="normalize-space(element/field[@name='value'])"/>
+                            <xsl:value-of select="string-join(element/field[@name='value'], '&#xd;')"/>
                         </rightsStatement>
                     </rights>
                 </xsl:otherwise>

@@ -120,7 +120,7 @@
                 <xsl:choose>
                     <xsl:when test="string-length($scopeCode) > 0">
                         <xsl:choose>
-                            <xsl:when test="substring(lower-case($scopeCode), 0, 8) = 'service'">
+                            <xsl:when test="substring(lower-case($scopeCode), 1, fn:string-length('service')) = 'service'">
                                 <xsl:text>service</xsl:text>
                                 <xsl:choose>
                                     <xsl:when test="string-length(mdb:identificationInfo/srv:SV_ServiceIdentification/srv:serviceType) > 0">
@@ -132,31 +132,39 @@
                                 </xsl:choose>
                                 
                             </xsl:when>
-                            <xsl:when test="substring(lower-case($scopeCode), 0, 9) = 'software'">
+                            <xsl:when test="fn:substring(lower-case($scopeCode), 1, fn:string-length('software')) = 'software'">
                                 <xsl:text>collection</xsl:text>
                                 <xsl:text>software</xsl:text>
                             </xsl:when>
-                            <xsl:when test="substring(lower-case($scopeCode), 0, 6) = 'model'">
+                            <xsl:when test="fn:substring(lower-case($scopeCode), 1, fn:string-length('model')) = 'model'">
                                 <xsl:text>collection</xsl:text>
                                 <xsl:text>software</xsl:text>
                             </xsl:when>
-                            <xsl:when test="substring(lower-case($scopeCode), 0, 21) = 'nongeographicdataset'">
+                            <xsl:when test="fn:substring(lower-case($scopeCode), 1, fn:string-length('nongeographicdataset')) = 'nongeographicdataset'">
                                 <xsl:text>collection</xsl:text>
                                 <xsl:text>publication</xsl:text>
                             </xsl:when>
-                            <xsl:when test="substring(lower-case($scopeCode), 0, 9) = 'document'">
+                            <xsl:when test="fn:substring(lower-case($scopeCode), 1, fn:string-length('document')) = 'document'">
                                 <xsl:text>collection</xsl:text>
                                 <xsl:text>publication</xsl:text>
                             </xsl:when>
-                            <xsl:when test="substring(lower-case($scopeCode), 0, 8) = 'dataset'">
+                            <xsl:when test="fn:substring(lower-case($scopeCode), 1, fn:string-length('dataset')) = 'dataset'">
                                 <xsl:text>collection</xsl:text>
                                 <xsl:text>dataset</xsl:text>
                             </xsl:when>
-                            <xsl:when test="substring(lower-case($scopeCode), 0, 19) = 'collectionhardware'">
+                            <xsl:when test="fn:substring(lower-case($scopeCode), 1, fn:string-length('collectionhardware')) = 'collectionhardware'">
                                 <xsl:text>activity</xsl:text>
                                 <xsl:text>project</xsl:text>
                             </xsl:when>
-                            <xsl:when test="substring(lower-case($scopeCode), 0, 7) = 'series'">
+                            <xsl:when test="fn:substring(lower-case($scopeCode), 1, fn:string-length('fieldsession')) = 'fieldsession'">
+                                <xsl:text>activity</xsl:text>
+                                <xsl:text>project</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="fn:substring(lower-case($scopeCode), 1, fn:string-length('series')) = 'series'">
+                                <xsl:text>activity</xsl:text>
+                                <xsl:text>program</xsl:text>
+                            </xsl:when>
+                            <xsl:when test="fn:substring(lower-case($scopeCode), 1, fn:string-length('collectionsession')) = 'collectionsession'">
                                 <xsl:text>activity</xsl:text>
                                 <xsl:text>program</xsl:text>
                             </xsl:when>
@@ -172,7 +180,7 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:variable>
-                
+            
             <xsl:element name="{$registryObjectTypeSubType_sequence[1]}">
     
                 <xsl:attribute name="type" select="$registryObjectTypeSubType_sequence[2]"/>
