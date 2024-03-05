@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" >
+  <url>
+    <loc>https://data.csiro.au/collection/csiro:59410</loc>
+    <!--  https://data.csiro.au/dap/ws/v2/collections/csiro:59410/metadata/schemaOrg.json
+          Describe -->
+  </url>
+  <url>
+    <loc>https://data.csiro.au/collection/csiro:57681</loc>
+    <!--  https://data.csiro.au/dap/ws/v2/collections/csiro:57681/metadata/schemaOrg.json
+          Describe -->
+  </url>
+  <url>
+    <loc>https://data.csiro.au/collection/csiro:51351</loc>
+    <!--  https://data.csiro.au/dap/ws/v2/collections/csiro:51351/metadata/schemaOrg.json
+          Describe -->
+  </url>
+  <url>
+    <loc>https://data.csiro.au/collection/csiro:43541</loc>
+    <!--  https://data.csiro.au/dap/ws/v2/collections/csiro:43541/metadata/schemaOrg.json
+          Software Collection -->
+  </url>
+  <url>
+    <loc>https://data.csiro.au/collection/csiro:39819</loc>
+    <!--  https://data.csiro.au/dap/ws/v2/collections/csiro:39819/metadata/schemaOrg.json
+          Service Collection -->
+  </url>
+  <url>
+    <loc>https://data.csiro.au/collection/csiro:10889</loc>
+    <!--  https://data.csiro.au/dap/ws/v2/collections/csiro:10889/metadata/schemaOrg.json
+          Data Collection With Services-->
+  </url>
+  urlset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
