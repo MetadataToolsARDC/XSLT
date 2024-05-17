@@ -250,7 +250,65 @@
             </xsl:if>
           </xsl:if>
     </xsl:if>
-    </xsl:template>
+</xsl:template>
+    
+     <xsl:function name="local:getTypeAndSubType" as="xs:string*">
+         <xsl:param name="header_node" as="node()"/>
+        
+            <xsl:choose>
+                <!-- figure -->
+                <xsl:when test="count($header_node/oai:setSpec[text() = 'item_type_1']) > 0">
+                    <xsl:text>collection</xsl:text>
+                    <xsl:text>collection</xsl:text>
+                </xsl:when>
+                <!-- media -->
+                <xsl:when test="count($header_node/oai:setSpec[text() = 'item_type_2']) > 0">
+                    <xsl:text>collection</xsl:text>
+                    <xsl:text>collection</xsl:text>
+                </xsl:when>
+                <!-- dataset -->
+                <xsl:when test="count($header_node/oai:setSpec[text() = 'item_type_3']) > 0">
+                    <xsl:text>collection</xsl:text>
+                    <xsl:text>dataset</xsl:text>
+                </xsl:when>
+                <!-- fileset -->
+                <xsl:when test="count($header_node/oai:setSpec[text() = 'item_type_4']) > 0">
+                    <xsl:text>collection</xsl:text>
+                    <xsl:text>collection</xsl:text>
+                </xsl:when>
+                <!-- code -->
+                <xsl:when test="count($header_node/oai:setSpec[text() = 'item_type_9']) > 0">
+                    <xsl:text>collection</xsl:text>
+                    <xsl:text>software</xsl:text>
+                </xsl:when>
+                <!-- metadata -->
+                <xsl:when test="count($header_node/oai:setSpec[text() = 'item_type_11']) > 0">
+                    <xsl:text>collection</xsl:text>
+                    <xsl:text>collection</xsl:text>
+                </xsl:when>
+                <!-- physical object -->
+                <xsl:when test="count($header_node/oai:setSpec[text() = 'item_type_22']) > 0">
+                    <xsl:text>collection</xsl:text>
+                    <xsl:text>collection</xsl:text>
+                </xsl:when>
+                <!-- workflow -->
+                <xsl:when test="count($header_node/oai:setSpec[text() = 'item_type_24']) > 0">
+                    <xsl:text>collection</xsl:text>
+                    <xsl:text>software</xsl:text>
+                </xsl:when>
+                <!-- service -->
+                <xsl:when test="count($header_node/oai:setSpec[text() = 'item_type_28']) > 0">
+                    <xsl:text>service</xsl:text>
+                    <xsl:text>report</xsl:text>
+                </xsl:when>
+                <!-- model -->
+                <xsl:when test="count($header_node/oai:setSpec[text() = 'item_type_29']) > 0">
+                    <xsl:text>collection</xsl:text>
+                    <xsl:text>software</xsl:text>
+                </xsl:when>
+            </xsl:choose>
+        
+    </xsl:function>
     
 <xsl:template match="rdf:RDF" mode="collection">
         <xsl:param name="oaiFigshareIdentifier" as="xs:string"/>

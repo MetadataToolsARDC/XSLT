@@ -39,4 +39,53 @@
         </registryObjects>
     </xsl:template>
     
+    <xsl:template match="oai:OAI-PMH/*/oai:record">
+        
+        <xsl:message select="'Overriding filtering for La Trobe - include all of the same except for ''metadata online resource'''"/>
+        
+        <!-- The types allowed by figshare_rdf_rifcs.xsl
+        item_type_1 - figure
+        item_type_2 - media
+        item_type_3 - dataset
+        item_type_4 - fileset
+        item_type_9 - code software
+        item_type_11 - metadata online resource
+        item_type_22 - physical object
+        item_type_24 - workflow
+        item_type_28 - service
+        item_type_29 - model
+        -->
+        
+        <xsl:if test="
+            (count(oai:header/oai:setSpec[text() = 'item_type_1']) > 0) or
+            (count(oai:header/oai:setSpec[text() = 'item_type_2']) > 0) or
+            (count(oai:header/oai:setSpec[text() = 'item_type_3']) > 0) or
+            (count(oai:header/oai:setSpec[text() = 'item_type_4']) > 0) or
+            (count(oai:header/oai:setSpec[text() = 'item_type_9']) > 0) or
+            (count(oai:header/oai:setSpec[text() = 'item_type_22']) > 0) or
+            (count(oai:header/oai:setSpec[text() = 'item_type_24']) > 0) or
+            (count(oai:header/oai:setSpec[text() = 'item_type_28']) > 0) or
+            (count(oai:header/oai:setSpec[text() = 'item_type_29']) > 0)">
+            
+            <xsl:variable name="type_and_subtype_sequence" select="local:getTypeAndSubType(oai:header)" as="xs:string*"/>
+            
+            <xsl:message select="concat('class determined: ', $type_and_subtype_sequence[1])"/>
+            <xsl:message select="concat('mapped type determined: ', $type_and_subtype_sequence[2])"/>
+            
+            <xsl:if test="count($type_and_subtype_sequence) = 2"> <!-- if it isn't, we've forgot to add it to the bit above -->
+                
+                <xsl:variable name="oaiFigshareIdentifier" select="oai:header/oai:identifier"/>
+                <xsl:if test="string-length($oaiFigshareIdentifier)">
+                    <xsl:apply-templates select="oai:metadata/rdf:RDF" mode="collection">
+                        <xsl:with-param name="oaiFigshareIdentifier" select="$oaiFigshareIdentifier"/>
+                        <xsl:with-param name="type" select="$type_and_subtype_sequence[1]" as="xs:string"/>
+                        <xsl:with-param name="subtype" select="$type_and_subtype_sequence[2]" as="xs:string"/>
+                    </xsl:apply-templates>
+                    <!-- xsl:apply-templates select="oai:metadata/rdf:RDF/dc:funding" mode="funding_party"/ -->
+                    <!-- xsl:apply-templates select="oai:metadata/rdf:RDF" mode="party"/-->
+                </xsl:if>
+            </xsl:if>
+        </xsl:if>
+    </xsl:template>
+    
 </xsl:stylesheet>

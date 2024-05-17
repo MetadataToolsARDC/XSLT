@@ -43,28 +43,20 @@
         
         <xsl:message select="'Overriding filtering for CQU - including only dataset, fileset and code'"/>
         
-        <!-- item_type_1 -->
-        <!-- Article type: figure -->
-        <!-- item_type_2 -->
-        <!-- Article type: media -->
-        <!-- item_type_3 -->
-        <!-- Article type: dataset -->
-        <!-- item_type_4 -->
-        <!-- Article type: fileset -->
-        <!-- item_type_5 -->
-        <!-- Article type: poster -->
-        <!-- item_type_6 -->
-        <!-- Article type: paper -->
-        <!-- item_type_7 -->
-        <!-- Article type: presentation -->
-        <!-- item_type_8 -->
-        <!-- Article type: thesis -->
-        <!-- item_type_9 -->
-        <!-- Article type: code -->
-        <!-- item_type_11 -->
-        <!-- Article type: metadata --> 
+        <!-- The types allowed by figshare_rdf_rifcs.xsl
+        item_type_1 - figure
+        item_type_2 - media
+        item_type_3 - dataset
+        item_type_4 - fileset
+        item_type_9 - code software
+        item_type_11 - metadata online resource
+        item_type_22 - physical object
+        item_type_24 - workflow
+        item_type_28 - service
+        item_type_29 - model
+        -->
         
-        <!-- include dataset, fileset and code for now -->
+       <!-- include dataset, fileset and code for now -->
   
         
         <xsl:if test="
@@ -72,25 +64,7 @@
             (count(oai:header/oai:setSpec[text() = 'item_type_4']) > 0) or
             (count(oai:header/oai:setSpec[text() = 'item_type_9']) > 0)">
             
-            <xsl:variable name="type_and_subtype_sequence" as="xs:string*">
-                <xsl:choose>
-                    <!-- dataset -->
-                    <xsl:when test="count(oai:header/oai:setSpec[text() = 'item_type_3']) > 0">
-                        <xsl:text>collection</xsl:text>
-                        <xsl:text>dataset</xsl:text>
-                    </xsl:when>
-                    <!-- fileset -->
-                    <xsl:when test="count(oai:header/oai:setSpec[text() = 'item_type_4']) > 0">
-                        <xsl:text>collection</xsl:text>
-                        <xsl:text>collection</xsl:text>
-                    </xsl:when>
-                    <!-- code -->
-                    <xsl:when test="count(oai:header/oai:setSpec[text() = 'item_type_9']) > 0">
-                        <xsl:text>collection</xsl:text>
-                        <xsl:text>software</xsl:text>
-                    </xsl:when>
-                   </xsl:choose>
-            </xsl:variable>
+            <xsl:variable name="type_and_subtype_sequence" select="local:getTypeAndSubType(oai:header)" as="xs:string*"/>
             
             <xsl:message select="concat('class determined: ', $type_and_subtype_sequence[1])"/>
             <xsl:message select="concat('mapped type determined: ', $type_and_subtype_sequence[2])"/>
