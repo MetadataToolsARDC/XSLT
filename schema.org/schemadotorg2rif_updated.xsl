@@ -168,7 +168,8 @@
                         </xsl:if>
                         <xsl:apply-templates select="isPartOf | hasPart"/>
                         <!--xsl:apply-templates select="producer | publisher | funder | funding/funder | contributor | provider | includedInDataCatalog | citation | creator" mode="relatedInfo"/-->
-                        <xsl:apply-templates select="producer | publisher | funder | funding/funder | contributor | provider | citation | creator" mode="relatedInfo"/>
+                        <!--xsl:apply-templates select="producer | publisher | funder | funding/funder | contributor | provider | citation | creator" mode="relatedInfo"/-->
+                        <xsl:apply-templates select="producer | funder | funding/funder | contributor | provider | citation | creator" mode="relatedInfo"/>
                         <xsl:apply-templates select="potentialAction/target" mode="relatedInfo"/>
                         <xsl:apply-templates select="funding" mode="relatedInfo"/>
                     </xsl:element>
@@ -777,7 +778,7 @@
 
     <xsl:template match="url" mode="distribution">
         <xsl:element name="value">
-            <xsl:apply-templates/>"/>
+            <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
 
