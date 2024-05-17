@@ -9,6 +9,7 @@
     
     <xsl:param name="columnSeparator" select="'^'"/>
     <xsl:param name="valueSeparator" select="','"/>
+    <xsl:param name="entitySeparator" select="'*'"/>
     <xsl:output omit-xml-declaration="yes" indent="yes" encoding="UTF-8"/>
     <xsl:strip-space elements="*"/>  
     
@@ -17,9 +18,10 @@
     
     <xsl:param name="output_key" select="true()" as="xs:boolean"/>
     <xsl:param name="output_name" select="true()" as="xs:boolean"/>
-    <xsl:param name="output_relatedInfo" select="false()" as="xs:boolean"/>
-    <xsl:param name="output_publisher" select="false()" as="xs:boolean"/>
+    <xsl:param name="output_publisher" select="true()" as="xs:boolean"/>
     <xsl:param name="output_location" select="true()" as="xs:boolean"/>
+    <xsl:param name="output_relatedInfo" select="false()" as="xs:boolean"/>
+    <xsl:param name="output_relatedInfo_blob" select="true()" as="xs:boolean"/>
     
     <xsl:template match="node()|@*">
         <xsl:copy>
@@ -49,17 +51,21 @@
             <xsl:call-template name="columnHeaders_name"/>
         </xsl:if>
         
-        <xsl:if test="$output_relatedInfo">
-            <xsl:call-template name="columnHeaders_relatedInfo"/>
-        </xsl:if>
-        
         <xsl:if test="$output_publisher">
             <xsl:call-template name="columnHeaders_publisher"/>
         </xsl:if>
         
         <xsl:if test="$output_location">
             <xsl:call-template name="columnHeaders_location"/>
-      </xsl:if>
+        </xsl:if>
+        
+        <xsl:if test="$output_relatedInfo">
+            <xsl:call-template name="columnHeaders_relatedInfo"/>
+        </xsl:if>
+        
+        <xsl:if test="$output_relatedInfo_blob">
+            <xsl:call-template name="columnHeaders_relatedInfo_blob"/>
+        </xsl:if>
         
         <xsl:text>&#xa;</xsl:text>
     </xsl:template>
@@ -74,16 +80,20 @@
             <xsl:apply-templates select="." mode="output_name"/>
         </xsl:if>
         
-        <xsl:if test="$output_relatedInfo">
-            <xsl:apply-templates select="./*:relatedInfo" mode="output_relatedInfo"/>
-        </xsl:if>
-        
         <xsl:if test="$output_publisher">
             <xsl:apply-templates select="." mode="output_publisher"/>
         </xsl:if>
         
         <xsl:if test="$output_location">
             <xsl:apply-templates select="." mode="output_location"/>
+        </xsl:if>
+        
+        <xsl:if test="$output_relatedInfo">
+            <xsl:apply-templates select="./*/*:relatedInfo" mode="output_relatedInfo"/>
+        </xsl:if>
+        
+        <xsl:if test="$output_relatedInfo_blob">
+            <xsl:apply-templates select="collection | service | activity" mode="output_relatedInfo_blob"/>
         </xsl:if>
         
         <xsl:text>&#xa;</xsl:text>
@@ -101,6 +111,18 @@
         
     </xsl:template>
     
+    <xsl:template name="columnHeaders_publisher">
+        
+        <xsl:text>publisher</xsl:text><xsl:value-of select="$columnSeparator"/>
+        
+    </xsl:template>
+    
+    <xsl:template name="columnHeaders_location">
+        
+        <xsl:text>location</xsl:text><xsl:value-of select="$columnSeparator"/>
+        
+    </xsl:template>
+    
     <xsl:template name="columnHeaders_relatedInfo">
         
         <xsl:text>type</xsl:text><xsl:value-of select="$columnSeparator"/>
@@ -112,16 +134,10 @@
         
     </xsl:template>
     
-    <xsl:template name="columnHeaders_publisher">
+    <xsl:template name="columnHeaders_relatedInfo_blob">
         
-        <xsl:text>publisher</xsl:text><xsl:value-of select="$columnSeparator"/>
-        
-    </xsl:template>
+        <xsl:text>relatedInfoBlob</xsl:text><xsl:value-of select="$columnSeparator"/>
     
-    <xsl:template name="columnHeaders_location">
-        
-        <xsl:text>location</xsl:text><xsl:value-of select="$columnSeparator"/>
-        
     </xsl:template>
     
     <xsl:template match="registryObject" mode="output_key">
@@ -202,6 +218,48 @@
         <xsl:value-of select="normalize-space(relation/url)"/>
         <xsl:text>&quot;</xsl:text>
         <xsl:value-of select="$columnSeparator"/>
+        
+    </xsl:template>
+    
+    <xsl:template match="collection | activity | service" mode="output_relatedInfo_blob">
+        
+        <!--	column: relatedInfoBlob  -->
+        <xsl:text>&quot;</xsl:text>
+        <xsl:apply-templates select="relatedInfo" mode="output_relatedInfo_string"/>
+        <xsl:text>&quot;</xsl:text>
+        <xsl:value-of select="$columnSeparator"/>
+        
+        
+        
+    </xsl:template>
+    
+    <xsl:template match="relatedInfo" mode="output_relatedInfo_string">
+        
+        <!--	column: type  -->
+        <xsl:value-of select="@type"/>
+        <xsl:value-of select="$valueSeparator"/>
+      
+        <!--	column: title  -->
+        <xsl:value-of select="normalize-space(title)"/>
+        <xsl:value-of select="$valueSeparator"/>
+        
+        <!--	column: identifier  -->
+        <xsl:value-of select="identifier"/>
+        <xsl:value-of select="$valueSeparator"/>
+        
+        <!--	column: relation -->
+        <xsl:value-of select="relation/@type"/>
+        <xsl:value-of select="$valueSeparator"/>
+        
+        <!--	column: url_description -->
+        <xsl:value-of select="normalize-space(relation/description)"/>
+        <xsl:value-of select="$valueSeparator"/>
+        
+        <!--	column: url_dataset -->
+        <xsl:value-of select="normalize-space(relation/url)"/>
+        <xsl:value-of select="$valueSeparator"/>
+        
+        <xsl:value-of select="$entitySeparator"/>
         
     </xsl:template>
     

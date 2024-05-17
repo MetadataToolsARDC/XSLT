@@ -285,11 +285,20 @@
             
             <xsl:apply-templates select="*/bibo:doi[string-length(.) > 0]" mode="collection_identifier"/>
             
-            <xsl:apply-templates select="*/bibo:doi[string-length(.) > 0]" mode="collection_location"/>
+            <xsl:apply-templates select="*/bibo:handle[string-length(.) > 0]" mode="collection_identifier"/>
             
-            <xsl:if test="string-length(*/bibo:doi) = 0">
-                <xsl:apply-templates select="*[1]/@rdf:about[(string-length(.) > 0)]" mode="collection_location"/>
-            </xsl:if>
+            <xsl:choose>
+                <xsl:when test="count(*/bibo:doi[string-length(.) > 0]) > 0">
+                    <xsl:apply-templates select="*/bibo:doi[string-length(.) > 0][1]" mode="collection_location"/>
+                </xsl:when>
+                <xsl:when test="count(*/bibo:handle[string-length(.) > 0]) > 0">
+                    <xsl:apply-templates select="*/bibo:handle[string-length(.) > 0][1]" mode="collection_location"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="*[1]/@rdf:about[(string-length(.) > 0)]" mode="collection_location"/>
+                </xsl:otherwise>
+            </xsl:choose>
+            
             
             <xsl:apply-templates select="*/rdfs:label[string-length(.) > 0]" mode="collection_name"/>
             
@@ -349,6 +358,12 @@
         </identifier>    
     </xsl:template>
     
+    <xsl:template match="bibo:handle" mode="collection_identifier">
+        <identifier type="handle">
+            <xsl:value-of select="."/>
+        </identifier>    
+    </xsl:template>
+    
     <xsl:template match="@rdf:about" mode="collection_identifier_URI">
         <identifier type="URI">
             <xsl:value-of select="."/>
@@ -366,6 +381,25 @@
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:value-of select="."/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </value>
+                </electronic>
+            </address>
+        </location> 
+    </xsl:template>
+    
+    <xsl:template match="bibo:handle" mode="collection_location">
+        <location>
+            <address>
+                <electronic type="url" target="landingPage">
+                    <value>
+                        <xsl:choose>
+                            <xsl:when test="starts-with(. , 'http')">
+                                <xsl:value-of select="."/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="concat('http://hdl.handle.net/', .)"/>
                             </xsl:otherwise>
                         </xsl:choose>
                     </value>

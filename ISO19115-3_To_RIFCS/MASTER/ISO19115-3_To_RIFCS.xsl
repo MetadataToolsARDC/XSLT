@@ -218,6 +218,8 @@
                     </xsl:choose>
                 </xsl:for-each>
                 
+                <xsl:apply-templates select="mdb:parentMetadata" mode="registryObject_relatedInfo_parent"/>
+                
                 <xsl:apply-templates select="mdb:metadataIdentifier/mcc:MD_Identifier/mcc:code"
                     mode="registryObject_identifier_global"/>
                 
@@ -1216,6 +1218,28 @@
                 </xsl:attribute>
             </relation>
             
+            
+        </relatedInfo>
+        
+    </xsl:template>
+    
+    <xsl:template match="mdb:parentMetadata" mode="registryObject_relatedInfo_parent">  
+        
+        <relatedInfo>
+            <!--xsl:attribute name="type" select="'relatedInformation'"/--> <!-- we don't know the type of the parent -->   
+            
+            <identifier>
+                <xsl:attribute name="type">
+                    <xsl:value-of select="'global'"/>
+                </xsl:attribute>
+                <xsl:value-of select="@uuidref"/>
+            </identifier>
+            
+            <relation>
+                <xsl:attribute name="type">
+                    <xsl:text>isPartOf</xsl:text>
+                </xsl:attribute>
+            </relation>
             
         </relatedInfo>
         

@@ -17,7 +17,8 @@
     <xsl:param name="global_acronym" select="'{override required}'"/>
     <xsl:param name="global_group" select="'{override required}'"/>
     <xsl:param name="global_publisherName" select="'{override required}'"/>
-    <xsl:param name="global_validateWorkflow" select="false()"/>
+    <xsl:param name="global_validateWorkflow" select="false()" as="xs:boolean"/>
+    <xsl:param name="global_prioritiseRepositoryForLandingPage" select="false()" as="xs:boolean"/>
 
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" omit-xml-declaration="yes"/>
 
@@ -105,12 +106,16 @@
 
                 <xsl:apply-templates select="webAddresses/webAddress[@type = 'Handle']"
                     mode="collection_identifier_handle"/>
-
+                
+                <xsl:if test="string-length(doi) > 0">
+                    <xsl:apply-templates select="doi[string-length(.) > 0]"
+                        mode="collection_identifier"/>
+                </xsl:if>
 
                 <xsl:choose>
-                    <xsl:when test="string-length(doi) > 0">
-                        <xsl:apply-templates select="doi[string-length(.) > 0]"
-                            mode="collection_identifier"/>
+                    <xsl:when test="
+                        not($global_prioritiseRepositoryForLandingPage) and 
+                        string-length(doi) > 0">
                         <xsl:apply-templates select="doi[string-length(.) > 0]"
                             mode="collection_location"/>
                     </xsl:when>

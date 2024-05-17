@@ -9,6 +9,8 @@
     <xsl:strip-space elements="*"/>
     <xsl:param name="originatingSource" select="'https://researchdata.ardc.edu.au'"/>
     <xsl:param name="group" select="'ARDC Sitemap Crawler - 27 October 2022'"/>
+    <xsl:param name="groupAcronym" select="''"/>
+    
     <xsl:param name="debug" select="true()"/>
     <xsl:variable name="xsd_url" select="'https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd'"/>
     
@@ -17,7 +19,7 @@
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects {$xsd_url}">
             <xsl:apply-templates select="//dataset"/>
-            <xsl:apply-templates select="//includedInDataCatalog" mode="catalog"/>
+            <!--xsl:apply-templates select="//includedInDataCatalog" mode="catalog"/-->
             <!--xsl:apply-templates select="//publisher | //funder | //contributor | //provider" mode="party"/-->
            </registryObjects>
     </xsl:template>
@@ -80,7 +82,7 @@
                 </xsl:element>
                 <xsl:element name="collection">
                     <xsl:attribute name="type">
-                        <xsl:text>catalog</xsl:text>
+                        <xsl:text>catalogueOrIndex</xsl:text>
                     </xsl:attribute>
                     <xsl:apply-templates select="name" mode="primary"/>
                     <xsl:call-template name="identifiers"/>
@@ -165,7 +167,8 @@
                             </xsl:element>
                         </xsl:if>
                         <xsl:apply-templates select="isPartOf | hasPart"/>
-                        <xsl:apply-templates select="producer | publisher | funder | funding/funder | contributor | provider | includedInDataCatalog | citation | creator" mode="relatedInfo"/>
+                        <!--xsl:apply-templates select="producer | publisher | funder | funding/funder | contributor | provider | includedInDataCatalog | citation | creator" mode="relatedInfo"/-->
+                        <xsl:apply-templates select="producer | publisher | funder | funding/funder | contributor | provider | citation | creator" mode="relatedInfo"/>
                         <xsl:apply-templates select="potentialAction/target" mode="relatedInfo"/>
                         <xsl:apply-templates select="funding" mode="relatedInfo"/>
                     </xsl:element>
@@ -265,13 +268,13 @@
                                 </xsl:attribute>
                                 <xsl:element name="namePart">
                                     <xsl:attribute name="type">
-                                        <xsl:value-of select="'family'"/>
+                                        <xsl:value-of select="'given'"/>
                                     </xsl:attribute>
                                     <xsl:apply-templates select="givenName/text()"/>
                                 </xsl:element>
                                 <xsl:element name="namePart">
                                     <xsl:attribute name="type">
-                                        <xsl:value-of select="'given'"/>
+                                        <xsl:value-of select="'family'"/>
                                     </xsl:attribute>
                                     <xsl:apply-templates select="familyName/text()"/>
                                 </xsl:element>
@@ -289,7 +292,7 @@
             <xsl:attribute name="type">
                 <xsl:text>publicationDate</xsl:text>
             </xsl:attribute>
-            <xsl:apply-templates select="text()"/>
+            <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
     
@@ -298,7 +301,7 @@
             <xsl:attribute name="type">
                 <xsl:text>created</xsl:text>
             </xsl:attribute>
-            <xsl:apply-templates select="text()"/>
+            <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
 
@@ -317,19 +320,19 @@
 
     <xsl:template match="version" mode="CitationMetadata">
         <xsl:element name="version">
-            <xsl:apply-templates select="text()"/>
+            <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
     
     <xsl:template match="url" mode="CitationMetadata">
         <xsl:element name="url">
-            <xsl:apply-templates select="text()"/>
+            <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
 
     <xsl:template match="locationCreated" mode="CitationMetadata">
         <xsl:element name="placePublished">
-            <xsl:apply-templates select="text()"/>
+            <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
     
@@ -346,7 +349,7 @@
                 <xsl:value-of select="normalize-space(legalName)"/>
             </xsl:when>
             <xsl:when test="normalize-space(.)">
-                <xsl:apply-templates select="text()"/>
+                <xsl:apply-templates/>
             </xsl:when>
         </xsl:choose>
     </xsl:template>
@@ -364,7 +367,7 @@
                 <xsl:value-of select="normalize-space(url)"/>
             </xsl:when>
             <xsl:when test="normalize-space(.)">
-                <xsl:apply-templates select="text()"/>
+                <xsl:apply-templates/>
             </xsl:when>
         </xsl:choose>
     </xsl:template>
@@ -381,7 +384,7 @@
                 <xsl:attribute name="dateFormat">
                     <xsl:text>W3CDTF</xsl:text>
                 </xsl:attribute>
-                <xsl:apply-templates select="text()"/>
+                <xsl:apply-templates/>
             </xsl:element>
         </xsl:element>
     </xsl:template>
@@ -398,7 +401,7 @@
                 <xsl:attribute name="dateFormat">
                     <xsl:text>W3CDTF</xsl:text>
                 </xsl:attribute>
-                <xsl:apply-templates select="text()"/>
+                <xsl:apply-templates/>
             </xsl:element>
         </xsl:element>
     </xsl:template>
@@ -443,10 +446,20 @@
         </xsl:variable> 
         <xsl:choose>
             <xsl:when test="count($identifier_elements)">
-                <xsl:call-template name="identifier_core">
-                    <xsl:with-param name="identifier" select="$identifier_elements[1]"/>
-                    <xsl:with-param name="core" select="true()"/>
-                </xsl:call-template>
+                <xsl:variable name="identifierCore">
+                    <xsl:call-template name="identifier_core">
+                        <xsl:with-param name="identifier" select="$identifier_elements[1]"/>
+                        <xsl:with-param name="core" select="true()"/>
+                    </xsl:call-template>
+                </xsl:variable>
+                <xsl:choose>
+                    <xsl:when test="string-length($groupAcronym) > 0">
+                        <xsl:value-of select="concat($groupAcronym, '/', $identifierCore)"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="$identifierCore"/>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:assert test="0">WARNING: No Key determined - required for registry object</xsl:assert>
@@ -496,7 +509,7 @@
         <xsl:if test="string-length(text())">
             <xsl:element name="subject">
                 <xsl:attribute name="type">local</xsl:attribute>
-                <xsl:apply-templates select="text()"/>
+                <xsl:apply-templates/>
             </xsl:element>
         </xsl:if>
         
@@ -540,7 +553,7 @@
     
      <xsl:template match="contentSize">
         <xsl:element name="byteSize">
-            <xsl:apply-templates select="text()"/>
+            <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
 
@@ -556,7 +569,7 @@
             <xsl:attribute name="type">brief</xsl:attribute>
             <xsl:apply-templates/>
         </xsl:element>
-    </xsl:template>
+     </xsl:template>
     
     <xsl:template match="prov_wasAssociatedWith">
         <xsl:apply-templates select="prov_plan"/>
@@ -579,7 +592,7 @@
     <xsl:template match="logo">
         <xsl:element name="description">
             <xsl:attribute name="type">logo</xsl:attribute>
-            <xsl:apply-templates select="text()"/>
+            <xsl:apply-templates/>
             <xsl:apply-templates select="url/text()"/>
         </xsl:element>
     </xsl:template>
@@ -588,9 +601,12 @@
         <xsl:element name="rights">
             <xsl:choose>
                 <xsl:when test="starts-with(url, 'http')">
-                    <xsl:element name="rightsStatement">
+                    <xsl:element name="licence">
                         <xsl:attribute name="rightsUri">
                             <xsl:value-of select="normalize-space(url)"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="type">
+                            <xsl:value-of select="normalize-space(additionalType)"/>
                         </xsl:attribute>
                         <xsl:value-of select="name"/>
                     </xsl:element>
@@ -635,10 +651,22 @@
             <xsl:when test="$value = 'TRUE'">
                 <xsl:element name="rights">
                     <xsl:element name="accessRights">
+                        <xsl:attribute name="type">
+                            <xsl:text>open</xsl:text>
+                        </xsl:attribute>
                         <xsl:text>Accessible for free</xsl:text>
                     </xsl:element>
                 </xsl:element>
             </xsl:when>
+            <xsl:otherwise>
+                <xsl:element name="rights">
+                    <xsl:element name="accessRights">
+                        <xsl:attribute name="type">
+                            <xsl:text>restricted</xsl:text>
+                        </xsl:attribute>
+                    </xsl:element>
+                </xsl:element>
+            </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
 
@@ -652,7 +680,7 @@
                 <xsl:text>landingPage</xsl:text>
             </xsl:attribute>
             <xsl:element name="value">
-                <xsl:apply-templates select="text()"/>
+                <xsl:apply-templates/>
             </xsl:element>
         </xsl:element>
     </xsl:template>
@@ -664,7 +692,7 @@
                     <xsl:value-of select="name()"/>
                 </xsl:attribute>
                 <xsl:element name="value">
-                    <xsl:apply-templates select="text()"/>
+                    <xsl:apply-templates/>
                 </xsl:element>
             </xsl:element>
         </xsl:if>
@@ -704,7 +732,7 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:attribute>
-            <xsl:apply-templates select="text()"/>
+            <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
 
@@ -742,21 +770,21 @@
 
     <xsl:template match="accessURL | downloadURL | contentUrl">
         <xsl:element name="value">
-            <xsl:apply-templates select="text()"/>
+            <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
 
 
     <xsl:template match="url" mode="distribution">
         <xsl:element name="value">
-            <xsl:apply-templates select="text()"/>
+            <xsl:apply-templates/>"/>
         </xsl:element>
     </xsl:template>
 
     <xsl:template match="encodingFormat | mediaType">
         <xsl:if test="text() != ''">
             <xsl:element name="mediaType">
-                <xsl:apply-templates select="text()"/>
+                <xsl:apply-templates/>
             </xsl:element>
         </xsl:if>
     </xsl:template>
@@ -764,7 +792,7 @@
     <xsl:template match="type" mode="distribution">
         <xsl:if test="text() != ''">
             <xsl:element name="mediaType">
-                <xsl:apply-templates select="text()"/>
+                <xsl:apply-templates/>
             </xsl:element>
         </xsl:if>
     </xsl:template>
@@ -775,7 +803,7 @@
                 <xsl:text>primary</xsl:text>
             </xsl:attribute>
             <xsl:element name="namePart">
-                <xsl:apply-templates select="text()"/>
+                <xsl:apply-templates/>
             </xsl:element>
         </xsl:element>
     </xsl:template>
@@ -787,7 +815,7 @@
                 <xsl:text>alternative</xsl:text>
             </xsl:attribute>
             <xsl:element name="namePart">
-                <xsl:apply-templates select="text()"/>
+                <xsl:apply-templates/>
             </xsl:element>
         </xsl:element>
     </xsl:template>
@@ -834,6 +862,9 @@
             <xsl:element name="relatedInfo">
                 <xsl:attribute name="type">
                     <xsl:choose>
+                        <xsl:when test="contains(additionalType, 'RIFCSRelatedInformationType')">
+                            <xsl:value-of select="additionalType"/>
+                        </xsl:when>
                         <xsl:when test="type = 'Organization'">
                              <xsl:text>party</xsl:text>
                         </xsl:when>
@@ -1016,7 +1047,7 @@
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:attribute>
-                        <xsl:apply-templates select="text()"/>
+                        <xsl:apply-templates/>
                     </xsl:element>
                 </xsl:for-each>
                 
@@ -1028,7 +1059,7 @@
 
     <xsl:template match="name | title">
         <xsl:element name="title">
-            <xsl:apply-templates select="text()"/>
+            <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
     
@@ -1041,7 +1072,7 @@
     
     <xsl:template match="description" mode="notes">
         <xsl:element name="notes">
-            <xsl:apply-templates select="text()"/>
+            <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
     
@@ -1279,9 +1310,10 @@
     <xsl:function name="local:getTypeFromIdentifier">
         <xsl:param name="identifier"/>
         <xsl:choose>
-            <xsl:when test="not(string-length($identifier))">
-                <xsl:assert test="0"/> <!-- Don't call this without an identifier -->
-            </xsl:when>
+            <!-- Don't call this without an identifier -->
+            <!--xsl:when test="not(string-length($identifier))">
+                <xsl:assert test="0"/> 
+            </xsl:when-->
             <xsl:when test="contains($identifier, 'doi')">
                 <xsl:text>doi</xsl:text>
             </xsl:when>
@@ -1356,7 +1388,7 @@
                             <xsl:attribute name="type">
                                 <xsl:text>text</xsl:text>
                             </xsl:attribute>
-                            <xsl:apply-templates select="text()"/>    
+                            <xsl:apply-templates/>    
                         </xsl:element>
                     </xsl:otherwise>           
                 </xsl:choose>
@@ -1389,7 +1421,7 @@
             <xsl:attribute name="type">
                 <xsl:text>text</xsl:text>
             </xsl:attribute>
-            <xsl:apply-templates select="text()"/>
+            <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
 
@@ -1415,7 +1447,7 @@
             <xsl:attribute name="type">
                 <xsl:text>kmlPolyCoords</xsl:text>
             </xsl:attribute>
-            <xsl:apply-templates select="text()"/>
+            <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
 
