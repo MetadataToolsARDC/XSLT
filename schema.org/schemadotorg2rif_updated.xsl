@@ -263,23 +263,41 @@
                         <xsl:apply-templates select="version" mode="CitationMetadata"/>
                         <xsl:apply-templates select="datePublished | dateCreated" mode="CitationMetadata"/>
                         <xsl:for-each select="creator">
-                            <xsl:element name="contributor">
-                                <xsl:attribute name="seq">
-                                    <xsl:value-of select="position()"/>
-                                </xsl:attribute>
-                                <xsl:element name="namePart">
-                                    <xsl:attribute name="type">
-                                        <xsl:value-of select="'given'"/>
-                                    </xsl:attribute>
-                                    <xsl:apply-templates select="givenName/text()"/>
-                                </xsl:element>
-                                <xsl:element name="namePart">
-                                    <xsl:attribute name="type">
-                                        <xsl:value-of select="'family'"/>
-                                    </xsl:attribute>
-                                    <xsl:apply-templates select="familyName/text()"/>
-                                </xsl:element>
-                              </xsl:element>
+                            <xsl:choose>
+                                <xsl:when test="contains(lower-case(type), 'person')">
+                                    <xsl:element name="contributor">
+                                        <xsl:attribute name="seq">
+                                            <xsl:value-of select="position()"/>
+                                        </xsl:attribute>
+                                        <xsl:element name="namePart">
+                                            <xsl:attribute name="type">
+                                                <xsl:value-of select="'given'"/>
+                                            </xsl:attribute>
+                                            <xsl:apply-templates select="givenName/text()"/>
+                                        </xsl:element>
+                                        <xsl:element name="namePart">
+                                            <xsl:attribute name="type">
+                                                <xsl:value-of select="'family'"/>
+                                            </xsl:attribute>
+                                            <xsl:apply-templates select="familyName/text()"/>
+                                        </xsl:element>
+                                    </xsl:element>
+                                </xsl:when>
+                                <xsl:when test="contains(lower-case(type), 'organization')">
+                                    <xsl:element name="contributor">
+                                        <xsl:attribute name="seq">
+                                            <xsl:value-of select="position()"/>
+                                        </xsl:attribute>
+                                        <xsl:element name="namePart">
+                                            <xsl:attribute name="type">
+                                                <xsl:value-of select="'family'"/>
+                                            </xsl:attribute>
+                                            <xsl:apply-templates select="name/text()"/>
+                                        </xsl:element>
+                                    </xsl:element>
+                                </xsl:when>
+                            </xsl:choose>
+                            
                         </xsl:for-each>
                     </xsl:element>
                 </xsl:element>
