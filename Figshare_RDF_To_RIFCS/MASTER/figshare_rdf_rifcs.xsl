@@ -310,6 +310,13 @@
         
     </xsl:function>
     
+    <xsl:template match="rdf:RDF" mode="collection_key">
+        <xsl:param name="oaiFigshareIdentifier" as="xs:string"/>
+        <key>   
+            <xsl:value-of select="substring(string-join(for $n in fn:reverse(fn:string-to-codepoints($oaiFigshareIdentifier)) return string($n), ''), 0, 50)"/>
+        </key>
+    </xsl:template>
+    
 <xsl:template match="rdf:RDF" mode="collection">
         <xsl:param name="oaiFigshareIdentifier" as="xs:string"/>
         <xsl:param name="type" as="xs:string"/>
@@ -329,9 +336,11 @@
 
     <registryObject>
         <xsl:attribute name="group" select="$global_group"/>
-        <key>
-            <xsl:value-of select="substring(string-join(for $n in fn:reverse(fn:string-to-codepoints($oaiFigshareIdentifier)) return string($n), ''), 0, 50)"/>
-        </key>
+        
+        <xsl:apply-templates select="." mode="collection_key">
+            <xsl:with-param name="oaiFigshareIdentifier" select="$oaiFigshareIdentifier"/>
+        </xsl:apply-templates>
+        
         <originatingSource>
             <xsl:value-of select="$global_originatingSource"/>
         </originatingSource>

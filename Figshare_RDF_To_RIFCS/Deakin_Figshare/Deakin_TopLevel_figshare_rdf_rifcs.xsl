@@ -26,6 +26,8 @@
     <xsl:param name="global_baseURI" select="'deakin.edu.au'"/>
     <xsl:param name="global_group" select="'Deakin University'"/>
    
+    
+   
   <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 
     <xsl:template match="/">
@@ -38,6 +40,42 @@
             <xsl:apply-templates select="oai:OAI-PMH/*/oai:record"/>
             
         </registryObjects>
+    </xsl:template>
+    
+    <!-- Override for Deakin - handle for key if available; then doi; then usual method -->
+    
+    <xsl:template match="rdf:RDF" mode="collection_key">
+        <xsl:param name="oaiFigshareIdentifier" as="xs:string"/>
+        <xsl:variable name="handle" select="*/bibo:handle[string-length(.) > 0][1]"/>
+        <xsl:variable name="doi" select="*/bibo:doi[string-length(.) > 0][1]"/>
+        
+        <key>
+            <xsl:choose>
+                <xsl:when test="string-length(fn:normalize-space($handle)) > 0">
+                    <xsl:choose>
+                        <xsl:when test="fn:starts-with(lower-case($handle), 'http')">
+                            <xsl:value-of select="$handle"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="concat('http://hdl.handle.net/', $handle)"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <xsl:when test="string-length(fn:normalize-space($doi)) > 0">
+                    <xsl:choose>
+                        <xsl:when test="fn:starts-with(lower-case($doi), 'http')">
+                            <xsl:value-of select="$doi"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="concat('http://doi.org/', $doi)"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="substring(string-join(for $n in fn:reverse(fn:string-to-codepoints($oaiFigshareIdentifier)) return string($n), ''), 0, 50)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </key>
     </xsl:template>
     
 </xsl:stylesheet>
