@@ -246,7 +246,7 @@
         </xsl:variable> 
         
         <xsl:choose>  
-            <xsl:when test="count($identifier_elements) and creator and publisher and (datePublished or dateCreated)">
+            <xsl:when test="boolean(count($identifier_elements)) and creator and publisher and (datePublished or dateCreated)">
                 <xsl:element name="citationInfo">
                     <xsl:element name="citationMetadata">
                         <xsl:copy-of select="$identifier_elements[1]"/>
@@ -625,7 +625,20 @@
                             <xsl:value-of select="normalize-space(url)"/>
                         </xsl:attribute>
                         <xsl:attribute name="type">
-                            <xsl:value-of select="normalize-space(additionalType)"/>
+                            <xsl:variable name="sourceType" select="normalize-space(additionalType)"/>
+                            <xsl:choose>
+                                <xsl:when test="string-length($sourceType) > 0">
+                                    <xsl:choose>
+                                        <xsl:when test="contains($sourceType, '/')">
+                                            <xsl:variable name="index" select="count(tokenize($sourceType, '/'))" as="xs:integer"/>
+                                            <xsl:value-of select="tokenize($sourceType, '/')[$index]"/>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:value-of select="$sourceType"/>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:when>
+                            </xsl:choose>
                         </xsl:attribute>
                         <xsl:value-of select="name"/>
                     </xsl:element>
@@ -880,9 +893,18 @@
         <xsl:if test="count($identifier_elements)">
             <xsl:element name="relatedInfo">
                 <xsl:attribute name="type">
+                    <xsl:variable name="sourceType" select="normalize-space(additionalType)"/>
                     <xsl:choose>
-                        <xsl:when test="contains(additionalType, 'RIFCSRelatedInformationType')">
-                            <xsl:value-of select="additionalType"/>
+                        <xsl:when test="string-length($sourceType) > 0">
+                            <xsl:choose>
+                                <xsl:when test="contains($sourceType, '/')">
+                                    <xsl:variable name="index" select="count(tokenize($sourceType, '/'))" as="xs:integer"/>
+                                    <xsl:value-of select="tokenize($sourceType, '/')[$index]"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="$sourceType"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
                         </xsl:when>
                         <xsl:when test="type = 'Organization'">
                              <xsl:text>party</xsl:text>
@@ -1062,7 +1084,7 @@
                                     <xsl:value-of select="$funderName"/>
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <xsl:value-of select="local"/>
+                                    <xsl:value-of select="global"/>
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:attribute>
@@ -1176,26 +1198,36 @@
         </xsl:variable>
         
         <xsl:for-each select="$resultNodes">
-            <xsl:element name="identifier">
-                <xsl:attribute name="type">
-                    <xsl:choose>
-                        <xsl:when test="contains(propertyID, 'registry.identifiers.org/registry/')">
-                            <xsl:value-of select="substring-after(propertyID, 'registry.identifiers.org/registry/')"/>                            
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:value-of select="propertyID"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:attribute>
-                <xsl:choose>
-                    <xsl:when test="url">
-                        <xsl:apply-templates select="url/text()"/>
-                    </xsl:when>
-                    <xsl:when test="value">
-                        <xsl:apply-templates select="value/text()"/>
-                    </xsl:when>
-                </xsl:choose>
-            </xsl:element>
+            
+            <xsl:if test="(string-length(url) > 0) or ((string-length(value) > 0) and not(ends-with(value, ':')))">
+            
+                 <xsl:element name="identifier">
+                     <xsl:attribute name="type">
+                         <xsl:variable name="sourceType" select="normalize-space(propertyID)"/>
+                         <xsl:choose>
+                             <xsl:when test="string-length($sourceType) > 0">
+                                 <xsl:choose>
+                                     <xsl:when test="contains($sourceType, '/')">
+                                         <xsl:variable name="index" select="count(tokenize($sourceType, '/'))" as="xs:integer"/>
+                                         <xsl:value-of select="tokenize($sourceType, '/')[$index]"/>
+                                     </xsl:when>
+                                     <xsl:otherwise>
+                                         <xsl:value-of select="$sourceType"/>
+                                     </xsl:otherwise>
+                                 </xsl:choose>
+                             </xsl:when>
+                         </xsl:choose>
+                     </xsl:attribute>
+                     <xsl:choose>
+                         <xsl:when test="string-length(url) > 0">
+                             <xsl:apply-templates select="url/text()"/>
+                         </xsl:when>
+                         <xsl:when test="(string-length(value) > 0) and not(ends-with(value, ':'))">
+                             <xsl:apply-templates select="value/text()"/>
+                         </xsl:when>
+                     </xsl:choose>
+                 </xsl:element>
+            </xsl:if>
         </xsl:for-each>
     </xsl:template>
           
@@ -1204,37 +1236,40 @@
         <xsl:param name="priorityTypes" as="xs:string"/> <!-- if type is empty string, match will succeed so all types will be provided -->
         <xsl:param name="match" as="xs:boolean" select="true()"/> <!-- set to "false()" if you want to _not_ match on type -->
         
-        <xsl:message select="concat('identifier from text for ', name(.))"/>
-        <!-- If match==true()
-                - populate if value contains type (even if type is empty string - this is how to get all regardless of type)
-                
-             If match==false
-                - if type is empty string: not(matches(value, '')) will be false(), so no populate
-                - if type is not empty string: not(matches(value, $type), populate if true()
-        -->
+        <xsl:if test="(string-length(.) > 0) and not(ends-with(., ':'))">
         
-        <xsl:choose>
-            <xsl:when test="$match">
-                <xsl:if test="matches(., $priorityTypes)">
-                  <xsl:element name="identifier">
-                      <xsl:attribute name="type">
-                          <xsl:value-of select="local:getTypeFromIdentifier(.)"/>
-                      </xsl:attribute>
-                      <xsl:value-of select="."/>
-                  </xsl:element>
-                </xsl:if>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:if test="not(matches(., $priorityTypes))">
-                    <xsl:element name="identifier">
-                        <xsl:attribute name="type">
-                            <xsl:value-of select="local:getTypeFromIdentifier(.)"/>
-                        </xsl:attribute>
-                        <xsl:value-of select="."/>
-                    </xsl:element>
-                </xsl:if>
-            </xsl:otherwise>
-        </xsl:choose>
+             <xsl:message select="concat('identifier from text for ', name(.))"/>
+             <!-- If match==true()
+                     - populate if value contains type (even if type is empty string - this is how to get all regardless of type)
+                     
+                  If match==false
+                     - if type is empty string: not(matches(value, '')) will be false(), so no populate
+                     - if type is not empty string: not(matches(value, $type), populate if true()
+             -->
+             
+             <xsl:choose>
+                 <xsl:when test="$match">
+                     <xsl:if test="matches(., $priorityTypes)">
+                       <xsl:element name="identifier">
+                           <xsl:attribute name="type">
+                               <xsl:value-of select="local:getTypeFromIdentifier(.)"/>
+                           </xsl:attribute>
+                           <xsl:value-of select="."/>
+                       </xsl:element>
+                     </xsl:if>
+                 </xsl:when>
+                 <xsl:otherwise>
+                     <xsl:if test="not(matches(., $priorityTypes))">
+                         <xsl:element name="identifier">
+                             <xsl:attribute name="type">
+                                 <xsl:value-of select="local:getTypeFromIdentifier(.)"/>
+                             </xsl:attribute>
+                             <xsl:value-of select="."/>
+                         </xsl:element>
+                     </xsl:if>
+                 </xsl:otherwise>
+             </xsl:choose>
+        </xsl:if>
         
     </xsl:template>
     
@@ -1346,7 +1381,7 @@
                 <xsl:text>orcid</xsl:text>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:text>local</xsl:text>
+                <xsl:text>global</xsl:text>
             </xsl:otherwise>
         </xsl:choose>
      </xsl:function>
