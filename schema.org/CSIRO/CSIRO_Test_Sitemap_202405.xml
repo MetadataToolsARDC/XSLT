@@ -10,5 +10,10 @@
         <!--  https://data.csiro.au/dap/ws/v2/collections/csiro:61544/metadata/schemaOrg.json
           Describe -->
     </url>
+    <url>
+        <loc>https://data.csiro.au/collection/csiro:55843</loc>
+        <!--  https://data.csiro.au/dap/ws/v2/collections/csiro:55843/metadata/schemaOrg.json
+          Describe -->
+    </url>
 </urlset>
 
