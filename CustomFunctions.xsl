@@ -6,7 +6,6 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:fn="http://www.w3.org/2005/xpath-functions"
     xmlns:math="http://www.w3.org/2005/xpath-functions/math"
-    xmlns:err="http://www.w3.org/2005/xqt-errors"
     xmlns:custom="http://custom.nowhere.yet"
     exclude-result-prefixes="custom">
     
@@ -81,24 +80,6 @@
             </xsl:otherwise>
         </xsl:choose>
         
-    </xsl:function>
-    
-    <xsl:function name="custom:convertLongitude">
-        <xsl:param name="input" as="xs:string"/>
-        <!--Convert Longitude -360 to 360 to -180 to 180 or 180W-180E -->
-        
-        <xsl:try select="xs:decimal($input)">
-            <xsl:catch errors="err:FORG0001">
-                <xsl:message>Warning: Conversion to decimal failed:
-                    Error code: <xsl:value-of select="$err:code"/>
-                    Reason: <xsl:value-of select="$err:description"/>
-                </xsl:message>
-                <xsl:value-of select="$input"/>
-            </xsl:catch>
-            <xsl:fallback>
-                <xsl:value-of select="((xs:decimal($input) + 540) mod 360) - 180"/>
-            </xsl:fallback>
-        </xsl:try>
     </xsl:function>
     
     <xsl:function name="custom:getIdentifierType" as="xs:string">
