@@ -282,9 +282,9 @@
     <xsl:template match="*[contains(lower-case(name()),'identification')]" mode="registryObject">
         <xsl:param name="registryObjectTypeSubType_sequence"/>
         
-        <xsl:for-each-group select="mri:pointOfContact/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:contactInfo/cit:CI_Contact/cit:address/cit:CI_Address" group-by="cit:electronicMailAddress">
+        <!--xsl:for-each-group select="mri:pointOfContact/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:contactInfo/cit:CI_Contact/cit:address/cit:CI_Address" group-by="cit:electronicMailAddress">
             <xsl:apply-templates select="cit:electronicMailAddress" mode="registryObject_location_email"/>
-        </xsl:for-each-group>
+        </xsl:for-each-group-->
         
         <xsl:apply-templates select="srv:containsOperations/srv:SV_OperationMetadata/srv:connectPoint/cit:CI_OnlineResource/cit:linkage" mode="registryObject_identifier_service_URL"/>
         <xsl:apply-templates select="srv:containsOperations/srv:SV_OperationMetadata/srv:connectPoint/cit:CI_OnlineResource/cit:linkage" mode="registryObject_location_service_URL"/>
@@ -1755,14 +1755,14 @@
                 <!-- If this individual does not have contactInfo, and is a child of CI_Organisation , associate email and phone number from the Organisation with this individual -->
                 <xsl:choose>
                     <xsl:when test="(count(cit:contactInfo) = 0) and contains(name(../..), 'CI_Organisation')">
-                        <xsl:apply-templates select="ancestor::cit:CI_Organisation/cit:contactInfo/cit:CI_Contact/cit:address/cit:CI_Address/cit:electronicMailAddress[string-length(.) > 0]"/>
-                        <xsl:apply-templates select="ancestor::cit:CI_Organisation/cit:contactInfo/cit:CI_Contact/cit:phone/cit:CI_Telephone[count(*) > 0]"/>
+                        <!--xsl:apply-templates select="ancestor::cit:CI_Organisation/cit:contactInfo/cit:CI_Contact/cit:address/cit:CI_Address/cit:electronicMailAddress[string-length(.) > 0]"/-->
+                        <!--xsl:apply-templates select="ancestor::cit:CI_Organisation/cit:contactInfo/cit:CI_Contact/cit:phone/cit:CI_Telephone[count(*) > 0]"/-->
                         
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:apply-templates select="cit:contactInfo/cit:CI_Contact/cit:address/cit:CI_Address[count(*) > 0]"/>
-                        <xsl:apply-templates select="cit:contactInfo/cit:CI_Contact/cit:address/cit:CI_Address/cit:electronicMailAddress[string-length(.) > 0]"/>
-                        <xsl:apply-templates select="cit:contactInfo/cit:CI_Contact/cit:phone/cit:CI_Telephone[count(*) > 0]"/>
+                        <!--xsl:apply-templates select="cit:contactInfo/cit:CI_Contact/cit:address/cit:CI_Address/cit:electronicMailAddress[string-length(.) > 0]"/-->
+                        <!--xsl:apply-templates select="cit:contactInfo/cit:CI_Contact/cit:phone/cit:CI_Telephone[count(*) > 0]"/-->
                     </xsl:otherwise>
                 </xsl:choose>
                 
@@ -1823,8 +1823,8 @@
                         <xsl:otherwise>
                             <!--  no individual position name, so use this address for this organisation -->
                             <xsl:apply-templates select="cit:contactInfo/cit:CI_Contact/cit:address/cit:CI_Address[count(*) > 0]"/>
-                            <xsl:apply-templates select="cit:contactInfo/cit:CI_Contact/cit:address/cit:CI_Address/cit:electronicMailAddress[string-length(.) > 0]"/>
-                            <xsl:apply-templates select="cit:contactInfo/cit:CI_Contact/cit:phone/cit:CI_Telephone[count(*) > 0]"/>
+                            <!--xsl:apply-templates select="cit:contactInfo/cit:CI_Contact/cit:address/cit:CI_Address/cit:electronicMailAddress[string-length(.) > 0]"/-->
+                            <!--xsl:apply-templates select="cit:contactInfo/cit:CI_Contact/cit:phone/cit:CI_Telephone[count(*) > 0]"/-->
                         </xsl:otherwise>
                    </xsl:choose>
                     
@@ -1940,7 +1940,7 @@
         </xsl:if>
     </xsl:template>
     
-    <xsl:template match="cit:electronicMailAddress">
+    <!--xsl:template match="cit:electronicMailAddress">
 
         <location>
             <address>
@@ -1951,9 +1951,9 @@
                 </electronic>
             </address>
         </location>
-    </xsl:template>
+    </xsl:template-->
     
-    <xsl:template match="cit:CI_Telephone">
+    <!--xsl:template match="cit:CI_Telephone">
         <xsl:for-each select=".[cit:numberType/cit:CI_TelephoneTypeCode/@codeListValue = 'facsimile']/cit:number">
             <location>
                 <address>
@@ -1983,7 +1983,7 @@
                 </address>
             </location>
         </xsl:for-each>
-    </xsl:template>
+    </xsl:template-->
     
    
     
