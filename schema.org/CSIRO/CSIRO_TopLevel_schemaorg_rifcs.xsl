@@ -6,7 +6,7 @@
     <xsl:import href="schemadotorg2rif_updated.xsl"/>
     
     <xsl:param name="originatingSource" select="'Commonwealth Scientific and Industrial Research Organisation'"/>
-    <xsl:param name="group" select="'Commonwealth Scientific and Industrial Research Organisation'"/>
+    <xsl:variable name="group" select="'Commonwealth Scientific and Industrial Research Organisation'"/>
     <!-- Usually we prefix keys with the contributor acronym, so that we can allow duplicate records 
         (i.e. from different contributors), but for CSIRO, don't use acronym as prefix to key because they 
         use their handle in key and we want to keep the same (so that view/access statistics transfer 
