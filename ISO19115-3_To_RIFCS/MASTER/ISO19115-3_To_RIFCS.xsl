@@ -224,7 +224,7 @@
                     mode="registryObject_identifier_global"/>
                 
                 <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:identifier/mcc:MD_Identifier[not(contains(mcc:codeSpace, 'uuid'))]/mcc:code"
-                    mode="registryObject_identifier_remaining"/>
+                    mode="identifier_anywhere"/>
                 
                 <xsl:choose>
                    <xsl:when test="count(mdb:metadataLinkage/cit:CI_OnlineResource/cit:linkage) > 0">
@@ -430,26 +430,50 @@
         </identifier>
     </xsl:template>
     
-    <xsl:template match="mcc:code" mode="registryObject_identifier_remaining">
-        <identifier type="{custom:getIdentifierType(.)}">
-            <xsl:choose>
-                <xsl:when test="contains(., 'hdl:')">
-                    <xsl:attribute name="type" select="'handle'"/>
-                    <xsl:value-of select="normalize-space(replace(.,'hdl:', ''))"/>   
-                </xsl:when>
-                <xsl:when test="contains(., 'doi:')">
-                    <xsl:attribute name="type" select="'doi'"/>
-                    <xsl:value-of select="normalize-space(replace(.,'doi:', ''))"/>   
-                </xsl:when>
-                <xsl:when test="matches(., 'https?://dx.doi.org/')">
-                    <xsl:attribute name="type" select="'doi'"/>
-                    <xsl:value-of select="normalize-space(substring-after(.,'dx.doi.org/'))"/>   
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:value-of select="."/>
-                </xsl:otherwise>
-            </xsl:choose>
-        </identifier>
+    <xsl:template match="mcc:code" mode="identifier_anywhere">
+        <xsl:choose>
+            <xsl:when test="
+                (count(ancestor::mcc:MD_Identifier/mcc:authority/cit:CI_Citation/cit:title[contains(lower-case(.), 'digital object identifier')]) > 0) or
+                (count(ancestor::mcc:MD_Identifier/mcc:authority/cit:CI_Citation/cit:title[contains(lower-case(.), 'doi')]) > 0) or
+                (count(ancestor::mcc:MD_Identifier/mcc:authority/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:code[contains(lower-case(.), 'iso 26324:2012')]) > 0) or
+                contains(custom:getIdentifierType(.), 'doi')">
+                <xsl:variable name="coreValue">
+                    <xsl:choose>
+                       <xsl:when test="starts-with(., 'doi:')">
+                            <xsl:value-of select="normalize-space(replace(.,'doi:', ''))"/>   
+                        </xsl:when>
+                        <xsl:when test="matches(., 'https?://dx.doi.org/')">
+                            <xsl:value-of select="normalize-space(substring-after(.,'dx.doi.org/'))"/>   
+                        </xsl:when>
+                        <xsl:when test="matches(., 'https?://doi.org/')">
+                            <xsl:value-of select="normalize-space(substring-after(.,'doi.org/'))"/>   
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="."/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:if test="starts-with($coreValue, '10.') and (string-length($coreValue) > 3)">
+                    <identifier type="doi">
+                        <xsl:attribute name="type" select="'doi'"/>
+                        <xsl:value-of select="$coreValue"/>
+                    </identifier>
+                </xsl:if>
+            </xsl:when>
+            <xsl:otherwise>
+                <identifier type="{custom:getIdentifierType(.)}">
+                    <xsl:choose>
+                        <xsl:when test="contains(., 'hdl:')">
+                            <xsl:attribute name="type" select="'handle'"/>
+                            <xsl:value-of select="normalize-space(replace(.,'hdl:', ''))"/>   
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="."/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </identifier>
+            </xsl:otherwise>
+        </xsl:choose>   
     </xsl:template>
     
     <!-- RegistryObject - Identifier Element  -->
@@ -505,17 +529,10 @@
         </location>
     </xsl:template>
     
-   <xsl:template match="mcc:code" mode="registryObject_identifier">
+   <!--xsl:template match="mcc:code" mode="registryObject_identifier">
         <identifier>
             <xsl:attribute name="type">
                     <xsl:choose>
-                        <!-- - If codespace is provided:
-                                      - use mapped type from codespace if it was determined (i.e.default 'local' was not returned); or
-                                      - use mapped type from identifier value if it was determined (i.e. default 'local' was not returned); or
-                                      - use the codeSpace provided
-                                  -If codespace was not provided:
-                                       - use mapped type from identifier value
-                           -->
                         <xsl:when test="string-length(following-sibling::mcc:codeSpace) > 0">
                             <xsl:choose>
                              <xsl:when test="custom:getIdentifierType(following-sibling::mcc:codeSpace) != 'local'">
@@ -544,7 +561,7 @@
             </xsl:choose>
             
         </identifier>
-    </xsl:template>
+    </xsl:template-->
     
     <!-- RegistryObject - Identifier Element  -->
     <xsl:template match="cit:linkage" mode="registryObject_identifier">
@@ -1570,7 +1587,6 @@
             </xsl:for-each>
         </xsl:if>
         
-  
         
         <xsl:if test="count($allContributorName_sequence) > 0">
            <citationInfo>
@@ -1578,22 +1594,33 @@
                     <identifier>
                         <xsl:choose>
                                 <xsl:when 
-                                    test="count(cit:identifier/mcc:MD_Identifier/mcc:code) and (string-length(cit:identifier[1]/mcc:MD_Identifier/mcc:code[1]) > 0)">
-                                   <xsl:variable name="identifier" select="cit:identifier[1]/mcc:MD_Identifier[1]/mcc:code[1]"/>   
-                                   <xsl:choose>
-                                       <xsl:when test="contains($identifier, 'hdl:')">
-                                            <xsl:attribute name="type" select="'handle'"/>
+                                    test="
+                                    (count(cit:identifier/mcc:MD_Identifier/mcc:code) > 0) and 
+                                    (string-length(cit:identifier[1]/mcc:MD_Identifier[1]/mcc:code[1]) > 0) and
+                                    (not(contains(lower-case(cit:identifier[1]/mcc:MD_Identifier[1]/mcc:code[1]), 'dataset doi')))">
+                                    <xsl:attribute name="type" select="custom:getIdentifierType(cit:identifier[1]/mcc:MD_Identifier[1]/mcc:code[1])"/>
+                                    <xsl:variable name="identifier" select="cit:identifier[1]/mcc:MD_Identifier[1]/mcc:code[1]"/>
+                                    <xsl:choose>
+                                        <xsl:when test="starts-with($identifier, 'hdl:')">
                                             <xsl:value-of select="normalize-space(replace($identifier,'hdl:', ''))"/>   
                                         </xsl:when>
-                                       <xsl:when test="contains($identifier, 'doi:')">
-                                           <xsl:attribute name="type" select="'doi'"/>
-                                           <xsl:value-of select="normalize-space(replace($identifier,'doi:', ''))"/>   
-                                       </xsl:when>
+                                        <xsl:when test="starts-with($identifier, 'doi:')">
+                                            <xsl:value-of select="normalize-space(replace($identifier,'doi:', ''))"/>   
+                                        </xsl:when>
+                                        <xsl:when test="matches($identifier, 'https?://dx.doi.org/')">
+                                            <xsl:value-of select="normalize-space(substring-after($identifier,'dx.doi.org/'))"/>   
+                                        </xsl:when>
+                                        <xsl:when test="matches($identifier, 'https?://doi.org/')">
+                                            <xsl:value-of select="normalize-space(substring-after($identifier,'doi.org/'))"/>   
+                                        </xsl:when>
                                         <xsl:otherwise>
-                                            <xsl:attribute name="type" select="'uri'"/>
-                                            <xsl:value-of select="normalize-space($identifier)"/>   
+                                            <xsl:value-of select="$identifier"/>
                                         </xsl:otherwise>
                                     </xsl:choose>
+                                </xsl:when>
+                                <xsl:when test="count(ancestor::mdb:MD_Metadata/mdb:metadataLinkage/cit:CI_OnlineResource/cit:linkage[string-length(.) > 0]) > 0">
+                                    <xsl:attribute name="type" select="'uri'"/>
+                                    <xsl:value-of select="ancestor::mdb:MD_Metadata/mdb:metadataLinkage/cit:CI_OnlineResource/cit:linkage[string-length(.) > 0][1]"/> 
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <xsl:attribute name="type" select="'uri'"/>
