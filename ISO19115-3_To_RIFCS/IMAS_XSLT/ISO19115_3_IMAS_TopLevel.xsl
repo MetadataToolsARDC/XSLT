@@ -11,7 +11,7 @@
     
     <xsl:import href="ISO19115-3_Common_MiddleFilter.xsl"/>
     
-    <xsl:param name="global_debug" select="true()" as="xs:boolean"/>
+    <xsl:param name="global_debug" select="false()" as="xs:boolean"/>
     <xsl:param name="global_debugExceptions" select="true()" as="xs:boolean"/>
     <xsl:param name="global_originatingSource" select="'University of Tasmania, Australia'"/>
     <xsl:param name="global_acronym" select="'IMAS'"/>
