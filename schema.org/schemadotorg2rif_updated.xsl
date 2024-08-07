@@ -19,6 +19,7 @@
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects {$xsd_url}">
             <xsl:apply-templates select="//dataset"/>
+            <xsl:apply-templates select="//dataset/producer" mode="activity"/>
             <!--xsl:apply-templates select="//includedInDataCatalog" mode="catalog"/-->
             <!--xsl:apply-templates select="//publisher | //funder | //contributor | //provider" mode="party"/-->
            </registryObjects>
@@ -176,6 +177,24 @@
                 </xsl:element>
            </xsl:otherwise>
         </xsl:choose>
+    </xsl:template>
+    
+    <xsl:template match="producer" mode="activity">
+         <xsl:element name="registryObject">
+            <xsl:attribute name="group">
+                <xsl:value-of select="$group"/>
+            </xsl:attribute>
+            <xsl:call-template name="getKey"/>
+            <xsl:call-template name="getOriginatingSource"/>
+            <xsl:element name="activity">
+                <xsl:attribute name="type">
+                    <xsl:value-of select="'project'"/>
+                </xsl:attribute>
+                <xsl:apply-templates select="name" mode="primary"/>
+                <xsl:call-template name="identifiers"/>
+                <!--xsl:apply-templates select="parentOrganization" mode="relatedInfo"/-->
+            </xsl:element>
+        </xsl:element>
     </xsl:template>
 
 <!-- the group and originating source is mandatory 
@@ -881,7 +900,7 @@
     </xsl:template>
 
 
-    <xsl:template match="producer | publisher | provider | funder | contributor | includedInDataCatalog | citation | creator" mode="relatedInfo">
+    <xsl:template match="producer | publisher | provider | funder | contributor | includedInDataCatalog | citation | creator | parentOrganization" mode="relatedInfo">
         <xsl:variable name="identifier_elements" as="node()*">
             <xsl:call-template name="identifiers">
                 <xsl:with-param name="priorityTypes" select="'doi|handle|orcid'"/>
