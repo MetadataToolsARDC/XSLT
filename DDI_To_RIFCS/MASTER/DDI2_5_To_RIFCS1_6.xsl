@@ -40,7 +40,7 @@
         <registryObject>
             <xsl:attribute name="group" select="$global_group"/>
             <key>
-                <xsl:value-of select="substring(string-join(for $n in fn:string-to-codepoints(reverse(*:stdyDscr/*:citation/*:titlStmt/*:IDNo)) return string($n), ''), 0, 500)"/>
+                <xsl:value-of select="substring(string-join(for $n in fn:string-to-codepoints(reverse(*:stdyDscr/*:citation/*:titlStmt/*:IDNo[contains(lower-case(@agency), 'doi')])) return string($n), ''), 0, 500)"/>
             </key>
             <originatingSource>
                 <xsl:value-of select="$global_originatingSource"/>
@@ -456,7 +456,7 @@
         
     </xsl:template>
     
-    <xsl:template match="@date" mode="registryObject_dates_accepted">
+    <xsl:template match="*:depDate" mode="registryObject_dates_accepted">
         <dates type="dateAccepted">
             <date type="dateFrom" dateFormat="W3CDTF">
                 <xsl:value-of select="normalize-space(.)"/>
