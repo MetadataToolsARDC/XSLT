@@ -54,8 +54,8 @@
                 <xsl:apply-templates select="*:stdyDscr/*:stdyInfo/*:IDNo"  mode="registryObject_identifier_not_doi"/>
                 <xsl:apply-templates select="*:stdyDscr/*:citation/*:titlStmt/*:titl[(string-length(.) > 0)]" mode="registryObject_name"/>
                 <xsl:apply-templates select="*:stdyDscr/*:citation/*:titlStmt/*:IDNo[(string-length(.) > 0)]" mode="registryObject_location"/>
-                <xsl:apply-templates select="*:stdyDscr/*:stdyInfo/*:subject/*:keyword[(string-length(.) > 0)]" mode="registryObject_subject"/>
-                <xsl:apply-templates select="*:stdyDscr/*:stdyInfo/*:subject/*:topcClas[(string-length(.) > 0)]" mode="registryObject_subject"/>
+                <xsl:apply-templates select="*:stdyDscr/*:stdyInfo/*:subject/*:keyword" mode="registryObject_subject"/>
+                <xsl:apply-templates select="*:stdyDscr/*:stdyInfo/*:subject/*:topcClas" mode="registryObject_subject"/>
                 <xsl:apply-templates select="*:stdyDscr/*:stdyInfo/*:abstract[(string-length(.) > 0)]" mode="registryObject_description_full"/>
                 <xsl:apply-templates select="*:stdyDscr/*:stdyInfo/*:notes[not(contains(lower-case(.), 'copyright'))]" mode="registryObject_description_notes"/>
                 <xsl:apply-templates select="*:stdyDscr/*:stdyInfo/*:sumDscr" mode="registryObject_coverage"/>
@@ -105,7 +105,7 @@
         </location>
      </xsl:template>
     
-   <xsl:template match="*:keyword" mode="registryObject_subject">
+   <!--xsl:template match="*:keyword" mode="registryObject_subject">
         <subject>
             <xsl:choose>
                 <xsl:when test="string-length(@vocab) > 0">
@@ -121,49 +121,51 @@
             </xsl:if>
             <xsl:value-of select="normalize-space(.)"/>
         </subject>
-    </xsl:template>
+    </xsl:template-->
     
-    <xsl:template match="*:topcClas" mode="registryObject_subject">
+    <xsl:template match="*:topcClas | *:keyword" mode="registryObject_subject">
         <subject>
-            <xsl:choose>
-                <xsl:when test="string-length(@vocab) > 0">
-                    <xsl:attribute name="type">
-                        <xsl:choose>
-                            <xsl:when test="contains(lower-case(@vocab), 'anzsrc')">
-                                <xsl:choose>
-                                    <xsl:when test="contains(lower-case(@vocab), 'for')">
-                                        <xsl:text>anzsrc-for</xsl:text>
-                                    </xsl:when>
-                                    <xsl:when test="contains(lower-case(@vocab), 'seo')">
-                                        <xsl:text>anzsrc-seo</xsl:text>
-                                    </xsl:when>
-                                    <xsl:when test="contains(lower-case(@vocab), 'toa')">
-                                        <xsl:text>anzsrc-seo</xsl:text>
-                                    </xsl:when>
-                                    <xsl:otherwise>
-                                        <xsl:value-of select="@vocab"/>
-                                    </xsl:otherwise>
-                                </xsl:choose>
-                             </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:value-of select="@vocab"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:attribute> 
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:attribute name="type" select="'local'"/>
-                </xsl:otherwise>
-            </xsl:choose>
-            
-            <xsl:if test="string-length(@URI) > 0">
-                <xsl:attribute name="termIdentifier" select="@URI"/>
+            <xsl:attribute name="type">
+                <xsl:choose>
+                    <xsl:when test="contains(lower-case(@vocab), 'anzsrc') and contains(lower-case(@vocab), 'for')">
+                        <xsl:text>anzsrc-for</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="contains(lower-case(@vocab), 'anzsrc') and contains(lower-case(@vocab), 'seo')">
+                        <xsl:text>anzsrc-seo</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="contains(lower-case(@vocab), 'anzsrc') and contains(lower-case(@vocab), 'toa')">
+                        <xsl:text>anzsrc-toa</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="contains(lower-case(@vocabURI), 'apais')">
+                        <xsl:text>apais</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="contains(lower-case(@vocabURI), 'anzsrc') and contains(lower-case(@vocabURI), 'for')">
+                        <xsl:text>anzsrc-for</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="contains(lower-case(@vocabURI), 'anzsrc') and contains(lower-case(@vocabURI), 'seo')">
+                        <xsl:text>anzsrc-seo</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="contains(lower-case(@vocabURI), 'anzsrc') and contains(lower-case(@vocabURI), 'toa')">
+                        <xsl:text>anzsrc-toa</xsl:text>
+                    </xsl:when>
+                    <xsl:when test="string-length(@vocab) > 0">
+                        <xsl:value-of select="@vocab"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:text>local</xsl:text>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:attribute>
+              
+            <xsl:if test="string-length(@vocabURI) > 0">
+                <xsl:attribute name="termIdentifier" select="@vocabURI"/>
             </xsl:if>
+            
             <xsl:variable name="anzsrcForVocabPrefix" select="'http(s*)://purl.org/au-research/vocabulary/anzsrc-for/[^/]*/'"/>
             <xsl:choose>
                 <!-- extract the code at the end -->
-                <xsl:when test="matches(@URI, $anzsrcForVocabPrefix)">
-                    <xsl:analyze-string select="@URI" regex="{$anzsrcForVocabPrefix}">
+                <xsl:when test="matches(@vocabURI, $anzsrcForVocabPrefix)">
+                    <xsl:analyze-string select="@vocabURI" regex="{$anzsrcForVocabPrefix}">
                         <xsl:non-matching-substring>
                             <xsl:if test="matches(., '\d+')">
                                 <xsl:value-of select="normalize-space(.)"/>
