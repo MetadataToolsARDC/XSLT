@@ -10,11 +10,7 @@
     
     <xsl:import href="CustomFunctions.xsl"/>
     
-    <xsl:param name="getCitationDOI_populateIdentifier_AppendExisting" select="true()"/>
-    <xsl:param name="getCitationDOI_populateElectronicLocation_ReplaceExisting" select="true()"/>
-    <xsl:param name="replaceDodgyCharactersName" select="true()"/>
-    
-    <xsl:param name="global_debug" select="true()"/>
+    <xsl:param name="global_debug" select="false()"/>
     
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
     
@@ -23,8 +19,7 @@
             <xsl:apply-templates select="@*|node()"/>
         </xsl:copy>
     </xsl:template>
-  
-
+    
     <xsl:template match="registryObject/collection/rights/accessRights">
        <accessRights type="{@type}" rightsUri="{@rightUri}">
             <xsl:value-of select="text()"/>
