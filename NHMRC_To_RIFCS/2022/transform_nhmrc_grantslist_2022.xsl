@@ -9,7 +9,7 @@
 
 
     <xsl:output method="xml"/>
-    <xsl:variable name="AdminInstitutions" select="document('nhmrc_admin_institutions_manual_update_nla_id_2022.xml')"/>
+    <xsl:variable name="AdminInstitutions" select="document('nhmrc_admin_institutions_manual_update_ror_id_2022.xml')"/>
     <xsl:variable name="grantpubs" select="document('nhmrc_grantpubs_2022.xml')"/> <!-- I don't have one of these until I update the API call in https://github.com/MetadataToolsARDC/XSLT/blob/7b4e454b03b308331a686ac5f672be3192ce0c10/NHMRC_To_RIFCS/2022/trove_harvest_2022.xsl -->
 
     <xsl:template match="/root">
@@ -124,9 +124,23 @@
                     <xsl:text>&#xA;</xsl:text>
 
                     <!-- funding body -->
-                    <xsl:element name="relatedObject">
+                    <!--xsl:element name="relatedObject">
                         <xsl:element name="key"
                             >http://dx.doi.org/10.13039/501100000925</xsl:element>
+                        <xsl:element name="relation">
+                            <xsl:attribute name="type">isFundedBy</xsl:attribute>
+                        </xsl:element>
+                    </xsl:element>
+                    <xsl:text>&#xA;</xsl:text-->
+                    
+                    <xsl:element name="relatedInfo">
+                        <xsl:element name="identifier">
+                            <xsl:attribute name="type">doi</xsl:attribute>
+                            <xsl:text>http://dx.doi.org/10.13039/501100000925</xsl:text>
+                        </xsl:element>
+                        <xsl:element name="title">
+                            <xsl:text>National Health and Medical Research Council</xsl:text>
+                        </xsl:element>
                         <xsl:element name="relation">
                             <xsl:attribute name="type">isFundedBy</xsl:attribute>
                         </xsl:element>
@@ -142,10 +156,10 @@
                     the key is used to add this party as a related object with relation 'isAdministeredBy'. -->
 
                     <xsl:variable name="admin_inst" select="Admin_Institution"/>
-                    <xsl:variable name="inst_key"
-                        select="$AdminInstitutions/institutions/institution[name = $admin_inst]/key"/>
-                    <xsl:if test="$inst_key">
-                        <xsl:element name="relatedObject">
+                    <xsl:variable name="inst_id"
+                        select="$AdminInstitutions/institutions/institution[name = $admin_inst]/identifier"/>
+                    <xsl:if test="$inst_id">
+                        <!--xsl:element name="relatedObject">
                             <xsl:element name="key">
                                 <xsl:value-of select="$inst_key"/>
                             </xsl:element>
@@ -153,9 +167,22 @@
                                 <xsl:attribute name="type">isManagedBy</xsl:attribute>
                             </xsl:element>
                         </xsl:element>
+                        <xsl:text>&#xA;</xsl:text-->
+                        <xsl:element name="relatedInfo">
+                            <xsl:element name="identifier">
+                                <xsl:attribute name="type">url</xsl:attribute>
+                                <xsl:value-of select="$inst_id"/>
+                            </xsl:element>
+                            <xsl:element name="title">
+                                <xsl:value-of select="$admin_inst"/>
+                            </xsl:element>
+                            <xsl:element name="relation">
+                                <xsl:attribute name="type">isManagedBy</xsl:attribute>
+                            </xsl:element>
+                        </xsl:element>
                         <xsl:text>&#xA;</xsl:text>
                     </xsl:if>
-                    <xsl:if test="$inst_key = ''">
+                    <xsl:if test="$inst_id = ''">
                         <xsl:message>
                             <xsl:text>Unmatched admin organisation </xsl:text>
                             <xsl:value-of select="$admin_inst"/>

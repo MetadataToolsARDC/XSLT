@@ -1,0 +1,1916 @@
+{
+  "number_of_results": 31,
+  "time_taken": 4,
+  "items": [
+    {
+      "admin": {
+        "created": {
+          "date": "2018-11-14",
+          "schema_version": "1.0"
+        },
+        "last_modified": {
+          "date": "2024-05-30",
+          "schema_version": "2.0"
+        }
+      },
+      "domains": [
+        
+      ],
+      "established": 1853,
+      "external_ids": [
+        {
+          "all": [
+            "501100001782",
+            "501100007961",
+            "100008758",
+            "501100000986",
+            "501100000987",
+            "501100001052",
+            "501100014168"
+          ],
+          "preferred": "501100001782",
+          "type": "fundref"
+        },
+        {
+          "all": [
+            "grid.1008.9"
+          ],
+          "preferred": "grid.1008.9",
+          "type": "grid"
+        },
+        {
+          "all": [
+            "0000 0001 2179 088X"
+          ],
+          "preferred": null,
+          "type": "isni"
+        },
+        {
+          "all": [
+            "Q319078"
+          ],
+          "preferred": null,
+          "type": "wikidata"
+        }
+      ],
+      "id": "https://ror.org/01ej9dk98",
+      "links": [
+        {
+          "type": "website",
+          "value": "http://www.unimelb.edu.au/"
+        },
+        {
+          "type": "wikipedia",
+          "value": "http://en.wikipedia.org/wiki/University_of_Melbourne"
+        }
+      ],
+      "locations": [
+        {
+          "geonames_details": {
+            "country_code": "AU",
+            "country_name": "Australia",
+            "lat": -37.814,
+            "lng": 144.96332,
+            "name": "Melbourne"
+          },
+          "geonames_id": 2158177
+        }
+      ],
+      "names": [
+        {
+          "lang": "en",
+          "types": [
+            "alias"
+          ],
+          "value": "Melbourne University"
+        },
+        {
+          "lang": "en",
+          "types": [
+            "ror_display",
+            "label"
+          ],
+          "value": "University of Melbourne"
+        }
+      ],
+      "relationships": [
+        {
+          "label": "ARC Centre of Excellence for Coherent X-ray Science",
+          "type": "child",
+          "id": "https://ror.org/02gs3vg83"
+        },
+        {
+          "label": "ARC Centre of Excellence for Dark Matter Particle Physics",
+          "type": "child",
+          "id": "https://ror.org/00cybsr61"
+        },
+        {
+          "label": "ARC Centre of Excellence for Mathematical and Statistical Frontiers",
+          "type": "child",
+          "id": "https://ror.org/02vcqg248"
+        },
+        {
+          "label": "ARC Centre of Excellence for Particle Physics at the Terascale",
+          "type": "child",
+          "id": "https://ror.org/01h06nz15"
+        },
+        {
+          "label": "Florey Institute of Neuroscience and Mental Health",
+          "type": "child",
+          "id": "https://ror.org/03a2tac74"
+        },
+        {
+          "label": "Peter Doherty Institute",
+          "type": "child",
+          "id": "https://ror.org/016899r71"
+        },
+        {
+          "label": "Botany Foundation",
+          "type": "child",
+          "id": "https://ror.org/04fxxe129"
+        },
+        {
+          "label": "AuScope",
+          "type": "related",
+          "id": "https://ror.org/04s1m4564"
+        },
+        {
+          "label": "Austin Health",
+          "type": "related",
+          "id": "https://ror.org/05dbj6g52"
+        },
+        {
+          "label": "Austin Hospital",
+          "type": "related",
+          "id": "https://ror.org/010mv7n52"
+        },
+        {
+          "label": "Australian Urban Research Infrastructure Network",
+          "type": "related",
+          "id": "https://ror.org/02c3nzd41"
+        },
+        {
+          "label": "Bionics Institute",
+          "type": "related",
+          "id": "https://ror.org/05e4f1b55"
+        },
+        {
+          "label": "Burnet Institute",
+          "type": "related",
+          "id": "https://ror.org/05ktbsm52"
+        },
+        {
+          "label": "Centre for Eye Research Australia",
+          "type": "related",
+          "id": "https://ror.org/01sqdef20"
+        },
+        {
+          "label": "Epworth Hospital",
+          "type": "related",
+          "id": "https://ror.org/02ett6548"
+        },
+        {
+          "label": "Geelong Hospital",
+          "type": "related",
+          "id": "https://ror.org/00jrpxe15"
+        },
+        {
+          "label": "Melbourne Health",
+          "type": "related",
+          "id": "https://ror.org/04z4kmw33"
+        },
+        {
+          "label": "Murdoch Children's Research Institute",
+          "type": "related",
+          "id": "https://ror.org/048fyec77"
+        },
+        {
+          "label": "Northern Hospital",
+          "type": "related",
+          "id": "https://ror.org/05mjmsc11"
+        },
+        {
+          "label": "Royal Children's Hospital",
+          "type": "related",
+          "id": "https://ror.org/02rktxt32"
+        },
+        {
+          "label": "Royal Women's Hospital",
+          "type": "related",
+          "id": "https://ror.org/03grnna41"
+        },
+        {
+          "label": "St Vincent's Hospital",
+          "type": "related",
+          "id": "https://ror.org/001kjn539"
+        },
+        {
+          "label": "St Vincents Institute of Medical Research",
+          "type": "related",
+          "id": "https://ror.org/02k3cxs74"
+        },
+        {
+          "label": "The Royal Victorian Eye & Ear Hospital",
+          "type": "related",
+          "id": "https://ror.org/008q4kt04"
+        },
+        {
+          "label": "Victorian Comprehensive Cancer Centre",
+          "type": "related",
+          "id": "https://ror.org/00st91468"
+        },
+        {
+          "label": "Australian Centre for Excellence in Antarctic Science",
+          "type": "related",
+          "id": "https://ror.org/024jkkf40"
+        },
+        {
+          "label": "Stawell Underground Physics Laboratory",
+          "type": "related",
+          "id": "https://ror.org/01az7g189"
+        }
+      ],
+      "status": "active",
+      "types": [
+        "education",
+        "funder"
+      ]
+    },
+    {
+      "admin": {
+        "created": {
+          "date": "2018-11-14",
+          "schema_version": "1.0"
+        },
+        "last_modified": {
+          "date": "2024-05-13",
+          "schema_version": "2.0"
+        }
+      },
+      "domains": [
+        
+      ],
+      "established": null,
+      "external_ids": [
+        {
+          "all": [
+            "grid.449135.e"
+          ],
+          "preferred": "grid.449135.e",
+          "type": "grid"
+        },
+        {
+          "all": [
+            "Q17012410"
+          ],
+          "preferred": null,
+          "type": "wikidata"
+        }
+      ],
+      "id": "https://ror.org/03hspt047",
+      "links": [
+        
+      ],
+      "locations": [
+        {
+          "geonames_details": {
+            "country_code": "AU",
+            "country_name": "Australia",
+            "lat": -37.814,
+            "lng": 144.96332,
+            "name": "Melbourne"
+          },
+          "geonames_id": 2158177
+        }
+      ],
+      "names": [
+        {
+          "lang": "en",
+          "types": [
+            "ror_display",
+            "label"
+          ],
+          "value": "Melbourne Free University"
+        }
+      ],
+      "relationships": [
+        
+      ],
+      "status": "active",
+      "types": [
+        "education"
+      ]
+    },
+    {
+      "admin": {
+        "created": {
+          "date": "2018-11-14",
+          "schema_version": "1.0"
+        },
+        "last_modified": {
+          "date": "2024-05-13",
+          "schema_version": "2.0"
+        }
+      },
+      "domains": [
+        
+      ],
+      "established": 1848,
+      "external_ids": [
+        {
+          "all": [
+            "grid.429299.d"
+          ],
+          "preferred": "grid.429299.d",
+          "type": "grid"
+        },
+        {
+          "all": [
+            "0000 0004 0452 651X"
+          ],
+          "preferred": null,
+          "type": "isni"
+        }
+      ],
+      "id": "https://ror.org/04z4kmw33",
+      "links": [
+        {
+          "type": "website",
+          "value": "http://www.mh.org.au/"
+        }
+      ],
+      "locations": [
+        {
+          "geonames_details": {
+            "country_code": "AU",
+            "country_name": "Australia",
+            "lat": -37.798939,
+            "lng": 144.955933,
+            "name": "Melbourne"
+          },
+          "geonames_id": 2158177
+        }
+      ],
+      "names": [
+        {
+          "lang": "en",
+          "types": [
+            "ror_display",
+            "label"
+          ],
+          "value": "Melbourne Health"
+        }
+      ],
+      "relationships": [
+        {
+          "label": "Royal Melbourne Hospital",
+          "type": "child",
+          "id": "https://ror.org/005bvs909"
+        },
+        {
+          "label": "University of Melbourne",
+          "type": "related",
+          "id": "https://ror.org/01ej9dk98"
+        }
+      ],
+      "status": "active",
+      "types": [
+        "healthcare"
+      ]
+    },
+    {
+      "admin": {
+        "created": {
+          "date": "2018-11-14",
+          "schema_version": "1.0"
+        },
+        "last_modified": {
+          "date": "2024-05-13",
+          "schema_version": "2.0"
+        }
+      },
+      "domains": [
+        
+      ],
+      "established": null,
+      "external_ids": [
+        {
+          "all": [
+            "grid.483778.7"
+          ],
+          "preferred": "grid.483778.7",
+          "type": "grid"
+        }
+      ],
+      "id": "https://ror.org/016899r71",
+      "links": [
+        {
+          "type": "website",
+          "value": "http://www.doherty.edu.au/"
+        }
+      ],
+      "locations": [
+        {
+          "geonames_details": {
+            "country_code": "AU",
+            "country_name": "Australia",
+            "lat": -37.800088,
+            "lng": 144.958251,
+            "name": "Melbourne"
+          },
+          "geonames_id": 2158177
+        }
+      ],
+      "names": [
+        {
+          "lang": "en",
+          "types": [
+            "ror_display",
+            "label"
+          ],
+          "value": "Peter Doherty Institute"
+        }
+      ],
+      "relationships": [
+        {
+          "label": "Royal Melbourne Hospital",
+          "type": "parent",
+          "id": "https://ror.org/005bvs909"
+        },
+        {
+          "label": "University of Melbourne",
+          "type": "parent",
+          "id": "https://ror.org/01ej9dk98"
+        }
+      ],
+      "status": "active",
+      "types": [
+        "facility"
+      ]
+    },
+    {
+      "admin": {
+        "created": {
+          "date": "2018-11-14",
+          "schema_version": "1.0"
+        },
+        "last_modified": {
+          "date": "2024-05-13",
+          "schema_version": "2.0"
+        }
+      },
+      "domains": [
+        
+      ],
+      "established": 1971,
+      "external_ids": [
+        {
+          "all": [
+            "501100018676"
+          ],
+          "preferred": "501100018676",
+          "type": "fundref"
+        },
+        {
+          "all": [
+            "grid.418025.a"
+          ],
+          "preferred": "grid.418025.a",
+          "type": "grid"
+        },
+        {
+          "all": [
+            "0000 0004 0606 5526"
+          ],
+          "preferred": null,
+          "type": "isni"
+        },
+        {
+          "all": [
+            "Q5919633"
+          ],
+          "preferred": null,
+          "type": "wikidata"
+        }
+      ],
+      "id": "https://ror.org/03a2tac74",
+      "links": [
+        {
+          "type": "website",
+          "value": "http://www.florey.edu.au/"
+        },
+        {
+          "type": "wikipedia",
+          "value": "https://en.wikipedia.org/wiki/Florey_Institute_of_Neuroscience_and_Mental_Health"
+        }
+      ],
+      "locations": [
+        {
+          "geonames_details": {
+            "country_code": "AU",
+            "country_name": "Australia",
+            "lat": -37.814,
+            "lng": 144.96332,
+            "name": "Melbourne"
+          },
+          "geonames_id": 2158177
+        }
+      ],
+      "names": [
+        {
+          "lang": "en",
+          "types": [
+            "alias"
+          ],
+          "value": "Florey Institute"
+        },
+        {
+          "lang": "en",
+          "types": [
+            "ror_display",
+            "label"
+          ],
+          "value": "Florey Institute of Neuroscience and Mental Health"
+        },
+        {
+          "lang": "en",
+          "types": [
+            "alias"
+          ],
+          "value": "Howard Florey Institute of Experimental Physiology and Medicine"
+        }
+      ],
+      "relationships": [
+        {
+          "label": "University of Melbourne",
+          "type": "parent",
+          "id": "https://ror.org/01ej9dk98"
+        },
+        {
+          "label": "Austin Health",
+          "type": "related",
+          "id": "https://ror.org/05dbj6g52"
+        },
+        {
+          "label": "Royal Melbourne Hospital",
+          "type": "related",
+          "id": "https://ror.org/005bvs909"
+        }
+      ],
+      "status": "active",
+      "types": [
+        "facility",
+        "funder"
+      ]
+    },
+    {
+      "admin": {
+        "created": {
+          "date": "2018-11-14",
+          "schema_version": "1.0"
+        },
+        "last_modified": {
+          "date": "2024-05-13",
+          "schema_version": "2.0"
+        }
+      },
+      "domains": [
+        
+      ],
+      "established": 1984,
+      "external_ids": [
+        {
+          "all": [
+            "grid.431365.6"
+          ],
+          "preferred": "grid.431365.6",
+          "type": "grid"
+        },
+        {
+          "all": [
+            "0000 0004 0645 1953"
+          ],
+          "preferred": null,
+          "type": "isni"
+        },
+        {
+          "all": [
+            "Q19871352"
+          ],
+          "preferred": null,
+          "type": "wikidata"
+        }
+      ],
+      "id": "https://ror.org/05e4f1b55",
+      "links": [
+        {
+          "type": "website",
+          "value": "http://www.bionicsinstitute.org/Pages/default.aspx"
+        },
+        {
+          "type": "wikipedia",
+          "value": "https://en.wikipedia.org/wiki/Bionics_Institute"
+        }
+      ],
+      "locations": [
+        {
+          "geonames_details": {
+            "country_code": "AU",
+            "country_name": "Australia",
+            "lat": -37.809,
+            "lng": 144.978,
+            "name": "East Melbourne"
+          },
+          "geonames_id": 6952201
+        }
+      ],
+      "names": [
+        {
+          "lang": "en",
+          "types": [
+            "ror_display",
+            "label"
+          ],
+          "value": "Bionics Institute"
+        }
+      ],
+      "relationships": [
+        {
+          "label": "University of Melbourne",
+          "type": "related",
+          "id": "https://ror.org/01ej9dk98"
+        }
+      ],
+      "status": "active",
+      "types": [
+        "facility"
+      ]
+    },
+    {
+      "admin": {
+        "created": {
+          "date": "2018-11-14",
+          "schema_version": "1.0"
+        },
+        "last_modified": {
+          "date": "2024-05-13",
+          "schema_version": "2.0"
+        }
+      },
+      "domains": [
+        
+      ],
+      "established": 2016,
+      "external_ids": [
+        {
+          "all": [
+            "grid.431578.c"
+          ],
+          "preferred": "grid.431578.c",
+          "type": "grid"
+        },
+        {
+          "all": [
+            "0000 0004 5939 3689"
+          ],
+          "preferred": null,
+          "type": "isni"
+        },
+        {
+          "all": [
+            "Q24185397"
+          ],
+          "preferred": null,
+          "type": "wikidata"
+        }
+      ],
+      "id": "https://ror.org/00st91468",
+      "links": [
+        {
+          "type": "website",
+          "value": "https://plenarygroup.com/"
+        },
+        {
+          "type": "wikipedia",
+          "value": "https://en.wikipedia.org/wiki/Victorian_Comprehensive_Cancer_Centre"
+        }
+      ],
+      "locations": [
+        {
+          "geonames_details": {
+            "country_code": "AU",
+            "country_name": "Australia",
+            "lat": -37.800278,
+            "lng": 144.956667,
+            "name": "Melbourne"
+          },
+          "geonames_id": 2158177
+        }
+      ],
+      "names": [
+        {
+          "lang": null,
+          "types": [
+            "acronym"
+          ],
+          "value": "VCCC"
+        },
+        {
+          "lang": "en",
+          "types": [
+            "ror_display",
+            "label"
+          ],
+          "value": "Victorian Comprehensive Cancer Centre"
+        }
+      ],
+      "relationships": [
+        {
+          "label": "University of Melbourne",
+          "type": "related",
+          "id": "https://ror.org/01ej9dk98"
+        }
+      ],
+      "status": "active",
+      "types": [
+        "healthcare"
+      ]
+    },
+    {
+      "admin": {
+        "created": {
+          "date": "2018-11-14",
+          "schema_version": "1.0"
+        },
+        "last_modified": {
+          "date": "2024-05-13",
+          "schema_version": "2.0"
+        }
+      },
+      "domains": [
+        
+      ],
+      "established": 1996,
+      "external_ids": [
+        {
+          "all": [
+            "grid.418002.f"
+          ],
+          "preferred": "grid.418002.f",
+          "type": "grid"
+        },
+        {
+          "all": [
+            "0000 0004 0446 3256"
+          ],
+          "preferred": null,
+          "type": "isni"
+        }
+      ],
+      "id": "https://ror.org/01sqdef20",
+      "links": [
+        {
+          "type": "website",
+          "value": "http://www.cera.org.au/"
+        }
+      ],
+      "locations": [
+        {
+          "geonames_details": {
+            "country_code": "AU",
+            "country_name": "Australia",
+            "lat": -37.808404,
+            "lng": 144.976322,
+            "name": "East Melbourne"
+          },
+          "geonames_id": 6952201
+        }
+      ],
+      "names": [
+        {
+          "lang": null,
+          "types": [
+            "acronym"
+          ],
+          "value": "CERA"
+        },
+        {
+          "lang": "en",
+          "types": [
+            "ror_display",
+            "label"
+          ],
+          "value": "Centre for Eye Research Australia"
+        }
+      ],
+      "relationships": [
+        {
+          "label": "University of Melbourne",
+          "type": "related",
+          "id": "https://ror.org/01ej9dk98"
+        }
+      ],
+      "status": "active",
+      "types": [
+        "facility"
+      ]
+    },
+    {
+      "admin": {
+        "created": {
+          "date": "2018-11-14",
+          "schema_version": "1.0"
+        },
+        "last_modified": {
+          "date": "2024-05-13",
+          "schema_version": "2.0"
+        }
+      },
+      "domains": [
+        
+      ],
+      "established": 1863,
+      "external_ids": [
+        {
+          "all": [
+            "grid.410670.4"
+          ],
+          "preferred": "grid.410670.4",
+          "type": "grid"
+        },
+        {
+          "all": [
+            "0000 0004 0625 8539"
+          ],
+          "preferred": null,
+          "type": "isni"
+        },
+        {
+          "all": [
+            "Q16899492"
+          ],
+          "preferred": null,
+          "type": "wikidata"
+        }
+      ],
+      "id": "https://ror.org/008q4kt04",
+      "links": [
+        {
+          "type": "website",
+          "value": "https://www.eyeandear.org.au"
+        },
+        {
+          "type": "wikipedia",
+          "value": "https://en.wikipedia.org/wiki/Royal_Victorian_Eye_and_Ear_Hospital"
+        }
+      ],
+      "locations": [
+        {
+          "geonames_details": {
+            "country_code": "AU",
+            "country_name": "Australia",
+            "lat": -37.809111,
+            "lng": 144.976278,
+            "name": "East Melbourne"
+          },
+          "geonames_id": 6952201
+        }
+      ],
+      "names": [
+        {
+          "lang": "en",
+          "types": [
+            "ror_display",
+            "label"
+          ],
+          "value": "The Royal Victorian Eye & Ear Hospital"
+        }
+      ],
+      "relationships": [
+        {
+          "label": "University of Melbourne",
+          "type": "related",
+          "id": "https://ror.org/01ej9dk98"
+        }
+      ],
+      "status": "active",
+      "types": [
+        "healthcare"
+      ]
+    },
+    {
+      "admin": {
+        "created": {
+          "date": "2023-12-07",
+          "schema_version": "1.0"
+        },
+        "last_modified": {
+          "date": "2024-05-13",
+          "schema_version": "2.0"
+        }
+      },
+      "domains": [
+        
+      ],
+      "established": 1994,
+      "external_ids": [
+        {
+          "all": [
+            "501100020017"
+          ],
+          "preferred": "501100020017",
+          "type": "fundref"
+        }
+      ],
+      "id": "https://ror.org/04fxxe129",
+      "links": [
+        {
+          "type": "website",
+          "value": "https://science.unimelb.edu.au/engage/giving-to-science/botany-foundation"
+        }
+      ],
+      "locations": [
+        {
+          "geonames_details": {
+            "country_code": "AU",
+            "country_name": "Australia",
+            "lat": -37.814,
+            "lng": 144.96332,
+            "name": "Melbourne"
+          },
+          "geonames_id": 2158177
+        }
+      ],
+      "names": [
+        {
+          "lang": "en",
+          "types": [
+            "ror_display",
+            "label"
+          ],
+          "value": "Botany Foundation"
+        },
+        {
+          "lang": "en",
+          "types": [
+            "alias"
+          ],
+          "value": "Botany Foundation, Faculty of Science, University of Melbourne"
+        }
+      ],
+      "relationships": [
+        {
+          "label": "University of Melbourne",
+          "type": "parent",
+          "id": "https://ror.org/01ej9dk98"
+        }
+      ],
+      "status": "active",
+      "types": [
+        "funder",
+        "nonprofit"
+      ]
+    },
+    {
+      "admin": {
+        "created": {
+          "date": "2020-03-15",
+          "schema_version": "1.0"
+        },
+        "last_modified": {
+          "date": "2024-05-13",
+          "schema_version": "2.0"
+        }
+      },
+      "domains": [
+        
+      ],
+      "established": 2007,
+      "external_ids": [
+        {
+          "all": [
+            "grid.507698.5"
+          ],
+          "preferred": "grid.507698.5",
+          "type": "grid"
+        }
+      ],
+      "id": "https://ror.org/04s1m4564",
+      "links": [
+        {
+          "type": "website",
+          "value": "https://www.auscope.org.au/"
+        }
+      ],
+      "locations": [
+        {
+          "geonames_details": {
+            "country_code": "AU",
+            "country_name": "Australia",
+            "lat": -37.796119,
+            "lng": 144.964881,
+            "name": "Melbourne"
+          },
+          "geonames_id": 2158177
+        }
+      ],
+      "names": [
+        {
+          "lang": "en",
+          "types": [
+            "ror_display",
+            "label"
+          ],
+          "value": "AuScope"
+        }
+      ],
+      "relationships": [
+        {
+          "label": "University of Melbourne",
+          "type": "related",
+          "id": "https://ror.org/01ej9dk98"
+        }
+      ],
+      "status": "active",
+      "types": [
+        "facility"
+      ]
+    },
+    {
+      "admin": {
+        "created": {
+          "date": "2020-03-15",
+          "schema_version": "1.0"
+        },
+        "last_modified": {
+          "date": "2024-05-13",
+          "schema_version": "2.0"
+        }
+      },
+      "domains": [
+        
+      ],
+      "established": 2010,
+      "external_ids": [
+        {
+          "all": [
+            "grid.507700.5"
+          ],
+          "preferred": "grid.507700.5",
+          "type": "grid"
+        }
+      ],
+      "id": "https://ror.org/02c3nzd41",
+      "links": [
+        {
+          "type": "website",
+          "value": "https://aurin.org.au/"
+        }
+      ],
+      "locations": [
+        {
+          "geonames_details": {
+            "country_code": "AU",
+            "country_name": "Australia",
+            "lat": -37.797351,
+            "lng": 144.964925,
+            "name": "Carlton"
+          },
+          "geonames_id": 2172293
+        }
+      ],
+      "names": [
+        {
+          "lang": null,
+          "types": [
+            "acronym"
+          ],
+          "value": "AURIN"
+        },
+        {
+          "lang": "en",
+          "types": [
+            "ror_display",
+            "label"
+          ],
+          "value": "Australian Urban Research Infrastructure Network"
+        }
+      ],
+      "relationships": [
+        {
+          "label": "University of Melbourne",
+          "type": "related",
+          "id": "https://ror.org/01ej9dk98"
+        }
+      ],
+      "status": "active",
+      "types": [
+        "facility"
+      ]
+    },
+    {
+      "admin": {
+        "created": {
+          "date": "2018-11-14",
+          "schema_version": "1.0"
+        },
+        "last_modified": {
+          "date": "2024-05-13",
+          "schema_version": "2.0"
+        }
+      },
+      "domains": [
+        
+      ],
+      "established": 1887,
+      "external_ids": [
+        {
+          "all": [
+            "501100001780",
+            "100008690",
+            "100010552"
+          ],
+          "preferred": "501100001780",
+          "type": "fundref"
+        },
+        {
+          "all": [
+            "grid.1017.7"
+          ],
+          "preferred": "grid.1017.7",
+          "type": "grid"
+        },
+        {
+          "all": [
+            "0000 0001 2163 3550"
+          ],
+          "preferred": null,
+          "type": "isni"
+        },
+        {
+          "all": [
+            "Q1057890"
+          ],
+          "preferred": null,
+          "type": "wikidata"
+        }
+      ],
+      "id": "https://ror.org/04ttjf776",
+      "links": [
+        {
+          "type": "website",
+          "value": "https://www.rmit.edu.au/"
+        },
+        {
+          "type": "wikipedia",
+          "value": "http://en.wikipedia.org/wiki/RMIT_University"
+        }
+      ],
+      "locations": [
+        {
+          "geonames_details": {
+            "country_code": "AU",
+            "country_name": "Australia",
+            "lat": -37.806748,
+            "lng": 144.962573,
+            "name": "Melbourne"
+          },
+          "geonames_id": 2158177
+        }
+      ],
+      "names": [
+        {
+          "lang": null,
+          "types": [
+            "acronym"
+          ],
+          "value": "RMIT"
+        },
+        {
+          "lang": "en",
+          "types": [
+            "ror_display",
+            "label"
+          ],
+          "value": "RMIT University"
+        },
+        {
+          "lang": "en",
+          "types": [
+            "alias"
+          ],
+          "value": "Royal Melbourne Institute of Technology University"
+        }
+      ],
+      "relationships": [
+        {
+          "label": "ARC Centre of Excellence for Automated Decision-Making and Society",
+          "type": "child",
+          "id": "https://ror.org/039p7nx39"
+        },
+        {
+          "label": "RMIT Europe",
+          "type": "child",
+          "id": "https://ror.org/03m3ca021"
+        },
+        {
+          "label": "RMIT Vietnam",
+          "type": "child",
+          "id": "https://ror.org/004axh929"
+        },
+        {
+          "label": "Austin Hospital",
+          "type": "related",
+          "id": "https://ror.org/010mv7n52"
+        }
+      ],
+      "status": "active",
+      "types": [
+        "education",
+        "funder"
+      ]
+    },
+    {
+      "admin": {
+        "created": {
+          "date": "2018-11-14",
+          "schema_version": "1.0"
+        },
+        "last_modified": {
+          "date": "2024-05-13",
+          "schema_version": "2.0"
+        }
+      },
+      "domains": [
+        
+      ],
+      "established": 1986,
+      "external_ids": [
+        {
+          "all": [
+            "100008561"
+          ],
+          "preferred": null,
+          "type": "fundref"
+        },
+        {
+          "all": [
+            "grid.1056.2"
+          ],
+          "preferred": "grid.1056.2",
+          "type": "grid"
+        },
+        {
+          "all": [
+            "0000 0001 2224 8486"
+          ],
+          "preferred": null,
+          "type": "isni"
+        },
+        {
+          "all": [
+            "Q3151717"
+          ],
+          "preferred": null,
+          "type": "wikidata"
+        }
+      ],
+      "id": "https://ror.org/05ktbsm52",
+      "links": [
+        {
+          "type": "website",
+          "value": "http://www.burnet.edu.au/"
+        },
+        {
+          "type": "wikipedia",
+          "value": "https://en.wikipedia.org/wiki/Burnet_Institute"
+        }
+      ],
+      "locations": [
+        {
+          "geonames_details": {
+            "country_code": "AU",
+            "country_name": "Australia",
+            "lat": -37.845778,
+            "lng": 144.984225,
+            "name": "Melbourne"
+          },
+          "geonames_id": 2158177
+        }
+      ],
+      "names": [
+        {
+          "lang": "en",
+          "types": [
+            "ror_display",
+            "label"
+          ],
+          "value": "Burnet Institute"
+        }
+      ],
+      "relationships": [
+        {
+          "label": "Monash University",
+          "type": "related",
+          "id": "https://ror.org/02bfwt286"
+        },
+        {
+          "label": "University of Melbourne",
+          "type": "related",
+          "id": "https://ror.org/01ej9dk98"
+        }
+      ],
+      "status": "active",
+      "types": [
+        "funder",
+        "nonprofit"
+      ]
+    },
+    {
+      "admin": {
+        "created": {
+          "date": "2018-11-14",
+          "schema_version": "1.0"
+        },
+        "last_modified": {
+          "date": "2024-05-13",
+          "schema_version": "2.0"
+        }
+      },
+      "domains": [
+        
+      ],
+      "established": 1920,
+      "external_ids": [
+        {
+          "all": [
+            "grid.414539.e"
+          ],
+          "preferred": "grid.414539.e",
+          "type": "grid"
+        },
+        {
+          "all": [
+            "0000 0001 0459 5396"
+          ],
+          "preferred": null,
+          "type": "isni"
+        },
+        {
+          "all": [
+            "Q5384060"
+          ],
+          "preferred": null,
+          "type": "wikidata"
+        }
+      ],
+      "id": "https://ror.org/02ett6548",
+      "links": [
+        {
+          "type": "website",
+          "value": "https://www.epworth.org.au"
+        },
+        {
+          "type": "wikipedia",
+          "value": "https://en.wikipedia.org/wiki/Epworth_Hospital"
+        }
+      ],
+      "locations": [
+        {
+          "geonames_details": {
+            "country_code": "AU",
+            "country_name": "Australia",
+            "lat": -37.814,
+            "lng": 144.96332,
+            "name": "Melbourne"
+          },
+          "geonames_id": 2158177
+        }
+      ],
+      "names": [
+        {
+          "lang": "en",
+          "types": [
+            "ror_display",
+            "label"
+          ],
+          "value": "Epworth Hospital"
+        }
+      ],
+      "relationships": [
+        {
+          "label": "University of Melbourne",
+          "type": "related",
+          "id": "https://ror.org/01ej9dk98"
+        },
+        {
+          "label": "Deakin University",
+          "type": "related",
+          "id": "https://ror.org/02czsnj07"
+        }
+      ],
+      "status": "active",
+      "types": [
+        "healthcare"
+      ]
+    },
+    {
+      "admin": {
+        "created": {
+          "date": "2018-11-14",
+          "schema_version": "1.0"
+        },
+        "last_modified": {
+          "date": "2024-05-13",
+          "schema_version": "2.0"
+        }
+      },
+      "domains": [
+        
+      ],
+      "established": 1856,
+      "external_ids": [
+        {
+          "all": [
+            "grid.416259.d"
+          ],
+          "preferred": "grid.416259.d",
+          "type": "grid"
+        },
+        {
+          "all": [
+            "0000 0004 0386 2271"
+          ],
+          "preferred": null,
+          "type": "isni"
+        },
+        {
+          "all": [
+            "Q7375028"
+          ],
+          "preferred": null,
+          "type": "wikidata"
+        }
+      ],
+      "id": "https://ror.org/03grnna41",
+      "links": [
+        {
+          "type": "website",
+          "value": "https://www.thewomens.org.au/"
+        },
+        {
+          "type": "wikipedia",
+          "value": "https://en.wikipedia.org/wiki/Royal_Women's_Hospital"
+        }
+      ],
+      "locations": [
+        {
+          "geonames_details": {
+            "country_code": "AU",
+            "country_name": "Australia",
+            "lat": -37.798741,
+            "lng": 144.955813,
+            "name": "Melbourne"
+          },
+          "geonames_id": 2158177
+        }
+      ],
+      "names": [
+        {
+          "lang": "en",
+          "types": [
+            "ror_display",
+            "label"
+          ],
+          "value": "Royal Women's Hospital"
+        }
+      ],
+      "relationships": [
+        {
+          "label": "La Trobe University",
+          "type": "related",
+          "id": "https://ror.org/01rxfrp27"
+        },
+        {
+          "label": "University of Melbourne",
+          "type": "related",
+          "id": "https://ror.org/01ej9dk98"
+        }
+      ],
+      "status": "active",
+      "types": [
+        "healthcare"
+      ]
+    },
+    {
+      "admin": {
+        "created": {
+          "date": "2018-11-14",
+          "schema_version": "1.0"
+        },
+        "last_modified": {
+          "date": "2024-05-13",
+          "schema_version": "2.0"
+        }
+      },
+      "domains": [
+        
+      ],
+      "established": 1998,
+      "external_ids": [
+        {
+          "all": [
+            "grid.416536.3"
+          ],
+          "preferred": "grid.416536.3",
+          "type": "grid"
+        },
+        {
+          "all": [
+            "0000 0004 0399 9112"
+          ],
+          "preferred": null,
+          "type": "isni"
+        },
+        {
+          "all": [
+            "Q7754368"
+          ],
+          "preferred": null,
+          "type": "wikidata"
+        }
+      ],
+      "id": "https://ror.org/05mjmsc11",
+      "links": [
+        {
+          "type": "website",
+          "value": "https://www.nh.org.au/location/northern-hospital-epping/"
+        },
+        {
+          "type": "wikipedia",
+          "value": "https://en.wikipedia.org/wiki/The_Northern_Hospital,_Epping"
+        }
+      ],
+      "locations": [
+        {
+          "geonames_details": {
+            "country_code": "AU",
+            "country_name": "Australia",
+            "lat": -37.653333,
+            "lng": 145.014167,
+            "name": "Epping"
+          },
+          "geonames_id": 2167280
+        }
+      ],
+      "names": [
+        {
+          "lang": "en",
+          "types": [
+            "ror_display",
+            "label"
+          ],
+          "value": "Northern Hospital"
+        }
+      ],
+      "relationships": [
+        {
+          "label": "Northern Health",
+          "type": "parent",
+          "id": "https://ror.org/009k7c907"
+        },
+        {
+          "label": "University of Melbourne",
+          "type": "related",
+          "id": "https://ror.org/01ej9dk98"
+        }
+      ],
+      "status": "active",
+      "types": [
+        "healthcare"
+      ]
+    },
+    {
+      "admin": {
+        "created": {
+          "date": "2018-11-14",
+          "schema_version": "1.0"
+        },
+        "last_modified": {
+          "date": "2024-05-13",
+          "schema_version": "2.0"
+        }
+      },
+      "domains": [
+        
+      ],
+      "established": 1852,
+      "external_ids": [
+        {
+          "all": [
+            "grid.415335.5"
+          ],
+          "preferred": "grid.415335.5",
+          "type": "grid"
+        },
+        {
+          "all": [
+            "0000 0000 8560 4604"
+          ],
+          "preferred": null,
+          "type": "isni"
+        },
+        {
+          "all": [
+            "Q5529844"
+          ],
+          "preferred": null,
+          "type": "wikidata"
+        }
+      ],
+      "id": "https://ror.org/00jrpxe15",
+      "links": [
+        {
+          "type": "website",
+          "value": "http://www.barwonhealth.org.au/component/zoo/item/medical-education?highlight=WyJnZWVsb25nIiwiaG9zcGl0YWwiLCJnZWVsb25nIGhvc3BpdGFsIl0="
+        },
+        {
+          "type": "wikipedia",
+          "value": "https://en.wikipedia.org/wiki/Geelong_Hospital"
+        }
+      ],
+      "locations": [
+        {
+          "geonames_details": {
+            "country_code": "AU",
+            "country_name": "Australia",
+            "lat": -38.150965,
+            "lng": 144.364686,
+            "name": "Geelong"
+          },
+          "geonames_id": 2165798
+        }
+      ],
+      "names": [
+        {
+          "lang": "en",
+          "types": [
+            "ror_display",
+            "label"
+          ],
+          "value": "Geelong Hospital"
+        },
+        {
+          "lang": "en",
+          "types": [
+            "alias"
+          ],
+          "value": "University Hospital Geelong"
+        }
+      ],
+      "relationships": [
+        {
+          "label": "Barwon Health",
+          "type": "parent",
+          "id": "https://ror.org/00my0hg66"
+        },
+        {
+          "label": "Deakin University",
+          "type": "related",
+          "id": "https://ror.org/02czsnj07"
+        },
+        {
+          "label": "University of Melbourne",
+          "type": "related",
+          "id": "https://ror.org/01ej9dk98"
+        }
+      ],
+      "status": "active",
+      "types": [
+        "healthcare"
+      ]
+    },
+    {
+      "admin": {
+        "created": {
+          "date": "2018-11-14",
+          "schema_version": "1.0"
+        },
+        "last_modified": {
+          "date": "2024-05-13",
+          "schema_version": "2.0"
+        }
+      },
+      "domains": [
+        
+      ],
+      "established": 2012,
+      "external_ids": [
+        {
+          "all": [
+            "grid.493437.e"
+          ],
+          "preferred": "grid.493437.e",
+          "type": "grid"
+        }
+      ],
+      "id": "https://ror.org/03m3ca021",
+      "links": [
+        {
+          "type": "website",
+          "value": "https://www.rmit.eu"
+        }
+      ],
+      "locations": [
+        {
+          "geonames_details": {
+            "country_code": "ES",
+            "country_name": "Spain",
+            "lat": 41.402577,
+            "lng": 2.194333,
+            "name": "Barcelona"
+          },
+          "geonames_id": 3128760
+        }
+      ],
+      "names": [
+        {
+          "lang": null,
+          "types": [
+            "acronym"
+          ],
+          "value": "RMIT"
+        },
+        {
+          "lang": "en",
+          "types": [
+            "ror_display",
+            "label"
+          ],
+          "value": "RMIT Europe"
+        },
+        {
+          "lang": "en",
+          "types": [
+            "alias"
+          ],
+          "value": "Royal Melbourne Institute of Technology University"
+        }
+      ],
+      "relationships": [
+        {
+          "label": "RMIT University",
+          "type": "parent",
+          "id": "https://ror.org/04ttjf776"
+        }
+      ],
+      "status": "active",
+      "types": [
+        "education"
+      ]
+    },
+    {
+      "admin": {
+        "created": {
+          "date": "2018-11-14",
+          "schema_version": "1.0"
+        },
+        "last_modified": {
+          "date": "2024-05-13",
+          "schema_version": "2.0"
+        }
+      },
+      "domains": [
+        
+      ],
+      "established": 1951,
+      "external_ids": [
+        {
+          "all": [
+            "grid.1073.5"
+          ],
+          "preferred": "grid.1073.5",
+          "type": "grid"
+        },
+        {
+          "all": [
+            "0000 0004 0626 201X"
+          ],
+          "preferred": null,
+          "type": "isni"
+        },
+        {
+          "all": [
+            "Q7592065"
+          ],
+          "preferred": null,
+          "type": "wikidata"
+        }
+      ],
+      "id": "https://ror.org/02k3cxs74",
+      "links": [
+        {
+          "type": "website",
+          "value": "https://www.svi.edu.au/"
+        },
+        {
+          "type": "wikipedia",
+          "value": "https://en.wikipedia.org/wiki/St._Vincent's_Institute_of_Medical_Research"
+        }
+      ],
+      "locations": [
+        {
+          "geonames_details": {
+            "country_code": "AU",
+            "country_name": "Australia",
+            "lat": -37.806575,
+            "lng": 144.973933,
+            "name": "Fitzroy"
+          },
+          "geonames_id": 2166584
+        }
+      ],
+      "names": [
+        {
+          "lang": null,
+          "types": [
+            "acronym"
+          ],
+          "value": "SVI"
+        },
+        {
+          "lang": "en",
+          "types": [
+            "ror_display",
+            "label"
+          ],
+          "value": "St Vincents Institute of Medical Research"
+        }
+      ],
+      "relationships": [
+        {
+          "label": "St Vincent's Hospital",
+          "type": "related",
+          "id": "https://ror.org/001kjn539"
+        },
+        {
+          "label": "University of Melbourne",
+          "type": "related",
+          "id": "https://ror.org/01ej9dk98"
+        }
+      ],
+      "status": "active",
+      "types": [
+        "nonprofit"
+      ]
+    }
+  ],
+  "meta": {
+    "types": [
+      {
+        "id": "facility",
+        "title": "facility",
+        "count": 12
+      },
+      {
+        "id": "healthcare",
+        "title": "healthcare",
+        "count": 11
+      },
+      {
+        "id": "funder",
+        "title": "funder",
+        "count": 10
+      },
+      {
+        "id": "education",
+        "title": "education",
+        "count": 4
+      },
+      {
+        "id": "nonprofit",
+        "title": "nonprofit",
+        "count": 4
+      }
+    ],
+    "countries": [
+      {
+        "id": "au",
+        "title": "Australia",
+        "count": 30
+      },
+      {
+        "id": "es",
+        "title": "Spain",
+        "count": 1
+      }
+    ],
+    "statuses": [
+      {
+        "id": "active",
+        "title": "active",
+        "count": 31
+      }
+    ]
+  }
+}
