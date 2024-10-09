@@ -8,11 +8,11 @@
     xmlns:local="http://local.to.here"
     version="4.0" >
  <!-- this stylesheet attempt to match all values in the Admin_Institution column from the supplied NHMRC grant data 
-     spreadsheet against a party record entry in RDA for this institution so that the activity(grant) record can be related 
-     to it's managin insitution via a related object key.
+     spreadsheet against an organisation record entry in RoR for this institution so that the activity(grant) record can be related 
+     to it's managin insitution via a related info identifier
      
-     The output is an xml document listing the institutions with their name as used by the NHMRC and the corresponding key 
-     for their party record in RDA. This is used as a lookup table by the main transformation -  NHMRC grant row to RIF-CS record
+     The output is an xml document listing the institutions with their name as used by the NHMRC and the corresponding identifier 
+     for their organisation record in RDA. This is used as a lookup table by the main transformation -  NHMRC grant row to RIF-CS record
   -->
     
     <xsl:output method="xml"/>
