@@ -8,8 +8,8 @@
 <identifier type="nhmrc">2022203</identifier>
 <name type="primary"><namePart>Exploring biomarkers, therapeutic targets, and modifiable risk factors for non-Alzheimer's dementia</namePart></name>
 <name type="alternative"><namePart>International Collaborations</namePart></name>
-<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
-<relatedObject><key>http://nla.gov.au/nla.party-561291</key><relation type="isManagedBy"/></relatedObject>
+<relatedInfo><identifier type="doi">http://dx.doi.org/10.13039/501100000925</identifier><title>National Health and Medical Research Council</title><relation type="isFundedBy"/></relatedInfo>
+<relatedInfo><identifier type="url">https://ror.org/01ej9dk98</identifier><title>University of Melbourne</title><relation type="isManagedBy"/></relatedInfo>
 <subject type="local">Clinical Medicine and Science Research</subject><subject type="anzsrc-for">biomedical and clinical sciences | neurosciences | cellular nervous system | </subject>
 <subject type="local">dementia </subject>
 <subject type="local">biomarkers </subject>
@@ -29,8 +29,8 @@
 <identifier type="nhmrc">2022535</identifier>
 <name type="primary"><namePart>Novel therapeutic strategies to intervene in tau-associated neurodegeneration by modulating tau clearance and neuroinflammation</namePart></name>
 <name type="alternative"><namePart>International Collaborations</namePart></name>
-<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
-<relatedObject><key>http://nla.gov.au/nla.party-561291</key><relation type="isManagedBy"/></relatedObject>
+<relatedInfo><identifier type="doi">http://dx.doi.org/10.13039/501100000925</identifier><title>National Health and Medical Research Council</title><relation type="isFundedBy"/></relatedInfo>
+<relatedInfo><identifier type="url">https://ror.org/01ej9dk98</identifier><title>University of Melbourne</title><relation type="isManagedBy"/></relatedInfo>
 <subject type="local">Basic Science Research</subject><subject type="anzsrc-for">biomedical and clinical sciences | immunology | innate immunity | biomedical and clinical sciences | neurosciences | central nervous system  | </subject>
 <subject type="local">neuroinflammation </subject>
 <subject type="local">dementia </subject>
@@ -50,8 +50,8 @@
 <identifier type="nhmrc">2022961</identifier>
 <name type="primary"><namePart>Reducing Cognitive impairment by management of Heart Failure as a Modifiable Risk Factor: the Cog-HF trial</namePart></name>
 <name type="alternative"><namePart>International Collaborations</namePart></name>
-<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
-<relatedObject><key>http://nla.gov.au/nla.party-583275</key><relation type="isManagedBy"/></relatedObject>
+<relatedInfo><identifier type="doi">http://dx.doi.org/10.13039/501100000925</identifier><title>National Health and Medical Research Council</title><relation type="isFundedBy"/></relatedInfo>
+<relatedInfo><identifier type="url">https://ror.org/03rke0285</identifier><title>Baker Heart and Diabetes Institute</title><relation type="isManagedBy"/></relatedInfo>
 <subject type="local">Health Services Research</subject><subject type="anzsrc-for">biomedical and clinical sciences | clinical sciences | geriatrics and gerontology  | </subject>
 <subject type="local">cognitive decline </subject>
 <subject type="local">chronic heart failure (chf) </subject>
@@ -71,8 +71,8 @@
 <identifier type="nhmrc">2020410</identifier>
 <name type="primary"><namePart>Implementing a life course approach in antenatal and postnatal care settings for prevention and reduction of non-communicable disease risks in Nepal (IpreventNCD)</namePart></name>
 <name type="alternative"><namePart>International Collaborations</namePart></name>
-<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
-<relatedObject><key>http://nla.gov.au/nla.party-460867</key><relation type="isManagedBy"/></relatedObject>
+<relatedInfo><identifier type="doi">http://dx.doi.org/10.13039/501100000925</identifier><title>National Health and Medical Research Council</title><relation type="isFundedBy"/></relatedInfo>
+<relatedInfo><identifier type="url">https://ror.org/00rqy9422</identifier><title>The University of Queensland</title><relation type="isManagedBy"/></relatedInfo>
 <subject type="local">Health Services Research</subject><subject type="anzsrc-for">health sciences | health services and systems | primary health care | </subject>
 <subject type="local">implementation </subject>
 <subject type="local">antenatal care</subject>
@@ -92,8 +92,8 @@
 <identifier type="nhmrc">2022036</identifier>
 <name type="primary"><namePart>Structured Health Interventions to reduce cardiometaboLic risk among adoLescents and yOuNG adults in tribal communities in North-eastern India (SHILLONG): A type 2 hybrid Cluster-Randomized Trial</namePart></name>
 <name type="alternative"><namePart>International Collaborations</namePart></name>
-<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
-<relatedObject><key>http://nla.gov.au/nla.party-583275</key><relation type="isManagedBy"/></relatedObject>
+<relatedInfo><identifier type="doi">http://dx.doi.org/10.13039/501100000925</identifier><title>National Health and Medical Research Council</title><relation type="isFundedBy"/></relatedInfo>
+<relatedInfo><identifier type="url">https://ror.org/03rke0285</identifier><title>Baker Heart and Diabetes Institute</title><relation type="isManagedBy"/></relatedInfo>
 <subject type="local">Public Health Research</subject><subject type="anzsrc-for">health sciences | health services and systems | implementation science and evaluation | </subject>
 <subject type="local">implementation </subject>
 <subject type="local">adolescent health</subject>
@@ -113,8 +113,8 @@
 <identifier type="nhmrc">2022355</identifier>
 <name type="primary"><namePart>Adolescent resilience-building in urban slums - a multifaceted trial of life skills education in India (ANUMATI)</namePart></name>
 <name type="alternative"><namePart>International Collaborations</namePart></name>
-<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
-<relatedObject><key>http://nla.gov.au/nla.party-1870292</key><relation type="isManagedBy"/></relatedObject>
+<relatedInfo><identifier type="doi">http://dx.doi.org/10.13039/501100000925</identifier><title>National Health and Medical Research Council</title><relation type="isFundedBy"/></relatedInfo>
+<relatedInfo><identifier type="url">https://ror.org/023331s46</identifier><title>The George Institute for Global Health</title><relation type="isManagedBy"/></relatedInfo>
 <subject type="local">Health Services Research</subject><subject type="anzsrc-for">health sciences | health services and systems | primary health care | </subject>
 <subject type="local">adolescent health </subject>
 <subject type="local">resilience</subject>
@@ -134,8 +134,8 @@
 <identifier type="nhmrc">2022566</identifier>
 <name type="primary"><namePart>Evaluating the impact, investment case and scale-up of 'Health Promoting Schools' in Fiji</namePart></name>
 <name type="alternative"><namePart>International Collaborations</namePart></name>
-<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
-<relatedObject><key>http://nla.gov.au/nla.party-1870292</key><relation type="isManagedBy"/></relatedObject>
+<relatedInfo><identifier type="doi">http://dx.doi.org/10.13039/501100000925</identifier><title>National Health and Medical Research Council</title><relation type="isFundedBy"/></relatedInfo>
+<relatedInfo><identifier type="url">https://ror.org/023331s46</identifier><title>The George Institute for Global Health</title><relation type="isManagedBy"/></relatedInfo>
 <subject type="local">Public Health Research</subject><subject type="anzsrc-for">health sciences | health services and systems | implementation science and evaluation | health sciences | public health | health promotion | health sciences | public health | preventative health care | </subject>
 <subject type="local">school health promotion </subject>
 <subject type="local">physical activity</subject>
@@ -155,8 +155,8 @@
 <identifier type="nhmrc">2018718</identifier>
 <name type="primary"><namePart>Advancing Women in Healthcare Leadership- Implementation research</namePart></name>
 <name type="alternative"><namePart>Partnership Projects</namePart></name>
-<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
-<relatedObject><key>http://nla.gov.au/nla.party-507067</key><relation type="isManagedBy"/></relatedObject>
+<relatedInfo><identifier type="doi">http://dx.doi.org/10.13039/501100000925</identifier><title>National Health and Medical Research Council</title><relation type="isFundedBy"/></relatedInfo>
+<relatedInfo><identifier type="url">https://ror.org/02bfwt286</identifier><title>Monash University</title><relation type="isManagedBy"/></relatedInfo>
 <subject type="local">Health Services Research</subject><subject type="anzsrc-for">health sciences | health services and systems | implementation science and evaluation | health sciences | health services and systems | health services and systems not elsewhere classified | </subject>
 <subject type="local">implementation </subject>
 <subject type="local">health services research </subject>
@@ -176,8 +176,8 @@
 <identifier type="nhmrc">2022546</identifier>
 <name type="primary"><namePart>Eliminating harm from devices across the life span in critical illness: The DEFENCE study.</namePart></name>
 <name type="alternative"><namePart>Partnership Projects</namePart></name>
-<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
-<relatedObject><key>http://nla.gov.au/nla.party-536697</key><relation type="isManagedBy"/></relatedObject>
+<relatedInfo><identifier type="doi">http://dx.doi.org/10.13039/501100000925</identifier><title>National Health and Medical Research Council</title><relation type="isFundedBy"/></relatedInfo>
+<relatedInfo><identifier type="url">https://ror.org/03pnv4752</identifier><title>Queensland University of Technology</title><relation type="isManagedBy"/></relatedInfo>
 <subject type="local">Health Services Research</subject><subject type="anzsrc-for">health sciences | nursing | acute care | health sciences | health services and systems | patient safety | </subject>
 <subject type="local">nursing care </subject>
 <subject type="local">early prevention </subject>
@@ -197,8 +197,8 @@
 <identifier type="nhmrc">2023359</identifier>
 <name type="primary"><namePart>safe@home: effectiveness and cost effectiveness of telemonitoring and virtual care supported by primary care for people living with chronic disease in low socioeconomic neighbourhoods for reducing ambulance ramping, readmission and GP clinic block.</namePart></name>
 <name type="alternative"><namePart>Partnership Projects</namePart></name>
-<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
-<relatedObject><key>http://nla.gov.au/nla.party-593299</key><relation type="isManagedBy"/></relatedObject>
+<relatedInfo><identifier type="doi">http://dx.doi.org/10.13039/501100000925</identifier><title>National Health and Medical Research Council</title><relation type="isFundedBy"/></relatedInfo>
+<relatedInfo><identifier type="url">https://ror.org/01kpzv902</identifier><title>Flinders University</title><relation type="isManagedBy"/></relatedInfo>
 <subject type="local">Health Services Research</subject><subject type="anzsrc-for">health sciences | health services and systems | digital health | </subject>
 <subject type="local">readmission rates </subject>
 <subject type="local">chronic diseases </subject>
@@ -218,8 +218,8 @@
 <identifier type="nhmrc">2023737</identifier>
 <name type="primary"><namePart>Systems Thinking with Active Implementation Research (STAIR) to prevent childhood obesity: an effectiveness-implementation trial</namePart></name>
 <name type="alternative"><namePart>Partnership Projects</namePart></name>
-<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
-<relatedObject><key>http://nla.gov.au/nla.party-469109</key><relation type="isManagedBy"/></relatedObject>
+<relatedInfo><identifier type="doi">http://dx.doi.org/10.13039/501100000925</identifier><title>National Health and Medical Research Council</title><relation type="isFundedBy"/></relatedInfo>
+<relatedInfo><identifier type="url">https://ror.org/02czsnj07</identifier><title>Deakin University</title><relation type="isManagedBy"/></relatedInfo>
 <subject type="local">Public Health Research</subject><subject type="anzsrc-for">health sciences | public health | health promotion | </subject>
 <subject type="local">overweight/obesity </subject>
 <subject type="local">implementation </subject>
@@ -239,8 +239,8 @@
 <identifier type="nhmrc">2023842</identifier>
 <name type="primary"><namePart>EValuating the Impact Of DigitaLly Enhancing Australian Youth Mental Health SerVicEs (the EVOLVE project): A Large Scale, Controlled, Process and Economic Evaluation of a Blended Digital Intervention</namePart></name>
 <name type="alternative"><namePart>Partnership Projects</namePart></name>
-<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
-<relatedObject><key>http://nla.gov.au/nla.party-561291</key><relation type="isManagedBy"/></relatedObject>
+<relatedInfo><identifier type="doi">http://dx.doi.org/10.13039/501100000925</identifier><title>National Health and Medical Research Council</title><relation type="isFundedBy"/></relatedInfo>
+<relatedInfo><identifier type="url">https://ror.org/01ej9dk98</identifier><title>University of Melbourne</title><relation type="isManagedBy"/></relatedInfo>
 <subject type="local">Health Services Research</subject><subject type="anzsrc-for">psychology | clinical and health psychology | clinical psychology | </subject>
 <subject type="local">mental health services </subject>
 <subject type="local">youth </subject>
@@ -260,8 +260,8 @@
 <identifier type="nhmrc">2023898</identifier>
 <name type="primary"><namePart>Quality coaching to implement a hospital fall prevention strategy: intervention development and evaluation in a stepped wedge trial</namePart></name>
 <name type="alternative"><namePart>Partnership Projects</namePart></name>
-<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
-<relatedObject><key>http://nla.gov.au/nla.party-593941</key><relation type="isManagedBy"/></relatedObject>
+<relatedInfo><identifier type="doi">http://dx.doi.org/10.13039/501100000925</identifier><title>National Health and Medical Research Council</title><relation type="isFundedBy"/></relatedInfo>
+<relatedInfo><identifier type="url">https://ror.org/0384j8v12</identifier><title>University of Sydney</title><relation type="isManagedBy"/></relatedInfo>
 <subject type="local">Health Services Research</subject><subject type="anzsrc-for">health sciences | health services and systems | implementation science and evaluation | </subject>
 <subject type="local">falls prevention </subject>
 <subject type="local">implementation </subject>
@@ -281,8 +281,8 @@
 <identifier type="nhmrc">2024551</identifier>
 <name type="primary"><namePart>A ‘culturally tailored iSupport model’ for carers of people with dementia</namePart></name>
 <name type="alternative"><namePart>Targeted Call for Research</namePart></name>
-<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
-<relatedObject><key>http://nla.gov.au/nla.party-593299</key><relation type="isManagedBy"/></relatedObject>
+<relatedInfo><identifier type="doi">http://dx.doi.org/10.13039/501100000925</identifier><title>National Health and Medical Research Council</title><relation type="isFundedBy"/></relatedInfo>
+<relatedInfo><identifier type="url">https://ror.org/01kpzv902</identifier><title>Flinders University</title><relation type="isManagedBy"/></relatedInfo>
 <subject type="local">Health Services Research</subject><subject type="anzsrc-for">health sciences | nursing | aged care nursing | health sciences | health services and systems | aged health care | economics | applied economics | health economics  | </subject>
 <subject type="local">dementia care </subject>
 <subject type="local">cultural perceptions </subject>
@@ -302,8 +302,8 @@
 <identifier type="nhmrc">2024575</identifier>
 <name type="primary"><namePart>A community based participatory approach to decreasing dementia stigma and increasing help-seeking</namePart></name>
 <name type="alternative"><namePart>Targeted Call for Research</namePart></name>
-<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
-<relatedObject><key>http://nla.gov.au/nla.party-593941</key><relation type="isManagedBy"/></relatedObject>
+<relatedInfo><identifier type="doi">http://dx.doi.org/10.13039/501100000925</identifier><title>National Health and Medical Research Council</title><relation type="isFundedBy"/></relatedInfo>
+<relatedInfo><identifier type="url">https://ror.org/0384j8v12</identifier><title>University of Sydney</title><relation type="isManagedBy"/></relatedInfo>
 <subject type="local">Public Health Research</subject><subject type="anzsrc-for">health sciences | public health | health promotion | </subject>
 <subject type="local">culturally appropriate methodology </subject>
 <subject type="local">ethnic health promotion </subject>
@@ -323,8 +323,8 @@
 <identifier type="nhmrc">2024768</identifier>
 <name type="primary"><namePart>Transforming inclusive multidomain dementia prevention lifestyle initiatives for culturally and linguistically diverse older Australians</namePart></name>
 <name type="alternative"><namePart>Targeted Call for Research</namePart></name>
-<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
-<relatedObject><key>http://nla.gov.au/nla.party-485355</key><relation type="isManagedBy"/></relatedObject>
+<relatedInfo><identifier type="doi">http://dx.doi.org/10.13039/501100000925</identifier><title>National Health and Medical Research Council</title><relation type="isFundedBy"/></relatedInfo>
+<relatedInfo><identifier type="url">https://ror.org/03t52dk35</identifier><title>Western Sydney University</title><relation type="isManagedBy"/></relatedInfo>
 <subject type="local">Public Health Research</subject><subject type="anzsrc-for">health sciences | public health | health promotion | </subject>
 <subject type="local">public health impact </subject>
 <subject type="local">ethnic health promotion </subject>
@@ -344,8 +344,8 @@
 <identifier type="nhmrc">2024751</identifier>
 <name type="primary"><namePart>Targeting mechanisms underlying loneliness in chronic conditions</namePart></name>
 <name type="alternative"><namePart>Targeted Call for Research</namePart></name>
-<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
-<relatedObject><key>http://nla.gov.au/nla.party-501485</key><relation type="isManagedBy"/></relatedObject>
+<relatedInfo><identifier type="doi">http://dx.doi.org/10.13039/501100000925</identifier><title>National Health and Medical Research Council</title><relation type="isFundedBy"/></relatedInfo>
+<relatedInfo><identifier type="url">https://ror.org/01sf06y89</identifier><title>Macquarie University</title><relation type="isManagedBy"/></relatedInfo>
 <subject type="local">Public Health Research</subject><subject type="anzsrc-for">psychology | clinical and health psychology | clinical psychology | </subject>
 <subject type="local">chronic diseases </subject>
 <subject type="local">mental health </subject>
@@ -365,8 +365,8 @@
 <identifier type="nhmrc">2024805</identifier>
 <name type="primary"><namePart>Towards a holistic priority setting approach for chronic disease management to tackle loneliness and social isolation in Australia</namePart></name>
 <name type="alternative"><namePart>Targeted Call for Research</namePart></name>
-<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
-<relatedObject><key>http://nla.gov.au/nla.party-507067</key><relation type="isManagedBy"/></relatedObject>
+<relatedInfo><identifier type="doi">http://dx.doi.org/10.13039/501100000925</identifier><title>National Health and Medical Research Council</title><relation type="isFundedBy"/></relatedInfo>
+<relatedInfo><identifier type="url">https://ror.org/02bfwt286</identifier><title>Monash University</title><relation type="isManagedBy"/></relatedInfo>
 <subject type="local">Public Health Research</subject><subject type="anzsrc-for">health sciences | public health | preventative health care | economics | applied economics | health economics  | health sciences | epidemiology | epidemiological modelling | </subject>
 <subject type="local">health economics </subject>
 <subject type="local">chronic diseases </subject>
@@ -386,8 +386,8 @@
 <identifier type="nhmrc">2024853</identifier>
 <name type="primary"><namePart>SIncere: Developing resources to support Socially INClusivE caRE for mental ill-health</namePart></name>
 <name type="alternative"><namePart>Targeted Call for Research</namePart></name>
-<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
-<relatedObject><key>http://nla.gov.au/nla.party-561291</key><relation type="isManagedBy"/></relatedObject>
+<relatedInfo><identifier type="doi">http://dx.doi.org/10.13039/501100000925</identifier><title>National Health and Medical Research Council</title><relation type="isFundedBy"/></relatedInfo>
+<relatedInfo><identifier type="url">https://ror.org/01ej9dk98</identifier><title>University of Melbourne</title><relation type="isManagedBy"/></relatedInfo>
 <subject type="local">Clinical Medicine and Science Research</subject><subject type="anzsrc-for">biomedical and clinical sciences | clinical sciences | psychiatry (incl. psychotherapy)  | health sciences | public health | social determinants of health | </subject>
 <subject type="local">social determinants of health </subject>
 <subject type="local">mental illness </subject>
@@ -407,8 +407,8 @@
 <identifier type="nhmrc">2024872</identifier>
 <name type="primary"><namePart>Groups for Belonging: a parallel cluster randomised controlled trial of a group-based loneliness intervention for people attending treatment for alcohol or substance use disorders</namePart></name>
 <name type="alternative"><namePart>Targeted Call for Research</namePart></name>
-<relatedObject><key>http://dx.doi.org/10.13039/501100000925</key><relation type="isFundedBy"/></relatedObject>
-<relatedObject><key>http://nla.gov.au/nla.party-464691</key><relation type="isManagedBy"/></relatedObject>
+<relatedInfo><identifier type="doi">http://dx.doi.org/10.13039/501100000925</identifier><title>National Health and Medical Research Council</title><relation type="isFundedBy"/></relatedInfo>
+<relatedInfo><identifier type="url">https://ror.org/00jtmb277</identifier><title>University of Wollongong</title><relation type="isManagedBy"/></relatedInfo>
 <subject type="local">Clinical Medicine and Science Research</subject><subject type="anzsrc-for">psychology | clinical and health psychology | health psychology | </subject>
 <subject type="local">substance dependence </subject>
 <subject type="local">alcohol dependence </subject>

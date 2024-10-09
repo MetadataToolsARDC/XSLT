@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--    manually updated version of nhmrc_admin_institutions_ror_id_2023.xml with some identifiers that were missing in the original because some of the double checks didn't pass in the generation of the original -->
+
+<institutions>
+<institution>
+<name>University of Melbourne</name>
+<identifier>https://ror.org/01ej9dk98</identifier>
+</institution>
+<institution>
+<name>Baker Heart and Diabetes Institute</name>
+<identifier>https://ror.org/03rke0285</identifier>
+</institution>
+<institution>
+<name>The University of Queensland</name>
+<identifier>https://ror.org/00rqy9422</identifier>
+</institution>
+<institution>
+<name>The George Institute for Global Health</name>
+<identifier>https://ror.org/023331s46</identifier>
+</institution>
+<institution>
+<name>Monash University</name>
+<identifier>https://ror.org/02bfwt286</identifier>
+</institution>
+<institution>
+<name>Queensland University of Technology</name>
+<identifier>https://ror.org/03pnv4752</identifier>
+</institution>
+<institution>
+<name>Flinders University</name>
+<identifier>https://ror.org/01kpzv902</identifier>
+</institution>
+<institution>
+<name>Deakin University</name>
+<identifier>https://ror.org/02czsnj07</identifier>
+</institution>
+<institution>
+<name>University of Sydney</name>
+<identifier>https://ror.org/0384j8v12</identifier>
+</institution>
+<institution>
+<name>Western Sydney University</name>
+<identifier>https://ror.org/03t52dk35</identifier>
+</institution>
+<institution>
+<name>Macquarie University</name>
+<identifier>https://ror.org/01sf06y89</identifier>
+</institution>
+<institution>
+<name>University of Wollongong</name>
+<identifier>https://ror.org/00jtmb277</identifier>
+</institution></institutions>
