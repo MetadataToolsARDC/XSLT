@@ -270,7 +270,7 @@
                     <xsl:if test="Total != ''">
                         <xsl:element name="description">
                             <xsl:attribute name="type">fundingAmount</xsl:attribute>
-                            <xsl:value-of select="concat(Total, '.00')"/>
+                            <xsl:value-of select="Total"/>
                         </xsl:element>
                         <xsl:text>&#xA;</xsl:text>
                     </xsl:if>
