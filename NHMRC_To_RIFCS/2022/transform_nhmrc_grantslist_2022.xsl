@@ -136,7 +136,7 @@
                     <xsl:element name="relatedInfo">
                         <xsl:element name="identifier">
                             <xsl:attribute name="type">doi</xsl:attribute>
-                            <xsl:text>http://dx.doi.org/10.13039/501100000925</xsl:text>
+                            <xsl:text>10.13039/501100000925</xsl:text>
                         </xsl:element>
                         <xsl:element name="title">
                             <xsl:text>National Health and Medical Research Council</xsl:text>
@@ -170,7 +170,7 @@
                         <xsl:text>&#xA;</xsl:text-->
                         <xsl:element name="relatedInfo">
                             <xsl:element name="identifier">
-                                <xsl:attribute name="type">url</xsl:attribute>
+                                <xsl:attribute name="type">uri</xsl:attribute>
                                 <xsl:value-of select="$inst_id"/>
                             </xsl:element>
                             <xsl:element name="title">
