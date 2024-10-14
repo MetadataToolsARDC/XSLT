@@ -134,6 +134,7 @@
                     <xsl:text>&#xA;</xsl:text-->
                     
                     <xsl:element name="relatedInfo">
+                        <xsl:attribute name="type">party</xsl:attribute>
                         <xsl:element name="identifier">
                             <xsl:attribute name="type">doi</xsl:attribute>
                             <xsl:text>10.13039/501100000925</xsl:text>
@@ -169,6 +170,7 @@
                         </xsl:element>
                         <xsl:text>&#xA;</xsl:text-->
                         <xsl:element name="relatedInfo">
+                            <xsl:attribute name="type">party</xsl:attribute>
                             <xsl:element name="identifier">
                                 <xsl:attribute name="type">uri</xsl:attribute>
                                 <xsl:value-of select="$inst_id"/>
