@@ -21,8 +21,8 @@
     <xsl:param name="global_acronym" select="''"/>
     <xsl:param name="global_publisherName" select="''"/>
     <xsl:param name="global_rightsStatement" select="''"/>
-    <!--xsl:param name="global_baseURI" select="''"/-->
-    <!--xsl:param name="global_path" select="''"/-->
+    <xsl:param name="global_baseURI" select="''"/>
+    <xsl:param name="global_path" select="''"/>
       
     
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
@@ -256,7 +256,7 @@
     </xsl:template>
     
     <xsl:template match="dc:creator" mode="collection_relatedInfo">
-            <relatedInfo>
+            <relatedInfo type="party">
                 <identifier type="local">
                     <xsl:value-of select="murFunc:formatKey(murFunc:formatName(.))"/> 
                 </identifier>
@@ -268,7 +268,7 @@
     </xsl:template>
     
     <xsl:template match="dc:contributor" mode="collection_relatedInfo">
-        <relatedInfo>
+        <relatedInfo type="party">
             <identifier type="local">
                 <xsl:value-of select="murFunc:formatKey(murFunc:formatName(.))"/> 
             </identifier>
