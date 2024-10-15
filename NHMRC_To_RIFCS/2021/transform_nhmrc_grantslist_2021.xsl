@@ -2,12 +2,12 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ro="http://ands.org.au/standards/rif-cs/registryObjects" version="2.0">
-
-   <xsl:output method="xml"/>
+    
+    <xsl:output method="xml"/>
     
     <xsl:import href="../MASTER/transform_nhmrc_grantslist_core.xsl"/>
     
-    <xsl:variable name="AdminInstitutions" select="document('nhmrc_admin_institutions_manual_update_ror_id_2024.xml')"/>
+    <xsl:variable name="AdminInstitutions" select="document('nhmrc_admin_institutions_manual_update_ror_id_2021.xml')"/>
     
     
     <xsl:template match="/root">
@@ -19,5 +19,5 @@
         </xsl:element>
     </xsl:template>
     
-   
+    
 </xsl:stylesheet>
