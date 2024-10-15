@@ -250,6 +250,24 @@
                         <xsl:text>&#xA;</xsl:text>
                     </xsl:if>
                     
+                    <!-- Date Announced-->
+                    <xsl:if test="Date_Announced != '' and Date_Announced != 'NULL'">
+                        <xsl:element name="description">
+                            <xsl:attribute name="type">Date Announced</xsl:attribute>
+                            <xsl:value-of select="normalize-space(Date_Announced)"/>
+                        </xsl:element>
+                        <xsl:text>&#xA;</xsl:text>
+                    </xsl:if>
+                    
+                    <!-- Sector-->
+                    <xsl:if test="Sector != '' and Sector != 'NULL'">
+                        <xsl:element name="description">
+                            <xsl:attribute name="type">Sector</xsl:attribute>
+                            <xsl:value-of select="normalize-space(Sector)"/>
+                        </xsl:element>
+                        <xsl:text>&#xA;</xsl:text>
+                    </xsl:if>
+                    
                     <!-- brief -->
                     <xsl:if test="Media_Summary != '' and Media_Summary != 'NULL'">
                         <xsl:element name="description">
@@ -295,7 +313,17 @@
                         </xsl:element>
                         <xsl:text>&#xA;</xsl:text>
                     </xsl:if>
-
+                    
+                    <!-- State -->
+                    <xsl:if test="State != ''">
+                        <xsl:element name="coverage">
+                            <xsl:element name="spatial">
+                                <xsl:attribute name="type">text</xsl:attribute>
+                                <xsl:value-of select="State"/>
+                            </xsl:element>
+                        </xsl:element>
+                        <xsl:text>&#xA;</xsl:text>
+                    </xsl:if>
 
 
                     <!-- Existence Dates -->
