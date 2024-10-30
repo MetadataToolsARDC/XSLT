@@ -20,8 +20,8 @@
     <!--xsl:variable name="keyPrefix" select="''"/-->
     
     <xsl:param name="compareWithOtherDatasource" select="false()"/>
-    <xsl:param name="registry_address_input" select="'researchdata.ardc.edu.au'"/>
-    <!--xsl:param name="registry_address_input" select="'demo.researchdata.ardc.edu.au'"/-->
+    <!--xsl:param name="registry_address_input" select="'researchdata.ardc.edu.au'"/-->
+    <xsl:param name="registry_address_input" select="'demo.researchdata.ardc.edu.au'"/>
     <xsl:param name="registry_address_other" select="'researchdata.edu.au'"/>
     <!-- Presuming comparing demo xml with prod file -->
     <!-- change the following the the correct other datasource content for the contributor that you are working with and set $compareWithOtherDatasource to true()-->
@@ -136,7 +136,7 @@
         
         <!--	column: name	(mandatory) -->
         <xsl:text>&quot;</xsl:text>
-        <xsl:value-of select="(collection|service|party|activity)/name/namePart"/>
+         <xsl:value-of select="string-join((collection|service|party|activity)/name/namePart, $valueSeparator)"/>
         <xsl:text>&quot;</xsl:text>
         <xsl:value-of select="$columnSeparator"/>
         

@@ -215,38 +215,48 @@
                     
                     <xsl:if test="Broad_Research_Area != ''">
                         <xsl:variable name="subjectArea" select="Broad_Research_Area"/>
-                        <xsl:element name="subject">
-                            <xsl:attribute name="type">local</xsl:attribute>
-                            <xsl:value-of select="$subjectArea"/>
-                        </xsl:element>
+                        <xsl:if test="lower-case($subjectArea) != 'not applicable'">
+                            <xsl:element name="subject">
+                                <xsl:attribute name="type">local</xsl:attribute>
+                                <xsl:value-of select="$subjectArea"/>
+                            </xsl:element>
+                            <xsl:text>&#xA;</xsl:text>
+                        </xsl:if>
+                        
                     </xsl:if>
                     
                     <xsl:if test="Fields_of_Research != ''">
                         <xsl:variable name="subjectArea" select="Fields_of_Research"/>
-                        <xsl:element name="subject">
-                            <xsl:attribute name="type">anzsrc-for</xsl:attribute>
-                            <xsl:value-of select="$subjectArea"/>
-                        </xsl:element>
-                        <xsl:text>&#xA;</xsl:text>
+                        <xsl:if test="lower-case($subjectArea) != 'not applicable'">
+                            <xsl:element name="subject">
+                                <xsl:attribute name="type">anzsrc-for</xsl:attribute>
+                                <xsl:value-of select="$subjectArea"/>
+                            </xsl:element>
+                            <xsl:text>&#xA;</xsl:text>
+                        </xsl:if>
                     </xsl:if>
                     
                     <xsl:if test="count(*[contains(name(), 'Res_KW')]) > 0">
                         <xsl:for-each select="*[contains(name(), 'Res_KW')]">
-                            <xsl:element name="subject">
-                                <xsl:attribute name="type">local</xsl:attribute>
-                                <xsl:value-of select="."/>
-                            </xsl:element>
-                            <xsl:text>&#xA;</xsl:text>
+                            <xsl:if test="lower-case(.) != 'not applicable'">
+                                <xsl:element name="subject">
+                                    <xsl:attribute name="type">local</xsl:attribute>
+                                    <xsl:value-of select="."/>
+                                </xsl:element>
+                                <xsl:text>&#xA;</xsl:text>
+                            </xsl:if>
                         </xsl:for-each>
                     </xsl:if>
                     
                     <xsl:if test="Keywords != '' and Keywords != 'NULL'">
                         <xsl:variable name="keyword" select="Keywords"/>
-                        <xsl:element name="subject">
-                            <xsl:attribute name="type">local</xsl:attribute>
-                            <xsl:value-of select="$keyword"/>
-                        </xsl:element>
-                        <xsl:text>&#xA;</xsl:text>
+                        <xsl:if test="lower-case($keyword) != 'not applicable'">
+                            <xsl:element name="subject">
+                                <xsl:attribute name="type">local</xsl:attribute>
+                                <xsl:value-of select="$keyword"/>
+                            </xsl:element>
+                            <xsl:text>&#xA;</xsl:text>
+                        </xsl:if>
                     </xsl:if>
                     
                     <!-- Descriptions -->
