@@ -87,12 +87,12 @@
                 
                 <xsl:apply-templates select="dcterms:bibliographicCitation[string-length(.) > 0]" mode="collection_extract_DOI_location"/>  
                 
-                <!--xsl:apply-templates select="dc:identifier[string-length(.) > 0]" mode="collection_identifier"/-->
+                <xsl:apply-templates select="dc:identifier[starts-with(.,'10.') or (contains(.,'doi') and starts-with(.,'http'))]" mode="collection_identifier"/>
                 
-                <!--xsl:apply-templates select="dc:identifier[contains(.,'doi') or contains(.,'10.')]" mode="collection_location_doi"/-->
+                <xsl:apply-templates select="dc:identifier[starts-with(.,'10.') or (contains(.,'doi') and starts-with(.,'http'))]" mode="collection_location_doi"/>
                 
                 <!-- if no doi, use handle as location -->
-                <!--xsl:if test="count(dc:identifier[contains(.,'doi') or contains(.,'10.')]) = 0"-->
+                <xsl:if test="count(dc:identifier[starts-with(.,'10.') or (contains(.,'doi') and starts-with(.,'http'))]) = 0">
                     <xsl:choose>
                         <xsl:when test="count(dc:identifier[contains(.,'handle.net')]) > 0">
                             <xsl:apply-templates select="dc:identifier[contains(.,'handle.net')]" mode="collection_location_handle"/>
@@ -103,7 +103,7 @@
                             </xsl:call-template>
                         </xsl:otherwise>
                     </xsl:choose>
-                <!--/xsl:if-->
+                </xsl:if>
                 
                 <!--xsl:apply-templates select="../../oai:header/oai:identifier[contains(.,'oai:eprints.utas.edu.au:')]" mode="collection_location_nodoi"/-->
                 
