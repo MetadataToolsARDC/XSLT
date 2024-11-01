@@ -228,11 +228,15 @@
                     <xsl:if test="Fields_of_Research != ''">
                         <xsl:variable name="subjectArea" select="Fields_of_Research"/>
                         <xsl:if test="lower-case($subjectArea) != 'not applicable'">
-                            <xsl:element name="subject">
-                                <xsl:attribute name="type">anzsrc-for</xsl:attribute>
-                                <xsl:value-of select="$subjectArea"/>
-                            </xsl:element>
-                            <xsl:text>&#xA;</xsl:text>
+                            <xsl:for-each select="tokenize($subjectArea, '\|')">
+                                <xsl:if test="string-length(normalize-space(.)) > 0">
+                                    <xsl:element name="subject">
+                                        <xsl:attribute name="type">anzsrc-for</xsl:attribute>
+                                        <xsl:value-of select="normalize-space(.)"/>
+                                    </xsl:element>
+                                    <xsl:text>&#xA;</xsl:text>
+                                </xsl:if>
+                            </xsl:for-each>
                         </xsl:if>
                     </xsl:if>
                     
