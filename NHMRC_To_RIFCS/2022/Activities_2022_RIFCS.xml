@@ -10906,6 +10906,7 @@
 <name type="primary"><namePart>IRIISS - 2022</namePart></name>
 <name type="alternative"><namePart>Independent Research Institutes Infrastructure Support Scheme (IRIISS)</namePart></name>
 <relatedInfo type="party"><identifier type="doi">10.13039/501100000925</identifier><title>National Health and Medical Research Council</title><relation type="isFundedBy"/></relatedInfo>
+<relatedInfo type="party"><identifier type="uri">https://acpcc.org.au</identifier><title>VCS Foundation Limited</title><relation type="isManagedBy"/></relatedInfo>
 <description type="Chief Investigator">Callum Hensman</description>
 <description type="Date Announced">2022-11-25T00:00:00</description>
 <description type="Sector">Research Institutes</description>
