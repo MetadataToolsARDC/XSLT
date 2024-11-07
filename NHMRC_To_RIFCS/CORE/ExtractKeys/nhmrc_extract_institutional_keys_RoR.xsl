@@ -56,7 +56,7 @@
         
         <xsl:choose>
             <xsl:when test="function-available('thread:sleep')">
-                <xsl:value-of select="thread:sleep(3000)"/>        
+                <xsl:value-of select="thread:sleep($milliseconds)"/>        
             </xsl:when>
             <xsl:otherwise>
                 <xsl:message>Function thread:sleep not available</xsl:message>

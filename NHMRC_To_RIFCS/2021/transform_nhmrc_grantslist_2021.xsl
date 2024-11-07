@@ -7,7 +7,7 @@
     
     <xsl:import href="../CORE/transform_nhmrc_grantslist_core.xsl"/>
     
-    <xsl:variable name="AdminInstitutions" select="document('nhmrc_admin_institutions_manual_update_ror_id_2023.xml')"/>
+    <xsl:variable name="AdminInstitutions" select="document('nhmrc_admin_institutions_manual_update_ror_id_2021.xml')"/>
     
     
     <xsl:template match="/root">
