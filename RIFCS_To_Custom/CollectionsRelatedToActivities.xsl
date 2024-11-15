@@ -10,8 +10,8 @@
     <xsl:param name="columnSeparator" select="'^'"/>
     <xsl:param name="valueSeparator" select="','"/>
     
-    <xsl:param name="activityXML" select="document('file:///home/csiroanu/projects/UNIofAdelaide_Project/FromProductionRDA_DataConnect/University-of-Adelaide-MainDatasource_And_MintDatasource_RIF-CS-Export_ProductionPublishedActivities.xml')"/>
-    <xsl:param name="collectionXML_prod" select="document('file:///home/csiroanu/projects/UNIofAdelaide_Project/University-of-Adelaide-Figshare-RIF-CS-Export_FigshareProdPublishedCollections.xml')"/>
+    <xsl:param name="activityXML" select="document('file:~/git/projects/UNIofAdelaide_Project/FromProductionRDA_DataConnect/University-of-Adelaide-MainDatasource_And_MintDatasource_RIF-CS-Export_ProductionPublishedActivities.xml')"/>
+    <xsl:param name="collectionXML_prod" select="document('file:~/git/projects/UNIofAdelaide_Project/University-of-Adelaide-Figshare-RIF-CS-Export_FigshareProdPublishedCollections.xml')"/>
     
     <!-- This can be run on Collection registryObjects xml, to find each activity related to the Collection -->
     
