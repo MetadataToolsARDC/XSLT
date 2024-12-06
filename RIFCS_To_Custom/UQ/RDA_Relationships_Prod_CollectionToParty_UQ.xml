@@ -2,7 +2,7 @@
   <lst name="responseHeader">
     <bool name="zkConnected">true</bool>
     <int name="status">0</int>
-    <int name="QTime">467</int>
+    <int name="QTime">417</int>
     <lst name="params">
       <str name="q">type:relationship AND from_group:"The University of Queensland" AND
         to_group:"The University of Queensland" AND (from_class:collection OR from_class:activity OR
