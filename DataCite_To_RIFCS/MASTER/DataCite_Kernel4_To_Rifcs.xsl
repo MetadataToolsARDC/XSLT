@@ -12,44 +12,49 @@
 	
     <xsl:import href="CustomFunctions.xsl"/>
     
+    <!-- All values of params below will be overriden in the case where an xsl imports this file, 
+        then sets the param values itself, so the values below can be considered default values -->
     <xsl:param name="global_originatingSource" select="'DataCite'"/>
-    <xsl:param name="global_group" select="'DataCite'"/>
+    <xsl:param name="global_group" select="'Health Data Australia Contributor Records'"/>
     <xsl:param name="global_acronym" select="'DataCite'"/>
     <xsl:param name="global_publisherName" select="''"/>
     <xsl:param name="global_rightsStatement" select="''"/>
     <xsl:param name="global_project_identifier_strings" select="'raid'" as="xs:string*"/>
-    <!--xsl:param name="global_baseURI" select="''"/-->
-    <!--xsl:param name="global_path" select="''"/-->
-      
+    <xsl:param name="global_create_and_relate_party_missing_identifier" select="false()"/>
+    <xsl:param name="global_create_and_relate_activity_missing_identifier" select="false()"/>
+    <xsl:variable name="registry_identifier_normalise_api_url" select="'https://researchdata.edu.au/api/registry/myceliumservices/identifiers/normalise'"/>  
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
+    <!-- don't create parties for NHMRC and ARC -->
+    <xsl:variable name="ignorePartiesWithIdentifierList" select="'ROR.ORG/011KF5R70,10.13039/501100000925,10.13039/501100000923'"/>
+
 
     <xsl:template match="/">
         <xsl:message select="'DataCite_Kernel4_To_Rifcs'"/>
         
         <xsl:apply-templates select="resource" mode="datacite_4_to_rifcs_collection">
-            <xsl:with-param name="dateAccessioned"/>
+            <xsl:with-param name="originatingSource"/>
         </xsl:apply-templates>
         
     </xsl:template>
     
     <xsl:template match="resource" mode="resourceSubType">
         <xsl:choose>
-            <xsl:when test="boolean(custom:sequenceContains(resourceType/@resourceTypeGeneral, 'dataset')) = true()">
+            <xsl:when test="count(resourceType[contains(lower-case(@resourceTypeGeneral), 'dataset')]) > 0">
                 <xsl:value-of select="'dataset'"/>
             </xsl:when>
-            <xsl:when test="boolean(custom:sequenceContains(resourceType/@resourceTypeGeneral, 'text')) = true()">
+            <xsl:when test="count(resourceType[contains(lower-case(@resourceTypeGeneral), 'text')]) > 0">
                 <xsl:value-of select="'publication'"/>
             </xsl:when>
-            <xsl:when test="boolean(custom:sequenceContains(resourceType/@resourceTypeGeneral, 'software')) = true()">
+            <xsl:when test="count(resourceType[contains(lower-case(@resourceTypeGeneral), 'software')]) > 0">
                 <xsl:value-of select="'software'"/>
             </xsl:when>
-            <xsl:when test="boolean(custom:sequenceContains(resourceType/@resourceTypeGeneral, 'service')) = true()">
+            <xsl:when test="count(resourceType[contains(lower-case(@resourceTypeGeneral), 'service')]) > 0">
+               <xsl:value-of select="'report'"/>
+            </xsl:when>
+            <xsl:when test="count(resourceType[contains(lower-case(@resourceTypeGeneral), 'website')]) > 0">
                 <xsl:value-of select="'report'"/>
             </xsl:when>
-            <xsl:when test="boolean(custom:sequenceContains(resourceType/@resourceTypeGeneral, 'website')) = true()">
-                <xsl:value-of select="'report'"/>
-            </xsl:when>
-            <xsl:when test="boolean(custom:sequenceContains(resourceType/@resourceTypeGeneral, 'model')) = true()">
+            <xsl:when test="count(resourceType[contains(lower-case(@resourceTypeGeneral), 'model')]) > 0">
                 <xsl:value-of select="'generate'"/>
             </xsl:when>
             <xsl:otherwise>
@@ -58,32 +63,30 @@
         </xsl:choose>
     </xsl:template>
     
-  
     <xsl:template match="resource" mode="datacite_4_to_rifcs_collection">
-        <xsl:param name="dateAccessioned"/>
+        <xsl:param name="originatingSource" as="xs:string*"/>
         
         <xsl:message select="'datacite_4_to_rifcs_collection'"/>
         
-        <registryObject>
-            <xsl:attribute name="group" select="$global_group"/>
-            
+        <registryObject group="{$global_group}">
+            <!-- HES-65 use the Publisher of the dataset for the group attribute -->
             <key>
-                <xsl:value-of select="concat('DataCite/', substring(string-join(for $n in fn:reverse(fn:string-to-codepoints(identifier[@identifierType = 'DOI'])) return string($n), ''), 0, 50))"/>
+                <xsl:value-of select="concat($global_acronym, '/', identifier[@identifierType = 'DOI'])"/>
             </key>
             
             <originatingSource>
-                <xsl:value-of select="$global_originatingSource"/>
+                <xsl:value-of select="$originatingSource"/>
             </originatingSource>
             
             <xsl:variable name="class">
                 <xsl:choose>
-                    <xsl:when test="boolean(custom:sequenceContains(resourceType/@resourceTypeGeneral, 'service')) = true()">
+                    <xsl:when test="count(resourceType[contains(lower-case(@resourceTypeGeneral), 'service')]) > 0">
                         <xsl:value-of select="'service'"/>
                     </xsl:when>
-                    <xsl:when test="boolean(custom:sequenceContains(resourceType/@resourceTypeGeneral, 'website')) = true()">
+                    <xsl:when test="count(resourceType[contains(lower-case(@resourceTypeGeneral), 'website')]) > 0">
                         <xsl:value-of select="'service'"/>
                     </xsl:when>
-                    <xsl:when test="boolean(custom:sequenceContains(resourceType/@resourceTypeGeneral, 'model')) = true()">
+                    <xsl:when test="count(resourceType[contains(lower-case(@resourceTypeGeneral), 'model')]) > 0">
                         <xsl:value-of select="'service'"/>
                     </xsl:when>
                     <xsl:otherwise>
@@ -98,54 +101,68 @@
                 <xsl:apply-templates select="." mode="resourceSubType"/>
             </xsl:attribute>
              
-                <xsl:apply-templates select="@todo[string-length(.) > 0]" mode="collection_date_modified"/>
+                <!--TODO xsl:apply-templates select="[boolean(string-length(.))]" mode="collection_date_modified"/-->
                 
-                <xsl:attribute name="dateAccessioned" select="$dateAccessioned"/>
+                <!-- TODO - xsl:attribute name="dateAccessioned" select=""/-->
                 
-                <xsl:apply-templates select="identifier[(@identifierType = 'DOI') and (string-length(.) > 0)]" mode="collection_extract_DOI_identifier"/>  
+                <xsl:apply-templates select="identifier[(@identifierType = 'DOI') and (boolean(string-length(.)))]" mode="collection_extract_DOI_identifier"/>  
                 
-                <xsl:apply-templates select="identifier[(@identifierType = 'DOI') and (string-length(.) > 0)]" mode="collection_extract_DOI_location"/>  
+                <xsl:apply-templates select="identifier[(@identifierType = 'DOI') and (boolean(string-length(.)))]" mode="collection_extract_DOI_location"/>  
                 
-                <xsl:apply-templates select="identifier[string-length(.) > 0]" mode="identifier"/>
+                <xsl:apply-templates select="identifier[boolean(string-length(.))]" mode="identifier"/>
                 
-                <xsl:apply-templates select="identifier[(@identifierType != 'DOI') and (string-length(.) > 0)]" mode="collection_location_doi"/>
+               <xsl:apply-templates select="identifier[('DOI' = @identifierType) and boolean(string-length(.))]" mode="collection_location_doi"/>
                 
                 <!-- if no doi, use handle as location -->
-                <xsl:if test="count(identifier[(@identifierType = 'DOI') and (string-length(.) > 0)]) = 0">
+                <xsl:if test="count(identifier[(@identifierType = 'DOI') and (boolean(string-length(.)))]) = 0">
                     <xsl:apply-templates select="identifier[contains(lower-case(@identifierType),'handle')]" mode="collection_location_handle"/>
                     
                 </xsl:if>
                 
                 <!--xsl:apply-templates select="../../oai:header/oai:identifier[contains(.,'oai:eprints.utas.edu.au:')]" mode="collection_location_nodoi"/-->
                 
-                <xsl:apply-templates select="titles/title[string-length(.) > 0]" mode="collection_name"/>
+                <xsl:apply-templates select="titles/title[boolean(string-length(.))]" mode="collection_name"/>
                 
                 <!-- xsl:apply-templates select="dc:identifier.orcid" mode="collection_relatedInfo"/ -->
                 
                 <xsl:apply-templates select="relatedIdentifiers/relatedIdentifier" mode="collection_relatedInfo"/>
                 
                <xsl:apply-templates select="relatedItems/relatedItem" mode="collection_relatedInfo"/>
+               <!-- creator and contributor may have multiple nameIdentifier -->
+               <xsl:apply-templates select="creators/creator[nameIdentifier/text() != '']" mode="collection_relatedInfo"/>
+               <xsl:apply-templates select="contributors/contributor[boolean(string-length(nameIdentifier))]" mode="collection_relatedInfo"/>
                
-               <xsl:apply-templates select="creators/creator[string-length(.) > 0]" mode="collection_relatedInfo"/>
                
-                <xsl:apply-templates select="contributors/contributor[string-length(.) > 0]" mode="collection_relatedInfo"/>
-                
+               <xsl:apply-templates select="fundingReferences/fundingReference[boolean(string-length(funderIdentifier))]" mode="collection_relatedInfo_funder"/>
+               
+               <!--xsl:apply-templates select="fundingReferences/fundingReference[boolean(string-length(awardNumber)) or boolean(string-length(awardNumber/@awardURI))]"  mode="collection_relatedInfo_grant"/-->
+               
+               <xsl:if test="$global_create_and_relate_activity_missing_identifier">
+                <xsl:apply-templates select="fundingReferences/fundingReference[boolean(string-length(awardTitle)) and (not(boolean(string-length(awardNumber))) and not(boolean(string-length(awardNumber/@awardURI))))]"  mode="collection_relatedObject_grant"/>
+               </xsl:if>
+               
+               <xsl:if test="true() = $global_create_and_relate_party_missing_identifier">
+                    <xsl:apply-templates select="creators/creator[not(boolean(string-length(nameIdentifier)))]" mode="collection_relatedObject"/>
+                    <xsl:apply-templates select="contributors/contributor[boolean(string-length(nameIdentifier))]" mode="collection_relatedObject"/>
+                   <xsl:apply-templates select="fundingReferences/fundingReference[boolean(string-length(funderIdentifier))]" mode="collection_relatedObject_funder"/>
+               </xsl:if>
+               
                 <xsl:apply-templates select="subjects/subject" mode="collection_subject"/>
                 
-                <xsl:apply-templates select="geoLocations/geoLocation/geoLocationPlace[string-length(.) > 0]" mode="collection_spatial_coverage"/>
+                <xsl:apply-templates select="geoLocations/geoLocation/geoLocationPlace[boolean(string-length(.))]" mode="collection_spatial_coverage"/>
                 
-                <xsl:apply-templates select="dates/date[string-length(.) > 0]" mode="collection_dates"/>
+                <xsl:apply-templates select="dates/date[boolean(string-length(.))]" mode="collection_dates"/>
                 
-                <xsl:apply-templates select="rightsList/rights[string-length(.) > 0]" mode="collection_rights"/>
+                <xsl:apply-templates select="rightsList/rights[boolean(string-length(.))]" mode="collection_rights"/>
                 
                 <xsl:call-template name="rightsStatement"/>
                 
                 <xsl:choose>
-                    <xsl:when test="count(descriptions/description[string-length(.) > 0]) > 0">
-                        <xsl:apply-templates select="descriptions/description[string-length(.) > 0]" mode="collection_description_full"/>
+                    <xsl:when test="count(descriptions/description[boolean(string-length(.))]) > 0">
+                        <xsl:apply-templates select="descriptions/description[boolean(string-length(.))]" mode="collection_description_full"/>
                     </xsl:when>
-                    <xsl:when test="count(titles/title[string-length(.) > 0]) > 0">
-                        <xsl:apply-templates select="titles/title[string-length(.) > 0]" mode="collection_description_brief"/>
+                    <xsl:when test="count(titles/title[boolean(string-length(.))]) > 0">
+                        <xsl:apply-templates select="titles/title[boolean(string-length(.))]" mode="collection_description_brief"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:call-template name="collection_description_default"/>
@@ -153,11 +170,11 @@
                 </xsl:choose>
                
                
-                <xsl:apply-templates select="dates/date[(@dateType='Collected') and (string-length(.) > 0)]" mode="collection_dates_coverage"/>  
+                <xsl:apply-templates select="dates/date[(@dateType='Collected') and (boolean(string-length(.)))]" mode="collection_dates_coverage"/>  
                 
-                <!--xsl:apply-templates select="dc:source[string-length(.) > 0]" mode="collection_citation_info"/-->  
+                <!--xsl:apply-templates select="dc:source[boolean(string-length(.))]" mode="collection_citation_info"/-->  
                 
-                <!--xsl:apply-templates select="dcterms:bibliographicCitation[string-length(.) > 0]" mode="collection_citation_info"/-->  
+                <!--xsl:apply-templates select="dcterms:bibliographicCitation[boolean(string-length(.))]" mode="collection_citation_info"/-->  
                 
                 <xsl:apply-templates select="." mode="collection_citationInfo_citationMetadata"/>
                 
@@ -259,6 +276,59 @@
         </relatedInfo>
     </xsl:template>
     
+    <!-- For relating grant that has an awardNumber or awardNumber/@awardURI -->
+    <xsl:template match="fundingReference" mode="collection_relatedInfo_grant">
+        <relatedInfo>
+            <xsl:attribute name="type">
+                <xsl:text>activity</xsl:text> <!-- Change to 'grant' if required -->
+            </xsl:attribute>
+            
+            <xsl:choose>
+                <xsl:when test="
+                    boolean(string-length(awardNumber/@awardURI)) and
+                    boolean(string-length(awardNumber))">
+                    <identifier type="{awardNumber/@awardURI}">
+                        <xsl:value-of select="awardNumber"/>
+                    </identifier>
+                </xsl:when>
+                <xsl:when test="boolean(string-length(awardNumber/@awardURI))">
+                    <identifier type="{awardNumber/@awardURI}">
+                        <xsl:value-of select="awardNumber/@awardURI"/>
+                    </identifier>
+                </xsl:when>
+                <xsl:when test="boolean(string-length(awardNumber))">
+                    <identifier type="{awardNumber}">
+                        <xsl:value-of select="awardNumber"/>
+                    </identifier>
+                </xsl:when>
+            </xsl:choose>
+            
+            <xsl:if test="boolean(string-length(awardTitle))">
+                <title>
+                  <xsl:value-of select="awardTitle"/>
+                </title>
+            </xsl:if>
+            
+            <!-- Currently using vocab term 'isOutputOf' to relate this Collection to the (grant) Activity, 
+                 noting that the vocabs documentation specifies that 'isFundedBy' ought only be for where:
+                - a Party is funded by a Party
+                - a Party is funded by a (program) Activity
+                - an Activity is funded by a (program) Activity -->
+            <relation type="isOutputOf"/>
+            
+        </relatedInfo>
+    </xsl:template>
+    
+    <!-- For creator who has no identifier - relate with relatedObject -->
+    <xsl:template match="fundingReference" mode="collection_relatedObject_grant">
+        <relatedObject>
+            <key>
+                <xsl:value-of select="dcrifcsFunc:formatKey(awardTitle)"/>
+            </key>
+            <relation type="isOutputOf"/>
+        </relatedObject>
+    </xsl:template>
+    
     <xsl:template match="relatedItem" mode="collection_relatedInfo">
         <relatedInfo>
             <xsl:attribute name="type">
@@ -288,7 +358,7 @@
         <xsl:variable name="inferredRelation" as="xs:string*">
             <xsl:for-each select="tokenize($global_project_identifier_strings, '\|')">
                 <xsl:variable name="testString" select="." as="xs:string"/>
-                <xsl:if test="string-length($testString)">
+                <xsl:if test="boolean(string-length($testString))">
                     <xsl:if test="count($currentNode[contains(lower-case(.), $testString)])">
                         <xsl:text>isOutputOf</xsl:text>
                     </xsl:if>
@@ -297,16 +367,16 @@
         </xsl:variable>
         
         <xsl:choose>
-            <xsl:when test="string-length($inferredRelation[1])">
+            <xsl:when test="boolean(string-length($inferredRelation[1]))">
                 <xsl:value-of select="$inferredRelation[1]"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:choose>
-                    <xsl:when test="string-length(@relationType)">
+                    <xsl:when test="boolean(string-length(@relationType))">
                         <xsl:value-of select="@relationType"/>
                     </xsl:when>
                     <xsl:when test="'relatedItemIdentifier' = local-name(.)">
-                        <xsl:if test="string-length(parent::relatedItem/@relationType)">
+                        <xsl:if test="boolean(string-length(parent::relatedItem/@relationType))">
                             <xsl:value-of select="parent::relatedItem/@relationType"/>
                         </xsl:if>
                     </xsl:when>
@@ -330,6 +400,25 @@
         
     </xsl:template>
     
+    <xsl:template match="node()" mode="party_type_core">
+        
+        <xsl:choose>
+            
+            <!-- @nameType 'Personal' is default for nameType in DataCite, so only alter to group if 'Organizational' -->
+            <xsl:when test="
+                ('organizational' = lower-case(contributorName/@nameType)) or
+                ('organizational' = lower-case(creatorName/@nameType)) or
+                (nameIdentifier[lower-case(/@nameIdentifierScheme) = 'ror'])"> 
+                <xsl:text>group</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:text>person</xsl:text>
+            </xsl:otherwise>
+        </xsl:choose>
+        
+    </xsl:template>
+    
+
     <xsl:template match="relatedIdentifier | relatedItemIdentifier" mode="related_item_type">
         <xsl:apply-templates select="." mode="related_item_type_core"/>
     </xsl:template>
@@ -357,25 +446,80 @@
         </relatedInfo>
     </xsl:template-->
     
-   
-    
+    <!-- For a creator who has a nameIdentifier -->
      <xsl:template match="creator" mode="collection_relatedInfo">
         <relatedInfo>
+            <xsl:attribute name="type">
+                <xsl:choose>
+                    <xsl:when test="creatorName/@nameType = 'Organizational'">
+                        <xsl:text>group</xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise><xsl:text>party</xsl:text></xsl:otherwise>
+                </xsl:choose>
+            </xsl:attribute>
             <identifier>
+                <xsl:variable name="selected-identifier">
+                    <xsl:choose>
+                        <xsl:when test="nameIdentifier[@nameIdentifierScheme = 'ORCID']/text() != ''">
+                            <xsl:message><xsl:value-of select="nameIdentifirer[upper-case(@nameIdentifierScheme) = 'ORCID']/text()"/></xsl:message>
+                            <xsl:value-of select="nameIdentifier[upper-case(@nameIdentifierScheme) = 'ORCID']/text()"/>
+                        </xsl:when>
+                        <xsl:when test="nameIdentifier[upper-case(@nameIdentifierScheme) = 'ROR']/text() != ''">
+                            <xsl:value-of select="nameIdentifier[upper-case(@nameIdentifierScheme) = 'ROR']/text()"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="nameIdentifier[text() != ''][1]/text()"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:variable name="selected-identifier-type">
+                    <xsl:choose>
+                        <xsl:when test="nameIdentifier[upper-case(@nameIdentifierScheme) = 'ORCID']/text() != ''">
+                            <xsl:text>ORCID</xsl:text>
+                        </xsl:when>
+                        <xsl:when test="nameIdentifier[upper-case(@nameIdentifierScheme) = 'ROR']/text() != ''">
+                            <xsl:text>ROR</xsl:text>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="nameIdentifier[text() != ''][1]/@nameIdentifierScheme"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
                 <xsl:attribute name="type">
-                    <xsl:value-of select="nameIdentifier/@nameIdentifierScheme"/>
+                    <xsl:value-of select="$selected-identifier-type"/>
                 </xsl:attribute>
-                <xsl:value-of select="nameIdentifier"/>
+                <xsl:value-of select="$selected-identifier"/>
             </identifier>
             <title>
                 <xsl:value-of select="dcrifcsFunc:formatName(creatorName)"/> 
             </title>
-            <relation type="hasCollector"/>
+            <relation type="Creator"/>
         </relatedInfo>
     </xsl:template>
     
+    <!-- For creator who has no identifier - relate with relatedObject -->
+    <xsl:template match="creator" mode="collection_relatedObject">
+        <relatedObject>
+            <key>
+               <xsl:value-of select="dcrifcsFunc:formatKey(creatorName)"/>
+            </key>
+            <relation type="hasCollector"/>
+        </relatedObject>
+    </xsl:template>
+    
+    <!-- For contributor who has a name identifier -->
     <xsl:template match="contributor" mode="collection_relatedInfo">
         <relatedInfo>
+            <xsl:attribute name="type">
+                <xsl:choose>
+                    <xsl:when test="@contributorType = 'Distributor'">
+                        <xsl:text>group</xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:text>party</xsl:text>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:attribute>
             <identifier>
                 <xsl:attribute name="type">
                     <xsl:value-of select="nameIdentifier/@nameIdentifierScheme"/>
@@ -385,9 +529,68 @@
             <title>
                 <xsl:value-of select="dcrifcsFunc:formatName(contributorName)"/> 
             </title>
-            <relation type="hasCollector"/>
+            <!-- HES-67 -->
+            <xsl:element name="relation">
+                <xsl:attribute name="type">
+                    <xsl:choose>
+                        <xsl:when test="@contributorType = 'Distributor'">
+                            <xsl:text>isAvailableThrough</xsl:text>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:text>hasCollector</xsl:text>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:attribute>
+            </xsl:element>
         </relatedInfo>
     </xsl:template>
+    
+    <!-- For contributor who has no identifier - relate with relatedObject -->
+    <xsl:template match="contributor" mode="collection_relatedObject">
+        <relatedObject>
+            <key>
+                <xsl:value-of select="dcrifcsFunc:formatKey(contributorName)"/>
+            </key>
+            <relation type="hasCollector"/>
+        </relatedObject>
+    </xsl:template>
+    
+    
+    <!-- For funder who has a name identifier -->
+    <xsl:template match="fundingReference" mode="collection_relatedInfo_funder">
+        <relatedInfo>
+            <xsl:attribute name="type">
+                <xsl:text>group</xsl:text>
+            </xsl:attribute>
+            <identifier>
+                <xsl:attribute name="type">
+                    <xsl:value-of select="funderIdentifier/@funderIdentifierType"/>
+                </xsl:attribute>
+                <xsl:value-of select="funderIdentifier"/>
+            </identifier>
+            <title>
+                <xsl:value-of select="dcrifcsFunc:formatName(funderName)"/>
+            </title>
+            
+            <!-- Currently using vocab term 'isEnrichedBy' to relate this Collection to the (funder) Party, 
+                 noting that the vocabs documentation specifies that 'isFundedBy' ought only be for where:
+                - a Party is funded by a Party
+                - a Party is funded by a (program) Activity
+                - an Activity is funded by a (program) Activity -->
+            <relation type="isFundedBy"/>
+        </relatedInfo>
+    </xsl:template>
+    
+    <!-- For funder who has no identifier - relate with relatedObject -->
+    <xsl:template match="fundingReference" mode="collection_relatedObject_funder">
+        <relatedObject>
+            <key>
+                <xsl:value-of select="dcrifcsFunc:formatKey(funderName)"/>
+            </key>
+            <relation type="isFundedBy"/>
+        </relatedObject>
+    </xsl:template>
+    
     
     <xsl:template match="date" mode="collection_dates">
         <dates type="{@dateType}">
@@ -399,7 +602,7 @@
 
     
     <xsl:template match="subject" mode="collection_subject">
-        <xsl:if test="string-length(.) > 0">
+        <xsl:if test="boolean(string-length(.))">
             <subject type="local">
                 <xsl:value-of select="normalize-space(.)"/>
             </subject>
@@ -441,7 +644,17 @@
     </xsl:template>
     
     <xsl:template match="description" mode="collection_description_full">
-        <description type="full">
+        <description>
+            <xsl:attribute name="type">
+                <xsl:choose>
+                    <xsl:when test="@descriptionType = 'TechnicalInfo' and count(following-sibling::description[@descriptionType != 'TechnicalInfo']) + count(preceding-sibling::description[@descriptionType != 'TechnicalInfo']) > 0">
+                        <xsl:text>note</xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:text>full</xsl:text>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:attribute>
             <xsl:value-of select="normalize-space(.)"/>
         </description>
     </xsl:template>
@@ -487,20 +700,20 @@
         <citationInfo>
             <citationMetadata>
                 <xsl:choose>
-                    <xsl:when test="count(identifier[(@identifierType = 'DOI') and (string-length() > 0)]) > 0">
+                    <xsl:when test="count(identifier[(@identifierType = 'DOI') and boolean(string-length())]) > 0">
                         <xsl:apply-templates select="identifier[(@identifierType = 'DOI')][1]" mode="identifier"/>
                     </xsl:when>
-                    <xsl:when test="count(identfier[(string-length() > 0)]) > 0">
-                        <xsl:apply-templates select="identifier[(string-length() > 0)][1]" mode="identifier"/>
+                    <xsl:when test="count(identfier[boolean(string-length())]) > 0">
+                        <xsl:apply-templates select="identifier[boolean(string-length())][1]" mode="identifier"/>
                     </xsl:when>
-                    <xsl:when test="count(alternateIdentifier[(@alternateIdentifierType = 'URL') and (string-length() > 0)]) > 0">
+                    <xsl:when test="count(alternateIdentifier[(@alternateIdentifierType = 'URL') and boolean(string-length())]) > 0">
                         <xsl:apply-templates select="alternateIdentifier[(@alternateIdentifierType = 'URL')][1]" mode="identifier"/>
                     </xsl:when>
-                    <xsl:when test="count(alternateIdentifier[(@alternateIdentifierType = 'PURL') and (string-length() > 0)]) > 0">
+                    <xsl:when test="count(alternateIdentifier[(@alternateIdentifierType = 'PURL') and boolean(string-length())]) > 0">
                         <xsl:apply-templates select="alternateIdentifier[(@alternateIdentifierType = 'PURL')][1]" mode="identifier"/>
                     </xsl:when>
-                    <xsl:when test="count(alternateIdentifier[(string-length() > 0)]) > 0">
-                        <xsl:apply-templates select="alternateIdentifier[(string-length() > 0)][1]" mode="identifier"/>
+                    <xsl:when test="count(alternateIdentifier[boolean(string-length())]) > 0">
+                        <xsl:apply-templates select="alternateIdentifier[boolean(string-length())][1]" mode="identifier"/>
                     </xsl:when>
                 </xsl:choose>
                 
@@ -526,10 +739,10 @@
                 </date>
                 <url>
                     <xsl:choose>
-                        <xsl:when test="count(alternateIdentifier[(@alternateIdentifierType = 'URL') and (string-length() > 0)]) > 0">
+                        <xsl:when test="count(alternateIdentifier[(@alternateIdentifierType = 'URL') and boolean(string-length())]) > 0">
                             <xsl:value-of select="alternateIdentifier[(@alternateIdentifierType = 'URL')][1]"/>
                         </xsl:when>
-                        <xsl:when test="count(alternateIdentifier[(@alternateIdentifierType = 'PURL') and (string-length() > 0)]) > 0">
+                        <xsl:when test="count(alternateIdentifier[(@alternateIdentifierType = 'PURL') and boolean(string-length())]) > 0">
                             <xsl:value-of select="alternateIdentifier[(@alternateIdentifierType = 'PURL')][1]"/>
                         </xsl:when>
                     </xsl:choose>
@@ -550,7 +763,7 @@
                 <xsl:otherwise>
                     <namePart type="family">
                         <xsl:choose>
-                            <xsl:when test="string-length(familyName) > 0">
+                            <xsl:when test="boolean(string-length(familyName))">
                                 <xsl:value-of select="familyName"/>
                             </xsl:when>
                             <xsl:when test="contains(contributorName, ',')">
@@ -563,7 +776,7 @@
                     </namePart>
                     <namePart type="given">
                         <xsl:choose>
-                            <xsl:when test="string-length(givenName)">
+                            <xsl:when test="boolean(string-length(givenName))">
                                 <xsl:value-of select="givenName"/>
                             </xsl:when>
                             <xsl:when test="contains(contributorName, ',')">
@@ -591,7 +804,7 @@
                 <xsl:otherwise>
                     <namePart type="family">
                         <xsl:choose>
-                            <xsl:when test="string-length(familyName) > 0">
+                            <xsl:when test="boolean(string-length(familyName))">
                                 <xsl:value-of select="familyName"/>
                             </xsl:when>
                             <xsl:when test="contains(creatorName, ',')">
@@ -604,7 +817,7 @@
                     </namePart>
                     <namePart type="given">
                         <xsl:choose>
-                            <xsl:when test="string-length(givenName)">
+                            <xsl:when test="boolean(string-length(givenName))">
                                 <xsl:value-of select="givenName"/>
                             </xsl:when>
                             <xsl:when test="contains(creatorName, ',')">
@@ -621,6 +834,308 @@
         </contributor>
     </xsl:template>
     
+    
+    <!-- ***************************************** -->
+    <!-- PARTY RECORDS -->
+    
+    <!-- https://jira.ardc.edu.au/browse/HES-33 -->
+    
+    <xsl:template match="creator" mode="datacite_4_to_rifcs_party">
+        <xsl:param name="originatingSource" as="xs:string*"/>
+        <xsl:variable name="selected-identifier">
+            <xsl:choose>
+                <xsl:when test="nameIdentifier[@nameIdentifierScheme = 'ORCID']/text() != ''">
+                    <xsl:message><xsl:value-of select="nameIdentifirer[upper-case(@nameIdentifierScheme) = 'ORCID']/text()"/></xsl:message>
+                    <xsl:value-of select="nameIdentifier[upper-case(@nameIdentifierScheme) = 'ORCID']/text()"/>
+                </xsl:when>
+                <xsl:when test="nameIdentifier[upper-case(@nameIdentifierScheme) = 'ROR']/text() != ''">
+                    <xsl:value-of select="nameIdentifier[upper-case(@nameIdentifierScheme) = 'ROR']/text()"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:message>FISH<xsl:value-of select="nameIdentifier[text() != '']/text()"/></xsl:message>
+                    <xsl:value-of select="nameIdentifier[text() != '']/text()"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="selected-identifier-type">
+            <xsl:choose>
+                <xsl:when test="nameIdentifier[upper-case(@nameIdentifierScheme) = 'ORCID']/text() != ''">
+                    <xsl:text>ORCID</xsl:text>
+                </xsl:when>
+                <xsl:when test="nameIdentifier[upper-case(@nameIdentifierScheme) = 'ROR']/text() != ''">
+                    <xsl:text>ROR</xsl:text>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="nameIdentifier[text() != '']/@nameIdentifierScheme"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="url" select="concat($registry_identifier_normalise_api_url, '?identifier_value=', encode-for-uri($selected-identifier), '&amp;identifier_type=', encode-for-uri($selected-identifier-type))"/>
+        <xsl:variable name="response" as="node()*">
+            <xsl:if test="has-children($selected-identifier) and has-children($selected-identifier-type)">
+                <xsl:copy-of select="document($url)"/>
+            </xsl:if>
+        </xsl:variable>
+            
+        <xsl:variable name="normalisedIdentifier">
+            <xsl:for-each select="$response/*">
+                <xsl:apply-templates select="node()[name() = 'value']" mode="getValue"/>
+            </xsl:for-each>
+        </xsl:variable>
+        <xsl:variable name="normalisedIdentifierType">
+            <xsl:for-each select="$response/*">
+                <xsl:apply-templates select="node()[name() = 'type']" mode="getValue"/>
+            </xsl:for-each>
+        </xsl:variable> 
+        <registryObject group="{$global_group}">
+            <key>
+                <xsl:choose>
+                    <xsl:when test="string-length($normalisedIdentifier) &gt; 0">
+                        <xsl:value-of select="concat($global_acronym, '/', $normalisedIdentifier)"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="dcrifcsFunc:formatKey(creatorName)"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </key>
+            
+            <originatingSource>
+                <xsl:value-of select="$originatingSource"/>
+            </originatingSource>
+            
+            <party>
+                <xsl:attribute name="type">
+                    <xsl:apply-templates select="." mode="party_type_core"/>
+                </xsl:attribute>
+                <name type="primary">
+                    <namePart>
+                        <xsl:value-of select="normalize-space(creatorName)"/>
+                    </namePart>
+                </name>
+                <xsl:for-each select="nameIdentifier[text() != '']">
+                    <identifier>
+                        <xsl:attribute name="type" select="@nameIdentifierScheme"/>
+                        <xsl:value-of select="normalize-space(text())"/>
+                    </identifier>
+                </xsl:for-each>
+            </party>
+        </registryObject>
+    </xsl:template>
+    
+    <xsl:template match="fundingReference" mode="datacite_4_to_rifcs_party">
+        <xsl:param name="originatingSource" as="xs:string*"/>
+        <xsl:variable name="url" select="concat($registry_identifier_normalise_api_url, '?identifier_value=', encode-for-uri(funderIdentifier), '&amp;identifier_type=', encode-for-uri(funderIdentifier/@funderIdentifierType))"/>
+        <xsl:variable name="response" select="document($url)" />
+        <xsl:variable name="normalisedIdentifier">
+            <xsl:for-each select="$response/*">
+                <xsl:apply-templates select="node()[name() = 'value']" mode="getValue"/>
+            </xsl:for-each>
+        </xsl:variable>
+        <xsl:variable name="normalisedIdentifierType">
+            <xsl:for-each select="$response/*">
+                <xsl:apply-templates select="node()[name() = 'type']" mode="getValue"/>
+            </xsl:for-each>
+        </xsl:variable>   
+        <xsl:variable name="upperCasedIdentifier" select="translate($normalisedIdentifier,'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
+        <!-- don't create parties that we have many of already eg NHMRC -->
+        <xsl:if test="not(contains($ignorePartiesWithIdentifierList, $upperCasedIdentifier))">
+        <registryObject group="{$global_group}">
+            <key>
+                <xsl:choose>
+                    <xsl:when test="string-length($normalisedIdentifier) &gt; 0">
+                        <xsl:value-of select="concat($global_acronym, '/', $normalisedIdentifier)"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="dcrifcsFunc:formatKey(funderName)"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </key>
+            
+            <originatingSource>
+                <xsl:value-of select="$originatingSource"/>
+            </originatingSource>
+            <!-- funding ref is always an organisation -->
+            <party type="group">
+                <name type="primary">
+                    <namePart>
+                        <xsl:value-of select="normalize-space(funderName)"/>
+                    </namePart>
+                </name>
+                <xsl:if test="boolean(string-length(funderIdentifier))">
+                    <identifier>
+                        <xsl:attribute name="type">
+                            <xsl:value-of select="$normalisedIdentifierType"/>
+                        </xsl:attribute>
+                        <xsl:value-of select="$normalisedIdentifier"/>
+                    </identifier>
+                </xsl:if>
+            </party>
+        </registryObject> 
+    </xsl:if>
+        
+    </xsl:template>
+    
+    <xsl:template match="fundingReference" mode="datacite_4_to_rifcs_activity">
+        <xsl:param name="originatingSource" as="xs:string"/>
+        <xsl:variable name="url" select="concat($registry_identifier_normalise_api_url, '?identifier_value=', encode-for-uri(funderIdentifier), '&amp;identifier_type=', encode-for-uri(funderIdentifier/@funderIdentifierType))"/>
+        <xsl:variable name="response" select="document($url)" />
+        <xsl:variable name="normalisedIdentifier">
+            <xsl:for-each select="$response/*">
+                <xsl:apply-templates select="node()[name() = 'value']" mode="getValue"/>
+            </xsl:for-each>
+        </xsl:variable>
+        <xsl:variable name="normalisedIdentifierType">
+            <xsl:for-each select="$response/*">
+                <xsl:apply-templates select="node()[name() = 'type']" mode="getValue"/>
+            </xsl:for-each>
+        </xsl:variable> 
+        <registryObject group="{$global_group}">
+            
+            <key>
+                <xsl:choose>
+                    <xsl:when test="boolean(string-length(awardNumber/@awardURI))">
+                        <xsl:value-of select="concat($global_acronym, '/', awardNumber/@awardURI)"/>
+                    </xsl:when>
+                    <xsl:when test="boolean(string-length(awardNumber))">
+                        <xsl:value-of select="concat($global_acronym, '/', awardNumber)"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="dcrifcsFunc:formatKey(awardTitle)"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </key>
+            
+            <originatingSource>
+                <xsl:value-of select="$originatingSource"/>
+            </originatingSource>
+            
+            <activity>
+                <xsl:attribute name="type">
+                    <xsl:text>grant</xsl:text> <!-- ToDo: Activity type is set to 'grant' but consider how to determine wehther 'grant' or 'investment' -->
+                </xsl:attribute>
+                <name type="primary">
+                    <namePart>
+                        <xsl:choose>
+                            <xsl:when test="boolean(string-length(awardTitle))">
+                                <xsl:value-of select="awardTitle"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:if test="boolean(string-length(awardNumber))">
+                                    <xsl:value-of select="concat('AwardNumber: ', awardNumber, ' ')"/>
+                                </xsl:if>
+                                <xsl:if test="boolean(string-length(awardNumber/@awardURI))">
+                                    <xsl:value-of select="concat('AwardURI: ', awardNumber/@awardURI, ' ')"/>
+                                </xsl:if>
+                             </xsl:otherwise>
+                          </xsl:choose>
+                        
+                    </namePart>
+                </name>
+                <xsl:choose>
+                    <xsl:when test="
+                        boolean(string-length(awardNumber/@awardURI)) and
+                        boolean(string-length(awardNumber))">
+                        <identifier type="{awardNumber/@awardURI}">
+                            <xsl:value-of select="awardNumber"/>
+                        </identifier>
+                    </xsl:when>
+                    <xsl:when test="boolean(string-length(awardNumber/@awardURI))">
+                        <identifier type="{awardNumber/@awardURI}">
+                            <xsl:value-of select="@awardURI"/>
+                        </identifier>
+                    </xsl:when>
+                    <xsl:when test="boolean(string-length(awardNumber))">
+                        <identifier type="{awardNumber}">
+                            <xsl:value-of select="awardNumber"/>
+                        </identifier>
+                    </xsl:when>
+                </xsl:choose>
+                
+                <xsl:choose>
+                    <xsl:when test="boolean(string-length(funderIdentifier))">
+                        <relatedInfo>
+                            <identifier>
+                                <xsl:attribute name="type">
+                                    <xsl:value-of select="funderIdentifier/@funderIdentifierType"/>
+                                </xsl:attribute>
+                                <xsl:value-of select="funderIdentifier"/>
+                            </identifier>
+                            <relation type="isFundedBy"/>
+                        </relatedInfo>
+                    </xsl:when>
+                    <xsl:when test="boolean(funderName) and $global_create_and_relate_party_missing_identifier">
+                        <relatedObject>
+                            <key>
+                                <xsl:value-of select="concat($global_acronym, '/', dcrifcsFunc:formatKey(funderName))"/>
+                            </key>
+                            <relation type="isFundedBy"/>
+                        </relatedObject>
+                    </xsl:when>
+                </xsl:choose>
+            </activity>
+        </registryObject>
+    </xsl:template>
+    
+    
+    <xsl:template match="value | type" mode="getValue">
+        <xsl:value-of select="text()"/>
+    </xsl:template>
+    
+    
+    <xsl:template match="contributor" mode="datacite_4_to_rifcs_party">
+    
+        <xsl:param name="originatingSource" as="xs:string*"/>
+        <xsl:variable name="url" select="concat($registry_identifier_normalise_api_url, '?identifier_value=', encode-for-uri(nameIdentifier), '&amp;identifier_type=', encode-for-uri(nameIdentifier/@nameIdentifierScheme))"/>
+        <xsl:variable name="response" select="document($url)" />
+        <xsl:variable name="normalisedIdentifier">
+            <xsl:for-each select="$response/*">
+                <xsl:apply-templates select="node()[name() = 'value']" mode="getValue"/>
+            </xsl:for-each>
+        </xsl:variable>
+        <xsl:variable name="normalisedIdentifierType">
+            <xsl:for-each select="$response/*">
+                <xsl:apply-templates select="node()[name() = 'type']" mode="getValue"/>
+            </xsl:for-each>
+        </xsl:variable>
+        <registryObject group="{$global_group}">
+            
+            <key>
+                <xsl:choose>
+                    <xsl:when test="string-length($normalisedIdentifier) &gt; 0">
+                        <xsl:value-of select="concat($global_acronym, '/', $normalisedIdentifier)"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="dcrifcsFunc:formatKey(contributorName)"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </key>
+            
+            <originatingSource>
+                <xsl:value-of select="$originatingSource"/>
+            </originatingSource>
+            
+            <party>
+                <xsl:attribute name="type">
+                    <xsl:apply-templates select="." mode="party_type_core"/>
+                </xsl:attribute>
+                <name type="primary">
+                    <namePart>
+                        <xsl:value-of select="normalize-space(contributorName)"/>
+                    </namePart>
+                </name>
+                <identifier>
+                    <xsl:attribute name="type">
+                        <xsl:value-of select="$normalisedIdentifierType"/>
+                    </xsl:attribute>
+                    <xsl:value-of select="$normalisedIdentifier"/>
+                </identifier>
+            </party>
+        </registryObject>
+    </xsl:template>
+    
+    <!-- ***************************************** -->
+    <!-- FUNCTIONS -->
+    
     <xsl:function name="dcrifcsFunc:formatName">
         <xsl:param name="nameNode" as="node()"/>
         
@@ -629,6 +1144,10 @@
         <!-- If name is organizational, leave as is -->
         <xsl:choose>
             <xsl:when test="'Organizational' = $nameNode/@nameType">
+                <xsl:value-of select="$nameNode/text()"/>
+            </xsl:when>
+            <!-- HES-69 if name of the funder, leave as is -->
+            <xsl:when test="local-name($nameNode)  = 'funderName'">
                 <xsl:value-of select="$nameNode/text()"/>
             </xsl:when>
             <xsl:otherwise>

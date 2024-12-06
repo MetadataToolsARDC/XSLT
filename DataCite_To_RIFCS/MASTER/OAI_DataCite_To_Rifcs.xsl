@@ -8,8 +8,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:datacite_kernel_4="http://datacite.org/schema/kernel-4"
     exclude-result-prefixes="xsl custom oai fn xs xsi">
-	
-	
+    
     <xsl:import href="CustomFunctions.xsl"/>
     <xsl:import href="DataCite_Kernel4_To_Rifcs.xsl"/>
     
