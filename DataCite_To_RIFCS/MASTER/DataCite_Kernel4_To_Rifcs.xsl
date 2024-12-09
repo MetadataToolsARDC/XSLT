@@ -1086,7 +1086,11 @@
     
         <xsl:param name="originatingSource" as="xs:string*"/>
         <xsl:variable name="url" select="concat($registry_identifier_normalise_api_url, '?identifier_value=', encode-for-uri(nameIdentifier), '&amp;identifier_type=', encode-for-uri(nameIdentifier/@nameIdentifierScheme))"/>
-        <xsl:variable name="response" select="document($url)" />
+        <xsl:variable name="response" as="node()*">
+            <xsl:if test="string-length(nameIdentifier) and string-length(nameIdentifier/@nameIdentifierScheme)">
+                <xsl:copy-of select="document($url)"/>
+            </xsl:if>
+        </xsl:variable>
         <xsl:variable name="normalisedIdentifier">
             <xsl:for-each select="$response/*">
                 <xsl:apply-templates select="node()[name() = 'value']" mode="getValue"/>
@@ -1123,12 +1127,16 @@
                         <xsl:value-of select="normalize-space(contributorName)"/>
                     </namePart>
                 </name>
-                <identifier>
-                    <xsl:attribute name="type">
-                        <xsl:value-of select="$normalisedIdentifierType"/>
-                    </xsl:attribute>
-                    <xsl:value-of select="$normalisedIdentifier"/>
-                </identifier>
+                <xsl:if test="string-length($normalisedIdentifier) > 0">
+                    <identifier>
+                        <xsl:if test="string-length($normalisedIdentifierType) > 0">
+                            <xsl:attribute name="type">
+                                <xsl:value-of select="$normalisedIdentifierType"/>
+                            </xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="$normalisedIdentifier"/>
+                    </identifier>
+                </xsl:if>
             </party>
         </registryObject>
     </xsl:template>
