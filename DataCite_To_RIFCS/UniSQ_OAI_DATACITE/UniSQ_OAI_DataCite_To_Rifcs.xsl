@@ -45,15 +45,18 @@
             but switch later on datacita schema itself where necessary -->
         <xsl:message select="concat('name: ', fn:namespace-uri(oai:metadata/*:oai_datacite/*:payload/*:resource))"/>
         <xsl:apply-templates select="oai:metadata/*:oai_datacite/*:payload/datacite_kernel_4:resource" mode="datacite_4_to_rifcs_collection">
-            <xsl:with-param name="dateAccessioned" select="oai:header/oai:datestamp"/>
+            <xsl:with-param name="originatingSource" select="$global_originatingSource"/>
+            <!--xsl:with-param name="dateAccessioned" select="oai:header/oai:datestamp"/-->
         </xsl:apply-templates>
         
         <xsl:apply-templates select="//oai:metadata/*:oai_datacite/*:payload/datacite_kernel_4:resource/datacite_kernel_4:contributors/datacite_kernel_4:contributor" mode="datacite_4_to_rifcs_party">
-            <xsl:with-param name="dateAccessioned" select="oai:header/oai:datestamp"/>
+            <xsl:with-param name="originatingSource" select="$global_originatingSource"/>
+            <!--xsl:with-param name="dateAccessioned" select="oai:header/oai:datestamp"/-->
         </xsl:apply-templates>
         
         <xsl:apply-templates select="//oai:metadata/*:oai_datacite/*:payload/datacite_kernel_4:resource/datacite_kernel_4:creators/datacite_kernel_4:creator" mode="datacite_4_to_rifcs_party">
-            <xsl:with-param name="dateAccessioned" select="oai:header/oai:datestamp"/>
+            <xsl:with-param name="originatingSource" select="$global_originatingSource"/>
+            <!--xsl:with-param name="dateAccessioned" select="oai:header/oai:datestamp"/-->
         </xsl:apply-templates>
         
      </xsl:template>
