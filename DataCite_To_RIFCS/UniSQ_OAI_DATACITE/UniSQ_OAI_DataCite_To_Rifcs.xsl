@@ -9,10 +9,6 @@
     xmlns:datacite_kernel_4="http://datacite.org/schema/kernel-4"
     exclude-result-prefixes="xsl custom oai fn xs xsi">
     
-    <xsl:import href="UniSQ_Datacite_To_Rifcs.xsl"/>
-	
-	
-    <xsl:import href="CustomFunctions.xsl"/>
     <xsl:import href="DataCite_Kernel4_To_Rifcs.xsl"/>
     
     <xsl:param name="global_originatingSource" select="'University of Southern Queensland'"/>
