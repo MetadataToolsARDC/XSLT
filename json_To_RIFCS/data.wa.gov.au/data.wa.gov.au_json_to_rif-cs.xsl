@@ -6,8 +6,8 @@
     <!-- stylesheet to convert data.wa.gov.au xml (transformed from json with python script) to RIF-CS -->
     <xsl:output method="xml" version="1.0" encoding="UTF-8" omit-xml-declaration="yes" indent="yes"/>
     <xsl:strip-space elements="*"/>
-    <xsl:param name="global_originatingSource" select="'http://catalogue.beta.data.wa.gov.au'"/>
-    <xsl:param name="global_baseURI" select="'http://catalogue.beta.data.wa.gov.au/'"/>
+    <xsl:param name="global_originatingSource" select="'http://catalogue.data.wa.gov.au'"/>
+    <xsl:param name="global_baseURI" select="'http://catalogue.data.wa.gov.au/'"/>
     <xsl:param name="global_group" select="'data.wa.gov.au'"/>
    
     <xsl:template match="/">
