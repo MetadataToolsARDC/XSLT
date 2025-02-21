@@ -682,7 +682,7 @@
     
     <xsl:template match="rifcis:fullCitation" mode="collection_citationInfo_fullCitation">
         <citationInfo>
-            <fullCitation>
+            <fullCitation style="{@style}">
                 <xsl:value-of select="figFunc:characterReplace(., false())"/> <!-- maintain HTML false-->
             </fullCitation>
         </citationInfo>
