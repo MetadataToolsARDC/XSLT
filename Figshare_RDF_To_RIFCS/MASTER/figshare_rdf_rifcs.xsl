@@ -477,7 +477,7 @@
     
     <xsl:template match="rdfs:label" mode="collection_name">
         <name type="primary">
-           <xsl:variable name="name" select="figFunc:characterReplace(.)"/>
+            <xsl:variable name="name" select="figFunc:characterReplace(., false())"/> <!-- maintain HTML false-->
             <namePart>
                 <xsl:value-of select='$name'/>
             </namePart>
@@ -658,7 +658,7 @@
     <xsl:template match="bibo:abstract" mode="collection_description_full">
         
         <!--xsl:variable name="name" select='replace(.,"&#x00E2;&#x80;&#x99;", "&#8217;")'/-->
-        <xsl:variable name="description" select="figFunc:characterReplace(.)"/>
+        <xsl:variable name="description" select="figFunc:characterReplace(., true())"/> <!-- maintain HTML true-->
         <description type="full">
             <xsl:value-of select="$description"/>
         </description>
@@ -682,7 +682,9 @@
     
     <xsl:template match="rifcis:fullCitation" mode="collection_citationInfo_fullCitation">
         <citationInfo>
-            <xsl:copy-of copy-namespaces="no" select="."></xsl:copy-of>
+            <fullCitation>
+                <xsl:value-of select="figFunc:characterReplace(., false())"/> <!-- maintain HTML false-->
+            </fullCitation>
         </citationInfo>
     </xsl:template>
 
@@ -849,12 +851,23 @@
     
     <xsl:function name="figFunc:characterReplace">
         <xsl:param name="input"/>
+        <xsl:param name="maintainHTML" as="xs:boolean"/>
         <!--xsl:variable name="name" select='replace(.,"&#x00E2;&#x80;&#x99;", "&#8217;")'/-->
         <xsl:variable name="replaceSingleQuote" select='replace($input,"&#x00E2;&#x80;&#x99;", "&#x2019;")'/>
         <xsl:variable name="replaceLeftDoubleQuote" select='replace($replaceSingleQuote, "&#x00E2;&#x80;&#x9c;", "&#x201C;")'/>
         <xsl:variable name="replaceRightDoubleQuote" select='replace($replaceLeftDoubleQuote, "&#x00E2;&#x80;&#x9d;", "&#x201D;")'/>
         <xsl:variable name="replaceNarrowNoBreakSpace" select='replace($replaceRightDoubleQuote, "&#xE2;&#x80;&#xAF;", "&#x202F;")'/>
-        <xsl:value-of select="$replaceNarrowNoBreakSpace"/>
+        
+        <xsl:choose>
+            <xsl:when test="$maintainHTML">
+                <xsl:value-of select="$replaceNarrowNoBreakSpace"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:variable name="removeHTMLTags" select="replace($replaceNarrowNoBreakSpace, '&lt;[^&gt;]+&gt;', '')" />
+                <xsl:value-of select="$removeHTMLTags"/>
+            </xsl:otherwise>
+        </xsl:choose>
+        
     </xsl:function>
     
  
