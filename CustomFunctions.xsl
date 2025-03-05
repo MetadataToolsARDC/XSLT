@@ -88,6 +88,9 @@
             <xsl:when test="contains(lower-case($identifier), 'orcid')">
                 <xsl:text>orcid</xsl:text>
             </xsl:when>
+            <xsl:when test="contains(lower-case($identifier), 'ror')">
+                <xsl:text>ror</xsl:text>
+            </xsl:when>
             <xsl:when test="contains(lower-case($identifier), 'raid')">
                 <xsl:text>raid</xsl:text>
             </xsl:when>
