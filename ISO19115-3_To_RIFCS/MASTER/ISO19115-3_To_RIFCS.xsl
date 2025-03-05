@@ -295,7 +295,7 @@
         
         
         
-        <xsl:variable name="organisationNamesOnly_sequence" as="xs:string*">
+        <!--xsl:variable name="organisationNamesOnly_sequence" as="xs:string*">
             <xsl:for-each-group
                 select="mri:citation/cit:CI_Citation/cit:citedResponsibleParty/cit:CI_Responsibility/cit:party/cit:CI_Organisation[count(cit:individual) =0] |
                 ancestor::mdb:MD_Metadata/mdb:distributionInfo/*/mrd:distributionFormat/mrd:MD_Format/mrd:formatDistributor/mrd:MD_Distributor/mrd:distributorContact/cit:CI_Responsibility/cit:party/cit:CI_Organisation[count(cit:individual) =0] |
@@ -305,7 +305,7 @@
                 group-by="cit:name">
                 <xsl:value-of select="current-grouping-key()"/>
             </xsl:for-each-group>
-        </xsl:variable>
+        </xsl:variable-->
         
          <xsl:for-each
             select="mri:citation/cit:CI_Citation/cit:citedResponsibleParty/cit:CI_Responsibility/cit:party |
@@ -314,7 +314,7 @@
             ancestor::mdb:MD_Metadata/mdb:identificationInfo/*/mri:pointOfContact/cit:CI_Responsibility/cit:party |
             ancestor::mdb:MD_Metadata/mdb:contact/cit:CI_Responsibility/cit:party">
             <xsl:apply-templates select="." mode="registryObject_related_object">
-                <xsl:with-param name="orgNamesOnly_sequence" select="$organisationNamesOnly_sequence" as="xs:string*"/>
+                <!--xsl:with-param name="orgNamesOnly_sequence" select="$organisationNamesOnly_sequence" as="xs:string*"/-->
             </xsl:apply-templates>
         </xsl:for-each>
         
@@ -700,7 +700,7 @@
     
     <!-- RegistryObject - Related Object (Organisation or Individual) Element -->
     <xsl:template match="cit:party" mode="registryObject_related_object">
-        <xsl:param name="orgNamesOnly_sequence" as="xs:string*"/>
+        <!--xsl:param name="orgNamesOnly_sequence" as="xs:string*"/-->
         
             <xsl:variable name="name">
                 <xsl:choose>
@@ -718,7 +718,7 @@
                 <!-- If dealing with an organisation that has an individual, don't use the person's role to relate the organisation - only
                         relate this organisation if not already related, and use general 'hasAssociationWithin'-->
                 <xsl:when test="(string-length(cit:CI_Organisation/cit:name) > 0) and (count(cit:CI_Organisation/cit:individual/cit:CI_Individual) > 0)">
-                    <xsl:if test="(count($orgNamesOnly_sequence[. = $name]) = 0)">
+                    <!--xsl:if test="(count($orgNamesOnly_sequence[. = $name]) = 0)"-->
                         <relatedObject>
                             <key>
                                 <xsl:value-of select="concat($global_acronym, '/', translate(normalize-space($name),' ',''))"/>
@@ -729,7 +729,7 @@
                                </xsl:attribute>
                             </relation>
                         </relatedObject>
-                    </xsl:if>
+                    <!--/xsl:if-->
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:choose>
@@ -1771,6 +1771,7 @@
             
             <party type="person">
                 <xsl:apply-templates select="cit:contactInfo/cit:CI_Contact/cit:onlineResource/cit:CI_OnlineResource"/>
+                <xsl:apply-templates select="cit:partyIdentifier/mcc:MD_Identifier"/>
                 
                 <name type="primary">
                     <namePart>
@@ -1814,6 +1815,7 @@
                 
                 <party type="group">
                     <xsl:apply-templates select="cit:contactInfo/cit:CI_Contact/cit:onlineResource/cit:CI_OnlineResource"/>
+                    <xsl:apply-templates select="cit:partyIdentifier/mcc:MD_Identifier"/>
                     <xsl:apply-templates select="cit:contactInfo/cit:CI_Contact/cit:onlineResource/cit:CI_OnlineResource[contains(lower-case(.), 'abn')]" mode="ABN"/>
                     
                     <name type="primary">
@@ -1902,6 +1904,29 @@
                 </xsl:attribute>
                 <xsl:value-of select="cit:linkage"/>
             </identifier>
+        </xsl:if>
+    </xsl:template>
+    
+    <xsl:template match="cit:partyIdentifier/mcc:MD_Identifier">
+        <xsl:if test="string-length(mcc:code) > 0">
+            <xsl:choose>
+                <xsl:when test="starts-with(mcc:code/text(), 'http')">
+                    <identifier>
+                        <xsl:attribute name="type">
+                            <xsl:value-of select="'url'"/>       
+                        </xsl:attribute>
+                        <xsl:value-of select="mcc:code"/>
+                    </identifier>
+                </xsl:when>
+                <xsl:when test="string-length(mcc:codeSpace) > 0">
+                    <identifier>
+                        <xsl:attribute name="type">
+                            <xsl:value-of select="custom:getIdentifierType(mcc:codeSpace)"/>       
+                        </xsl:attribute>
+                        <xsl:value-of select="mcc:code"/>
+                    </identifier>
+                </xsl:when>
+            </xsl:choose>
         </xsl:if>
     </xsl:template>
     
