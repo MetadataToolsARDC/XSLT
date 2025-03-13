@@ -58,8 +58,8 @@
     <xsl:param name="global_path" select="''"/>
     <xsl:param name="global_group" select="''"/>
     <xsl:param name="global_spatialProjection" select="''"/>
-    <xsl:variable name="licenseCodelist" select="document('license-codelist.xml')"/>
-    <xsl:variable name="codelists" select="document('codelists_ISO19115-1.xml')"/>
+    <!--xsl:variable name="licenseCodelist" select="document('license-codelist.xml')"/-->
+    <!--xsl:variable name="codelists" select="document('codelists_ISO19115-1.xml')"/-->
     
     <!-- =========================================== -->
     <!-- RegistryObjects (root) Template             -->
@@ -186,9 +186,9 @@
                 <xsl:attribute name="type" select="$registryObjectTypeSubType_sequence[2]"/>
                         
                 <xsl:if test="$registryObjectTypeSubType_sequence[1] = 'collection'">
-                    <xsl:if test="string-length(mdb:dateInfo/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue = 'creation']/cit:date) > 0">
+                    <xsl:if test="count(mdb:dateInfo/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue = 'creation']/cit:date[string-length() > 0]) > 0">
                             <xsl:attribute name="dateAccessioned">
-                                <xsl:value-of select="mdb:dateInfo/cit:CI_Date[cit:dateType/cit:CI_DateTypeCode/@codeListValue = 'creation']/cit:date"/>
+                                <xsl:value-of select="mdb:dateInfo[(cit:CI_Date/cit:dateType/cit:CI_DateTypeCode/@codeListValue = 'creation') and (cit:CI_Date/cit:date[string-length() > 0])][1]/cit:CI_Date/cit:date"/>
                             </xsl:attribute>  
                         </xsl:if>
                 </xsl:if>
@@ -337,7 +337,10 @@
             select="mri:extent/gex:EX_Extent/gex:temporalElement/gex:EX_TemporalExtent"
             mode="registryObject_coverage_temporal"/>
         
-        <xsl:apply-templates select="mri:resourceConstraints/*" mode="registryObject_rights_licence_type_and_uri"/>
+        <!--xsl:apply-templates select="mri:resourceConstraints/*" mode="registryObject_rights_licence_type_and_uri"/-->
+        
+        <xsl:apply-templates select="mri:resourceConstraints/mco:MD_LegalConstraints"/>
+        <xsl:apply-templates select="mri:resourceConstraints/mco:MD_SecurityConstraints"/>
         
         <xsl:apply-templates select="mri:associatedResource/mri:MD_AssociatedResource" mode="registryObject_relatedInfo_associatedResource"/>
         
@@ -349,9 +352,9 @@
             select="mri:resourceConstraints/mco:MD_LegalConstraints[(count(mco:reference/cit:CI_Citation) = 0) and matches(mco:useConstraints/mco:MD_RestrictionCode/@codeListValue,  'licen.e') and (count(mco:useLimitation[string-length() > 0]) > 0)]"
             mode="registryObject_rights_license_useLimitation"/-->
        
-        <xsl:apply-templates
+        <!--xsl:apply-templates
             select="mri:resourceConstraints/mco:MD_LegalConstraints[(count(mco:reference/cit:CI_Citation) > 0)]"
-            mode="registryObject_rights_license_citation"/>
+            mode="registryObject_rights_license_citation"/-->
         
         <xsl:apply-templates
             select="."
@@ -736,7 +739,7 @@
                         <xsl:when test="count(distinct-values(preceding-sibling::cit:role/cit:CI_RoleCode/@codeListValu) > 0)">
                             <xsl:for-each select="distinct-values(preceding-sibling::cit:role/cit:CI_RoleCode/@codeListValue)">
                                 <xsl:variable name="role" select="."/>
-                                    <xsl:variable name="codelist"
+                                    <!--xsl:variable name="codelist"
                                         select="$codelists/codelists/codelist[@name = 'CI_RoleCode']"/>
                                     
                                     <xsl:if test="$global_debug">
@@ -745,7 +748,7 @@
                                     
                                     <xsl:variable name="type">
                                         <xsl:value-of select="$codelist/entry[code = $role]/description"/>
-                                    </xsl:variable>
+                                    </xsl:variable-->
                                     
                                   <relatedObject>
                                       <key>
@@ -754,9 +757,9 @@
                                       <relation>
                                           <xsl:attribute name="type">
                                               <xsl:choose>
-                                                  <xsl:when test="string-length($type) > 0">
+                                                  <!--xsl:when test="string-length($type) > 0">
                                                       <xsl:value-of select="$type"/>
-                                                  </xsl:when>
+                                                  </xsl:when-->
                                                   <xsl:when test="string-length($role) > 0">
                                                       <xsl:value-of select="$role"/>  
                                                   </xsl:when>
@@ -809,18 +812,18 @@
                                     <xsl:for-each select="distinct-values(ancestor::cit:CI_Responsibility/cit:role/cit:CI_RoleCode/@codeListValue[string-length() > 0])">
                                         <xsl:variable name="role" select="."/>
                                         <relation>
-                                            <xsl:variable name="codelist"
+                                            <!--xsl:variable name="codelist"
                                                 select="$codelists/codelists/codelist[@name = 'CI_RoleCode']"/>
                                             
                                             <xsl:variable name="type">
                                                 <xsl:value-of select="$codelist/entry[code = $role]/description"/>
-                                            </xsl:variable>
+                                            </xsl:variable-->
                                             
                                             <xsl:attribute name="type">
                                                 <xsl:choose>
-                                                    <xsl:when test="string-length($type) > 0">
+                                                    <!--xsl:when test="string-length($type) > 0">
                                                         <xsl:value-of select="$type"/>
-                                                    </xsl:when>
+                                                    </xsl:when-->
                                                     <xsl:when test="string-length($role) > 0">
                                                         <xsl:value-of select="$role"/>  
                                                     </xsl:when>
@@ -1324,7 +1327,7 @@
         </xsl:for-each>
     </xsl:template-->
    
-    <xsl:template match="mco:MD_LegalConstraints" mode="registryObject_rights_license_citation">
+    <!--xsl:template match="mco:MD_LegalConstraints" mode="registryObject_rights_license_citation">
         
         <xsl:if test="$global_debug = true()">
             <xsl:message select="'registryObject_rights_license_citation'"/>
@@ -1337,10 +1340,10 @@
          </xsl:call-template>
         </xsl:for-each>
         
-    </xsl:template>
+    </xsl:template-->
     
    <!-- RegistryObject - Rights License -->
-    <xsl:template name="populateLicence">
+    <!--xsl:template name="populateLicence">
         <xsl:param name="licenceText"/>
         
         <xsl:if test="$global_debug">
@@ -1423,9 +1426,9 @@
                             </xsl:for-each>
                          </xsl:otherwise>
                     </xsl:choose>
-     </xsl:template>
+     </xsl:template-->
     
-    <xsl:template match="*" mode="registryObject_rights_licence_type_and_uri">
+    <!--xsl:template match="*" mode="registryObject_rights_licence_type_and_uri">
         <xsl:variable name="topNode" select="." as="node()"/>
         
         <xsl:if test="$global_debug">
@@ -1464,15 +1467,15 @@
                         <xsl:attribute name="type" select="$licenseCodelist/gmx:CT_CodelistCatalogue/gmx:codelistItem/gmx:CodeListDictionary[(@*:id='LicenseCodeAustralia') or (@*:id='LicenseCodeInternational')]/gmx:codeEntry/gmx:CodeDefinition[contains(lower-case($licenseLinkTransformed), lower-case(replace(*:remarks, '\{n\}', '')))]/*:identifier[1]"/>
                         <xsl:attribute name="rightsUri" select="$licenseLink"/>
                         
-                        <!-- Find all character strings that contained this link, and add them to licence text if they contain more text than only the link itself (otherwise we double up with rightsUri) -->
+                        <Find all character strings that contained this link, and add them to licence text if they contain more text than only the link itself (otherwise we double up with rightsUri)>
                         <xsl:value-of select="string-join($topNode//*[contains(name(), 'CharacterString') and contains(text(), $licenseLink) and (string-length(text()) > string-length($licenseLink))], '&#xA;')"/>
                     </xsl:if>
                 </licence>
             </rights>
-        </xsl:for-each>
+        </xsl:for-each-->
         
         <!-- Add rightsStatement for each character string that did not contain a known license link and therefore was not handled above -->
-        <xsl:for-each select="$topNode//*[contains(name(), 'CharacterString')][string-length(.) > 0]">
+        <!--xsl:for-each select="$topNode//*[contains(name(), 'CharacterString')][string-length(.) > 0]">
             
             <xsl:variable name="currentText" select="." as="xs:string"/>
             
@@ -1500,7 +1503,7 @@
         
         
         
-    </xsl:template>
+    </xsl:template-->
     
     <xsl:template match="mri:MD_AssociatedResource" mode="registryObject_relatedInfo_associatedResource">
         <relatedInfo>
@@ -1508,16 +1511,11 @@
                 <xsl:value-of select="mri:initiativeType/mri:DS_InitiativeTypeCode/@codeListValue"/>
             </xsl:attribute>
             
-            <!-- There ought only be one of the following, but just in case there are more... -->
-                <xsl:for-each select="mri:name/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:code">
-                    
-                    <identifier>
-                        <xsl:attribute name="type">
-                            <xsl:value-of select="custom:getIdentifierType(.)"/>
-                        </xsl:attribute>
-                        <xsl:value-of select="."/>
-                    </identifier>
-                </xsl:for-each>
+                <xsl:apply-templates select="mri:name/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:code"/>
+                <xsl:apply-templates select="mri:name/cit:CI_Citation/cit:onlineResource/cit:CI_OnlineResource/cit:linkage"  mode="identifier"/>
+                <xsl:apply-templates select="mri:metadataReference/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:code"/>
+                <xsl:apply-templates select="mri:metadataReference/cit:CI_Citation/cit:onlineResource/cit:CI_OnlineResource/cit:linkage"  mode="identifier"/>
+                
                 
                 <relation>
                     <xsl:attribute name="type">
@@ -1532,15 +1530,90 @@
                     </xsl:attribute>
                 </relation>
             
-            <xsl:if test="boolean(count(mri:name/cit:CI_Citation/cit:title[string-length(.) > 0]))">
-                <title>
-                    <xsl:value-of select="string-join(mri:name/cit:CI_Citation/cit:title[string-length(.) > 0], ' - ')"/>
-                </title>
-            </xsl:if>
-            
+            <title>
+                <xsl:value-of select="concat(string-join(mri:name/cit:CI_Citation/cit:title[string-length(.) > 0], ' '), ' ', string-join(mri:metadataReference/cit:CI_Citation/cit:title[string-length(.) > 0], ' '))"/>
+            </title>
         </relatedInfo>
-    
     </xsl:template>
+    
+    <xsl:template match="mcc:code">
+        
+        <identifier>
+            <xsl:attribute name="type">
+                <xsl:value-of select="custom:getIdentifierType(.)"/>
+            </xsl:attribute>
+            <xsl:value-of select="."/>
+        </identifier>
+    </xsl:template>
+    
+    <xsl:template match="cit:linkage" mode="identifier">
+        
+        <identifier>
+            <xsl:attribute name="type">
+                <xsl:value-of select="custom:getIdentifierType(.)"/>
+            </xsl:attribute>
+            <xsl:value-of select="."/>
+        </identifier>
+    </xsl:template>
+    
+    <xsl:template match="mco:MD_LegalConstraints">
+        
+        <xsl:apply-templates select="mco:reference/cit:CI_Citation" mode="licence"/> 
+        <xsl:apply-templates select="mco:useLimitation[string-length(.) > 0]" mode="rightsStatement"/> 
+        <xsl:apply-templates select="mco:otherConstraints[string-length(.) > 0]" mode="rightsStatement"/> 
+        
+    </xsl:template>
+    
+    <xsl:template match="cit:CI_Citation" mode="licence"> 
+        <rights>
+            <licence>
+                <xsl:attribute name="rightsUri">
+                    <xsl:value-of select="cit:onlineResource/cit:CI_OnlineResource/cit:linkage"/>
+                </xsl:attribute>
+                <xsl:attribute name="type">
+                    <xsl:value-of select="cit:alternateTitle"/>
+                </xsl:attribute>
+                <xsl:value-of select="cit:title"/>
+            </licence>
+        </rights>
+    </xsl:template>
+    
+    <xsl:template match="mco:MD_SecurityConstraints">
+        <xsl:apply-templates select="mco:reference/cit:CI_Citation" mode="rightsStatement"/> 
+        <xsl:apply-templates select="mco:useLimitation[string-length(.) > 0]" mode="rightsStatement"/> 
+        <xsl:apply-templates select="mco:otherConstraints[string-length(.) > 0]" mode="rightsStatement"/> 
+    </xsl:template>
+    
+    <xsl:template match="cit:CI_Citation" mode="rightsStatement"> 
+        <rights>
+            <rightsStatement>
+                <xsl:attribute name="rightsUri">
+                    <xsl:value-of select="cit:onlineResource/cit:CI_OnlineResource/cit:linkage"/>
+                </xsl:attribute>
+                <xsl:value-of select="cit:title"/>
+            </rightsStatement>
+        </rights>
+    </xsl:template>
+    
+    <xsl:template match="mco:useLimitation" mode="rightsStatement"> 
+         <rights>
+            <rightsStatement>
+                <xsl:value-of select="."/>
+            </rightsStatement>
+        </rights>
+    </xsl:template>
+    
+    
+    <xsl:template match="mco:otherConstraints" mode="rightsStatement"> 
+        <rights>
+            <rightsStatement>
+                <xsl:value-of select="."/>
+            </rightsStatement>
+        </rights>
+    </xsl:template>
+   
+        
+     
     
     <!-- RegistryObject - Rights Statement Access -->
     <xsl:template match="*[contains(lower-case(name()),'identification')]" mode="registryObject_rights_access">

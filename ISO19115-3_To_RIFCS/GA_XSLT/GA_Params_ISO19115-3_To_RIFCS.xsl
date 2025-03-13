@@ -53,11 +53,4 @@
         <xsl:apply-templates select="." mode="middleFilter"/>
     </xsl:template>
     
-    <xsl:template match="@*|node()" mode="filter">
-        <xsl:message select="'Override filter for GA'"/>
-        <xsl:for-each select="//mdb:MD_Metadata[not(contains(lower-case(mdb:metadataScope[1]/mdb:MD_MetadataScope[1]/mdb:resourceScope[1]/mcc:MD_ScopeCode[1]/@codeListValue), 'document')) and not(contains(lower-case(mdb:metadataScope[1]/mdb:MD_MetadataScope[1]/mdb:resourceScope[1]/mcc:MD_ScopeCode[1]/@codeListValue), 'nongeographicdataset'))]">
-            <xsl:apply-templates select="." mode="process"/>
-        </xsl:for-each>
-    </xsl:template>
-    
 </xsl:stylesheet>
