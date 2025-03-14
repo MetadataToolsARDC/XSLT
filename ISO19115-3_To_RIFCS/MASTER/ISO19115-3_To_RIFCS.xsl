@@ -1,44 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" 
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:csw="http://www.opengis.net/cat/csw"
-    xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xmlns:cat="http://standards.iso.org/iso/19115/-3/cat" 
-    xmlns:cit="http://standards.iso.org/iso/19115/-3/cit" 
-    xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx" 
-    xmlns:gex="http://standards.iso.org/iso/19115/-3/gex" 
-    xmlns:lan="http://standards.iso.org/iso/19115/-3/lan" 
-    xmlns:srv="http://standards.iso.org/iso/19115/-3/srv" 
-    xmlns:mas="http://standards.iso.org/iso/19115/-3/mas" 
-    xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc" 
-    xmlns:mco="http://standards.iso.org/iso/19115/-3/mco" 
-    xmlns:mda="http://standards.iso.org/iso/19115/-3/mda" 
-    xmlns:mds="http://standards.iso.org/iso/19115/-3/mds" 
-    xmlns:mdt="http://standards.iso.org/iso/19115/-3/mdt" 
-    xmlns:mex="http://standards.iso.org/iso/19115/-3/mex" 
-    xmlns:mmi="http://standards.iso.org/iso/19115/-3/mmi" 
-    xmlns:mpc="http://standards.iso.org/iso/19115/-3/mpc" 
-    xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc" 
-    xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd" 
-    xmlns:mri="http://standards.iso.org/iso/19115/-3/mri" 
-    xmlns:mrl="http://standards.iso.org/iso/19115/-3/mrl" 
-    xmlns:mrs="http://standards.iso.org/iso/19115/-3/mrs" 
-    xmlns:msr="http://standards.iso.org/iso/19115/-3/msr" 
-    xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq" 
-    xmlns:mac="http://standards.iso.org/iso/19115/-3/mac" 
-    xmlns:gco="http://standards.iso.org/iso/19115/-3/gco" 
-    xmlns:gmx="http://www.isotc211.org/2005/gmx"
-    xmlns:gml="http://www.opengis.net/gml" 
-    xmlns:ows="http://www.opengis.net/ows"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
-    xmlns:geonet="http://www.fao.org/geonetwork" 
-    xmlns:oai="http://www.openarchives.org/OAI"
+    xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/2.0" 
+    xmlns:cat="http://standards.iso.org/iso/19115/-3/cat/1.0" 
+    xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/2.0" 
+    xmlns:gcx="http://standards.iso.org/iso/19115/-3/gcx/1.0" 
+    xmlns:gex="http://standards.iso.org/iso/19115/-3/gex/1.0" 
+    xmlns:lan="http://standards.iso.org/iso/19115/-3/lan/1.0" 
+    xmlns:srv="http://standards.iso.org/iso/19115/-3/srv/2.0" 
+    xmlns:mas="http://standards.iso.org/iso/19115/-3/mas/1.0" 
+    xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0" 
+    xmlns:mco="http://standards.iso.org/iso/19115/-3/mco/1.0" 
+    xmlns:mda="http://standards.iso.org/iso/19115/-3/mda/1.0" 
+    xmlns:mds="http://standards.iso.org/iso/19115/-3/mds/1.0" 
+    xmlns:mdt="http://standards.iso.org/iso/19115/-3/mdt/1.0" 
+    xmlns:mex="http://standards.iso.org/iso/19115/-3/mex/1.0" 
+    xmlns:mmi="http://standards.iso.org/iso/19115/-3/mmi/1.0" 
+    xmlns:mpc="http://standards.iso.org/iso/19115/-3/mpc/1.0" 
+    xmlns:mrc="http://standards.iso.org/iso/19115/-3/mrc/2.0" 
+    xmlns:mrd="http://standards.iso.org/iso/19115/-3/mrd/1.0" 
+    xmlns:mri="http://standards.iso.org/iso/19115/-3/mri/1.0" 
+    xmlns:mrl="http://standards.iso.org/iso/19115/-3/mrl/2.0" 
+    xmlns:mrs="http://standards.iso.org/iso/19115/-3/mrs/1.0" 
+    xmlns:msr="http://standards.iso.org/iso/19115/-3/msr/2.0" 
+    xmlns:mdq="http://standards.iso.org/iso/19157/-2/mdq/1.0" 
+    xmlns:mac="http://standards.iso.org/iso/19115/-3/mac/2.0" 
+    xmlns:gco="http://standards.iso.org/iso/19115/-3/gco/1.0" 
+    xmlns:gml="http://www.opengis.net/gml/3.2" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" 
     xmlns:custom="http://custom.nowhere.yet"
     xmlns:fn="http://www.w3.org/2005/xpath-functions"
     xmlns="http://ands.org.au/standards/rif-cs/registryObjects"
-    exclude-result-prefixes="ows xs csw fn oai lan mrc xlink srv mrd geonet mas mri mcc mrl xs mco mrs xsi mda msr mdb mds mdq cat mdt mac cit mex gco gcx mmi gmx gex mpc gml custom">
+    exclude-result-prefixes="xs csw fn lan mrc xlink srv mrd mas mri mcc mrl xs mco mrs xsi mda msr mdb mds mdq cat mdt mac cit mex gco gcx mmi gex mpc gml custom">
    
     <xsl:import href="CustomFunctions.xsl"/>
     
@@ -220,11 +216,9 @@
                 
                 <xsl:apply-templates select="mdb:parentMetadata" mode="registryObject_relatedInfo_parent"/>
                 
-                <xsl:apply-templates select="mdb:metadataIdentifier/mcc:MD_Identifier/mcc:code"
-                    mode="registryObject_identifier_global"/>
+                <xsl:apply-templates select="mdb:metadataIdentifier/mcc:MD_Identifier" mode="global_identifier"/>
                 
-                <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:identifier/mcc:MD_Identifier[not(contains(mcc:codeSpace, 'uuid'))]/mcc:code"
-                    mode="identifier_anywhere"/>
+                <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:identifier/mcc:MD_Identifier"/>
                 
                 <xsl:choose>
                    <xsl:when test="count(mdb:metadataLinkage/cit:CI_OnlineResource/cit:linkage) > 0">
@@ -340,6 +334,7 @@
         <!--xsl:apply-templates select="mri:resourceConstraints/*" mode="registryObject_rights_licence_type_and_uri"/-->
         
         <xsl:apply-templates select="mri:resourceConstraints/mco:MD_LegalConstraints"/>
+        <xsl:apply-templates select="mri:resourceConstraints/mco:MD_Constraints"/>
         <xsl:apply-templates select="mri:resourceConstraints/mco:MD_SecurityConstraints"/>
         
         <xsl:apply-templates select="mri:associatedResource/mri:MD_AssociatedResource" mode="registryObject_relatedInfo_associatedResource"/>
@@ -427,13 +422,7 @@
         </key>
     </xsl:template>
     
-  <xsl:template match="mcc:code" mode="registryObject_identifier_global">
-        <identifier type="global">
-            <xsl:value-of select="."/>
-        </identifier>
-    </xsl:template>
-    
-    <xsl:template match="mcc:code" mode="identifier_anywhere">
+     <!--xsl:template match="mcc:code" mode="identifier_anywhere">
         <xsl:choose>
             <xsl:when test="
                 (count(ancestor::mcc:MD_Identifier/mcc:authority/cit:CI_Citation/cit:title[contains(lower-case(.), 'digital object identifier')]) > 0) or
@@ -477,7 +466,7 @@
                 </identifier>
             </xsl:otherwise>
         </xsl:choose>   
-    </xsl:template>
+    </xsl:template-->
     
     <!-- RegistryObject - Identifier Element  -->
     
@@ -1511,9 +1500,9 @@
                 <xsl:value-of select="mri:initiativeType/mri:DS_InitiativeTypeCode/@codeListValue"/>
             </xsl:attribute>
             
-                <xsl:apply-templates select="mri:name/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:code"/>
+                <xsl:apply-templates select="mri:name/cit:CI_Citation/cit:identifier/mcc:MD_Identifier"/>
                 <xsl:apply-templates select="mri:name/cit:CI_Citation/cit:onlineResource/cit:CI_OnlineResource/cit:linkage"  mode="identifier"/>
-                <xsl:apply-templates select="mri:metadataReference/cit:CI_Citation/cit:identifier/mcc:MD_Identifier/mcc:code"/>
+                <xsl:apply-templates select="mri:metadataReference/cit:CI_Citation/cit:identifier/mcc:MD_Identifier"/>
                 <xsl:apply-templates select="mri:metadataReference/cit:CI_Citation/cit:onlineResource/cit:CI_OnlineResource/cit:linkage"  mode="identifier"/>
                 
                 
@@ -1536,7 +1525,7 @@
         </relatedInfo>
     </xsl:template>
     
-    <xsl:template match="mcc:code">
+    <!--xsl:template match="mcc:code">
         
         <identifier>
             <xsl:attribute name="type">
@@ -1544,7 +1533,7 @@
             </xsl:attribute>
             <xsl:value-of select="."/>
         </identifier>
-    </xsl:template>
+    </xsl:template-->
     
     <xsl:template match="cit:linkage" mode="identifier">
         
@@ -1559,10 +1548,20 @@
     <xsl:template match="mco:MD_LegalConstraints">
         
         <xsl:apply-templates select="mco:reference/cit:CI_Citation" mode="licence"/> 
+        <xsl:apply-templates select="mco:otherConstraints[string-length(.) > 0]" mode="licence"/> 
         <xsl:apply-templates select="mco:useLimitation[string-length(.) > 0]" mode="rightsStatement"/> 
         <xsl:apply-templates select="mco:otherConstraints[string-length(.) > 0]" mode="rightsStatement"/> 
         
+        
     </xsl:template>
+    
+    <xsl:template match="mco:MD_Constraints">
+        
+        <xsl:apply-templates select="mco:useLimitation[string-length(.) > 0]" mode="rightsStatement"/> 
+        <xsl:apply-templates select="mco:otherConstraints[string-length(.) > 0]" mode="rightsStatement"/>     
+        
+    </xsl:template>
+    
     
     <xsl:template match="cit:CI_Citation" mode="licence"> 
         <rights>
@@ -1570,12 +1569,35 @@
                 <xsl:attribute name="rightsUri">
                     <xsl:value-of select="cit:onlineResource/cit:CI_OnlineResource/cit:linkage"/>
                 </xsl:attribute>
-                <xsl:attribute name="type">
-                    <xsl:value-of select="cit:alternateTitle"/>
-                </xsl:attribute>
+                <xsl:choose>
+                    <xsl:when test="(contains(lower-case(cit:onlineResource/cit:CI_OnlineResource/cit:linkage), 'creativecommons.org/licenses/by/')) or
+                            (matches(lower-case(cit:title), 'creative commons attribution \d'))">
+                        <xsl:attribute name="type">
+                            <xsl:text>CC-BY</xsl:text>
+                        </xsl:attribute>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:attribute name="type">
+                            <xsl:value-of select="cit:alternateTitle"/>
+                        </xsl:attribute>
+                    </xsl:otherwise>
+                </xsl:choose>
                 <xsl:value-of select="cit:title"/>
             </licence>
         </rights>
+    </xsl:template>
+        
+    <xsl:template match="mco:otherConstraints" mode="licence"> 
+        
+        <xsl:if test="matches(lower-case(.), 'creative commons attribution \d')">
+            <rights>
+                <licence>
+                    <xsl:attribute name="type">
+                        <xsl:value-of select="'CC-BY'"/>
+                    </xsl:attribute>
+                </licence>
+            </rights>
+        </xsl:if>
     </xsl:template>
     
     <xsl:template match="mco:MD_SecurityConstraints">
@@ -1980,26 +2002,34 @@
         </xsl:if>
     </xsl:template>
     
-    <xsl:template match="cit:partyIdentifier/mcc:MD_Identifier">
+   <xsl:template match="mcc:MD_Identifier">
         <xsl:if test="string-length(mcc:code) > 0">
-            <xsl:choose>
-                <xsl:when test="starts-with(mcc:code/text(), 'http')">
-                    <identifier>
-                        <xsl:attribute name="type">
-                            <xsl:value-of select="'url'"/>       
-                        </xsl:attribute>
-                        <xsl:value-of select="mcc:code"/>
-                    </identifier>
-                </xsl:when>
-                <xsl:when test="string-length(mcc:codeSpace) > 0">
-                    <identifier>
+            <identifier>
+                <xsl:choose>
+                    <xsl:when test="string-length(mcc:codeSpace) > 0">
                         <xsl:attribute name="type">
                             <xsl:value-of select="custom:getIdentifierType(mcc:codeSpace)"/>       
                         </xsl:attribute>
-                        <xsl:value-of select="mcc:code"/>
-                    </identifier>
-                </xsl:when>
-            </xsl:choose>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:attribute name="type">
+                            <xsl:value-of select="custom:getIdentifierType(mcc:code)"/>       
+                        </xsl:attribute>
+                    </xsl:otherwise>
+                </xsl:choose>
+                <xsl:value-of select="mcc:code"/>
+            </identifier>
+        </xsl:if>
+    </xsl:template>
+    
+    <xsl:template match="mcc:MD_Identifier" mode="global_identifier">
+        <xsl:if test="string-length(mcc:code) > 0">
+            <identifier>
+               <xsl:attribute name="type">
+                    <xsl:text>global</xsl:text>
+                </xsl:attribute>
+                <xsl:value-of select="mcc:code"/>
+            </identifier>
         </xsl:if>
     </xsl:template>
     
