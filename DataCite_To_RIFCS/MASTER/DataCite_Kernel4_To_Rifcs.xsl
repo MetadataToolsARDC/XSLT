@@ -65,13 +65,14 @@
     
     <xsl:template match="resource" mode="datacite_4_to_rifcs_collection">
         <xsl:param name="originatingSource" as="xs:string*"/>
+        <xsl:param name="dateModified"/>
+        <xsl:param name="recordIdentifier"/>
         
         <xsl:message select="'datacite_4_to_rifcs_collection'"/>
         
         <registryObject group="{$global_group}">
-            <!-- HES-65 use the Publisher of the dataset for the group attribute -->
-            <key>
-                <xsl:value-of select="concat($global_acronym, '/', identifier[@identifierType = 'DOI'])"/>
+             <key>
+                 <xsl:value-of select="concat($global_acronym, '/', $recordIdentifier)"/>
             </key>
             
             <originatingSource>
@@ -103,7 +104,7 @@
              
                 <!--TODO xsl:apply-templates select="[boolean(string-length(.))]" mode="collection_date_modified"/-->
                 
-                <!-- TODO - xsl:attribute name="dateAccessioned" select=""/-->
+               <xsl:attribute name="dateModified" select="$dateModified"/>
                 
                 <xsl:apply-templates select="identifier[(@identifierType = 'DOI') and (boolean(string-length(.)))]" mode="collection_extract_DOI_identifier"/>  
                 
@@ -529,7 +530,7 @@
             <title>
                 <xsl:value-of select="dcrifcsFunc:formatName(contributorName)"/> 
             </title>
-            <!-- HES-67 -->
+          
             <xsl:element name="relation">
                 <xsl:attribute name="type">
                     <xsl:choose>
@@ -838,7 +839,6 @@
     <!-- ***************************************** -->
     <!-- PARTY RECORDS -->
     
-    <!-- https://jira.ardc.edu.au/browse/HES-33 -->
     
     <xsl:template match="creator" mode="datacite_4_to_rifcs_party">
         <xsl:param name="originatingSource" as="xs:string*"/>
@@ -1154,7 +1154,6 @@
             <xsl:when test="'Organizational' = $nameNode/@nameType">
                 <xsl:value-of select="$nameNode/text()"/>
             </xsl:when>
-            <!-- HES-69 if name of the funder, leave as is -->
             <xsl:when test="local-name($nameNode)  = 'funderName'">
                 <xsl:value-of select="$nameNode/text()"/>
             </xsl:when>

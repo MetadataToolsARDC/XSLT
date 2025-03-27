@@ -19,9 +19,9 @@
     <xsl:variable name="keyPrefix" select="'usc.edu.au/'"/>
     <!--xsl:variable name="keyPrefix" select="''"/-->
     
-    <xsl:param name="compareWithOtherDatasource" select="false()"/>
-    <!--xsl:param name="registry_address_input" select="'researchdata.ardc.edu.au'"/-->
-    <xsl:param name="registry_address_input" select="'demo.researchdata.ardc.edu.au'"/>
+    <xsl:param name="compareWithOtherDatasource" select="true()"/>
+    <xsl:param name="registry_address_input" select="'researchdata.edu.au'"/>
+    <!--xsl:param name="registry_address_input" select="'demo.researchdata.ardc.edu.au'"/-->
     <xsl:param name="registry_address_other" select="'researchdata.edu.au'"/>
     <!-- Presuming comparing demo xml with prod file -->
     <!-- change the following the the correct other datasource content for the contributor that you are working with and set $compareWithOtherDatasource to true()-->
@@ -34,7 +34,7 @@
     <!--xsl:variable name="otherDatasourceRifCS" select="document('file:~/git/projects/CQU_Project/CompareKeys/Central-Queensland-University-RIF-CS-Export_OldProd.xml')"/-->
     <!--xsl:variable name="otherDatasourceRifCS" select="fn:document('file:~/git/projects/GriffithUniversity/From_PROD_GriffithUniversity_61/Griffith-University-RIF-CS-Export_PROD_Collections_Published_AfterDelete.xml')"/-->
     <!--xsl:variable name="otherDatasourceRifCS" select="fn:document('file:~/git/projects/University%20of%20Sunshine%20Coast%20(USC)/202310/DownloadFromRDA/University-of-the-Sunshine-Coast-RIF-CS-Export_PROD_139_COLLECTIONS_PUBLISHED.xml')"/-->
-    <xsl:variable name="otherDatasourceRifCS" select="fn:document('file:~/git/projects/UniversitySouthernQueensland%20(UniSQ)/RDA_ProductionOld/University-of-Southern-Queensland-RIF-CS-Export_COLLECTIONS.xml')"/>
+    <xsl:variable name="otherDatasourceRifCS" select="fn:document('file:/home/scruffy/git/projects/UniversitySouthernQueensland%20(UniSQ)/RDA_ProductionOld/University-of-Southern-Queensland-RIF-CS-Export_Collections_Published_Production_DS_140.xml')"/>
     <xsl:template match="node()|@*">
         <xsl:copy>
             <xsl:apply-templates select="node()|@*"/>
