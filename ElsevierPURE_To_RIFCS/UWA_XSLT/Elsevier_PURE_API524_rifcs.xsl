@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns="http://ands.org.au/standards/rif-cs/registryObjects"
-    xmlns:todo="http://yettodo" xmlns:local="http://local.to.here"
+    xmlns:local="http://local.to.here"
     xmlns:dataset="http://atira.dk/schemas/pure4/wsdl/template/dataset/current"
     xmlns:core="http://atira.dk/schemas/pure4/model/core/current"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns:fn="http://www.w3.org/2005/xpath-functions"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
-    exclude-result-prefixes="todo local dataset core xsi xs fn xsl">
+    exclude-result-prefixes="local dataset core xsi xs fn xsl">
 
     <!-- Params to override -->
     <xsl:param name="global_debug" select="true()" as="xs:boolean"/>
@@ -93,129 +94,132 @@
                 <xsl:attribute name="type" select="$type"/>
 
                 <xsl:apply-templates select="info/modifiedDate[string-length(.) > 0]"
-                    mode="collection_date_modified"/>
+                    mode="object_date_modified"/>
 
                 <xsl:if test="$class = 'collection'">
                     <xsl:apply-templates select="info/createdDate[string-length(.) > 0]"
-                        mode="collection_date_created"/>
+                        mode="object_date_created"/>
                 </xsl:if>
 
                 <xsl:apply-templates select="@uuid[string-length(.) > 0]"
-                    mode="collection_identifier"/>
+                    mode="object_identifier"/>
 
-                <xsl:apply-templates select="webAddresses/webAddress[@type = 'Handle']"
-                    mode="collection_identifier_handle"/>
+                <!--xsl:apply-templates select="webAddresses/webAddress[@type = 'Handle']"
+                    mode="object_identifier_handle"/-->
 
 
                 <xsl:choose>
                     <xsl:when test="string-length(doi) > 0">
                         <xsl:apply-templates select="doi[string-length(.) > 0]"
-                            mode="collection_identifier"/>
+                            mode="object_identifier"/>
                         <xsl:apply-templates select="doi[string-length(.) > 0]"
-                            mode="collection_location"/>
+                            mode="object_location"/>
                     </xsl:when>
                     <xsl:when test="string-length(info/portalUrl) > 0">
                         <xsl:apply-templates select="info/portalUrl[string-length(.) > 0]"
-                            mode="collection_location"/>
+                            mode="object_location"/>
                     </xsl:when>
                     <xsl:when test="contains(name(.), 'dataSet')">
-                        <xsl:apply-templates select="." mode="collection_location"/>
+                        <xsl:apply-templates select="." mode="object_location"/>
                     </xsl:when>
                     <xsl:when test="contains(name(.), 'equipment')">
-                        <xsl:apply-templates select="." mode="collection_location"/>
-                        <xsl:apply-templates select="." mode="collection_location_address_contact"/>
+                        <xsl:apply-templates select="." mode="object_location"/>
+                        <xsl:apply-templates select="." mode="object_location_address_contact"/>
                     </xsl:when>
                 </xsl:choose>
 
 
 
-                <xsl:apply-templates select="title[string-length(.) > 0]" mode="collection_name"/>
+                <xsl:apply-templates select="title[string-length(.) > 0]" mode="object_name"/>
 
-                <!-- xsl:apply-templates select="managedBy" mode="collection_relatedInfo"/-->
+                <!-- xsl:apply-templates select="managedBy" mode="object_relatedInfo"/-->
 
                 <xsl:apply-templates
                     select="managingOrganisationalUnit[(string-length(@uuid) > 0)]"
-                    mode="collection_relatedObject"/>
+                    mode="object_relatedObject"/>
                 
                 <!--xsl:apply-templates
                     select="publisher[(string-length(@uuid) > 0)]"
-                    mode="collection_relatedObject"/-->
+                    mode="object_relatedObject"/-->
 
                 <xsl:apply-templates
                     select="organisationalUnits/organisation[(string-length(@uuid) > 0)]"
-                    mode="collection_relatedObject"/>
+                    mode="object_relatedObject"/>
 
                 <xsl:apply-templates select="externalOrganisations"
-                    mode="collection_description_notes"/>
+                    mode="object_description_notes"/>
 
-                <!-- xsl:apply-templates select="personAssociations/personAssociation[(string-length(person/@uuid) > 0)]" mode="collection_relatedInfo"/-->
+                <!-- xsl:apply-templates select="personAssociations/personAssociation[(string-length(person/@uuid) > 0)]" mode="object_relatedInfo"/-->
 
                 <xsl:apply-templates
                     select="personAssociations/personAssociation[(string-length(person/@uuid) > 0)]"
-                    mode="collection_relatedObject_publicProfile"/>
+                    mode="object_relatedObject_publicProfile"/>
 
                 <xsl:apply-templates select="contactPerson"
-                    mode="collection_relatedObject_contact_person"/>
+                    mode="object_relatedObject_contact_person"/>
 
                 <xsl:apply-templates select="personAssociations"
-                    mode="collection_description_notes_internal_or_external_privateProfile_and_external_publicProfile"/>
+                    mode="object_description_notes_internal_or_external_privateProfile_and_external_publicProfile"/>
 
                 <xsl:apply-templates select="relatedDataSets/relatedDataSets"
-                    mode="collection_relatedObject_dataset"/>
+                    mode="object_relatedObject_dataset"/>
                 
                 <xsl:apply-templates select="relatedProjects/relatedProjects"
-                    mode="collection_relatedInfo_project"/>
+                    mode="object_relatedInfo_project"/>
+                
+                <xsl:apply-templates select="relatedActivities/relatedActivity"
+                    mode="object_relatedInfo_activity"/>
 
-                <!-- xsl:apply-templates select="personAssociations" mode="collection_description_notes_external_publicProfile"/-->
+                <!-- xsl:apply-templates select="personAssociations" mode="object_description_notes_external_publicProfile"/-->
 
-                <!-->xsl:apply-templates select="personAssociations/personAssociation[(string-length(externalPerson/@uuid) > 0) ]" mode="collection_relatedObject_external"/-->
+                <!-->xsl:apply-templates select="personAssociations/personAssociation[(string-length(externalPerson/@uuid) > 0) ]" mode="object_relatedObject_external"/-->
 
-                <!--xsl:apply-templates select="keywordGroups/keywordGroup/keyword/userDefinedKeyword/freeKeyword[string-length(.) > 0]" mode="collection_subject"/-->
+                <!--xsl:apply-templates select="keywordGroups/keywordGroup/keyword/userDefinedKeyword/freeKeyword[string-length(.) > 0]" mode="object_subject"/-->
 
                 <xsl:apply-templates select="keywordGroups/keywordGroup"
-                    mode="collection_subject"/>
+                    mode="object_subject"/>
 
                 <xsl:apply-templates select="descriptions/description[string-length(.) > 0]"
-                    mode="collection_description_full"/>
+                    mode="object_description_full"/>
 
                 <xsl:apply-templates select="description[string-length(.) > 0]"
-                    mode="collection_description_full"/>
+                    mode="object_description_full"/>
 
                 <!-- if no description, use name in description to avoid display error currently in RDA -->
                 <xsl:if
                     test="(count(description/value/text[@locale='en_GB'and string-length(.) > 0]) = 0) and (count(descriptions/description/value/text[@locale='en_GB'and string-length(.) > 0]) = 0)">
                     <xsl:apply-templates select="title[string-length(.) > 0]"
-                        mode="collection_description_full"/>
+                        mode="object_description_full"/>
                 </xsl:if>
 
 
                 <!-- handle all links except licence links; they are handled later-->
                 <xsl:apply-templates
                     select="links/link[(not(contains(., 'license'))) and (not(contains(., 'licence')))]"
-                    mode="collection_relatedInfo"/>
+                    mode="object_relatedInfo"/>
 
                 <xsl:apply-templates
                     select="relatedResearchOutputs/*[contains(name(), 'related')]"
-                    mode="collection_relatedInfo"/>
+                    mode="object_relatedInfo"/>
 
-                <xsl:apply-templates select="webAddresses/webAddress[not(@type = 'Handle')]"
-                    mode="collection_relatedInfo"/>
+                <xsl:apply-templates select="."
+                    mode="object_linkHandler"/>
 
 
                 <xsl:apply-templates select="temporalCoveragePeriod"
-                    mode="collection_coverage_temporal"/>
+                    mode="object_coverage_temporal"/>
                 
                 <xsl:apply-templates select="dataProductionPeriod"
-                    mode="collection_dates"/>
+                    mode="object_dates"/>
 
                 <xsl:apply-templates select="geographicalCoverage[string-length(.) > 0]"
-                    mode="collection_coverage_spatial_text"/>
+                    mode="object_coverage_spatial_text"/>
 
                 <xsl:apply-templates select="geoLocation/point[string-length(.) > 0]"
-                    mode="collection_coverage_spatial_point"/>
+                    mode="object_coverage_spatial_point"/>
 
                 <xsl:apply-templates select="geoLocation/polygon[string-length(.) > 0]"
-                    mode="collection_coverage_spatial_polygon"/>
+                    mode="object_coverage_spatial_polygon"/>
 
                 <!-- Apply document-level license if there is no license at dataset level -->
                 <xsl:choose>
@@ -223,36 +227,36 @@
                         test="count(links/link/url[(contains(., 'license')) or (contains(., 'licence'))]) > 0">
                         <xsl:apply-templates
                             select="links/link/url[(contains(., 'license')) or (contains(., 'licence'))]"
-                            mode="collection_rights_record_licence"/>
+                            mode="object_rights_record_licence"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:apply-templates select="documents"
-                            mode="collection_rights_document_licence"/>
+                            mode="object_rights_document_licence"/>
                     </xsl:otherwise>
                 </xsl:choose>
 
 
-                <xsl:apply-templates select="." mode="collection_rights"/>
+                <xsl:apply-templates select="." mode="object_rights"/>
 
                 <xsl:if test="$class = 'collection'">
-                    <xsl:apply-templates select="." mode="collection_citationInfo"/>
+                    <xsl:apply-templates select="." mode="object_citationInfo"/>
 
-                    <xsl:apply-templates select="." mode="collection_dates"/>
+                    <xsl:apply-templates select="." mode="object_dates"/>
                 </xsl:if>
 
             </xsl:element>
         </registryObject>
     </xsl:template>
 
-    <xsl:template match="modifiedDate" mode="collection_date_modified">
+    <xsl:template match="modifiedDate" mode="object_date_modified">
         <xsl:attribute name="dateModified" select="."/>
     </xsl:template>
 
-    <xsl:template match="createdDate" mode="collection_date_created">
+    <xsl:template match="createdDate" mode="object_date_created">
         <xsl:attribute name="dateAccessioned" select="."/>
     </xsl:template>
 
-    <xsl:template match="@uuid" mode="collection_identifier">
+    <xsl:template match="@uuid" mode="object_identifier">
         <identifier type="global">
             <xsl:value-of select="."/>
         </identifier>
@@ -262,19 +266,19 @@
         </xsl:if>
     </xsl:template>
 
-    <xsl:template match="webAddress" mode="collection_identifier_handle">
+    <!--xsl:template match="webAddress" mode="object_identifier_handle">
         <identifier type="handle">
             <xsl:value-of select="value"/>
         </identifier>
-    </xsl:template>
+    </xsl:template-->
 
-    <xsl:template match="doi" mode="collection_identifier">
+    <xsl:template match="doi" mode="object_identifier">
         <identifier type="doi">
             <xsl:value-of select="normalize-space(.)"/>
         </identifier>
     </xsl:template>
 
-    <xsl:template match="doi" mode="collection_location">
+    <xsl:template match="doi" mode="object_location">
         <location>
             <address>
                 <electronic type="url" target="landingPage">
@@ -293,7 +297,7 @@
         </location>
     </xsl:template>
 
-    <xsl:template match="dataSet" mode="collection_location">
+    <xsl:template match="dataSet" mode="object_location">
         <xsl:param name="class"/>
         <location>
             <address>
@@ -306,7 +310,7 @@
         </location>
     </xsl:template>
 
-    <xsl:template match="equipment" mode="collection_location">
+    <xsl:template match="equipment" mode="object_location">
         <xsl:param name="class"/>
         <location>
             <address>
@@ -320,7 +324,7 @@
     </xsl:template>
 
 
-    <xsl:template match="portalUrl" mode="collection_location">
+    <xsl:template match="portalUrl" mode="object_location">
         <xsl:param name="class"/>
         <location>
             <address>
@@ -334,7 +338,7 @@
     </xsl:template>
 
 
-    <xsl:template match="title" mode="collection_name">
+    <xsl:template match="title" mode="object_name">
         <name type="primary">
             <namePart>
                 <xsl:value-of select="normalize-space(.)"/>
@@ -343,7 +347,7 @@
     </xsl:template>
 
 
-    <xsl:template match="equipment | dataSet" mode="collection_location_address_contact">
+    <xsl:template match="equipment | dataSet" mode="object_location_address_contact">
         <location>
             <address>
             <xsl:apply-templates select=" emails/email" mode="registryObject_email"/>
@@ -486,7 +490,7 @@
         </relation>
     </xsl:template>
 
-    <xsl:template match="personAssociation" mode="collection_relatedObject_publicProfile">
+    <xsl:template match="personAssociation" mode="object_relatedObject_publicProfile">
         <xsl:variable name="personName"
             select="concat(normalize-space(name/firstName), ' ', normalize-space(name/lastName))"/>
         <xsl:if test="$global_debug">
@@ -506,7 +510,7 @@
         </xsl:if>
     </xsl:template>
 
-    <xsl:template match="contactPerson" mode="collection_relatedObject_contact_person">
+    <xsl:template match="contactPerson" mode="object_relatedObject_contact_person">
 
         <xsl:if test="string-length(@uuid) > 0">
             <relatedObject>
@@ -520,7 +524,7 @@
 
 
     <xsl:template match="personAssociations"
-        mode="collection_description_notes_internal_or_external_privateProfile_and_external_publicProfile">
+        mode="object_description_notes_internal_or_external_privateProfile_and_external_publicProfile">
         <xsl:if
             test="(count(personAssociation[((count(externalPerson) = 0) and (count(person) = 0)) and ((string-length(name/firstName) > 0) or (string-length(name/lastName) > 0))]) > 0) or
         			  (count(personAssociation[(string-length(externalPerson/@uuid) > 0)]) > 0)">
@@ -566,7 +570,7 @@
         </xsl:if>
     </xsl:template>
     
-    <xsl:template match="relatedDataSets" mode="collection_relatedObject_dataset">
+    <xsl:template match="relatedDataSets" mode="object_relatedObject_dataset">
         <relatedObject>
             <key>
                 <xsl:value-of select="concat('UWA_PURE:', @uuid)"/>
@@ -575,7 +579,7 @@
         </relatedObject>
     </xsl:template>
     
-    <xsl:template match="relatedProjects" mode="collection_relatedInfo_project">
+    <xsl:template match="relatedProjects" mode="object_relatedInfo_project">
         <relatedInfo type="activity">
             <identifier type="url">
                 <xsl:value-of select="concat('http://', $global_baseURI, $global_path, 'projects/', @uuid)"/>
@@ -586,8 +590,20 @@
             </title>
         </relatedInfo>
     </xsl:template>
+    
+    <xsl:template match="relatedActivity" mode="object_relatedInfo_activity">
+        <relatedInfo type="activity">
+            <identifier type="url">
+                <xsl:value-of select="concat('http://', $global_baseURI, $global_path, 'activities/', @uuid)"/>
+            </identifier>
+            <relation type="isOutputOf"/>
+            <title>
+                <xsl:value-of select="name/text[@locale='en_GB']"/>
+            </title>
+        </relatedInfo>
+    </xsl:template>
 
-    <!-- xsl:template match="personAssociations" mode="collection_description_notes_external_publicProfile">
+    <!-- xsl:template match="personAssociations" mode="object_description_notes_external_publicProfile">
         <xsl:message select="concat('count external persons public profile: ', count(personAssociation[(string-length(externalPerson/@uuid) > 0)]))"/>
         <xsl:if test="count(personAssociation[(string-length(externalPerson/@uuid) > 0)]) > 0">
             <description type="notes">
@@ -611,7 +627,7 @@
         </xsl:if>
     </xsl:template-->
 
-    <!-->xsl:template match="personAssociation" mode="collection_relatedObject_external">
+    <!-->xsl:template match="personAssociation" mode="object_relatedObject_external">
         <xsl:variable name="personName" select="concat(normalize-space(name/firstName), ' ', normalize-space(name/lastName))"/>
         <xsl:if test="$global_debug">
             <xsl:message select="concat('personName for relatedObject: ', $personName)"/>
@@ -627,7 +643,7 @@
     </xsl:template-->
 
 
-    <xsl:template match="organisationalUnit" mode="collection_relatedObject">
+    <xsl:template match="organisationalUnit" mode="object_relatedObject">
         <xsl:if test="string-length(@uuid) > 0">
             <relatedObject>
                 <key>
@@ -638,7 +654,7 @@
         </xsl:if>
     </xsl:template>
 
-    <xsl:template match="managingOrganisationalUnit" mode="collection_relatedObject">
+    <xsl:template match="managingOrganisationalUnit" mode="object_relatedObject">
         <xsl:if test="string-length(@uuid) > 0">
             <relatedObject>
                 <key>
@@ -649,7 +665,7 @@
         </xsl:if>
     </xsl:template>
     
-    <!--xsl:template match="publisher" mode="collection_relatedObject">
+    <!--xsl:template match="publisher" mode="object_relatedObject">
         <xsl:if test="string-length(@uuid) > 0">
             <relatedObject>
                 <key>
@@ -660,13 +676,13 @@
         </xsl:if>
     </xsl:template-->
 
-    <!--xsl:template match="freeKeyword" mode="collection_subject">
+    <!--xsl:template match="freeKeyword" mode="object_subject">
         <subject type="local">
             <xsl:value-of select="."/>
         </subject>
     </xsl:template-->
 
-    <xsl:template match="keywordGroup" mode="collection_subject">
+    <xsl:template match="keywordGroup" mode="object_subject">
 
         <!-- Keep the context here in case you need to process vocabulary IRIs and other related things -->
         <xsl:for-each select="keywordContainers/keywordContainer/freeKeywords/freeKeyword">
@@ -699,20 +715,20 @@
         </xsl:for-each>
     </xsl:template>
     
-    <xsl:template match="description" mode="collection_description_full">
+    <xsl:template match="description" mode="object_description_full">
         <description type="full">
             <xsl:value-of select="value/text[@locale='en_GB']/text()"/>
         </description>
     </xsl:template>
 
     <!-- if no description, use name in description to avoid display error currently in RDA -->
-    <xsl:template match="title" mode="collection_description_full">
+    <xsl:template match="title" mode="object_description_full">
         <description type="full">
             <xsl:value-of select="."/>
         </description>
     </xsl:template>
 
-    <xsl:template match="link" mode="collection_relatedInfo">
+    <xsl:template match="link" mode="object_relatedInfo">
         <relatedInfo type="website">
             <xsl:if test="string-length(normalize-space(url)) > 0">
                 <identifier type="url">
@@ -727,22 +743,29 @@
         </relatedInfo>
     </xsl:template>
 
-    <xsl:template match="webAddress" mode="collection_relatedInfo">
+    <!--Default behaviour in this xslt is that all webaddress links are mapped as 
+        related info; however, this behaviour is overwritten in some xsl files that call this,
+        for example UWA_Elsevier_PURE_Params_524 because for Equipment(Service)
+        records, they want to map the DOI in webaddress to the identifier of the Service -->
+    <xsl:template match="equipment" mode="object_linkHandler">
+        <xsl:apply-templates select="webAddresses/webAddress" mode="object_relatedInfo"/>
+    </xsl:template>
+    
+    <xsl:template match="dataSet" mode="object_linkHandler">
+        <xsl:apply-templates select="webAddresses/webAddress" mode="object_relatedInfo"/>
+    </xsl:template>
+    
+    <xsl:template match="webAddress" mode="object_relatedInfo">
         <relatedInfo type="website">
-            <xsl:if test="string-length(.) > 0">
+            <xsl:if test="string-length(value/text/text()) > 0">
                 <identifier type="url">
                     <xsl:apply-templates select="value/text/text()"/>
                 </identifier>
             </xsl:if>
-            <xsl:if test="string-length(@type) > 0">
-                <title>
-                    <xsl:value-of select="@type"/>
-                </title>
-            </xsl:if>
-        </relatedInfo>
+          </relatedInfo>
     </xsl:template>
 
-    <xsl:template match="*[contains(name(), 'related')]" mode="collection_relatedInfo">
+    <xsl:template match="*[contains(name(), 'related')]" mode="object_relatedInfo">
         <relatedInfo>
             <xsl:attribute name="type">
                 <xsl:choose>
@@ -787,7 +810,7 @@
         </relatedInfo>
     </xsl:template>
 
-    <xsl:template match="temporalCoveragePeriod" mode="collection_coverage_temporal">
+    <xsl:template match="temporalCoveragePeriod" mode="object_coverage_temporal">
         <xsl:if test="((string-length(startDate) > 0) or (string-length(endDate) > 0))">
             <coverage>
                 <temporal>
@@ -806,7 +829,7 @@
         </xsl:if>
     </xsl:template>
     
-    <xsl:template match="dataProductionPeriod" mode="collection_dates">
+    <xsl:template match="dataProductionPeriod" mode="object_dates">
         <xsl:if test="((string-length(startDate) > 0) or (string-length(endDate) > 0))">
             <dates type="dc.created">
                 <xsl:if test="string-length(startDate) > 0">
@@ -823,7 +846,7 @@
         </xsl:if>
     </xsl:template>
 
-    <xsl:template match="geographicalCoverage" mode="collection_coverage_spatial_text">
+    <xsl:template match="geographicalCoverage" mode="object_coverage_spatial_text">
         <coverage>
             <spatial type="text">
                 <xsl:value-of select="normalize-space(.)"/>
@@ -832,7 +855,7 @@
     </xsl:template>
 
 
-    <xsl:template match="point" mode="collection_coverage_spatial_point">
+    <xsl:template match="point" mode="object_coverage_spatial_point">
         <xsl:if test="$global_debug">
             <xsl:message select="concat('processing point coordinates input: ', normalize-space(.))"
             />
@@ -860,7 +883,7 @@
 
     </xsl:template>
 
-    <xsl:template match="polygon" mode="collection_coverage_spatial_polygon">
+    <xsl:template match="polygon" mode="object_coverage_spatial_polygon">
 
         <xsl:if test="$global_debug">
             <xsl:message select="'processing polygon coordinates'"/>
@@ -883,7 +906,7 @@
         </xsl:if>
     </xsl:template>
 
-    <xsl:template match="url" mode="collection_rights_record_licence">
+    <xsl:template match="url" mode="object_rights_record_licence">
         <xsl:variable name="licence_url" select="."/>
         <xsl:choose>
             <xsl:when
@@ -905,7 +928,7 @@
         </xsl:choose>
     </xsl:template>
 
-    <xsl:template match="documents" mode="collection_rights_document_licence">
+    <xsl:template match="documents" mode="object_rights_document_licence">
         <xsl:variable name="fileLicense_sequence"
             select="document/documentLicense/@uri[string-length(.) > 0]"/>
 
@@ -944,7 +967,7 @@
         </xsl:choose>
     </xsl:template>
 
-    <xsl:template match="equipment | dataSet" mode="collection_dates">
+    <xsl:template match="equipment | dataSet" mode="object_dates">
         <xsl:for-each select="publicationDate">
             <dates type="dc.issued">
                 <date type="dateFrom" dateFormat="W3CDTF">
@@ -968,7 +991,7 @@
 
     </xsl:template>
 
-    <xsl:template match="equipment | dataSet" mode="collection_rights">
+    <xsl:template match="equipment | dataSet" mode="object_rights">
 
         <xsl:if test="$global_debug">
             <xsl:message select="concat('openAccessPermission: ', openAccessPermission)"/>
@@ -1099,7 +1122,7 @@
     </xsl:template>
 
 
-    <xsl:template match="equipment | dataSet" mode="collection_citationInfo">
+    <xsl:template match="equipment | dataSet" mode="object_citationInfo">
         <citationInfo>
             <citationMetadata>
                 <xsl:apply-templates select="doi" mode="citation_identifier"/>
@@ -1357,7 +1380,7 @@
         </xsl:template-->
 
 
-    <xsl:template match="externalOrganisations" mode="collection_description_notes">
+    <xsl:template match="externalOrganisations" mode="object_description_notes">
         <xsl:if
             test="count(externalOrganisation[(string-length(@uuid) > 0) and (string-length(name) > 0)]) > 0">
             <description type="notes">
