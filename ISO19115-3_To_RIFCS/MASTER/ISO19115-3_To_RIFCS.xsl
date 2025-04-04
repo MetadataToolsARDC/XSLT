@@ -690,10 +690,12 @@
         </xsl:if>
     </xsl:template>
     
-    <!-- RegistryObject - Related Object (Organisation or Individual) Element -->
+     <!-- RegistryObject - Related Object (Organisation or Individual) Element -->
     <xsl:template match="cit:party" mode="registryObject_related_object">
         <!--xsl:param name="orgNamesOnly_sequence" as="xs:string*"/-->
         
+        <xsl:variable name="identifier_sequence" select="*/cit:partyIdentifier/mcc:MD_Identifier[string-length(mcc:code) > 0]" as="item()*"/>
+         
             <xsl:variable name="name">
                 <xsl:choose>
                     <xsl:when test="string-length(*/cit:name) > 0">
@@ -706,133 +708,212 @@
             </xsl:variable>
         
               
+            
             <xsl:choose>
                 <!-- If dealing with an organisation that has an individual, don't use the person's role to relate the organisation - only
                         relate this organisation if not already related, and use general 'hasAssociationWithin'-->
                 <xsl:when test="(string-length(cit:CI_Organisation/cit:name) > 0) and (count(cit:CI_Organisation/cit:individual/cit:CI_Individual) > 0)">
-                    <!--xsl:if test="(count($orgNamesOnly_sequence[. = $name]) = 0)"-->
-                        <relatedObject>
-                            <key>
-                                <xsl:value-of select="concat($global_acronym, '/', translate(normalize-space($name),' ',''))"/>
-                            </key>
-                            <relation>
-                               <xsl:attribute name="type">
-                                   <xsl:text>hasAssociationWith</xsl:text>
-                               </xsl:attribute>
-                            </relation>
-                        </relatedObject>
-                    <!--/xsl:if-->
+                    <xsl:choose>
+                        <xsl:when test="count($identifier_sequence) > 0">
+                            <relatedInfo type="party">
+                                <xsl:apply-templates select="$identifier_sequence"/>
+                                <relation>
+                                    <xsl:attribute name="type">
+                                        <xsl:text>hasAssociationWith</xsl:text>
+                                    </xsl:attribute>
+                                </relation>
+                            </relatedInfo>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:if test="string-length($name) > 0">
+                                <relatedObject>
+                                 <key>
+                                     <xsl:value-of select="concat($global_acronym, '/', translate(normalize-space($name),' ',''))"/>
+                                 </key>
+                                    <relation>
+                                        <xsl:attribute name="type">
+                                            <xsl:text>hasAssociationWith</xsl:text>
+                                        </xsl:attribute>
+                                    </relation>
+                                </relatedObject>
+                            </xsl:if>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                    
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:choose>
-                        <xsl:when test="count(distinct-values(preceding-sibling::cit:role/cit:CI_RoleCode/@codeListValu) > 0)">
+                        <xsl:when test="count(distinct-values(preceding-sibling::cit:role/cit:CI_RoleCode/@codeListValue)) > 0">
                             <xsl:for-each select="distinct-values(preceding-sibling::cit:role/cit:CI_RoleCode/@codeListValue)">
                                 <xsl:variable name="role" select="."/>
-                                    <!--xsl:variable name="codelist"
-                                        select="$codelists/codelists/codelist[@name = 'CI_RoleCode']"/>
-                                    
-                                    <xsl:if test="$global_debug">
-                                        <xsl:message select="concat('entries in codelist : ', count($codelist/entry))"/>
-                                    </xsl:if>
-                                    
-                                    <xsl:variable name="type">
-                                        <xsl:value-of select="$codelist/entry[code = $role]/description"/>
-                                    </xsl:variable-->
-                                    
-                                  <relatedObject>
-                                      <key>
-                                          <xsl:value-of select="concat($global_acronym, '/', translate(normalize-space($name),' ',''))"/>
-                                      </key>
-                                      <relation>
-                                          <xsl:attribute name="type">
-                                              <xsl:choose>
-                                                  <!--xsl:when test="string-length($type) > 0">
-                                                      <xsl:value-of select="$type"/>
-                                                  </xsl:when-->
-                                                  <xsl:when test="string-length($role) > 0">
-                                                      <xsl:value-of select="$role"/>  
-                                                  </xsl:when>
-                                                  <xsl:otherwise>
-                                                      <xsl:text>unknown</xsl:text>
-                                                  </xsl:otherwise>
-                                              </xsl:choose>
-                                          </xsl:attribute>
-                                      </relation>
-                                  </relatedObject>
+                                <xsl:choose>
+                                    <xsl:when test="count($identifier_sequence) > 0">
+                                        <relatedInfo type="party">
+                                            <xsl:apply-templates select="$identifier_sequence"/>
+                                            <relation>
+                                                <xsl:attribute name="type">
+                                                    <xsl:choose>
+                                                        <xsl:when test="string-length($role) > 0">
+                                                            <xsl:value-of select="$role"/>  
+                                                        </xsl:when>
+                                                        <xsl:otherwise>
+                                                            <xsl:text>unknown</xsl:text>
+                                                        </xsl:otherwise>
+                                                    </xsl:choose>
+                                                </xsl:attribute>
+                                            </relation>
+                                        </relatedInfo>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:if test="string-length($name) > 0">
+                                            <relatedObject>
+                                                <key>
+                                                    <xsl:value-of select="concat($global_acronym, '/', translate(normalize-space($name),' ',''))"/>
+                                                </key>
+                                                <relation>
+                                                    <xsl:attribute name="type">
+                                                        <xsl:choose>
+                                                            <xsl:when test="string-length($role) > 0">
+                                                                <xsl:value-of select="$role"/>  
+                                                            </xsl:when>
+                                                            <xsl:otherwise>
+                                                                <xsl:text>unknown</xsl:text>
+                                                            </xsl:otherwise>
+                                                        </xsl:choose>
+                                                    </xsl:attribute>
+                                                </relation>
+                                            </relatedObject>
+                                        </xsl:if>
+                                    </xsl:otherwise>
+                                </xsl:choose>
                             </xsl:for-each>
                         </xsl:when>
                        <xsl:otherwise>
-                           <!-- no roles, so use default 'hasAssociationWith'-->
-                           <relatedObject>
-                               <key>
-                                   <xsl:value-of select="concat($global_acronym, '/', translate(normalize-space($name),' ',''))"/>
-                               </key>
-                               <relation>
+                           <xsl:choose>
+                             <xsl:when test="count($identifier_sequence) > 0">
+                                 <relatedInfo type="party">
+                                      <xsl:apply-templates select="$identifier_sequence"/>
+                                      <relation>
+                                          <xsl:attribute name="type">
+                                              <xsl:text>hasAssociationWith</xsl:text>
+                                          </xsl:attribute>
+                                      </relation>
+                                  </relatedInfo>
+                              </xsl:when>
+                              <xsl:otherwise>
+                                  <xsl:if test="string-length($name) > 0">
+                                     <relatedObject>
+                                         <key>
+                                             <xsl:value-of select="concat($global_acronym, '/', translate(normalize-space($name),' ',''))"/>
+                                         </key>
+                                         <relation>
+                                           <xsl:attribute name="type">
+                                               <xsl:text>hasAssociationWith</xsl:text>
+                                           </xsl:attribute>
+                                         </relation>
+                                     </relatedObject> 
+                                  </xsl:if>
+                              </xsl:otherwise>
+                           </xsl:choose>
+                       </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:otherwise>
+            </xsl:choose>
+        <xsl:apply-templates select="cit:CI_Organisation/cit:individual/cit:CI_Individual" mode="registryObject_related_object"/>
+
+    </xsl:template>
+
+    <xsl:template match="cit:CI_Individual" mode="registryObject_related_object">
+        
+        <xsl:variable name="identifier_sequence" select="cit:partyIdentifier/mcc:MD_Identifier[string-length(mcc:code) > 0]" as="item()*"/>
+        
+        <xsl:variable name="name">
+            <xsl:choose>
+                <xsl:when test="string-length(cit:name) > 0">
+                    <xsl:value-of select="cit:name"/>
+                </xsl:when>
+                <xsl:when test="string-length(cit:positionName) > 0">
+                    <xsl:value-of select="cit:positionName"/>
+                </xsl:when>
+            </xsl:choose>
+        </xsl:variable>
+        
+        <xsl:choose>
+            <xsl:when test="count(distinct-values(ancestor::cit:CI_Responsibility/cit:role/cit:CI_RoleCode/@codeListValue)) > 0">
+                <xsl:for-each select="distinct-values(ancestor::cit:CI_Responsibility/cit:role/cit:CI_RoleCode/@codeListValue)">
+                    <xsl:variable name="role" select="."/>
+                    <xsl:choose>
+                        <xsl:when test="count($identifier_sequence) > 0">
+                            <relatedInfo type="party">
+                                <xsl:apply-templates select="$identifier_sequence"/>
+                                <relation>
+                                    <xsl:attribute name="type">
+                                        <xsl:choose>
+                                            <xsl:when test="string-length($role) > 0">
+                                                <xsl:value-of select="$role"/>  
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:text>unknown</xsl:text>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
+                                    </xsl:attribute>
+                                </relation>
+                            </relatedInfo>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:if test="string-length($name) > 0">
+                                <relatedObject>
+                                    <key>
+                                        <xsl:value-of select="concat($global_acronym, '/', translate(normalize-space($name),' ',''))"/>
+                                    </key>
+                                    <relation>
+                                        <xsl:attribute name="type">
+                                            <xsl:choose>
+                                                <xsl:when test="string-length($role) > 0">
+                                                    <xsl:value-of select="$role"/>  
+                                                </xsl:when>
+                                                <xsl:otherwise>
+                                                    <xsl:text>unknown</xsl:text>
+                                                </xsl:otherwise>
+                                            </xsl:choose>
+                                        </xsl:attribute>
+                                    </relation>
+                                </relatedObject>
+                            </xsl:if>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:choose>
+                    <xsl:when test="count($identifier_sequence) > 0">
+                        <relatedInfo type="party">
+                            <xsl:apply-templates select="$identifier_sequence"/>
+                            <relation>
+                                <xsl:attribute name="type">
+                                    <xsl:text>hasAssociationWith</xsl:text>
+                                </xsl:attribute>
+                            </relation>
+                        </relatedInfo>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:if test="string-length($name) > 0">
+                         <relatedObject>
+                             <key>
+                                 <xsl:value-of select="concat($global_acronym, '/', translate(normalize-space($name),' ',''))"/>
+                             </key>
+                             <relation>
                                  <xsl:attribute name="type">
                                      <xsl:text>hasAssociationWith</xsl:text>
                                  </xsl:attribute>
-                               </relation>
-                           </relatedObject> </xsl:otherwise>
-                    </xsl:choose>
-                
-                </xsl:otherwise>
+                             </relation>
+                         </relatedObject> 
+                        </xsl:if>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:otherwise>
         </xsl:choose>
-        
-            <xsl:for-each select="cit:CI_Organisation/cit:individual/cit:CI_Individual">
-                  <xsl:variable name="name">
-                      <xsl:choose>
-                          <xsl:when test="string-length(cit:name) > 0">
-                              <xsl:value-of select="cit:name"/>
-                          </xsl:when>
-                          <xsl:when test="string-length(cit:positionName) > 0">
-                              <xsl:value-of select="cit:positionName"/>
-                          </xsl:when>
-                      </xsl:choose>
-                  </xsl:variable>
-                      
-                    <xsl:if test="string-length(normalize-space($name)) > 0">
-                        <relatedObject>
-                            <key>
-                                <xsl:value-of select="concat($global_acronym, '/', translate(normalize-space($name),' ',''))"/>
-                            </key>
-                            
-                            <xsl:choose>
-                                <xsl:when test="count(ancestor::cit:CI_Responsibility/cit:role/cit:CI_RoleCode/@codeListValue[string-length() > 0]) > 0">
-                                    <xsl:for-each select="distinct-values(ancestor::cit:CI_Responsibility/cit:role/cit:CI_RoleCode/@codeListValue[string-length() > 0])">
-                                        <xsl:variable name="role" select="."/>
-                                        <relation>
-                                            <!--xsl:variable name="codelist"
-                                                select="$codelists/codelists/codelist[@name = 'CI_RoleCode']"/>
-                                            
-                                            <xsl:variable name="type">
-                                                <xsl:value-of select="$codelist/entry[code = $role]/description"/>
-                                            </xsl:variable-->
-                                            
-                                            <xsl:attribute name="type">
-                                                <xsl:choose>
-                                                    <!--xsl:when test="string-length($type) > 0">
-                                                        <xsl:value-of select="$type"/>
-                                                    </xsl:when-->
-                                                    <xsl:when test="string-length($role) > 0">
-                                                        <xsl:value-of select="$role"/>  
-                                                    </xsl:when>
-                                                    <xsl:otherwise>
-                                                        <xsl:text>unknown</xsl:text>
-                                                    </xsl:otherwise>
-                                                </xsl:choose>
-                                            </xsl:attribute>
-                                        </relation>
-                                    </xsl:for-each>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <relation type="hasAssociationWith"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                            
-                        </relatedObject>
-                    </xsl:if>
-                </xsl:for-each>
-
+      
     </xsl:template>
     
     <xsl:template match="mri:MD_TopicCategoryCode" mode="registryObject_subject">
