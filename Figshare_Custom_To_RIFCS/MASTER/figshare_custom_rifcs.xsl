@@ -6,18 +6,12 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions"
     exclude-result-prefixes="xsi xsl figFunc fn local xs">
 
-    <xsl:variable name="categoryCodeList"
-        select="document('https://raw.githubusercontent.com/MetadataToolsARDC/XSLT/master/Figshare_RDF_To_RIFCS/MASTER/figshare_categories.xml')"/>
-
     <xsl:param name="global_originatingSource" select="''"/>
     <xsl:param name="global_baseURI" select="'figshare.com'"/>
     <xsl:param name="global_group" select="''"/>
     <xsl:param name="global_key_source_prefix" select="''"/>
 
     <xsl:output method="xml" version="1.0" omit-xml-declaration="no" indent="yes" encoding="UTF-8"/>
-
-
-    <!--xsl:output method="xml" version="1.0" omit-xml-declaration="yes" indent="yes" encoding="UTF-8"/-->
 
     <xsl:template match="/">
         <registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects"
