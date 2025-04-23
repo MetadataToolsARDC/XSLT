@@ -13,6 +13,7 @@
     
     <xsl:param name="global_originatingSource" select="'{requires override}'"/>
     <xsl:param name="global_baseURI" select="'{requires override}'"/>
+    <xsl:param name="global_dataset_path" select="'{requires override}'"/>
     <xsl:param name="global_acronym" select="'{requires override}'"/>
     <xsl:param name="global_group" select="'{requires override}'"/>
     <xsl:param name="global_contributor" select="'{requires override}'"/>
@@ -51,7 +52,7 @@
         <xsl:variable name="metadataURL">
             <xsl:variable name="id" select="normalize-space(id)"/>
             <xsl:if test="string-length($id)">
-                <xsl:value-of select="concat($global_baseURI, 'dataset/', $id)"/>
+                <xsl:value-of select="concat($global_baseURI, $global_dataset_path, $id)"/>
             </xsl:if>
         </xsl:variable>
 
@@ -193,7 +194,7 @@
                 <xsl:attribute name="type">
                     <xsl:text>uri</xsl:text>
                 </xsl:attribute>
-                <xsl:value-of select="concat($global_baseURI, 'dataset/', normalize-space(.))"/>
+                <xsl:value-of select="concat($global_baseURI, $global_dataset_path, normalize-space(.))"/>
             </identifier>
         </xsl:if>
     </xsl:template>
@@ -238,7 +239,7 @@
                             <xsl:text>landingPage</xsl:text>
                         </xsl:attribute>
                         <value>
-                            <xsl:value-of select="concat($global_baseURI, 'dataset/', $id)"/>
+                            <xsl:value-of select="concat($global_baseURI, $global_dataset_path, $id)"/>
                         </value>
                     </electronic>
                 </address>

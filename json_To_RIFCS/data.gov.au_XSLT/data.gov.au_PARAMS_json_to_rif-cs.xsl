@@ -12,6 +12,7 @@
     <xsl:param name="global_acronym" select="'data.gov.au'"/>
     <xsl:param name="global_originatingSource" select="'http://data.gov.au'"/>
     <xsl:param name="global_baseURI" select="'http://data.gov.au/'"/>
+    <xsl:param name="global_dataset_path" select="'data/dataset/'"/>
     <xsl:param name="global_group" select="'data.gov.au'"/>
     <xsl:param name="global_contributor" select="'data.gov.au'"/>
     <xsl:param name="global_publisherName" select="'data.gov.au'"/>
