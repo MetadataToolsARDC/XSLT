@@ -25,14 +25,14 @@
             <xsl:attribute name="xsi:schemaLocation">
                 <xsl:text>http://ands.org.au/standards/rif-cs/registryObjects https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd</xsl:text>
             </xsl:attribute>
-            <xsl:for-each select="//*[contains(local-name(), 'result')]">
+            <xsl:for-each select="datasets/result/results">
                 <xsl:apply-templates select="." mode="all"/>
             </xsl:for-each>
         </registryObjects>
     </xsl:template>
     
     <xsl:template match="*[contains(local-name(), 'result')]"  mode="extras">
-        <xsl:message select="'Template extras override in top-level custom xslt'"/>
+        <!--xsl:message select="'Template extras override in top-level custom xslt'"/-->
         <xsl:for-each select="extras">
             <xsl:apply-templates select=".[contains(key, 'spatial')]" mode="spatial"/>
             <xsl:apply-templates select=".[contains(key, 'Coordinate Ref. System')]" mode="CRS"/>

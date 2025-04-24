@@ -37,17 +37,17 @@
             <xsl:attribute name="xsi:schemaLocation">
                 <xsl:text>http://ands.org.au/standards/rif-cs/registryObjects https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd</xsl:text>
             </xsl:attribute>
-            <xsl:apply-templates select="*[contains(local-name(), 'result')]" mode="all"/>
+            <xsl:apply-templates select="result/results" mode="all"/>
          </registryObjects>
     </xsl:template>
     
-    <xsl:template match="*[contains(local-name(), 'result')]" mode="all">
+    <xsl:template match="results" mode="all">
         <xsl:apply-templates select="." mode="collection"/>
         <xsl:apply-templates select="." mode="party"/>
         <xsl:apply-templates select="." mode="service"/>
     </xsl:template>
 
-    <xsl:template match="*[contains(local-name(), 'result')]" mode="collection">
+    <xsl:template match="results" mode="collection">
 
         <xsl:variable name="metadataURL">
             <xsl:variable name="id" select="normalize-space(id)"/>
@@ -163,7 +163,7 @@
     <!-- Party RegistryObject Template          -->
     <!-- =========================================== -->
 
-    <xsl:template match="*[contains(local-name(), 'result')]" mode="party">
+    <xsl:template match="results" mode="party">
 
         <xsl:apply-templates select="organization"/>
 
@@ -325,7 +325,7 @@
     </xsl:template>
     
      <!-- Collection - Decription (full) Element -->
-    <xsl:template match="*[contains(local-name(), 'result')]" mode="collection_description_full">
+    <xsl:template match="results" mode="collection_description_full">
         <description type="full">
              <xsl:for-each select="resources">
                 <xsl:if test="string-length(normalize-space(name)) > 0">
@@ -335,7 +335,7 @@
         </description>
     </xsl:template>
     
-    <xsl:template match="*[contains(local-name(), 'result')]" mode="collection_location_download">
+    <xsl:template match="results" mode="collection_location_download">
             <xsl:for-each select="resources[not(contains(format, 'website'))]">
                 <xsl:if test="string-length(normalize-space(url)) > 0">
                     <location>
@@ -438,7 +438,7 @@
     </xsl:template>
 
     <!-- Collection - Related Info Element - Services -->
-    <xsl:template match="*[contains(local-name(), 'result')]" mode="collection_relatedInfo">
+    <xsl:template match="results" mode="collection_relatedInfo">
         <xsl:variable name="organizationTitle" select="organization/title"/>
         <!-- Related Services -->
         <xsl:for-each select="resources">
@@ -827,7 +827,7 @@
     <!-- ====================================== -->
 
     <!-- Service Registry Object -->
-    <xsl:template match="*[contains(local-name(), 'result')]" mode="service">
+    <xsl:template match="results" mode="service">
         <xsl:variable name="organizationTitle" select="normalize-space(organization/title)"/>
         <xsl:variable name="organizationName" select="normalize-space(organization/name)"/>
         <xsl:variable name="organizationDescription"
