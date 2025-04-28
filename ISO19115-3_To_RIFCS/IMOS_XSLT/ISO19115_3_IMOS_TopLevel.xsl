@@ -8,7 +8,7 @@
     xmlns:mco="http://standards.iso.org/iso/19115/-3/mco/1.0"
     xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/2.0"
     xmlns="http://ands.org.au/standards/rif-cs/registryObjects"
-    exclude-result-prefixes="xs xsi xsl mdb mcc mri mco cit">
+    exclude-result-prefixes="xs xsi xsl mdb mri mco cit">
     
     <xsl:param name="global_debug" select="false()" as="xs:boolean"/>
     <xsl:param name="global_debugExceptions" select="true()" as="xs:boolean"/>

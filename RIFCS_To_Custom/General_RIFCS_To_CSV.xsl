@@ -19,7 +19,7 @@
     <xsl:variable name="keyPrefix" select="'usc.edu.au/'"/>
     <!--xsl:variable name="keyPrefix" select="''"/-->
     
-    <xsl:param name="compareWithOtherDatasource" select="true()"/>
+    <xsl:param name="compareWithOtherDatasource" select="false()"/>
     <xsl:param name="registry_address_input" select="'researchdata.edu.au'"/>
     <!--xsl:param name="registry_address_input" select="'demo.researchdata.ardc.edu.au'"/-->
     <xsl:param name="registry_address_other" select="'researchdata.edu.au'"/>
