@@ -44,7 +44,7 @@
     <xsl:template match="results" mode="all">
         <xsl:apply-templates select="." mode="collection"/>
         <xsl:apply-templates select="." mode="party"/>
-        <xsl:apply-templates select="." mode="service"/>
+        <!--xsl:apply-templates select="." mode="service"/-->
     </xsl:template>
 
     <xsl:template match="results" mode="collection">
