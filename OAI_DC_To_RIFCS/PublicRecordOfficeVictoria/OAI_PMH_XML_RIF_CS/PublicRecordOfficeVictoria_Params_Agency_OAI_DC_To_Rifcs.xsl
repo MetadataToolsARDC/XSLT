@@ -10,7 +10,7 @@
 
     <xsl:import href="PROV_OAI_DC_To_RIFCS_Agency.xsl"/>
     
-    <xsl:param name="global_originatingSource" select="'Public Record Office Victoria'"/>
+    <xsl:param name="global_originatingSource" select="'https://prov.vic.gov.au'"/>
     <xsl:param name="global_group" select="'Public Record Office Victoria'"/>
     <xsl:param name="global_acronym" select="'PROV'"/>
     <xsl:param name="global_publisherName" select="'Public Record Office Victoria'"/>

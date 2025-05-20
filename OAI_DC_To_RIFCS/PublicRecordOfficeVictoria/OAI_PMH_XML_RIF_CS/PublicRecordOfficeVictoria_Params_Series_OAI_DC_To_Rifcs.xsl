@@ -10,7 +10,7 @@
 
     <xsl:import href="PROV_OAI_DC_To_RIFCS_Series.xsl"/>
     
-    <xsl:param name="global_originatingSource" select="'Public Record Office Victoria'"/>
+    <xsl:param name="global_originatingSource" select="'https://prov.vic.gov.au'"/>
     <xsl:param name="global_group" select="'Public Record Office Victoria'"/>
     <xsl:param name="global_acronym" select="'PROV'"/>
     <xsl:param name="global_publisherName" select="'Public Record Office Victoria'"/>
@@ -32,7 +32,6 @@
     
     
     <xsl:template match="record">
-        <xsl:message select="concat('num oai_dc:dc collection element: ', count(metadata/oai_dc:dc[contains(lower-case(dc:type), 'collection')]))"/>
         <xsl:apply-templates select="metadata/oai_dc:dc[contains(lower-case(dc:type), 'collection')]" mode="collection"/>
         
     </xsl:template>
