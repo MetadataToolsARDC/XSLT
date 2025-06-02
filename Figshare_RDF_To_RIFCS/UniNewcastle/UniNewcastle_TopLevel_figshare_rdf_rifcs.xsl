@@ -24,7 +24,7 @@
     
     <xsl:param name="global_originatingSource" select="'University of Newcastle'"/>
     <xsl:param name="global_baseURI" select="'newcastle.edu.au/'"/>
-    <xsl:param name="global_group" select="'University of Newcastle'"/>
+    <xsl:param name="global_group" select="'The University of Newcastle'"/>
     
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 
@@ -38,5 +38,41 @@
             
         </registryObjects>
     </xsl:template>
+    
+    <!-- Override key creation for University of Newcastle to use Handle if there is one, then next option is Figshare Identifier -->
+    
+    <xsl:template match="rdf:RDF" mode="collection_key">
+        <xsl:param name="oaiFigshareIdentifier" as="xs:string"/>
+        
+        <key>
+            <xsl:choose>
+                <xsl:when test="count(*/bibo:handle[string-length(.) > 0]) > 0">
+                    <xsl:choose>
+                        <xsl:when test="fn:starts-with(*/bibo:handle[string-length(.) > 0][1], 'http')">
+                            <xsl:value-of select="*/bibo:handle[string-length(.) > 0][1]"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="concat('http://hdl.handle.net/', */bibo:handle[string-length(.) > 0][1])"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <xsl:when test="count(*/bibo:doi[string-length(.) > 0]) > 0">
+                    <xsl:choose>
+                        <xsl:when test="fn:starts-with(*/bibo:doi[string-length(.) > 0][1], 'http')">
+                            <xsl:value-of select="*/bibo:doi[string-length(.) > 0][1]"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="concat('http://doi.org/', */bibo:doi[string-length(.) > 0][1])"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="substring(string-join(for $n in fn:reverse(fn:string-to-codepoints($oaiFigshareIdentifier)) return string($n), ''), 0, 50)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </key>
+    </xsl:template>
+    
+  
     
 </xsl:stylesheet>

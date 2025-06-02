@@ -267,9 +267,9 @@
                 
         </registryObject>
         
-        <xsl:apply-templates select="mdb:identificationInfo/*[contains(lower-case(name()),'identification')]" mode="relatedRegistryObjects">
+        <!--xsl:apply-templates select="mdb:identificationInfo/*[contains(lower-case(name()),'identification')]" mode="relatedRegistryObjects">
             <xsl:with-param name="originatingSource" select="$originatingSource"/>
-        </xsl:apply-templates>
+        </xsl:apply-templates-->
 
     </xsl:template>
     

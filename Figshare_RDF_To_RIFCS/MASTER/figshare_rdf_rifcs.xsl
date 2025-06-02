@@ -331,7 +331,6 @@
     
         
     <xsl:message select="concat('doiLastPart: ', $doiLastPart)"/>
-    <xsl:message select="concat('key to use: ', substring(string-join(for $n in fn:reverse(fn:string-to-codepoints($oaiFigshareIdentifier)) return string($n), ''), 0, 50))"/>
     
 
     <registryObject>
