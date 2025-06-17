@@ -112,6 +112,9 @@
 
                 <xsl:apply-templates select="modified_date[string-length(.) > 0]"
                     mode="collection_dates_modified"/>
+                
+                <xsl:apply-templates select="custom_fields[string-length(.) > 0]"
+                    mode="collection_custom_handling"/>
 
                 <xsl:apply-templates select="citation" mode="collection_citationInfo_fullCitation"/>
             </xsl:element>
