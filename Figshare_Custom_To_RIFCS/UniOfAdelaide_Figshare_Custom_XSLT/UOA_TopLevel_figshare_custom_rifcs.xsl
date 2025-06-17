@@ -22,6 +22,18 @@
         </registryObjects>
     </xsl:template>
     
+    <xsl:template match="custom_fields[contains(name, 'Contributor nameIdentifier') and contains(value, 'ror')]" mode="collection_custom_handling">
+        <xsl:message select="concat('Handling custom fields where name is [Contributor nameIdentifier]', $global_group)"/>
+        <relatedInfo type="party">
+            <identifier type="ror">
+               <xsl:value-of select="value"/>
+            </identifier>
+        </relatedInfo>
+    </xsl:template>
+    
+    <xsl:template match="custom_fields" mode="collection_custom_handling">
+        <xsl:message select="concat('Handling custom fields where name is not [Contributor nameIdentifier] ', $global_group)"></xsl:message>
+    </xsl:template>    
+    
 </xsl:stylesheet>
-
 
