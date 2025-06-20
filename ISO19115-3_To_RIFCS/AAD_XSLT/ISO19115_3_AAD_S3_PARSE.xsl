@@ -29,8 +29,16 @@
     
     
     <xsl:template match="/">
-        <xsl:message select="'ISO19115_3_AAD_S3_PARSE ONCE ONLY'"/>
-        <xsl:apply-templates select="//s3:Contents/s3:Key[ends-with(., '.xml')]"/>
+        <registryObjects 
+            xmlns="http://ands.org.au/standards/rif-cs/registryObjects" 
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+            xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd">
+            
+            <xsl:message select="'ISO19115_3_AAD_S3_PARSE'"/>
+            <xsl:apply-templates select="//s3:Contents/s3:Key[ends-with(., '.xml')]"/>
+        </registryObjects>
+        
+        
     </xsl:template>
     
     <xsl:template match="s3:Key">
@@ -40,13 +48,7 @@
         <xsl:variable name="doc" select="document($full_url)"/>
         <xsl:message select="concat('Count mdb:MD_Metadata: ', count($doc/mdb:MD_Metadata))"/>
         
-        <registryObjects 
-            xmlns="http://ands.org.au/standards/rif-cs/registryObjects" 
-            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-            xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd">
-            
-            <xsl:apply-templates select="$doc/mdb:MD_Metadata" mode="process"/>
-        </registryObjects>
+           <xsl:apply-templates select="$doc/mdb:MD_Metadata" mode="process"/>
 
     </xsl:template>
 </xsl:stylesheet>
