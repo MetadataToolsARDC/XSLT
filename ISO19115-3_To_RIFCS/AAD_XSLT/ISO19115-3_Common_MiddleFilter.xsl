@@ -1,1 +1,0 @@
-../MASTER/ISO19115-3_Common_MiddleFilter.xsl
