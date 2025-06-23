@@ -218,7 +218,7 @@
                 
                 <xsl:apply-templates select="mdb:metadataIdentifier/mcc:MD_Identifier" mode="global_identifier"/>
                 
-                <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:identifier/mcc:MD_Identifier"/>
+                <xsl:apply-templates select="mdb:identificationInfo/mri:MD_DataIdentification/mri:citation/cit:CI_Citation/cit:identifier/mcc:MD_Identifier[not(contains(lower-case(mcc:code), 'dataset doi'))]"/>
                 
                 <xsl:choose>
                    <xsl:when test="count(mdb:metadataLinkage/cit:CI_OnlineResource/cit:linkage) > 0">
@@ -1764,18 +1764,17 @@
         </xsl:if>
         
         
+        <xsl:variable name="priorityIdentifier_sequence" select="cit:identifier/mcc:MD_Identifier/mcc:code[(string-length(.) > 0) and not(contains(lower-case(.), 'dataset doi'))]" as="node()*"/>
+        
+        
         <xsl:if test="count($allContributorName_sequence) > 0">
            <citationInfo>
                 <citationMetadata>
                     <identifier>
                         <xsl:choose>
-                                <xsl:when 
-                                    test="
-                                    (count(cit:identifier/mcc:MD_Identifier/mcc:code) > 0) and 
-                                    (string-length(cit:identifier[1]/mcc:MD_Identifier[1]/mcc:code[1]) > 0) and
-                                    (not(contains(lower-case(cit:identifier[1]/mcc:MD_Identifier[1]/mcc:code[1]), 'dataset doi')))">
-                                    <xsl:attribute name="type" select="custom:getIdentifierType(cit:identifier[1]/mcc:MD_Identifier[1]/mcc:code[1])"/>
-                                    <xsl:variable name="identifier" select="cit:identifier[1]/mcc:MD_Identifier[1]/mcc:code[1]"/>
+                                <xsl:when test="(count($priorityIdentifier_sequence) > 0)">
+                                    <xsl:attribute name="type" select="custom:getIdentifierType($priorityIdentifier_sequence[1])"/>
+                                    <xsl:variable name="identifier" select="$priorityIdentifier_sequence[1]"/>
                                     <xsl:choose>
                                         <xsl:when test="starts-with($identifier, 'hdl:')">
                                             <xsl:value-of select="normalize-space(replace($identifier,'hdl:', ''))"/>   
