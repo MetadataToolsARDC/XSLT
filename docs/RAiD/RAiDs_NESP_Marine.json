@@ -1,0 +1,3355 @@
+[
+    {
+        "id": "https://doi.org/10.71676/f4d9d5b2",
+        "doi": "10.71676/F4D9D5B2",
+        "url": "https://raid.org/10.71676/f4d9d5b2",
+        "types": {
+            "ris": "GEN",
+            "bibtex": "misc",
+            "citeproc": "article",
+            "schemaOrg": "Project",
+            "resourceTypeGeneral": "Project"
+        },
+        "creators": [
+            {
+                "name": null,
+                "nameType": null
+            }
+        ],
+        "titles": [
+            {
+                "lang": "eng",
+                "title": "NESP MaC Project 1.16 - Research needs for assessment and monitoring of nutrients, chemicals and antimicrobials in the marine environment (UTS)"
+            }
+        ],
+        "publisher": {
+            "name": "https://ror.org/00arpt780",
+            "schemeUri": "https://ror.org/",
+            "publisherIdentifier": "https://ror.org/00arpt780",
+            "publisherIdentifierScheme": "ROR"
+        },
+        "subjects": [],
+        "contributors": [
+            {
+                "name": "RAiD AU",
+                "nameType": "Organizational",
+                "contributorType": "RegistrationAgency",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": "https://ror.org/",
+                        "nameIdentifier": "https://ror.org/038sjwq14",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/03f0f6041",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/03f0f6041",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/050khh066",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/050khh066",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00arpt780",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00arpt780",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            }
+        ],
+        "dates": [
+            {
+                "date": "2021-09-01/2022-03-31",
+                "dateType": "Other"
+            }
+        ],
+        "publicationYear": 2025,
+        "identifiers": [
+            {
+                "identifier": "https://prod.static.raid.org.au/10.71676/f4d9d5b2",
+                "identifierType": "RaidAgencyUrl"
+            }
+        ],
+        "rightsList": [],
+        "descriptions": [
+            {
+                "lang": "eng",
+                "description": "Coastal water quality is threatened by an increasing volume of chemicals produced and used in our modern lives. These chemicals are commonly incorporated into pharmaceuticals and household items, and subsequently discharged into coastal areas from a broad range of point sources. Recently emerging contaminants include a variety of chemical (e.g. heavy metals, pharmaceuticals, pesticides, nutrients) and microbiological (e.g. pathogens, antibiotic resistant microbes) sources that are discharged in sewage, stormwater, estuarine flows and industrial wastes.\n\nFor many of these chemicals, our understanding of their environmental concentrations and biological effects is limited. When new scientific information emerges to suggest that a particular contaminant may be hazardous, this is refered to as a contaminant of emerging concern (CEC). There is limited data about the environmental occurrence and biological effects of CECs, but emerging research suggests they have the capacity to be toxic.\n\nWith an increasing list of CECs detected in the environment, important questions remain unanswered around which contaminants and scientific knowledge gaps should be prioritised. This desktop study engaged CEC stakeholders from academic research, government, water utilities, and non-government organisations to collaboratively identify priority CEC issues in Australia’s marine ecosystems. The project delivers a risk-based framework for future CEC research directions and water quality management priorities.",
+                "descriptionType": "Abstract"
+            }
+        ],
+        "fundingReferences": [],
+        "relatedIdentifiers": [
+            {
+                "relationType": "IsDocumentedBy",
+                "relatedIdentifier": "https://catalogue.aodn.org.au/geonetwork/srv/eng/catalog.search#/metadata/61ccd268-f010-4679-bc1a-be0b1688cd0b",
+                "resourceTypeGeneral": "Other",
+                "relatedIdentifierType": "URL"
+            },
+            {
+                "relationType": "IsPartOf",
+                "relatedIdentifier": "https://raid.org/10.71821/418be95a",
+                "resourceTypeGeneral": "Project",
+                "relatedIdentifierType": "DOI"
+            }
+        ],
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "providerId": "uuag",
+        "clientId": "uuag.tmnpaz",
+        "agency": "datacite",
+        "state": "findable"
+    },
+    {
+        "id": "https://doi.org/10.71676/311a002e",
+        "doi": "10.71676/311A002E",
+        "url": "https://raid.org/10.71676/311a002e",
+        "types": {
+            "ris": "GEN",
+            "bibtex": "misc",
+            "citeproc": "article",
+            "schemaOrg": "Project",
+            "resourceTypeGeneral": "Project"
+        },
+        "creators": [
+            {
+                "name": null,
+                "nameType": null
+            }
+        ],
+        "titles": [
+            {
+                "lang": "eng",
+                "title": "NESP MaC Project 1.33 - Application of environmental DNA to survey Bathurst Harbour Tasmania for the endangered Maugean skate (IMAS)"
+            }
+        ],
+        "publisher": {
+            "name": "https://ror.org/00arpt780",
+            "schemeUri": "https://ror.org/",
+            "publisherIdentifier": "https://ror.org/00arpt780",
+            "publisherIdentifierScheme": "ROR"
+        },
+        "subjects": [],
+        "contributors": [
+            {
+                "name": "RAiD AU",
+                "nameType": "Organizational",
+                "contributorType": "RegistrationAgency",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": "https://ror.org/",
+                        "nameIdentifier": "https://ror.org/038sjwq14",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00arpt780",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00arpt780",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00arpt780",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00arpt780",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/026nh4520",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/026nh4520",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            }
+        ],
+        "dates": [
+            {
+                "date": "2021-09-01/2022-05-30",
+                "dateType": "Other"
+            }
+        ],
+        "publicationYear": 2025,
+        "identifiers": [
+            {
+                "identifier": "https://prod.static.raid.org.au/10.71676/311a002e",
+                "identifierType": "RaidAgencyUrl"
+            }
+        ],
+        "rightsList": [],
+        "descriptions": [
+            {
+                "lang": "eng",
+                "description": "The Maugean skate (*Zearaja maugeana() is listed as Endangered under Tasmania’s *Threatened Species Protection Act and the Commonwealth Environmental Protection and Biodiversity Conservation Act 1999*. Its known population is small (~3,000 individuals, Macquarie Harbour, 2016) and highly restricted, having only been recorded in two isolated estuaries: Bathurst Harbour and Macquarie Harbour in south-western/western Tasmania. This constitutes one of the most limited distributions of any known extant elasmobranch.\n\nAlthough the skate was first discovered in Bathurst Harbour, most knowledge of the species stems from the Macquarie Harbour population. Only four individuals have been reported in Bathurst Harbour, with the last reported sighting in 1992. Environmental conditions in Macquarie Harbour have changed markedly since then due to anthropogenic activities in and around the estuary including historical mining, hydro-electric generation and alteration of natural river flows, and marine fish farming.\n\nPrevious research has shown clear signs of population stress and evidence of detrimental impacts of degraded environmental conditions on the Maugean Skate in Macquarie Harbour. Understanding the potential population status of the Maugean Skate in Bathurst Harbour will assist in determining conservation actions. This study used Environmental (e) DNA to determine the presence/absence of the endangered Maugean skate (Zearaja maugeana) in Bathurst Harbour, strengthening the evidence base for effective conservation plans and specific recovery actions.",
+                "descriptionType": "Abstract"
+            }
+        ],
+        "fundingReferences": [],
+        "relatedIdentifiers": [
+            {
+                "relationType": "IsReferencedBy",
+                "relatedIdentifier": "https://doi.org/10.25959/4VKC-EG42",
+                "resourceTypeGeneral": "Dataset",
+                "relatedIdentifierType": "DOI"
+            },
+            {
+                "relationType": "IsDocumentedBy",
+                "relatedIdentifier": "https://catalogue.aodn.org.au/geonetwork/srv/eng/catalog.search#/metadata/7fcf99b3-b95c-489a-bc4c-f4f1b75af9f2",
+                "resourceTypeGeneral": "Other",
+                "relatedIdentifierType": "URL"
+            },
+            {
+                "relationType": "IsPartOf",
+                "relatedIdentifier": "https://raid.org/10.71821/418be95a",
+                "resourceTypeGeneral": "Project",
+                "relatedIdentifierType": "DOI"
+            }
+        ],
+        "providerId": "uuag",
+        "clientId": "uuag.tmnpaz",
+        "agency": "datacite",
+        "state": "findable"
+    },
+    {
+        "id": "https://doi.org/10.71676/8bcb7e8b",
+        "doi": "10.71676/8BCB7E8B",
+        "url": "https://raid.org/10.71676/8bcb7e8b",
+        "types": {
+            "ris": "GEN",
+            "bibtex": "misc",
+            "citeproc": "article",
+            "schemaOrg": "Project",
+            "resourceTypeGeneral": "Project"
+        },
+        "creators": [
+            {
+                "name": null,
+                "nameType": null
+            }
+        ],
+        "titles": [
+            {
+                "lang": "eng",
+                "title": "NESP MaC Project 1.33 - Application of environmental DNA to survey Bathurst Harbour Tasmania for the endangered Maugean skate (IMAS)"
+            }
+        ],
+        "publisher": {
+            "name": "https://ror.org/00arpt780",
+            "schemeUri": "https://ror.org/",
+            "publisherIdentifier": "https://ror.org/00arpt780",
+            "publisherIdentifierScheme": "ROR"
+        },
+        "subjects": [],
+        "contributors": [
+            {
+                "name": "RAiD AU",
+                "nameType": "Organizational",
+                "contributorType": "RegistrationAgency",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": "https://ror.org/",
+                        "nameIdentifier": "https://ror.org/038sjwq14",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00arpt780",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00arpt780",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00arpt780",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00arpt780",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/026nh4520",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/026nh4520",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            }
+        ],
+        "dates": [
+            {
+                "date": "2021-09-01/2022-05-30",
+                "dateType": "Other"
+            }
+        ],
+        "publicationYear": 2025,
+        "identifiers": [
+            {
+                "identifier": "https://prod.static.raid.org.au/10.71676/8bcb7e8b",
+                "identifierType": "RaidAgencyUrl"
+            }
+        ],
+        "rightsList": [],
+        "descriptions": [
+            {
+                "lang": "eng",
+                "description": "The Maugean skate (*Zearaja maugeana() is listed as Endangered under Tasmania’s *Threatened Species Protection Act and the Commonwealth Environmental Protection and Biodiversity Conservation Act 1999*. Its known population is small (~3,000 individuals, Macquarie Harbour, 2016) and highly restricted, having only been recorded in two isolated estuaries: Bathurst Harbour and Macquarie Harbour in south-western/western Tasmania. This constitutes one of the most limited distributions of any known extant elasmobranch.\n\nAlthough the skate was first discovered in Bathurst Harbour, most knowledge of the species stems from the Macquarie Harbour population. Only four individuals have been reported in Bathurst Harbour, with the last reported sighting in 1992. Environmental conditions in Macquarie Harbour have changed markedly since then due to anthropogenic activities in and around the estuary including historical mining, hydro-electric generation and alteration of natural river flows, and marine fish farming.\n\nPrevious research has shown clear signs of population stress and evidence of detrimental impacts of degraded environmental conditions on the Maugean Skate in Macquarie Harbour. Understanding the potential population status of the Maugean Skate in Bathurst Harbour will assist in determining conservation actions. This study used Environmental (e) DNA to determine the presence/absence of the endangered Maugean skate (Zearaja maugeana) in Bathurst Harbour, strengthening the evidence base for effective conservation plans and specific recovery actions.",
+                "descriptionType": "Abstract"
+            }
+        ],
+        "fundingReferences": [],
+        "relatedIdentifiers": [
+            {
+                "relationType": "IsReferencedBy",
+                "relatedIdentifier": "https://doi.org/10.25959/4VKC-EG42",
+                "resourceTypeGeneral": "Dataset",
+                "relatedIdentifierType": "DOI"
+            },
+            {
+                "relationType": "IsDocumentedBy",
+                "relatedIdentifier": "https://catalogue.aodn.org.au/geonetwork/srv/eng/catalog.search#/metadata/7fcf99b3-b95c-489a-bc4c-f4f1b75af9f2",
+                "resourceTypeGeneral": "Other",
+                "relatedIdentifierType": "URL"
+            },
+            {
+                "relationType": "IsPartOf",
+                "relatedIdentifier": "https://raid.org/10.71821/418be95a",
+                "resourceTypeGeneral": "Project",
+                "relatedIdentifierType": "DOI"
+            }
+        ],
+        "providerId": "uuag",
+        "clientId": "uuag.tmnpaz",
+        "agency": "datacite",
+        "state": "findable"
+    },
+    {
+        "id": "https://doi.org/10.71676/4cb59d5d",
+        "doi": "10.71676/4CB59D5D",
+        "url": "https://raid.org/10.71676/4cb59d5d",
+        "types": {
+            "ris": "GEN",
+            "bibtex": "misc",
+            "citeproc": "article",
+            "schemaOrg": "Project",
+            "resourceTypeGeneral": "Project"
+        },
+        "creators": [
+            {
+                "name": null,
+                "nameType": null
+            }
+        ],
+        "titles": [
+            {
+                "lang": "eng",
+                "title": "NESP MaC Project 1.4 - Characterising values and identifying indicators and metrics of fish and benthic assemblages within the Capes region of the South-west Corner Marine Park (UWA)"
+            }
+        ],
+        "publisher": {
+            "name": "https://ror.org/00arpt780",
+            "schemeUri": "https://ror.org/",
+            "publisherIdentifier": "https://ror.org/00arpt780",
+            "publisherIdentifierScheme": "ROR"
+        },
+        "subjects": [],
+        "contributors": [
+            {
+                "name": "RAiD AU",
+                "nameType": "Organizational",
+                "contributorType": "RegistrationAgency",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": "https://ror.org/",
+                        "nameIdentifier": "https://ror.org/038sjwq14",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/028khat13",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/028khat13",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/047272k79",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/047272k79",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/04ge02x20",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/04ge02x20",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00arpt780",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00arpt780",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            }
+        ],
+        "dates": [
+            {
+                "date": "2021-09-01/2022-03-31",
+                "dateType": "Other"
+            }
+        ],
+        "publicationYear": 2025,
+        "identifiers": [
+            {
+                "identifier": "https://prod.static.raid.org.au/10.71676/4cb59d5d",
+                "identifierType": "RaidAgencyUrl"
+            }
+        ],
+        "rightsList": [],
+        "descriptions": [
+            {
+                "lang": "eng",
+                "description": "Inventory surveys of Australian Marine Parks (AMPs) provide a broad description of the natural assets that exist in Commonwealth waters. These data can be further explored to identify biological indicators and metrics to cost-effectively monitor the AMPs and inform the AMP Monitoring Evaluation Reporting and Improvement (MERI) system.\n\nHistorical surveys conducted under the NESP Marine Biodiversity Hub inventoried natural values and ecosystem components in selected AMPs. They developed and tested standardised survey techniques to allows scientists and park managers to identify and measure the status of natural values and ecosystem components. A recent Marine Biodiversity Hub survey conducted detailed bathymetric and visual sampling of key seafloor habitat and fish assemblages in the Capes region of South-west Corner Marine Park (Western Australia). \n\nThis project analysed the Capes survey data to characterise and predict the broader distribution of natural values and ecosystem features, and to identify relevant indicators of fish and benthic assemblages for Park management. The results are presented alongside summaries of existing knowledge on natural, socio-economic, and cultural values, as well as human pressures. Recommendations include establishing national and international monitoring benchmarks and incorporating survey guidance from Traditional Owners.\n",
+                "descriptionType": "Abstract"
+            }
+        ],
+        "fundingReferences": [],
+        "relatedIdentifiers": [
+            {
+                "relationType": "IsReferencedBy",
+                "relatedIdentifier": "https://doi.org/10.25959/6G5A-3G03",
+                "resourceTypeGeneral": "Dataset",
+                "relatedIdentifierType": "DOI"
+            },
+            {
+                "relationType": "IsReferencedBy",
+                "relatedIdentifier": "https://doi.org/10.25959/MHQC-AH42",
+                "resourceTypeGeneral": "Dataset",
+                "relatedIdentifierType": "DOI"
+            },
+            {
+                "relationType": "IsReferencedBy",
+                "relatedIdentifier": "https://doi.org/10.25959/S1SW-RJ21",
+                "resourceTypeGeneral": "Dataset",
+                "relatedIdentifierType": "DOI"
+            },
+            {
+                "relationType": "IsDocumentedBy",
+                "relatedIdentifier": "https://catalogue.aodn.org.au/geonetwork/srv/eng/catalog.search#/metadata/f26d864b-7e4d-422f-8456-adb01c3445a5",
+                "resourceTypeGeneral": "Other",
+                "relatedIdentifierType": "URL"
+            },
+            {
+                "relationType": "IsPartOf",
+                "relatedIdentifier": "https://raid.org/10.71821/418be95a",
+                "resourceTypeGeneral": "Project",
+                "relatedIdentifierType": "DOI"
+            }
+        ],
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "providerId": "uuag",
+        "clientId": "uuag.tmnpaz",
+        "agency": "datacite",
+        "state": "findable"
+    },
+    {
+        "id": "https://doi.org/10.71676/5d3a9b28",
+        "doi": "10.71676/5D3A9B28",
+        "url": "https://raid.org/10.71676/5d3a9b28",
+        "types": {
+            "ris": "GEN",
+            "bibtex": "misc",
+            "citeproc": "article",
+            "schemaOrg": "Project",
+            "resourceTypeGeneral": "Project"
+        },
+        "creators": [
+            {
+                "name": null,
+                "nameType": null
+            }
+        ],
+        "titles": [
+            {
+                "lang": "eng",
+                "title": "NESP MaC Project 1.21 - Australia’s Coastal Shorebirds: Trends and Prospects (UQ)"
+            }
+        ],
+        "publisher": {
+            "name": "https://ror.org/00arpt780",
+            "schemeUri": "https://ror.org/",
+            "publisherIdentifier": "https://ror.org/00arpt780",
+            "publisherIdentifierScheme": "ROR"
+        },
+        "subjects": [],
+        "contributors": [
+            {
+                "name": "RAiD AU",
+                "nameType": "Organizational",
+                "contributorType": "RegistrationAgency",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": "https://ror.org/",
+                        "nameIdentifier": "https://ror.org/038sjwq14",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00rqy9422",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00rqy9422",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            }
+        ],
+        "dates": [
+            {
+                "date": "2021-09-01/2022-08-31",
+                "dateType": "Other"
+            }
+        ],
+        "publicationYear": 2025,
+        "identifiers": [
+            {
+                "identifier": "https://prod.static.raid.org.au/10.71676/5d3a9b28",
+                "identifierType": "RaidAgencyUrl"
+            }
+        ],
+        "rightsList": [],
+        "descriptions": [
+            {
+                "lang": "eng",
+                "description": "Coastal Australia is home to 37 regularly occurring migratory shorebird species, with many protected areas including Ramsar sites designated on the basis of shorebird populations. Many migratory shorebirds are declining rapidly, and hence the focus of conservation efforts at multiple levels of government in Australia and overseas. However, trend data are now nearly 10 years old, meaning the information available to assess where conservation actions are needed most urgently and whether conservation efforts are helping species recover are outdated.\n\nTo ensure populations have the best chance at recovery and that resources are allocated where they are most likely to have the greatest positive impacts, it is critical to maintain up-to-date information on species trends. This project analysed 30 years of shorebird monitoring data collected by citizen science groups across Australia and curated by BirdLife Australia’s National Shorebird Monitoring Program to update national trend estimates, while also assessing the relative effects of human pressure and conservation efforts on population trends. In particular, it focused on 15 migratory shorebird species whose conservation status was being reassessed by the Australian Department of Climate Change, Energy, the Environment and Water. This project sets the stage for building the next decade of coastal shorebird conservation activity in Australia, coordinated through the national mechanism of the End User: National Migratory Shorebird Conservation Action Plan Steering Committee, with representatives from national and state governments as well as leading shorebird experts.",
+                "descriptionType": "Abstract"
+            }
+        ],
+        "fundingReferences": [],
+        "relatedIdentifiers": [
+            {
+                "relationType": "IsDocumentedBy",
+                "relatedIdentifier": "https://catalogue.aodn.org.au/geonetwork/srv/eng/catalog.search#/metadata/7857ff01-9f4e-4fc6-9ce1-db8824fb0292",
+                "resourceTypeGeneral": "Other",
+                "relatedIdentifierType": "URL"
+            },
+            {
+                "relationType": "IsPartOf",
+                "relatedIdentifier": "https://raid.org/10.71821/418be95a",
+                "resourceTypeGeneral": "Project",
+                "relatedIdentifierType": "DOI"
+            }
+        ],
+        "providerId": "uuag",
+        "clientId": "uuag.tmnpaz",
+        "agency": "datacite",
+        "state": "findable"
+    },
+    {
+        "id": "https://doi.org/10.71676/703d5c2c",
+        "doi": "10.71676/703D5C2C",
+        "url": "https://raid.org/10.71676/703d5c2c",
+        "types": {
+            "ris": "GEN",
+            "bibtex": "misc",
+            "citeproc": "article",
+            "schemaOrg": "Project",
+            "resourceTypeGeneral": "Project"
+        },
+        "creators": [
+            {
+                "name": null,
+                "nameType": null
+            }
+        ],
+        "titles": [
+            {
+                "lang": "eng",
+                "title": "NESP MaC Project 1.33 - Application of environmental DNA to survey Bathurst Harbour Tasmania for the endangered Maugean skate (IMAS)"
+            }
+        ],
+        "publisher": {
+            "name": "https://ror.org/00arpt780",
+            "schemeUri": "https://ror.org/",
+            "publisherIdentifier": "https://ror.org/00arpt780",
+            "publisherIdentifierScheme": "ROR"
+        },
+        "subjects": [],
+        "contributors": [
+            {
+                "name": "RAiD AU",
+                "nameType": "Organizational",
+                "contributorType": "RegistrationAgency",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": "https://ror.org/",
+                        "nameIdentifier": "https://ror.org/038sjwq14",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00arpt780",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00arpt780",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00arpt780",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00arpt780",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/026nh4520",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/026nh4520",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            }
+        ],
+        "dates": [
+            {
+                "date": "2021-09-01/2022-05-30",
+                "dateType": "Other"
+            }
+        ],
+        "publicationYear": 2025,
+        "identifiers": [
+            {
+                "identifier": "https://prod.static.raid.org.au/10.71676/703d5c2c",
+                "identifierType": "RaidAgencyUrl"
+            }
+        ],
+        "rightsList": [],
+        "descriptions": [
+            {
+                "lang": "eng",
+                "description": "The Maugean skate (*Zearaja maugeana*) is listed as Endangered under Tasmania’s *Threatened Species Protection Act and the Commonwealth Environmental Protection and Biodiversity Conservation Act 1999*. Its known population is small (~3,000 individuals, Macquarie Harbour, 2016) and highly restricted, having only been recorded in two isolated estuaries: Bathurst Harbour and Macquarie Harbour in south-western/western Tasmania. This constitutes one of the most limited distributions of any known extant elasmobranch.\n\nAlthough the skate was first discovered in Bathurst Harbour, most knowledge of the species stems from the Macquarie Harbour population. Only four individuals have been reported in Bathurst Harbour, with the last reported sighting in 1992. Environmental conditions in Macquarie Harbour have changed markedly since then due to anthropogenic activities in and around the estuary including historical mining, hydro-electric generation and alteration of natural river flows, and marine fish farming.\n\nPrevious research has shown clear signs of population stress and evidence of detrimental impacts of degraded environmental conditions on the Maugean Skate in Macquarie Harbour. Understanding the potential population status of the Maugean Skate in Bathurst Harbour will assist in determining conservation actions. This study used Environmental (e) DNA to determine the presence/absence of the endangered Maugean skate (Zearaja maugeana) in Bathurst Harbour, strengthening the evidence base for effective conservation plans and specific recovery actions.",
+                "descriptionType": "Abstract"
+            }
+        ],
+        "fundingReferences": [],
+        "relatedIdentifiers": [
+            {
+                "relationType": "IsReferencedBy",
+                "relatedIdentifier": "https://doi.org/10.25959/4VKC-EG42",
+                "resourceTypeGeneral": "Dataset",
+                "relatedIdentifierType": "DOI"
+            },
+            {
+                "relationType": "IsDocumentedBy",
+                "relatedIdentifier": "https://catalogue.aodn.org.au/geonetwork/srv/eng/catalog.search#/metadata/7fcf99b3-b95c-489a-bc4c-f4f1b75af9f2",
+                "resourceTypeGeneral": "Other",
+                "relatedIdentifierType": "URL"
+            },
+            {
+                "relationType": "IsPartOf",
+                "relatedIdentifier": "https://raid.org/10.71821/418be95a",
+                "resourceTypeGeneral": "Project",
+                "relatedIdentifierType": "DOI"
+            }
+        ],
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "providerId": "uuag",
+        "clientId": "uuag.tmnpaz",
+        "agency": "datacite",
+        "state": "findable"
+    },
+    {
+        "id": "https://doi.org/10.71676/f0bab83a",
+        "doi": "10.71676/F0BAB83A",
+        "url": "https://raid.org/10.71676/f0bab83a",
+        "types": {
+            "ris": "GEN",
+            "bibtex": "misc",
+            "citeproc": "article",
+            "schemaOrg": "Project",
+            "resourceTypeGeneral": "Project"
+        },
+        "creators": [
+            {
+                "name": null,
+                "nameType": null
+            }
+        ],
+        "titles": [
+            {
+                "lang": "eng",
+                "title": "NESP MaC Project 1.3 - Support for Parks Australia’s Monitoring, Evaluation, Reporting and Improvement System for Australian Marine Parks (CSIRO)"
+            }
+        ],
+        "publisher": {
+            "name": "https://ror.org/00arpt780",
+            "schemeUri": "https://ror.org/",
+            "publisherIdentifier": "https://ror.org/00arpt780",
+            "publisherIdentifierScheme": "ROR"
+        },
+        "subjects": [],
+        "contributors": [
+            {
+                "name": "RAiD AU",
+                "nameType": "Organizational",
+                "contributorType": "RegistrationAgency",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": "https://ror.org/",
+                        "nameIdentifier": "https://ror.org/038sjwq14",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/026nh4520",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/026nh4520",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/03q397159",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/03q397159",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00arpt780",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00arpt780",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            }
+        ],
+        "dates": [
+            {
+                "date": "2021-09-01/2022-03-31",
+                "dateType": "Other"
+            }
+        ],
+        "publicationYear": 2025,
+        "identifiers": [
+            {
+                "identifier": "https://prod.static.raid.org.au/10.71676/f0bab83a",
+                "identifierType": "RaidAgencyUrl"
+            }
+        ],
+        "rightsList": [],
+        "descriptions": [
+            {
+                "lang": "eng",
+                "description": "The system of marine parks that spans Australia’s Commonwealth waters is among the largest in the world. These parks play a major role in conserving marine life, supporting commercial and recreational activities, and protecting cultural values significant to Aboriginal and Torres Strait Islander peoples. Parks Australia has developed management plans for five regional Australian Marine Park (AMP) networks (North, North-west, South-west, South-east and Temperate East) and the Coral Sea Marine Park (CSMP). Under each management plan, a science plan sets priorities for monitoring and research to evaluate management effectiveness and identify opportunities for improvement. This prioritisation is vital given the limited knowledge across many AMPs, the technical challenges and high costs of science in remote areas, and the finite resources available for park management.\n\nBuilding on foundational work from the NESP Marine Biodiversity Hub (projects (SS2)[https://www.nespmarine.edu.au/project/project-ss2-%E2%80%93-interpreting-pressure-profiles.html] and (D7)[https://www.nespmarine.edu.au/project/project-d7-%e2%80%93-supporting-monitoring-evaluation-reporting-and-improvement-system-australian.html]), this project delivered the scientific and technical advice needed to establish monitoring priorities for natural values and pressures across all AMP networks and the CSMP—completing a full national priority list for monitoring. It applied a nationally consistent four-step prioritisation framework that considered ecological importance, vulnerability to pressures, baseline data availability, and logistical feasibility. The project also updated the National Ecosystem model and Pressures & Activities datasets, conducted expert vulnerability assessments, and produced a Relative Cumulative Impact index. The combined research delivers a nationally accepted \"common language\" to describe natural values and pressures and a science-based method to derive monitoring priorities, aligned with the Monitoring, Evaluation, Reporting and Improvement (MERI) system—an adaptive management framework that is globally unique and a significant step towards adaptive, integrated, place-based management.\n\nKey outputs include a national database of environmental and human-use data for each management region and a refined list of monitoring priorities for each AMP Network and the CSMP. The findings highlight major knowledge gaps—particularly in the distribution of mesophotic and rariphotic reefs, intertidal ecosystems, and recreational fishing impacts—and provide guidance for improving baseline data and pressure assessments. The prioritisation framework and data products developed through this project can be re-generated over time alongside improvements in the evidence base and our understanding of how ecosystems respond to multi-sectoral activities to support continual improvement in iterative, evidence-based park management and environmental outcomes.",
+                "descriptionType": "Abstract"
+            }
+        ],
+        "fundingReferences": [],
+        "relatedIdentifiers": [
+            {
+                "relationType": "IsReferencedBy",
+                "relatedIdentifier": "https://doi.org/10.25959/NMVE-SF04",
+                "resourceTypeGeneral": "Dataset",
+                "relatedIdentifierType": "DOI"
+            },
+            {
+                "relationType": "IsReferencedBy",
+                "relatedIdentifier": "https://doi.org/10.25959/HEKR-NR42",
+                "resourceTypeGeneral": "Dataset",
+                "relatedIdentifierType": "DOI"
+            },
+            {
+                "relationType": "IsDocumentedBy",
+                "relatedIdentifier": "https://catalogue.aodn.org.au/geonetwork/srv/eng/catalog.search#/metadata/2b251e01-6cc7-434e-bfaa-bbf691faa8a2",
+                "resourceTypeGeneral": "Other",
+                "relatedIdentifierType": "URL"
+            },
+            {
+                "relationType": "IsPartOf",
+                "relatedIdentifier": "https://raid.org/10.71821/418be95a",
+                "resourceTypeGeneral": "Project",
+                "relatedIdentifierType": "DOI"
+            }
+        ],
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "providerId": "uuag",
+        "clientId": "uuag.tmnpaz",
+        "agency": "datacite",
+        "state": "findable"
+    },
+    {
+        "id": "https://doi.org/10.71676/89a4f3b9",
+        "doi": "10.71676/89A4F3B9",
+        "url": "https://raid.org/10.71676/89a4f3b9",
+        "types": {
+            "ris": "GEN",
+            "bibtex": "misc",
+            "citeproc": "article",
+            "schemaOrg": "Project",
+            "resourceTypeGeneral": "Project"
+        },
+        "creators": [
+            {
+                "name": null,
+                "nameType": null
+            }
+        ],
+        "titles": [
+            {
+                "lang": "eng",
+                "title": "NESP MaC Project 1.9 - Quantifying the ecosystem services of the Great Southern Reef (UNSW, IMAS)"
+            }
+        ],
+        "publisher": {
+            "name": "https://ror.org/00arpt780",
+            "schemeUri": "https://ror.org/",
+            "publisherIdentifier": "https://ror.org/00arpt780",
+            "publisherIdentifierScheme": "ROR"
+        },
+        "subjects": [],
+        "contributors": [
+            {
+                "name": "RAiD AU",
+                "nameType": "Organizational",
+                "contributorType": "RegistrationAgency",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": "https://ror.org/",
+                        "nameIdentifier": "https://ror.org/038sjwq14",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/03r8z3t63",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/03r8z3t63",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00arpt780",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00arpt780",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/047272k79",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/047272k79",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            }
+        ],
+        "dates": [
+            {
+                "date": "2021-09-01/2022-03-31",
+                "dateType": "Other"
+            }
+        ],
+        "publicationYear": 2025,
+        "identifiers": [
+            {
+                "identifier": "https://prod.static.raid.org.au/10.71676/89a4f3b9",
+                "identifierType": "RaidAgencyUrl"
+            }
+        ],
+        "rightsList": [],
+        "descriptions": [
+            {
+                "lang": "eng",
+                "description": "The Great Southern Reef (GSR) is an 8,000 km network of temperate rocky reefs stretching from Western Australia to New South Wales. Dominated by kelp forests, it is one of the world’s most biodiverse and productive marine ecosystems, supporting important fisheries, tourism, cultural values, and ecological functions. Despite its significance, kelp forests are in decline due to ocean warming, marine heatwaves, pollution, and expanding herbivore populations—threatening both biodiversity and the services these reefs provide. Evidence-based management is hindered without accurate estimates of the GSR's contribution to society and the economy.\n\nThis project delivered the first systematic synthesis of existing data on the ecosystem services and economic value of the GSR, focusing on shallow reefs (0–50 m). Market and non-market services—such as commercial and recreational fishing, tourism, carbon sequestration, and existence value—were assessed for each state in which the GSR occurs. The synthesis highlighted the high societal dependence on the GSR, with over 17 million Australians living within 50 km of its waters and significant national engagement in related economic and cultural activities.\n\nAll data inventoried by the project were aligned with national and international environmental-economic accounting standards to support future inclusion in Australia’s ocean accounting frameworks. This inventory provides the foundation for developing a national ocean account for kelp forests, and identifies the key data gaps that must be addressed to fully capture the GSR’s value and guide long-term policy and investment.",
+                "descriptionType": "Abstract"
+            }
+        ],
+        "fundingReferences": [],
+        "relatedIdentifiers": [
+            {
+                "relationType": "IsDocumentedBy",
+                "relatedIdentifier": "https://catalogue.aodn.org.au/geonetwork/srv/eng/catalog.search#/metadata/5e47d39a-5792-45d4-8d91-2373310ba81a",
+                "resourceTypeGeneral": "Other",
+                "relatedIdentifierType": "URL"
+            },
+            {
+                "relationType": "IsPartOf",
+                "relatedIdentifier": "https://raid.org/10.71821/418be95a",
+                "resourceTypeGeneral": "Project",
+                "relatedIdentifierType": "DOI"
+            }
+        ],
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "providerId": "uuag",
+        "clientId": "uuag.tmnpaz",
+        "agency": "datacite",
+        "state": "findable"
+    },
+    {
+        "id": "https://doi.org/10.71676/515a8eb4",
+        "doi": "10.71676/515A8EB4",
+        "url": "https://raid.org/10.71676/515a8eb4",
+        "types": {
+            "ris": "GEN",
+            "bibtex": "misc",
+            "citeproc": "article",
+            "schemaOrg": "Project",
+            "resourceTypeGeneral": "Project"
+        },
+        "creators": [
+            {
+                "name": null,
+                "nameType": null
+            }
+        ],
+        "titles": [
+            {
+                "lang": "eng",
+                "title": "NESP MaC Project 1.7 - Towards a consolidated and open-science framework for restoration monitoring (Griffith Uni, NSW DPI)"
+            }
+        ],
+        "publisher": {
+            "name": "https://ror.org/00arpt780",
+            "schemeUri": "https://ror.org/",
+            "publisherIdentifier": "https://ror.org/00arpt780",
+            "publisherIdentifierScheme": "ROR"
+        },
+        "subjects": [],
+        "contributors": [
+            {
+                "name": "RAiD AU",
+                "nameType": "Organizational",
+                "contributorType": "RegistrationAgency",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": "https://ror.org/",
+                        "nameIdentifier": "https://ror.org/038sjwq14",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/02sc3r913",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/02sc3r913",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/050khh066",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/050khh066",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            }
+        ],
+        "dates": [
+            {
+                "date": "2021-09-01/2022-03-31",
+                "dateType": "Other"
+            }
+        ],
+        "publicationYear": 2025,
+        "identifiers": [
+            {
+                "identifier": "https://prod.static.raid.org.au/10.71676/515a8eb4",
+                "identifierType": "RaidAgencyUrl"
+            }
+        ],
+        "rightsList": [],
+        "descriptions": [
+            {
+                "lang": "eng",
+                "description": "Coastal habitat restoration is scaling up rapidly in Australia and covers a range of diverse ecosystems including oyster reefs, seagrass meadows, mangrove forests, kelp forests, and saltmarshes. While monitoring is commonly included in these projects, approaches are often uncoordinated, inconsistently funded, and rarely follow open science protocols.\n\nPrevious NESP-funded projects have advanced understanding of the ecology and service provision of threatened ecosystems and established targets for repair based on reference conditions (e.g. Marine Biodiversity Hub (Project B4)[https://www.nespmarine.edu.au/project/project-b4-underpinning-repair-and-conservation-australias-threatened-coastal-marine.html]). They also created a national database of marine and coastal restoration projects (Australian Coastal Restoration Network: (Project E5)[https://www.nespmarine.edu.au/project/project-e5-role-restoration-conserving-matters-national-environmental-significance.html]) and supported the development of monitoring, evaluation, reporting and improvement (MERI) systems across various sectors. Building on this foundation, the current project synthesised monitoring approaches across multiple habitat types by drawing on the collective expertise of Australian researchers. It also explored the integration of emerging technologies—such as automation, artificial intelligence, and eDNA—to improve monitoring efficiency and cost-effectiveness.\n\nThe primary output of this project is a coordinated, open-science monitoring framework that incorporates clearly defined restoration goals and a core set of universal variables. Developed through expert consultation, the framework supports consistent benchmarking across projects while accommodating habitat-specific and goal-driven metrics. The framework promotes data accessibility, standardised definitions, and the integration of new technologies to streamline the development of future restoration projects and maximise the value of restoration monitoring.",
+                "descriptionType": "Abstract"
+            }
+        ],
+        "fundingReferences": [],
+        "relatedIdentifiers": [
+            {
+                "relationType": "IsDocumentedBy",
+                "relatedIdentifier": "https://catalogue.aodn.org.au/geonetwork/srv/eng/catalog.search#/metadata/86d17e0f-c825-47d3-9480-114253bacd30",
+                "resourceTypeGeneral": "Other",
+                "relatedIdentifierType": "URL"
+            },
+            {
+                "relationType": "IsPartOf",
+                "relatedIdentifier": "https://raid.org/10.71821/418be95a",
+                "resourceTypeGeneral": "Project",
+                "relatedIdentifierType": "DOI"
+            }
+        ],
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "providerId": "uuag",
+        "clientId": "uuag.tmnpaz",
+        "agency": "datacite",
+        "state": "findable"
+    },
+    {
+        "id": "https://doi.org/10.71790/af73740e",
+        "doi": "10.71790/AF73740E",
+        "url": "https://raid.org/10.71790/af73740e",
+        "types": {
+            "ris": "GEN",
+            "bibtex": "misc",
+            "citeproc": "article",
+            "schemaOrg": "Project",
+            "resourceTypeGeneral": "Project"
+        },
+        "creators": [
+            {
+                "name": null,
+                "nameType": null
+            }
+        ],
+        "titles": [
+            {
+                "lang": "eng",
+                "title": "NESP CS Project 2.5 - Regional climate change guidance for local action"
+            }
+        ],
+        "publisher": {
+            "name": "https://ror.org/01db6n192",
+            "schemeUri": "https://ror.org/",
+            "publisherIdentifier": "https://ror.org/01db6n192",
+            "publisherIdentifierScheme": "ROR"
+        },
+        "subjects": [],
+        "contributors": [
+            {
+                "name": "RAiD AU",
+                "nameType": "Organizational",
+                "contributorType": "RegistrationAgency",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": "https://ror.org/",
+                        "nameIdentifier": "https://ror.org/038sjwq14",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/03qn8fb07",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/03qn8fb07",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/03r8z3t63",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/03r8z3t63",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/04dkp1p98",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/04dkp1p98",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/01ej9dk98",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/01ej9dk98",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/01nfmeh72",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/01nfmeh72",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            }
+        ],
+        "dates": [
+            {
+                "date": "2022-07-01/2024-12-31",
+                "dateType": "Other"
+            }
+        ],
+        "publicationYear": 2025,
+        "identifiers": [
+            {
+                "identifier": "https://prod.static.raid.org.au/10.71790/af73740e",
+                "identifierType": "RaidAgencyUrl"
+            }
+        ],
+        "rightsList": [],
+        "descriptions": [
+            {
+                "lang": "eng",
+                "description": "Improving our understanding of regional climate hazards and extremes.\nDecision-makers need reliable localised climate information to prepare for future hazards and extremes. Extreme rainfall, extreme wind, and extreme heat (including ﬁre weather) signiﬁcantly impact Australia but these are some of the most complex events to model and predict. This project is increasing our conﬁdence in projected changes to these extremes using the best available science and by testing new methodologies. From this work, we are improving the way we apply projections to understand the impacts of these extremes on human and natural systems.",
+                "descriptionType": "Abstract"
+            }
+        ],
+        "fundingReferences": [
+            {
+                "schemeUri": "https://ror.org/",
+                "funderName": "https://ror.org/01db6n192",
+                "funderIdentifier": "https://ror.org/01db6n192",
+                "funderIdentifierType": "ROR"
+            }
+        ],
+        "relatedIdentifiers": [
+            {
+                "relationType": "IsPartOf",
+                "relatedIdentifier": "https://raid.org/10.71821/a945d761",
+                "resourceTypeGeneral": "Project",
+                "relatedIdentifierType": "DOI"
+            },
+            {
+                "relationType": "IsPartOf",
+                "relatedIdentifier": "https://raid.org/10.71821/23fcbc6f",
+                "resourceTypeGeneral": "Project",
+                "relatedIdentifierType": "DOI"
+            }
+        ],
+        "providerId": "uuag",
+        "clientId": "uuag.bwwfiu",
+        "agency": "datacite",
+        "state": "findable"
+    },
+    {
+        "id": "https://doi.org/10.71821/23fcbc6f",
+        "doi": "10.71821/23FCBC6F",
+        "url": "https://raid.org/10.71821/23fcbc6f",
+        "types": {
+            "ris": "GEN",
+            "bibtex": "misc",
+            "citeproc": "article",
+            "schemaOrg": "CreativeWork",
+            "resourceType": "Project",
+            "resourceTypeGeneral": "Other"
+        },
+        "creators": [
+            {
+                "name": null,
+                "nameType": null
+            }
+        ],
+        "titles": [
+            {
+                "lang": "eng",
+                "title": "National Environmental Science Program Phase 2"
+            },
+            {
+                "lang": "eng",
+                "title": "NESP 2",
+                "titleType": "Other"
+            }
+        ],
+        "publisher": {
+            "name": "https://ror.org/01db6n192",
+            "schemeUri": "https://ror.org/",
+            "publisherIdentifier": "https://ror.org/01db6n192",
+            "publisherIdentifierScheme": "ROR"
+        },
+        "subjects": [],
+        "contributors": [
+            {
+                "name": "RAiD AU",
+                "nameType": "Organizational",
+                "contributorType": "RegistrationAgency",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": "https://ror.org/",
+                        "nameIdentifier": "https://ror.org/038sjwq14",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/047272k79",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/047272k79",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/03r8z3t63",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/03r8z3t63",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/03qn8fb07",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/03qn8fb07",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/01nfmeh72",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/01nfmeh72",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            }
+        ],
+        "dates": [
+            {
+                "date": "2021/2027",
+                "dateType": "Other"
+            }
+        ],
+        "publicationYear": 2025,
+        "identifiers": [
+            {
+                "identifier": "https://prod.static.raid.org.au/10.71821/23fcbc6f",
+                "identifierType": "RaidAgencyUrl"
+            }
+        ],
+        "rightsList": [],
+        "descriptions": [
+            {
+                "lang": "eng",
+                "description": "NESP 2 is a $149 million investment by the Australian Government in applied environmental science to support decision-makers from across the Australian community, including Indigenous communities, build resilience while achieving positive environmental, social and economic outcomes. The program represents a critical cross-cutting enabler that provides the evidence base for the design, delivery and on-ground monitoring of core Government environmental commitments and the basis for long-term environmental programs.\n\nThe program consists of multi-disciplinary research hubs hosted by Australian research institutions with national capability.\n\nNESP 2 delivers applied scientific knowledge, decision tools and practical management options to support environmental commitments made by all levels of Government and other end-users.",
+                "descriptionType": "Abstract"
+            }
+        ],
+        "fundingReferences": [
+            {
+                "schemeUri": "https://ror.org/",
+                "funderName": "https://ror.org/01db6n192",
+                "funderIdentifier": "https://ror.org/01db6n192",
+                "funderIdentifierType": "ROR"
+            }
+        ],
+        "relatedIdentifiers": [],
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "providerId": "uuag",
+        "clientId": "uuag.zdfqne",
+        "agency": "datacite",
+        "state": "findable"
+    },
+    {
+        "id": "https://doi.org/10.71676/a06857a3",
+        "doi": "10.71676/A06857A3",
+        "url": "https://raid.org/10.71676/a06857a3",
+        "types": {
+            "ris": "GEN",
+            "bibtex": "misc",
+            "citeproc": "article",
+            "schemaOrg": "Project",
+            "resourceTypeGeneral": "Project"
+        },
+        "creators": [
+            {
+                "name": null,
+                "nameType": null
+            }
+        ],
+        "titles": [
+            {
+                "lang": "eng",
+                "title": "NESP MaC Project 1.33 - Application of environmental DNA to survey Bathurst Harbour Tasmania for the endangered Maugean skate (IMAS)"
+            }
+        ],
+        "publisher": {
+            "name": "https://ror.org/00arpt780",
+            "schemeUri": "https://ror.org/",
+            "publisherIdentifier": "https://ror.org/00arpt780",
+            "publisherIdentifierScheme": "ROR"
+        },
+        "subjects": [],
+        "contributors": [
+            {
+                "name": "RAiD AU",
+                "nameType": "Organizational",
+                "contributorType": "RegistrationAgency",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": "https://ror.org/",
+                        "nameIdentifier": "https://ror.org/038sjwq14",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00arpt780",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00arpt780",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00arpt780",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00arpt780",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/026nh4520",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/026nh4520",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            }
+        ],
+        "dates": [
+            {
+                "date": "2021-09-01/2022-05-30",
+                "dateType": "Other"
+            }
+        ],
+        "publicationYear": 2025,
+        "identifiers": [
+            {
+                "identifier": "https://prod.static.raid.org.au/10.71676/a06857a3",
+                "identifierType": "RaidAgencyUrl"
+            }
+        ],
+        "rightsList": [],
+        "descriptions": [
+            {
+                "lang": "eng",
+                "description": "The Maugean skate (*Zearaja maugeana*) is listed as Endangered under Tasmania’s *Threatened Species Protection Act and the Commonwealth Environmental Protection and Biodiversity Conservation Act 1999*. Its known population is small (~3,000 individuals, Macquarie Harbour, 2016) and highly restricted, having only been recorded in two isolated estuaries: Bathurst Harbour and Macquarie Harbour in south-western/western Tasmania. This constitutes one of the most limited distributions of any known extant elasmobranch.\n\nAlthough the skate was first discovered in Bathurst Harbour, most knowledge of the species stems from the Macquarie Harbour population. Only four individuals have been reported in Bathurst Harbour, with the last reported sighting in 1992. Environmental conditions in Macquarie Harbour have changed markedly since then due to anthropogenic activities in and around the estuary including historical mining, hydro-electric generation and alteration of natural river flows, and marine fish farming.\n\nPrevious research has shown clear signs of population stress and evidence of detrimental impacts of degraded environmental conditions on the Maugean Skate in Macquarie Harbour. Understanding the potential population status of the Maugean Skate in Bathurst Harbour will assist in determining conservation actions. This study used Environmental (e) DNA to determine the presence/absence of the endangered Maugean skate (Zearaja maugeana) in Bathurst Harbour, strengthening the evidence base for effective conservation plans and specific recovery actions.",
+                "descriptionType": "Abstract"
+            }
+        ],
+        "fundingReferences": [],
+        "relatedIdentifiers": [
+            {
+                "relationType": "IsReferencedBy",
+                "relatedIdentifier": "https://doi.org/10.25959/4VKC-EG42",
+                "resourceTypeGeneral": "Dataset",
+                "relatedIdentifierType": "DOI"
+            },
+            {
+                "relationType": "IsDocumentedBy",
+                "relatedIdentifier": "https://catalogue.aodn.org.au/geonetwork/srv/eng/catalog.search#/metadata/7fcf99b3-b95c-489a-bc4c-f4f1b75af9f2",
+                "resourceTypeGeneral": "Other",
+                "relatedIdentifierType": "URL"
+            },
+            {
+                "relationType": "IsPartOf",
+                "relatedIdentifier": "https://raid.org/10.71821/418be95a",
+                "resourceTypeGeneral": "Project",
+                "relatedIdentifierType": "DOI"
+            }
+        ],
+        "providerId": "uuag",
+        "clientId": "uuag.tmnpaz",
+        "agency": "datacite",
+        "state": "findable"
+    },
+    {
+        "id": "https://doi.org/10.71676/f17e45ef",
+        "doi": "10.71676/F17E45EF",
+        "url": "https://raid.org/10.71676/f17e45ef",
+        "types": {
+            "ris": "GEN",
+            "bibtex": "misc",
+            "citeproc": "article",
+            "schemaOrg": "Project",
+            "resourceTypeGeneral": "Project"
+        },
+        "creators": [
+            {
+                "name": null,
+                "nameType": null
+            }
+        ],
+        "titles": [
+            {
+                "lang": "eng",
+                "title": "NESP MaC Project 1.33 - Application of environmental DNA to survey Bathurst Harbour Tasmania for the endangered Maugean skate (IMAS)"
+            }
+        ],
+        "publisher": {
+            "name": "https://ror.org/00arpt780",
+            "schemeUri": "https://ror.org/",
+            "publisherIdentifier": "https://ror.org/00arpt780",
+            "publisherIdentifierScheme": "ROR"
+        },
+        "subjects": [],
+        "contributors": [
+            {
+                "name": "RAiD AU",
+                "nameType": "Organizational",
+                "contributorType": "RegistrationAgency",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": "https://ror.org/",
+                        "nameIdentifier": "https://ror.org/038sjwq14",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00arpt780",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00arpt780",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00arpt780",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00arpt780",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/026nh4520",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/026nh4520",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            }
+        ],
+        "dates": [
+            {
+                "date": "2021-09-01/2022-05-30",
+                "dateType": "Other"
+            }
+        ],
+        "publicationYear": 2025,
+        "identifiers": [
+            {
+                "identifier": "https://prod.static.raid.org.au/10.71676/f17e45ef",
+                "identifierType": "RaidAgencyUrl"
+            }
+        ],
+        "rightsList": [],
+        "descriptions": [
+            {
+                "lang": "eng",
+                "description": "The Maugean skate (*Zearaja maugeana() is listed as Endangered under Tasmania’s *Threatened Species Protection Act and the Commonwealth Environmental Protection and Biodiversity Conservation Act 1999*. Its known population is small (~3,000 individuals, Macquarie Harbour, 2016) and highly restricted, having only been recorded in two isolated estuaries: Bathurst Harbour and Macquarie Harbour in south-western/western Tasmania. This constitutes one of the most limited distributions of any known extant elasmobranch.\n\nAlthough the skate was first discovered in Bathurst Harbour, most knowledge of the species stems from the Macquarie Harbour population. Only four individuals have been reported in Bathurst Harbour, with the last reported sighting in 1992. Environmental conditions in Macquarie Harbour have changed markedly since then due to anthropogenic activities in and around the estuary including historical mining, hydro-electric generation and alteration of natural river flows, and marine fish farming.\n\nPrevious research has shown clear signs of population stress and evidence of detrimental impacts of degraded environmental conditions on the Maugean Skate in Macquarie Harbour. Understanding the potential population status of the Maugean Skate in Bathurst Harbour will assist in determining conservation actions. This study used Environmental (e) DNA to determine the presence/absence of the endangered Maugean skate (Zearaja maugeana) in Bathurst Harbour, strengthening the evidence base for effective conservation plans and specific recovery actions.",
+                "descriptionType": "Abstract"
+            }
+        ],
+        "fundingReferences": [],
+        "relatedIdentifiers": [
+            {
+                "relationType": "IsReferencedBy",
+                "relatedIdentifier": "https://doi.org/10.25959/4VKC-EG42",
+                "resourceTypeGeneral": "Dataset",
+                "relatedIdentifierType": "DOI"
+            },
+            {
+                "relationType": "IsDocumentedBy",
+                "relatedIdentifier": "https://catalogue.aodn.org.au/geonetwork/srv/eng/catalog.search#/metadata/7fcf99b3-b95c-489a-bc4c-f4f1b75af9f2",
+                "resourceTypeGeneral": "Other",
+                "relatedIdentifierType": "URL"
+            },
+            {
+                "relationType": "IsPartOf",
+                "relatedIdentifier": "https://raid.org/10.71821/418be95a",
+                "resourceTypeGeneral": "Project",
+                "relatedIdentifierType": "DOI"
+            }
+        ],
+        "providerId": "uuag",
+        "clientId": "uuag.tmnpaz",
+        "agency": "datacite",
+        "state": "findable"
+    },
+    {
+        "id": "https://doi.org/10.71676/b5b91f0e",
+        "doi": "10.71676/B5B91F0E",
+        "url": "https://raid.org/10.71676/b5b91f0e",
+        "types": {
+            "ris": "GEN",
+            "bibtex": "misc",
+            "citeproc": "article",
+            "schemaOrg": "Project",
+            "resourceTypeGeneral": "Project"
+        },
+        "creators": [
+            {
+                "name": null,
+                "nameType": null
+            }
+        ],
+        "titles": [
+            {
+                "lang": "eng",
+                "title": "NESP MaC Project 1.5 - Scoping for an Australian Wetland Inventory: identifying knowledge gaps and solutions for mapping Australian marine and coastal wetlands (Griffith Uni)"
+            }
+        ],
+        "publisher": {
+            "name": "https://ror.org/00arpt780",
+            "schemeUri": "https://ror.org/",
+            "publisherIdentifier": "https://ror.org/00arpt780",
+            "publisherIdentifierScheme": "ROR"
+        },
+        "subjects": [],
+        "contributors": [
+            {
+                "name": "RAiD AU",
+                "nameType": "Organizational",
+                "contributorType": "RegistrationAgency",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": "https://ror.org/",
+                        "nameIdentifier": "https://ror.org/038sjwq14",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/02sc3r913",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/02sc3r913",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            }
+        ],
+        "dates": [
+            {
+                "date": "2021-09-01/2022-03-31",
+                "dateType": "Other"
+            }
+        ],
+        "publicationYear": 2025,
+        "identifiers": [
+            {
+                "identifier": "https://prod.static.raid.org.au/10.71676/b5b91f0e",
+                "identifierType": "RaidAgencyUrl"
+            }
+        ],
+        "rightsList": [],
+        "descriptions": [
+            {
+                "lang": "eng",
+                "description": "Marine and coastal wetlands provide extensive ecosystem services—protecting shorelines, improving water quality, supporting healthy fisheries, promoting tourism, storing carbon, and holding cultural significance for Aboriginal and Torres Strait Islander people. Like many wetlands around the world, Australian wetlands continue to be threatened, degraded, and lost due to climate change, development, and other human activities.\n\nTo support the Australian Government’s development of a national wetland inventory, this project assessed the current state of coastal wetland mapping across five key areas: seagrass, saltmarsh, intertidal macroalgae, shorebird habitat, and blue carbon. It identified major knowledge and inventory gaps through a combination of literature review and consultation with 73 end-users and experts, resulting in 25 targeted recommendations to guide future mapping and data integration.\n\nA summary of the status of mapping habitat attributes and ecosystem services such as blue carbon, coastal protection and shorebird habitat is available in the project's Final Technical Report. This report incudes recommendations to guide investment in high-demand areas and support nationally consistent wetland management and reporting to address key knowledge gaps.",
+                "descriptionType": "Abstract"
+            }
+        ],
+        "fundingReferences": [],
+        "relatedIdentifiers": [
+            {
+                "relationType": "IsDocumentedBy",
+                "relatedIdentifier": "https://catalogue.aodn.org.au/geonetwork/srv/eng/catalog.search#/metadata/e0f96ebf-b42a-4b0f-876c-2af087bc02dc",
+                "resourceTypeGeneral": "Other",
+                "relatedIdentifierType": "URL"
+            },
+            {
+                "relationType": "IsPartOf",
+                "relatedIdentifier": "https://raid.org/10.71821/418be95a",
+                "resourceTypeGeneral": "Project",
+                "relatedIdentifierType": "DOI"
+            }
+        ],
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "providerId": "uuag",
+        "clientId": "uuag.tmnpaz",
+        "agency": "datacite",
+        "state": "findable"
+    },
+    {
+        "id": "https://doi.org/10.71676/ab17a0cc",
+        "doi": "10.71676/AB17A0CC",
+        "url": "https://raid.org/10.71676/ab17a0cc",
+        "types": {
+            "ris": "GEN",
+            "bibtex": "misc",
+            "citeproc": "article",
+            "schemaOrg": "Project",
+            "resourceTypeGeneral": "Project"
+        },
+        "creators": [
+            {
+                "name": null,
+                "nameType": null
+            }
+        ],
+        "titles": [
+            {
+                "lang": "eng",
+                "title": "NESP MaC Project 1.17 - Research needs for a national approach to socio-economic values of the marine environment (UTAS)"
+            }
+        ],
+        "publisher": {
+            "name": "https://ror.org/00arpt780",
+            "schemeUri": "https://ror.org/",
+            "publisherIdentifier": "https://ror.org/00arpt780",
+            "publisherIdentifierScheme": "ROR"
+        },
+        "subjects": [],
+        "contributors": [
+            {
+                "name": "RAiD AU",
+                "nameType": "Organizational",
+                "contributorType": "RegistrationAgency",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": "https://ror.org/",
+                        "nameIdentifier": "https://ror.org/038sjwq14",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/01nfmeh72",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/01nfmeh72",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00arpt780",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00arpt780",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/02xhx4j26",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/02xhx4j26",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/028khat13",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/028khat13",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/04gsp2c11",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/04gsp2c11",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            }
+        ],
+        "dates": [
+            {
+                "date": "2021-09-01/2022-03-31",
+                "dateType": "Other"
+            }
+        ],
+        "publicationYear": 2025,
+        "identifiers": [
+            {
+                "identifier": "https://prod.static.raid.org.au/10.71676/ab17a0cc",
+                "identifierType": "RaidAgencyUrl"
+            }
+        ],
+        "rightsList": [],
+        "descriptions": [
+            {
+                "lang": "eng",
+                "description": "Effective management of natural resources and biodiversity requires an integrated understanding of the complex relationships between people and nature. This project reviewed a range of socio-ecological frameworks to identify which system components influence environmental outcomes, and which are most relevant for policy design and behaviour change. A key point of difference from previous NESP Marine Biodiversity Hub projects was an additional theme on implementation pathways, enabling research to inform the full progression from policy to on-ground action.\n\nThrough a co-design process with stakeholders, the project identified priority social and economic research needs and assessed the availability of relevant datasets to meet them. A key outcome was the identification of three common decision contexts faced by managers—monitoring, trade-off analysis, and promoting behaviour change—and the matching of appropriate frameworks and data to each context. The findings highlight critical data gaps, while providing practical guidance on how existing information can be strategically used to inform management and policy decisions.",
+                "descriptionType": "Abstract"
+            }
+        ],
+        "fundingReferences": [],
+        "relatedIdentifiers": [
+            {
+                "relationType": "IsReferencedBy",
+                "relatedIdentifier": "https://doi.org/10.25959/8FMV-6K23",
+                "resourceTypeGeneral": "Dataset",
+                "relatedIdentifierType": "DOI"
+            },
+            {
+                "relationType": "IsDocumentedBy",
+                "relatedIdentifier": "https://catalogue.aodn.org.au/geonetwork/srv/eng/catalog.search#/metadata/79f7d3b9-92cf-470d-83b6-285efa6d31f6",
+                "resourceTypeGeneral": "Other",
+                "relatedIdentifierType": "URL"
+            },
+            {
+                "relationType": "IsPartOf",
+                "relatedIdentifier": "https://raid.org/10.71821/418be95a",
+                "resourceTypeGeneral": "Project",
+                "relatedIdentifierType": "DOI"
+            }
+        ],
+        "providerId": "uuag",
+        "clientId": "uuag.tmnpaz",
+        "agency": "datacite",
+        "state": "findable"
+    },
+    {
+        "id": "https://doi.org/10.71676/140d7492",
+        "doi": "10.71676/140D7492",
+        "url": "https://raid.org/10.71676/140d7492",
+        "types": {
+            "ris": "GEN",
+            "bibtex": "misc",
+            "citeproc": "article",
+            "schemaOrg": "Project",
+            "resourceTypeGeneral": "Project"
+        },
+        "creators": [
+            {
+                "name": null,
+                "nameType": null
+            }
+        ],
+        "titles": [
+            {
+                "lang": "eng",
+                "title": "NESP MaC Project 1.10 - A national inventory of implemented nature-based solutions to mitigate coastal hazards (Melbourne Uni)"
+            }
+        ],
+        "publisher": {
+            "name": "https://ror.org/00arpt780",
+            "schemeUri": "https://ror.org/",
+            "publisherIdentifier": "https://ror.org/00arpt780",
+            "publisherIdentifierScheme": "ROR"
+        },
+        "subjects": [],
+        "contributors": [
+            {
+                "name": "RAiD AU",
+                "nameType": "Organizational",
+                "contributorType": "RegistrationAgency",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": "https://ror.org/",
+                        "nameIdentifier": "https://ror.org/038sjwq14",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/01ej9dk98",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/01ej9dk98",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/04gsp2c11",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/04gsp2c11",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00rqy9422",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00rqy9422",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/026nh4520",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/026nh4520",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/01sf06y89",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/01sf06y89",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/03r8z3t63",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/03r8z3t63",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00892tw58",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00892tw58",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00arpt780",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00arpt780",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/047272k79",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/047272k79",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/048zcaj52",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/048zcaj52",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            }
+        ],
+        "dates": [
+            {
+                "date": "2021-09-01/2022-03-31",
+                "dateType": "Other"
+            }
+        ],
+        "publicationYear": 2025,
+        "identifiers": [
+            {
+                "identifier": "https://prod.static.raid.org.au/10.71676/140d7492",
+                "identifierType": "RaidAgencyUrl"
+            }
+        ],
+        "rightsList": [],
+        "descriptions": [
+            {
+                "lang": "eng",
+                "description": "Climate change and population growth are accelerating the need for diverse solutions to coastal protection. Traditionally, shorelines are armoured with conventional \"hard\" or \"grey\" engineering structures such as seawalls which are non-adaptive and come with significant economic, environmental and social costs. While hard structures will continue to have a place in coastal protection, alternative methods that are more sustainable and climate-resilient should be more broadly adopted into the future where appropriate.\n\nLiving shorelines harness natural ecosystems to reduce coastal erosion and flooding and provide co-benefits such as carbon sequestration. They may consist of dunes, wetlands and biogenic reefs: either alone (‘soft approach’) or in combination with hard structures (‘hybrid approach’). To date, nature-based solutions have been underutilised in Australia, due at least in part to decision-makers needing clearer guidelines for when a soft, hybrid or hard coastal defence approach is most appropriate. This resulted in the publication of a foundational guide (led by Morris and Swearer and delivered under [ESCC Hub Project 5.9: Natural habitats for coastal protection and carbon sequestration](https://nespclimate.com.au/natural-habitats-for-coastal-protection-and-carbon-sequestration-project-5-9)) to inform the national use of nature-based methods for coastal hazard risk reduction. In the process of producing these guidelines, the lack of a national inventory of coastal protection projects already using nature-based methods was identified by end-users as a priority to enable their wider adoption as an adaptation strategy in Australia.\n\nThis project generated an online inventory of all current and planned on-ground actions by coastal land managers that have implemented a nature-based solution (NBS) to mitigate coastal hazards. From this, the [\"Living Shorelines Australia\"](https://livingshorelines.com.au) database was created. This inventory is the first step in identifying best practice, which will inform the future development of detailed technical design guidelines for implementing different nature-based methods in Australia.",
+                "descriptionType": "Abstract"
+            }
+        ],
+        "fundingReferences": [],
+        "relatedIdentifiers": [
+            {
+                "relationType": "IsReferencedBy",
+                "relatedIdentifier": "https://doi.org/10.25959/THK4-9W57",
+                "resourceTypeGeneral": "Dataset",
+                "relatedIdentifierType": "DOI"
+            },
+            {
+                "relationType": "IsDocumentedBy",
+                "relatedIdentifier": "https://catalogue.aodn.org.au/geonetwork/srv/eng/catalog.search#/metadata/9eff1f00-5115-4726-b41f-5a1a93f97575",
+                "resourceTypeGeneral": "Other",
+                "relatedIdentifierType": "URL"
+            },
+            {
+                "relationType": "IsPartOf",
+                "relatedIdentifier": "https://raid.org/10.71821/418be95a",
+                "resourceTypeGeneral": "Project",
+                "relatedIdentifierType": "DOI"
+            }
+        ],
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "providerId": "uuag",
+        "clientId": "uuag.tmnpaz",
+        "agency": "datacite",
+        "state": "findable"
+    },
+    {
+        "id": "https://doi.org/10.71676/ce3ab2b7",
+        "doi": "10.71676/CE3AB2B7",
+        "url": "https://raid.org/10.71676/ce3ab2b7",
+        "types": {
+            "ris": "GEN",
+            "bibtex": "misc",
+            "citeproc": "article",
+            "schemaOrg": "Project",
+            "resourceTypeGeneral": "Project"
+        },
+        "creators": [
+            {
+                "name": null,
+                "nameType": null
+            }
+        ],
+        "titles": [
+            {
+                "lang": "eng",
+                "title": "NESP MaC Project 1.18 - Managing microplastics in south-eastern Australian coastal waters: identifying knowledge gaps (Adelaide Uni)"
+            }
+        ],
+        "publisher": {
+            "name": "https://ror.org/00arpt780",
+            "schemeUri": "https://ror.org/",
+            "publisherIdentifier": "https://ror.org/00arpt780",
+            "publisherIdentifierScheme": "ROR"
+        },
+        "subjects": [],
+        "contributors": [
+            {
+                "name": "RAiD AU",
+                "nameType": "Organizational",
+                "contributorType": "RegistrationAgency",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": "https://ror.org/",
+                        "nameIdentifier": "https://ror.org/038sjwq14",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00892tw58",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00892tw58",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/01kpzv902",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/01kpzv902",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/01sf06y89",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/01sf06y89",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/01ej9dk98",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/01ej9dk98",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            }
+        ],
+        "dates": [
+            {
+                "date": "2021-09-01/2022-03-31",
+                "dateType": "Other"
+            }
+        ],
+        "publicationYear": 2025,
+        "identifiers": [
+            {
+                "identifier": "https://prod.static.raid.org.au/10.71676/ce3ab2b7",
+                "identifierType": "RaidAgencyUrl"
+            }
+        ],
+        "rightsList": [],
+        "descriptions": [
+            {
+                "lang": "eng",
+                "description": "Plastic pollution is pervasive in coastal environments globally and in Australia. Due to their small size, microplastics (pieces <5mm) are readily ingested by marine organisms and potentially accumulate across food webs, raising concerns for biota, ecosystem services and human health. Yet, to define guidelines and support policy actions that curb microplastic pollution, managers and decision-makers lack clear, synthesised information on this multifaceted issue, including on occurrence, sources, and pathways of microplastics in coastal and marine environments.\n\nThis project synthesised current knowledge on microplastics in the coastal waters of South-Eastern Australia (South Australia, Victoria, and New South Wales), identifying key gaps in data, monitoring, and risk assessment. A central output was a compiled database of existing microplastics studies across the study region. Through engagement with stakeholders from government, research, and industry, the project defined shared priorities and barriers to action. Three critical research needs were identified: (1) methodological harmonisation, (2) source and pathway identification, and (3) evidence of ecological risk. Together, the synthesis and stakeholder input set a clear direction for future coordinated research to enable evidence-based management of microplastic pollution across jurisdictions.\n\nThe work laid the foundation for the development of a Standard Operating Procedure (SOP) for marine microplastics sampling, which was subsequently delivered through [NESP Marine and Coastal Hub Project 2.2 ](https://www.nespmarinecoastal.edu.au/project/2-2): chapter [*Marine sampling field manual for microplastics*](https://microplastics-field-manual.github.io) in [*Field Manuals for Marine Sampling to Monitor Australian Waters, Version 3*](https://marine-sampling-field-manual.github.io).",
+                "descriptionType": "Abstract"
+            }
+        ],
+        "fundingReferences": [],
+        "relatedIdentifiers": [
+            {
+                "relationType": "IsReferencedBy",
+                "relatedIdentifier": "https://doi.org/10.25959/BRKV-P189",
+                "resourceTypeGeneral": "Dataset",
+                "relatedIdentifierType": "DOI"
+            },
+            {
+                "relationType": "IsDocumentedBy",
+                "relatedIdentifier": "https://catalogue.aodn.org.au/geonetwork/srv/eng/catalog.search#/metadata/b2e09ad6-8369-48a1-b523-87e3ce321aa6",
+                "resourceTypeGeneral": "Other",
+                "relatedIdentifierType": "URL"
+            },
+            {
+                "relationType": "IsPartOf",
+                "relatedIdentifier": "https://raid.org/10.71821/418be95a",
+                "resourceTypeGeneral": "Project",
+                "relatedIdentifierType": "DOI"
+            }
+        ],
+        "providerId": "uuag",
+        "clientId": "uuag.tmnpaz",
+        "agency": "datacite",
+        "state": "findable"
+    },
+    {
+        "id": "https://doi.org/10.71676/e97d6eb6",
+        "doi": "10.71676/E97D6EB6",
+        "url": "https://raid.org/10.71676/e97d6eb6",
+        "types": {
+            "ris": "GEN",
+            "bibtex": "misc",
+            "citeproc": "article",
+            "schemaOrg": "Project",
+            "resourceTypeGeneral": "Project"
+        },
+        "creators": [
+            {
+                "name": null,
+                "nameType": null
+            }
+        ],
+        "titles": [
+            {
+                "lang": "eng",
+                "title": "NESP MaC Project 1.33 - Application of environmental DNA to survey Bathurst Harbour Tasmania for the endangered Maugean skate (IMAS)"
+            }
+        ],
+        "publisher": {
+            "name": "https://ror.org/00arpt780",
+            "schemeUri": "https://ror.org/",
+            "publisherIdentifier": "https://ror.org/00arpt780",
+            "publisherIdentifierScheme": "ROR"
+        },
+        "subjects": [],
+        "contributors": [
+            {
+                "name": "RAiD AU",
+                "nameType": "Organizational",
+                "contributorType": "RegistrationAgency",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": "https://ror.org/",
+                        "nameIdentifier": "https://ror.org/038sjwq14",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00arpt780",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00arpt780",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00arpt780",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00arpt780",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/026nh4520",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/026nh4520",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            }
+        ],
+        "dates": [
+            {
+                "date": "2021-09-01/2022-05-30",
+                "dateType": "Other"
+            }
+        ],
+        "publicationYear": 2025,
+        "identifiers": [
+            {
+                "identifier": "https://prod.static.raid.org.au/10.71676/e97d6eb6",
+                "identifierType": "RaidAgencyUrl"
+            }
+        ],
+        "rightsList": [],
+        "descriptions": [
+            {
+                "lang": "eng",
+                "description": "The Maugean skate (*Zearaja maugeana() is listed as Endangered under Tasmania’s *Threatened Species Protection Act and the Commonwealth Environmental Protection and Biodiversity Conservation Act 1999*. Its known population is small (~3,000 individuals, Macquarie Harbour, 2016) and highly restricted, having only been recorded in two isolated estuaries: Bathurst Harbour and Macquarie Harbour in south-western/western Tasmania. This constitutes one of the most limited distributions of any known extant elasmobranch.\n\nAlthough the skate was first discovered in Bathurst Harbour, most knowledge of the species stems from the Macquarie Harbour population. Only four individuals have been reported in Bathurst Harbour, with the last reported sighting in 1992. Environmental conditions in Macquarie Harbour have changed markedly since then due to anthropogenic activities in and around the estuary including historical mining, hydro-electric generation and alteration of natural river flows, and marine fish farming.\n\nPrevious research has shown clear signs of population stress and evidence of detrimental impacts of degraded environmental conditions on the Maugean Skate in Macquarie Harbour. Understanding the potential population status of the Maugean Skate in Bathurst Harbour will assist in determining conservation actions. This study used Environmental (e) DNA to determine the presence/absence of the endangered Maugean skate (Zearaja maugeana) in Bathurst Harbour, strengthening the evidence base for effective conservation plans and specific recovery actions.",
+                "descriptionType": "Abstract"
+            }
+        ],
+        "fundingReferences": [],
+        "relatedIdentifiers": [
+            {
+                "relationType": "IsReferencedBy",
+                "relatedIdentifier": "https://doi.org/10.25959/4VKC-EG42",
+                "resourceTypeGeneral": "Dataset",
+                "relatedIdentifierType": "DOI"
+            },
+            {
+                "relationType": "IsDocumentedBy",
+                "relatedIdentifier": "https://catalogue.aodn.org.au/geonetwork/srv/eng/catalog.search#/metadata/7fcf99b3-b95c-489a-bc4c-f4f1b75af9f2",
+                "resourceTypeGeneral": "Other",
+                "relatedIdentifierType": "URL"
+            },
+            {
+                "relationType": "IsPartOf",
+                "relatedIdentifier": "https://raid.org/10.71821/418be95a",
+                "resourceTypeGeneral": "Project",
+                "relatedIdentifierType": "DOI"
+            }
+        ],
+        "providerId": "uuag",
+        "clientId": "uuag.tmnpaz",
+        "agency": "datacite",
+        "state": "findable"
+    },
+    {
+        "id": "https://doi.org/10.71676/e750e73b",
+        "doi": "10.71676/E750E73B",
+        "url": "https://raid.org/10.71676/e750e73b",
+        "types": {
+            "ris": "GEN",
+            "bibtex": "misc",
+            "citeproc": "article",
+            "schemaOrg": "Project",
+            "resourceTypeGeneral": "Project"
+        },
+        "creators": [
+            {
+                "name": null,
+                "nameType": null
+            }
+        ],
+        "titles": [
+            {
+                "lang": "eng",
+                "title": "NESP MaC Project 1.26 - Relative abundance of the ‘western’ population of southern right whales from an aerial survey off southern Australia (Murdoch Uni)"
+            }
+        ],
+        "publisher": {
+            "name": "https://ror.org/00arpt780",
+            "schemeUri": "https://ror.org/",
+            "publisherIdentifier": "https://ror.org/00arpt780",
+            "publisherIdentifierScheme": "ROR"
+        },
+        "subjects": [],
+        "contributors": [
+            {
+                "name": "RAiD AU",
+                "nameType": "Organizational",
+                "contributorType": "RegistrationAgency",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": "https://ror.org/",
+                        "nameIdentifier": "https://ror.org/038sjwq14",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00r4sry34",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00r4sry34",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/05e89k615",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/05e89k615",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/026nh4520",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/026nh4520",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            }
+        ],
+        "dates": [
+            {
+                "date": "2021-09-01/2022-06-30",
+                "dateType": "Other"
+            }
+        ],
+        "publicationYear": 2025,
+        "identifiers": [
+            {
+                "identifier": "https://prod.static.raid.org.au/10.71676/e750e73b",
+                "identifierType": "RaidAgencyUrl"
+            }
+        ],
+        "rightsList": [],
+        "descriptions": [
+            {
+                "lang": "eng",
+                "description": "The southern right whale (*Eubalaena australis*) is listed as Endangered under the *Environmental Protection and Biodiversity Conservation Act 1999* (EPBC Act) and is subject to conservation listings in five Australian states due to severe population declines caused by historical whaling. The Southern Right Whale Conservation Management Plan 2011–2021 outlines the current status of, and threats to, the southern right whale in Australian waters and prioritises recovery actions during this period. The long-term vision for the recovery of this species in Australian waters is to increase the population size to a level that the conservation status improves, and the species no longer qualifies for listing as threatened under any of the EPBC Act listing criteria. The plan must be periodically updated to reflect new knowledge and prioritise the research needed to monitor population recovery and predict the impacts of threats such as climate change.\n\nAerial surveys of southern right whales have been conducted across the southern Australian coast from Perth (WA) to Ceduna (SA) since 1993, as part of a long-term program to monitor the recovery, and inform the Conservation Management Plan (2011-2021), for this Endangered species. In Australia’s south-east, there has been little sign of recovery in southern right whale numbers following intense commercial whaling. A working hypothesis assumes separation between the ‘western’ and ‘eastern’ populations, largely due to loss of ‘cultural memory’ of whales migrating to the eastern range breeding areas. Given the relative paucity of animals that visit the southern Australian coast in areas other than south-west Australia, the western population is considered to represent the majority of the ‘Australian’ southern right whale population. The count data from these aerial surveys provide data on population trend and estimates of population size for the ‘western’ population, and hence the majority of the Australian southern right whales. Associated photo-identification data provide life history information (such as calving intervals) and connectivity between the ‘western’ and ‘eastern’ populations and contribute to the national southern right whale photo-id database: the Australasian Right Whale Photo-Identification Catalogue (ARWPIC).\n\nThe 2020 aerial survey program recorded substantially lower numbers of whales than in the previous 13 years, and the lowest number of non-calving whales since the program started. This project conducted new aerial surveying in August 2021 to provide a relative estimate of annual population size for determining longer term population trends and contribute to determining if 2020 was an anomalous year or an indicator of some longer-term change to recent recovery rates and the female breeding cycle.",
+                "descriptionType": "Abstract"
+            }
+        ],
+        "fundingReferences": [],
+        "relatedIdentifiers": [
+            {
+                "relationType": "IsReferencedBy",
+                "relatedIdentifier": "https://doi.org/10.26179/kkeb-1m46",
+                "resourceTypeGeneral": "Dataset",
+                "relatedIdentifierType": "DOI"
+            },
+            {
+                "relationType": "IsDocumentedBy",
+                "relatedIdentifier": "https://catalogue.aodn.org.au/geonetwork/srv/eng/catalog.search#/metadata/b85b2c7d-4631-477a-9217-2cae65f9cf0a",
+                "resourceTypeGeneral": "Other",
+                "relatedIdentifierType": "URL"
+            },
+            {
+                "relationType": "IsPartOf",
+                "relatedIdentifier": "https://raid.org/10.71821/418be95a",
+                "resourceTypeGeneral": "Project",
+                "relatedIdentifierType": "DOI"
+            }
+        ],
+        "providerId": "uuag",
+        "clientId": "uuag.tmnpaz",
+        "agency": "datacite",
+        "state": "findable"
+    },
+    {
+        "id": "https://doi.org/10.71676/15ff1fad",
+        "doi": "10.71676/15FF1FAD",
+        "url": "https://raid.org/10.71676/15ff1fad",
+        "types": {
+            "ris": "GEN",
+            "bibtex": "misc",
+            "citeproc": "article",
+            "schemaOrg": "Project",
+            "resourceTypeGeneral": "Project"
+        },
+        "creators": [
+            {
+                "name": null,
+                "nameType": null
+            }
+        ],
+        "titles": [
+            {
+                "lang": "eng",
+                "title": "NESP MaC Project 1.28 - Future-proofing restoration & thermal physiology of kelp (IMAS)"
+            }
+        ],
+        "publisher": {
+            "name": "https://ror.org/00arpt780",
+            "schemeUri": "https://ror.org/",
+            "publisherIdentifier": "https://ror.org/00arpt780",
+            "publisherIdentifierScheme": "ROR"
+        },
+        "subjects": [],
+        "contributors": [
+            {
+                "name": "RAiD AU",
+                "nameType": "Organizational",
+                "contributorType": "RegistrationAgency",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": "https://ror.org/",
+                        "nameIdentifier": "https://ror.org/038sjwq14",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00arpt780",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00arpt780",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            }
+        ],
+        "dates": [
+            {
+                "date": "2021-09-01/2022-05-30",
+                "dateType": "Other"
+            }
+        ],
+        "publicationYear": 2025,
+        "identifiers": [
+            {
+                "identifier": "https://prod.static.raid.org.au/10.71676/15ff1fad",
+                "identifierType": "RaidAgencyUrl"
+            }
+        ],
+        "rightsList": [],
+        "descriptions": [
+            {
+                "lang": "eng",
+                "description": "Kelp forests create complex habitats that support a diverse and productive community of marine life. They underpin coastal food-webs, fisheries, and a suite of other ecosystem services including nutrient and blue carbon cycling. Across much of the world, kelp forests are in decline and under threat from stressors including urbanisation, overgrazing, ocean warming, and marine heatwaves driven by climate change.\n\nAustralia’s giant kelp (*Macrocystis pyrifera*) forests are listed as a Threatened Ecological Community under the Environment Protection and Biodiversity Conservation Act 1999. Habitat restoration is a potential tool for the conservation and management of giant kelp ecosystems. Given the direct impacts of climate change and ocean warming, there is growing recognition of the need for habitat restoration to be ‘future proofed’.\n\nFor restoration to be effective, the cause of habitat decline must be understood and overcome. This is problematic when climate change is driving habitat loss since it cannot be reversed or ameliorated prior to restoration. A previous NESP project led by this team ([NESP Marine Biodiversity Hub Project E7](https://www.nespmarine.edu.au/project/project-e7-%E2%80%93-assessing-feasibility-restoring-giant-kelp-beds-eastern-tasmania.html)) identified warm-tolerant strains of giant kelp from remnant patches in eastern Tasmania, where the species has experienced precipitous declines due to ocean-warming. These strains have high potential to assist with ‘future-proofing’ kelp forest restoration, however it is still unclear what the physiological mechanisms are that provide their improved thermal tolerance. It is also unknown whether cross-breeding the identified warm-tolerant giant kelp strains will affect and potentially improve their thermal tolerance capacity.\n\nThis project explored the physiology of kelp thermal performance, specifically the mechanisms potentially responsible for the warm water tolerance identified in particular giant kelp strains. It confirmed the improved ability of the warm-tolerant strains to develop at stressful warm temperatures relative to normal giant kelp, and demonstrated for the first time that their improved thermal performance may extend to the development and fertilisation. The outcomes progress toward the identification of populations of Australian kelp that may be resilient to (or especially threatened by) ocean warming and climate change.",
+                "descriptionType": "Abstract"
+            }
+        ],
+        "fundingReferences": [],
+        "relatedIdentifiers": [
+            {
+                "relationType": "IsReferencedBy",
+                "relatedIdentifier": "https://doi.org/10.25959/61A2-A148",
+                "resourceTypeGeneral": "Dataset",
+                "relatedIdentifierType": "DOI"
+            },
+            {
+                "relationType": "IsDocumentedBy",
+                "relatedIdentifier": "https://metadata.imas.utas.edu.au/geonetwork/srv/eng/catalog.search#/metadata/77199302-f841-4d07-902b-b45c633276ab",
+                "resourceTypeGeneral": "Other",
+                "relatedIdentifierType": "URL"
+            },
+            {
+                "relationType": "IsPartOf",
+                "relatedIdentifier": "https://raid.org/10.71821/418be95a",
+                "resourceTypeGeneral": "Project",
+                "relatedIdentifierType": "DOI"
+            }
+        ],
+        "providerId": "uuag",
+        "clientId": "uuag.tmnpaz",
+        "agency": "datacite",
+        "state": "findable"
+    },
+    {
+        "id": "https://doi.org/10.71676/95513779",
+        "doi": "10.71676/95513779",
+        "url": "https://raid.org/10.71676/95513779",
+        "types": {
+            "ris": "GEN",
+            "bibtex": "misc",
+            "citeproc": "article",
+            "schemaOrg": "Project",
+            "resourceTypeGeneral": "Project"
+        },
+        "creators": [
+            {
+                "name": null,
+                "nameType": null
+            }
+        ],
+        "titles": [
+            {
+                "lang": "eng",
+                "title": "NESP MaC Project 1.8 - Including sediment processes in restoration strategies for Australian seagrass ecosystems (UNSW)"
+            }
+        ],
+        "publisher": {
+            "name": "https://ror.org/00arpt780",
+            "schemeUri": "https://ror.org/",
+            "publisherIdentifier": "https://ror.org/00arpt780",
+            "publisherIdentifierScheme": "ROR"
+        },
+        "subjects": [],
+        "contributors": [
+            {
+                "name": "RAiD AU",
+                "nameType": "Organizational",
+                "contributorType": "RegistrationAgency",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": "https://ror.org/",
+                        "nameIdentifier": "https://ror.org/038sjwq14",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/03r8z3t63",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/03r8z3t63",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/047272k79",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/047272k79",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/0384j8v12",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/0384j8v12",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            }
+        ],
+        "dates": [
+            {
+                "date": "2021-09-01/2022-03-31",
+                "dateType": "Other"
+            }
+        ],
+        "publicationYear": 2025,
+        "identifiers": [
+            {
+                "identifier": "https://prod.static.raid.org.au/10.71676/95513779",
+                "identifierType": "RaidAgencyUrl"
+            }
+        ],
+        "rightsList": [],
+        "descriptions": [
+            {
+                "lang": "eng",
+                "description": "Seagrasses provide resources and ecosystem services critical to the health of coastal ecosystems and human populations. They increase water clarity, stabilise sediments and reduce coastal erosion, sequester carbon, and provide habitat and food to marine animals, including commercially important fish and invertebrates. Across Australia, the loss of >275,000 ha of seagrass meadows and associated ecosystem services—valued at AU$ 5.3 billion—has contributed to the long-term degradation of estuarine and coastal marine ecosystems. Restoration of seagrass is critical for improving the health and function of these ecosystems and sustaining coastal communities and industries that depend on them, yet restoration projects to date typically occur at small scales, driven by local priorities and with variable success.\n\nThis project addressed this problem by bringing together scientists and key stakeholders to collate knowledge on seagrass ecology and restoration, and generated a framework to scaling-up restoration nationally. A national workshop with experts identified a shortlist of drivers key to restoration success, including sediment dynamics, microbial communities, hydrodynamics, and species interactions. It highlighted the importance of incorporating seagrass genetics and life histories into site and donor material selection to improve long-term resilience. New technologies such as eDNA, automation, and AI were also assessed for their potential to improve monitoring and reduce costs, while standardised methodologies and molecular tools were recommended to track microbial indicators and site suitability. A key insight from the workshop was the central role of sediment processes in feedback loops that determine seagrass health—providing a foundation for more effective, scalable restoration strategies.\n\nOn-ground case studies were conducted in Western Australia and New South Wales to test the proposed restoration framework in collaboration with Indigenous and community partners: sediment quality assessment and manipulation (Gamay Rangers, UNSW); seed and seedling capture using sediment-filled hessian tubes (Malgana Rangers, UWA); and large-scale seed collection for seed-based restoration through the 'Seeds for Snapper' initiative (OzFish and UWA). These trials demonstrated the effectiveness of community-led restoration and reinforced the potential of seed-based methods for scaling up seagrass recovery.",
+                "descriptionType": "Abstract"
+            }
+        ],
+        "fundingReferences": [],
+        "relatedIdentifiers": [
+            {
+                "relationType": "IsReferencedBy",
+                "relatedIdentifier": "https://doi.org/10.25959/QYP7-TJ13",
+                "resourceTypeGeneral": "Dataset",
+                "relatedIdentifierType": "DOI"
+            },
+            {
+                "relationType": "IsReferencedBy",
+                "relatedIdentifier": "https://doi.org/10.25959/77RT-S809",
+                "resourceTypeGeneral": "Dataset",
+                "relatedIdentifierType": "DOI"
+            },
+            {
+                "relationType": "IsReferencedBy",
+                "relatedIdentifier": "https://doi.org/10.25959/G721-4N52",
+                "resourceTypeGeneral": "Dataset",
+                "relatedIdentifierType": "DOI"
+            },
+            {
+                "relationType": "IsDocumentedBy",
+                "relatedIdentifier": "https://catalogue.aodn.org.au/geonetwork/srv/eng/catalog.search#/metadata/8e403cca-19c9-498e-9e60-077646a3b0fc",
+                "resourceTypeGeneral": "Other",
+                "relatedIdentifierType": "URL"
+            },
+            {
+                "relationType": "IsPartOf",
+                "relatedIdentifier": "https://raid.org/10.71821/418be95a",
+                "resourceTypeGeneral": "Project",
+                "relatedIdentifierType": "DOI"
+            }
+        ],
+        "providerId": "uuag",
+        "clientId": "uuag.tmnpaz",
+        "agency": "datacite",
+        "state": "findable"
+    },
+    {
+        "id": "https://doi.org/10.71676/7993ea0a",
+        "doi": "10.71676/7993EA0A",
+        "url": "https://raid.org/10.71676/7993ea0a",
+        "types": {
+            "ris": "GEN",
+            "bibtex": "misc",
+            "citeproc": "article",
+            "schemaOrg": "Project",
+            "resourceTypeGeneral": "Project"
+        },
+        "creators": [
+            {
+                "name": null,
+                "nameType": null
+            }
+        ],
+        "titles": [
+            {
+                "lang": "eng",
+                "title": "NESP MaC Project 1.11 - OzSET: Integration and publication of the Australian Surface Elevation Table dataset (Macquarie Uni, UQ)"
+            }
+        ],
+        "publisher": {
+            "name": "https://ror.org/00arpt780",
+            "schemeUri": "https://ror.org/",
+            "publisherIdentifier": "https://ror.org/00arpt780",
+            "publisherIdentifierScheme": "ROR"
+        },
+        "subjects": [],
+        "contributors": [
+            {
+                "name": "RAiD AU",
+                "nameType": "Organizational",
+                "contributorType": "RegistrationAgency",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": "https://ror.org/",
+                        "nameIdentifier": "https://ror.org/038sjwq14",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/01sf06y89",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/01sf06y89",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00rqy9422",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00rqy9422",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00jtmb277",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00jtmb277",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00892tw58",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00892tw58",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/048zcaj52",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/048zcaj52",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/05jhnwe22",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/05jhnwe22",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            }
+        ],
+        "dates": [
+            {
+                "date": "2021-09-01/2022-03-31",
+                "dateType": "Other"
+            }
+        ],
+        "publicationYear": 2025,
+        "identifiers": [
+            {
+                "identifier": "https://prod.static.raid.org.au/10.71676/7993ea0a",
+                "identifierType": "RaidAgencyUrl"
+            }
+        ],
+        "rightsList": [],
+        "descriptions": [
+            {
+                "lang": "eng",
+                "description": "Australia’s coastal floodplains and wetlands provide essential ecosystem services and have immense cultural value. They regulate water quality, moderate flood and storm damage, and provide habitat for marine life including commercial fish and shellfish species. These environments are threatened by accelerating rates of sea-level rise. A national approach is needed to monitor and assess the way coastal floodplains and wetlands are changing in response to sea level rise.\n\nA useful measure of resilience is the extent to which coastal wetland sediments can accrete vertically at a rate matching that of sea-level rise. Assessing the resilience, or vulnerability, of these environments requires measurements of rates of vertical accretion, subsidence and elevation gain across a range of coastal settings. The Surface Elevation Table-Marker Horizon (SET-MH) technique measures the vertical accretion of coastal wetland sediments. This enables assessment of whether wetlands are keeping pace with sea level rise (measured at tide gauges), or subsiding relative to local sea level rise and thus vulnerable to permanent inundation and loss.\n\nAustralia’s network of Surface Elevation Tables is one of the most extensive in the world, consisting of over 200 benchmark monitoring stations from Westernport Bay, Victoria to Darwin Harbour, NT. The network has developed largely without national coordination, and the data gathered have not been readily available to the research community or research users.\n\nThis project collated SET data on accretion, subsidence and elevation change in mangroves, saltmarshes, seagrasses and tidal freshwater forests, and provides an initial analysis of accretion and surface elevation trends. This information is vital to coastal risk assessment, estimating blue carbon sequestration, and modelling potential predicted changes in other ecosystem services.",
+                "descriptionType": "Abstract"
+            }
+        ],
+        "fundingReferences": [],
+        "relatedIdentifiers": [
+            {
+                "relationType": "IsReferencedBy",
+                "relatedIdentifier": "https://doi.org/10.25959/4WYK-F503",
+                "resourceTypeGeneral": "Dataset",
+                "relatedIdentifierType": "DOI"
+            },
+            {
+                "relationType": "IsDocumentedBy",
+                "relatedIdentifier": "https://catalogue.aodn.org.au/geonetwork/srv/eng/catalog.search#/metadata/53c464cb-aebb-43b7-b20d-d2f3936d497f",
+                "resourceTypeGeneral": "Other",
+                "relatedIdentifierType": "URL"
+            },
+            {
+                "relationType": "IsPartOf",
+                "relatedIdentifier": "https://raid.org/10.71821/418be95a",
+                "resourceTypeGeneral": "Project",
+                "relatedIdentifierType": "DOI"
+            }
+        ],
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "providerId": "uuag",
+        "clientId": "uuag.tmnpaz",
+        "agency": "datacite",
+        "state": "findable"
+    },
+    {
+        "id": "https://doi.org/10.71676/0e28edaf",
+        "doi": "10.71676/0E28EDAF",
+        "url": "https://raid.org/10.71676/0e28edaf",
+        "types": {
+            "ris": "GEN",
+            "bibtex": "misc",
+            "citeproc": "article",
+            "schemaOrg": "Project",
+            "resourceTypeGeneral": "Project"
+        },
+        "creators": [
+            {
+                "name": null,
+                "nameType": null
+            }
+        ],
+        "titles": [
+            {
+                "lang": "eng",
+                "title": "NESP MaC Project 1.2 - National Areas of Interest for Seabed Mapping, Characterisation and Biodiversity Assessment (GA)"
+            }
+        ],
+        "publisher": {
+            "name": "https://ror.org/00arpt780",
+            "schemeUri": "https://ror.org/",
+            "publisherIdentifier": "https://ror.org/00arpt780",
+            "publisherIdentifierScheme": "ROR"
+        },
+        "subjects": [],
+        "contributors": [
+            {
+                "name": "RAiD AU",
+                "nameType": "Organizational",
+                "contributorType": "RegistrationAgency",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": "https://ror.org/",
+                        "nameIdentifier": "https://ror.org/038sjwq14",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/04ge02x20",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/04ge02x20",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/026nh4520",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/026nh4520",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00arpt780",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00arpt780",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            }
+        ],
+        "dates": [
+            {
+                "date": "2021-09-01/2022-03-31",
+                "dateType": "Other"
+            }
+        ],
+        "publicationYear": 2025,
+        "identifiers": [
+            {
+                "identifier": "https://prod.static.raid.org.au/10.71676/0e28edaf",
+                "identifierType": "RaidAgencyUrl"
+            }
+        ],
+        "rightsList": [],
+        "descriptions": [
+            {
+                "lang": "eng",
+                "description": "Seabed and marine biodiversity data are time-consuming and costly to collect, so it is imperative that acquisition is focused on areas that align with end user priorities. The value that different stakeholders place on seabed and biodiversity data can be difficult to determine. Therefore, a shared process for identifying survey priorities is required to ensure the maximum shared benefit of future survey investment across research users, funding agencies, infrastructure providers, as well as the wider marine research community.\n\nThe project aimed to assist with the planning and prioritisation of marine surveys (both physical and biological) by scoping a prioritisation framework for marine surveys undertaking physical and biological seabed data collection in Australia. Focused workshops and targeted engagements with seabed mapping organisations were used to develop a standard set of metadata for agencies to define spatial Areas of Interest (AOI). The standard metadata were used in a prototype prioritisation framework that allows users to transparently and consistently rank and prioritise survey work or data delivery processes. The prioritisation is then based on rankings established by defined sets of criteria.\n\nA web-based AOI submission tool and mapping publication service was then developed for these defined areas as part of the AusSeabed Survey Coordination Tool. Adoption of this tool facilitates the development of an interim national areas of interest product to inform future survey planning. This product supports both the needs of Parks Australia's network Science Plans, and consideration of information needs for Indigenous Protected Areas within Sea Country.",
+                "descriptionType": "Abstract"
+            }
+        ],
+        "fundingReferences": [],
+        "relatedIdentifiers": [
+            {
+                "relationType": "IsDocumentedBy",
+                "relatedIdentifier": "https://catalogue.aodn.org.au/geonetwork/srv/eng/catalog.search#/metadata/bdf1bf5a-3ca9-402f-9846-123a99b8ddb9",
+                "resourceTypeGeneral": "Other",
+                "relatedIdentifierType": "URL"
+            },
+            {
+                "relationType": "IsPartOf",
+                "relatedIdentifier": "https://raid.org/10.71821/418be95a",
+                "resourceTypeGeneral": "Project",
+                "relatedIdentifierType": "DOI"
+            }
+        ],
+        "providerId": "uuag",
+        "clientId": "uuag.tmnpaz",
+        "agency": "datacite",
+        "state": "findable"
+    },
+    {
+        "id": "https://doi.org/10.71676/c5f48398",
+        "doi": "10.71676/C5F48398",
+        "url": "https://raid.org/10.71676/c5f48398",
+        "types": {
+            "ris": "GEN",
+            "bibtex": "misc",
+            "citeproc": "article",
+            "schemaOrg": "Project",
+            "resourceTypeGeneral": "Project"
+        },
+        "creators": [
+            {
+                "name": null,
+                "nameType": null
+            }
+        ],
+        "titles": [
+            {
+                "lang": "eng",
+                "title": "NESP MaC Project 1.22 - A photo-identification study of southern right whales to update aggregation area classification in the southwest of Australia (ECU)"
+            }
+        ],
+        "publisher": {
+            "name": "https://ror.org/00arpt780",
+            "schemeUri": "https://ror.org/",
+            "publisherIdentifier": "https://ror.org/00arpt780",
+            "publisherIdentifierScheme": "ROR"
+        },
+        "subjects": [],
+        "contributors": [
+            {
+                "name": "RAiD AU",
+                "nameType": "Organizational",
+                "contributorType": "RegistrationAgency",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": "https://ror.org/",
+                        "nameIdentifier": "https://ror.org/038sjwq14",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/05jhnwe22",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/05jhnwe22",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            }
+        ],
+        "dates": [
+            {
+                "date": "2021-09-01/2022-04-30",
+                "dateType": "Other"
+            }
+        ],
+        "publicationYear": 2025,
+        "identifiers": [
+            {
+                "identifier": "https://prod.static.raid.org.au/10.71676/c5f48398",
+                "identifierType": "RaidAgencyUrl"
+            }
+        ],
+        "rightsList": [],
+        "descriptions": [
+            {
+                "lang": "eng",
+                "description": "The population of Southern Right Whales (SRW) in the Southern Hemisphere has been recovering slowly from near extinction due to its decimation from whaling before its ban in the mid-1970’s. The population that visits the Australian coast each year to breed is estimated to have increased by about 4–5% per year in the past two decades, bringing the total population to approximately 3,500 whales. As the population increases, the whales extend their breeding areas into previously occupied suitable habitat. As the species recovers, there is increasing evidence of expansion of aggregation areas. Consequently, there is a need to update known established aggregation areas and Biologically Important Areas (BIAs) and update relevant Marine Parks management plans based on new evidence.\n\nFlinders Bay and Geographe Bay off south-western Western Australia were likely to have been important calving areas before commercial whaling began. Much of this habitat is popular for recreational boating and other marine activities. This project collated and completed photo-ID matching of southern right whale images collected between 2010 to 2020 in the southwest of Australia, and uploaded these to the Australasian Right Whale Photo-Identification Catalogue (ARWPIC). The photo-ID matching outcomes provide evidence that Flinders Bay and Geographe Bay now fit the criteria to be recognised nationally as Biologically Important Areas (BIAs) for Southern Right Whales.",
+                "descriptionType": "Abstract"
+            }
+        ],
+        "fundingReferences": [],
+        "relatedIdentifiers": [
+            {
+                "relationType": "IsReferencedBy",
+                "relatedIdentifier": "https://doi.org/10.25959/C6YA-AS94",
+                "resourceTypeGeneral": "Dataset",
+                "relatedIdentifierType": "DOI"
+            },
+            {
+                "relationType": "IsDocumentedBy",
+                "relatedIdentifier": "https://catalogue.aodn.org.au/geonetwork/srv/eng/catalog.search#/metadata/435a4b98-d5f8-48be-8b9c-79812afd094d",
+                "resourceTypeGeneral": "Other",
+                "relatedIdentifierType": "URL"
+            },
+            {
+                "relationType": "IsPartOf",
+                "relatedIdentifier": "https://raid.org/10.71821/418be95a",
+                "resourceTypeGeneral": "Project",
+                "relatedIdentifierType": "DOI"
+            }
+        ],
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "providerId": "uuag",
+        "clientId": "uuag.tmnpaz",
+        "agency": "datacite",
+        "state": "findable"
+    },
+    {
+        "id": "https://doi.org/10.71821/418be95a",
+        "doi": "10.71821/418BE95A",
+        "url": "https://raid.org/10.71821/418be95a",
+        "types": {
+            "ris": "GEN",
+            "bibtex": "misc",
+            "citeproc": "article",
+            "schemaOrg": "CreativeWork",
+            "resourceType": "Project",
+            "resourceTypeGeneral": "Other"
+        },
+        "creators": [
+            {
+                "name": null,
+                "nameType": null
+            }
+        ],
+        "titles": [
+            {
+                "lang": "eng",
+                "title": "Marine and Coastal Hub"
+            }
+        ],
+        "publisher": {
+            "name": "https://ror.org/01db6n192",
+            "schemeUri": "https://ror.org/",
+            "publisherIdentifier": "https://ror.org/01db6n192",
+            "publisherIdentifierScheme": "ROR"
+        },
+        "subjects": [],
+        "contributors": [
+            {
+                "name": "RAiD AU",
+                "nameType": "Organizational",
+                "contributorType": "RegistrationAgency",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": "https://ror.org/",
+                        "nameIdentifier": "https://ror.org/038sjwq14",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/01nfmeh72",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/01nfmeh72",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            }
+        ],
+        "dates": [
+            {
+                "date": "2021/2027",
+                "dateType": "Other"
+            }
+        ],
+        "publicationYear": 2025,
+        "identifiers": [
+            {
+                "identifier": "https://prod.static.raid.org.au/10.71821/418be95a",
+                "identifierType": "RaidAgencyUrl"
+            }
+        ],
+        "rightsList": [],
+        "descriptions": [],
+        "fundingReferences": [],
+        "relatedIdentifiers": [
+            {
+                "relationType": "IsDocumentedBy",
+                "relatedIdentifier": "https://www.nespmarinecoastal.edu.au/",
+                "resourceTypeGeneral": "Other",
+                "relatedIdentifierType": "URL"
+            },
+            {
+                "relationType": "IsPartOf",
+                "relatedIdentifier": "https://raid.org/10.71821/23fcbc6f ",
+                "resourceTypeGeneral": "Project",
+                "relatedIdentifierType": "DOI"
+            }
+        ],
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "providerId": "uuag",
+        "clientId": "uuag.zdfqne",
+        "agency": "datacite",
+        "state": "findable"
+    },
+    {
+        "id": "https://doi.org/10.71676/75cb5cc4",
+        "doi": "10.71676/75CB5CC4",
+        "url": "https://raid.org/10.71676/75cb5cc4",
+        "types": {
+            "ris": "GEN",
+            "bibtex": "misc",
+            "citeproc": "article",
+            "schemaOrg": "Project",
+            "resourceTypeGeneral": "Project"
+        },
+        "creators": [
+            {
+                "name": null,
+                "nameType": null
+            }
+        ],
+        "titles": [
+            {
+                "lang": "eng",
+                "title": "NESP MaC Project 1.23 - Conservation of spotted handfish (CSIRO)"
+            }
+        ],
+        "publisher": {
+            "name": "https://ror.org/00arpt780",
+            "schemeUri": "https://ror.org/",
+            "publisherIdentifier": "https://ror.org/00arpt780",
+            "publisherIdentifierScheme": "ROR"
+        },
+        "subjects": [],
+        "contributors": [
+            {
+                "name": "RAiD AU",
+                "nameType": "Organizational",
+                "contributorType": "RegistrationAgency",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": "https://ror.org/",
+                        "nameIdentifier": "https://ror.org/038sjwq14",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/026nh4520",
+                "nameType": "Organizational",
+                "contributorType": "HostingInstitution",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/026nh4520",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            },
+            {
+                "name": "https://ror.org/00arpt780",
+                "nameType": "Organizational",
+                "contributorType": "Other",
+                "nameIdentifiers": [
+                    {
+                        "schemeUri": null,
+                        "nameIdentifier": "https://ror.org/00arpt780",
+                        "nameIdentifierScheme": "ROR"
+                    }
+                ]
+            }
+        ],
+        "dates": [
+            {
+                "date": "2021-09-01/2022-06-30",
+                "dateType": "Other"
+            }
+        ],
+        "publicationYear": 2025,
+        "identifiers": [
+            {
+                "identifier": "https://prod.static.raid.org.au/10.71676/75cb5cc4",
+                "identifierType": "RaidAgencyUrl"
+            }
+        ],
+        "rightsList": [],
+        "descriptions": [
+            {
+                "lang": "eng",
+                "description": "Spotted Handfish (*Brachionichthys hirsutus*) were once common across the bays and estuaries of South-eastern Tasmania. By 1996, however, populations had declined and the species was listed as Critically Endangered under Australia’s Environment Protection and Biodiversity Conservation Act 1999. The species is relatively short-lived, (5–10 years) and matures at more than two years’ old. This leaves a short window for reproduction, which relies on egg masses laid on seafloor structures such as stalked ascidians. If spawning fails, population declines may occur rapidly. With no planktonic life stage to aid dispersal, and low adult dispersal, outside recruitment to re-establish collapsed populations is unlikely.\n\nAnalysis of 23 years of Spotted Handfish survey data (1997–2019) supported by previous NESP Marine Biodiversity Hub work [Project A10](https://www.nespmarine.edu.au/project/project-a10-conservation-handfish-and-their-habitat.html) helped develop a time-series of survey data, increasing biological understanding and contributing to effective management actions. This project recommenced surveys of multiple local populations, after a two-year gap, to ensure that the potential impacts of development of the Derwent estuary and surrounds handfish populations or their habitats can be detected. Included in the population surveying was identification of suitable locations to plant Artificial Spawning Habitats (ASH) where natural spawning structures have declined. This will continue to support the species' captive breeding program with industry and foster engagement with the indigenous and broader community through participation, talks, outreach, publications, and the National Handfish Recovery Team (NHRT).",
+                "descriptionType": "Abstract"
+            }
+        ],
+        "fundingReferences": [],
+        "relatedIdentifiers": [
+            {
+                "relationType": "IsReferencedBy",
+                "relatedIdentifier": "https://doi.org/10.25959/6PYW-AK73",
+                "resourceTypeGeneral": "Dataset",
+                "relatedIdentifierType": "DOI"
+            },
+            {
+                "relationType": "IsDocumentedBy",
+                "relatedIdentifier": "https://catalogue.aodn.org.au/geonetwork/srv/eng/catalog.search#/metadata/27625ece-a38a-400e-9a1e-857d88d85655",
+                "resourceTypeGeneral": "Other",
+                "relatedIdentifierType": "URL"
+            },
+            {
+                "relationType": "IsPartOf",
+                "relatedIdentifier": "https://raid.org/10.71821/418be95a",
+                "resourceTypeGeneral": "Project",
+                "relatedIdentifierType": "DOI"
+            }
+        ],
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "providerId": "uuag",
+        "clientId": "uuag.tmnpaz",
+        "agency": "datacite",
+        "state": "findable"
+    }
+]

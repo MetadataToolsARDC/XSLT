@@ -41,7 +41,6 @@
     <xsl:strip-space elements="*"/>
     
     <xsl:output method="xml" version="1.0" encoding="UTF-8" omit-xml-declaration="yes" indent="yes"/>
-    <xsl:strip-space elements='*'/>
     <xsl:param name="global_debug" select="false()" as="xs:boolean"/>
     <xsl:param name="global_debugExceptions" select="false()" as="xs:boolean"/>
     <xsl:param name="global_regex_URLinstring" select="'(https?:)(//([^#\s]*))?'"/>
@@ -54,6 +53,7 @@
     <xsl:param name="global_path" select="''"/>
     <xsl:param name="global_group" select="''"/>
     <xsl:param name="global_spatialProjection" select="''"/>
+    <xsl:param name="global_includeServiceAccessLinks" select="false()"/>
     <!--xsl:variable name="licenseCodelist" select="document('license-codelist.xml')"/-->
     <!--xsl:variable name="codelists" select="document('codelists_ISO19115-1.xml')"/-->
     
@@ -192,7 +192,7 @@
                 <xsl:for-each select=".//mrd:MD_DigitalTransferOptions/mrd:onLine/cit:CI_OnlineResource">
                     <!-- Test for service (then call relatedService but only if current registry object is a collection); otherwise, handle as non service for all objects -->
                     <xsl:choose>
-                        <xsl:when test="($registryObjectTypeSubType_sequence[1] = 'collection') and 
+                        <xsl:when test="$global_includeServiceAccessLinks and ($registryObjectTypeSubType_sequence[1] = 'collection') and 
                             (contains(lower-case(cit:protocol), 'esri') or 
                             contains(lower-case(cit:protocol), 'ogc') or 
                             contains(cit:linkage, '?') or
@@ -322,7 +322,7 @@
         
          <xsl:apply-templates
              select="mri:abstract[string-length(.) > 0]"
-            mode="registryObject_description_brief"/>
+            mode="registryObject_description_full"/>
         
         <xsl:apply-templates select="mri:extent/gex:EX_Extent" mode="registryObject_coverage_spatial"/>
        
@@ -726,16 +726,19 @@
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:if test="string-length($name) > 0">
-                                <relatedObject>
-                                 <key>
+                                <relatedInfo type="party">
+                                 <identifier type="local">
                                      <xsl:value-of select="concat($global_acronym, '/', translate(normalize-space($name),' ',''))"/>
-                                 </key>
+                                 </identifier>
+                                    <title>
+                                        <xsl:value-of select="normalize-space($name)"/>
+                                    </title>
                                     <relation>
                                         <xsl:attribute name="type">
                                             <xsl:text>hasAssociationWith</xsl:text>
                                         </xsl:attribute>
                                     </relation>
-                                </relatedObject>
+                                </relatedInfo>
                             </xsl:if>
                         </xsl:otherwise>
                     </xsl:choose>
@@ -766,10 +769,13 @@
                                     </xsl:when>
                                     <xsl:otherwise>
                                         <xsl:if test="string-length($name) > 0">
-                                            <relatedObject>
-                                                <key>
+                                            <relatedInfo type="party">
+                                                <identifier type="local">
                                                     <xsl:value-of select="concat($global_acronym, '/', translate(normalize-space($name),' ',''))"/>
-                                                </key>
+                                                </identifier>
+                                                <title>
+                                                    <xsl:value-of select="normalize-space($name)"/>
+                                                </title>
                                                 <relation>
                                                     <xsl:attribute name="type">
                                                         <xsl:choose>
@@ -782,7 +788,7 @@
                                                         </xsl:choose>
                                                     </xsl:attribute>
                                                 </relation>
-                                            </relatedObject>
+                                            </relatedInfo>
                                         </xsl:if>
                                     </xsl:otherwise>
                                 </xsl:choose>
@@ -802,16 +808,19 @@
                               </xsl:when>
                               <xsl:otherwise>
                                   <xsl:if test="string-length($name) > 0">
-                                     <relatedObject>
-                                         <key>
+                                     <relatedInfo type="party">
+                                         <identifier type="local">
                                              <xsl:value-of select="concat($global_acronym, '/', translate(normalize-space($name),' ',''))"/>
-                                         </key>
+                                         </identifier>
+                                         <title>
+                                             <xsl:value-of select="normalize-space($name)"/>
+                                         </title>
                                          <relation>
                                            <xsl:attribute name="type">
                                                <xsl:text>hasAssociationWith</xsl:text>
                                            </xsl:attribute>
                                          </relation>
-                                     </relatedObject> 
+                                     </relatedInfo> 
                                   </xsl:if>
                               </xsl:otherwise>
                            </xsl:choose>
@@ -862,10 +871,13 @@
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:if test="string-length($name) > 0">
-                                <relatedObject>
-                                    <key>
+                                <relatedInfo type="party">
+                                    <identifier type="local">
                                         <xsl:value-of select="concat($global_acronym, '/', translate(normalize-space($name),' ',''))"/>
-                                    </key>
+                                    </identifier>
+                                    <title>
+                                        <xsl:value-of select="normalize-space($name)"/>
+                                    </title>
                                     <relation>
                                         <xsl:attribute name="type">
                                             <xsl:choose>
@@ -878,7 +890,7 @@
                                             </xsl:choose>
                                         </xsl:attribute>
                                     </relation>
-                                </relatedObject>
+                                </relatedInfo>
                             </xsl:if>
                         </xsl:otherwise>
                     </xsl:choose>
@@ -898,16 +910,19 @@
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:if test="string-length($name) > 0">
-                         <relatedObject>
-                             <key>
+                         <relatedInfo type="party">
+                             <identifier type="local">
                                  <xsl:value-of select="concat($global_acronym, '/', translate(normalize-space($name),' ',''))"/>
-                             </key>
+                             </identifier>
+                             <title>
+                                 <xsl:value-of select="normalize-space($name)"/>
+                             </title>
                              <relation>
                                  <xsl:attribute name="type">
                                      <xsl:text>hasAssociationWith</xsl:text>
                                  </xsl:attribute>
                              </relation>
-                         </relatedObject> 
+                         </relatedInfo> 
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -977,10 +992,10 @@
     </xsl:template>
     
     <!-- RegistryObject - Decription Element -->
-    <xsl:template match="mri:abstract" mode="registryObject_description_brief">
+    <xsl:template match="mri:abstract" mode="registryObject_description_full">
         <xsl:if test="string-length(normalize-space(.)) > 0">
-            <description type="brief">
-                <xsl:value-of select="."/>
+            <description type="full">
+                <xsl:value-of select="custom:preserveWhitespaceHTML(.)"/>
             </description>
         </xsl:if>
     </xsl:template>
@@ -2015,12 +2030,15 @@
                                 </xsl:variable>
                                 
                                 <xsl:if test="(string-length($name) > 0)">
-                                  <relatedObject>
-                                      <key>
+                                  <relatedInfo type="party">
+                                      <identifier type="local">
                                           <xsl:value-of select="concat($global_acronym, '/', translate(normalize-space($name),' ',''))"/>
-                                      </key>
+                                      </identifier>
+                                      <title>
+                                          <xsl:value-of select="normalize-space($name)"/>
+                                      </title>
                                       <relation type="hasMember"/>
-                                  </relatedObject>
+                                  </relatedInfo>
                                 </xsl:if>  
                              </xsl:for-each>
                         </xsl:when>
@@ -2174,6 +2192,7 @@
             </location>
         </xsl:if>
     </xsl:template>
+    
     
     <!--xsl:template match="cit:electronicMailAddress">
 
