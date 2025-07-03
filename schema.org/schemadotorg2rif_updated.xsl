@@ -167,7 +167,9 @@
                             <xsl:with-param name="contextNode" select="." as="node()*"/>
                         </xsl:call-template>
                         <xsl:apply-templates select="title" mode="primary"/>
-                        <xsl:apply-templates select="datePublished | dateCreated"/>
+                        <xsl:if test="contains($typeAndSubType_sequence[1], 'collection')">
+                            <xsl:apply-templates select="datePublished | dateCreated"/>
+                        </xsl:if>
                         <xsl:apply-templates select="temporalCoverage| spatialCoverage"/>
                         <xsl:apply-templates select="keywords"/>
                         <xsl:apply-templates select="description"/>
@@ -504,7 +506,7 @@
         <xsl:variable name="identifier_elements" as="node()*">
             <xsl:call-template name="identifiers">
                 <xsl:with-param name="contextNode" select="$contextNode" as="node()*"/>
-                <xsl:with-param name="priorityTypes" select="'RAID|handle|doi'"/>
+                <xsl:with-param name="priorityTypes" select="'handle|doi|raid'"/>
                 <xsl:with-param name="numRequired" select="1" as="xs:integer"/>
             </xsl:call-template>
         </xsl:variable> 
@@ -788,7 +790,7 @@
             <xsl:element name="location">
                 <xsl:element name="address">
                     <xsl:element name="physical">
-                        <xsl:apply-templates select="type"/>
+                        <xsl:apply-templates select="type" mode="streetAddress"/>
                         <xsl:apply-templates select="name" mode="addressPart"/>
                         <xsl:apply-templates select="telephone" mode="addressPart"/>
                     </xsl:element>
@@ -866,10 +868,27 @@
         </xsl:if>
     </xsl:template>
 
+
+    <xsl:template match="type">
+        <xsl:if test="text() != ''">
+            <xsl:attribute name="type">
+                <xsl:value-of select="text()"/>
+            </xsl:attribute>
+        </xsl:if>
+    </xsl:template>
+    
     <xsl:template match="type" mode="distribution">
         <xsl:if test="text() != ''">
             <xsl:element name="mediaType">
                 <xsl:apply-templates/>
+            </xsl:element>
+        </xsl:if>
+    </xsl:template>
+    
+    <xsl:template match="type" mode="streetAddress">
+        <xsl:if test="text() != ''">
+            <xsl:element name="mediaType">
+                <xsl:text>streetAddress</xsl:text>
             </xsl:element>
         </xsl:if>
     </xsl:template>

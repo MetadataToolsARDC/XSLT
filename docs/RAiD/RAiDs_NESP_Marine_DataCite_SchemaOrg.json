@@ -605,6 +605,49 @@
     {
         "@context": "http://schema.org",
         "@type": "CreativeWork",
+        "@id": "https://doi.org/10.71821/ffc970c8",
+        "identifier": {
+            "@type": "PropertyValue",
+            "propertyID": "RaidAgencyUrl",
+            "value": "https://prod.static.raid.org.au/10.71821/ffc970c8"
+        },
+        "url": "https://raid.org/10.71821/ffc970c8",
+        "additionalType": "Project",
+        "name": "Resilient Landscapes Hub",
+        "author": {},
+        "editor": [
+            {
+                "name": "RAiD AU",
+                "contributorType": "RegistrationAgency",
+                "@type": "Organization",
+                "@id": "https://ror.org/038sjwq14"
+            },
+            {
+                "name": "https://ror.org/047272k79",
+                "contributorType": "HostingInstitution",
+                "@type": "Organization",
+                "@id": "https://ror.org/047272k79"
+            }
+        ],
+        "datePublished": 2025,
+        "isPartOf": {
+            "@id": "https://raid.org/10.71821/23fcbc6f",
+            "@type": "Project"
+        },
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "@id": "https://ror.org/01db6n192",
+            "name": "https://ror.org/01db6n192"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "CreativeWork",
         "@id": "https://doi.org/10.71821/23fcbc6f",
         "identifier": {
             "@type": "PropertyValue",
@@ -1389,6 +1432,56 @@
     {
         "@context": "http://schema.org",
         "@type": "Project",
+        "@id": "https://doi.org/10.71613/86e95be1",
+        "identifier": {
+            "@type": "PropertyValue",
+            "propertyID": "RaidAgencyUrl",
+            "value": "https://prod.static.raid.org.au/10.71613/86e95be1"
+        },
+        "url": "https://raid.org/10.71613/86e95be1",
+        "additionalType": "RAiD",
+        "name": "5.6 Mapping and monitoring persistent pools using remote sensing to support river resilience",
+        "author": {},
+        "editor": [
+            {
+                "name": "RAiD AU",
+                "contributorType": "RegistrationAgency",
+                "@type": "Organization",
+                "@id": "https://ror.org/038sjwq14"
+            },
+            {
+                "name": "https://ror.org/047272k79",
+                "contributorType": "HostingInstitution",
+                "@type": "Organization",
+                "@id": "https://ror.org/047272k79"
+            },
+            {
+                "name": "https://ror.org/02sc3r913",
+                "contributorType": "HostingInstitution",
+                "@type": "Organization",
+                "@id": "https://ror.org/02sc3r913"
+            }
+        ],
+        "description": "This project focuses on developing innovative tools using satellite imagery to map and monitor persistent pools (waterholes) within Australian rivers and floodplains. Persistent pools are vital water resources, especially under climate change and growing water use. They are crucial for ecosystems, providing habitats for species, sustaining ecological processes and serving as refuges during dry periods. The project will use satellite data from Landsat, Sentinel and Planetscope to map these pools, assess their dynamics, and predict future changes under various climate and water-use scenarios. The findings will support sustainable management strategies, including water allocation, climate adaptation and conservation efforts, with case studies in the Martuwarra Fitzroy River (WA), Gilbert River (Qld) and the Ovens River in Northern Victoria.\n\nPersistent pools are challenging to map due to their dynamic nature, shifting with changes in flow and precipitation. Current methods do not adequately capture these fluctuations, leading to potential underestimation of the area of persistent pools. The increasing demand for water resources, combined with climate change, underscores the need for better mapping and monitoring techniques. Remote sensing offers an efficient, cost-effective way to track these dynamic features across large areas, providing historical and real-time data to inform management decisions. This project aims to fill the gap in current methods by integrating data from multiple satellites and analysing the ecological and socio-cultural implications of pool dynamics.",
+        "datePublished": 2025,
+        "isPartOf": {
+            "@id": "https://raid.org/10.71821/ffc970c8",
+            "@type": "Project"
+        },
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "@id": "https://ror.org/01db6n192",
+            "name": "https://ror.org/01db6n192"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Project",
         "@id": "https://doi.org/10.71676/0e28edaf",
         "identifier": {
             "@type": "PropertyValue",
@@ -1483,6 +1576,91 @@
             "@type": "Organization",
             "@id": "https://ror.org/00arpt780",
             "name": "https://ror.org/00arpt780"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "CreativeWork",
+        "@id": "https://doi.org/10.71821/35f86452",
+        "identifier": {
+            "@type": "PropertyValue",
+            "propertyID": "RaidAgencyUrl",
+            "value": "https://prod.static.raid.org.au/10.71821/35f86452"
+        },
+        "url": "https://raid.org/10.71821/35f86452",
+        "additionalType": "Project",
+        "name": "Sustainable Communities and Waste Hub",
+        "author": {},
+        "editor": [
+            {
+                "name": "RAiD AU",
+                "contributorType": "RegistrationAgency",
+                "@type": "Organization",
+                "@id": "https://ror.org/038sjwq14"
+            },
+            {
+                "name": "https://ror.org/03r8z3t63",
+                "contributorType": "HostingInstitution",
+                "@type": "Organization",
+                "@id": "https://ror.org/03r8z3t63"
+            }
+        ],
+        "datePublished": 2025,
+        "isPartOf": {
+            "@id": "https://raid.org/10.71821/23fcbc6f",
+            "@type": "Project"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "@id": "https://ror.org/01db6n192",
+            "name": "https://ror.org/01db6n192"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "CreativeWork",
+        "@id": "https://doi.org/10.71821/a945d761",
+        "identifier": {
+            "@type": "PropertyValue",
+            "propertyID": "RaidAgencyUrl",
+            "value": "https://prod.static.raid.org.au/10.71821/a945d761"
+        },
+        "url": "https://raid.org/10.71821/a945d761",
+        "additionalType": "Project",
+        "name": "Climate Systems Hub",
+        "author": {},
+        "editor": [
+            {
+                "name": "RAiD AU",
+                "contributorType": "RegistrationAgency",
+                "@type": "Organization",
+                "@id": "https://ror.org/038sjwq14"
+            },
+            {
+                "name": "https://ror.org/03qn8fb07",
+                "contributorType": "HostingInstitution",
+                "@type": "Organization",
+                "@id": "https://ror.org/03qn8fb07"
+            }
+        ],
+        "datePublished": 2025,
+        "isPartOf": {
+            "@id": "https://raid.org/10.71821/23fcbc6f",
+            "@type": "Project"
+        },
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "@id": "https://ror.org/01db6n192",
+            "name": "https://ror.org/01db6n192"
         },
         "provider": {
             "@type": "Organization",
