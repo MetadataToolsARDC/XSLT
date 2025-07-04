@@ -5,12 +5,15 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:s3="http://s3.amazonaws.com/doc/2006-03-01/"
     xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/2.0"
-    exclude-result-prefixes="xs xsi xsl s3 mdb">
+    xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0" 
+    xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/2.0" 
+    xmlns="http://ands.org.au/standards/rif-cs/registryObjects"
+    exclude-result-prefixes="xs xsi xsl s3 mdb mcc cit">
     
     <xsl:param name="global_debug" select="false()" as="xs:boolean"/>
     <xsl:param name="global_debugExceptions" select="true()" as="xs:boolean"/>
     <xsl:param name="global_originatingSource" select="'Australian Antarctic Division'"/>
-    <xsl:param name="global_acronym" select="'AAD'"/>
+    <xsl:param name="global_acronym" select="'AADC'"/>
     <xsl:param name="global_baseURI" select="'https://data.aad.gov.au'"/>
     <xsl:param name="global_baseURI_PID" select="''"/>
     <xsl:param name="global_path_PID" select="''"/>
@@ -25,11 +28,29 @@
     
     <xsl:import href="ISO19115-3_To_RIFCS.xsl"/>
     
-    <xsl:output method="xml" encoding="UTF-8" indent="yes"/>
+    <xsl:output method="xml" omit-xml-declaration="no" indent="yes"/>
     <xsl:strip-space elements="*"/>
     
     <xsl:variable name="cwd" select="base-uri(/)"/>
     <xsl:variable name="cwdDir" select="replace($cwd, '[^/]+$', '')"/>
+    
+    <!-- Override key contructon to use old method -->
+    <xsl:template match="mcc:code" mode="registryObject_key">
+        <xsl:variable name="uuid_sequence" select="ancestor::mdb:MD_Metadata/mdb:alternativeMetadataReference/cit:CI_Citation/cit:identifier/mcc:MD_Identifier[contains(mcc:description, 'uuid') and (string-length(mcc:code) > 0)][1]/mcc:code" as="xs:string*"/>
+        <xsl:choose>
+            <xsl:when test="string-length(normalize-space($uuid_sequence[1])) > 0">
+                <key>
+                    <xsl:value-of select="concat($global_acronym, '/', normalize-space($uuid_sequence[1]))"/>
+                </key>
+            </xsl:when>
+            <xsl:otherwise>
+                <key>
+                    <xsl:value-of select="concat($global_acronym, '/', normalize-space(.))"/>
+                </key>
+            </xsl:otherwise>
+        </xsl:choose>
+        
+    </xsl:template>
     
     <xsl:template match="/">
         
