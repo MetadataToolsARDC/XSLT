@@ -11,10 +11,10 @@
     <xsl:param name="global_debugExceptions" select="true()" as="xs:boolean"/>
     <xsl:param name="global_originatingSource" select="'Australian Institute of Marine Science'"/>
     <xsl:param name="global_acronym" select="'AIMS'"/>
-    <xsl:param name="global_baseURI" select="'geo.aims.gov.au/geonetwork'"/>
+    <xsl:param name="global_baseURI" select="'apps.aims.gov.au'"/>
     <xsl:param name="global_baseURI_PID" select="''"/>
     <xsl:param name="global_path_PID" select="''"/>
-    <xsl:param name="global_path" select="'/geonetwork/srv/eng/search?uuid='"/>
+    <xsl:param name="global_path" select="'/metadata/view/'"/>
     <xsl:param name="global_group" select="'Australian Institute of Marine Science'"/>
     <xsl:param name="global_publisherName" select="'Australian Institute of Marine Science'"/>
     <xsl:param name="global_publisherPlace" select="''"/>
