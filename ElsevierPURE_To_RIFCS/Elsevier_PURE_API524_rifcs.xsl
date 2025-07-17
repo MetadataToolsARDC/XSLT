@@ -729,7 +729,17 @@
     </xsl:template>
 
     <xsl:template match="link" mode="object_relatedInfo">
-        <relatedInfo type="website">
+        <relatedInfo>
+            <xsl:attribute name="type">
+                <xsl:choose>
+                    <xsl:when test="contains(lower-case(url), 'raid.org')">
+                        <xsl:text>activity</xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:text>website</xsl:text>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:attribute>
             <xsl:if test="string-length(normalize-space(url)) > 0">
                 <identifier type="url">
                     <xsl:value-of select="normalize-space(url)"/>
@@ -740,6 +750,18 @@
                     <xsl:value-of select="normalize-space(description/text[@locale='en_GB'])"/>
                 </title>
             </xsl:if>
+            <relation>
+                <xsl:attribute name="type">
+                    <xsl:choose>
+                        <xsl:when test="contains(lower-case(url), 'raid.org')">
+                            <xsl:text>isOutputOf</xsl:text>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:text>hasAssociationWith</xsl:text>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:attribute>
+            </relation>
         </relatedInfo>
     </xsl:template>
 
