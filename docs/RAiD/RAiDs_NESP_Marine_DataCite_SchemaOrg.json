@@ -1,6 +1,664 @@
 [
     {
         "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.25909/zkst-2h38",
+        "url": "https://eatlas.org.au/data/uuid/65f61d2d-fe4e-48e5-8c6e-fab08450ef75",
+        "name": "Climate change doubles sedimentation-induced coral recruit mortality (NESP TWQ 5.2, AIMS, JCU AND AIMS@JCU)",
+        "author": [
+            {
+                "name": "Christopher Brunner",
+                "givenName": "Christopher",
+                "familyName": "Brunner",
+                "affiliation": [
+                    {
+                        "@type": "Organization",
+                        "@id": "https://ror.org/03x57gn41",
+                        "name": "Australian Institute of Marine Science"
+                    },
+                    {
+                        "@type": "Organization",
+                        "@id": "https://ror.org/04gsp2c11",
+                        "name": "James Cook University"
+                    },
+                    {
+                        "@type": "Organization",
+                        "@id": "https://ror.org/045vn2806",
+                        "name": "AIMS@JCU"
+                    }
+                ],
+                "@type": "Person"
+            },
+            {
+                "name": "Sven Uthicke",
+                "givenName": "Sven",
+                "familyName": "Uthicke",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/03x57gn41",
+                    "name": "Australian Institute of Marine Science"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Gerard Ricardo",
+                "givenName": "Gerard",
+                "familyName": "Ricardo",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/03x57gn41",
+                    "name": "Australian Institute of Marine Science"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Andrew Negri",
+                "givenName": "Andrew",
+                "familyName": "Negri",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/03x57gn41",
+                    "name": "Australian Institute of Marine Science"
+                },
+                "@type": "Person"
+            }
+        ],
+        "datePublished": 2021,
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "eAtlas"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.25919/5c109dc883863",
+        "url": "https://data.csiro.au/collections/#collection/CIcsiro:37677v2",
+        "additionalType": "Dataset",
+        "name": "Kakadu NESP drone photos",
+        "author": {
+            "name": "Justin Perry",
+            "givenName": "Justin",
+            "familyName": "Perry",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "CSIRO"
+            },
+            "@type": "Person"
+        },
+        "description": "Raw photographs and georectified orthopotographs of three wetland sites on the Kakadu Flood Plain, East Alligator section.  Flights captured areas that are under intensive weed management regimes (aerial spraying and ground spraying) to control Para grass (Urochloa mutica).",
+        "datePublished": "2018",
+        "successor_of": {
+            "@id": "https://doi.org/10.25919/5c109dc883863",
+            "@type": "CreativeWork"
+        },
+        "citation": {
+            "@id": "http://www.nespnorthern.edu.au/projects/nesp/indigenous-nrm-kakadu-national-park",
+            "@type": "CreativeWork"
+        },
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "CSIRO"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.26274/j7sr-rp22",
+        "url": "https://eatlas.org.au/data/uuid/c9cb841d-c84d-40d3-9c17-42ae3f5dcde7",
+        "name": "Extralimital citizen science observations of marine species relative to historical poleward range limits, 2013–2022 (NESP MaC Project 1.30; IMAS, JCU and DPIRD)",
+        "author": [
+            {
+                "name": "Barrett William Wolfe",
+                "givenName": "Barrett William",
+                "familyName": "Wolfe",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/01nfmeh72",
+                    "name": "University of Tasmania"
+                },
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0002-9406-0578"
+            },
+            {
+                "name": "Gretta Pecl",
+                "givenName": "Gretta",
+                "familyName": "Pecl",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/01nfmeh72",
+                    "name": "University of Tasmania"
+                },
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0003-0192-4339"
+            },
+            {
+                "name": "Shannon Kjeldsen",
+                "givenName": "Shannon",
+                "familyName": "Kjeldsen",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0002-9745-9859"
+            },
+            {
+                "name": "Jan Strugnell",
+                "givenName": "Jan",
+                "familyName": "Strugnell",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0003-2994-637X"
+            },
+            {
+                "name": "Sue-Ann Watson",
+                "givenName": "Sue-Ann",
+                "familyName": "Watson",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0002-9818-7429"
+            }
+        ],
+        "datePublished": 2022,
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "eAtlas"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.26274/ndyc-yz88",
+        "url": "https://eatlas.org.au/data/uuid/26599b5d-c9ab-4a41-ab16-83fe3c2f3357",
+        "name": "Indigenous perspectives on marine and coastal ecosystem restoration activities, February, 2022 (NESP MaC Project 1.6, CSIRO)",
+        "author": [
+            {
+                "name": "Megan Saunders",
+                "givenName": "Megan",
+                "familyName": "Saunders",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/03qn8fb07",
+                    "name": "Commonwealth Scientific and Industrial Research Organisation"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Mibu Fischer",
+                "givenName": "Mibu",
+                "familyName": "Fischer",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/03qn8fb07",
+                    "name": "Commonwealth Scientific and Industrial Research Organisation"
+                },
+                "@type": "Person"
+            }
+        ],
+        "datePublished": 2022,
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "eAtlas"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.26274/v6k5-2f34",
+        "url": "https://eatlas.org.au/data/uuid/cffa7269-5d95-486b-9b2e-77316e808398",
+        "name": "Benthic habitats of Yanyuwa Sea Country, Barni - Wardimantha Awara Indigenous Protected Area, Gulf of Carpentaria, Northern Territory, Australia (NESP MaC Project 1.12, JCU & CDU)",
+        "author": [
+            {
+                "name": "Rachel Groom",
+                "givenName": "Rachel",
+                "familyName": "Groom",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/048zcaj52",
+                    "name": "Charles Darwin University"
+                },
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0001-9938-7222"
+            },
+            {
+                "name": "Alex B Carter",
+                "givenName": "Alex B",
+                "familyName": "Carter",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0003-2303-0010"
+            },
+            {
+                "name": "Catherine Collier",
+                "givenName": "Catherine",
+                "familyName": "Collier",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0001-9494-6582"
+            },
+            {
+                "name": "Lauren Firby",
+                "givenName": "Lauren",
+                "familyName": "Firby",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Shaun Evans",
+                "givenName": "Shaun",
+                "familyName": "Evans",
+                "@type": "Person"
+            },
+            {
+                "name": "Stephen Barrett",
+                "givenName": "Stephen",
+                "familyName": "Barrett",
+                "@type": "Person"
+            },
+            {
+                "name": "Luke Hoffman",
+                "givenName": "Luke",
+                "familyName": "Hoffman",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Chris van de Wetering",
+                "givenName": "Chris",
+                "familyName": "van de Wetering",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0002-6055-1125"
+            },
+            {
+                "name": "Shade Evans",
+                "givenName": "Shade",
+                "familyName": "Evans",
+                "@type": "Person"
+            },
+            {
+                "name": "Steven Simon",
+                "givenName": "Steven",
+                "familyName": "Simon",
+                "@type": "Person"
+            },
+            {
+                "name": "Stephen Anderson",
+                "givenName": "Stephen",
+                "familyName": "Anderson",
+                "@type": "Person"
+            }
+        ],
+        "datePublished": 2023,
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "eAtlas"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.15468/b66xcx",
+        "identifier": {
+            "@type": "PropertyValue",
+            "propertyID": "UUID",
+            "value": "7dd4f636-6fda-46de-82d6-7b8aab621926"
+        },
+        "url": "https://www.gbif.org/dataset/7dd4f636-6fda-46de-82d6-7b8aab621926",
+        "additionalType": "SAMPLING_EVENT",
+        "name": "Benthic survey of Dugong and Turtle seagrass habitats in the North-West Torres Strait for November 2015 and January 2016 (NESP TWQ 3.5, TropWATER, JCU)",
+        "author": [
+            {
+                "name": "Alex Carter",
+                "givenName": "Alex",
+                "familyName": "Carter",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "Centre for Tropical Water and Aquatic Ecosystem Research, James Cook University"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Michael Rasheed",
+                "givenName": "Michael",
+                "familyName": "Rasheed",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "Centre for Tropical Water and Aquatic Ecosystem Research, James Cook University"
+                },
+                "@type": "Person"
+            }
+        ],
+        "editor": [
+            {
+                "name": "Alex Carter",
+                "givenName": "Alex",
+                "familyName": "Carter",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "Centre for Tropical Water and Aquatic Ecosystem Research, James Cook University"
+                },
+                "contributorType": "DataCurator",
+                "@type": "Person"
+            },
+            {
+                "name": "OBIS Australia Node Manager",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "CSIRO National Collections and Marine Infrastructure Data Centre"
+                },
+                "contributorType": "Editor"
+            },
+            {
+                "name": "Alex Carter",
+                "givenName": "Alex",
+                "familyName": "Carter",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "Centre for Tropical Water and Aquatic Ecosystem Research, James Cook University"
+                },
+                "contributorType": "RelatedPerson",
+                "@type": "Person"
+            }
+        ],
+        "description": "This dataset summarises benthic surveys of seagrass for Dugong and Turtle habitats in the North-West Torres Strait for November 2015 and January 2016. The Site data describes seagrass at 853 sites; while the Meadow data describes seagrass at 34 individual meadows. The data includes information on seagrass species, biomass, diversity, and BMI and algae percent cover. The dataset is available as shapefiles, GIS layer packages, and/or a CSV file. The sampling methods used to study, describe and monitor seagrass meadows were developed by the TropWATER Seagrass Group and tailored to the location and habitat surveyed; these are described in detail in the relevant publications (https://research.jcu.edu.au/tropwater). Data downloaded on 2020-07-23 from https://eatlas.org.au/data/uuid/034ce816-0777-4bbd-aefc-8b73bd540245",
+        "license": "https://creativecommons.org/licenses/by-nc/4.0/legalcode",
+        "keywords": "Samplingevent, Samplingevent",
+        "inLanguage": "en",
+        "dateCreated": "2023-07-04",
+        "datePublished": "2022",
+        "dateModified": "2023-07-04",
+        "spatialCoverage": {
+            "@type": "Place",
+            "geo": {
+                "@type": "GeoShape",
+                "address": "Torres Strait",
+                "box": "-10.09 141.33 -9.14 142.35"
+            }
+        },
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "CSIRO National Collections and Marine Infrastructure (NCMI) Information and Data Centre (IDC)"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "ScholarlyArticle",
+        "@id": "https://doi.org/10.25919/yg9g-1x29",
+        "url": "https://publications.csiro.au/publications/publication/PIcsiro:EP2023-1937",
+        "additionalType": "application/pdf",
+        "name": "Project 1.29 b: NESP Marine and Coastal Hub scoping study: New approaches to monitoring Sub-component: Maximising the utility of opportunistic and citizen science datasets for conservation management",
+        "author": [
+            {
+                "name": "Karen Evans",
+                "givenName": "Karen",
+                "familyName": "Evans",
+                "@type": "Person"
+            },
+            {
+                "name": "David Peel",
+                "givenName": "David",
+                "familyName": "Peel",
+                "@type": "Person"
+            },
+            {
+                "name": "Toby Patterson",
+                "givenName": "Toby",
+                "familyName": "Patterson",
+                "@type": "Person"
+            }
+        ],
+        "datePublished": "2023",
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "CSIRO"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.26274/hd2z-km55",
+        "url": "https://eatlas.org.au/data/uuid/c38d2227-25c0-4d1e-adbc-bddb4aac1929",
+        "name": "North Australia Sentinel 2 Satellite Composite Imagery - 15th percentile true colour (NESP MaC 3.17, AIMS)",
+        "author": [
+            {
+                "name": "Marc Hammerton",
+                "givenName": "Marc",
+                "familyName": "Hammerton",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/03x57gn41",
+                    "name": "Australian Institute of Marine Science"
+                },
+                "@type": "Person",
+                "@id": "https://orcid.org/0009-0004-3631-907X"
+            },
+            {
+                "name": "Eric Lawrey",
+                "givenName": "Eric",
+                "familyName": "Lawrey",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/03x57gn41",
+                    "name": "Australian Institute of Marine Science"
+                },
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0002-3144-3475"
+            }
+        ],
+        "version": "1",
+        "datePublished": 2024,
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "eAtlas"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.26274/2bfv-e921",
+        "url": "https://eatlas.org.au/geonetwork/srv/eng/catalog.search#/metadata/ec1db691-3729-4635-a01c-378263e539b6",
+        "name": "Tropical Australia Sentinel 2 Satellite Composite Imagery - Low Tide - 30th percentile true colour and near infrared false colour (NESP MaC 3.17, AIMS) ",
+        "author": [
+            {
+                "name": "Marc Hammerton",
+                "givenName": "Marc",
+                "familyName": "Hammerton",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/03x57gn41",
+                    "name": "Australian Institute of Marine Science"
+                },
+                "@type": "Person",
+                "@id": "https://orcid.org/0009-0004-3631-907X"
+            },
+            {
+                "name": "Eric Lawrey",
+                "givenName": "Eric",
+                "familyName": "Lawrey",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/03x57gn41",
+                    "name": "Australian Institute of Marine Science"
+                },
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0002-3144-3475"
+            }
+        ],
+        "version": "1",
+        "datePublished": 2024,
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "eAtlas"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.15468/azrwa9",
+        "identifier": {
+            "@type": "PropertyValue",
+            "propertyID": "UUID",
+            "value": "52423fa9-22bb-4489-9d00-54545ac8d269"
+        },
+        "url": "https://www.gbif.org/dataset/52423fa9-22bb-4489-9d00-54545ac8d269",
+        "additionalType": "OCCURRENCE",
+        "name": "NESP MBH D1 - Oceanic Shoals opportunistic visual surveys of marine megafauna",
+        "author": {
+            "name": "Phil Bouchet",
+            "givenName": "Phil",
+            "familyName": "Bouchet",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "Centre for Marine Futures, The University of Western Australia (UWA)"
+            },
+            "@type": "Person"
+        },
+        "editor": [
+            {
+                "name": "Emma Flukes",
+                "givenName": "Emma",
+                "familyName": "Flukes",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "Institute for Marine and Antarctic Studies (IMAS), University of Tasmania (UTAS)University of Tasmania"
+                },
+                "contributorType": "DataCurator",
+                "@type": "Person"
+            },
+            {
+                "name": "OBIS Australia Node Manager",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "CSIRO National Collections and Marine Infrastructure Data Centre"
+                },
+                "contributorType": "Editor"
+            },
+            {
+                "name": "Phil Bouchet",
+                "givenName": "Phil",
+                "familyName": "Bouchet",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "Centre for Marine Futures, The University of Western Australia (UWA)"
+                },
+                "contributorType": "RelatedPerson",
+                "@type": "Person"
+            },
+            {
+                "name": "Jessica Meeuwig",
+                "givenName": "Jessica",
+                "familyName": "Meeuwig",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "Centre for Marine Futures, The University of Western Australia (UWA)"
+                },
+                "contributorType": "RelatedPerson",
+                "@type": "Person"
+            }
+        ],
+        "description": "Opportunistic visual surveys were conducted in transit to, and within, the Oceanic Shoals Commonwealth Marine Reserve (CMR) in the Timor Sea during September and October 2012 onboard the RV Solander. This resource comprises species lists and estimated counts of marine mammals, sea snakes, seabirds, sea turtles and other large wildlife encountered during the voyage.",
+        "license": "https://creativecommons.org/licenses/by-nc/4.0/legalcode",
+        "keywords": "Occurrence, Observation, Occurrence",
+        "inLanguage": "en",
+        "dateCreated": "2023-07-04",
+        "datePublished": "2023",
+        "dateModified": "2023-07-04",
+        "spatialCoverage": {
+            "@type": "Place",
+            "geo": {
+                "@type": "GeoShape",
+                "address": "Oceanic Shoals, Indian Ocean",
+                "box": "-17.158 122.013 -11.397 127.453"
+            }
+        },
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "CSIRO National Collections and Marine Infrastructure (NCMI) Information and Data Centre (IDC)"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
         "@type": "Project",
         "@id": "https://doi.org/10.71676/311a002e",
         "identifier": {
@@ -113,50 +771,6 @@
             "@type": "Organization",
             "@id": "https://ror.org/00arpt780",
             "name": "https://ror.org/00arpt780"
-        },
-        "provider": {
-            "@type": "Organization",
-            "name": "datacite"
-        }
-    },
-    {
-        "@context": "http://schema.org",
-        "@type": "Project",
-        "@id": "https://doi.org/10.71613/8ca07c4e",
-        "identifier": {
-            "@type": "PropertyValue",
-            "propertyID": "RaidAgencyUrl",
-            "value": "https://prod.static.raid.org.au/10.71613/8ca07c4e"
-        },
-        "url": "https://raid.org/10.71613/8ca07c4e",
-        "additionalType": "RAiD",
-        "name": "2.3 - Using integrated data analysis to assess regional transferability",
-        "author": {},
-        "editor": [
-            {
-                "name": "RAiD AU",
-                "contributorType": "RegistrationAgency",
-                "@type": "Organization",
-                "@id": "https://ror.org/038sjwq14"
-            },
-            {
-                "name": "https://ror.org/01nfmeh72",
-                "contributorType": "HostingInstitution",
-                "@type": "Organization",
-                "@id": "https://ror.org/01nfmeh72"
-            }
-        ],
-        "description": "Hub researchers have created integrated datasets which demonstrate social and ecological similarities between the regions analysed. These datasets were then visualised as a series of simple-to-use maps showing regions that share similar characteristics and are therefore likely to support similar conservation and land-management interventions. The maps are presented alongside tables which describe core social, ecological and interactive variables for different regions.\n\nThe report also includes a decision-making tree to assist land managers in determining best-practice conservation actions. These outcomes will help to support biodiversity and ecosystems across Australia and increase the potential impact of conservation and land-management research.",
-        "datePublished": 2025,
-        "isPartOf": {
-            "@id": "https://raid.org/10.71821/ffc970c8",
-            "@type": "Project"
-        },
-        "schemaVersion": "http://datacite.org/schema/kernel-4",
-        "publisher": {
-            "@type": "Organization",
-            "@id": "https://ror.org/01db6n192",
-            "name": "https://ror.org/01db6n192"
         },
         "provider": {
             "@type": "Organization",
@@ -300,15 +914,15 @@
     {
         "@context": "http://schema.org",
         "@type": "Project",
-        "@id": "https://doi.org/10.71613/dad7b616",
+        "@id": "https://doi.org/10.71613/8ca07c4e",
         "identifier": {
             "@type": "PropertyValue",
             "propertyID": "RaidAgencyUrl",
-            "value": "https://prod.static.raid.org.au/10.71613/dad7b616"
+            "value": "https://prod.static.raid.org.au/10.71613/8ca07c4e"
         },
-        "url": "https://raid.org/10.71613/dad7b616",
+        "url": "https://raid.org/10.71613/8ca07c4e",
         "additionalType": "RAiD",
-        "name": "2.1 - Water planning in north Queensland",
+        "name": "NESP RL Project 2.3 - Using integrated data analysis to assess regional transferability",
         "author": {},
         "editor": [
             {
@@ -318,13 +932,13 @@
                 "@id": "https://ror.org/038sjwq14"
             },
             {
-                "name": "https://ror.org/02sc3r913",
+                "name": "https://ror.org/01nfmeh72",
                 "contributorType": "HostingInstitution",
                 "@type": "Organization",
-                "@id": "https://ror.org/02sc3r913"
+                "@id": "https://ror.org/01nfmeh72"
             }
         ],
-        "description": "This project is using the western Cape York Peninsula and south-east Gulf of Carpentaria region as a case study to examine the relevance of existing risk-assessment frameworks and biodiversity maps for a regional approach to the Environment Protection and Biodiversity Conservation Act 1999 (EPBC Act).\n\nTo ensure biodiversity is protected, individual developments in northern Australia are currently assessed under the EPBC Act and other state planning legislation. However, there is a need to take a broader regional approach to assessing risks posed by the cumulative impacts of multiple developments.\n\nThe Cape York Peninsula and southern Gulf of Carpentaria region in Queensland is area of particular interest for future development. This includes proposals for mining, and water storage and extraction for irrigated agriculture. Each of these can impact water resources, biodiversity and culturally significant locations and values.\n\nAlthough the predicted impacts from individual developments may appear to be relatively minor, there is a risk that the ‘tyranny of small decisions’ could culminate in unexpected consequences for water quality, biodiversity and cultural values. This issue therefore provides a potential case study for an integrated, regional approach to identifying risks from development to environmental and cultural values.\n\nIn the first phase of the project, we are focusing on compiling information that can inform or be used in a future risk-assessment process. This includes collating tools, previous research outputs and a broad range of stakeholder perspectives so that the risk-assessment process is applicable across the study region and robust in a variety of situations. Additionally, we are examining current biodiversity maps, which are based on suitable habitats, to identify biodiversity hotspots, and compare these hotspots with potential water development areas.\n\nDuring the second phase we will work with a broader range of stakeholders to assess and refine the information collected in the first phase. Our team will then assess the information in the context of decadal patterns in water flows, possible future trends, and how these patterns might impact ecosystem productivity, health and cultural values over the long term.\n\nAs of October 2023, the project has been extended to include a third phase, where we will develop ecohydrological rules by integrating the research findings from phases 1 and 2, and studies in previous NESP and TRaCK projects, and others. This information will be used to inform water planning for the Gulf rivers. We will use new approaches for spatial mapping of water persistence into freely available models for water planning.\n\nThrough this project, we are providing information to improve outcomes for environmental and cultural values from the decision-making processes relevant to developments in the context of the EPBC Act and other risk-assessment schemes. We are also contributing to integrated planning and assessment work within an Australian Department of Climate Change, Energy, the Environment and Water (DCCEEW) Environment Assessments Qld contract project and linking with the Marine and Coastal Hub’s project Supporting regional planning in northern Australia.",
+        "description": "Hub researchers have created integrated datasets which demonstrate social and ecological similarities between the regions analysed. These datasets were then visualised as a series of simple-to-use maps showing regions that share similar characteristics and are therefore likely to support similar conservation and land-management interventions. The maps are presented alongside tables which describe core social, ecological and interactive variables for different regions.\n\nThe report also includes a decision-making tree to assist land managers in determining best-practice conservation actions. These outcomes will help to support biodiversity and ecosystems across Australia and increase the potential impact of conservation and land-management research.",
         "datePublished": 2025,
         "isPartOf": {
             "@id": "https://raid.org/10.71821/ffc970c8",
@@ -335,6 +949,685 @@
             "@type": "Organization",
             "@id": "https://ror.org/01db6n192",
             "name": "https://ror.org/01db6n192"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.25909/mnt4-g127",
+        "url": "https://eatlas.org.au/data/uuid/074eb0ba-1936-4be7-98c9-09e015ab616e",
+        "name": "Combined effects of climate change and the herbicide diuron on the coral Acropora millepora (NESP 2.1.6 and NESP TWQ 5.2, AIMS)",
+        "author": [
+            {
+                "name": "Flores Florita",
+                "givenName": "Flores",
+                "familyName": "Florita",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/03x57gn41",
+                    "name": "Australian Institute of Marine Science"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Sven Uthicke",
+                "givenName": "Sven",
+                "familyName": "Uthicke",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/03x57gn41",
+                    "name": "Australian Institute of Marine Science"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Frances Patel",
+                "givenName": "Frances",
+                "familyName": "Patel",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/03x57gn41",
+                    "name": "Australian Institute of Marine Science"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Andrew Negri",
+                "givenName": "Andrew",
+                "familyName": "Negri",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/03x57gn41",
+                    "name": "Australian Institute of Marine Science"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Joseanne Marques",
+                "givenName": "Joseanne",
+                "familyName": "Marques",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/05hpfkn88",
+                    "name": "Federal University Foundation of Rio Grande"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Kaserzon Sarit",
+                "givenName": "Kaserzon",
+                "familyName": "Sarit",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/00rqy9422",
+                    "name": "University of Queensland"
+                },
+                "@type": "Person"
+            }
+        ],
+        "datePublished": 2020,
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Australian Institute of Marine Science"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.5281/zenodo.5091296",
+        "identifier": {
+            "@type": "PropertyValue",
+            "propertyID": "URL",
+            "value": "https://zenodo.org/record/5091296"
+        },
+        "url": "https://zenodo.org/record/5091296",
+        "name": "Data and outputs for NESP Project 8.3.1",
+        "author": [
+            {
+                "name": "Payal Bal",
+                "givenName": "Payal",
+                "familyName": "Bal",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "University of Melbourne"
+                },
+                "@id": "https://orcid.org/0000-0002-8759-6964"
+            },
+            {
+                "name": "Jess Marsh",
+                "givenName": "Jess",
+                "familyName": "Marsh",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "Charles Darwin University; Harry Butler Research Institute; South Australian Museum"
+                },
+                "@id": "https://orcid.org/0000-0002-4062-4155"
+            },
+            {
+                "name": "John Woinarski",
+                "givenName": "John",
+                "familyName": "Woinarski",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "Charles Darwin University; University of Melbourne"
+                },
+                "@id": "https://orcid.org/0000-0002-1712-9500"
+            }
+        ],
+        "description": "Data and outputs for <em>NESP Threatened Species Recovery Hub Project 8.3.1: ‘Fire-affected invertebrates: priority species and management response’</em>.",
+        "license": [
+            "https://creativecommons.org/licenses/by/4.0/legalcode",
+            "info:eu-repo/semantics/openAccess"
+        ],
+        "datePublished": "2021-07-12",
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Zenodo"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.26274/2cr2-jk51",
+        "url": "https://eatlas.org.au/data/uuid/d9a67694-d803-46ca-8f4b-63fc12d51bd1",
+        "additionalType": "Dataset",
+        "name": "Four Decades of Seagrass Spatial Data from Torres Strait and Gulf of Carpentaria (NESP MaC Project 1.13, TropWATER JCU)",
+        "author": [
+            {
+                "name": "Alex Carter",
+                "givenName": "Alex",
+                "familyName": "Carter",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Skye McKenna",
+                "givenName": "Skye",
+                "familyName": "McKenna",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Rob Coles",
+                "givenName": "Rob",
+                "familyName": "Coles",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Michael Rasheed",
+                "givenName": "Michael",
+                "familyName": "Rasheed",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Helen Taylor",
+                "givenName": "Helen",
+                "familyName": "Taylor",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Chris Van de Wetering",
+                "givenName": "Chris",
+                "familyName": "Van de Wetering",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Katie Chartrand",
+                "givenName": "Katie",
+                "familyName": "Chartrand",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Carissa Reason",
+                "givenName": "Carissa",
+                "familyName": "Reason",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Catherine Collier",
+                "givenName": "Catherine",
+                "familyName": "Collier",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Lloyd Shepherd",
+                "givenName": "Lloyd",
+                "familyName": "Shepherd",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Jane Mellors",
+                "givenName": "Jane",
+                "familyName": "Mellors",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Len McKenzie",
+                "givenName": "Len",
+                "familyName": "McKenzie",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Anthony Roelofs",
+                "givenName": "Anthony",
+                "familyName": "Roelofs",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/037405308",
+                    "name": "Queensland Government"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Neil Smit",
+                "givenName": "Neil",
+                "familyName": "Smit",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/01537wn74",
+                    "name": "Government of the Northern Territory"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Rachel Groom",
+                "givenName": "Rachel",
+                "familyName": "Groom",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/048zcaj52",
+                    "name": "Charles Darwin University"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "David Barret",
+                "givenName": "David",
+                "familyName": "Barret",
+                "@type": "Person"
+            },
+            {
+                "name": "Shaun Evans",
+                "givenName": "Shaun",
+                "familyName": "Evans",
+                "@type": "Person"
+            },
+            {
+                "name": "Roland Pitcher",
+                "givenName": "Roland",
+                "familyName": "Pitcher",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/03qn8fb07",
+                    "name": "Commonwealth Scientific and Industrial Research Organisation"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Norm Duke",
+                "givenName": "Norm",
+                "familyName": "Duke",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Moni Carlisle",
+                "givenName": "Moni",
+                "familyName": "Carlisle",
+                "@type": "Person"
+            },
+            {
+                "name": "Madeina David",
+                "givenName": "Madeina",
+                "familyName": "David",
+                "@type": "Person"
+            },
+            {
+                "name": "Stan Lui",
+                "givenName": "Stan",
+                "familyName": "Lui",
+                "@type": "Person"
+            },
+            {
+                "name": "Laura Pearson",
+                "givenName": "Laura",
+                "familyName": "Pearson",
+                "@type": "Person"
+            },
+            {
+                "name": "Troy Laza",
+                "givenName": "Troy",
+                "familyName": "Laza",
+                "@type": "Person"
+            },
+            {
+                "name": "Aaron Bon",
+                "givenName": "Aaron",
+                "familyName": "Bon",
+                "@type": "Person"
+            }
+        ],
+        "license": "https://creativecommons.org/licenses/by/4.0/legalcode",
+        "datePublished": "2022",
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "eAtlas"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.15468/hjwyfu",
+        "identifier": {
+            "@type": "PropertyValue",
+            "propertyID": "UUID",
+            "value": "cc34a30d-55b5-4f3a-b2ff-7a632a5dce1f"
+        },
+        "url": "https://www.gbif.org/dataset/cc34a30d-55b5-4f3a-b2ff-7a632a5dce1f",
+        "additionalType": "SAMPLING_EVENT",
+        "name": "Surveys of benthic organisms, reef fishes and manta tow surveys of Capricorn Bunker reefs in October 2015 (NESP TWQ 3.7, AIMS)",
+        "author": {
+            "name": "Hugh Sweatman",
+            "givenName": "Hugh",
+            "familyName": "Sweatman",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "Australian Institute of Marine Science"
+            },
+            "@type": "Person"
+        },
+        "editor": [
+            {
+                "name": "Hugh Sweatman",
+                "givenName": "Hugh",
+                "familyName": "Sweatman",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "Australian Institute of Marine Science"
+                },
+                "contributorType": "DataCurator",
+                "@type": "Person"
+            },
+            {
+                "name": "OBIS Australia Node Manager",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "CSIRO National Collections and Marine Infrastructure Data Centre"
+                },
+                "contributorType": "Editor"
+            },
+            {
+                "name": "Hugh Sweatman",
+                "givenName": "Hugh",
+                "familyName": "Sweatman",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "Australian Institute of Marine Science"
+                },
+                "contributorType": "RelatedPerson",
+                "@type": "Person"
+            }
+        ],
+        "description": "This dataset consists of summaries of benthic, fish and manta tow surveys conducted in the Capricorn-Bunker Region of the Great Barrier Reef in October 2015. It consists of three tables: 1. A table summarising percent cover of benthic organisms grouped into broad categories from photo transects collected during the monitoring surveys. 2. A table of average abundance for each reef fish species on the 5 transects in each of the three sites on each reef is presented for the eight reefs surveyed. 3. A table of the average reef wide coral cover, the mean reef-wide density of crown-of-thorns starfish (CoTS), Acanthaster planci and the mean reef-wide density of coral trout for each reef based on manta tow surveys. This dataset is an extract from part of the AIMS Long Term Monitoring database. Data, survey methods and additional publications from https://eatlas.org.au/data/uuid/1783f7ca-5abf-4b33-809f-ffe08c66703c",
+        "license": "https://creativecommons.org/licenses/by-nc/4.0/legalcode",
+        "keywords": "Samplingevent, Samplingevent",
+        "inLanguage": "en",
+        "dateCreated": "2023-07-04",
+        "datePublished": "2023",
+        "dateModified": "2023-07-04",
+        "spatialCoverage": {
+            "@type": "Place",
+            "geo": {
+                "@type": "GeoShape",
+                "address": "Capricorn Bunker reefs, Great Barrier Reef",
+                "box": "-23.9 151.7 -23.17 152.5"
+            }
+        },
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "CSIRO National Collections and Marine Infrastructure (NCMI) Information and Data Centre (IDC)"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.26274/s2a8-nw72",
+        "url": "https://eatlas.org.au/geonetwork/srv/eng/catalog.search#/metadata/7c56c20a-2fa6-4fff-9530-65f6c5750e9f",
+        "name": "Estimating benthic reflectance of deep coral atoll lagoons from satellite imagery and bathymetry - Analysis code and case studies (NESP MaC 2.3, AIMS)",
+        "author": {
+            "name": "Eric Lawrey",
+            "givenName": "Eric",
+            "familyName": "Lawrey",
+            "affiliation": {
+                "@type": "Organization",
+                "@id": "https://ror.org/03x57gn41",
+                "name": "Australian Institute of Marine Science"
+            },
+            "@type": "Person",
+            "@id": "https://orcid.org/0000-0002-3144-3475"
+        },
+        "datePublished": 2024,
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "eAtlas"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.15468/eplomk",
+        "identifier": {
+            "@type": "PropertyValue",
+            "propertyID": "UUID",
+            "value": "bf1feaf4-b23d-4529-9c47-ac6176c70afe"
+        },
+        "url": "https://www.gbif.org/dataset/bf1feaf4-b23d-4529-9c47-ac6176c70afe",
+        "additionalType": "SAMPLING_EVENT",
+        "name": "Collation of spatial seagrass data (meadow extent polygons, species presence/absence points) from 1984 - 2018 for the Great Barrier Reef World Heritage Area (GBRWHA) (NESP TWQ Project 3.2.1 and 5.4, TropWATER, James Cook University)",
+        "author": [
+            {
+                "name": "Alex Carter",
+                "givenName": "Alex",
+                "familyName": "Carter",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "TropWATER, James Cook University"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Skye McKenna",
+                "givenName": "Skye",
+                "familyName": "McKenna",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "TropWATER, James Cook University"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Michael Rasheed",
+                "givenName": "Michael",
+                "familyName": "Rasheed",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "TropWATER, James Cook University"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Roland Pitcher",
+                "givenName": "Roland",
+                "familyName": "Pitcher",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "Commonwealth Scientific and Industrial Research Organisation (CSIRO)"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Len McKenzie",
+                "givenName": "Len",
+                "familyName": "McKenzie",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "TropWATER, James Cook University"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Rob Coles",
+                "givenName": "Rob",
+                "familyName": "Coles",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "TropWATER, James Cook University"
+                },
+                "@type": "Person"
+            }
+        ],
+        "editor": [
+            {
+                "name": "EAtlas Data Manager",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "Australian Institute of Marine Science (AIMS)"
+                },
+                "contributorType": "DataCurator"
+            },
+            {
+                "name": "OBIS Australia Node Manager",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "CSIRO Oceans and Atmosphere"
+                },
+                "contributorType": "Editor"
+            },
+            {
+                "name": "Alex Carter",
+                "givenName": "Alex",
+                "familyName": "Carter",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "TropWATER, James Cook University"
+                },
+                "contributorType": "RelatedPerson",
+                "@type": "Person"
+            }
+        ],
+        "description": "This dataset summarises 35 years of seagrass data collection (1984-2018) within the Great Barrier Reef World Heritage Area into one GIS shapefile containing seagrass presence and absence survey data for 81,387 sites. This dataset is dominated by 1,010,826 'absent' compared to 47,049 'present' records. Managing seagrass resources in the GBRWHA requires adequate baseline information on where seagrass is (presence/absence), what species are present, and date of collection. This baseline is particularly important as a reference point against which to compare seagrass loss or change through time. The scale of the GBRWHA (1000s of kilometres) and the remoteness of many seagrass meadows from human populations present a challenge for research and management agencies reporting on the state of seagrass ecological indicators. Broad-scale and repeated surveys/studies of areas this large are logistically and financially impracticable. However seagrass data is being collected through various projects which, although designed for specific reasons, are amenable to collating a picture of the extent and state of the seagrass resource. The data used here along with additional references and descriptions of the data is at https://eatlas.org.au/data/uuid/18386963-6960-4eb9-889b-d0964069ce13",
+        "license": "https://creativecommons.org/licenses/by-nc/4.0/legalcode",
+        "keywords": "Occurrence, Occurrence",
+        "inLanguage": "en",
+        "dateCreated": "2018-10-09",
+        "datePublished": "2023",
+        "dateModified": "2023-10-19",
+        "spatialCoverage": {
+            "@type": "Place",
+            "geo": {
+                "@type": "GeoShape",
+                "address": "Queensland coast, Australia. Seagrass data north and south of the GBRWHA were excluded from the layers. No seagrass site data exists east of the GBRWHA boundary. Data were included when sites extended west of the GBRWHA boundary into coastal and estuarine water immediately adjacent. Modelled distributions are available (Coles et al 2009; Pitcher et al 2007) but not included here.",
+                "box": "-24.499 142.52 -10.638 152.13"
+            }
+        },
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "CSIRO National Collections and Marine Infrastructure (NCMI) Information and Data Centre (IDC)"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.26182/caae-e992",
+        "url": "https://research-repository.uwa.edu.au/en/datasets/42762d3e-2a0a-4b92-aa84-a2b6b71f89f7",
+        "name": "NESP NAERH Project 1.6 scenarios assessment_current situation full output",
+        "author": [
+            {
+                "name": "Milena Kiatkoski Kim",
+                "givenName": "Milena",
+                "familyName": "Kiatkoski Kim",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/047272k79",
+                    "name": "University of Western Australia"
+                },
+                "@type": "Person",
+                "@id": "Milena Kiatkoski Kim"
+            },
+            {
+                "name": "David Pannell",
+                "givenName": "David",
+                "familyName": "Pannell",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/047272k79",
+                    "name": "University of Western Australia"
+                },
+                "@type": "Person",
+                "@id": "David Pannell"
+            }
+        ],
+        "datePublished": 2022,
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "The University of Western Australia”"
         },
         "provider": {
             "@type": "Organization",
@@ -703,6 +1996,450 @@
     {
         "@context": "http://schema.org",
         "@type": "Project",
+        "@id": "https://doi.org/10.71790/883b2f55",
+        "identifier": {
+            "@type": "PropertyValue",
+            "propertyID": "RaidAgencyUrl",
+            "value": "https://prod.static.raid.org.au/10.71790/883b2f55"
+        },
+        "url": "https://raid.org/10.71790/883b2f55",
+        "additionalType": "RAiD",
+        "name": "NESP CS Project 2.1 - Enabling best practice adaptation",
+        "author": {},
+        "editor": [
+            {
+                "name": "RAiD AU",
+                "contributorType": "RegistrationAgency",
+                "@type": "Organization",
+                "@id": "https://ror.org/038sjwq14"
+            },
+            {
+                "name": "https://ror.org/01nfmeh72",
+                "contributorType": "HostingInstitution",
+                "@type": "Organization",
+                "@id": "https://ror.org/01nfmeh72"
+            },
+            {
+                "name": "https://ror.org/01ej9dk98",
+                "contributorType": "HostingInstitution",
+                "@type": "Organization",
+                "@id": "https://ror.org/01ej9dk98"
+            }
+        ],
+        "description": "This project analyses adaptation approaches and case studies to develop a set of principles that enable best-practice adaptation planning and implementation. It supports the NESP Climate Adaptation Initiative to answer important questions about how Australia is adapting to climate change.\n\nIn a changing climate, adaptation is crucial for the well-being and prosperity of all Australians. Supported by solid decision-making frameworks, successful adaptation is built from the best available science and evidence.\n\nGovernments and organisations are increasingly considering future climate risks as part of the adaptation planning and implementation processes. To guide best practice and form a national picture of what works well, there is much to learn from plans and action already in progress.\n\nThe project has looked at ‘enablers’ of best practise adaptation (Fact sheet link) and is now building an analysis of what best practice adaptation looks like. In 2023 we launched Australia’s first national climate adaptation stocktake and contributed to the National Climate Risk Assessment using early work.\n\nIn 2024 we are focusing on case studies of adaptation to understand enablers of best practice, and continuing to build the Climate Adaptation Stocktake. In the final year of the project we plan to partner with on-ground practitioners to produce a guide of improved and new approaches to best practice adaptation.\n\nThe outcomes of the project will be applicable across a broad range of sectors.",
+        "datePublished": 2025,
+        "isPartOf": [
+            {
+                "@id": "https://raid.org/10.71821/a945d761",
+                "@type": "Project"
+            },
+            {
+                "@id": "https://raid.org/10.71821/23fcbc6f",
+                "@type": "Project"
+            }
+        ],
+        "publisher": {
+            "@type": "Organization",
+            "@id": "https://ror.org/01db6n192",
+            "name": "https://ror.org/01db6n192"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Project",
+        "@id": "https://doi.org/10.71613/dad7b616",
+        "identifier": {
+            "@type": "PropertyValue",
+            "propertyID": "RaidAgencyUrl",
+            "value": "https://prod.static.raid.org.au/10.71613/dad7b616"
+        },
+        "url": "https://raid.org/10.71613/dad7b616",
+        "additionalType": "RAiD",
+        "name": "NESP RL Project 2.1 - Water planning in north Queensland",
+        "author": {},
+        "editor": [
+            {
+                "name": "RAiD AU",
+                "contributorType": "RegistrationAgency",
+                "@type": "Organization",
+                "@id": "https://ror.org/038sjwq14"
+            },
+            {
+                "name": "https://ror.org/02sc3r913",
+                "contributorType": "HostingInstitution",
+                "@type": "Organization",
+                "@id": "https://ror.org/02sc3r913"
+            }
+        ],
+        "description": "This project is using the western Cape York Peninsula and south-east Gulf of Carpentaria region as a case study to examine the relevance of existing risk-assessment frameworks and biodiversity maps for a regional approach to the Environment Protection and Biodiversity Conservation Act 1999 (EPBC Act).\n\nTo ensure biodiversity is protected, individual developments in northern Australia are currently assessed under the EPBC Act and other state planning legislation. However, there is a need to take a broader regional approach to assessing risks posed by the cumulative impacts of multiple developments.\n\nThe Cape York Peninsula and southern Gulf of Carpentaria region in Queensland is area of particular interest for future development. This includes proposals for mining, and water storage and extraction for irrigated agriculture. Each of these can impact water resources, biodiversity and culturally significant locations and values.\n\nAlthough the predicted impacts from individual developments may appear to be relatively minor, there is a risk that the ‘tyranny of small decisions’ could culminate in unexpected consequences for water quality, biodiversity and cultural values. This issue therefore provides a potential case study for an integrated, regional approach to identifying risks from development to environmental and cultural values.\n\nIn the first phase of the project, we are focusing on compiling information that can inform or be used in a future risk-assessment process. This includes collating tools, previous research outputs and a broad range of stakeholder perspectives so that the risk-assessment process is applicable across the study region and robust in a variety of situations. Additionally, we are examining current biodiversity maps, which are based on suitable habitats, to identify biodiversity hotspots, and compare these hotspots with potential water development areas.\n\nDuring the second phase we will work with a broader range of stakeholders to assess and refine the information collected in the first phase. Our team will then assess the information in the context of decadal patterns in water flows, possible future trends, and how these patterns might impact ecosystem productivity, health and cultural values over the long term.\n\nAs of October 2023, the project has been extended to include a third phase, where we will develop ecohydrological rules by integrating the research findings from phases 1 and 2, and studies in previous NESP and TRaCK projects, and others. This information will be used to inform water planning for the Gulf rivers. We will use new approaches for spatial mapping of water persistence into freely available models for water planning.\n\nThrough this project, we are providing information to improve outcomes for environmental and cultural values from the decision-making processes relevant to developments in the context of the EPBC Act and other risk-assessment schemes. We are also contributing to integrated planning and assessment work within an Australian Department of Climate Change, Energy, the Environment and Water (DCCEEW) Environment Assessments Qld contract project and linking with the Marine and Coastal Hub’s project Supporting regional planning in northern Australia.",
+        "datePublished": 2025,
+        "isPartOf": {
+            "@id": "https://raid.org/10.71821/ffc970c8",
+            "@type": "Project"
+        },
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "@id": "https://ror.org/01db6n192",
+            "name": "https://ror.org/01db6n192"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.26274/bqyw-jj96",
+        "url": "https://eatlas.org.au/geonetwork/srv/eng/catalog.search#/metadata/557f78f3-4b74-4ed1-abd1-d85c4dcb3aeb",
+        "name": "Vegetation and Elevation Surveys of the Gulf of Carpentaria Mangrove Dieback 2017 - 2019 (NESP TWQ 4.13, JCU)",
+        "author": [
+            {
+                "name": "Norman Duke",
+                "givenName": "Norman",
+                "familyName": "Duke",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0003-2081-9120"
+            },
+            {
+                "name": "Jock Mackenzie",
+                "givenName": "Jock",
+                "familyName": "Mackenzie",
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0003-4182-9432"
+            }
+        ],
+        "datePublished": 2024,
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "eAtlas"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.26274/1ef5-4147",
+        "url": "https://eatlas.org.au/geonetwork/srv/eng/catalog.search#/metadata/2d71917c-dbd6-4c28-b3c7-918fd0b8c0d9",
+        "additionalType": "",
+        "name": "Gulf of Carpentaria Mangrove Aerial Shoreline Surveys (NESP TWQ 4.13, JCU)",
+        "author": [
+            {
+                "name": "Norm Duke",
+                "givenName": "Norm",
+                "familyName": "Duke",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Jock Mackenzie",
+                "givenName": "Jock",
+                "familyName": "Mackenzie",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person"
+            }
+        ],
+        "datePublished": 2023,
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "eAtlas"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.15468/94eng2",
+        "identifier": {
+            "@type": "PropertyValue",
+            "propertyID": "UUID",
+            "value": "6c02eaa9-2aa3-4e8d-9aca-9665da39ba3a"
+        },
+        "url": "https://www.gbif.org/dataset/6c02eaa9-2aa3-4e8d-9aca-9665da39ba3a",
+        "additionalType": "OCCURRENCE",
+        "name": "Pelagic baited camera (stereo-BRUVs) survey of the Bremer Marine Park and adjacent areas (NESP Emerging Priorities Project EP2)",
+        "author": {
+            "name": "Jessica Meeuwig",
+            "givenName": "Jessica",
+            "familyName": "Meeuwig",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "Centre for Marine Futures, University of Western Australia (UWA"
+            },
+            "@type": "Person"
+        },
+        "editor": [
+            {
+                "name": "Jessica Meeuwig",
+                "givenName": "Jessica",
+                "familyName": "Meeuwig",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "Centre for Marine Futures, University of Western Australia (UWA"
+                },
+                "contributorType": "DataCurator",
+                "@type": "Person"
+            },
+            {
+                "name": "OBIS Australia Node Manager",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "CSIRO National Collections and Marine Infrastructure Data Centre"
+                },
+                "contributorType": "Editor"
+            },
+            {
+                "name": "Jem Turner",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "School of Biological Sciences, The University of Western Australia"
+                },
+                "contributorType": "RelatedPerson"
+            }
+        ],
+        "description": "This dataset relates to deployments of pelagic stereo-BRUVS conducted by the University of Western Australia within and to the west of the Bremer Marine Park in February/March 2017. The survey was undertaken to provide a baseline assessment of the pelagic assemblages occurring in the region as part of the NESP Marine Biodiversity Hub Emerging Priorities Project #EP2 (https://www.nespmarine.edu.au/project/ep2-surveying-m arine-life-canyons-bremer-bay). A total of 791 individuals from 13 taxa were identified. Field methods followed Bouchet et al. 2015 (http://onlinelibrary.wiley.com/doi/10.1890/ES14-00380. 1/full). A series of pelagic stereo-BRUV deployments (n=100, i.e. 20 sets of 5 rigs) were undertaken within and outside the Bremer AMP between 27th February and 8th March 2017. Camera units soaked for two hours and were set up in a longline configuration that allowed them to drift freely with prevailing currents. The resulting video footage was processed at the University of Western Australia Marine Futures Lab (http://www.meeuwig.org), using standard imagery analysis software (SeaGIS EventMeasure, https://www.seagis.com.au/event.html). Metadata and data from http://metadata.imas.utas.edu.au/geonetwork/srv/eng/metadata.show?uuid=a18994fa-2879-4b46-97e4-b399bf847b43",
+        "license": "https://creativecommons.org/licenses/by-nc/4.0/legalcode",
+        "keywords": "Occurrence, Observation, Occurrence",
+        "inLanguage": "en",
+        "dateCreated": "2022-06-07",
+        "datePublished": "2023",
+        "dateModified": "2023-06-28",
+        "spatialCoverage": {
+            "@type": "Place",
+            "geo": {
+                "@type": "GeoShape",
+                "address": "Bremer Canyon, Western Australia",
+                "box": "-34.9 119.3 -34.58 120.0"
+            }
+        },
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "CSIRO National Collections and Marine Infrastructure (NCMI) Information and Data Centre (IDC)"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.15468/luicrn",
+        "identifier": {
+            "@type": "PropertyValue",
+            "propertyID": "UUID",
+            "value": "84424664-1c22-48da-83ee-6ad3460229e0"
+        },
+        "url": "https://www.gbif.org/dataset/84424664-1c22-48da-83ee-6ad3460229e0",
+        "additionalType": "OCCURRENCE",
+        "name": "NESP A9: Grey Nurse Shark tissue sample collection, Australia (2002-2017)",
+        "author": {
+            "name": "Russell Bradford",
+            "givenName": "Russell",
+            "familyName": "Bradford",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "CSIRO Oceans and Atmosphere"
+            },
+            "@type": "Person"
+        },
+        "editor": [
+            {
+                "name": "Emma Flukes",
+                "givenName": "Emma",
+                "familyName": "Flukes",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "Institute for Marine and Antarctic Studies (IMAS), University of Tasmania (UTAS)"
+                },
+                "contributorType": "DataCurator",
+                "@type": "Person"
+            },
+            {
+                "name": "OBIS Australia Node Manager",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "CSIRO National Collections and Marine Infrastructure Data Centre"
+                },
+                "contributorType": "Editor"
+            },
+            {
+                "name": "Russell Bradford",
+                "givenName": "Russell",
+                "familyName": "Bradford",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "CSIRO Oceans and Atmosphere"
+                },
+                "contributorType": "RelatedPerson",
+                "@type": "Person"
+            }
+        ],
+        "description": "This record describes the sample collection location for grey nurse shark as part of NESP MB Project A9 - Grey Nurse Shark CK-MR Population Estimate – East Coast. The data attached to this record describes the locations and vB parameters of tissue samples collected between December 2002 and April 2017. Sequencing data will be added to ALA as it becomes available. See https://fieldcapture.ala.org.au/project/index/b3376517- e418-4a38-ba45-63faae7ed8be for updates.",
+        "license": "https://creativecommons.org/licenses/by-nc/4.0/legalcode",
+        "keywords": "Occurrence, Specimen, Occurrence",
+        "inLanguage": "en",
+        "dateCreated": "2019-03-06",
+        "datePublished": "2023",
+        "dateModified": "2023-06-28",
+        "spatialCoverage": {
+            "@type": "Place",
+            "geo": {
+                "@type": "GeoShape",
+                "address": "Australian Coastal waters",
+                "box": "-35.0 113.0 -22.0 154.0"
+            }
+        },
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "CSIRO National Collections and Marine Infrastructure (NCMI) Information and Data Centre (IDC)"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "ScholarlyArticle",
+        "@id": "https://doi.org/10.17863/cam.41053",
+        "identifier": {
+            "@type": "PropertyValue",
+            "propertyID": "URI",
+            "value": "https://www.repository.cam.ac.uk/handle/1810/293945"
+        },
+        "url": "https://www.repository.cam.ac.uk/handle/1810/293945",
+        "additionalType": "Article",
+        "name": "Antisense Activity across the Nesp Promoter is Required for Nespas-Mediated Silencing in the Imprinted Gnas Cluster.",
+        "author": [
+            {
+                "name": "Charlotte J Tibbit",
+                "givenName": "Charlotte J",
+                "familyName": "Tibbit",
+                "@type": "Person"
+            },
+            {
+                "name": "Christine M Williamson",
+                "givenName": "Christine M",
+                "familyName": "Williamson",
+                "@type": "Person"
+            },
+            {
+                "name": "Stuti Mehta",
+                "givenName": "Stuti",
+                "familyName": "Mehta",
+                "@type": "Person"
+            },
+            {
+                "name": "Simon T Ball",
+                "givenName": "Simon T",
+                "familyName": "Ball",
+                "@type": "Person"
+            },
+            {
+                "name": "Mita Chotalia",
+                "givenName": "Mita",
+                "familyName": "Chotalia",
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0002-9762-5634"
+            },
+            {
+                "name": "Wade T Nottingham",
+                "givenName": "Wade T",
+                "familyName": "Nottingham",
+                "@type": "Person"
+            },
+            {
+                "name": "Sally A Eaton",
+                "givenName": "Sally A",
+                "familyName": "Eaton",
+                "@type": "Person"
+            },
+            {
+                "name": "Mohamed M Quwailid",
+                "givenName": "Mohamed M",
+                "familyName": "Quwailid",
+                "@type": "Person"
+            },
+            {
+                "name": "Lydia Teboul",
+                "givenName": "Lydia",
+                "familyName": "Teboul",
+                "@type": "Person"
+            },
+            {
+                "name": "Gavin Kelsey",
+                "givenName": "Gavin",
+                "familyName": "Kelsey",
+                "@type": "Person"
+            },
+            {
+                "name": "Jo Peters",
+                "givenName": "Jo",
+                "familyName": "Peters",
+                "@type": "Person"
+            }
+        ],
+        "editor": [
+            {
+                "name": "Apollo-University Of Cambridge Repository",
+                "contributorType": "DataManager"
+            },
+            {
+                "name": "University Of Cambridge",
+                "contributorType": "HostingInstitution",
+                "@id": "https://ror.org/013meh722"
+            }
+        ],
+        "description": "Macro long non-coding RNAs (lncRNAs) play major roles in gene silencing in inprinted gene clusters. Within the imprinted Gnas cluster, the paternally expressed Nespas lncRNA downregulates its sense counterpart Nesp. To explore the mechanism of action of Nespas, we generated two new knock-in alleles to truncate Nespas upstream and downstream of the Nesp promoter. We show that Nespas is essential for methylation of the Nesp differentially methylated region (DMR), but higher levels of Nespas are required for methylation than are needed for downregulation of Nesp. Although Nespas is transcribed for over 27 kb, only Nespas transcript/transcription across a 2.6 kb region that includes the Nesp promoter is necessary for methylation of the Nesp DMR. In both mutants, the levels of Nespas were extraordinarily high, due at least in part to increased stability, an effect not seen with other imprinted lncRNAs. However, even when levels were greatly raised, Nespas remained exclusively cis-acting. We propose Nespas regulates Nesp methylation and expression to ensure appropriate levels of expression of the protein coding transcripts Gnasxl and Gnas on the paternal chromosome. Thus, Nespas mediates paternal gene expression over the entire Gnas cluster via a single gene, Nesp.",
+        "license": [
+            "https://creativecommons.org/licenses/by/4.0/legalcode",
+            "http://purl.org/coar/access_right/c_abf2"
+        ],
+        "keywords": "Gnas cluster, Nesp, Nespas, antisense, epigenetic silencing, genomic imprinting, long non-coding RNA",
+        "inLanguage": "en",
+        "datePublished": "2019-06-24",
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "MDPI AG"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Project",
         "@id": "https://doi.org/10.71676/a06857a3",
         "identifier": {
             "@type": "PropertyValue",
@@ -886,93 +2623,6 @@
     {
         "@context": "http://schema.org",
         "@type": "Project",
-        "@id": "https://doi.org/10.71821/ffc970c8",
-        "identifier": {
-            "@type": "PropertyValue",
-            "propertyID": "RaidAgencyUrl",
-            "value": "https://prod.static.raid.org.au/10.71821/ffc970c8"
-        },
-        "url": "https://raid.org/10.71821/ffc970c8",
-        "additionalType": "RAiD",
-        "name": "Resilient Landscapes Hub",
-        "author": {},
-        "editor": [
-            {
-                "name": "RAiD AU",
-                "contributorType": "RegistrationAgency",
-                "@type": "Organization",
-                "@id": "https://ror.org/038sjwq14"
-            },
-            {
-                "name": "https://ror.org/047272k79",
-                "contributorType": "HostingInstitution",
-                "@type": "Organization",
-                "@id": "https://ror.org/047272k79"
-            }
-        ],
-        "datePublished": 2025,
-        "isPartOf": {
-            "@id": "https://raid.org/10.71821/23fcbc6f",
-            "@type": "Project"
-        },
-        "schemaVersion": "http://datacite.org/schema/kernel-4",
-        "publisher": {
-            "@type": "Organization",
-            "@id": "https://ror.org/01db6n192",
-            "name": "https://ror.org/01db6n192"
-        },
-        "provider": {
-            "@type": "Organization",
-            "name": "datacite"
-        }
-    },
-    {
-        "@context": "http://schema.org",
-        "@type": "Project",
-        "@id": "https://doi.org/10.71613/983725c0",
-        "identifier": {
-            "@type": "PropertyValue",
-            "propertyID": "RaidAgencyUrl",
-            "value": "https://prod.static.raid.org.au/10.71613/983725c0"
-        },
-        "url": "https://raid.org/10.71613/983725c0",
-        "additionalType": "RAiD",
-        "name": "1.1 - Solutions science for resilient landscapes ",
-        "author": {},
-        "editor": [
-            {
-                "name": "RAiD AU",
-                "contributorType": "RegistrationAgency",
-                "@type": "Organization",
-                "@id": "https://ror.org/038sjwq14"
-            },
-            {
-                "name": "https://ror.org/047272k79",
-                "contributorType": "HostingInstitution",
-                "@type": "Organization",
-                "@id": "https://ror.org/047272k79"
-            }
-        ],
-        "description": "Environmental research has increased awareness of the threats to Australia’s biodiversity and the urgent need to address them, but surprisingly little research has focused on solutions. The Resilient Landscapes Hub will adopt a user-driven, solutions-focused, co-research model aimed at strengthening and restoring resilience in Australia’s landscapes. \nThis project will support the development and implementation of the ‘solutions science’ framework under Research Plan 2021 (RP2021). It will also identify a suite of projects and activities to evaluate and iteratively improve the framework and build capacity among researchers, research users and funders to foster the solutions-science approach.",
-        "datePublished": 2025,
-        "isPartOf": {
-            "@id": "https://raid.org/10.71821/ffc970c8",
-            "@type": "Project"
-        },
-        "schemaVersion": "http://datacite.org/schema/kernel-4",
-        "publisher": {
-            "@type": "Organization",
-            "@id": "https://ror.org/01db6n192",
-            "name": "https://ror.org/01db6n192"
-        },
-        "provider": {
-            "@type": "Organization",
-            "name": "datacite"
-        }
-    },
-    {
-        "@context": "http://schema.org",
-        "@type": "Project",
         "@id": "https://doi.org/10.71676/b5b91f0e",
         "identifier": {
             "@type": "PropertyValue",
@@ -1008,6 +2658,992 @@
             "@type": "Organization",
             "@id": "https://ror.org/00arpt780",
             "name": "https://ror.org/00arpt780"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Project",
+        "@id": "https://doi.org/10.71613/983725c0",
+        "identifier": {
+            "@type": "PropertyValue",
+            "propertyID": "RaidAgencyUrl",
+            "value": "https://prod.static.raid.org.au/10.71613/983725c0"
+        },
+        "url": "https://raid.org/10.71613/983725c0",
+        "additionalType": "RAiD",
+        "name": "NESP RL Project 1.1 - Solutions science for resilient landscapes ",
+        "author": {},
+        "editor": [
+            {
+                "name": "RAiD AU",
+                "contributorType": "RegistrationAgency",
+                "@type": "Organization",
+                "@id": "https://ror.org/038sjwq14"
+            },
+            {
+                "name": "https://ror.org/047272k79",
+                "contributorType": "HostingInstitution",
+                "@type": "Organization",
+                "@id": "https://ror.org/047272k79"
+            }
+        ],
+        "description": "Environmental research has increased awareness of the threats to Australia’s biodiversity and the urgent need to address them, but surprisingly little research has focused on solutions. The Resilient Landscapes Hub will adopt a user-driven, solutions-focused, co-research model aimed at strengthening and restoring resilience in Australia’s landscapes. \nThis project will support the development and implementation of the ‘solutions science’ framework under Research Plan 2021 (RP2021). It will also identify a suite of projects and activities to evaluate and iteratively improve the framework and build capacity among researchers, research users and funders to foster the solutions-science approach.",
+        "datePublished": 2025,
+        "isPartOf": {
+            "@id": "https://raid.org/10.71821/ffc970c8",
+            "@type": "Project"
+        },
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "@id": "https://ror.org/01db6n192",
+            "name": "https://ror.org/01db6n192"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "ScholarlyArticle",
+        "@id": "https://doi.org/10.13140/rg.2.2.25891.35364",
+        "url": "http://rgdoi.net/10.13140/RG.2.2.25891.35364",
+        "additionalType": "Technical Report",
+        "name": "Bremer Canyon Science Workshop Report - NESP Marine Biodiversity Hub Emerging Priorities Project",
+        "author": [
+            {
+                "name": "Jessica Meeuwig",
+                "givenName": "Jessica",
+                "familyName": "Meeuwig",
+                "@type": "Person"
+            },
+            {
+                "name": "Jemma Turner",
+                "givenName": "Jemma",
+                "familyName": "Turner",
+                "@type": "Person"
+            },
+            {
+                "name": "Phil Bouchet",
+                "givenName": "Phil",
+                "familyName": "Bouchet",
+                "@type": "Person"
+            }
+        ],
+        "inLanguage": "en",
+        "datePublished": "2016",
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "221"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "ScholarlyArticle",
+        "@id": "https://doi.org/10.13140/rg.2.2.33450.11207",
+        "url": "http://rgdoi.net/10.13140/RG.2.2.33450.11207",
+        "additionalType": "Technical Report",
+        "name": "NESP Project D1 Ecosystem understanding to support sustainable use, management and monitoring of marine assets in the North and North-West regions - Final Report 2016",
+        "author": [
+            {
+                "name": "Karen Miller",
+                "givenName": "Karen",
+                "familyName": "Miller",
+                "@type": "Person"
+            },
+            {
+                "name": "Marji Puotinen"
+            },
+            {
+                "name": "Rachel Przeslawski",
+                "givenName": "Rachel",
+                "familyName": "Przeslawski",
+                "@type": "Person"
+            },
+            {
+                "name": "Zhi Huang",
+                "givenName": "Zhi",
+                "familyName": "Huang",
+                "@type": "Person"
+            },
+            {
+                "name": "Phil Bouchet",
+                "givenName": "Phil",
+                "familyName": "Bouchet",
+                "@type": "Person"
+            },
+            {
+                "name": "Ben Radford",
+                "givenName": "Ben",
+                "familyName": "Radford",
+                "@type": "Person"
+            },
+            {
+                "name": "Jin Li",
+                "givenName": "Jin",
+                "familyName": "Li",
+                "@type": "Person"
+            },
+            {
+                "name": "Johnathan Kool",
+                "givenName": "Johnathan",
+                "familyName": "Kool",
+                "@type": "Person"
+            },
+            {
+                "name": "Kim Picard",
+                "givenName": "Kim",
+                "familyName": "Picard",
+                "@type": "Person"
+            },
+            {
+                "name": "Michele Thums",
+                "givenName": "Michele",
+                "familyName": "Thums",
+                "@type": "Person"
+            },
+            {
+                "name": "Jessica Meeuwig",
+                "givenName": "Jessica",
+                "familyName": "Meeuwig",
+                "@type": "Person"
+            },
+            {
+                "name": "Scott Nichol",
+                "givenName": "Scott",
+                "familyName": "Nichol",
+                "@type": "Person"
+            }
+        ],
+        "inLanguage": "en",
+        "datePublished": "2016",
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "26110"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "CreativeWork",
+        "@id": "https://doi.org/10.26274/76jj-tk94",
+        "url": "https://eatlas.org.au/geonetwork/srv/eng/catalog.search#/metadata/5d2d9ba1-e000-4d41-965f-3ecc1f561997",
+        "name": "Coastal wetland restoration for blue carbon in Australia – work package to identify restoration sites, carbon abatement and co-benefits, and undertake cost-benefit and cost-effectiveness analyses (NESP MaC Project 1.15, The University of Queensland)",
+        "author": [
+            {
+                "name": "Valerie Hagger",
+                "givenName": "Valerie",
+                "familyName": "Hagger",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/00rqy9422",
+                    "name": "University of Queensland"
+                },
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0001-8408-8449"
+            },
+            {
+                "name": "Phoebe Stewart-Sinclair",
+                "givenName": "Phoebe",
+                "familyName": "Stewart-Sinclair",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/00rqy9422",
+                    "name": "University of Queensland"
+                },
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0002-1569-4274"
+            },
+            {
+                "name": "Renee A Rossini",
+                "givenName": "Renee A",
+                "familyName": "Rossini",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/00rqy9422",
+                    "name": "University of Queensland"
+                },
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0002-7512-5401"
+            }
+        ],
+        "datePublished": 2024,
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "eAtlas"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "ScholarlyArticle",
+        "@id": "https://doi.org/10.13140/rg.2.2.28524.41604",
+        "url": "http://rgdoi.net/10.13140/RG.2.2.28524.41604",
+        "additionalType": "Technical Report",
+        "name": "Protecting Australian mammals from introduced cats and foxes: The current status and future growth of predator-free havens (NESP TSRH Project 4.1)",
+        "author": [
+            {
+                "name": "Sarah Legge",
+                "givenName": "Sarah",
+                "familyName": "Legge",
+                "@type": "Person"
+            },
+            {
+                "name": "Jeremy Ringma",
+                "givenName": "Jeremy",
+                "familyName": "Ringma",
+                "@type": "Person"
+            },
+            {
+                "name": "Michael Bode",
+                "givenName": "Michael",
+                "familyName": "Bode",
+                "@type": "Person"
+            },
+            {
+                "name": "Jim Radford",
+                "givenName": "Jim",
+                "familyName": "Radford",
+                "@type": "Person"
+            },
+            {
+                "name": "John Woinarski",
+                "givenName": "John",
+                "familyName": "Woinarski",
+                "@type": "Person"
+            },
+            {
+                "name": "Nicki Mitchell",
+                "givenName": "Nicki",
+                "familyName": "Mitchell",
+                "@type": "Person"
+            },
+            {
+                "name": "Brendan Wintle",
+                "givenName": "Brendan",
+                "familyName": "Wintle",
+                "@type": "Person"
+            },
+            {
+                "name": "Andrew A Burbidge",
+                "givenName": "Andrew A",
+                "familyName": "Burbidge",
+                "@type": "Person"
+            },
+            {
+                "name": "Marcus Baseler",
+                "givenName": "Marcus",
+                "familyName": "Baseler",
+                "@type": "Person"
+            },
+            {
+                "name": "Joss Bentley",
+                "givenName": "Joss",
+                "familyName": "Bentley",
+                "@type": "Person"
+            },
+            {
+                "name": "Peter Copley",
+                "givenName": "Peter",
+                "familyName": "Copley",
+                "@type": "Person"
+            },
+            {
+                "name": "Nicholas Dexter",
+                "givenName": "Nicholas",
+                "familyName": "Dexter",
+                "@type": "Person"
+            },
+            {
+                "name": "Chris R Dickman",
+                "givenName": "Chris R",
+                "familyName": "Dickman",
+                "@type": "Person"
+            },
+            {
+                "name": "Graeme Gillespie",
+                "givenName": "Graeme",
+                "familyName": "Gillespie",
+                "@type": "Person"
+            },
+            {
+                "name": "Brydie Hill"
+            },
+            {
+                "name": "Chris Johnson",
+                "givenName": "Chris",
+                "familyName": "Johnson",
+                "@type": "Person"
+            },
+            {
+                "name": "John Kanowski",
+                "givenName": "John",
+                "familyName": "Kanowski",
+                "@type": "Person"
+            },
+            {
+                "name": "Peter Latch",
+                "givenName": "Peter",
+                "familyName": "Latch",
+                "@type": "Person"
+            },
+            {
+                "name": "Mike Letnic",
+                "givenName": "Mike",
+                "familyName": "Letnic",
+                "@type": "Person"
+            },
+            {
+                "name": "Adrian Manning",
+                "givenName": "Adrian",
+                "familyName": "Manning",
+                "@type": "Person"
+            },
+            {
+                "name": "Peter Menkhorst",
+                "givenName": "Peter",
+                "familyName": "Menkhorst",
+                "@type": "Person"
+            },
+            {
+                "name": "Keith Morris",
+                "givenName": "Keith",
+                "familyName": "Morris",
+                "@type": "Person"
+            },
+            {
+                "name": "Katherine Moseby",
+                "givenName": "Katherine",
+                "familyName": "Moseby",
+                "@type": "Person"
+            },
+            {
+                "name": "Manda Page",
+                "givenName": "Manda",
+                "familyName": "Page",
+                "@type": "Person"
+            },
+            {
+                "name": "Russell Palmer",
+                "givenName": "Russell",
+                "familyName": "Palmer",
+                "@type": "Person"
+            },
+            {
+                "name": "David Pannell",
+                "givenName": "David",
+                "familyName": "Pannell",
+                "@type": "Person"
+            },
+            {
+                "name": "Katherine Tuft",
+                "givenName": "Katherine",
+                "familyName": "Tuft",
+                "@type": "Person"
+            },
+            {
+                "name": "Erin E McCreless",
+                "givenName": "Erin E",
+                "familyName": "McCreless",
+                "@type": "Person"
+            },
+            {
+                "name": "Threatened Species Recovery Hub"
+            }
+        ],
+        "inLanguage": "en",
+        "datePublished": "2019",
+        "publisher": {
+            "@type": "Organization",
+            "name": "The University of Queensland"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.26274/4r15-th73",
+        "url": "https://eatlas.org.au/geonetwork/srv/eng/catalog.search#/metadata/72bf9dfc-59b4-4c0c-bf08-d2697ad7a6a8",
+        "name": "Estuary assessments of the Gulf of Carpentaria 2017 - 2019 (NESP TWQ 4.13, JCU)",
+        "author": [
+            {
+                "name": "Norman Duke",
+                "givenName": "Norman",
+                "familyName": "Duke",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0003-2081-9120"
+            },
+            {
+                "name": "Jock Mackenzie",
+                "givenName": "Jock",
+                "familyName": "Mackenzie",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person"
+            }
+        ],
+        "datePublished": 2023,
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "eAtlas"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.15468/g44u6b",
+        "identifier": {
+            "@type": "PropertyValue",
+            "propertyID": "UUID",
+            "value": "bb614691-1d72-45ff-8787-160a9112bd01"
+        },
+        "url": "https://www.gbif.org/dataset/bb614691-1d72-45ff-8787-160a9112bd01",
+        "additionalType": "SAMPLING_EVENT",
+        "name": "Benthic habitats of Yanyuwa Sea Country, Barni - Wardimantha Awara Indigenous Protected Area, Gulf of Carpentaria, Northern Territory, Australia (NESP MaC Project 1.12, JCU &amp; CDU)",
+        "author": [
+            {
+                "name": "Rachel Groom",
+                "givenName": "Rachel",
+                "familyName": "Groom",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "Charles Darwin University"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Catherine Collier",
+                "givenName": "Catherine",
+                "familyName": "Collier",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "TropWATER, James Cook University"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Lauren Firby",
+                "givenName": "Lauren",
+                "familyName": "Firby",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "TropWATER"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Shaun Evans",
+                "givenName": "Shaun",
+                "familyName": "Evans",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "li-Anthawirriyarra Sea Ranger Unit, Mabunji Aboriginal Resource Indigenous Corporation"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Stephen Barrett",
+                "givenName": "Stephen",
+                "familyName": "Barrett",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "li-Anthawirriyarra Sea Ranger Unit, Mabunji Aboriginal Resource Indigenous Corporation"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Luke Hoffman",
+                "givenName": "Luke",
+                "familyName": "Hoffman",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "TropWATER, James Cook University"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Chris Van Der Wetering",
+                "givenName": "Chris",
+                "familyName": "Van Der Wetering",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "TropWATER, James Cook University"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Shade Evans",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "li-Anthawirriyarra Sea Ranger Unit, Mabunji Aboriginal Resource Indigenous Corporation"
+                }
+            },
+            {
+                "name": "Steven Simon",
+                "givenName": "Steven",
+                "familyName": "Simon",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "li-Anthawirriyarra Sea Ranger Unit, Mabunji Aboriginal Resource Indigenous Corporation"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Stephen Anderson",
+                "givenName": "Stephen",
+                "familyName": "Anderson",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "Jungkayi for eastern Vanderlin Island"
+                },
+                "@type": "Person"
+            }
+        ],
+        "editor": [
+            {
+                "name": "Rachel Groom",
+                "givenName": "Rachel",
+                "familyName": "Groom",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "Charles Darwin University"
+                },
+                "contributorType": "DataCurator",
+                "@type": "Person"
+            },
+            {
+                "name": "OBIS Australia Node Manager",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "CSIRO National Collections and Marine Infrastructure Data Centre"
+                },
+                "contributorType": "Editor"
+            },
+            {
+                "name": "Rachel Groom",
+                "givenName": "Rachel",
+                "familyName": "Groom",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "Charles Darwin University"
+                },
+                "contributorType": "RelatedPerson",
+                "@type": "Person"
+            }
+        ],
+        "description": "This dataset summarises benthic surveys in Yanyuwa Sea Country. This data set shows that in Yanyuwa sea country in the Gulf of Carpentaria, that there is significant seagrass along the coastline. The inshore coastline seagrass continues from Rosie Creek to Robinson River, where King Ash Bay and Bing Bong has almost continuous, reasonably dense seagrass meadows. Seagrass cover is present around the north, east and southern intertidal areas of West Island. Around the northern side of Black Islet has seagrass as well as north areas of Skull Island. Watson Island has seagrass areas on the southern and eastern coastlines. Seagrass cover can be found on Centre Island on all sides, particularly on the east and western sides. Vanderlin Island has light seagrass cover mostly towards the southern tip. Species present in these regions include C. serrulate, E. acoroides, H. ovalis, H. uninervis.",
+        "license": "https://creativecommons.org/licenses/by-nc/4.0/legalcode",
+        "keywords": "Samplingevent",
+        "inLanguage": "en",
+        "dateCreated": "2023-10-19",
+        "datePublished": "2023",
+        "dateModified": "2023-10-19",
+        "spatialCoverage": {
+            "@type": "Place",
+            "geo": {
+                "@type": "GeoShape",
+                "address": "Yanyuwa Sea Country, Barni - Wardimantha Awara Indigenous Protected Area, Gulf of Carpentaria, Northern Territory, Australia",
+                "box": "-16.029 136.241 -15.413 137.27"
+            }
+        },
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "CSIRO National Collections and Marine Infrastructure (NCMI) Information and Data Centre (IDC)"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.15468/zxmc5a",
+        "identifier": {
+            "@type": "PropertyValue",
+            "propertyID": "UUID",
+            "value": "774c4fd0-fb00-41d2-8bdc-65fc1c809d21"
+        },
+        "url": "https://www.gbif.org/dataset/774c4fd0-fb00-41d2-8bdc-65fc1c809d21",
+        "additionalType": "OCCURRENCE",
+        "name": "NESP A12: Northern Australia threatened species, Australia (1905-2020)",
+        "author": {
+            "name": "Luciana Ferreira",
+            "givenName": "Luciana",
+            "familyName": "Ferreira",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "Australian Institute of Marine Science (AIMS)"
+            },
+            "@type": "Person"
+        },
+        "editor": [
+            {
+                "name": "Luciana Ferreira",
+                "givenName": "Luciana",
+                "familyName": "Ferreira",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "Australian Institute of Marine Science (AIMS)"
+                },
+                "contributorType": "DataCurator",
+                "@type": "Person"
+            },
+            {
+                "name": "OBIS Australia Node Manager",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "CSIRO National Collections and Marine Infrastructure Data Centre"
+                },
+                "contributorType": "Editor"
+            },
+            {
+                "name": "Luciana Ferreira",
+                "givenName": "Luciana",
+                "familyName": "Ferreira",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "Australian Institute of Marine Science (AIMS)"
+                },
+                "contributorType": "RelatedPerson",
+                "@type": "Person"
+            },
+            {
+                "name": "Peter Kyne",
+                "givenName": "Peter",
+                "familyName": "Kyne",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "Charles Darwin University (CDU)"
+                },
+                "contributorType": "RelatedPerson",
+                "@type": "Person"
+            },
+            {
+                "name": "Emma Flukes",
+                "givenName": "Emma",
+                "familyName": "Flukes",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "Institute for Marine and Antarctic Studies (IMAS), University of Tasmania (UTAS)"
+                },
+                "contributorType": "RelatedPerson",
+                "@type": "Person"
+            }
+        ],
+        "description": "Of the ~80 EPBC-listed Threatened and Migratory marine species known to occur in the North Marine Bioregion, 16 were identified as priority species through consultation with research end-users and experts. The priority group consisted of three sawfishes, two river sharks, Dugong, two inshore dolphins, six shorebirds and two turtles. Dwarf and then Green Sawfish had the most data gaps, indicating that these were the most poorly-known of the selected priority species in the North Marine Bioregion, and as such are a priority for research. These were followed (in order of data gaps) by the other river sharks and sawfishes, inshore dolphins, Hawksbill Turtle, Dugong, Olive Ridley Turtle, and shorebirds. Research assessing the relevance and impact of pressures was identified as a gap for all species. New data identified during the project can fill data gaps for all 16 species, and the analysis of these datasets can improve the accuracy of distribution maps, but new data collection is still required for all sharks and sawfishes, Hawksbill Turtle, and inshore dolphins to improve data coverage for distribution modelling and mapping.",
+        "license": "https://creativecommons.org/licenses/by-nc/4.0/legalcode",
+        "keywords": "Occurrence, Observation",
+        "inLanguage": "en",
+        "dateCreated": "2023-06-30",
+        "datePublished": "2022",
+        "dateModified": "2023-06-30",
+        "spatialCoverage": {
+            "@type": "Place",
+            "geo": {
+                "@type": "GeoShape",
+                "address": "Australian coastal waters",
+                "box": "-43.0 113.0 -1.5 154.0"
+            }
+        },
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "CSIRO National Collections and Marine Infrastructure (NCMI) Information and Data Centre (IDC)"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.26274/709g-aq12",
+        "url": "https://eatlas.org.au/geonetwork/srv/eng/catalog.search#/metadata/9b26bf43-3368-41a5-922e-0bf94529d0d2",
+        "name": "Coral Sea Oceanic Vegetation (NESP MaC 2.3, AIMS)",
+        "author": {
+            "name": "Eric Lawrey",
+            "givenName": "Eric",
+            "familyName": "Lawrey",
+            "@type": "Person",
+            "@id": "https://orcid.org/0000-0002-3144-3475"
+        },
+        "datePublished": 2024,
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "eAtlas"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.15468/g67xcs",
+        "identifier": {
+            "@type": "PropertyValue",
+            "propertyID": "UUID",
+            "value": "2926a165-e543-42e1-b47c-e7528a2b3188"
+        },
+        "url": "https://www.gbif.org/dataset/2926a165-e543-42e1-b47c-e7528a2b3188",
+        "additionalType": "OCCURRENCE",
+        "name": "NESP MBH A1 Euryhaline Elasmobranchs Fishing Database, Australia (2011-2019)",
+        "author": {
+            "name": "Peter Kyne",
+            "givenName": "Peter",
+            "familyName": "Kyne",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "Charles Darwin University (CDU)"
+            },
+            "@type": "Person"
+        },
+        "editor": [
+            {
+                "name": "Peter Kyne",
+                "givenName": "Peter",
+                "familyName": "Kyne",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "Charles Darwin University (CDU)"
+                },
+                "contributorType": "DataCurator",
+                "@type": "Person"
+            },
+            {
+                "name": "OBIS Australia Node Manager",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "CSIRO National Collections and Marine Infrastructure Data Centre"
+                },
+                "contributorType": "Editor"
+            },
+            {
+                "name": "Peter Kyne",
+                "givenName": "Peter",
+                "familyName": "Kyne",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "Charles Darwin University (CDU)"
+                },
+                "contributorType": "RelatedPerson",
+                "@type": "Person"
+            }
+        ],
+        "description": "This database contains sampling effort, catch records, biological data, and water quality data for sampling and catches of elasmobranchs in northern Australian rivers, estuaries and coasts undertaken under the National Environmental Research Program (NERP) Marine Biodiversity Hub Project 2.4 'Supporting Management of Listed and Rare Species'. and the National Environmental Science Program (NESP) Marine Biodiversity Hub Project A1 'Northern Australian Hotspots for the Recovery of Threatened Euryhaline Elasmobranchs'. Surveys using gillnets and rod-and-line were undertaken in the Top End region of the Northern Territory and the Kimberley region of Western Australia. Selected animals were tagged for movement ecology, habitat use and mortality estimates (acoustic telemetry), and tissue samples were collected from all fish for molecular analyses (population genetics and close-kin mark-recapture). Sampling was undertaken with a variety of fishing gear, mainly gillnet (4–6 inch stretched mesh size) and rod-and-line (medium-heavy shark fishing gear; small-medium hook sizes, 4/0–10/0). Longlines and cast nets were also used on occasion. Sawfish were targeted using gillnets, and river sharks mostly with rod-and-line. Processing catch included taking measurements, determining sex through external examination, photographing each individual, and collecting a small tissue sample from the inner margin of the pectoral fin (for molecular analyses). All individuals were tagged with a PIT tag for individual identification, and a subset was tagged with VEMCO acoustic tags (V9, V13 or V16) for telemetry studies. All fish were released at the site of capture, as was any bycatch. Data sourced from http://metadata.imas.utas.edu.au/geonetwork/srv/eng/metadata.show?uuid=a0cf8cc5-67cd-49bb-bcaa-dedf21ed3287 on 2022-06-01. This link references associated resources (database, reports and publications).",
+        "license": "https://creativecommons.org/licenses/by/4.0/legalcode",
+        "keywords": "Occurrence, Specimen, Occurrence",
+        "inLanguage": "en",
+        "dateCreated": "2023-06-30",
+        "datePublished": "2023",
+        "dateModified": "2023-06-30",
+        "spatialCoverage": {
+            "@type": "Place",
+            "geo": {
+                "@type": "GeoShape",
+                "address": "river systems, Northern Territory and the Kimberleys, Australia",
+                "box": "-17.351 123.563 -12.138 134.569"
+            }
+        },
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "CSIRO National Collections and Marine Infrastructure (NCMI) Information and Data Centre (IDC)"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Grant",
+        "@id": "https://doi.org/10.3565/2rsd-wd75",
+        "url": "https://ardc.edu.au/project/fair-data-and-services-for-the-nesp-resilient-landscapes-hub/",
+        "name": "Domain Data Portals: Integrated FAIR Data and Services for the NESP Resilient Landscapes Hub",
+        "author": {
+            "name": "Australian Research Data Commons",
+            "@type": "Organization",
+            "@id": "https://ror.org/038sjwq14"
+        },
+        "editor": [
+            {
+                "name": "The University Of Western Australia (UWA)",
+                "contributorType": "Other",
+                "@type": "Organization",
+                "@id": "https://ror.org/047272k79"
+            },
+            {
+                "name": "University Of Tasmania",
+                "contributorType": "Other",
+                "@type": "Organization",
+                "@id": "https://ror.org/00arpt780"
+            },
+            {
+                "name": "Monash University",
+                "contributorType": "Other",
+                "@type": "Organization",
+                "@id": "https://ror.org/02bfwt286"
+            },
+            {
+                "name": "Curtin University",
+                "contributorType": "Other",
+                "@type": "Organization",
+                "@id": "https://ror.org/02n415q13"
+            },
+            {
+                "name": "Charles Darwin University",
+                "contributorType": "Other",
+                "@type": "Organization",
+                "@id": "https://ror.org/048zcaj52"
+            },
+            {
+                "name": "James Cook University",
+                "contributorType": "Other",
+                "@type": "Organization",
+                "@id": "https://ror.org/04gsp2c11"
+            },
+            {
+                "name": "Queensland University Of Technology",
+                "contributorType": "Other",
+                "@type": "Organization",
+                "@id": "https://ror.org/03pnv4752"
+            },
+            {
+                "name": "The University Of Queensland",
+                "contributorType": "Other",
+                "@type": "Organization",
+                "@id": "https://ror.org/00rqy9422"
+            },
+            {
+                "name": "University Of New England",
+                "contributorType": "Other",
+                "@type": "Organization",
+                "@id": "https://ror.org/04r659a56"
+            },
+            {
+                "name": "CSIRO",
+                "contributorType": "Other",
+                "@type": "Organization",
+                "@id": "https://ror.org/03qn8fb07"
+            },
+            {
+                "name": "University Of Southern Queensland",
+                "contributorType": "Other",
+                "@type": "Organization",
+                "@id": "https://ror.org/04sjbnx57"
+            },
+            {
+                "name": "LaTrobe University",
+                "contributorType": "Other",
+                "@type": "Organization",
+                "@id": "https://ror.org/01rxfrp27"
+            },
+            {
+                "name": "Zoos Victoria",
+                "contributorType": "Other",
+                "@type": "Organization",
+                "@id": "https://ror.org/03d17t865"
+            },
+            {
+                "name": "Federation University",
+                "contributorType": "Other",
+                "@type": "Organization",
+                "@id": "https://ror.org/05qbzwv83"
+            },
+            {
+                "name": "Department Of Climate Change, Energy, The Environment And Water",
+                "contributorType": "Other",
+                "@type": "Organization",
+                "@id": "https://ror.org/01db6n192"
+            }
+        ],
+        "description": "The NESP Resilient Landscapes Hub, supported by the ARDC, is working to develop best practice metadata standards for its research outputs through rich metadata descriptions and assigning persistent identifiers. \n \n Specifically, this project will analyse research outputs by the Resilient Landscapes Hub to understand how and where project data are stored. Model guidelines for the creation of metadata will then be developed, to ensure that all data are described in a uniform way that adheres to the FAIR principles (findable, accessible, interoperable, and reusable). The guidelines will also outline how to assign persistent identifiers in a consistent way across the Hub.\n \n The guidelines will then be applied and evaluated on the research outputs from projects in the Resilient Landscapes Hub. Implementing these standard guidelines will allow the data to be more easily accessed and used by researchers, policymakers and the public, and will also enable them to be integrated into ARDC Research Data Australia, a data discovery service of the ARDC.\n \n These efforts will ensure that the data produced by the Resilient Landscapes Hub are easily discoverable and accessible, amplifying the impact of the Hub’s contributions to environmental resilience and improved outcomes for the community.",
+        "datePublished": "2024",
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "@id": "https://ror.org/038sjwq14",
+            "name": "Australian Research Data Commons"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.26274/9wr4-q222",
+        "url": "https://eatlas.org.au/geonetwork/srv/eng/catalog.search#/metadata/99668409-1f69-4a48-8ec6-edfbd92849e4",
+        "name": "Northern Australian Reef Mapping through Georeferenced Media - Virtual Fieldwork Toolkit (NESP MaC 3.17, AIMS)",
+        "author": [
+            {
+                "name": "Eric Lawrey",
+                "givenName": "Eric",
+                "familyName": "Lawrey",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/03x57gn41",
+                    "name": "Australian Institute of Marine Science"
+                },
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0002-3144-3475"
+            },
+            {
+                "name": "Rachel Bycroft",
+                "givenName": "Rachel",
+                "familyName": "Bycroft",
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0001-6455-414X"
+            }
+        ],
+        "license": "https://creativecommons.org/licenses/by/4.0/legalcode",
+        "version": "1",
+        "datePublished": 2024,
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "eAtlas"
         },
         "provider": {
             "@type": "Organization",
@@ -1353,56 +3989,6 @@
     {
         "@context": "http://schema.org",
         "@type": "Project",
-        "@id": "https://doi.org/10.71613/86e95be1",
-        "identifier": {
-            "@type": "PropertyValue",
-            "propertyID": "RaidAgencyUrl",
-            "value": "https://prod.static.raid.org.au/10.71613/86e95be1"
-        },
-        "url": "https://raid.org/10.71613/86e95be1",
-        "additionalType": "RAiD",
-        "name": "5.6 - Mapping and monitoring persistent pools using remote sensing to support river resilience",
-        "author": {},
-        "editor": [
-            {
-                "name": "RAiD AU",
-                "contributorType": "RegistrationAgency",
-                "@type": "Organization",
-                "@id": "https://ror.org/038sjwq14"
-            },
-            {
-                "name": "https://ror.org/047272k79",
-                "contributorType": "HostingInstitution",
-                "@type": "Organization",
-                "@id": "https://ror.org/047272k79"
-            },
-            {
-                "name": "https://ror.org/02sc3r913",
-                "contributorType": "HostingInstitution",
-                "@type": "Organization",
-                "@id": "https://ror.org/02sc3r913"
-            }
-        ],
-        "description": "This project focuses on developing innovative tools using satellite imagery to map and monitor persistent pools (waterholes) within Australian rivers and floodplains. Persistent pools are vital water resources, especially under climate change and growing water use. They are crucial for ecosystems, providing habitats for species, sustaining ecological processes and serving as refuges during dry periods. The project will use satellite data from Landsat, Sentinel and Planetscope to map these pools, assess their dynamics, and predict future changes under various climate and water-use scenarios. The findings will support sustainable management strategies, including water allocation, climate adaptation and conservation efforts, with case studies in the Martuwarra Fitzroy River (WA), Gilbert River (Qld) and the Ovens River in Northern Victoria.\n\nPersistent pools are challenging to map due to their dynamic nature, shifting with changes in flow and precipitation. Current methods do not adequately capture these fluctuations, leading to potential underestimation of the area of persistent pools. The increasing demand for water resources, combined with climate change, underscores the need for better mapping and monitoring techniques. Remote sensing offers an efficient, cost-effective way to track these dynamic features across large areas, providing historical and real-time data to inform management decisions. This project aims to fill the gap in current methods by integrating data from multiple satellites and analysing the ecological and socio-cultural implications of pool dynamics.",
-        "datePublished": 2025,
-        "isPartOf": {
-            "@id": "https://raid.org/10.71821/ffc970c8",
-            "@type": "Project"
-        },
-        "schemaVersion": "http://datacite.org/schema/kernel-4",
-        "publisher": {
-            "@type": "Organization",
-            "@id": "https://ror.org/01db6n192",
-            "name": "https://ror.org/01db6n192"
-        },
-        "provider": {
-            "@type": "Organization",
-            "name": "datacite"
-        }
-    },
-    {
-        "@context": "http://schema.org",
-        "@type": "Project",
         "@id": "https://doi.org/10.71676/7993ea0a",
         "identifier": {
             "@type": "PropertyValue",
@@ -1637,15 +4223,15 @@
     {
         "@context": "http://schema.org",
         "@type": "Project",
-        "@id": "https://doi.org/10.71821/a945d761",
+        "@id": "https://doi.org/10.71613/86e95be1",
         "identifier": {
             "@type": "PropertyValue",
             "propertyID": "RaidAgencyUrl",
-            "value": "https://prod.static.raid.org.au/10.71821/a945d761"
+            "value": "https://prod.static.raid.org.au/10.71613/86e95be1"
         },
-        "url": "https://raid.org/10.71821/a945d761",
+        "url": "https://raid.org/10.71613/86e95be1",
         "additionalType": "RAiD",
-        "name": "Climate Systems Hub",
+        "name": "NESP RL Project 5.6 - Mapping and monitoring persistent pools using remote sensing to support river resilience",
         "author": {},
         "editor": [
             {
@@ -1655,15 +4241,22 @@
                 "@id": "https://ror.org/038sjwq14"
             },
             {
-                "name": "https://ror.org/03qn8fb07",
+                "name": "https://ror.org/047272k79",
                 "contributorType": "HostingInstitution",
                 "@type": "Organization",
-                "@id": "https://ror.org/03qn8fb07"
+                "@id": "https://ror.org/047272k79"
+            },
+            {
+                "name": "https://ror.org/02sc3r913",
+                "contributorType": "HostingInstitution",
+                "@type": "Organization",
+                "@id": "https://ror.org/02sc3r913"
             }
         ],
+        "description": "This project focuses on developing innovative tools using satellite imagery to map and monitor persistent pools (waterholes) within Australian rivers and floodplains. Persistent pools are vital water resources, especially under climate change and growing water use. They are crucial for ecosystems, providing habitats for species, sustaining ecological processes and serving as refuges during dry periods. The project will use satellite data from Landsat, Sentinel and Planetscope to map these pools, assess their dynamics, and predict future changes under various climate and water-use scenarios. The findings will support sustainable management strategies, including water allocation, climate adaptation and conservation efforts, with case studies in the Martuwarra Fitzroy River (WA), Gilbert River (Qld) and the Ovens River in Northern Victoria.\n\nPersistent pools are challenging to map due to their dynamic nature, shifting with changes in flow and precipitation. Current methods do not adequately capture these fluctuations, leading to potential underestimation of the area of persistent pools. The increasing demand for water resources, combined with climate change, underscores the need for better mapping and monitoring techniques. Remote sensing offers an efficient, cost-effective way to track these dynamic features across large areas, providing historical and real-time data to inform management decisions. This project aims to fill the gap in current methods by integrating data from multiple satellites and analysing the ecological and socio-cultural implications of pool dynamics.",
         "datePublished": 2025,
         "isPartOf": {
-            "@id": "https://raid.org/10.71821/23fcbc6f",
+            "@id": "https://raid.org/10.71821/ffc970c8",
             "@type": "Project"
         },
         "schemaVersion": "http://datacite.org/schema/kernel-4",
@@ -1679,41 +4272,677 @@
     },
     {
         "@context": "http://schema.org",
-        "@type": "Project",
-        "@id": "https://doi.org/10.71821/35f86452",
-        "identifier": {
-            "@type": "PropertyValue",
-            "propertyID": "RaidAgencyUrl",
-            "value": "https://prod.static.raid.org.au/10.71821/35f86452"
-        },
-        "url": "https://raid.org/10.71821/35f86452",
-        "additionalType": "RAiD",
-        "name": "Sustainable Communities and Waste Hub",
-        "author": {},
-        "editor": [
-            {
-                "name": "RAiD AU",
-                "contributorType": "RegistrationAgency",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.25919/5c1060a79b216",
+        "url": "https://data.csiro.au/collections/#collection/CIcsiro:37677v1",
+        "additionalType": "Dataset",
+        "name": "Kakadu NESP drone photos",
+        "author": {
+            "name": "Justin Perry",
+            "givenName": "Justin",
+            "familyName": "Perry",
+            "affiliation": {
                 "@type": "Organization",
-                "@id": "https://ror.org/038sjwq14"
+                "name": "CSIRO"
             },
-            {
-                "name": "https://ror.org/03r8z3t63",
-                "contributorType": "HostingInstitution",
-                "@type": "Organization",
-                "@id": "https://ror.org/03r8z3t63"
-            }
-        ],
-        "datePublished": 2025,
-        "isPartOf": {
-            "@id": "https://raid.org/10.71821/23fcbc6f",
-            "@type": "Project"
+            "@type": "Person"
+        },
+        "description": "Raw photographs and georectified orthopotographs of three wetland sites on the Kakadu Flood Plain, East Alligator section.  Flights captured areas that are under intensive weed management regimes (aerial spraying and ground spraying) to control Para grass (Urochloa mutica).",
+        "datePublished": "2018",
+        "citation": {
+            "@id": "http://www.nespnorthern.edu.au/projects/nesp/indigenous-nrm-kakadu-national-park",
+            "@type": "CreativeWork"
         },
         "schemaVersion": "http://datacite.org/schema/kernel-4",
         "publisher": {
             "@type": "Organization",
-            "@id": "https://ror.org/01db6n192",
-            "name": "https://ror.org/01db6n192"
+            "name": "CSIRO"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.5281/zenodo.5091295",
+        "identifier": {
+            "@type": "PropertyValue",
+            "propertyID": "URL",
+            "value": "https://zenodo.org/record/5091296"
+        },
+        "url": "https://zenodo.org/record/5091295",
+        "name": "Data and outputs for NESP Project 8.3.1",
+        "author": [
+            {
+                "name": "Payal Bal",
+                "givenName": "Payal",
+                "familyName": "Bal",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "University of Melbourne"
+                },
+                "@id": "https://orcid.org/0000-0002-8759-6964"
+            },
+            {
+                "name": "Jess Marsh",
+                "givenName": "Jess",
+                "familyName": "Marsh",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "Charles Darwin University; Harry Butler Research Institute; South Australian Museum"
+                },
+                "@id": "https://orcid.org/0000-0002-4062-4155"
+            },
+            {
+                "name": "John Woinarski",
+                "givenName": "John",
+                "familyName": "Woinarski",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "Charles Darwin University; University of Melbourne"
+                },
+                "@id": "https://orcid.org/0000-0002-1712-9500"
+            }
+        ],
+        "description": "Data and outputs for <em>NESP Threatened Species Recovery Hub Project 8.3.1: ‘Fire-affected invertebrates: priority species and management response’</em>.",
+        "license": [
+            "https://creativecommons.org/licenses/by/4.0/legalcode",
+            "info:eu-repo/semantics/openAccess"
+        ],
+        "datePublished": "2021-07-12",
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Zenodo"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "ScholarlyArticle",
+        "@id": "https://doi.org/10.13140/rg.2.2.21643.62246",
+        "url": "http://rgdoi.net/10.13140/RG.2.2.21643.62246",
+        "additionalType": "Technical Report",
+        "name": "Better managing fires and their impacts for koala conservation. NESP 8.4.5 Report",
+        "author": [
+            {
+                "name": "Pablo Jose Negret",
+                "givenName": "Pablo Jose",
+                "familyName": "Negret",
+                "@type": "Person"
+            },
+            {
+                "name": "Daniel Lunney",
+                "givenName": "Daniel",
+                "familyName": "Lunney",
+                "@type": "Person"
+            },
+            {
+                "name": "Jonathan Rhodes",
+                "givenName": "Jonathan",
+                "familyName": "Rhodes",
+                "@type": "Person"
+            }
+        ],
+        "inLanguage": "en",
+        "datePublished": "2021",
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Unpublished"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.26274/frpn-ta60",
+        "url": "https://eatlas.org.au/data/uuid/a2a8f9c0-d7bc-4fae-b9b1-ccebfa642068",
+        "name": "Effects of climate change and light limitation on Acropora millepora coral recruits (NESP 5.2, AIMS, JCU and AIMS@JCU)",
+        "author": [
+            {
+                "name": "Christopher Brunner",
+                "givenName": "Christopher",
+                "familyName": "Brunner",
+                "affiliation": [
+                    {
+                        "@type": "Organization",
+                        "@id": "https://ror.org/04gsp2c11",
+                        "name": "James Cook University"
+                    },
+                    {
+                        "@type": "Organization",
+                        "@id": "https://ror.org/03x57gn41",
+                        "name": "Australian Institute of Marine Science"
+                    }
+                ],
+                "@type": "Person"
+            },
+            {
+                "name": "Gerard Ricardo",
+                "givenName": "Gerard",
+                "familyName": "Ricardo",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/03x57gn41",
+                    "name": "Australian Institute of Marine Science"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Sven Uthicke",
+                "givenName": "Sven",
+                "familyName": "Uthicke",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/03x57gn41",
+                    "name": "Australian Institute of Marine Science"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Andrew Negri",
+                "givenName": "Andrew",
+                "familyName": "Negri",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/03x57gn41",
+                    "name": "Australian Institute of Marine Science"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Mia Hoogenboom",
+                "givenName": "Mia",
+                "familyName": "Hoogenboom",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person"
+            }
+        ],
+        "license": "https://creativecommons.org/licenses/by/4.0/legalcode",
+        "keywords": "FOS: Biological sciences",
+        "contentSize": "3 MB",
+        "encodingFormat": "Excel",
+        "datePublished": 2022,
+        "spatialCoverage": {
+            "@type": "Place",
+            "geo": {
+                "@type": "GeoCoordinates",
+                "address": null,
+                "latitude": -18.7658,
+                "longitude": 146.533
+            }
+        },
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "eAtlas"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "CreativeWork",
+        "@id": "https://doi.org/10.17605/osf.io/jgbcs",
+        "identifier": {
+            "@type": "PropertyValue",
+            "propertyID": "URL",
+            "value": "https://osf.io/jgbcs"
+        },
+        "url": "https://osf.io/jgbcs/",
+        "additionalType": "Pre-registration",
+        "name": "Nonprofit Education Survey Project (NESP)",
+        "author": [
+            {
+                "name": "Amanda J Stewart",
+                "givenName": "Amanda J",
+                "familyName": "Stewart",
+                "@type": "Person",
+                "@id": "https://osf.io/ycb2q"
+            },
+            {
+                "name": "Marlene Walk",
+                "givenName": "Marlene",
+                "familyName": "Walk",
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0002-1396-9481"
+            },
+            {
+                "name": "Kerry Kuenzi",
+                "givenName": "Kerry",
+                "familyName": "Kuenzi",
+                "@type": "Person",
+                "@id": "https://osf.io/5vn9j"
+            }
+        ],
+        "editor": {
+            "name": "Center For Open Science",
+            "contributorType": "HostingInstitution",
+            "@type": "Organization",
+            "@id": "https://cos.io/"
+        },
+        "description": "Through surveys of nonprofit graduate program alumni, our ongoing research answers questions related both to the practice of nonprofit education as well as theory-building in this area.\nCurrent problem statement: We aim to understand the impact of COVID-19 on nonprofit workers and their commitment to work in the nonprofit sector.",
+        "keywords": "Other Public Affairs, Public Policy and Public Administration, Public Affairs, Public Affairs, Public Policy and Public Administration, Education, Higher Education, Social and Behavioral Sciences, higher education, nonprofit management, nonprofit organizations, philanthropic studies",
+        "dateCreated": "2021-10-11",
+        "datePublished": "2021",
+        "dateModified": "2021-10-11",
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "OSF Registries"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Grant",
+        "@id": "https://doi.org/10.3565/pkjc-z984",
+        "url": "https://ardc.edu.au/project/standardising-nesp-marine-and-coastal-data-with-persistent-identifiers/",
+        "name": "Enhancing Discoverability and Impact: Standardising NESP Marine and Coastal Data With Persistent Identifiers.",
+        "author": {
+            "name": "Australian Research Data Commons",
+            "@type": "Organization",
+            "@id": "https://ror.org/038sjwq14"
+        },
+        "editor": [
+            {
+                "name": "University Of Tasmania",
+                "contributorType": "Other",
+                "@type": "Organization",
+                "@id": "https://ror.org/00arpt780"
+            },
+            {
+                "name": "ACCESS-NRI",
+                "contributorType": "Other",
+                "@type": "Organization",
+                "@id": "https://ror.org/03qhv9c02"
+            },
+            {
+                "name": "Department Of Climate Change, Energy, The Environment And Water",
+                "contributorType": "Other",
+                "@type": "Organization",
+                "@id": "https://ror.org/01db6n192"
+            }
+        ],
+        "description": "The National Environmental Science Program (NESP) is an initiative funded by the Department of Climate Change, Energy, the Environment and Water. NESP supports over 100 research projects, helping to address some of Australia’s key environmental challenges. The program is categorised into 4 different Hubs, each with distinct research focuses, from biodiversity and sustainability to climate change. The Hubs generate a wealth of valuable data about the environment, which has huge potential for research, policy and decision-making. \n \n Data are often spread across numerous institutions, each with their own unique data management strategies. This makes the data difficult to discover by other users and makes it challenging for the government to track the impact of its research investment. \n \n To help find, organise and manage the data more effectively, datasets can be supplemented by metadata, which is a description of the data’s characteristics (its contents, location and format). The data can also be tagged with a persistent identifier (PID), which is a permanent, unique reference assigned to the data that allows them to be clearly found, retrieved and cited, regardless of where they are located. \n \n However, the metadata standards used by the NESP’s Marine and Coastal Hub, and most of the marine data community in Australia (ISO 19115-3), do not offer guidance on how to record these persistent identifiers, which can make the data difficult to find and integrate.\n \n This project will develop a standardised approach to applying persistent identifiers in the metadata. This standard will enable data discovery, interoperability and reuse, not only of NESP Marine Data, but can be adopted by other producers of marine data.",
+        "datePublished": "2024",
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "@id": "https://ror.org/038sjwq14",
+            "name": "Australian Research Data Commons"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.26274/kse6-zh11",
+        "url": "https://eatlas.org.au/geonetwork/srv/eng/catalog.search#/metadata/6e7459ce-6c9c-400d-a2ce-496ff516ae4f",
+        "name": "NESP MaC Project Maps - Areas of research activity (NESP MaC, AIMS, UTAS)",
+        "author": [
+            {
+                "name": "Eric Lawrey",
+                "givenName": "Eric",
+                "familyName": "Lawrey",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/03x57gn41",
+                    "name": "Australian Institute of Marine Science"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Emma Flukes",
+                "givenName": "Emma",
+                "familyName": "Flukes",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/01nfmeh72",
+                    "name": "University of Tasmania"
+                },
+                "@type": "Person"
+            },
+            {
+                "name": "Suzannah Babicci",
+                "givenName": "Suzannah",
+                "familyName": "Babicci",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/03x57gn41",
+                    "name": "Australian Institute of Marine Science"
+                },
+                "@type": "Person"
+            }
+        ],
+        "license": "https://creativecommons.org/licenses/by/4.0/legalcode",
+        "datePublished": 2023,
+        "spatialCoverage": {
+            "@type": "Place",
+            "geo": {
+                "@type": "GeoCoordinates",
+                "address": "Australia"
+            }
+        },
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "eAtlas"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.26274/tfkj-1f87",
+        "url": "https://eatlas.org.au/data/uuid/07c61554-d76d-4c6c-956d-dcd171864921",
+        "name": "Exclusion cage data from Orman Reef and Mabuyag Island, Torres Strait Sept 2021 – April 2022, (NESP MaC Project 1.14, TropWATER JCU)",
+        "author": [
+            {
+                "name": "Abigail Scott",
+                "givenName": "Abigail",
+                "familyName": "Scott",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0002-4414-0609"
+            },
+            {
+                "name": "Michael Rasheed",
+                "givenName": "Michael",
+                "familyName": "Rasheed",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0002-8316-7644"
+            },
+            {
+                "name": "Paul York",
+                "givenName": "Paul",
+                "familyName": "York",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0003-3530-4146"
+            },
+            {
+                "name": "Alex B Carter",
+                "givenName": "Alex B",
+                "familyName": "Carter",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/04gsp2c11",
+                    "name": "James Cook University"
+                },
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0003-2303-0010"
+            }
+        ],
+        "datePublished": 2022,
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "eAtlas"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.15468/dzfspn",
+        "identifier": {
+            "@type": "PropertyValue",
+            "propertyID": "UUID",
+            "value": "b936f328-a652-4fe8-85ef-2702a87dc94e"
+        },
+        "url": "https://www.gbif.org/dataset/b936f328-a652-4fe8-85ef-2702a87dc94e",
+        "additionalType": "OCCURRENCE",
+        "name": "Venomous Jellyfish Database (Stings and Specimen) (NESP TWQ 2.2.3, CSIRO)",
+        "author": {
+            "name": "Lisa-Ann Gershwin",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "CSIRO Oceans and Atmosphere"
+            }
+        },
+        "editor": [
+            {
+                "name": "Lisa-Ann Gershwin",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "CSIRO Oceans and Atmosphere"
+                },
+                "contributorType": "DataCurator"
+            },
+            {
+                "name": "OBIS Australia Node Manager",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "CSIRO National Collections and Marine Infrastructure Data Centre"
+                },
+                "contributorType": "Editor"
+            },
+            {
+                "name": "Lisa-Ann Gershwin",
+                "affiliation": {
+                    "@type": "Organization",
+                    "name": "CSIRO Oceans and Atmosphere"
+                },
+                "contributorType": "RelatedPerson"
+            }
+        ],
+        "description": "This dataset contains records of sting events and specimen samples of jellyfish (Irukandji) along the north Queensland coast from December 1998 to March 2017. This dataset contains an extract (1081 records) of the publicly available data contained in the Venomous Jellyfish Database. The full database contains approximately 3000 sting events from around Australia and includes records from sources that have not yet been cleared for release. Data sourced from https://eatlas.org.au/data/uuid/16904861-53e6-4123-a7bb-781f2429629f which contains links to the project website, analysis code and data.",
+        "license": "https://creativecommons.org/licenses/by-nc/4.0/legalcode",
+        "keywords": "Occurrence, Observation, Occurrence",
+        "inLanguage": "en",
+        "dateCreated": "2023-07-04",
+        "datePublished": "2023",
+        "dateModified": "2023-07-04",
+        "spatialCoverage": {
+            "@type": "Place",
+            "geo": {
+                "@type": "GeoShape",
+                "address": "Queensland coast, Australia",
+                "box": "-19.8 141.8 -10.0 147.8"
+            }
+        },
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "CSIRO National Collections and Marine Infrastructure (NCMI) Information and Data Centre (IDC)"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.26274/z775-r041",
+        "url": "https://eatlas.org.au/geonetwork/srv/eng/catalog.search#/metadata/606e5d48-882e-4ee7-999c-de36a8d24259",
+        "name": " National Scale Survey on landscape-scale restoration in marine and coastal ecosystems - November 2021 (NESP MaC 1.6, CSIRO)",
+        "author": [
+            {
+                "name": "Megan Saunders",
+                "givenName": "Megan",
+                "familyName": "Saunders",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/03qn8fb07",
+                    "name": "Commonwealth Scientific and Industrial Research Organisation"
+                },
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0002-8549-5609"
+            },
+            {
+                "name": "Marian Sheppard",
+                "givenName": "Marian",
+                "familyName": "Sheppard",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/03qn8fb07",
+                    "name": "Commonwealth Scientific and Industrial Research Organisation"
+                },
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0003-1628-889X"
+            },
+            {
+                "name": "Nathan Waltham",
+                "givenName": "Nathan",
+                "familyName": "Waltham",
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0003-0058-773X"
+            },
+            {
+                "name": "Toni Cannard",
+                "givenName": "Toni",
+                "familyName": "Cannard",
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0003-4254-8683"
+            },
+            {
+                "name": "Mibu Fischer",
+                "givenName": "Mibu",
+                "familyName": "Fischer",
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0002-1216-3451"
+            }
+        ],
+        "license": "https://creativecommons.org/licenses/by/4.0/legalcode",
+        "datePublished": 2024,
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "eAtlas"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.26274/qfy8-hj59",
+        "url": "https://eatlas.org.au/geonetwork/srv/eng/catalog.search#/metadata/c5438e91-20bf-4253-a006-9e9600981c5f",
+        "name": "Australian Coastline 50K 2024 (NESP MaC 3.17, AIMS)",
+        "author": [
+            {
+                "name": "Marc Hammerton",
+                "givenName": "Marc",
+                "familyName": "Hammerton",
+                "affiliation": {
+                    "@type": "Organization",
+                    "@id": "https://ror.org/03x57gn41",
+                    "name": "Australian Institute of Marine Science"
+                },
+                "@type": "Person",
+                "@id": "https://orcid.org/0009-0004-3631-907X"
+            },
+            {
+                "name": "Eric Lawrey",
+                "givenName": "Eric",
+                "familyName": "Lawrey",
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0002-3144-3475"
+            }
+        ],
+        "license": "https://creativecommons.org/licenses/by/4.0/legalcode",
+        "version": "1-1",
+        "inLanguage": "en",
+        "datePublished": 2024,
+        "spatialCoverage": {
+            "@type": "Place",
+            "geo": {
+                "@type": "GeoShape",
+                "box": "-44.488 95.137 -9.231 168.138"
+            }
+        },
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "eAtlas"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "datacite"
+        }
+    },
+    {
+        "@context": "http://schema.org",
+        "@type": "Dataset",
+        "@id": "https://doi.org/10.26274/vhj5-gr60",
+        "url": "https://catalogue.eatlas.org.au/geonetwork/srv/eng/catalog.search#/metadata/d2396b2c-68d4-4f4b-aab0-52f7bc4a81f5",
+        "name": "Complete Great Barrier Reef (GBR) Island and Reef Feature boundaries including Torres Strait Version 1b (NESP TWQ 3.13, AIMS, TSRA, GBRMPA)",
+        "author": [
+            {
+                "name": "Eric Lawrey",
+                "givenName": "Eric",
+                "familyName": "Lawrey",
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0002-3144-3475"
+            },
+            {
+                "name": "Melanie Stewart",
+                "givenName": "Melanie",
+                "familyName": "Stewart",
+                "@type": "Person"
+            }
+        ],
+        "description": "This dataset consists of a shapefile of the reefs, islands, sand banks, cays and rocks of the whole Great Barrier Reef (GBR) including Torres Strait. This dataset is an extension of the mapping in the GBR Marine Park to include Torres Strait. The Torres Strait region was mapped at a scale of 1:50,000 (Lawrey, E. P., Stewart M., 2016) and these new features are referred to as the \"Torres Strait Reef and Island Features\" dataset. \n\nThe Complete GBR Reef and Island Features dataset integrates the \"Torres Strait Features\" dataset with the existing \"GBR Features\" (Great Barrier Reef Marine Park Authority, 2007) to create a single composite dataset of the whole Great Barrier Reef. This dataset includes 9600 features overall with 5685 from the \"GBR Features\" dataset and 3927 from the \"Torres Strait Reef and Island Features\" dataset.",
+        "license": "https://creativecommons.org/licenses/by/4.0/legalcode",
+        "keywords": "FOS: Natural sciences",
+        "contentSize": "30 MB",
+        "encodingFormat": "Shapefile",
+        "datePublished": 2016,
+        "spatialCoverage": {
+            "@type": "Place",
+            "geo": {
+                "@type": "GeoShape",
+                "box": "-28.6 139 -9 153.5"
+            }
+        },
+        "schemaVersion": "http://datacite.org/schema/kernel-4",
+        "publisher": {
+            "@type": "Organization",
+            "name": "eAtlas"
         },
         "provider": {
             "@type": "Organization",
