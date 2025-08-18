@@ -428,67 +428,8 @@
     
     <xsl:function name="custom:preserveWhitespaceHTML" as="xs:string">
         <xsl:param name="text" as="xs:string"/>
-        
-        <xsl:variable name="posNewline" select="string-length(substring-before($text, '&#10;')) + 1"/>
-        <xsl:variable name="posTab" select="string-length(substring-before($text, '&#9;')) + 1"/>
-        
-        <xsl:choose>
-            <!-- Neither newline nor tab found -->
-            <xsl:when test="not(contains($text, '&#10;')) and not(contains($text, '&#9;'))">
-                <xsl:sequence select="custom:processChars($text)"/>
-            </xsl:when>
-            
-            <!-- Both found, pick the earliest -->
-            <xsl:when test="contains($text, '&#10;') and contains($text, '&#9;')">
-                <xsl:choose>
-                    <xsl:when test="$posNewline &lt; $posTab">
-                        <!-- Newline comes first -->
-                        <xsl:sequence select="
-                            concat(
-                            custom:processChars(substring-before($text, '&#10;')),
-                            '&lt;br/&gt;',
-                            custom:preserveWhitespaceHTML(substring-after($text, '&#10;'))
-                            )"/>
-                    </xsl:when>
-                    <!-- or replace with spaces here if you want -->
-                    <xsl:otherwise>
-                        <!-- Tab comes first -->
-                        <xsl:sequence select="
-                            concat(
-                            custom:processChars(substring-before($text, '&#9;')),
-                            '&#9;',  
-                            custom:preserveWhitespaceHTML(substring-after($text, '&#9;'))
-                            )"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:when>
-            
-            <!-- Only newline found -->
-            <xsl:when test="contains($text, '&#10;')">
-                <xsl:sequence select="
-                    concat(
-                    custom:processChars(substring-before($text, '&#10;')),
-                    '&lt;br/&gt;',
-                    custom:preserveWhitespaceHTML(substring-after($text, '&#10;'))
-                    )"/>
-            </xsl:when>
-            
-            <!-- Only tab found -->
-            <!-- or replace with spaces if preferred -->
-            <xsl:when test="contains($text, '&#9;')">
-                <xsl:sequence select="
-                    concat(
-                    custom:processChars(substring-before($text, '&#9;')),
-                    '&#9;',  
-                    custom:preserveWhitespaceHTML(substring-after($text, '&#9;'))
-                    )"/>
-            </xsl:when>
-        </xsl:choose>
-    </xsl:function>
-    
-    <xsl:function name="custom:processChars" as="xs:string">
-        <xsl:param name="chunk" as="xs:string"/>
-        <xsl:sequence select="$chunk"/>
+        <xsl:sequence select="
+            replace(replace(replace($text, '&#10;', '&lt;br/&gt;'),'\\n', '&lt;br/&gt;'),'&#9;', '&#160;&#160;&#160;&#160;')"/>
     </xsl:function>
     
 </xsl:stylesheet>
