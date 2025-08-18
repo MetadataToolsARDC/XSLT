@@ -4,6 +4,7 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.0"
     xmlns:local="schemadotorg2rif_updated"
+    xmlns:custom="http://custom.nowhere.yet"
     xmlns="http://ands.org.au/standards/rif-cs/registryObjects">
     <xsl:output indent="yes"/>
     <xsl:strip-space elements="*"/>
@@ -11,6 +12,8 @@
     <xsl:param name="group" select="'ARDC Sitemap Crawler - 27 October 2022'"/>
     <xsl:param name="groupAcronym" select="''"/>
     <xsl:param name="prefixKeyWithGroup" select="true()"/>
+    
+    <xsl:import href="CustomFunctions.xsl"/>
     
     <xsl:param name="debug" select="true()"/>
     <xsl:variable name="xsd_url" select="'https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd'"/>
@@ -632,8 +635,8 @@
 
     <xsl:template match="description">
         <xsl:element name="description">
-            <xsl:attribute name="type">brief</xsl:attribute>
-            <xsl:apply-templates/>
+            <xsl:attribute name="type">full</xsl:attribute>
+            <xsl:apply-templates mode="HTML_Format"/>
         </xsl:element>
      </xsl:template>
     
@@ -644,14 +647,14 @@
     <xsl:template match="prov_plan">
         <xsl:element name="description">
             <xsl:attribute name="type">lineage</xsl:attribute>
-            <xsl:apply-templates/>
+            <xsl:apply-templates mode="HTML_Format"/>
         </xsl:element>
     </xsl:template>
 
     <xsl:template match="name" mode="description">
         <xsl:element name="description">
             <xsl:attribute name="type">brief</xsl:attribute>
-            <xsl:apply-templates/>
+            <xsl:apply-templates mode="HTML_Format"/>
         </xsl:element>
     </xsl:template>
 
@@ -1183,8 +1186,9 @@
     </xsl:template>
     
     <xsl:template match="description" mode="notes">
-        <xsl:element name="notes">
-            <xsl:apply-templates/>
+        <xsl:element name="description">
+            <xsl:attribute name="type">notes</xsl:attribute>
+            <xsl:apply-templates mode="HTML_Format"/>
         </xsl:element>
     </xsl:template>
     
@@ -1587,5 +1591,10 @@
     <xsl:template match="text()">
         <xsl:value-of select="normalize-space(.)"/>
     </xsl:template>
+    
+    <xsl:template match="text()" mode="HTML_Format">
+        <xsl:value-of select="custom:preserveWhitespaceHTML(.)"/>
+    </xsl:template>
+    
 
 </xsl:stylesheet>
