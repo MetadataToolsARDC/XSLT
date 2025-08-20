@@ -1441,30 +1441,11 @@
     <xsl:function name="local:getTypeFromIdentifier">
         <xsl:param name="identifier"/>
         <xsl:choose>
-            <!-- Don't call this without an identifier -->
-            <!--xsl:when test="not(string-length($identifier))">
-                <xsl:assert test="0"/> 
-            </xsl:when-->
-            <xsl:when test="contains($identifier, 'doi')">
-                <xsl:text>doi</xsl:text>
-            </xsl:when>
-            <xsl:when test="contains($identifier, 'raid')">
-                <xsl:text>raid</xsl:text>
-            </xsl:when>
-            <xsl:when test="contains($identifier, 'hdl.handle.net')">
-                <xsl:text>handle</xsl:text>
-            </xsl:when>
             <xsl:when test="contains($identifier, 'http')">
                 <xsl:text>url</xsl:text>
             </xsl:when>
-            <xsl:when test="contains($identifier, 'orcid')">
-                <xsl:text>orcid</xsl:text>
-            </xsl:when>
-            <xsl:when test="contains($identifier, 'ror')">
-                <xsl:text>ror</xsl:text>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:text>global</xsl:text>
+             <xsl:otherwise>
+                <xsl:text>local</xsl:text>
             </xsl:otherwise>
         </xsl:choose>
      </xsl:function>
