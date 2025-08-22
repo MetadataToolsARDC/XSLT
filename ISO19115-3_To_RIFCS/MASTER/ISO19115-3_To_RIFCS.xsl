@@ -138,7 +138,7 @@
                             </xsl:when>
                             <xsl:when test="fn:substring(lower-case($scopeCode), 1, fn:string-length('nongeographicdataset')) = 'nongeographicdataset'">
                                 <xsl:text>collection</xsl:text>
-                                <xsl:text>publication</xsl:text>
+                                <xsl:text>dataset</xsl:text>
                             </xsl:when>
                             <xsl:when test="fn:substring(lower-case($scopeCode), 1, fn:string-length('document')) = 'document'">
                                 <xsl:text>collection</xsl:text>
