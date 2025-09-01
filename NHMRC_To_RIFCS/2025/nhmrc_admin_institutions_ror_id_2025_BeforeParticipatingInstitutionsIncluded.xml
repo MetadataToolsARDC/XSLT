@@ -46,7 +46,7 @@
     </institution>
     <institution>
         <name>The Walter and Eliza Hall Institute of Medical Research</name>
-        <identifier>https://ror.org/01b6kha49</identifier>
+        <identifier/>
     </institution>
     <institution>
         <name>James Cook University</name>
@@ -70,10 +70,11 @@
     </institution>
     <institution>
         <name>Centre for Eye Research Australia Limited</name>
+        <identifier/>
     </institution>
     <institution>
         <name>The University of Newcastle</name>
-        <identifier>https://ror.org/00eae9z71</identifier>
+        <identifier/>
     </institution>
     <institution>
         <name>Australian National University</name>
@@ -81,6 +82,7 @@
     </institution>
     <institution>
         <name>The Council of the Queensland Institute of Medical Research</name>
+        <identifier/>
     </institution>
     <institution>
         <name>Baker Heart and Diabetes Institute</name>
@@ -92,6 +94,7 @@
     </institution>
     <institution>
         <name>St Vincent's Institute of Medical Research</name>
+        <identifier/>
     </institution>
     <institution>
         <name>Curtin University</name>
@@ -123,6 +126,7 @@
     </institution>
     <institution>
         <name>The Bionics Institute of Australia</name>
+        <identifier/>
     </institution>
     <institution>
         <name>Cancer Council Queensland</name>
@@ -138,6 +142,7 @@
     </institution>
     <institution>
         <name>The Sax Institute</name>
+        <identifier/>
     </institution>
     <institution>
         <name>Melanoma Institute Australia</name>
@@ -145,9 +150,11 @@
     </institution>
     <institution>
         <name>South Australian Health and Medical Research Institute Limited</name>
+        <identifier/>
     </institution>
     <institution>
         <name>Central Australian Aboriginal Congress Aboriginal Corporation</name>
+        <identifier/>
     </institution>
     <institution>
         <name>University of Wollongong</name>

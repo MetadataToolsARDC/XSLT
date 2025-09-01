@@ -41,7 +41,7 @@
     <Grant_Opportunity>2024 NHMRC-AMED Adopting Sustainable Partnerships for an Innovative Research Ecosystem</Grant_Opportunity>
     <Grant_Opportunity_ID>GO7043</Grant_Opportunity_ID>
     <Grant_Title>Mechanisms blocking the repair of mammalian hearts after injury: using AI-assisted directed evolution of novel biologics to empower regeneration.</Grant_Title>
-    <Administering_Institution></Administering_Institution>
+    <Administering_Institution>University of New South Wales</Administering_Institution>
     <State_or_Territory>NSW</State_or_Territory>
     <Organisation_Type>University</Organisation_Type>
     <Participating_Institutions>Victor Chang Cardiac Research Institute Limited | Centenary Institute | National Cerebral and Cardiovascular Center | Australian National University</Participating_Institutions>
@@ -70,10 +70,10 @@
     <Grant_Opportunity>2024 NHMRC-AMED Adopting Sustainable Partnerships for an Innovative Research Ecosystem</Grant_Opportunity>
     <Grant_Opportunity_ID>GO7043</Grant_Opportunity_ID>
     <Grant_Title>Mechanisms blocking the repair of mammalian hearts after injury: using AI-assisted directed evolution of novel biologics to empower regeneration.</Grant_Title>
-    <Administering_Institution>The Walter and Eliza Hall Institute of Medical Research</Administering_Institution>
+    <Administering_Institution></Administering_Institution>
     <State_or_Territory>NSW</State_or_Territory>
     <Organisation_Type>University</Organisation_Type>
-    <Participating_Institutions>Victor Chang Cardiac Research Institute Limited | Centenary Institute | National Cerebral and Cardiovascular Center | Australian National University</Participating_Institutions>
+    <Participating_Institutions></Participating_Institutions>
     <Involve_International_Collaboration_Y_N_>Yes</Involve_International_Collaboration_Y_N_>
     <Collaborating_Countries>Australia | Japan</Collaborating_Countries>
     <Grant_Start_Date>2025-04-01T00:00:00</Grant_Start_Date>
@@ -87,33 +87,31 @@
     <Plain_Description>Heart attacks damage heart muscle cells and can lead to heart failure with a poor 5-year survival rate. This research will elucidate the mechanisms of this poor heart repair and develop promising therapeutics to stimulate the regrowth of heart muscle. The project will identify the best drug candidate and formulate it so that it can be easily delivered to heart attack patients. The overall goal of this research is to remove roadblocks that prevent the body from healing itself after an injury.</Plain_Description>
     <Heading24> </Heading24>
 </row>
-    <row>
-        <Application_ID>2043991</Application_ID>
-        <Application_Year>2024</Application_Year>
-        <Date_Announced>2025-02-12T00:00:00</Date_Announced>
-        <Chief_Investigator_A__Project_Lead_>Prof Robert Graham</Chief_Investigator_A__Project_Lead_>
-        <CIA_ORCID_ID>0000-0002-1042-2587</CIA_ORCID_ID>
-        <Chief_Investigator_Team>Prof Robert Graham | Assoc Prof Daniel Hesselson | Prof Colin Jackson | Dr Siiri Iismaa | Dr Xenia Kaidonis | Dr Alexander Cole | Dr John Chen</Chief_Investigator_Team>
-        <Funding_Scheme>International Collaborations</Funding_Scheme>
-        <Level__Stream_or_Sub-Type>NHMRC-Japan Agency for Medical Research and Development (AMED)</Level__Stream_or_Sub-Type>
-        <Grant_Opportunity>2024 NHMRC-AMED Adopting Sustainable Partnerships for an Innovative Research Ecosystem</Grant_Opportunity>
-        <Grant_Opportunity_ID>GO7043</Grant_Opportunity_ID>
-        <Grant_Title>Mechanisms blocking the repair of mammalian hearts after injury: using AI-assisted directed evolution of novel biologics to empower regeneration.</Grant_Title>
-        <Administering_Institution>void</Administering_Institution>
-        <State_or_Territory>NSW</State_or_Territory>
-        <Organisation_Type>University</Organisation_Type>
-        <Participating_Institutions>Victor Chang Cardiac Research Institute Limited | Centenary Institute | National Cerebral and Cardiovascular Center | Australian National University</Participating_Institutions>
-        <Involve_International_Collaboration_Y_N_>Yes</Involve_International_Collaboration_Y_N_>
-        <Collaborating_Countries>Australia | Japan</Collaborating_Countries>
-        <Grant_Start_Date>2025-04-01T00:00:00</Grant_Start_Date>
-        <Grant_End_Date>2030-03-31T00:00:00</Grant_End_Date>
-        <Total_amount_awarded>$1,775,202.00</Total_amount_awarded>
-        <Broad_Research_Area>Basic Science Research</Broad_Research_Area>
-        <Fields_of_Research>BIOMEDICAL AND CLINICAL SCIENCES | Cardiovascular medicine and haematology | Cardiology (incl. cardiovascular diseases)
-            BIOLOGICAL SCIENCES | Genetics | Molecular evolution
-            BIOLOGICAL SCIENCES | Biochemistry and cell biology | Synthetic biology</Fields_of_Research>
-        <Research_Keywords>tissue repair | tissue regeneration | molecular evolution | cardiomyocytes | biological therapy</Research_Keywords>
-        <Plain_Description>Heart attacks damage heart muscle cells and can lead to heart failure with a poor 5-year survival rate. This research will elucidate the mechanisms of this poor heart repair and develop promising therapeutics to stimulate the regrowth of heart muscle. The project will identify the best drug candidate and formulate it so that it can be easily delivered to heart attack patients. The overall goal of this research is to remove roadblocks that prevent the body from healing itself after an injury.</Plain_Description>
-        <Heading24> </Heading24>
-    </row>
+<row>
+    <Application_ID>2043991</Application_ID>
+    <Application_Year>2024</Application_Year>
+    <Date_Announced>2025-02-12T00:00:00</Date_Announced>
+    <Chief_Investigator_A__Project_Lead_>Prof Robert Graham</Chief_Investigator_A__Project_Lead_>
+    <CIA_ORCID_ID>0000-0002-1042-2587</CIA_ORCID_ID>
+    <Chief_Investigator_Team>Prof Robert Graham | Assoc Prof Daniel Hesselson | Prof Colin Jackson | Dr Siiri Iismaa | Dr Xenia Kaidonis | Dr Alexander Cole | Dr John Chen</Chief_Investigator_Team>
+    <Funding_Scheme>International Collaborations</Funding_Scheme>
+    <Level__Stream_or_Sub-Type>NHMRC-Japan Agency for Medical Research and Development (AMED)</Level__Stream_or_Sub-Type>
+    <Grant_Opportunity>2024 NHMRC-AMED Adopting Sustainable Partnerships for an Innovative Research Ecosystem</Grant_Opportunity>
+    <Grant_Opportunity_ID>GO7043</Grant_Opportunity_ID>
+    <Grant_Title>Mechanisms blocking the repair of mammalian hearts after injury: using AI-assisted directed evolution of novel biologics to empower regeneration.</Grant_Title>
+    <State_or_Territory>NSW</State_or_Territory>
+    <Organisation_Type>University</Organisation_Type>
+     <Involve_International_Collaboration_Y_N_>Yes</Involve_International_Collaboration_Y_N_>
+    <Collaborating_Countries>Australia | Japan</Collaborating_Countries>
+    <Grant_Start_Date>2025-04-01T00:00:00</Grant_Start_Date>
+    <Grant_End_Date>2030-03-31T00:00:00</Grant_End_Date>
+    <Total_amount_awarded>$1,775,202.00</Total_amount_awarded>
+    <Broad_Research_Area>Basic Science Research</Broad_Research_Area>
+    <Fields_of_Research>BIOMEDICAL AND CLINICAL SCIENCES | Cardiovascular medicine and haematology | Cardiology (incl. cardiovascular diseases)
+        BIOLOGICAL SCIENCES | Genetics | Molecular evolution
+        BIOLOGICAL SCIENCES | Biochemistry and cell biology | Synthetic biology</Fields_of_Research>
+    <Research_Keywords>tissue repair | tissue regeneration | molecular evolution | cardiomyocytes | biological therapy</Research_Keywords>
+    <Plain_Description>Heart attacks damage heart muscle cells and can lead to heart failure with a poor 5-year survival rate. This research will elucidate the mechanisms of this poor heart repair and develop promising therapeutics to stimulate the regrowth of heart muscle. The project will identify the best drug candidate and formulate it so that it can be easily delivered to heart attack patients. The overall goal of this research is to remove roadblocks that prevent the body from healing itself after an injury.</Plain_Description>
+    <Heading24> </Heading24>
+</row>
 </root>
