@@ -8,6 +8,7 @@
     xmlns:fn="https://www.w3.org/TR/xpath-functions-31/"
     xmlns:thread="java.lang.Thread"
     xmlns:local="http://local.to.here"
+    exclude-result-prefixes="fn array local map ro thread xs xsi"
     version="3.0" >
     <!-- This stylesheet attempts to match all values in the Admin_Institution|Administering_Institution column from the supplied NHMRC grant data 
      spreadsheet against an organisation record entry in RoR for this institution so that the activity(grant) record can be related 
@@ -22,9 +23,11 @@
     <xsl:variable name="queryroot_idFromName" select="'https://api.ror.org/v2/organizations?query='"/>
     <xsl:variable name="queryroot_nameFromID" select="'https://api.ror.org/organizations/'"/>
     
-     <xsl:function name="local:doubleCheck" as="xs:boolean">
+    <xsl:function name="local:doubleCheck" as="xs:boolean">
         <xsl:param name="name" as="xs:string"/>
         <xsl:param name="idPostfix" as="xs:string"/>
+        
+        <!--xsl:variable name="sleep" select="local:sleep(6000)"/-->
         
         <xsl:variable name="query_getName" select="concat($queryroot_nameFromID, $idPostfix)"/>
         <xsl:message select="concat('query_getName :', $query_getName)"></xsl:message>
@@ -32,30 +35,30 @@
         <xsl:variable name="jsonMap_getName" select="json-doc($query_getName)" as="item()?"/>
         <xsl:variable name="namesArray" select="$jsonMap_getName?names"/>
         <xsl:variable name="foundName_array" select="array{$namesArray?*?value}" as="array(*)"/>
-         
-         <xsl:variable name="results" as="xs:boolean*">
+        
+        <xsl:variable name="results" as="xs:boolean*">
             <xsl:for-each select="array:flatten($foundName_array)">
                 <xsl:variable name="foundName" select="."/>
-                    <xsl:if test="lower-case($name) = lower-case($foundName)">
-                        <xsl:message select="concat('double check - name sought: [', $name, '] matches name found: [', $foundName, ']')"/>
-                        <xsl:copy-of select="true()"/>
-                    </xsl:if>
+                <xsl:if test="lower-case($name) = lower-case($foundName)">
+                    <xsl:message select="concat('double check - name sought: [', $name, '] matches name found: [', $foundName, ']')"/>
+                    <xsl:copy-of select="true()"/>
+                </xsl:if>
             </xsl:for-each>
-         </xsl:variable>
-         
-         <xsl:choose>
+        </xsl:variable>
+        
+        <xsl:choose>
             <xsl:when test="count($results) > 0">
                 <xsl:message select="concat('double check succeeded - found name matching ', $name)"/>
                 <xsl:copy-of select="true()"/>
             </xsl:when>
-             <xsl:otherwise>
+            <xsl:otherwise>
                 <xsl:copy-of select="false()"/>
                 <xsl:message select="concat('double check failed - no name found for id: http://ror.org/', $idPostfix, ' that matches ', $name)"></xsl:message>
-             </xsl:otherwise>
-         </xsl:choose>
-     </xsl:function>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
     
-    <xsl:function name="local:sleep">
+    <!--xsl:function name="local:sleep">
         <xsl:param name="milliseconds"/>
         
         <xsl:choose>
@@ -67,94 +70,60 @@
             </xsl:otherwise>
         </xsl:choose>
         
-    </xsl:function>
+    </xsl:function-->
     
-   
-    <xsl:template match="/root">
-        <xsl:element name="institutions">      
-            <xsl:for-each select="row">
-                <xsl:variable name="all_organisations" select="((Admin_Institution, Administering_Institution) ! normalize-space(.)),(Participating_Institutions)[normalize-space(.) != ''] ! tokenize(., '\|') ! normalize-space(.)"/>
-                                     
-                    <xsl:for-each select="distinct-values($all_organisations[normalize-space(.) != ''])">
-                        <xsl:variable name="admin_inst" select="."/>
-                        
-                        <xsl:message select="concat('Finding RoR for Institution: ', $admin_inst)"></xsl:message>
-                      
-                        
-                        <xsl:if test="string-length($admin_inst) > 0">
-                        
-                            <xsl:variable name="query_getID" select="concat($queryroot_idFromName,'(',encode-for-uri($admin_inst),')')"/>
-                            <xsl:message select="concat('query_getID :', $query_getID)"></xsl:message>
-                            
-                            <xsl:variable name="jsonMap_getID" as="item()*">
-                                <xsl:try>
-                                    <xsl:sequence select="json-doc($query_getID)"/>
-                                    <xsl:catch>
-                                        <!-- Return empty sequence on error -->
-                                        <xsl:sequence select="()"/>
-                                    </xsl:catch>
-                                </xsl:try>
-                            </xsl:variable>
-                            
-                            <xsl:variable name="sleep" select="local:sleep(3000)"/>
-                            
-                             <xsl:element name="institution">
-                                <xsl:text>&#xA;</xsl:text>
-                                <xsl:element name="name"><xsl:value-of select="$admin_inst"/></xsl:element>
-                                <xsl:choose>
-                                    <xsl:when test="exists($jsonMap_getID) and map:size($jsonMap_getID) > 0">
-                                      <xsl:variable name="foundItems_array" select="map:find($jsonMap_getID, 'items')" as="array(*)"/>
-                                        <xsl:if test="array:size($foundItems_array) > 0">
-                                            <xsl:variable name="foundID_array" select="map:find($foundItems_array, 'id')" as="array(*)"/>
-                                            
-                                            <xsl:choose>
-                                                 <xsl:when test="array:size($foundID_array) > 0">
-                                                     <xsl:variable name="identifier" select="array:get($foundID_array, 1)" as="item()*"/>
-                                                     
-                                                     <xsl:if test="(count($identifier) > 0) and contains($identifier, '/')">
-                                                         
-                                                         <xsl:variable name="index" select="count(tokenize($identifier, '/'))"/>
-                                                         <xsl:if test="$index > 1">
-                                                             <xsl:variable name="idPostfix" select="tokenize($identifier, '/')[$index]"/>
-                                                             
-                                                             <xsl:variable name="sleep" select="local:sleep(3000)"/>
-                                                             <xsl:choose>
-                                                                 <xsl:when test="$identifier and local:doubleCheck($admin_inst, $idPostfix)">
-                                                                     <xsl:text>&#xA;</xsl:text>
-                                                                     <xsl:element name="identifier">
-                                                                         <xsl:value-of select="$identifier[1]"/>
-                                                                     </xsl:element>
-                                                                 </xsl:when>
-                                                                 <xsl:otherwise>
-                                                                     <xsl:text>&#xA;</xsl:text>
-                                                                     <xsl:element name="identifier"></xsl:element>
-                                                                 </xsl:otherwise>
-                                                             </xsl:choose>
-                                                           
-                                                         </xsl:if>
-                                                     </xsl:if>
-                                                 </xsl:when>
-                                                <xsl:otherwise>
-                                                    <xsl:text>&#xA;</xsl:text>
-                                                    <xsl:element name="identifier"></xsl:element>
-                                                </xsl:otherwise>
-                                            </xsl:choose>
+    
+    <xsl:template match="/root/row">
+       
+            <xsl:variable name="admin_institution" select="normalize-space(Admin_Institution)"/>
+            <xsl:if test="$admin_institution != ''">
+                <xsl:message select="concat('Finding RoR for Institution: ', $admin_institution)"></xsl:message>
+                
+                
+                <xsl:if test="string-length($admin_institution) > 0">
+                    
+                    <xsl:variable name="query_getID" select="concat($queryroot_idFromName,'(',encode-for-uri($admin_institution),')')"/>
+                    <xsl:message select="concat('query_getID :', $query_getID)"></xsl:message>
+                    
+                    <xsl:variable name="jsonMap_getID" as="item()*">
+                        <xsl:try>
+                            <xsl:sequence select="json-doc($query_getID)"/>
+                            <xsl:catch>
+                                <xsl:message select="concat('error caught retrieving json from: ', $query_getID)"></xsl:message>
+                                <xsl:sequence select="()"/>
+                            </xsl:catch>
+                        </xsl:try>
+                    </xsl:variable>
+                    
+                    <!--xsl:variable name="sleep" select="local:sleep(6000)"/-->
+                    
+                    <institution>
+                        <name><xsl:value-of select="$admin_institution"/></name>
+                        <identifier>
+                            <xsl:choose>
+                                <xsl:when test="exists($jsonMap_getID) and map:size($jsonMap_getID) > 0">
+                                    <xsl:variable name="foundItems_array" select="map:find($jsonMap_getID, 'items')" as="array(*)"/>
+                                    <xsl:if test="array:size($foundItems_array) > 0">
+                                        <xsl:variable name="foundID_array" select="map:find($foundItems_array, 'id')" as="array(*)"/>
+                                        <xsl:if test="array:size($foundID_array) > 0">
+                                            <xsl:variable name="identifier" select="array:get($foundID_array, 1)" as="item()*"/>
+                                            <xsl:if test="$identifier and contains($identifier, '/')">
+                                                <xsl:variable name="index" select="count(tokenize($identifier, '/'))"/>
+                                                <xsl:if test="$index > 1">
+                                                    <xsl:variable name="idPostfix" select="tokenize($identifier, '/')[$index]"/>
+                                                    <xsl:if test="local:doubleCheck($admin_institution, $idPostfix)">
+                                                        <xsl:value-of select="$identifier"/>
+                                                    </xsl:if>
+                                                </xsl:if>
+                                            </xsl:if>
                                         </xsl:if>
-                                    </xsl:when>
-                                    <xsl:otherwise>
-                                        <xsl:text>&#xA;</xsl:text>
-                                        <xsl:element name="identifier"></xsl:element>
-                                    </xsl:otherwise>
-                                </xsl:choose>
-                                <xsl:text>&#xA;</xsl:text>
-                            </xsl:element>    
-                            <xsl:text>&#xA;</xsl:text>
-                        </xsl:if>
-                    </xsl:for-each>
-            </xsl:for-each>
-        </xsl:element>
+                                    </xsl:if>
+                                </xsl:when>
+                                <xsl:otherwise/>
+                            </xsl:choose>
+                        </identifier>
+                     </institution>
+                </xsl:if>
+            </xsl:if>
     </xsl:template>
 </xsl:stylesheet>
-
-
-
