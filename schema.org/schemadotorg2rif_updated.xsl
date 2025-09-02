@@ -1325,26 +1325,64 @@
              <xsl:choose>
                  <xsl:when test="$match">
                      <xsl:if test="matches(., $priorityType)">
-                       <xsl:element name="identifier">
-                           <xsl:attribute name="type">
-                               <xsl:value-of select="local:getTypeFromIdentifier(.)"/>
-                           </xsl:attribute>
-                           <xsl:value-of select="."/>
-                       </xsl:element>
+                        <xsl:apply-templates select="."  mode="identifier_with_type"/>
                      </xsl:if>
                  </xsl:when>
                  <xsl:otherwise>
                      <xsl:if test="not(matches(., $priorityType))">
-                         <xsl:element name="identifier">
-                             <xsl:attribute name="type">
-                                 <xsl:value-of select="local:getTypeFromIdentifier(.)"/>
-                             </xsl:attribute>
-                             <xsl:value-of select="."/>
-                         </xsl:element>
+                         <xsl:apply-templates select="."  mode="identifier_with_type"/>
                      </xsl:if>
                  </xsl:otherwise>
              </xsl:choose>
         </xsl:if>
+        
+    </xsl:template>
+    
+    <xsl:template match="identifier | url | id | value | sameAs" mode="identifier_with_type">
+        
+        <xsl:choose>
+            <xsl:when test="starts-with(., 'http')">
+                <xsl:variable name="fullPath" select="substring-after(., '://')"/>
+                <xsl:variable name="parts_sequence" select="tokenize($fullPath, '/')" as="xs:string*"/>
+                <xsl:variable name="domain" select="$parts_sequence[1]"/>
+                <xsl:message select="concat('domain: ', $domain)"/>
+                
+                <xsl:variable name="pathAfterDomain" select="substring-after(., concat($domain, '/'))"/>
+                <xsl:message select="concat('pathAfterDomain: ', $pathAfterDomain)"/>
+                
+                
+                <xsl:if test="string-length($pathAfterDomain) > 0">
+                    <xsl:element name="identifier">
+                        <xsl:attribute name="type">
+                            <xsl:text>url</xsl:text>
+                        </xsl:attribute>
+                        <xsl:value-of select="."/>
+                    </xsl:element>
+                   
+                    <xsl:element name="identifier">
+                        <xsl:attribute name="type">
+                            <xsl:choose>
+                                <xsl:when test="contains($domain, '.')">
+                                    <xsl:value-of select="substring-before($domain, '.')"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:text>local</xsl:text>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:attribute>
+                       <xsl:value-of select="$pathAfterDomain"/>
+                    </xsl:element>
+                </xsl:if>
+            </xsl:when>
+             <xsl:otherwise>
+                 <xsl:element name="identifier">
+                     <xsl:attribute name="type">
+                         <xsl:text>local</xsl:text>
+                     </xsl:attribute>
+                     <xsl:value-of select="."/>
+                 </xsl:element>
+             </xsl:otherwise>
+        </xsl:choose>
         
     </xsl:template>
     
@@ -1429,7 +1467,7 @@
             
             <xsl:for-each select="$identifiersRetrieved">
                 <xsl:if test="(0 > $numRequired) or ($numRequired >= position())">
-                   <xsl:copy-of select="."/>
+                    <xsl:copy-of select="."/>
                 </xsl:if>
             </xsl:for-each>
         </xsl:sequence>
@@ -1438,19 +1476,6 @@
     </xsl:template>
         
         
-    <xsl:function name="local:getTypeFromIdentifier">
-        <xsl:param name="identifier"/>
-        <xsl:choose>
-            <xsl:when test="contains($identifier, 'http')">
-                <xsl:text>url</xsl:text>
-            </xsl:when>
-             <xsl:otherwise>
-                <xsl:text>local</xsl:text>
-            </xsl:otherwise>
-        </xsl:choose>
-     </xsl:function>
-    
-    
    <xsl:template match="temporalCoverage">
         <xsl:element name="coverage">
             <xsl:element name="temporal">
