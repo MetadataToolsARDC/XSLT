@@ -351,8 +351,8 @@
                             <xsl:variable name="chiefInvestigators" select="Chief_Investigator_Team"/>
                             <xsl:for-each select="tokenize($chiefInvestigators, '\|')">
                                 <xsl:if test="string-length(normalize-space(.)) > 0">
-                                    <xsl:value-of select="normalize-space(.)"/>
                                     <xsl:text>&lt;br/&gt;</xsl:text>
+                                    <xsl:value-of select="normalize-space(.)"/>
                                 </xsl:if>
                             </xsl:for-each>
                         </xsl:element>
@@ -366,8 +366,8 @@
                             <xsl:variable name="collabCountries" select="Collaborating_Countries"/>
                             <xsl:for-each select="tokenize($collabCountries, '\|')">
                                 <xsl:if test="string-length(normalize-space(.)) > 0">
-                                    <xsl:value-of select="normalize-space(.)"/>
                                     <xsl:text>&lt;br/&gt;</xsl:text>
+                                    <xsl:value-of select="normalize-space(.)"/>
                                 </xsl:if>
                             </xsl:for-each>
                         </xsl:element>

@@ -6,7 +6,7 @@
     </institution>
     <institution>
         <name>Agency for Clinical Innovation</name>
-        <identifier>https://abr.business.gov.au/ABN/View/89809648636</identifier>?
+        <identifier>https://abr.business.gov.au/ABN/View/89809648636</identifier>
     </institution>
     <institution>
         <name>Alfred Health</name>
@@ -334,20 +334,8 @@
     </institution>
     <institution>
         <name>Monash Partners</name>
-        <identifier/>
+        <identifier>http://https://monashpartners.org.au</identifier>
     </institution> 
-    <!--To decide: Use an identifier for Monash Partners only, or one per each of the following: 
-        https://monashpartners.org.au/about-us/overview/
-    Alfred Health
-    Monash Health
-    Monash University
-    Peninsula Health
-    Eastern Health
-    Cabrini Health
-    Burnet Institute
-    Hudson Institute
-    Baker Heart and Diabetes Institute
-    -->
     <institution>
         <name>Monash University</name>
         <identifier>https://ror.org/02bfwt286</identifier>
@@ -550,7 +538,7 @@
     </institution>
     <institution>
         <name>Starship Children's Hospital</name>
-        <identifier/>
+        <identifier>https://ror.org/04sh9kd82</identifier>
     </institution>
     <institution>
         <name>St Vincent's Hospital Melbourne</name>
