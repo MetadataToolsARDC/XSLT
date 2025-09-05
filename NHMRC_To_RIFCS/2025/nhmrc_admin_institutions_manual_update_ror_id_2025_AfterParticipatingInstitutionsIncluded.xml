@@ -6,7 +6,7 @@
     </institution>
     <institution>
         <name>Agency for Clinical Innovation</name>
-        <identifier>https://abr.business.gov.au/ABN/View?abn=89809648636</identifier>?
+        <identifier>https://abr.business.gov.au/ABN/View/89809648636</identifier>?
     </institution>
     <institution>
         <name>Alfred Health</name>
@@ -62,11 +62,11 @@
     </institution>
     <institution>
         <name>Cabrini Health</name>
-        <identifier>https://abr.business.gov.au/ABN/View?abn=33370684005</identifier>
+        <identifier>https://abr.business.gov.au/ABN/View/33370684005</identifier>
     </institution>
     <institution>
         <name>Cairns and Hinterland Hospital and Health Service</name>
-        <identifier>https://abr.business.gov.au/ABN/View?abn=25285907786</identifier>
+        <identifier>https://abr.business.gov.au/ABN/View/25285907786</identifier>
     </institution>
     <institution>
         <name>Calvary Health Care Canberra</name>
@@ -90,11 +90,11 @@
     </institution>
     <institution>
         <name>Central Adelaide Local Health Network Incorporated</name>
-        <identifier>https://abr.business.gov.au/ABN/View?abn=96269526412</identifier>
+        <identifier>https://abr.business.gov.au/ABN/View/96269526412</identifier>
     </institution>
     <institution>
         <name>Central Australian Aboriginal Congress Aboriginal Corporation</name>
-        <identifier>https://abr.business.gov.au/ABN/View?abn=76210591710</identifier>
+        <identifier>https://abr.business.gov.au/ABN/View/76210591710</identifier>
     </institution>
     <institution>
         <name>Centre for Eye Research Australia Limited</name>
@@ -130,7 +130,7 @@
     </institution>
     <institution>
         <name>Danila Dilba Health Service</name>
-        <identifier>https://abr.business.gov.au/ABN/View?abn=57024747460</identifier>
+        <identifier>https://abr.business.gov.au/ABN/View/57024747460</identifier>
     </institution>
     <institution>
         <name>Deakin University</name>
@@ -146,11 +146,11 @@
     </institution>
     <institution>
         <name>Department of Health TAS</name>
-        <identifier>https://abr.business.gov.au/ABN/View?abn=11255872006</identifier>
+        <identifier>https://abr.business.gov.au/ABN/View/11255872006</identifier>
     </institution>
     <institution>
         <name>Department of Health VIC</name>
-        <identifier>https://abr.business.gov.au/ABN/View?abn=74410330756</identifier>
+        <identifier>https://abr.business.gov.au/ABN/View/74410330756</identifier>
     </institution>
     <institution>
         <name>Duke-NUS Graduate Medical School</name>
@@ -194,11 +194,11 @@
     </institution>
     <institution>
         <name>Gold Coast University Hospital</name>
-        <identifier>https://abr.business.gov.au/ABN/View?abn=82616992416</identifier>
+        <identifier>https://abr.business.gov.au/ABN/View/82616992416</identifier>
     </institution>
     <institution>
         <name>Gove District Hospital</name>
-        <identifier>https://abr.business.gov.au/ABN/View?abn=84085734992</identifier><!-- This ABN is quite an umbrella, so perhaps not specific enough here -->
+        <identifier>https://abr.business.gov.au/ABN/View/84085734992</identifier><!-- This ABN is quite an umbrella, so perhaps not specific enough here -->
     </institution>
     <institution>
         <name>Grampians Health</name>
@@ -234,11 +234,11 @@
     </institution>
     <institution>
         <name>Katherine West Health Board Aboriginal Corporation</name>
-        <identifier>https://abr.business.gov.au/ABN/View?abn=23351866925</identifier>
+        <identifier>https://abr.business.gov.au/ABN/View/23351866925</identifier>
     </institution>
     <institution>
         <name>Latrobe Regional Health</name>
-        <identifier>https://abr.business.gov.au/ABN/View?abn=18128843652</identifier>
+        <identifier>https://abr.business.gov.au/ABN/View/18128843652</identifier>
     </institution>
     <institution>
         <name>La Trobe University</name>
@@ -270,7 +270,7 @@
     </institution>
     <institution>
         <name>Mala'la Health Service Aboriginal Corporation</name>
-        <identifier>https://abr.business.gov.au/ABN/View?abn=89357836457</identifier>
+        <identifier>https://abr.business.gov.au/ABN/View/89357836457</identifier>
     </institution>
     <institution>
         <name>Mater Hospital Brisbane</name>
@@ -310,23 +310,23 @@
     </institution>
     <institution>
         <name>Metro North Hospital and Health Service</name>
-        <identifier>https://abr.business.gov.au/ABN/View?abn=18496277942</identifier>
+        <identifier>https://abr.business.gov.au/ABN/View/18496277942</identifier>
     </institution>
     <institution>
         <name>Mid North Coast Local Health District</name>
-        <identifier>https://abr.business.gov.au/ABN/View?abn=57946356658</identifier>
+        <identifier>https://abr.business.gov.au/ABN/View/57946356658</identifier>
     </institution>
     <institution>
         <name>Mildura Rural City Council</name>
-        <identifier>https://abr.business.gov.au/ABN/View?abn=42498937037</identifier>
+        <identifier>https://abr.business.gov.au/ABN/View/42498937037</identifier>
     </institution>
     <institution>
         <name>Miwatj Health Aboriginal Corporation</name>
-        <identifier/>
+        <identifier>https://abr.business.gov.au/ABN/View/96843428729</identifier>
     </institution>
     <institution>
         <name>MJD Foundation</name>
-        <identifier/>
+        <identifier>https://abr.business.gov.au/ABN/View/65159208867</identifier>
     </institution>
     <institution>
         <name>Monash Health</name>
@@ -335,18 +335,30 @@
     <institution>
         <name>Monash Partners</name>
         <identifier/>
-    </institution>
+    </institution> 
+    <!--To decide: Use an identifier for Monash Partners only, or one per each of the following: 
+        https://monashpartners.org.au/about-us/overview/
+    Alfred Health
+    Monash Health
+    Monash University
+    Peninsula Health
+    Eastern Health
+    Cabrini Health
+    Burnet Institute
+    Hudson Institute
+    Baker Heart and Diabetes Institute
+    -->
     <institution>
         <name>Monash University</name>
         <identifier>https://ror.org/02bfwt286</identifier>
     </institution>
     <institution>
         <name>MRC/UVRI Uganda Research Unit on AIDS</name>
-        <identifier/>
+        <identifier>https://www.lshtm.ac.uk/research/units/mrc-uganda</identifier>
     </institution>
     <institution>
         <name>Mt Wilga Private Rehabilitation Hospital</name>
-        <identifier/>
+        <identifier>https://abr.business.gov.au/ABN/View/54003222080</identifier>
     </institution>
     <institution>
         <name>Municipal Association of Victoria</name>
@@ -362,7 +374,7 @@
     </institution>
     <institution>
         <name>Murrumbidgee Local Health District</name>
-        <identifier/>
+        <identifier>https://abr.business.gov.au/ABN/View/71172428618</identifier>
     </institution>
     <institution>
         <name>National Cerebral and Cardiovascular Center</name>
@@ -378,7 +390,7 @@
     </institution>
     <institution>
         <name>North Central Local Learning and Employment Network</name>
-        <identifier/>
+        <identifier>https://abr.business.gov.au/ABN/View/93103445051</identifier>
     </institution>
     <institution>
         <name>Northern Health</name>
@@ -386,35 +398,35 @@
     </institution>
     <institution>
         <name>Northern Queensland Primary Health Network</name>
-        <identifier/>
+        <identifier>https://abr.business.gov.au/ABN/View/35605757640</identifier>
     </institution>
     <institution>
         <name>Northern Territory Department of Health</name>
-        <identifier/>
+        <identifier>https://ror.org/021ctjg87</identifier>
     </institution>
     <institution>
         <name>Northern Territory Primary Health Network</name>
-        <identifier/>
+        <identifier>https://abr.business.gov.au/ABN/View/17158970480</identifier>
     </institution>
     <institution>
         <name>North West Hospital and Health Service</name>
-        <identifier/>
+        <identifier>https://abr.business.gov.au/ABN/View/22406683778</identifier>
     </institution>
     <institution>
         <name>NSW Health</name>
-        <identifier/>
+        <identifier>https://ror.org/03tb4gf50</identifier>
     </institution>
     <institution>
         <name>NSW Regional Health Partners</name>
-        <identifier/>
+        <identifier>https://abr.business.gov.au/ABN/View/63598010203</identifier>
     </institution>
     <institution>
         <name>NSW Rural Doctors Network</name>
-        <identifier/>
+        <identifier>https://abr.business.gov.au/ABN/View/52081388810</identifier>
     </institution>
     <institution>
         <name>Outcome Health</name>
-        <identifier/>
+        <identifier>https://abr.business.gov.au/ABN/View/86129637412</identifier>
     </institution>
     <institution>
         <name>Papua New Guinea Institute of Medical Research</name>
@@ -438,7 +450,7 @@
     </institution>
     <institution>
         <name>Primary Health Tasmania</name>
-        <identifier/>
+        <identifier>https://abr.business.gov.au/ABN/View/47082572629</identifier>
     </institution>
     <institution>
         <name>Prince of Wales Hospital</name>
@@ -454,7 +466,7 @@
     </institution>
     <institution>
         <name>Queensland Aboriginal and Islander Health Council</name>
-        <identifier/>
+        <identifier>https://abr.business.gov.au/ABN/View/97111116762</identifier>
     </institution>
     <institution>
         <name>Queensland Health</name>
@@ -469,9 +481,8 @@
         <identifier>https://ror.org/01b05bn14</identifier>
     </institution>
     <institution>
-        <name>Researcherenye Wappayalawangka-Central Australia Academic Health Science
-            Network</name>
-        <identifier/>
+        <name>Researcherenye Wappayalawangka-Central Australia Academic Health Science Network</name>
+        <identifier>https://abr.business.gov.au/ABN/View/76210591710</identifier>
     </institution>
     <institution>
         <name>RIKEN Advanced Science Institute</name>
@@ -495,11 +506,11 @@
     </institution>
     <institution>
         <name>Royal Flying Doctor Service of Australia</name>
-        <identifier/>
+        <identifier>https://abr.business.gov.au/ABN/View/74438059643</identifier>
     </institution>
     <institution>
         <name>Royal Free Hospital</name>
-        <identifier/>
+        <identifier>https://www.odsdatasearchandexport.nhs.uk/?search=advorg&amp;code=5C197</identifier>
     </institution>
     <institution>
         <name>Royal Hobart Hospital</name>
@@ -519,7 +530,7 @@
     </institution>
     <institution>
         <name>Silverchain</name>
-        <identifier/>
+        <identifier>https://abr.business.gov.au/ABN/View/77119417018</identifier>
     </institution>
     <institution>
         <name>Sir Charles Gairdner Hospital</name>
@@ -527,7 +538,7 @@
     </institution>
     <institution>
         <name>South Australian Health and Medical Research Institute Limited</name>
-        <identifier/>
+        <identifier>https://ror.org/03e3kts03</identifier>
     </institution>
     <institution>
         <name>South Eastern Sydney Local Health District</name>
@@ -551,15 +562,15 @@
     </institution>
     <institution>
         <name>St Vincent's Institute of Medical Research</name>
-        <identifier/>
+        <identifier>https://abr.business.gov.au/ABN/View/52004705640</identifier>
     </institution>
     <institution>
         <name>Sunrise Health Service</name>
-        <identifier/>
+        <identifier>https://abr.business.gov.au/ABN/View/26778213582</identifier>
     </institution>
     <institution>
         <name>Sunshine Coast Hospital and Health Service</name>
-        <identifier/>
+        <identifier>https://ror.org/017ay4a94</identifier>
     </institution>
     <institution>
         <name>Swinburne University of Technology</name>
@@ -567,11 +578,11 @@
     </institution>
     <institution>
         <name>Sydney Children's Hospital, Randwick</name>
-        <identifier/>
+        <identifier>https://ror.org/02tj04e91</identifier>
     </institution>
     <institution>
         <name>Sydney Children's Hospitals Network</name>
-        <identifier/>
+        <identifier>https://ror.org/04d87y574</identifier>
     </institution>
     <institution>
         <name>Sydney Local Health District</name>
@@ -579,19 +590,19 @@
     </institution>
     <institution>
         <name>Tasmanian Health Service</name>
-        <identifier/>
+        <identifier>https://abr.business.gov.au/ABN/View/15359196040</identifier>
     </institution>
     <institution>
         <name>The Bionics Institute of Australia</name>
-        <identifier/>
+        <identifier>https://ror.org/05e4f1b55</identifier>
     </institution>
     <institution>
         <name>The Council of the Queensland Institute of Medical Research</name>
-        <identifier/>
+        <identifier>https://abr.business.gov.au/ABN/View/31411813344</identifier>
     </institution>
     <institution>
         <name>The Garvan Institute of Medical Research</name>
-        <identifier/>
+        <identifier>https://ror.org/01b3dvp57</identifier>
     </institution>
     <institution>
         <name>The George Institute for Global Health</name>
@@ -603,7 +614,7 @@
     </institution>
     <institution>
         <name>The Royal Children's Hospital Melbourne</name>
-        <identifier/>
+        <identifier>https://abr.business.gov.au/ABN/View/35655720546</identifier>
     </institution>
     <institution>
         <name>The Royal Victorian Eye &amp; Ear Hospital</name>
@@ -611,11 +622,11 @@
     </institution>
     <institution>
         <name>The Royal Women's Hospital</name>
-        <identifier/>
+        <identifier>https://ror.org/03grnna41</identifier>
     </institution>
     <institution>
         <name>The Sax Institute</name>
-        <identifier/>
+        <identifier>https://ror.org/008cfxd05</identifier>
     </institution>
     <institution>
         <name>The University of Adelaide</name>
@@ -623,11 +634,11 @@
     </institution>
     <institution>
         <name>The University of Newcastle</name>
-        <identifier/>
+        <identifier>https://ror.org/00eae9z71</identifier>
     </institution>
     <institution>
         <name>The University of New England</name>
-        <identifier/>
+        <identifier>https://ror.org/04r659a56</identifier>
     </institution>
     <institution>
         <name>The University of Queensland</name>
@@ -635,23 +646,23 @@
     </institution>
     <institution>
         <name>The Walter and Eliza Hall Institute of Medical Research</name>
-        <identifier/>
+        <identifier>https://ror.org/01b6kha49</identifier>
     </institution>
     <institution>
         <name>Torres and Cape Hospital and Health Service</name>
-        <identifier/>
+        <identifier>https://abr.business.gov.au/ABN/View/60821496581</identifier>
     </institution>
     <institution>
         <name>Townsville Hospital and Health Service</name>
-        <identifier/>
+        <identifier>https://abr.business.gov.au/ABN/View/86747187217</identifier>
     </institution>
     <institution>
-        <name>Townsville University Hospital</name>
-        <identifier/>
+        <name>Townsville University Hospital</name> <!-- Previously called "Townsville Hospital" -->
+        <identifier>https://ror.org/021zqhw10</identifier> <!-- Townsville Hospital -->
     </institution>
     <institution>
         <name>Tropical Australian Academic Health Centre Limited</name>
-        <identifier/>
+        <identifier>https://abr.business.gov.au/ABN/View/52633876936</identifier>
     </institution>
     <institution>
         <name>Universitas Sumatera Utara</name>
@@ -715,7 +726,7 @@
     </institution>
     <institution>
         <name>University of Tokyo</name>
-        <identifier/>
+        <identifier>https://ror.org/057zh3y96</identifier>
     </institution>
     <institution>
         <name>University of Western Australia</name>
@@ -731,15 +742,15 @@
     </institution>
     <institution>
         <name>Victor Chang Cardiac Research Institute Limited</name>
-        <identifier/>
+        <identifier>https://ror.org/03trvqr13</identifier>
     </institution>
     <institution>
         <name>Victorian State Government</name>
-        <identifier/>
+        <identifier>https://ror.org/02xvc5r05</identifier>
     </institution>
     <institution>
         <name>Western Alliance</name>
-        <identifier/>
+        <identifier>https://abr.business.gov.au/ABN/View/14615833951</identifier>
     </institution>
     <institution>
         <name>Western Health</name>
@@ -751,7 +762,7 @@
     </institution>
     <institution>
         <name>Western Sydney Local Health District</name>
-        <identifier/>
+        <identifier>https://abr.business.gov.au/ABN/View/48702394764</identifier>
     </institution>
     <institution>
         <name>Western Sydney University</name>
@@ -767,10 +778,10 @@
     </institution>
     <institution>
         <name>Wuchopperen Health Service</name>
-        <identifier/>
+        <identifier>https://abr.business.gov.au/ABN/View/15010112580</identifier>
     </institution>
     <institution>
         <name>YARRA RANGES SHIRE COUNCIL</name>
-        <identifier/>
+        <identifier>https://abr.business.gov.au/ABN/View/21973226012</identifier>
     </institution>
 </institutions>

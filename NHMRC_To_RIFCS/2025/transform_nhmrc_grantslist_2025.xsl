@@ -5,7 +5,7 @@
 
    <xsl:output method="xml"/>
     
-    <xsl:import href="../CORE/transform_nhmrc_grantslist_core.xsl"/>
+    <xsl:import href="transform_nhmrc_grantslist_core_2025.xsl"/>
     
     <xsl:variable name="AdminInstitutions" select="document('nhmrc_admin_institutions_manual_update_ror_id_2025.xml')"/>
     
