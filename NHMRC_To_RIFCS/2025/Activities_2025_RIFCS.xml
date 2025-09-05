@@ -20657,7 +20657,7 @@
                 <relation type="hasParticipant"/>
             </relatedInfo>
             <relatedInfo type="party">
-                <identifier type="uri">http://https://monashpartners.org.au</identifier>
+                <identifier type="uri">https://monashpartners.org.au</identifier>
                 <title>Monash Partners</title>
                 <relation type="hasParticipant"/>
             </relatedInfo>
