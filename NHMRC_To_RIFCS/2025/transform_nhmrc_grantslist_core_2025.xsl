@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ro="http://ands.org.au/standards/rif-cs/registryObjects" version="2.0">
+    xmlns:fn="http://www.w3.org/2005/xpath-functions"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:local="http://local.to.here"
+    xmlns:ro="http://ands.org.au/standards/rif-cs/registryObjects" version="2.0"
+    exclude-result-prefixes="fn xsi xs">
 
     <!-- version 2023 has updates:
      - takes different input file and has different element names for input file 
@@ -10,10 +14,12 @@
 
     <xsl:output method="xml"/>
     
-    <!--xsl:variable name="AdminInstitutions" select="document('')"/--> <!-- Commenting out so you get an error when not provided -->
+    <xsl:template match="*"/>
+    
+    <!--xsl:variable name="InstitutionsWithIds" select="document('')"/--> <!-- Commenting out so you get an error when not provided by XSLT that calls this one -->
     
     <xsl:template match="/root">
-        <!--xsl:assert test="count($AdminInstitutions) > 0"/-->
+        <!--xsl:assert test="count($InstitutionsWithIds) > 0"/-->
         <xsl:text>&#xA;</xsl:text>
         <xsl:element name="registryObjects"
             xmlns="http://ands.org.au/standards/rif-cs/registryObjects">
@@ -35,7 +41,7 @@
             </xsl:choose>
         </xsl:variable>
        
-        <xsl:if test="$grantId != ''">
+        <xsl:if test="string-length($grantId) > 0">
             <xsl:element name="registryObject"
                 xmlns="http://ands.org.au/standards/rif-cs/registryObjects">
                 <xsl:attribute name="group">National Health and Medical Research Council</xsl:attribute>
@@ -71,9 +77,9 @@
                     <xsl:variable name="subTitle" select="normalize-space(Funding_Scheme)"/>
                     <xsl:variable name="mainTitle" select="normalize-space(Grant_Title)"/>
                     <!--                    <xsl:variable name="bothBlank" select="subTitle='' and mainTitle=''"/>-->
-                    <xsl:variable name="bothSame" select="$subTitle = $mainTitle"/>
-                    <xsl:variable name="mainUseless" select="$mainTitle = ''"/>
-                    <xsl:variable name="subUseless" select="$subTitle = ''"/>
+                    <xsl:variable name="bothSame" select="$subTitle = $mainTitle" as="xs:boolean"/>
+                    <xsl:variable name="mainUseless" select="$mainTitle = ''" as="xs:boolean"/>
+                    <xsl:variable name="subUseless" select="$subTitle = ''" as="xs:boolean"/>
                     <xsl:choose>
                         <!-- if both titles are blank or meaningless then make the primary name a concatenation of the funding scheme Level__Stream_or_Sub-Type and the grant ID -->
                         <xsl:when test="$mainUseless and $subUseless">
@@ -142,6 +148,67 @@
                     </xsl:element>
                     <xsl:text>&#xA;</xsl:text-->
                     
+                    <xsl:if test="Grant_Opportunity != '' and Grant_Opportunity != 'NULL'">
+                        <xsl:element name="relatedInfo">
+                            <xsl:attribute name="type">activity</xsl:attribute>
+                            <xsl:choose>
+                                <xsl:when test="Grant_Opportunity_ID != '' and Grant_Opportunity_ID != 'NULL'">
+                                    <xsl:element name="identifier">
+                                        <xsl:attribute name="type">local</xsl:attribute>
+                                        <xsl:value-of select="Grant_Opportunity_ID"/>
+                                    </xsl:element>
+                                </xsl:when>
+                                <xsl:otherwise> <!-- Not expecting no id, but just in case -->
+                                    <xsl:element name="identifier">
+                                        <xsl:attribute name="type">local</xsl:attribute>
+                                        <xsl:variable name="grantOpp_parts" select="tokenize(Grant_Opportunity, '\s+')"/>
+                                        <xsl:if test="count($grantOpp_parts) > 0">
+                                            <xsl:value-of select="$grantOpp_parts[1]"/>
+                                        </xsl:if>
+                                        <xsl:if test="count($grantOpp_parts) > 1">
+                                            <xsl:value-of select="concat(' ', $grantOpp_parts[2])"/>
+                                        </xsl:if>
+                                    </xsl:element>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                            <xsl:element name="title">
+                                <xsl:value-of select="Grant_Opportunity"/>
+                            </xsl:element>
+                            <xsl:element name="relation">
+                                <xsl:attribute name="type">isPartOf</xsl:attribute>
+                            </xsl:element>
+                        </xsl:element>
+                        <xsl:text>&#xA;</xsl:text>
+                    </xsl:if>
+                    
+                    
+                    <xsl:if test="Chief_Investigator_A__Project_Lead_ != '' and Chief_Investigator_A__Project_Lead_ != 'NULL'">
+                        <xsl:element name="relatedInfo">
+                            <xsl:attribute name="type">party</xsl:attribute>
+                            <xsl:choose>
+                                <xsl:when test="CIA_ORCID_ID != '' and CIA_ORCID_ID != 'NULL'">
+                                    <xsl:element name="identifier">
+                                        <xsl:attribute name="type">orcid</xsl:attribute>
+                                        <xsl:value-of select="CIA_ORCID_ID"/>
+                                    </xsl:element>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:element name="identifier">
+                                        <xsl:attribute name="type">local</xsl:attribute>
+                                        <xsl:value-of select="replace(Chief_Investigator_A__Project_Lead_, '\s+', '_')"/>
+                                    </xsl:element>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                            <xsl:element name="title">
+                                <xsl:value-of select="Chief_Investigator_A__Project_Lead_"/>
+                            </xsl:element>
+                            <xsl:element name="relation">
+                                <xsl:attribute name="type">hasPrincipalInvestigator</xsl:attribute>
+                            </xsl:element>
+                        </xsl:element>
+                        <xsl:text>&#xA;</xsl:text>
+                    </xsl:if>
+                    
                     <xsl:element name="relatedInfo">
                         <xsl:attribute name="type">party</xsl:attribute>
                         <xsl:element name="identifier">
@@ -159,30 +226,29 @@
                     
                     <!-- administering institution -->
                     
-                    <!-- This section uses a lookup table 'nhmrc_Administering_Institutions.xml'  generated by another stylesheet 
-                       'nhmrc_extract_institutional_keys.xsl' 
-                    which extracts unique values of Administering Organisation from the NHMRC grant data source and uses
-                    the getRIFCS API to find the matching party record in RDA. After looking up the organisation in the table,
-                    the key is used to add this party as a related object with relation 'isAdministeredBy'. -->
+                    <!-- This section uses a lookup table 'nhmrc_admin_institutions_manual_update_ror_id_2025_AfterParticipatingInstitutionsIncluded.xml'  generated by another stylesheet 
+                       'NHMRC_To_RIFCS/CORE/ExtractKeys/nhmrc_extract_institutional_keys_RoR.xsl' to find an identifier to use.
+                  -->
                     
                     <xsl:variable name="admin_inst" select="Administering_Institution"/>
                     <xsl:variable name="inst_id"
-                        select="$AdminInstitutions/institutions/institution[name = $admin_inst]/identifier"/>
-                    <xsl:if test="$inst_id">
-                        <!--xsl:element name="relatedObject">
-                            <xsl:element name="key">
-                                <xsl:value-of select="$inst_key"/>
-                            </xsl:element>
-                            <xsl:element name="relation">
-                                <xsl:attribute name="type">isManagedBy</xsl:attribute>
-                            </xsl:element>
-                        </xsl:element>
-                        <xsl:text>&#xA;</xsl:text-->
+                        select="$InstitutionsWithIds/institutions/institution[name = $admin_inst]/identifier"/>
+                    
+                    <xsl:if test="string-length($admin_inst) > 0">
                         <xsl:element name="relatedInfo">
                             <xsl:attribute name="type">party</xsl:attribute>
                             <xsl:element name="identifier">
-                                <xsl:attribute name="type">uri</xsl:attribute>
-                                <xsl:value-of select="$inst_id"/>
+                                <xsl:choose>
+                                    <xsl:when test="string-length($inst_id) > 0">
+                                        <xsl:attribute name="type">uri</xsl:attribute>
+                                        <xsl:value-of select="$inst_id"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:message select="concat('Unmatched admin organisation ', $admin_inst)"/>
+                                        <xsl:attribute name="type">local</xsl:attribute>
+                                        <xsl:value-of select="replace($admin_inst, '\s+', '_')"/>
+                                    </xsl:otherwise>
+                                </xsl:choose>
                             </xsl:element>
                             <xsl:element name="title">
                                 <xsl:value-of select="$admin_inst"/>
@@ -193,12 +259,40 @@
                         </xsl:element>
                         <xsl:text>&#xA;</xsl:text>
                     </xsl:if>
-                    <xsl:if test="$inst_id = ''">
-                        <xsl:message>
-                            <xsl:text>Unmatched admin organisation </xsl:text>
-                            <xsl:value-of select="$admin_inst"/>
-                        </xsl:message>
-                    </xsl:if>
+                    
+                    
+                    <xsl:for-each select="fn:tokenize(Participating_Institutions, '\|')">
+                         <xsl:variable name="parti_inst" select="normalize-space(.)"/>
+                         <xsl:variable name="inst_id"
+                             select="$InstitutionsWithIds/institutions/institution[name = $parti_inst]/identifier"/>
+                         
+                         <xsl:if test="string-length($parti_inst) > 0">
+                             <xsl:element name="relatedInfo">
+                                 <xsl:attribute name="type">party</xsl:attribute>
+                                 <xsl:element name="identifier">
+                                     <xsl:choose>
+                                         <xsl:when test="string-length($inst_id) > 0">
+                                             <xsl:attribute name="type">uri</xsl:attribute>
+                                             <xsl:value-of select="$inst_id"/>
+                                         </xsl:when>
+                                         <xsl:otherwise>
+                                             <xsl:message select="concat('Unmatched parti organisation ', $parti_inst)"/>
+                                             <xsl:attribute name="type">local</xsl:attribute>
+                                             <xsl:value-of select="replace($parti_inst, '\s+', '_')"/>
+                                         </xsl:otherwise>
+                                     </xsl:choose>
+                                 </xsl:element>
+                                 <xsl:element name="title">
+                                     <xsl:value-of select="$parti_inst"/>
+                                 </xsl:element>
+                                 <xsl:element name="relation">
+                                     <xsl:attribute name="type">hasParticipant</xsl:attribute>
+                                 </xsl:element>
+                             </xsl:element>
+                             <xsl:text>&#xA;</xsl:text>
+                         </xsl:if>
+                    </xsl:for-each>
+    
                     
                     
                     <!-- Subjects -->
@@ -256,11 +350,32 @@
                     </xsl:if>
                     
                     <!-- Descriptions -->
-                    <!-- Chief Investigator -->
-                    <xsl:if test="Chief_Investigator_A__Project_Lead_ != '' and Chief_Investigator_A__Project_Lead_ != 'NULL'">
+                    <!-- Chief Investigator Team -->
+                    <xsl:if test="Chief_Investigator_Team != '' and Chief_Investigator_Team != 'NULL'">
                         <xsl:element name="description">
-                            <xsl:attribute name="type">Chief Investigator</xsl:attribute>
-                            <xsl:value-of select="normalize-space(Chief_Investigator_A__Project_Lead_)"/>
+                            <xsl:attribute name="type">Chief Investigator Team</xsl:attribute>
+                            <xsl:variable name="chiefInvestigators" select="Chief_Investigator_Team"/>
+                            <xsl:for-each select="tokenize($chiefInvestigators, '\|')">
+                                <xsl:if test="string-length(normalize-space(.)) > 0">
+                                    <xsl:value-of select="normalize-space(.)"/>
+                                    <xsl:text>&lt;br/&gt;</xsl:text>
+                                </xsl:if>
+                            </xsl:for-each>
+                        </xsl:element>
+                        <xsl:text>&#xA;</xsl:text>
+                    </xsl:if>
+                    
+                    <!-- Collaborating Countries -->
+                    <xsl:if test="Collaborating_Countries != '' and Collaborating_Countries != 'NULL'">
+                        <xsl:element name="description">
+                            <xsl:attribute name="type">Collaborating Countries</xsl:attribute>
+                            <xsl:variable name="collabCountries" select="Collaborating_Countries"/>
+                            <xsl:for-each select="tokenize($collabCountries, '\|')">
+                                <xsl:if test="string-length(normalize-space(.)) > 0">
+                                    <xsl:value-of select="normalize-space(.)"/>
+                                    <xsl:text>&lt;br/&gt;</xsl:text>
+                                </xsl:if>
+                            </xsl:for-each>
                         </xsl:element>
                         <xsl:text>&#xA;</xsl:text>
                     </xsl:if>
@@ -270,6 +385,15 @@
                         <xsl:element name="description">
                             <xsl:attribute name="type">Date Announced</xsl:attribute>
                             <xsl:value-of select="normalize-space(Date_Announced)"/>
+                        </xsl:element>
+                        <xsl:text>&#xA;</xsl:text>
+                    </xsl:if>
+                    
+                    <!-- Application Year-->
+                    <xsl:if test="Application_Year != '' and Application_Year != 'NULL'">
+                        <xsl:element name="description">
+                            <xsl:attribute name="type">Application Year</xsl:attribute>
+                            <xsl:value-of select="normalize-space(Application_Year)"/>
                         </xsl:element>
                         <xsl:text>&#xA;</xsl:text>
                     </xsl:if>
@@ -314,14 +438,14 @@
                     <xsl:variable name="mainScheme" select="normalize-space(Funding_Type)"/>
                     <xsl:variable name="subScheme" select="normalize-space(Funding_Subtype)"/>
                     
-                    <xsl:if test="$mainScheme != ''">
+                    <xsl:if test="string-length($mainScheme) > 0">
                         <xsl:element name="description">
                             <xsl:attribute name="type">fundingScheme</xsl:attribute>
                             <xsl:value-of select="$mainScheme"/>
                         </xsl:element>
                         <xsl:text>&#xA;</xsl:text>
                     </xsl:if>
-                    <xsl:if test="$subScheme != ''">
+                    <xsl:if test="string-length($subScheme) > 0">
                         <xsl:element name="description">
                             <xsl:attribute name="type">notes</xsl:attribute>
                             <xsl:value-of select="$subScheme"/>
@@ -341,16 +465,16 @@
                     </xsl:if>
                     
                     <!-- Existence Dates -->
-                    <xsl:if test="Year_Grant_Start != ''">
+                    <xsl:if test="Grant_Start_Date != ''">
                         <xsl:element name="existenceDates">
                             <xsl:element name="startDate">
                                 <xsl:attribute name="dateFormat">W3CDTF</xsl:attribute>
-                                <xsl:value-of select="Year_Grant_Start"/>
+                                <xsl:value-of select="Grant_Start_Date"/>
                             </xsl:element>
-                            <xsl:if test="END_YR">
+                            <xsl:if test="Grant_End_Date">
                                 <xsl:element name="endDate">
                                     <xsl:attribute name="dateFormat">W3CDTF</xsl:attribute>
-                                    <xsl:value-of select="Year_Grant_End"/>
+                                    <xsl:value-of select="Grant_End_Date"/>
                                 </xsl:element>
                             </xsl:if>
                         </xsl:element>
@@ -366,8 +490,5 @@
         </xsl:if>
         
     </xsl:template>
-    
-    
-    <xsl:template match="*"/>
     
 </xsl:stylesheet>
