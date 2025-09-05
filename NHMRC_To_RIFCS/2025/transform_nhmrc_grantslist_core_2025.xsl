@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:fn="http://www.w3.org/2005/xpath-functions"
@@ -7,16 +6,11 @@
     xmlns:ro="http://ands.org.au/standards/rif-cs/registryObjects" version="2.0"
     exclude-result-prefixes="fn xsi xs">
 
-    <!-- version 2023 has updates:
-     - takes different input file and has different element names for input file 
-     ~/git/XSLT/NHMRC_To_RIFCS/2023/1-summary_of_results_2023_app_round_130723.xml -->
-
-
     <xsl:output method="xml"/>
     
     <xsl:template match="*"/>
     
-    <!--xsl:variable name="InstitutionsWithIds" select="document('')"/--> <!-- Commenting out so you get an error when not provided by XSLT that calls this one -->
+    <!--xsl:variable name="InstitutionsWithIds" select="document('')"/--> <!-- Commenting out so an error is generated when no provided by XSLT that calls this one -->
     
     <xsl:template match="/root">
         <!--xsl:assert test="count($InstitutionsWithIds) > 0"/-->
