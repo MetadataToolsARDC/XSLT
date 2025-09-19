@@ -4,7 +4,7 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     version="2.0">
     
-    <xsl:import href="Elsevier_PURE_API522_rifcs.xsl"/>
+    <xsl:import href="Elsevier_PURE_API524_rifcs.xsl"/>
         
     <xsl:param name="global_debug" select="true()" as="xs:boolean"/>
     <xsl:param name="global_debugExceptions" select="true()" as="xs:boolean"/>
@@ -12,7 +12,7 @@
     <xsl:param name="global_baseURI" select="'cdu-staging.pure.elsevier.com'"/>
     <xsl:param name="global_path" select="'/en/'"/>
     <xsl:param name="global_acronym" select="'CDU_PURE'"/>
-    <xsl:param name="global_group" select="'Charles Darwin University (API 511)'"/>
+    <xsl:param name="global_group" select="'Charles Darwin University (API 524)'"/>
     <xsl:param name="global_publisherName" select="'Charles Darwin University'"/>
     <xsl:param name="global_validateWorkflow" select="true()"/>
 </xsl:stylesheet>

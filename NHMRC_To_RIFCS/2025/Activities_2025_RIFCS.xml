@@ -45,7 +45,7 @@
                 <relation type="hasParticipant"/>
             </relatedInfo>
             <relatedInfo type="party">
-                <identifier type="uri">https://ror.org/01b3dvp57</identifier>
+                <identifier type="ror">01b3dvp57</identifier>
                 <title>The Garvan Institute of Medical Research</title>
                 <relation type="hasParticipant"/>
             </relatedInfo>

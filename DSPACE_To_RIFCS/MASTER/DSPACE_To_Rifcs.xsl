@@ -95,6 +95,9 @@
                 
                 <xsl:apply-templates select="element[@name ='dc']/element[@name ='relation']/element[@name='uri'][string-length(.) > 0]" mode="collection_relatedInfo_uri"/>
                 
+                <xsl:apply-templates select="element[@name ='dcterms']/element[@name ='relation']/element[@name ='none']" mode="collection_relatedInfo_none"/>
+                
+                
                 <xsl:apply-templates select="element[@name ='local']/element[@name ='relation']/element[@name ='grantdescription'][string-length(.) > 0]" mode="collection_relatedInfo_grantid"/>
                 
                 <xsl:apply-templates select="element[@name ='local']/element[@name ='identifier']/element[@name='unepublicationid'][string-length(.) > 0]" mode="collection_identifier"/>
@@ -380,11 +383,24 @@
     <xsl:template match="element[@name='uri']" mode="collection_relatedInfo_uri">
         <xsl:for-each select="element/field[@name='value']">
             <relatedInfo type='relatedInformation'>
-               <identifier type="{custom:getIdentifierType(.)}">
+               <identifier type="uri">
                    <xsl:value-of select="normalize-space(.)"/>
                </identifier>
                 <relation type="hasAssociationWith"/>
            </relatedInfo>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xsl:template match="element[@name='none']" mode="collection_relatedInfo_none">
+        <xsl:for-each select="field[@name='value']">
+            <xsl:if test="fn:starts-with(normalize-space(.), 'http')">
+             <relatedInfo>
+                 <identifier type="url">
+                     <xsl:value-of select="normalize-space(.)"/>
+                 </identifier>
+                 <relation type="hasAssociationWith"/>
+             </relatedInfo>
+            </xsl:if>
         </xsl:for-each>
     </xsl:template>
     
