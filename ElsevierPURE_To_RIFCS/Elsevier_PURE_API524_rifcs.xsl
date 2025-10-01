@@ -19,6 +19,8 @@
     <xsl:param name="global_group" select="'{override required}'"/>
     <xsl:param name="global_publisherName" select="'{override required}'"/>
     <xsl:param name="global_validateWorkflow" select="false()"/>
+    <xsl:param name="global_apiKey" select="'{override required}'"/> <!-- Provide if you want to make the call to external-organisations to retrieve extra information -->
+    <xsl:param name="global_external-organisations_path"  select="'{override required}'"/> <!-- Provide if you want to make the call to external-organisations to retrieve extra information -->
 
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" omit-xml-declaration="yes"/>
 
@@ -148,6 +150,9 @@
 
                 <xsl:apply-templates select="externalOrganisations"
                     mode="object_description_notes"/>
+                
+                <xsl:apply-templates select="externalOrganisations/externalOrganisation[string-length(@uuid) > 0]"
+                    mode="object_relatedInfo"/>
 
                 <!-- xsl:apply-templates select="personAssociations/personAssociation[(string-length(person/@uuid) > 0)]" mode="object_relatedInfo"/-->
 
@@ -1417,6 +1422,63 @@
                 </xsl:for-each>
             </description>
         </xsl:if>
+    </xsl:template>
+    
+    <xsl:template match="externalOrganisation" mode="object_relatedInfo">
+        <xsl:if test="string-length($global_apiKey) > 0 and not(contains($global_apiKey, '{override required}'))">
+            <xsl:if test="string-length($global_external-organisations_path) > 0 and not(contains($global_external-organisations_path, '{override required}'))">
+                
+                <xsl:variable name="extOrg_uuid" select="@uuid"/>
+                <xsl:if test="string-length($extOrg_uuid) > 0">
+                  
+                    <xsl:variable name="externalOrg_URL" select="concat('http://', $global_baseURI, $global_external-organisations_path, $extOrg_uuid, '?apiKey=', $global_apiKey)"/>
+                    
+                    <xsl:if test="$global_debug">
+                      <xsl:message select="concat('Path for retrieval: ', $externalOrg_URL)"></xsl:message>
+                        <xsl:message select="concat('Doc available: ', doc-available($externalOrg_URL))"></xsl:message>
+                    </xsl:if>
+                    
+                    <xsl:if test="doc-available($externalOrg_URL)">
+                
+                         <xsl:variable name="externalOrg_XML" select="doc($externalOrg_URL)" as="document-node()"/>
+                         
+                        <xsl:variable name="ID_sequence" as="xs:string*"
+                            select="distinct-values($externalOrg_XML//ids/id/value[starts-with(., 'http')])"/>
+                        
+                         <xsl:if test="$global_debug">
+                             <xsl:message select="concat('Count IDs: ', count($ID_sequence))"></xsl:message>
+                         </xsl:if>
+                         
+                        <xsl:variable name="name_sequence" as="xs:string*"
+                            select="distinct-values($externalOrg_XML//name/text)"/>
+                         
+                         <xsl:if test="$global_debug">
+                             <xsl:message select="concat('Count Names: ', count($name_sequence))"></xsl:message>
+                         </xsl:if>
+                         
+                         <xsl:if test="count($ID_sequence) > 0">
+                             
+                             <relatedInfo type="party">
+                                 <xsl:for-each select="$ID_sequence">
+                                     <identifier type="url">
+                                         <xsl:value-of select="."/>
+                                     </identifier>    
+                                 </xsl:for-each>
+                                 
+                                 <xsl:if test="count($name_sequence) > 0">
+                                     <title>
+                                         <xsl:value-of select="$name_sequence[1]"/>
+                                     </title>
+                                 </xsl:if>
+                                 
+                             </relatedInfo>
+                         </xsl:if>
+                    </xsl:if>
+                </xsl:if>
+            </xsl:if>
+        </xsl:if>
+           
+            
     </xsl:template>
 
 
