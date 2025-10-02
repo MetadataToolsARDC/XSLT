@@ -20,8 +20,7 @@
     <xsl:param name="global_publisherName" select="'{override required}'"/>
     <xsl:param name="global_validateWorkflow" select="false()"/>
     <xsl:param name="global_apiKey" select="'{override required}'"/> <!-- Provide if you want to make the call to external-organisations to retrieve extra information -->
-    <xsl:param name="global_external-organisations_path"  select="'{override required}'"/> <!-- Provide if you want to make the call to external-organisations to retrieve extra information -->
-
+    
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" omit-xml-declaration="yes"/>
 
     <xsl:template match="/">
@@ -1426,12 +1425,12 @@
     
     <xsl:template match="externalOrganisation" mode="object_relatedInfo">
         <xsl:if test="string-length($global_apiKey) > 0 and not(contains($global_apiKey, '{override required}'))">
-            <xsl:if test="string-length($global_external-organisations_path) > 0 and not(contains($global_external-organisations_path, '{override required}'))">
+            <xsl:if test="string-length(link[@ref='content']/@href) > 0">
                 
                 <xsl:variable name="extOrg_uuid" select="@uuid"/>
                 <xsl:if test="string-length($extOrg_uuid) > 0">
                   
-                    <xsl:variable name="externalOrg_URL" select="concat('http://', $global_baseURI, $global_external-organisations_path, $extOrg_uuid, '?apiKey=', $global_apiKey)"/>
+                    <xsl:variable name="externalOrg_URL" select="concat(link[@ref='content']/@href, '?apiKey=', $global_apiKey)"/>
                     
                     <xsl:if test="$global_debug">
                       <xsl:message select="concat('Path for retrieval: ', $externalOrg_URL)"></xsl:message>
