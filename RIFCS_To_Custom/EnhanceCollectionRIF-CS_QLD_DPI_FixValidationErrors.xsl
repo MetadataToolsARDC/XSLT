@@ -52,5 +52,41 @@
             <xsl:copy-of select="node()"/>
         </accessRights>
     </xsl:template>
+    
+    <xsl:template match="collection[count(description) = 0]">
+        <collection>
+            <xsl:attribute name="type">
+                <xsl:choose>
+                    <xsl:when test="string-length(@type) > 0">
+                        <xsl:value-of select="@type"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <text>collection</text>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:attribute>
+            <xsl:if test="string-length(@dateModified) > 0">
+                <xsl:attribute name="dateModified">
+                    <xsl:value-of select="@dateModified"/>
+                </xsl:attribute>
+            </xsl:if>
+            <xsl:if test="string-length(@dateAccessioned) > 0">
+                <xsl:attribute name="dateAccessioned">
+                    <xsl:value-of select="@dateAccessioned"/>
+                </xsl:attribute>
+            </xsl:if>
+            <description type="brief">
+                <xsl:choose>
+                    <xsl:when test="string-length(name/namePart) > 0">
+                        <xsl:value-of select="name/namePart"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <text>...</text>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </description>
+            <xsl:apply-templates select="node()"/>
+        </collection>
+    </xsl:template>
   
 </xsl:stylesheet>
