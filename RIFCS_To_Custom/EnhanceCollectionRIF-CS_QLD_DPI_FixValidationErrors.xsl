@@ -39,22 +39,6 @@
         </date>
     </xsl:template>
     
-    <xsl:template match="citationInfo/citationMetadata/date[(count(@dateFormat) > 0)]">
-        <date>
-            <xsl:attribute name="type">
-                <xsl:choose>
-                    <xsl:when test="string-length(@type) > 0">
-                        <xsl:value-of select="@type"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <text>publicationDate</text>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:attribute>
-            <xsl:copy-of select="node()"/>
-        </date>
-    </xsl:template>
-    
     <xsl:template match="rights/accessRights[(count(@rightUri) > 0)]">
         <accessRights>
             <xsl:if test="string-length(@type) > 0">
@@ -67,6 +51,7 @@
                     <xsl:value-of select="@rightUri"/>
                 </xsl:attribute>
             </xsl:if>
+            <xsl:copy-of select="node()"/>
         </accessRights>
     </xsl:template>
   
