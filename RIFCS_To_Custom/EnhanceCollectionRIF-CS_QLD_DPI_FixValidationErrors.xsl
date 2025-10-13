@@ -17,9 +17,7 @@
     
     <xsl:template match="relation[((count(@type) = 0) or (@type=''))]">
          <relation type="hasAssociationWith">
-             <xsl:for-each select="child::*">
-                 <xsl:copy-of select="."/>
-             </xsl:for-each>
+             <xsl:copy-of select="node()"/>
          </relation>
     </xsl:template>
     
