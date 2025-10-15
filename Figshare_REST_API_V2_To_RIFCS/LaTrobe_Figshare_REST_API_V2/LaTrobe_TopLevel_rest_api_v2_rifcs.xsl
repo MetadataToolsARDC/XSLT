@@ -3,7 +3,7 @@
     xmlns="http://ands.org.au/standards/rif-cs/registryObjects" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
     exclude-result-prefixes="xsl">
-    <xsl:import href="figshare_rest_api_v2_rifcs.xsl"/>
+    <xsl:import href="Figshare_REST_API_V2_RIFCS"/>
     
     <xsl:param name="global_originatingSource" select="'La Trobe University'"/>
     <xsl:param name="global_baseURI" select="'http://figshare.com'"/> <!-- Set to prod even though sometimes we will run this against test - used to construct author url -->

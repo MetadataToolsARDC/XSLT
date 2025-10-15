@@ -3,11 +3,11 @@
     xmlns="http://ands.org.au/standards/rif-cs/registryObjects" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
     exclude-result-prefixes="xsl">
-    <xsl:import href="figshare_rest_api_v2_rifcs.xsl"/>
+    <xsl:import href="Figshare_REST_API_V2_RIFCS"/>
     
-    <xsl:param name="global_originatingSource" select="'University of Adelaide Figshare'"/>
+    <xsl:param name="global_originatingSource" select="'{Enter originatings source to use here}'"/>
     <xsl:param name="global_baseURI" select="'http://figshare.com'"/> <!-- Set to prod even though sometimes we will run this against test - used to construct author url -->
-    <xsl:param name="global_group" select="'The University of Adelaide'"/>
+    <xsl:param name="global_group" select="'{Enter Contributor name here - will be name at RDA Contributor page'"/>
     <xsl:param name="global_key_source_prefix" select="'oai:figshare.com:article/'"/> <!-- mocking this up so that the keys end up the same even though we aren't getting from oai-pmh anymore -->
     
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>

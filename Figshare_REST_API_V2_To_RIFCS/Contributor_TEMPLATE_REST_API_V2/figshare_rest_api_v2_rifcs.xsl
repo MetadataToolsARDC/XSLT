@@ -1,1 +1,0 @@
-../CORE/figshare_rest_api_v2_rifcs.xsl
