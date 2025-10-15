@@ -6,10 +6,10 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions"
     exclude-result-prefixes="xsi xsl figFunc fn local xs">
 
-    <xsl:param name="global_originatingSource" select="''"/>
+    <xsl:param name="global_originatingSource" select="'{requires override}'"/> <!-- Override the following with top-level XSLT that imports this one -->
     <xsl:param name="global_baseURI" select="'figshare.com'"/>
-    <xsl:param name="global_group" select="''"/>
-    <xsl:param name="global_key_source_prefix" select="''"/>
+    <xsl:param name="global_group" select="'{requires override}'"/> <!-- Override the following with top-level XSLT that imports this one -->
+    <xsl:param name="global_key_source_prefix" select="'oai:figshare.com:article/'"/>
 
     <xsl:output method="xml" version="1.0" omit-xml-declaration="no" indent="yes" encoding="UTF-8"/>
 
@@ -121,6 +121,22 @@
         </registryObject>
 
     </xsl:template>
+    
+    <!-- Override the following with top-level XSLT that imports this one, if these are different for your scenario -->
+    <xsl:template match="custom_fields[contains(name, 'Contributor nameIdentifier') and contains(value, 'ror')]" mode="collection_custom_handling">
+        <xsl:message select="concat('Handling custom fields where name is [Contributor nameIdentifier]', $global_group)"/>
+        <relatedInfo type="party">
+            <identifier type="ror">
+                <xsl:value-of select="value"/>
+            </identifier>
+        </relatedInfo>
+    </xsl:template>
+    
+    <!-- Override the following with top-level XSLT that imports this one, if these are different for your scenario -->
+    <xsl:template match="custom_fields" mode="collection_custom_handling">
+        <xsl:message select="concat('Handling custom fields where name is not [Contributor nameIdentifier] ', $global_group)"></xsl:message>
+    </xsl:template>    
+    
 
 
     <xsl:template match="firstOnline" mode="collection_date_accessioned">
