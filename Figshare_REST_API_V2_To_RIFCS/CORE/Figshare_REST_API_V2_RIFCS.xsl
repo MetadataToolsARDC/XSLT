@@ -3,13 +3,15 @@
     xmlns:figFunc="http://figfunc.nowhere.yet" xmlns:local="http://local.here.org"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="2.0"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns:fn="http://www.w3.org/2005/xpath-functions"
     exclude-result-prefixes="xsi xsl figFunc fn local xs">
 
     <xsl:param name="global_originatingSource" select="'{requires override}'"/> <!-- Override the following with top-level XSLT that imports this one -->
     <xsl:param name="global_baseURI" select="'figshare.com'"/>
     <xsl:param name="global_group" select="'{requires override}'"/> <!-- Override the following with top-level XSLT that imports this one -->
     <xsl:param name="global_key_source_prefix" select="'oai:figshare.com:article/'"/>
+    <xsl:param name="global_debug" select="false()" as="xs:boolean"/>
 
     <xsl:output method="xml" version="1.0" omit-xml-declaration="no" indent="yes" encoding="UTF-8"/>
 
@@ -27,8 +29,9 @@
         
         <xsl:variable name="figshareIdentifier" select="concat($global_key_source_prefix, id)" as="xs:string"/>
         
-        <xsl:message select="concat('key to use: ', substring(string-join(for $n in fn:reverse(fn:string-to-codepoints($figshareIdentifier)) return string($n), ''), 0, 50))"/>
-        
+        <xsl:if test="$global_debug">
+         <xsl:message select="concat('key to use: ', substring(string-join(for $n in fn:reverse(fn:string-to-codepoints($figshareIdentifier)) return string($n), ''), 0, 50))"/>
+        </xsl:if>
        
        <xsl:variable name="type">
             <xsl:choose>
@@ -124,7 +127,7 @@
     
     <!-- Override the following with top-level XSLT that imports this one, if these are different for your scenario -->
     <xsl:template match="custom_fields[contains(name, 'Contributor nameIdentifier') and contains(value, 'ror')]" mode="collection_custom_handling">
-        <xsl:message select="concat('Handling custom fields where name is [Contributor nameIdentifier]', $global_group)"/>
+       <xsl:message select="'Handling custom fields where name is [Contributor nameIdentifier] - override this in top-level if required'"/>
         <relatedInfo type="party">
             <identifier type="ror">
                 <xsl:value-of select="value"/>
@@ -134,7 +137,7 @@
     
     <!-- Override the following with top-level XSLT that imports this one, if these are different for your scenario -->
     <xsl:template match="custom_fields" mode="collection_custom_handling">
-        <xsl:message select="concat('Handling custom fields where name is not [Contributor nameIdentifier] ', $global_group)"></xsl:message>
+        <xsl:message select="'Handling custom fields where name is not [Contributor nameIdentifier] - override this in top-level if required'"></xsl:message>
     </xsl:template>    
     
 
