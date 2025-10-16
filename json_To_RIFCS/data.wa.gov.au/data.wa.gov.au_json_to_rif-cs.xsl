@@ -84,6 +84,8 @@
                 </xsl:if>
 
                 <xsl:apply-templates select="id" mode="collection_identifier"/>
+                
+                <xsl:apply-templates select="doi" mode="collection_identifier"/>
 
                 <xsl:apply-templates select="name" mode="collection_identifier"/>
 
@@ -91,17 +93,23 @@
 
                 <xsl:apply-templates select="name" mode="collection_location_name"/>
 
-                <xsl:apply-templates select="url" mode="collection_location_url"/>
+                <xsl:apply-templates select="url[(string-length(.) > 0) and (lower-case(text()) != 'null')]" mode="collection_location_url"/>
 
                 <xsl:apply-templates select="organization" mode="collection_related_object"/>
 
                 <xsl:apply-templates select="tags" mode="collection_subject"/>
+                
+                <xsl:apply-templates select="geospatial_theme | theme" mode="collection_subject"/>
 
                 <xsl:apply-templates select="notes" mode="collection_description"/>
 
                 <xsl:apply-templates select="spatial_coverage" mode="collection_coverage_spatial"/>
 
                 <xsl:apply-templates select="isopen" mode="collection_rights_accessRights"/>
+                
+                <xsl:apply-templates select="published_on" mode="collection_dates_issued"/>
+                
+                <xsl:apply-templates select="citation" mode="collection_citation"/>
 
                 <xsl:call-template name="collection_license">
                     <xsl:with-param name="title" select="license_title"/>
@@ -128,7 +136,7 @@
 
     <!-- Collection - Key Element  -->
     <xsl:template match="id" mode="collection_key">
-        <xsl:if test="string-length(normalize-space(.))">
+        <xsl:if test="string-length(normalize-space(.)) > 0">
             <key>
                 <xsl:value-of select="concat($global_group,'/', lower-case(normalize-space(.)))"/>
             </key>
@@ -137,7 +145,7 @@
 
     <!-- Collection - Identifier Element  -->
     <xsl:template match="id" mode="collection_identifier">
-        <xsl:if test="string-length(normalize-space(.))">
+        <xsl:if test="string-length(normalize-space(.)) > 0">
             <identifier>
                 <xsl:attribute name="type">
                     <xsl:text>local</xsl:text>
@@ -146,9 +154,20 @@
             </identifier>
         </xsl:if>
     </xsl:template>
+    
+    <xsl:template match="doi" mode="collection_identifier">
+        <xsl:if test="string-length(normalize-space(.)) > 0">
+            <identifier>
+                <xsl:attribute name="type">
+                    <xsl:text>doi</xsl:text>
+                </xsl:attribute>
+                <xsl:value-of select="normalize-space(.)"/>
+            </identifier>
+        </xsl:if>
+    </xsl:template>
 
     <xsl:template match="name" mode="collection_identifier">
-        <xsl:if test="string-length(normalize-space(.))">
+        <xsl:if test="string-length(normalize-space(.)) > 0">
             <identifier>
                 <xsl:attribute name="type">
                     <xsl:text>uri</xsl:text>
@@ -160,7 +179,7 @@
 
     <!-- Collection - Name Element  -->
     <xsl:template match="title" mode="collection_name">
-        <xsl:if test="string-length(normalize-space(.))">
+        <xsl:if test="string-length(normalize-space(.)) > 0">
             <name>
                 <xsl:attribute name="type">
                     <xsl:text>primary</xsl:text>
@@ -243,15 +262,45 @@
             </subject>
         </xsl:if>
     </xsl:template>
+    
+    <xsl:template match="geospatial_theme | theme" mode="collection_subject">
+        <xsl:if test="string-length(normalize-space(.)) > 0">
+            <subject>
+                <xsl:attribute name="type">local</xsl:attribute>
+                <xsl:value-of select="normalize-space(.)"/>
+            </subject>
+        </xsl:if>
+    </xsl:template>
 
     <!-- Collection - Decription (brief) Element -->
     <xsl:template match="notes" mode="collection_description">
-        <xsl:if test="string-length(normalize-space(.))">
+        <xsl:if test="string-length(normalize-space(.)) > 0">
             <description type="brief">
                 <xsl:value-of select="normalize-space(.)"/>
             </description>
         </xsl:if>
     </xsl:template>
+    
+    <xsl:template match="published_on" mode="collection_dates_issued">
+        <xsl:if test="string-length(normalize-space(.)) > 0">
+            <dates type="dc.issued">
+                <date type="dateFrom" dateFormat="W3CDTF">
+                    <xsl:value-of select="normalize-space(.)"/>
+                </date>
+            </dates>
+        </xsl:if>
+    </xsl:template>
+    
+    <xsl:template match="citation" mode="collection_citation">
+        <xsl:if test="string-length(normalize-space(.)) > 0">
+            <citationInfo>
+                <fullCitation>
+                    <xsl:value-of select="normalize-space(.)"/>
+                </fullCitation>
+            </citationInfo>
+        </xsl:if>
+    </xsl:template>
+    
 
     <xsl:template match="isopen" mode="collection_rights_accessRights">
         <xsl:if test="contains(lower-case(.), 'true')">

@@ -17,7 +17,7 @@
     <xsl:param name="global_publisherName" select="'data.qld.gov.au'"/>
     <xsl:param name="global_publisherPlace" select="'Canberra'"/>
     <xsl:param name="global_includeDownloadLinks" select="false()"/>
-
+    
     <xsl:template match="/">
         <!-- include all records except those with scopecode 'Document'-->
         <registryObjects>
