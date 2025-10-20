@@ -3850,79 +3850,6 @@
 {
   "@context": "http://schema.org",
   "@type": "Project",
-  "@id": "https://doi.org/10.71676/e750e73b",
-  "identifier": {
-    "@type": "PropertyValue",
-    "propertyID": "RaidAgencyUrl",
-    "value": "https://prod.static.raid.org.au/10.71676/e750e73b"
-  },
-  "url": "https://raid.org/10.71676/e750e73b",
-  "additionalType": "RAiD",
-  "name": "NESP MaC Project 1.26 - Relative abundance of the ‘western’ population of southern right whales from an aerial survey off southern Australia (Murdoch Uni)",
-  "author": [
-    {
-      "name": "Joshua N. Smith",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0001-9912-422X"
-    },
-    {
-      "name": "Karen Evans",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0003-2205-4264"
-    }
-  ],
-  "editor": [
-    {
-      "name": "RAiD AU",
-      "contributorType": "RegistrationAgency",
-      "@type": "Organization",
-      "@id": "https://ror.org/038sjwq14"
-    },
-    {
-      "name": "https://ror.org/00r4sry34",
-      "contributorType": "HostingInstitution",
-      "@type": "Organization",
-      "@id": "https://ror.org/00r4sry34"
-    },
-    {
-      "name": "https://ror.org/05e89k615",
-      "contributorType": "Other",
-      "@type": "Organization",
-      "@id": "https://ror.org/05e89k615"
-    },
-    {
-      "name": "https://ror.org/026nh4520",
-      "contributorType": "Other",
-      "@type": "Organization",
-      "@id": "https://ror.org/026nh4520"
-    }
-  ],
-  "description": "The southern right whale (*Eubalaena australis*) is listed as Endangered under the *Environmental Protection and Biodiversity Conservation Act 1999* (EPBC Act) and is subject to conservation listings in five Australian states due to severe population declines caused by historical whaling. The Southern Right Whale Conservation Management Plan 2011–2021 outlines the current status of, and threats to, the southern right whale in Australian waters and prioritises recovery actions during this period. The long-term vision for the recovery of this species in Australian waters is to increase the population size to a level that the conservation status improves, and the species no longer qualifies for listing as threatened under any of the EPBC Act listing criteria. The plan must be periodically updated to reflect new knowledge and prioritise the research needed to monitor population recovery and predict the impacts of threats such as climate change.\n\nAerial surveys of southern right whales have been conducted across the southern Australian coast from Perth (WA) to Ceduna (SA) since 1993, as part of a long-term program to monitor the recovery, and inform the Conservation Management Plan (2011-2021), for this Endangered species. In Australia’s south-east, there has been little sign of recovery in southern right whale numbers following intense commercial whaling. A working hypothesis assumes separation between the ‘western’ and ‘eastern’ populations, largely due to loss of ‘cultural memory’ of whales migrating to the eastern range breeding areas. Given the relative paucity of animals that visit the southern Australian coast in areas other than south-west Australia, the western population is considered to represent the majority of the ‘Australian’ southern right whale population. The count data from these aerial surveys provide data on population trend and estimates of population size for the ‘western’ population, and hence the majority of the Australian southern right whales. Associated photo-identification data provide life history information (such as calving intervals) and connectivity between the ‘western’ and ‘eastern’ populations and contribute to the national southern right whale photo-id database: the Australasian Right Whale Photo-Identification Catalogue (ARWPIC).\n\nThe 2020 aerial survey program recorded substantially lower numbers of whales than in the previous 13 years, and the lowest number of non-calving whales since the program started. This project conducted new aerial surveying in August 2021 to provide a relative estimate of annual population size for determining longer term population trends and contribute to determining if 2020 was an anomalous year or an indicator of some longer-term change to recent recovery rates and the female breeding cycle.",
-  "datePublished": 2025,
-  "isPartOf": {
-    "@id": "https://raid.org/10.71821/418be95a",
-    "@type": "Project"
-  },
-  "@reverse": {
-    "citation": {
-      "@id": "https://doi.org/10.26179/kkeb-1m46",
-      "@type": "Dataset"
-    }
-  },
-  "schemaVersion": "http://datacite.org/schema/kernel-4",
-  "publisher": {
-    "@type": "Organization",
-    "@id": "https://ror.org/00arpt780",
-    "name": "https://ror.org/00arpt780"
-  },
-  "provider": {
-    "@type": "Organization",
-    "name": "datacite"
-  }
-},
-{
-  "@context": "http://schema.org",
-  "@type": "Project",
   "@id": "https://doi.org/10.71676/6c66595b",
   "identifier": {
     "@type": "PropertyValue",
@@ -3979,6 +3906,79 @@
   "@reverse": {
     "citation": {
       "@id": "https://doi.org/10.26179/nbbz-nv97",
+      "@type": "Dataset"
+    }
+  },
+  "schemaVersion": "http://datacite.org/schema/kernel-4",
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/00arpt780",
+    "name": "https://ror.org/00arpt780"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.71676/e750e73b",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.71676/e750e73b"
+  },
+  "url": "https://raid.org/10.71676/e750e73b",
+  "additionalType": "RAiD",
+  "name": "NESP MaC Project 1.26 - Relative abundance of the ‘western’ population of southern right whales from an aerial survey off southern Australia (Murdoch Uni)",
+  "author": [
+    {
+      "name": "Joshua N. Smith",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0001-9912-422X"
+    },
+    {
+      "name": "Karen Evans",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0003-2205-4264"
+    }
+  ],
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/00r4sry34",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/00r4sry34"
+    },
+    {
+      "name": "https://ror.org/05e89k615",
+      "contributorType": "Other",
+      "@type": "Organization",
+      "@id": "https://ror.org/05e89k615"
+    },
+    {
+      "name": "https://ror.org/026nh4520",
+      "contributorType": "Other",
+      "@type": "Organization",
+      "@id": "https://ror.org/026nh4520"
+    }
+  ],
+  "description": "The southern right whale (*Eubalaena australis*) is listed as Endangered under the *Environmental Protection and Biodiversity Conservation Act 1999* (EPBC Act) and is subject to conservation listings in five Australian states due to severe population declines caused by historical whaling. The Southern Right Whale Conservation Management Plan 2011–2021 outlines the current status of, and threats to, the southern right whale in Australian waters and prioritises recovery actions during this period. The long-term vision for the recovery of this species in Australian waters is to increase the population size to a level that the conservation status improves, and the species no longer qualifies for listing as threatened under any of the EPBC Act listing criteria. The plan must be periodically updated to reflect new knowledge and prioritise the research needed to monitor population recovery and predict the impacts of threats such as climate change.\n\nAerial surveys of southern right whales have been conducted across the southern Australian coast from Perth (WA) to Ceduna (SA) since 1993, as part of a long-term program to monitor the recovery, and inform the Conservation Management Plan (2011-2021), for this Endangered species. In Australia’s south-east, there has been little sign of recovery in southern right whale numbers following intense commercial whaling. A working hypothesis assumes separation between the ‘western’ and ‘eastern’ populations, largely due to loss of ‘cultural memory’ of whales migrating to the eastern range breeding areas. Given the relative paucity of animals that visit the southern Australian coast in areas other than south-west Australia, the western population is considered to represent the majority of the ‘Australian’ southern right whale population. The count data from these aerial surveys provide data on population trend and estimates of population size for the ‘western’ population, and hence the majority of the Australian southern right whales. Associated photo-identification data provide life history information (such as calving intervals) and connectivity between the ‘western’ and ‘eastern’ populations and contribute to the national southern right whale photo-id database: the Australasian Right Whale Photo-Identification Catalogue (ARWPIC).\n\nThe 2020 aerial survey program recorded substantially lower numbers of whales than in the previous 13 years, and the lowest number of non-calving whales since the program started. This project conducted new aerial surveying in August 2021 to provide a relative estimate of annual population size for determining longer term population trends and contribute to determining if 2020 was an anomalous year or an indicator of some longer-term change to recent recovery rates and the female breeding cycle.",
+  "datePublished": 2025,
+  "isPartOf": {
+    "@id": "https://raid.org/10.71821/418be95a",
+    "@type": "Project"
+  },
+  "@reverse": {
+    "citation": {
+      "@id": "https://doi.org/10.26179/kkeb-1m46",
       "@type": "Dataset"
     }
   },
@@ -4448,90 +4448,6 @@
 {
   "@context": "http://schema.org",
   "@type": "Project",
-  "@id": "https://doi.org/10.71676/ce3ab2b7",
-  "identifier": {
-    "@type": "PropertyValue",
-    "propertyID": "RaidAgencyUrl",
-    "value": "https://prod.static.raid.org.au/10.71676/ce3ab2b7"
-  },
-  "url": "https://raid.org/10.71676/ce3ab2b7",
-  "additionalType": "RAiD",
-  "name": "NESP MaC Project 1.18 - Managing microplastics in south-eastern Australian coastal waters: identifying knowledge gaps (Adelaide Uni)",
-  "author": [
-    {
-      "name": "Patrick Reis-Santos",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0001-9843-9465"
-    },
-    {
-      "name": "Bronwyn Gillanders",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-7680-2240"
-    },
-    {
-      "name": "Nina Wootton",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0001-5624-8441"
-    }
-  ],
-  "editor": [
-    {
-      "name": "RAiD AU",
-      "contributorType": "RegistrationAgency",
-      "@type": "Organization",
-      "@id": "https://ror.org/038sjwq14"
-    },
-    {
-      "name": "https://ror.org/00892tw58",
-      "contributorType": "HostingInstitution",
-      "@type": "Organization",
-      "@id": "https://ror.org/00892tw58"
-    },
-    {
-      "name": "https://ror.org/01kpzv902",
-      "contributorType": "Other",
-      "@type": "Organization",
-      "@id": "https://ror.org/01kpzv902"
-    },
-    {
-      "name": "https://ror.org/01sf06y89",
-      "contributorType": "Other",
-      "@type": "Organization",
-      "@id": "https://ror.org/01sf06y89"
-    },
-    {
-      "name": "https://ror.org/01ej9dk98",
-      "contributorType": "Other",
-      "@type": "Organization",
-      "@id": "https://ror.org/01ej9dk98"
-    }
-  ],
-  "description": "Plastic pollution is pervasive in coastal environments globally and in Australia. Due to their small size, microplastics (pieces <5mm) are readily ingested by marine organisms and potentially accumulate across food webs, raising concerns for biota, ecosystem services and human health. Yet, to define guidelines and support policy actions that curb microplastic pollution, managers and decision-makers lack clear, synthesised information on this multifaceted issue, including on occurrence, sources, and pathways of microplastics in coastal and marine environments.\n\nThis project synthesised current knowledge on microplastics in the coastal waters of South-Eastern Australia (South Australia, Victoria, and New South Wales), identifying key gaps in data, monitoring, and risk assessment. A central output was a compiled database of existing microplastics studies across the study region. Through engagement with stakeholders from government, research, and industry, the project defined shared priorities and barriers to action. Three critical research needs were identified: (1) methodological harmonisation, (2) source and pathway identification, and (3) evidence of ecological risk. Together, the synthesis and stakeholder input set a clear direction for future coordinated research to enable evidence-based management of microplastic pollution across jurisdictions.\n\nThe work laid the foundation for the development of a Standard Operating Procedure (SOP) for marine microplastics sampling, which was subsequently delivered through [NESP Marine and Coastal Hub Project 2.2 ](https://www.nespmarinecoastal.edu.au/project/2-2): chapter [*Marine sampling field manual for microplastics*](https://microplastics-field-manual.github.io) in [*Field Manuals for Marine Sampling to Monitor Australian Waters, Version 3*](https://marine-sampling-field-manual.github.io).",
-  "datePublished": 2025,
-  "isPartOf": {
-    "@id": "https://raid.org/10.71821/418be95a",
-    "@type": "Project"
-  },
-  "@reverse": {
-    "citation": {
-      "@id": "https://doi.org/10.25959/brkv-p189",
-      "@type": "Dataset"
-    }
-  },
-  "schemaVersion": "http://datacite.org/schema/kernel-4",
-  "publisher": {
-    "@type": "Organization",
-    "@id": "https://ror.org/00arpt780",
-    "name": "https://ror.org/00arpt780"
-  },
-  "provider": {
-    "@type": "Organization",
-    "name": "datacite"
-  }
-},
-{
-  "@context": "http://schema.org",
-  "@type": "Project",
   "@id": "https://doi.org/10.71676/f35d4882",
   "identifier": {
     "@type": "PropertyValue",
@@ -4621,6 +4537,90 @@
   "isPartOf": {
     "@id": "https://raid.org/10.71821/418be95a",
     "@type": "Project"
+  },
+  "schemaVersion": "http://datacite.org/schema/kernel-4",
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/00arpt780",
+    "name": "https://ror.org/00arpt780"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.71676/ce3ab2b7",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.71676/ce3ab2b7"
+  },
+  "url": "https://raid.org/10.71676/ce3ab2b7",
+  "additionalType": "RAiD",
+  "name": "NESP MaC Project 1.18 - Managing microplastics in south-eastern Australian coastal waters: identifying knowledge gaps (Adelaide Uni)",
+  "author": [
+    {
+      "name": "Patrick Reis-Santos",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0001-9843-9465"
+    },
+    {
+      "name": "Bronwyn Gillanders",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-7680-2240"
+    },
+    {
+      "name": "Nina Wootton",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0001-5624-8441"
+    }
+  ],
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/00892tw58",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/00892tw58"
+    },
+    {
+      "name": "https://ror.org/01kpzv902",
+      "contributorType": "Other",
+      "@type": "Organization",
+      "@id": "https://ror.org/01kpzv902"
+    },
+    {
+      "name": "https://ror.org/01sf06y89",
+      "contributorType": "Other",
+      "@type": "Organization",
+      "@id": "https://ror.org/01sf06y89"
+    },
+    {
+      "name": "https://ror.org/01ej9dk98",
+      "contributorType": "Other",
+      "@type": "Organization",
+      "@id": "https://ror.org/01ej9dk98"
+    }
+  ],
+  "description": "Plastic pollution is pervasive in coastal environments globally and in Australia. Due to their small size, microplastics (pieces <5mm) are readily ingested by marine organisms and potentially accumulate across food webs, raising concerns for biota, ecosystem services and human health. Yet, to define guidelines and support policy actions that curb microplastic pollution, managers and decision-makers lack clear, synthesised information on this multifaceted issue, including on occurrence, sources, and pathways of microplastics in coastal and marine environments.\n\nThis project synthesised current knowledge on microplastics in the coastal waters of South-Eastern Australia (South Australia, Victoria, and New South Wales), identifying key gaps in data, monitoring, and risk assessment. A central output was a compiled database of existing microplastics studies across the study region. Through engagement with stakeholders from government, research, and industry, the project defined shared priorities and barriers to action. Three critical research needs were identified: (1) methodological harmonisation, (2) source and pathway identification, and (3) evidence of ecological risk. Together, the synthesis and stakeholder input set a clear direction for future coordinated research to enable evidence-based management of microplastic pollution across jurisdictions.\n\nThe work laid the foundation for the development of a Standard Operating Procedure (SOP) for marine microplastics sampling, which was subsequently delivered through [NESP Marine and Coastal Hub Project 2.2 ](https://www.nespmarinecoastal.edu.au/project/2-2): chapter [*Marine sampling field manual for microplastics*](https://microplastics-field-manual.github.io) in [*Field Manuals for Marine Sampling to Monitor Australian Waters, Version 3*](https://marine-sampling-field-manual.github.io).",
+  "datePublished": 2025,
+  "isPartOf": {
+    "@id": "https://raid.org/10.71821/418be95a",
+    "@type": "Project"
+  },
+  "@reverse": {
+    "citation": {
+      "@id": "https://doi.org/10.25959/brkv-p189",
+      "@type": "Dataset"
+    }
   },
   "schemaVersion": "http://datacite.org/schema/kernel-4",
   "publisher": {
@@ -5378,54 +5378,6 @@
 {
   "@context": "http://schema.org",
   "@type": "Project",
-  "@id": "https://doi.org/10.71613/10c9226b",
-  "identifier": {
-    "@type": "PropertyValue",
-    "propertyID": "RaidAgencyUrl",
-    "value": "https://prod.static.raid.org.au/10.71613/10c9226b"
-  },
-  "url": "https://raid.org/10.71613/10c9226b",
-  "additionalType": "RAiD",
-  "name": "NESP RL Project 2.4 - National overview of monitoring frameworks and tools for Ramsar sites",
-  "author": {
-    "name": "Fran Sheldon",
-    "@type": "Person",
-    "@id": "https://orcid.org/0000-0001-9944-6392"
-  },
-  "editor": [
-    {
-      "name": "RAiD AU",
-      "contributorType": "RegistrationAgency",
-      "@type": "Organization",
-      "@id": "https://ror.org/038sjwq14"
-    },
-    {
-      "name": "https://ror.org/02sc3r913",
-      "contributorType": "HostingInstitution",
-      "@type": "Organization",
-      "@id": "https://ror.org/02sc3r913"
-    }
-  ],
-  "description": "One of Australia’s key obligations under the Ramsar Convention is to maintain the ecological character of its internationally listed Ramsar wetlands, with these responsibilities shared by the Australian Government in partnership with state and territory governments and nongovernment site managers.\nAustralia’s 66 Ramsar wetlands cover more than 8.3 million hectares and exhibit a range of biophysical and ecological characteristics (DAWE, 2022). Each Ramsar wetland is essentially unique in the context of spatial and temporal pressures on ecological character. Appropriate monitoring, using context-specific indicators, is key to understanding changes in condition and ecological character of Ramsar sites in response to natural and anthropogenic disturbances. A well-designed monitoring program can provide critical information to enable site managers to adaptively manage and assess the effectiveness of management interventions and actions to restore and improve condition.\nGiven the specific spatial and temporal context of each Ramsar wetland, this project will develop a better understanding of the monitoring frameworks appropriate for use at Ramsar sites and identify current knowledge gaps to guide research and development of tools to build capacity to monitor and manage Ramsar wetlands.\n",
-  "datePublished": 2025,
-  "isPartOf": {
-    "@id": "https://raid.org/10.71821/ffc970c8",
-    "@type": "Project"
-  },
-  "schemaVersion": "http://datacite.org/schema/kernel-4",
-  "publisher": {
-    "@type": "Organization",
-    "@id": "https://ror.org/01db6n192",
-    "name": "https://ror.org/01db6n192"
-  },
-  "provider": {
-    "@type": "Organization",
-    "name": "datacite"
-  }
-},
-{
-  "@context": "http://schema.org",
-  "@type": "Project",
   "@id": "https://doi.org/10.71613/983725c0",
   "identifier": {
     "@type": "PropertyValue",
@@ -5487,6 +5439,54 @@
     }
   ],
   "description": "Resilient, productive and sustainable landscapes support Australia’s rich biodiversity and agricultural and tourism economies, and are central to every Australian’s identity and wellbeing.\n\nIndigenous Australians’ cultural practices have sustainably managed these landscapes for millennia. However, our rangelands, agricultural and peri-urban landscapes – and even our protected areas – face increasingly complex environmental challenges. These challenges erode landscape condition and undermine capacity to recover from threatening processes and extreme events.\n\nTo protect Australia’s landscapes and the services they provide, merely maintaining resilience will not be enough, particularly given the changing climate. Instead, we need to find new ways to enhance and restore resilience.\n\nEnvironmental research has played a critical role in articulating the key threats to the resilience of our landscapes by:\n\n- describing declines in landscape condition, species abundance and distributions\n- predicting future threats\n- proposing and prioritising actions that should be taken to address them.\n\nSuch research has been critical for raising awareness about the magnitude of the threats to biodiversity and the urgent need to address them.\n\nDespite progress on identifying and prioritising threats, surprisingly little research in ecology and environmental science has actually focused on solutions.\n\nThe Resilient Landscapes Hub’s research program is based on a proposed approach we are calling ‘solutions science’. This user-driven, solutions-focused, co-research model brings academic and non-academic partners together to address the scientific and societal challenges of strengthening and restoring resilience in Australia’s landscapes.\n\nThis project focuses on developing and testing better ways to do applied environmental science. This includes supporting the development and implementation of the core components of our solutions-science approach.",
+  "datePublished": 2025,
+  "isPartOf": {
+    "@id": "https://raid.org/10.71821/ffc970c8",
+    "@type": "Project"
+  },
+  "schemaVersion": "http://datacite.org/schema/kernel-4",
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/01db6n192",
+    "name": "https://ror.org/01db6n192"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.71613/10c9226b",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.71613/10c9226b"
+  },
+  "url": "https://raid.org/10.71613/10c9226b",
+  "additionalType": "RAiD",
+  "name": "NESP RL Project 2.4 - National overview of monitoring frameworks and tools for Ramsar sites",
+  "author": {
+    "name": "Fran Sheldon",
+    "@type": "Person",
+    "@id": "https://orcid.org/0000-0001-9944-6392"
+  },
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/02sc3r913",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02sc3r913"
+    }
+  ],
+  "description": "One of Australia’s key obligations under the Ramsar Convention is to maintain the ecological character of its internationally listed Ramsar wetlands, with these responsibilities shared by the Australian Government in partnership with state and territory governments and nongovernment site managers.\nAustralia’s 66 Ramsar wetlands cover more than 8.3 million hectares and exhibit a range of biophysical and ecological characteristics (DAWE, 2022). Each Ramsar wetland is essentially unique in the context of spatial and temporal pressures on ecological character. Appropriate monitoring, using context-specific indicators, is key to understanding changes in condition and ecological character of Ramsar sites in response to natural and anthropogenic disturbances. A well-designed monitoring program can provide critical information to enable site managers to adaptively manage and assess the effectiveness of management interventions and actions to restore and improve condition.\nGiven the specific spatial and temporal context of each Ramsar wetland, this project will develop a better understanding of the monitoring frameworks appropriate for use at Ramsar sites and identify current knowledge gaps to guide research and development of tools to build capacity to monitor and manage Ramsar wetlands.\n",
   "datePublished": 2025,
   "isPartOf": {
     "@id": "https://raid.org/10.71821/ffc970c8",
@@ -7522,6 +7522,61 @@
 {
   "@context": "http://schema.org",
   "@type": "Project",
+  "@id": "https://doi.org/10.71613/c576a6f5",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.71613/c576a6f5"
+  },
+  "url": "https://raid.org/10.71613/c576a6f5",
+  "additionalType": "RAiD",
+  "name": "NESP RL Project 3.19 - Climate-resilient landscapes: an adaptation case study in NSW’s Northern Rivers region",
+  "author": [
+    {
+      "name": "Brendan Mackey",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0003-1996-4064"
+    },
+    {
+      "name": "Diane Jarvis",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0003-4822-8736"
+    }
+  ],
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/02sc3r913",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02sc3r913"
+    }
+  ],
+  "description": "This project aims to develop a climate change adaptation plan for focal threatened species and ecosystems of the Northern Rivers region of New South Wales (component 1) (already approved and underway) and the Wet Tropics of Queensland (component 2) (seeking approval for commencement 2025). \n\nComponent 1 Northern Rivers\nThe climate change adaptation plan will be designed to be embedded in planning and initiatives by local communities and governments. A bottom-up, community-based approach will be taken, working with local Landcare and species-monitoring groups, NSW North Coast Local Land Services (LLS) and Indigenous organisations. Our process will integrate with adaptation and resilience planning being undertaken by relevant local, state and federal government agencies.\nMany threatened species and several threatened ecological communities occur in the region. Significant wetlands, national parks, World Heritage areas, declared Aboriginal Areas, Indigenous Protected Areas and Indigenous Land Use Agreements are also found here. The region was home to the ‘Big Scrub’ subtropical rainforest, 75,000 ha of which was intensively cleared for agriculture. Less than 1% of this ecosystem remains. \nThe project will deliver applied research outcomes for stakeholders, including data, information and tools needed to support effective and appropriate adaptation actions for addressing climate-related risks to species and ecosystems in the region. The approaches and tools developed will be transferable to other regions.\n\nComponent 2 Wet Tropics\nThe same methodology will be used for a community-centred approach to climate change adaptation plan for focal threatened species and ecosystems developed for the Northern Rivers project. However, while the fundamentals of the methodology will remain the same, the approach will be modified to take into account the local contexts found in the Wet Tropics of Queensland; such modifications being co-developed with our partners, particularly WTMA, Terrain, FNQROC and the First Nations groups representing the twenty Rainforest Aboriginal Groups whose traditional lands fall within the Wet Tropics WHA. \nAs with Component 1 (Northern Rivers), this Wet Tropics component will deliver applied research outcomes for stakeholders and First Nations partners, including data, information and tools needed to support effective and appropriate adaptation actions for addressing climate-related risks to species and ecosystems in the region. Specific outputs and tools will be co-developed to ensure they complement existing resources and meet specific user needs.",
+  "datePublished": 2025,
+  "isPartOf": {
+    "@id": "https://raid.org/10.71821/ffc970c8",
+    "@type": "Project"
+  },
+  "schemaVersion": "http://datacite.org/schema/kernel-4",
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/01db6n192",
+    "name": "https://ror.org/01db6n192"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
   "@id": "https://doi.org/10.71613/8c7fe77a",
   "identifier": {
     "@type": "PropertyValue",
@@ -7599,61 +7654,6 @@
     }
   ],
   "description": "This project aims to address two overarching research questions: how can First Nations Peoples knowledges be reflected within (or alongside) Ecosystem Accounts prepared following the United Nations System of Environmental-Economic Accounting—Ecosystem Accounting (SEEA EA)? and what are suitable methods for appropriately gathering and presenting First Nations Peoples’ knowledges in relation to SEEA EA?\nTo achieve the project aim, researchers will partner with two First Nations groups from contrasting contexts and environments (northern QLD savannah and southern WA coast). Together we will trial methods and prepare full sets of SEEA EA compliant accounts for each group. By co-designing methods and accounts presentation, the aim is for the accounts to provide information that is useful for the groups themselves in addition to providing useful information for other research users.\nBeyond accounts preparation, and incorporating existing Australian literature, the project will develop and test overarching learnings and recommendations that can inform future EA policy development within DCCEEW. Working closely with our First Nations partners, and testing outputs with a small number of First Nations people from other organisations, the project will seek to identify common themes across different First Nations groups, and assess the relevance of, and links between, national accounting information (such as NEAP) and accounts built upon First Nations knowledge and perspectives. The project is also linked with the Nature Repair Market team within DCCEEW and will exchange learnings and findings with those working in that space, thus seeking to promote complementarity between EA and Nature Repair Market developments.",
-  "datePublished": 2025,
-  "isPartOf": {
-    "@id": "https://raid.org/10.71821/ffc970c8",
-    "@type": "Project"
-  },
-  "schemaVersion": "http://datacite.org/schema/kernel-4",
-  "publisher": {
-    "@type": "Organization",
-    "@id": "https://ror.org/01db6n192",
-    "name": "https://ror.org/01db6n192"
-  },
-  "provider": {
-    "@type": "Organization",
-    "name": "datacite"
-  }
-},
-{
-  "@context": "http://schema.org",
-  "@type": "Project",
-  "@id": "https://doi.org/10.71613/c576a6f5",
-  "identifier": {
-    "@type": "PropertyValue",
-    "propertyID": "RaidAgencyUrl",
-    "value": "https://prod.static.raid.org.au/10.71613/c576a6f5"
-  },
-  "url": "https://raid.org/10.71613/c576a6f5",
-  "additionalType": "RAiD",
-  "name": "NESP RL Project 3.19 - Climate-resilient landscapes: an adaptation case study in NSW’s Northern Rivers region",
-  "author": [
-    {
-      "name": "Brendan Mackey",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0003-1996-4064"
-    },
-    {
-      "name": "Diane Jarvis",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0003-4822-8736"
-    }
-  ],
-  "editor": [
-    {
-      "name": "RAiD AU",
-      "contributorType": "RegistrationAgency",
-      "@type": "Organization",
-      "@id": "https://ror.org/038sjwq14"
-    },
-    {
-      "name": "https://ror.org/02sc3r913",
-      "contributorType": "HostingInstitution",
-      "@type": "Organization",
-      "@id": "https://ror.org/02sc3r913"
-    }
-  ],
-  "description": "This project aims to develop a climate change adaptation plan for focal threatened species and ecosystems of the Northern Rivers region of New South Wales (component 1) (already approved and underway) and the Wet Tropics of Queensland (component 2) (seeking approval for commencement 2025). \n\nComponent 1 Northern Rivers\nThe climate change adaptation plan will be designed to be embedded in planning and initiatives by local communities and governments. A bottom-up, community-based approach will be taken, working with local Landcare and species-monitoring groups, NSW North Coast Local Land Services (LLS) and Indigenous organisations. Our process will integrate with adaptation and resilience planning being undertaken by relevant local, state and federal government agencies.\nMany threatened species and several threatened ecological communities occur in the region. Significant wetlands, national parks, World Heritage areas, declared Aboriginal Areas, Indigenous Protected Areas and Indigenous Land Use Agreements are also found here. The region was home to the ‘Big Scrub’ subtropical rainforest, 75,000 ha of which was intensively cleared for agriculture. Less than 1% of this ecosystem remains. \nThe project will deliver applied research outcomes for stakeholders, including data, information and tools needed to support effective and appropriate adaptation actions for addressing climate-related risks to species and ecosystems in the region. The approaches and tools developed will be transferable to other regions.\n\nComponent 2 Wet Tropics\nThe same methodology will be used for a community-centred approach to climate change adaptation plan for focal threatened species and ecosystems developed for the Northern Rivers project. However, while the fundamentals of the methodology will remain the same, the approach will be modified to take into account the local contexts found in the Wet Tropics of Queensland; such modifications being co-developed with our partners, particularly WTMA, Terrain, FNQROC and the First Nations groups representing the twenty Rainforest Aboriginal Groups whose traditional lands fall within the Wet Tropics WHA. \nAs with Component 1 (Northern Rivers), this Wet Tropics component will deliver applied research outcomes for stakeholders and First Nations partners, including data, information and tools needed to support effective and appropriate adaptation actions for addressing climate-related risks to species and ecosystems in the region. Specific outputs and tools will be co-developed to ensure they complement existing resources and meet specific user needs.",
   "datePublished": 2025,
   "isPartOf": {
     "@id": "https://raid.org/10.71821/ffc970c8",
