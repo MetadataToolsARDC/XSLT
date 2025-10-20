@@ -1,0 +1,1128 @@
+[
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.71826/6df3e568",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.71826/6df3e568"
+  },
+  "url": "https://raid.org/10.71826/6df3e568",
+  "additionalType": "RAiD",
+  "name": "NESP SCaW Project IP1.02.01 - Nature Connection, 2022-2026 (UTAS)",
+  "author": [
+    {
+      "name": "Jason A Byrne",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0001-8733-0333"
+    },
+    {
+      "name": "Robert Anders",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0001-6030-3263"
+    }
+  ],
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/01nfmeh72",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/01nfmeh72"
+    },
+    {
+      "name": "https://ror.org/02wtcj248",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02wtcj248"
+    }
+  ],
+  "description": "The Nature Connection Project aims to increase benefits for people and the environment derived from valuing nature, through understanding nature connection in the Australian context, and identifying and supporting strategies to maximise positive impacts on health, wellbeing and sustainability for all Australians. Stream 3 of this project (Indigenous-led research) is a cross-Hub project being codesigned and co-delivered with leadership from the melythina tiakana warrana Aboriginal Corporation (MTWAC).  It is expected to focus on improving health of Tebrakunna Country and wellbeing of Coastal Plains Nation. ",
+  "datePublished": 2025,
+  "isPartOf": {
+    "@id": "https://raid.org/10.71821/35f86452",
+    "@type": "Project"
+  },
+  "@reverse": {
+    "citation": [
+      {
+        "@id": "https://doi.org/10.31235/osf.io/s74k9",
+        "@type": "Report"
+      },
+      {
+        "@id": "https://doi.org/10.25959/28067711",
+        "@type": "Report"
+      },
+      {
+        "@id": "https://doi.org/10.25959/28067699",
+        "@type": "Report"
+      },
+      {
+        "@id": "https://doi.org/10.25959/26212505",
+        "@type": "Report"
+      },
+      {
+        "@id": "https://doi.org/10.25959/25755930",
+        "@type": "Report"
+      },
+      {
+        "@id": "https://doi.org/10.25959/25592214",
+        "@type": "Report"
+      },
+      {
+        "@id": "https://doi.org/10.25959/24797019",
+        "@type": "Report"
+      },
+      {
+        "@id": "https://doi.org/10.25959/24797043",
+        "@type": "Report"
+      },
+      {
+        "@id": "https://doi.org/10.25959/24797166",
+        "@type": "Report"
+      },
+      {
+        "@id": "https://doi.org/10.25959/24797166",
+        "@type": "Other"
+      },
+      {
+        "@id": "https://doi.org/10.25959/24797148",
+        "@type": "Report"
+      },
+      {
+        "@id": "https://doi.org/10.25959/24797028",
+        "@type": "Report"
+      }
+    ]
+  },
+  "schemaVersion": "http://datacite.org/schema/kernel-4",
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/01db6n192",
+    "name": "https://ror.org/01db6n192"
+  },
+  "funder": {
+    "@id": "https://ror.org/01db6n192",
+    "@type": "Organization",
+    "name": "https://ror.org/01db6n192"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.26259/488751",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.26259/488751"
+  },
+  "url": "https://raid.org/10.26259/488751",
+  "additionalType": "RAiD",
+  "name": "Australia and the Arms Trade Treaty",
+  "author": {},
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/02stey378",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02stey378"
+    }
+  ],
+  "datePublished": 2025,
+  "sameAs": {
+    "@id": "https://raid.org/102.100.100/488751",
+    "@type": "CreativeWork"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/02stey378",
+    "name": "https://ror.org/02stey378"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.26259/489436",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.26259/489436"
+  },
+  "url": "https://raid.org/10.26259/489436",
+  "additionalType": "RAiD",
+  "name": "The professional director: Mechanisms to improve the efficacy of corporate governance and the ethical behaviour of officers and directors in Australia",
+  "author": {},
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/02stey378",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02stey378"
+    }
+  ],
+  "datePublished": 2025,
+  "sameAs": {
+    "@id": "https://raid.org/102.100.100/489436",
+    "@type": "CreativeWork"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/02stey378",
+    "name": "https://ror.org/02stey378"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.26259/599762",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.26259/599762"
+  },
+  "url": "https://raid.org/10.26259/599762",
+  "additionalType": "RAiD",
+  "name": "Clinical Review of Immunotherapy Related Rheumatic Disease in Melanoma Patients",
+  "author": {},
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/02stey378",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02stey378"
+    }
+  ],
+  "datePublished": 2025,
+  "sameAs": {
+    "@id": "https://raid.org/102.100.100/599762",
+    "@type": "CreativeWork"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/02stey378",
+    "name": "https://ror.org/02stey378"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.26259/599811",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.26259/599811"
+  },
+  "url": "https://raid.org/10.26259/599811",
+  "additionalType": "RAiD",
+  "name": "Embedding AOD engagement and support into street outreach – an evaluation",
+  "author": {},
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/02stey378",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02stey378"
+    }
+  ],
+  "datePublished": 2025,
+  "sameAs": {
+    "@id": "https://raid.org/102.100.100/599811",
+    "@type": "CreativeWork"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/02stey378",
+    "name": "https://ror.org/02stey378"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.26259/600208",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.26259/600208"
+  },
+  "url": "https://raid.org/10.26259/600208",
+  "additionalType": "RAiD",
+  "name": "Halls Creek Community Repository Project",
+  "author": {},
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/02stey378",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02stey378"
+    }
+  ],
+  "datePublished": 2025,
+  "sameAs": {
+    "@id": "https://raid.org/102.100.100/600208",
+    "@type": "CreativeWork"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/02stey378",
+    "name": "https://ror.org/02stey378"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.26259/600209",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.26259/600209"
+  },
+  "url": "https://raid.org/10.26259/600209",
+  "additionalType": "RAiD",
+  "name": "Benchmarking Australia’s Dedicated Ocular Oncology Multidisciplinary Team Meetings Against Best Practice Guidelines",
+  "author": {},
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/02stey378",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02stey378"
+    }
+  ],
+  "datePublished": 2025,
+  "sameAs": {
+    "@id": "https://raid.org/102.100.100/600209",
+    "@type": "CreativeWork"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/02stey378",
+    "name": "https://ror.org/02stey378"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.26259/600210",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.26259/600210"
+  },
+  "url": "https://raid.org/10.26259/600210",
+  "additionalType": "RAiD",
+  "name": "Feed your muscles: A quasi-experimental, mixed method trial exploring dietary education in a rehabilitation setting",
+  "author": {},
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/02stey378",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02stey378"
+    }
+  ],
+  "datePublished": 2025,
+  "sameAs": {
+    "@id": "https://raid.org/102.100.100/600210",
+    "@type": "CreativeWork"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/02stey378",
+    "name": "https://ror.org/02stey378"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.26259/600211",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.26259/600211"
+  },
+  "url": "https://raid.org/10.26259/600211",
+  "additionalType": "RAiD",
+  "name": "A 10 year retrospective study of pancreatic surgery in a large regional centre: A study of safety, efficacy and long-term patient outcomes",
+  "author": {},
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/02stey378",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02stey378"
+    }
+  ],
+  "datePublished": 2025,
+  "sameAs": {
+    "@id": "https://raid.org/102.100.100/600211",
+    "@type": "CreativeWork"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/02stey378",
+    "name": "https://ror.org/02stey378"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.26259/600299",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.26259/600299"
+  },
+  "url": "https://raid.org/10.26259/600299",
+  "additionalType": "RAiD",
+  "name": "Research Impact framework for WAAEH",
+  "author": {},
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/02stey378",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02stey378"
+    }
+  ],
+  "datePublished": 2025,
+  "sameAs": {
+    "@id": "https://raid.org/102.100.100/600299",
+    "@type": "CreativeWork"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/02stey378",
+    "name": "https://ror.org/02stey378"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.26259/600300",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.26259/600300"
+  },
+  "url": "https://raid.org/10.26259/600300",
+  "additionalType": "RAiD",
+  "name": "Born into homelessness: reducing the impact of homelessness across the first 1,000 days of life",
+  "author": {},
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/02stey378",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02stey378"
+    }
+  ],
+  "datePublished": 2025,
+  "sameAs": {
+    "@id": "https://raid.org/102.100.100/600300",
+    "@type": "CreativeWork"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/02stey378",
+    "name": "https://ror.org/02stey378"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.26259/601277",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.26259/601277"
+  },
+  "url": "https://raid.org/10.26259/601277",
+  "additionalType": "RAiD",
+  "name": "Perspectives on robot-assisted lower limb and gait neurorehabilitation",
+  "author": {},
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/02stey378",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02stey378"
+    }
+  ],
+  "datePublished": 2025,
+  "sameAs": {
+    "@id": "https://raid.org/102.100.100/601277",
+    "@type": "CreativeWork"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/02stey378",
+    "name": "https://ror.org/02stey378"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.26259/601284",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.26259/601284"
+  },
+  "url": "https://raid.org/10.26259/601284",
+  "additionalType": "RAiD",
+  "name": "Adherence to occupational therapist home safety recommendations by people with advanced Parkinson’s disease and their care partners",
+  "author": {},
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/02stey378",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02stey378"
+    }
+  ],
+  "datePublished": 2025,
+  "sameAs": {
+    "@id": "https://raid.org/102.100.100/601284",
+    "@type": "CreativeWork"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/02stey378",
+    "name": "https://ror.org/02stey378"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.26259/601517",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.26259/601517"
+  },
+  "url": "https://raid.org/10.26259/601517",
+  "additionalType": "RAiD",
+  "name": "Review of the Graduate Diploma of Midwifery curriculum, with the aim of future proofing the program for the next 10 years.",
+  "author": {},
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/02stey378",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02stey378"
+    }
+  ],
+  "datePublished": 2025,
+  "sameAs": {
+    "@id": "https://raid.org/102.100.100/601517",
+    "@type": "CreativeWork"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/02stey378",
+    "name": "https://ror.org/02stey378"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.26259/601530",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.26259/601530"
+  },
+  "url": "https://raid.org/10.26259/601530",
+  "additionalType": "RAiD",
+  "name": "Analysis of quantitative and qualitative bone parameters from paired imaging using Dual x-ray Absorptiometry (DXA) and peripheral Quantitative Computer Tomography (pQCT)",
+  "author": {},
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/02stey378",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02stey378"
+    }
+  ],
+  "datePublished": 2025,
+  "sameAs": {
+    "@id": "https://raid.org/102.100.100/601530",
+    "@type": "CreativeWork"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/02stey378",
+    "name": "https://ror.org/02stey378"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.26259/601531",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.26259/601531"
+  },
+  "url": "https://raid.org/10.26259/601531",
+  "additionalType": "RAiD",
+  "name": "Are health professional educators prepared for inclusive education?",
+  "author": {},
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/02stey378",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02stey378"
+    }
+  ],
+  "datePublished": 2025,
+  "sameAs": {
+    "@id": "https://raid.org/102.100.100/601531",
+    "@type": "CreativeWork"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/02stey378",
+    "name": "https://ror.org/02stey378"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.26259/601532",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.26259/601532"
+  },
+  "url": "https://raid.org/10.26259/601532",
+  "additionalType": "RAiD",
+  "name": "Post-stroke lateropulsion: current knowledge, priorities and practice",
+  "author": {},
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/02stey378",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02stey378"
+    }
+  ],
+  "datePublished": 2025,
+  "sameAs": {
+    "@id": "https://raid.org/102.100.100/601532",
+    "@type": "CreativeWork"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/02stey378",
+    "name": "https://ror.org/02stey378"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.26259/601534",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.26259/601534"
+  },
+  "url": "https://raid.org/10.26259/601534",
+  "additionalType": "RAiD",
+  "name": "The student experience; perceptions of participating in a Physiotherapy Rural Clinical Year placement program in Western Australia (a narrative study). ",
+  "author": {},
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/02stey378",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02stey378"
+    }
+  ],
+  "datePublished": 2025,
+  "sameAs": {
+    "@id": "https://raid.org/102.100.100/601534",
+    "@type": "CreativeWork"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/02stey378",
+    "name": "https://ror.org/02stey378"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.26259/601836",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.26259/601836"
+  },
+  "url": "https://raid.org/10.26259/601836",
+  "additionalType": "RAiD",
+  "name": "Survey of Catholic Priests in Australia",
+  "author": {},
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/02stey378",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02stey378"
+    }
+  ],
+  "datePublished": 2025,
+  "sameAs": {
+    "@id": "https://raid.org/102.100.100/601836",
+    "@type": "CreativeWork"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/02stey378",
+    "name": "https://ror.org/02stey378"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.26259/601838",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.26259/601838"
+  },
+  "url": "https://raid.org/10.26259/601838",
+  "additionalType": "RAiD",
+  "name": "Criminalising Coercive Control in Australia: A Critical Discourse Analysis of Parliamentary Inquiries and Legislative Responses in State-Based Jurisdictions",
+  "author": {},
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/02stey378",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02stey378"
+    }
+  ],
+  "datePublished": 2025,
+  "sameAs": {
+    "@id": "https://raid.org/102.100.100/601838",
+    "@type": "CreativeWork"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/02stey378",
+    "name": "https://ror.org/02stey378"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.26259/601890",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.26259/601890"
+  },
+  "url": "https://raid.org/10.26259/601890",
+  "additionalType": "RAiD",
+  "name": "Can commercial referral platforms predict healthcare burden and areas of limited healthcare resources in Australia?",
+  "author": {},
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/02stey378",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02stey378"
+    }
+  ],
+  "datePublished": 2025,
+  "sameAs": {
+    "@id": "https://raid.org/102.100.100/601890",
+    "@type": "CreativeWork"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/02stey378",
+    "name": "https://ror.org/02stey378"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.26259/601891",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.26259/601891"
+  },
+  "url": "https://raid.org/10.26259/601891",
+  "additionalType": "RAiD",
+  "name": "Lived Environmentalism: Nonreligion and Lifestyle Politics",
+  "author": {},
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/02stey378",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02stey378"
+    }
+  ],
+  "datePublished": 2025,
+  "sameAs": {
+    "@id": "https://raid.org/102.100.100/601891",
+    "@type": "CreativeWork"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/02stey378",
+    "name": "https://ror.org/02stey378"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.26259/602069",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.26259/602069"
+  },
+  "url": "https://raid.org/10.26259/602069",
+  "additionalType": "RAiD",
+  "name": "Exploring medical educators’ perspectives on the inclusion of lived experience educators in the training of medical students in disability education: a qualitative study",
+  "author": {},
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/02stey378",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02stey378"
+    }
+  ],
+  "datePublished": 2025,
+  "sameAs": {
+    "@id": "https://raid.org/102.100.100/602069",
+    "@type": "CreativeWork"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/02stey378",
+    "name": "https://ror.org/02stey378"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.26259/602070",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.26259/602070"
+  },
+  "url": "https://raid.org/10.26259/602070",
+  "additionalType": "RAiD",
+  "name": "CT Scanning is Accurate at Predicting Implant Sizes in TKA: A Retrospective Cohort Study",
+  "author": {},
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/02stey378",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02stey378"
+    }
+  ],
+  "datePublished": 2025,
+  "sameAs": {
+    "@id": "https://raid.org/102.100.100/602070",
+    "@type": "CreativeWork"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/02stey378",
+    "name": "https://ror.org/02stey378"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.26259/602217",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.26259/602217"
+  },
+  "url": "https://raid.org/10.26259/602217",
+  "additionalType": "RAiD",
+  "name": "The Calf Project: An international prospective evaluation of the epidemiology, clinical monitoring and rehabilitation after calf muscle strain injuries",
+  "author": {},
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/02stey378",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02stey378"
+    }
+  ],
+  "datePublished": 2025,
+  "sameAs": {
+    "@id": "https://raid.org/102.100.100/602217",
+    "@type": "CreativeWork"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/02stey378",
+    "name": "https://ror.org/02stey378"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+}
+]
