@@ -24,8 +24,8 @@
         </registryObjects>
     </xsl:template>
     
-    <xsl:template match="custom_fields[contains(name, 'Contributor nameIdentifier') and contains(value, 'ror')]" mode="collection_custom_handling">
-        <xsl:message select="'Handling custom fields where name is [Contributor nameIdentifier] - for Contributor TEMPLATE'"/>
+    <xsl:template match="custom_fields[contains(lower-case(name), 'contributor') and contains(value, 'ror.org')]" mode="collection_custom_handling">
+        <xsl:message select="'Handling custom fields where: name contains [contributor]; AND value contains ror.org - generic Contributor template - override as required'"/>
         <relatedInfo type="party">
             <identifier type="ror">
                 <xsl:value-of select="value"/>
@@ -33,9 +33,9 @@
         </relatedInfo>
     </xsl:template>
     
-    <xsl:template match="custom_fields" mode="collection_custom_handling">
-        <xsl:message select="'Handling custom fields where name is not [Contributor nameIdentifier] - for Contributor TEMPLATE'"></xsl:message>
-    </xsl:template>    
+    <xsl:template match="custom_fields[not(contains(lower-case(name), 'contributor')) or not(contains(value, 'ror.org'))]" mode="collection_custom_handling">
+        <xsl:message select="'No handling in place for custom fields where: name does not contain [contributor]; OR value does not contain [ror.org] - generic Contributor template - override as required'"></xsl:message>
+    </xsl:template>   
     
 </xsl:stylesheet>
 
