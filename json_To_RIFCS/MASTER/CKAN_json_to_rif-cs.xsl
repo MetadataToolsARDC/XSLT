@@ -14,6 +14,7 @@
     <xsl:param name="global_originatingSource" select="'{requires override}'"/>
     <xsl:param name="global_baseURI" select="'{requires override}'"/>
     <xsl:param name="global_dataset_path" select="'{requires override}'"/>
+    <xsl:param name="global_organization_path" select="'{requires override}'"/>
     <xsl:param name="global_acronym" select="'{requires override}'"/>
     <xsl:param name="global_group" select="'{requires override}'"/>
     <xsl:param name="global_contributor" select="'{requires override}'"/>
@@ -684,7 +685,7 @@
                     
                     <xsl:if test="string-length($id)">
                         <identifier type="uri">
-                            <xsl:value-of select="concat($global_baseURI,'organization/', $id)"/>
+                            <xsl:value-of select="concat($global_baseURI,$global_organization_path, $id)"/>
                         </identifier>
                     </xsl:if>
 
@@ -702,7 +703,7 @@
                                         <xsl:text>url</xsl:text>
                                     </xsl:attribute>
                                     <value>
-                                        <xsl:value-of select="concat($global_baseURI, 'organization/', $id)"/>
+                                        <xsl:value-of select="concat($global_baseURI, $global_organization_path, $id)"/>
                                     </value>
                                 </electronic>
                             </address>
@@ -906,7 +907,7 @@
                             <relatedInfo type="party">
                                 <identifier type="uri">
                                     <xsl:value-of
-                                        select="concat($global_baseURI,'organization/', $organizationName)"
+                                        select="concat($global_baseURI,$global_organization_path, $organizationName)"
                                     />
                                 </identifier>
                             </relatedInfo>

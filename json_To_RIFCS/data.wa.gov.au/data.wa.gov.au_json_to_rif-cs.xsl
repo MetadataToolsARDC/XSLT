@@ -26,12 +26,12 @@
             <xsl:attribute name="xsi:schemaLocation">
                 <xsl:text>http://ands.org.au/standards/rif-cs/registryObjects https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd</xsl:text>
             </xsl:attribute>
-            <xsl:apply-templates select="result" mode="collection"/>
-            <xsl:apply-templates select="result" mode="party"/>
+            <xsl:apply-templates select="//results" mode="collection"/>
+            <!--xsl:apply-templates select="//results" mode="party"/-->
         </registryObjects>
     </xsl:template>
 
-    <xsl:template match="result" mode="collection">
+    <xsl:template match="results" mode="collection">
 
         <xsl:variable name="metadataURL">
             <xsl:variable name="name" select="normalize-space(name)"/>
@@ -100,8 +100,21 @@
                 <xsl:apply-templates select="tags" mode="collection_subject"/>
                 
                 <xsl:apply-templates select="geospatial_theme | theme" mode="collection_subject"/>
-
-                <xsl:apply-templates select="notes" mode="collection_description"/>
+                
+                <xsl:choose>
+                    <xsl:when test="count(notes[string-length(text()) > 0]) > 0">
+                        <xsl:apply-templates select="notes" mode="collection_description"/>
+                    </xsl:when>
+                    <xsl:when test="count(title[string-length(text()) > 0]) > 0">
+                        <xsl:apply-templates select="title" mode="collection_description"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <description type="brief">
+                            <xsl:value-of select="'...'"/>
+                        </description>
+                    </xsl:otherwise>
+                </xsl:choose>
+                    
 
                 <xsl:apply-templates select="spatial_coverage" mode="collection_coverage_spatial"/>
 
@@ -126,7 +139,7 @@
     <!-- Party RegistryObject Template          -->
     <!-- =========================================== -->
 
-    <xsl:template match="result" mode="party">
+    <xsl:template match="results" mode="party">
         <xsl:apply-templates select="organization"/>
     </xsl:template>
 
@@ -237,18 +250,19 @@
     <!-- Collection - Related Object (Organisation or Individual) Element -->
     <xsl:template match="organization" mode="collection_related_object">
         <xsl:if test="string-length(normalize-space(title))">
-            <relatedObject>
-                <key>
-                    <xsl:value-of
-                        select="concat($global_group,'/', translate(lower-case(normalize-space(title)),' ',''))"
-                    />
-                </key>
+            <relatedInfo>
+                <identifier type="url">
+                    <xsl:value-of select="concat($global_baseURI, 'org/',  name)"/>
+                </identifier>
                 <relation>
                     <xsl:attribute name="type">
-                        <xsl:text>owner</xsl:text>
+                        <xsl:text>isManagedBy</xsl:text>
                     </xsl:attribute>
                 </relation>
-            </relatedObject>
+                <title>
+                    <xsl:value-of select="title"/>
+                </title>
+            </relatedInfo>
 
          </xsl:if>
     </xsl:template>
@@ -274,6 +288,14 @@
 
     <!-- Collection - Decription (brief) Element -->
     <xsl:template match="notes" mode="collection_description">
+        <xsl:if test="string-length(normalize-space(.)) > 0">
+            <description type="brief">
+                <xsl:value-of select="normalize-space(.)"/>
+            </description>
+        </xsl:if>
+    </xsl:template>
+    
+    <xsl:template match="title" mode="collection_description">
         <xsl:if test="string-length(normalize-space(.)) > 0">
             <description type="brief">
                 <xsl:value-of select="normalize-space(.)"/>

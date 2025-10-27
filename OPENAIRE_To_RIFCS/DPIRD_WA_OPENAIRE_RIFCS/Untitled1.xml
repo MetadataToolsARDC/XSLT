@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd">
+    <registryObject group="Department of Primary Industries and Regional Development (WA DPIRD)">
+        <key>4848484945115100951101121129758117974611811110346</key>
+        <originatingSource type="">Department of Primary Industries and Regional Development (WA DPIRD)</originatingSource>
+        <collection type="collection" dateAccessioned="2025-09-30T03:33:57Z">
+            <name type="primary">
+                <namePart>Test APPN Dataset</namePart>
+            </name>
+            <description type="full">&amp;lt;p&amp;gt;Datasets on: The four-year surveys provide information on Diamondback moth (DBM), and larvae count in canola crops in different locations, the impact of the presence of DBM in Brassica green bridge, trapping methods, environmental influence on DBM population increase, effective insecticide information, favourable conditions of DBM moth migration, etc.&amp;lt;/p&amp;gt;</description>
+            <identifier type="uri">https://library.dpird.wa.gov.au/appn_ds/1</identifier>
+            <dates type="available">
+                <date type="dateFrom" dateFormat="W3CDTF">2025-09-29</date>
+            </dates>
+            <dates type="accepted">
+                <date type="dateFrom" dateFormat="W3CDTF">2025-09-29</date>
+            </dates>
+            <location>
+                <address>
+                    <electronic type="url" target="landingPage">
+                        <value>https://library.dpird.wa.gov.au/appn_ds/1</value>
+                    </electronic>
+                </address>
+            </location>
+            <subject type="local">phenomics</subject>
+            <subject type="local">Agriculture</subject>
+            <relatedInfo>
+                <title>Daniel Taylor, Mr</title>
+                <identifier type="local">ACU/TaylorMrDaniel</identifier>
+                <relation type="hasCollector"/>
+            </relatedInfo>
+        </collection>
+    </registryObject>
+</registryObjects>
+

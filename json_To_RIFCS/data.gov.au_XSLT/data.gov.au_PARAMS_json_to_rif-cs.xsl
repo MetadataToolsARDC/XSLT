@@ -13,19 +13,20 @@
     <xsl:param name="global_originatingSource" select="'http://data.gov.au'"/>
     <xsl:param name="global_baseURI" select="'http://data.gov.au/'"/>
     <xsl:param name="global_dataset_path" select="'data/dataset/'"/>
+    <xsl:param name="global_organization_path" select="'data/organization/'"/>
     <xsl:param name="global_group" select="'data.gov.au'"/>
     <xsl:param name="global_contributor" select="'data.gov.au'"/>
     <xsl:param name="global_publisherName" select="'data.gov.au'"/>
     <xsl:param name="global_publisherPlace" select="'Canberra'"/>
     <xsl:param name="global_includeDownloadLinks" select="false()"/>
-
+    
     <xsl:template match="/">
         <!-- include all records except those with scopecode 'Document'-->
         <registryObjects>
             <xsl:attribute name="xsi:schemaLocation">
                 <xsl:text>http://ands.org.au/standards/rif-cs/registryObjects https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd</xsl:text>
             </xsl:attribute>
-            <xsl:for-each select="datasets/result/results">
+            <xsl:for-each select="//result/results">
                 <xsl:apply-templates select="." mode="all"/>
             </xsl:for-each>
         </registryObjects>

@@ -42,7 +42,6 @@
     <xsl:template match="oai:record">
         <xsl:apply-templates select="oai:metadata/oaire:resource" mode="collection"/>
         <!--  xsl:apply-templates select="oai:metadata/oaire:resource/dc:funding" mode="funding_party"/-->
-        <xsl:apply-templates select="oai:metadata/oaire:resource" mode="party"/> 
      </xsl:template>
     
     <xsl:template match="oaire:resource"  mode="collection">
@@ -130,7 +129,7 @@
                 
                 <!--xsl:apply-templates select="../../oai:header/oai:identifier[contains(.,'oai:eprints.utas.edu.au:')]" mode="collection_location_nodoi"/-->
                 
-                <xsl:apply-templates select="datacite:titles/datacite:title[string-length(.) > 0]" mode="collection_name"/>
+                <xsl:apply-templates select="//datacite:title[string-length(.) > 0]" mode="collection_name"/>
                 
                 
                 <!--xsl:apply-templates select="dc:identifier[not(@*) or not(string-length(@*))][1]" mode="collection_relatedObject_party"/-->
@@ -287,12 +286,22 @@
         </xsl:variable>
         
         <xsl:if test="string-length($nameToUseForKey) > 0">
-            <relatedObject>
-                <key>
+            <relatedInfo>
+                <identifier type="local">
                     <xsl:value-of select="murFunc:formatKey(murFunc:formatName($nameToUseForKey))"/> 
-                </key>
+                </identifier>
                 <relation type="hasCollector"/>
-            </relatedObject>
+                <title>
+                    <xsl:choose>
+                      <xsl:when test="(string-length(datacite:givenName) + string-length(datacite:familyName)) > 0">
+                          <xsl:value-of select="concat(datacite:givenName, ' ', datacite:familyName)"/>
+                      </xsl:when>
+                      <xsl:when test="(string-length(datacite:creatorName)) > 0">
+                          <xsl:value-of select="datacite:creatorName"/>
+                      </xsl:when>
+                    </xsl:choose>
+                </title>
+            </relatedInfo>
         </xsl:if>
     </xsl:template>
     
@@ -309,25 +318,22 @@
         </xsl:variable>
         
         <xsl:if test="string-length($nameToUseForKey) > 0">
-            
-            <relatedObject>
-                <key>
+            <relatedInfo>
+                <identifier type="local">
                     <xsl:value-of select="murFunc:formatKey(murFunc:formatName($nameToUseForKey))"/> 
-                </key>
-                <relation>
-                    <xsl:attribute name="type">
-                        <xsl:choose>
-                            <xsl:when test="string-length(@contributorType) > 0">
-                                <xsl:value-of select="@contributorType"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:text>hasAssociationWith</xsl:text>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                        
-                    </xsl:attribute>
-                </relation>
-            </relatedObject>
+                </identifier>
+                <relation type="hasCollector"/>
+                <title>
+                    <xsl:choose>
+                     <xsl:when test="(string-length(datacite:givenName) + string-length(datacite:familyName)) > 0">
+                         <xsl:value-of select="concat(datacite:givenName, ' ' , datacite:familyName)"/>
+                     </xsl:when>
+                     <xsl:when test="(string-length(datacite:contributorName)) > 0">
+                         <xsl:value-of select="datacite:contributorName"/>
+                     </xsl:when>
+                    </xsl:choose>
+                </title>
+            </relatedInfo>
         </xsl:if>
     </xsl:template>
     
@@ -646,44 +652,6 @@
         </contributor>
     </xsl:template>
     
-             
-     <xsl:template match="*" mode="party">
-        
-         <xsl:for-each select="datacite:creators/datacite:creator | datacite:contributors/datacite:contributor">
-            
-            <xsl:variable name="name" select="normalize-space(.)"/>
-            
-            <xsl:if test="(string-length(.) > 0)">
-            
-                   <xsl:if test="string-length(normalize-space(.)) > 0">
-                     <registryObject group="{$global_group}">
-                        <key>
-                            <xsl:value-of select="murFunc:formatKey(murFunc:formatName(datacite:creatorName | datacite:contributorName))"/> 
-                        </key>
-                        <originatingSource>
-                             <xsl:value-of select="$global_originatingSource"/>
-                        </originatingSource>
-                        
-                         <party>
-                            <xsl:attribute name="type" select="'person'"/>
-                             
-                             <name type="primary">
-                                 <namePart>
-                                     <xsl:value-of select="murFunc:formatName(normalize-space(datacite:creatorName | datacite:contributorName))"/>
-                                 </namePart>   
-                             </name>
-                             <xsl:for-each select="datacite:nameIdentifier">
-                                 <identifier type="{lower-case(@nameIdentifierScheme)}">
-                                    <xsl:value-of select="normalize-space(.)"/>
-                                 </identifier>
-                             </xsl:for-each>
-                         </party>
-                     </registryObject>
-                   </xsl:if>
-                </xsl:if>
-            </xsl:for-each>
-        </xsl:template>
-                   
     <xsl:function name="murFunc:formatName">
         <xsl:param name="name"/>
         
@@ -722,7 +690,7 @@
     
     <xsl:function name="murFunc:formatKey">
         <xsl:param name="input"/>
-        <xsl:variable name="raw" select="translate(normalize-space($input), ' ', '')"/>
+        <xsl:variable name="raw" select="replace(normalize-space($input), '\s+', '')"/>
         <xsl:variable name="temp">
             <xsl:choose>
                 <xsl:when test="substring($raw, string-length($raw), 1) = '.'">
@@ -733,7 +701,7 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:value-of select="concat($global_acronym, '/', $temp)"/>
+        <xsl:value-of select="concat(replace($global_acronym, '\s+', ''), '/', $temp)"/>
     </xsl:function>
     
 </xsl:stylesheet>
