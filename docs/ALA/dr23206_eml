@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eml:eml xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.1 http://rs.gbif.org/schema/eml-gbif-profile/1.1/eml-gbif-profile.xsd" system="ALA-Registry" scope="system" xml:lang="en">
+    <dataset>
+        <alternateIdentifier>ac9441d8-dca1-35f5-a879-f3fdd1e56619</alternateIdentifier>
+        <alternateIdentifier>10.3390/jmse9070723</alternateIdentifier>
+        <alternateIdentifier>bb6ae148-899f-4d49-8bd7-086172cfc69b</alternateIdentifier>
+        <alternateIdentifier>https://collections.ala.org.au/public/show/dr23206</alternateIdentifier>
+        <title>
+            A Very Large Spawning Aggregation of the basketwork eel, Diastobranchus capensis, on the small (3 km2) Patience Seamount off southeast Australia.
+        </title>
+        <creator>
+            <organizationName>Ocean Biodiversity Information System</organizationName>
+        </creator>
+        <metadataProvider>
+            <organizationName>Ocean Biodiversity Information System</organizationName>
+        </metadataProvider>
+        <associatedParty>
+            <organizationName>Atlas of Living Australia</organizationName>
+            <address>
+                <deliveryPoint>CSIRO Ecosystems Services</deliveryPoint>
+                <city>Canberra</city>
+                <administrativeArea>ACT</administrativeArea>
+                <postalCode>2601</postalCode>
+                <country>Australia</country>
+            </address>
+            <electronicMailAddress>info@ala.org.au</electronicMailAddress>
+            <role>distributor</role>
+        </associatedParty>
+        <pubDate>2025-10-30</pubDate>
+        <language>English</language>
+        <abstract>
+            <para>
+                Samples and data from the eel aggregation were collected opportunistically during three surveys that aimed primarily to map the seabed and associated benthic biodiversity on the continental slope off southern Tasmania in an area containing a cluster of small volcanic seamounts. Details of the three surveys are respectively at https://www.marine.csiro.au/data/trawler/surveydetails.cfm?survey=SS200702 https://www.marine.csiro.au/data/trawler/surveydetails.cfm?survey=IN2015E02 and https://www.marine.csiro.au/data/trawler/surveydetails.cfm?survey=IN2018_V06 If this data has been used in any products, please acknowledge with the following: We acknowledge the use of the CSIRO Marine National Facility (https://ror.org/01mae9353) in undertaking this research.
+            </para>
+        </abstract>
+        <intellectualRights>
+            <para>
+                This work is licensed under a Creative Commons Attribution Non Commercial (CC-BY-NC) 4.0 License. Williams A, Osterhage D, Althaus F, Ryan T, Green M, Pogonoski J. (2021) A Very Large Spawning Aggregation of a Deep-Sea Eel: Magnitude and Status. Journal of Marine Science and Engineering. 2021; 9(7):723. https://doi.org/10.3390/jmse9070723
+            </para>
+        </intellectualRights>
+        <distribution>
+            <online>
+                <url function="information">https://collections.ala.org.au/public/show/dr23206</url>
+            </online>
+        </distribution>
+        <coverage>
+            <geographicCoverage>
+                <geographicDescription>Tasmanian Seamounts</geographicDescription>
+                <boundingCoordinates>
+                    <westBoundingCoordinate>147.1</westBoundingCoordinate>
+                    <eastBoundingCoordinate>147.39</eastBoundingCoordinate>
+                    <northBoundingCoordinate>-44.12</northBoundingCoordinate>
+                    <southBoundingCoordinate>-44.327</southBoundingCoordinate>
+                </boundingCoordinates>
+            </geographicCoverage>
+            <temporalCoverage>
+                <rangeOfDates>
+                    <beginDate>
+                        <calendarDate>2007-03-01</calendarDate>
+                    </beginDate>
+                    <endDate>
+                        <calendarDate>2007-03-01</calendarDate>
+                    </endDate>
+                </rangeOfDates>
+            </temporalCoverage>
+        </coverage>
+        <purpose>
+            <para/>
+        </purpose>
+        <contact>
+            <individualName>
+                <givenName>Alan</givenName>
+                <surName>Williams</surName>
+            </individualName>
+            <positionName>Primary Contact</positionName>
+            <electronicMailAddress>Alan.Williams@csiro.au</electronicMailAddress>
+        </contact>
+        <methods/>
+    </dataset>
+    <additionalMetadata>
+        <metadata>
+            <gbif>
+                <dateStamp>2025-10-29T08:02:54</dateStamp>
+                <hierarchyLevel>dataset</hierarchyLevel>
+                <resourceLogoUrl>
+                    https://collections.ala.org.au/data/dataProvider/obis.png
+                </resourceLogoUrl>
+                <citation>
+                    Williams A, Osterhage D, Althaus F, Ryan T, Green M, Pogonoski J. (2021) A Very Large Spawning Aggregation of a Deep-Sea Eel: Magnitude and Status. Journal of Marine Science and Engineering. 2021; 9(7):723. https://doi.org/10.3390/jmse9070723
+                </citation>
+                <rights>
+                    This work is licensed under a Creative Commons Attribution Non Commercial (CC-BY-NC) 4.0 License.
+                </rights>
+            </gbif>
+        </metadata>
+    </additionalMetadata>
+</eml:eml>
