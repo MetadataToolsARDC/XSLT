@@ -7,6 +7,7 @@
     xmlns:map="http://www.w3.org/2005/xpath-functions/map"
     xmlns:array="http://www.w3.org/2005/xpath-functions/array"
     xmlns:local="http://local.to.here"
+    xmlns:err="http://www.w3.org/2005/xqt-errors"
     xmlns="http://ands.org.au/standards/rif-cs/registryObjects"
     exclude-result-prefixes="xs xsi xsl fn array map local">
     
@@ -89,8 +90,8 @@
                     <xsl:for-each select="$batch">
                         
                         <!--xsl:variable name="fullURL" select="concat($global_baseURI, $global_pathEML_ws, '/', .)"/-->
-                        <xsl:variable name="fullURL" select="'https://metadatatoolsardc.github.io/XSLT/ALA/dr23206_eml.xml'"/>
                         <xsl:variable name="fullURL" select="'https://collections.ala.org.au/ws/eml/dr23206'"/>
+                        <xsl:variable name="fullURL" select="'https://metadatatoolsardc.github.io/XSLT/ALA/dr23206_eml.xml'"/>
                         <xsl:message select="concat('Loading doc from: ', $fullURL)"/>
                         
                         <xsl:choose>
@@ -109,6 +110,7 @@
                                     
                                     <xsl:catch>
                                         <xsl:message select="concat('Failed to load or parse XML from: ', $fullURL)"/>
+                                        <xsl:value-of select="concat('&#x00a0;Error code: ', $err:code, ' and Error Desc is: ', $err:description)"/>
                                     </xsl:catch>
                                 </xsl:try>
                             </xsl:when>
