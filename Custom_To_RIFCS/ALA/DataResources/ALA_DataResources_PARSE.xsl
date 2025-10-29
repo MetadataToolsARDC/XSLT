@@ -90,7 +90,7 @@
                         
                         <!--xsl:variable name="fullURL" select="concat($global_baseURI, $global_pathEML_ws, '/', .)"/-->
                         <xsl:variable name="fullURL" select="'https://metadatatoolsardc.github.io/XSLT/ALA/dr23206_eml.xml'"/>
-                        <!--xsl:variable name="fullURL" select="'https://collections.ala.org.au/ws/eml/dr23206'"/-->
+                        <xsl:variable name="fullURL" select="'https://collections.ala.org.au/ws/eml/dr23206'"/>
                         <xsl:message select="concat('Loading doc from: ', $fullURL)"/>
                         
                         <xsl:choose>
