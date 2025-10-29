@@ -24,7 +24,7 @@
     <xsl:param name="global_publisherName" select="'Atlas of Living Australia'"/>
     <xsl:param name="global_publisherPlace" select="''"/>
     <!--xsl:param name="global_allKeysURL" select="'https://biocache.ala.org.au/ws/occurrences/facets?q=*:*&amp;facets=dataResourceUid&amp;count=true&amp;lookup=true&amp;flimit=10000'"/-->
-    <xsl:param name="global_allKeysURL" select="'https://raw.githubusercontent.com/MetadataToolsARDC/XSLT/refs/heads/master/docs/ALA/CachedKeyCall_Mini.json'"/>
+    <xsl:param name="global_allKeysURL" select="'https://metadatatoolsardc.github.io/XSLT/ALA/CachedKeyCall_Mini.json'"/>
    
     
     <xsl:param name="global_ElementNameKeyArray" select="'fieldResult'"/>
@@ -89,26 +89,36 @@
                     <xsl:for-each select="$batch">
                         
                         <!--xsl:variable name="fullURL" select="concat($global_baseURI, $global_pathEML_ws, '/', .)"/-->
+                        <xsl:variable name="fullURL" select="'https://metadatatoolsardc.github.io/XSLT/ALA/dr23206_eml.xml'"/>
+                        <!--xsl:variable name="fullURL" select="'https://collections.ala.org.au/ws/eml/dr23206'"/-->
                         <xsl:message select="concat('Loading doc from: ', $fullURL)"/>
                         
-                        <xsl:try>
-                            <xsl:variable name="doc" select="document($fullURL)"/>
-                            
-                            <xsl:choose>
-                                <xsl:when test="not(has-children($doc))">
-                                    <xsl:message select="'Doc is empty'"/>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:apply-templates select="$doc" mode="process"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                            
-                            <xsl:catch>
-                                <xsl:message select="concat('Failed to load or parse XML from: ', $fullURL)"/>
-                            </xsl:catch>
-                        </xsl:try>
-                            
+                        <xsl:choose>
+                            <xsl:when test="fn:doc-available($fullURL)">
+                                <xsl:try>
+                                    <xsl:variable name="doc" select="fn:doc($fullURL)"/>
+                                    
+                                    <xsl:choose>
+                                        <xsl:when test="not(has-children($doc))">
+                                            <xsl:message select="'Doc is empty'"/>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:apply-templates select="$doc" mode="process"/>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                    
+                                    <xsl:catch>
+                                        <xsl:message select="concat('Failed to load or parse XML from: ', $fullURL)"/>
+                                    </xsl:catch>
+                                </xsl:try>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:message select="concat('No doc available at: ', $fullURL)"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                                
                     </xsl:for-each>
+                       
                     
                 </registryObjects>
             </xsl:result-document>
