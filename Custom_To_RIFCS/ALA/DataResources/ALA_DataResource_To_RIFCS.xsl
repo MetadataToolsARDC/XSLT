@@ -6,9 +6,9 @@
     version="3.0">
     
     
-    <xsl:template match="*" mode="process">
+    <xsl:template match="/" mode="process">
         
-        <xsl:value-of select="."/>
+        <xsl:message select="concat('ALA Process: ', name(.))"/>
         
     </xsl:template>
 </xsl:stylesheet>

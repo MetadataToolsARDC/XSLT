@@ -18,24 +18,27 @@
     <xsl:param name="global_baseURI_PID" select="''"/>
     <xsl:param name="global_path_PID" select="''"/>
     <xsl:param name="global_pathUI" select="'/public/show/'"/>
-    <xsl:param name="global_pathWS" select="'/ws/dataResource'"/>
+    <xsl:param name="global_pathDataResource_ws" select="'/ws/dataResource'"/>
+    <xsl:param name="global_pathEML_ws" select="'/ws/eml'"/>
     <xsl:param name="global_group" select="'Atlas of Living Australia'"/>
     <xsl:param name="global_publisherName" select="'Atlas of Living Australia'"/>
     <xsl:param name="global_publisherPlace" select="''"/>
     <!--xsl:param name="global_allKeysURL" select="'https://biocache.ala.org.au/ws/occurrences/facets?q=*:*&amp;facets=dataResourceUid&amp;count=true&amp;lookup=true&amp;flimit=10000'"/-->
     <xsl:param name="global_allKeysURL" select="'https://raw.githubusercontent.com/MetadataToolsARDC/XSLT/refs/heads/master/Custom_To_RIFCS/ALA/DataResources/CachedKeyCall_Mini.json'"/>
-    <!--xsl:param name="global_base_url" select="'https://transfer.data.aad.gov.au'"/-->
-    <!--xsl:param name="global_folder" select="'/aadc-metadata/'"/-->
-    <!--xsl:param name="global_prefix" select="'?prefix=iso-19115-1/'"/-->
+   
     
+    <xsl:param name="global_ElementNameKeyArray" select="'fieldResult'"/>
+    <xsl:param name="global_ElementNameKey" select="'i18nCode'"/>
+    <xsl:param name="global_KeyPrefix" select="'dataResourceUid.'"/>
+    
+    <!-- Keys at: https://biocache.ala.org.au/ws/occurrences/facets?q=*:*&amp;facets=dataResourceUid&amp;count=true&amp;lookup=true&amp;flimit=10000 -->
+    <!-- EML XML at: https://collections.ala.org.au/ws/eml/dr23206 -->
+    <!-- Custom Json at: https://collections.ala.org.au/ws/dataResource/dr23206 -->
     
     <xsl:import href="ALA_DataResource_To_RIFCS.xsl"/>
     
     <xsl:output method="xml" omit-xml-declaration="no" indent="yes"/>
     <xsl:strip-space elements="*"/>
-    
-    <xsl:variable name="cwd" select="base-uri(/)"/>
-    <xsl:variable name="cwdDir" select="replace($cwd, '[^/]+$', '')"/>
     
     <!-- Override key contructon to use old method -->
     <!--xsl:template match="mcc:code" mode="registryObject_key">
@@ -84,11 +87,12 @@
                     xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd">
                     
                     <xsl:for-each select="$batch">
-                        <xsl:variable name="fullURL" select="concat($global_baseURI, $global_pathWS, '/', .)"/>
                         
+                        <xsl:variable name="fullURL" select="concat($global_baseURI, $global_pathEML_ws, '/', .)"/>
+                        <xsl:message select="concat('Loading doc from: ', $fullURL)"/>
                         
                         <xsl:try>
-                            <xsl:variable name="doc" select="fn:json-to-xml($fullURL)"/>
+                            <xsl:variable name="doc" select="document($fullURL)"/>
                             
                             <xsl:choose>
                                 <xsl:when test="not(has-children($doc))">
@@ -127,28 +131,28 @@
         <xsl:variable name="topMap1_keys" select="map:keys($topMap1)"/>
         
         <xsl:choose>
-            <xsl:when test="map:contains($topMap1, 'fieldResult')">
-                <xsl:message select="'Map contains fieldResult as expected'"/>
-                <xsl:variable name="fieldResults" select="map:get($topMap1, 'fieldResult')"/>
-                <xsl:message select="concat('Array size ', array:size($fieldResults))"/>
-                <xsl:for-each select="array:flatten($fieldResults)">
+            <xsl:when test="map:contains($topMap1, $global_ElementNameKeyArray)">
+                <xsl:message select="concat('Map contains ', $global_ElementNameKeyArray, ' as expected')"/>
+                <xsl:variable name="results" select="map:get($topMap1, $global_ElementNameKeyArray)"/>
+                <xsl:message select="concat('Array size ', array:size($results))"/>
+                <xsl:for-each select="array:flatten($results)">
                     <xsl:choose>
-                        <xsl:when test="map:contains(., 'i18nCode')">
-                            <xsl:variable name="i18nCode" select="map:get(., 'i18nCode')"/>
+                        <xsl:when test="map:contains(., $global_ElementNameKey)">
+                            <xsl:variable name="key" select="map:get(., $global_ElementNameKey)"/>
                             
                             <xsl:choose>
-                                <xsl:when test="starts-with($i18nCode, 'dataResourceUid.dr') and (string-length(fn:substring-after($i18nCode, 'dataResourceUid.dr')) > 0)">
-                                    <xsl:message select="concat('Retrieved i18nCode: ', fn:substring-after($i18nCode, 'dataResourceUid.'))"/>
-                                    <xsl:value-of select="fn:substring-after($i18nCode, 'dataResourceUid.')"/>
+                                <xsl:when test="starts-with($key, 'dataResourceUid.dr') and (string-length(fn:substring-after($key, $global_KeyPrefix)) > 2)">
+                                    <xsl:message select="concat('Retrieved key: ', fn:substring-after($key, $global_KeyPrefix))"/>
+                                    <xsl:value-of select="fn:substring-after($key, $global_KeyPrefix)"/>
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <xsl:message select="'i18nCode does not conform to format expected where it is a value after dataResourceUid.dr'"/>
+                                    <xsl:message select="concat('Key ', $key, ' found does not conform to format expected, as there is no value after ', $global_KeyPrefix)"/>
                                 </xsl:otherwise>
                             </xsl:choose>
                            
                         </xsl:when>
                         <xsl:otherwise>
-                            <xsl:message select="'Map does not contain i18nCode, so dataResource cannot be processed'"/>
+                            <xsl:message select="'Map does not contain element ', $global_ElementNameKey, ', so dataResource cannot be processed'"/>
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:for-each>

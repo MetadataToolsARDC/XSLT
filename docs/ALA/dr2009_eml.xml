@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eml:eml xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.1 http://rs.gbif.org/schema/eml-gbif-profile/1.1/eml-gbif-profile.xsd" system="ALA-Registry" scope="system" xml:lang="en">
+    <dataset>
+        <alternateIdentifier>5ed0e5af-8e2c-3196-9a3d-ec72c044a6da</alternateIdentifier>
+        <alternateIdentifier>https://collections.ala.org.au/public/show/dr2009</alternateIdentifier>
+        <title>eBird Australia</title>
+        <creator>
+            <organizationName>eBird Australia</organizationName>
+        </creator>
+        <metadataProvider>
+            <organizationName>eBird Australia</organizationName>
+        </metadataProvider>
+        <associatedParty>
+            <organizationName>Atlas of Living Australia</organizationName>
+            <address>
+                <deliveryPoint>CSIRO Ecosystems Services</deliveryPoint>
+                <city>Canberra</city>
+                <administrativeArea>ACT</administrativeArea>
+                <postalCode>2601</postalCode>
+                <country>Australia</country>
+            </address>
+            <electronicMailAddress>info@ala.org.au</electronicMailAddress>
+            <role>distributor</role>
+        </associatedParty>
+        <pubDate>2023-06-30</pubDate>
+        <language>English</language>
+        <abstract>
+            <para>
+                eBird Australia is a collaborative project managed by the Centre for Biodiversity and Conservation Science. The precursor to eBird Australia was Eremaea Birds, developed by Richard and Margaret Alcorn. Launched in March 2003, Eremaea Birds rapidly became the web site of choice for Australian birders for recording and maintaining their bird sightings in Australia and overseas. Eremaea Birds merged with the Cornell Lab of Ornithology eBird project in February 2014 to become Eremaea eBird, the Australia portal for eBird. The portal was later renamed to eBird Australia. eBird Australia is maintained by a community of volunteers comprising the steering committee, the website team, reviewers, and hotspot editors. A real-time, online checklist program, eBird has revolutionised the way that the birding community reports and accesses information about birds. Launched in 2002 by the Cornell Lab of Ornithology and National Audubon Society, eBird provides rich data sources for basic information on bird abundance and distribution at a variety of spatial and temporal scales. eBird’s goal is to maximise the utility and accessibility of the vast numbers of bird observations made each year by recreational and professional bird watchers. It is amassing one of the largest and fastest growing biodiversity data resources in existence. The observations of each participant join those of others in an international network of eBird users. eBird then shares these observations with a global community of educators, land managers, ornithologists, and conservation biologists. In time these data will become the foundation for a better understanding of bird distribution across the western hemisphere and beyond. eBird documents the presence or absence of species, as well as bird abundance through checklist data. A simple and intuitive web-interface engages tens of thousands of participants to submit their observations or view results via interactive queries into the eBird database. eBird encourages users to participate by providing Internet tools that maintain their personal bird records and enable them to visualize data with interactive maps, graphs, and bar charts. All these features are available in English, Spanish, and French. A birder simply enters when, where, and how they went birding, then fills out a checklist of all the birds seen and heard during the outing. eBird provides various options for data gathering including point counts, transects, and area searches. Automated data quality filters developed by regional bird experts review all submissions before they enter the database. Local experts review unusual records that are flagged by the filters. eBird collects observations from birders through portals managed and maintained by local partner conservation organizations. In this way eBird targets specific audiences with the highest level of local expertise, promotion, and project ownership. Portals may have a regional focus (eBird Australia or eBird New Zealand) or they may have more specific goals and/or specific methodologies (Louisiana Winter Bird Atlas, Bird Conservation Network eBird). Each eBird portal is fully integrated within the eBird database and application infrastructure so that data can be analyzed across political and geographic boundaries. For example, observers entering observations of Channel-billed Cuckoo from Australia can view those data separately, or with the entire Channel-billed Cuckoo data set gathered by eBird across the eastern hemisphere.
+            </para>
+        </abstract>
+        <intellectualRights>
+            <para>
+                See https://science.ebird.org/en/use-ebird-data/citation
+                <ulink url="https://creativecommons.org/publicdomain/zero/1.0/">
+                    <citetitle>Creative Commons Zero (CC0 1.0)</citetitle>
+                </ulink>
+            </para>
+        </intellectualRights>
+        <distribution>
+            <online>
+                <url function="information">https://collections.ala.org.au/public/show/dr2009</url>
+            </online>
+        </distribution>
+        <coverage/>
+        <purpose>
+            <para/>
+        </purpose>
+        <contact>
+            <positionName>contact</positionName>
+            <electronicMailAddress>EBIRDAUSTRALIA@GMAIL.COM</electronicMailAddress>
+        </contact>
+        <methods/>
+    </dataset>
+    <additionalMetadata>
+        <metadata>
+            <gbif>
+                <dateStamp>2023-06-30T08:59:56</dateStamp>
+                <hierarchyLevel>dataset</hierarchyLevel>
+                <resourceLogoUrl>
+                    https://collections.ala.org.au/data/dataResource/eBird-Aus-logo.png
+                </resourceLogoUrl>
+                <citation>
+                    See https://science.ebird.org/en/use-ebird-data/citation
+                </citation>
+                <rights/>
+            </gbif>
+        </metadata>
+    </additionalMetadata>
+</eml:eml>
