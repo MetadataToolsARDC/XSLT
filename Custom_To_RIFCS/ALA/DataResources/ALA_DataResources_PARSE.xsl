@@ -24,7 +24,7 @@
     <xsl:param name="global_publisherName" select="'Atlas of Living Australia'"/>
     <xsl:param name="global_publisherPlace" select="''"/>
     <!--xsl:param name="global_allKeysURL" select="'https://biocache.ala.org.au/ws/occurrences/facets?q=*:*&amp;facets=dataResourceUid&amp;count=true&amp;lookup=true&amp;flimit=10000'"/-->
-    <xsl:param name="global_allKeysURL" select="'https://raw.githubusercontent.com/MetadataToolsARDC/XSLT/refs/heads/master/Custom_To_RIFCS/ALA/DataResources/CachedKeyCall_Mini.json'"/>
+    <xsl:param name="global_allKeysURL" select="'https://raw.githubusercontent.com/MetadataToolsARDC/XSLT/refs/heads/master/docs/ALA/CachedKeyCall_Mini.json'"/>
    
     
     <xsl:param name="global_ElementNameKeyArray" select="'fieldResult'"/>
@@ -88,7 +88,7 @@
                     
                     <xsl:for-each select="$batch">
                         
-                        <xsl:variable name="fullURL" select="concat($global_baseURI, $global_pathEML_ws, '/', .)"/>
+                        <!--xsl:variable name="fullURL" select="concat($global_baseURI, $global_pathEML_ws, '/', .)"/-->
                         <xsl:message select="concat('Loading doc from: ', $fullURL)"/>
                         
                         <xsl:try>
