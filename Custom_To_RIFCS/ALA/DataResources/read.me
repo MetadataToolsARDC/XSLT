@@ -1,0 +1,28 @@
+https://biocache.ala.org.au/ws/occurrences/facets?q=*:*&facets=dataResourceUid&count=true&lookup=true&flimit=10000 has 1414 results - these are DataResources that contain one or more record/s.  This aligns with https://collections.ala.org.au/datasets#filters=resourceType%3Arecords (however, some of these have zero records as the UI cannot be filtered further by number of records). 
+
+[
+  {
+    "fieldName": "dataResourceUid",
+    "fieldResult": [
+      {
+        "label": "eBird Australia",
+        "i18nCode": "dataResourceUid.dr2009",
+        "count": 50500900,
+        "fq": "dataResourceUid:\"dr2009\""
+      },
+      {
+        "label": "NSW BioNet Atlas",
+        "i18nCode": "dataResourceUid.dr368",
+        "count": 14530682,
+        "fq": "dataResourceUid:\"dr368\""
+      },
+
+You can use the count value from biocache call above, for each metadata entry, to include record total per dataResource (RIF-CS Collection).  Then get additional metadata per each call:  
+
+Per each, json can be retrieved as https://collections.ala.org.au/ws/dataResource/dr23206 or eml at https://collections.ala.org.au/ws/eml/dr23206
+
+ToDo: see which is best for RDA, consider data provider
+
+
+Can relate Party with relatedInfo, using uri (with “ws/institution” replaced with “public/show”) - i.e. https://collections.ala.org.au/public/show/in92 - identifier and name:
+Can related to DataResource with relatedInfo, using uri (with “ws/dataResource” replaced with “public/show”) as - i.e. https://collections.ala.org.au/public/show/dr2153 - identifier, and name

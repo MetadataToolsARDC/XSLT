@@ -54,7 +54,7 @@
     
     <xsl:template match="/">
         
-        <!-- Fetch all keys using pagination (limited to 2 pages for now) -->
+        <!-- Fetch all keys using pagination -->
         <xsl:variable name="allKeys" as="element(s3:Key)*">
             <xsl:call-template name="get-all-keys">
                 <xsl:with-param name="url" select="concat($global_base_url, $global_folder, $global_prefix)"/>
