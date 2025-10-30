@@ -25,7 +25,8 @@
     <xsl:param name="global_publisherName" select="'Atlas of Living Australia'"/>
     <xsl:param name="global_publisherPlace" select="''"/>
     <!--xsl:param name="global_allKeysURL" select="'https://biocache.ala.org.au/ws/occurrences/facets?q=*:*&amp;facets=dataResourceUid&amp;count=true&amp;lookup=true&amp;flimit=10000'"/-->
-    <xsl:param name="global_allKeysURL" select="'https://metadatatoolsardc.github.io/XSLT/ALA/CachedKeyCall_Mini.json'"/>
+    <!--xsl:param name="global_allKeysURL" select="'https://metadatatoolsardc.github.io/XSLT/ALA/CachedKeyCall_Mini.json'"/-->
+    <xsl:param name="global_allKeysURL" select="'file:/home/melanie/git/XSLT/docs/ALA/CachedKeyCall_Mini.json'"/>
    
     
     <xsl:param name="global_ElementNameKeyArray" select="'fieldResult'"/>
@@ -89,9 +90,9 @@
                     
                     <xsl:for-each select="$batch">
                         
-                        <!--xsl:variable name="fullURL" select="concat($global_baseURI, $global_pathEML_ws, '/', .)"/-->
-                        <xsl:variable name="fullURL" select="'https://collections.ala.org.au/ws/eml/dr23206'"/>
-                        <xsl:variable name="fullURL" select="'https://metadatatoolsardc.github.io/XSLT/ALA/dr23206_eml.xml'"/>
+                        <xsl:variable name="fullURL" select="concat($global_baseURI, $global_pathEML_ws, '/', .)"/>
+                        <xsl:variable name="fullURL" select="'file:/home/melanie/git/XSLT/docs/ALA/dr23206_eml.xml'"/>
+                        <xsl:variable name="fullURL" select="'file:/home/melanie/git/projects/CentreForSafeAir/2.1.1_AlteredExampleFromAirHealth_OneDatasetOnly_Valid_20220221_IvanAttemptMelanieUpdated.xml'"/>
                         <xsl:message select="concat('Loading doc from: ', $fullURL)"/>
                         
                         <xsl:choose>
@@ -104,7 +105,7 @@
                                             <xsl:message select="'Doc is empty'"/>
                                         </xsl:when>
                                         <xsl:otherwise>
-                                            <xsl:apply-templates select="$doc" mode="process"/>
+                                            <xsl:apply-templates select="$doc"/>
                                         </xsl:otherwise>
                                     </xsl:choose>
                                     

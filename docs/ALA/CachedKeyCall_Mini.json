@@ -7,12 +7,6 @@
         "i18nCode": "dataResourceUid.dr2009",
         "count": 50500900,
         "fq": "dataResourceUid:\"dr2009\""
-      },
-      {
-        "label": "NSW BioNet Atlas",
-        "i18nCode": "dataResourceUid.dr368",
-        "count": 14530682,
-        "fq": "dataResourceUid:\"dr368\""
       }
     ],
     "count": 1414

@@ -9,17 +9,14 @@
                 xmlns:exslt="http://exslt.org/common">
 
   <!-- the registry object group -->
-  <xsl:param name="groupName">Centre for Safe Air</xsl:param>
-  <xsl:param name="acronym">CSA</xsl:param>
-  <xsl:param name="emlNamespace">eml://ecoinformatics.org/eml-2.1.1</xsl:param>
+  <xsl:param name="global_group" select="'Centre for Safe Air'"/>
+  <xsl:param name="global_acronym" select="'CSA'"/>
+  <xsl:param name="global_emlNamespace" select="'eml://ecoinformatics.org/eml-2.1.1'"/>
   <xsl:param name="serverUrl"/>
-  <xsl:param name="contextUrl"/>
-  <xsl:param name="lastModified" />
   <xsl:param name="dateCreated" />
-  <xsl:param name="predefinedLicences"/>
-  <xsl:param name="defaultLicence"/>
+  <xsl:param name="lastModified" />
   
-  <xsl:variable name="rifcsVersion" select="1.5"/>
+  <xsl:variable name="rifcsVersion" select="1.6"/>
   <xsl:variable name="smallcase" select="'abcdefghijklmnopqrstuvwxyz'" />
   <xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
  
@@ -32,7 +29,7 @@
            use="concat(individualName, organizationName, positionName, address, phone, electronicMailAddress)"/>
   
   <!--dynamically match the root eml element based on the eml namespace that contains the version-->
-  <xsl:template match="/*[local-name()='eml' and namespace-uri()=$emlNamespace]">
+  <xsl:template match="/*[local-name()='eml' and namespace-uri()=$global_emlNamespace]">
     <!--<xsl:variable name="packageId" select="@packageId"/> -->
     <!--xsl:variable name="docid" select="concat(substring-before(string(@packageId),'.'),'.',substring-before(substring-after(string(@packageId),'.'),'.'))" /-->
     <!--xsl:variable name="revid" select="substring-after(string(@packageId), concat($docid, '.'))" /-->
@@ -100,9 +97,9 @@
     <xsl:variable name="doi_sequence" select="alternateIdentifier[(@system='doi') and (string-length(text()) > 0)]"/>
     
     <xsl:element name="registryObject">
-      <xsl:attribute name="group"><xsl:value-of select="$groupName" /></xsl:attribute>
+      <xsl:attribute name="group"><xsl:value-of select="$global_group" /></xsl:attribute>
       
-      <xsl:element name="key"><xsl:value-of select="concat($acronym, '/Collection/', @id)" /></xsl:element>
+      <xsl:element name="key"><xsl:value-of select="concat($global_acronym, '/Collection/', @id)" /></xsl:element>
       
       <xsl:element name="originatingSource">
         <xsl:value-of select="$originatingSource" />
@@ -317,7 +314,7 @@
       <!-- Related Project -->
       <xsl:element name="relatedObject">
         <xsl:element name="key">
-          <xsl:value-of select="concat($acronym, '/Activity/', local:format_keystring(@id))" />
+          <xsl:value-of select="concat($global_acronym, '/Activity/', local:format_keystring(@id))" />
         </xsl:element>
         <xsl:element name="relation">
           <xsl:attribute name="type">
@@ -380,7 +377,7 @@
     <!-- Related Activity(grant) -->
     <xsl:element name="relatedObject">
       <xsl:element name="key">
-        <xsl:value-of select="concat($acronym, '/Activity/', local:format_keystring(@id))" />
+        <xsl:value-of select="concat($global_acronym, '/Activity/', local:format_keystring(@id))" />
       </xsl:element>
       <xsl:element name="relation">
         <xsl:attribute name="type">
@@ -441,7 +438,7 @@
     
     <xsl:element name="registryObject">
       <xsl:attribute name="group">
-        <xsl:value-of select="$groupName"/>
+        <xsl:value-of select="$global_group"/>
       </xsl:attribute>
       
       <xsl:element name="key">
@@ -473,7 +470,7 @@
 
         <!--xsl:element name="relatedObject">
           <xsl:element name="key">
-            <xsl:value-of select="concat($acronym, '/', $docid)" />
+            <xsl:value-of select="concat($global_acronym, '/', $docid)" />
           </xsl:element-->
 
           <!--xsl:apply-templates select="key('keyPartyUnique', concat(individualName, organizationName, positionName, address, phone, electronicMailAddress))" mode="relationParty" /-->
@@ -487,13 +484,13 @@
   <xsl:template name="partyKey">
     <xsl:choose>
       <xsl:when test="individualName">
-        <xsl:value-of select="concat($acronym, '/Party/', local:format_keystring(individualName/givenName), local:format_keystring(individualName/surName))" />
+        <xsl:value-of select="concat($global_acronym, '/Party/', local:format_keystring(individualName/givenName), local:format_keystring(individualName/surName))" />
       </xsl:when>
       <xsl:when test="organizationName">
-        <xsl:value-of select="concat($acronym, '/Party/', local:format_keystring(organizationName))" />
+        <xsl:value-of select="concat($global_acronym, '/Party/', local:format_keystring(organizationName))" />
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="concat($acronym, '/Party/', local:format_keystring(positionName))" />
+        <xsl:value-of select="concat($global_acronym, '/Party/', local:format_keystring(positionName))" />
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
@@ -504,11 +501,11 @@
     
     <xsl:element name="registryObject">
       <xsl:attribute name="group">
-        <xsl:value-of select="$groupName" />
+        <xsl:value-of select="$global_group" />
       </xsl:attribute>
       
       <xsl:element name="key">
-        <xsl:value-of select="concat($acronym, '/Activity/', local:format_keystring(@id))" />
+        <xsl:value-of select="concat($global_acronym, '/Activity/', local:format_keystring(@id))" />
       </xsl:element>
       
       <xsl:element name="originatingSource">
@@ -676,7 +673,7 @@
   </xsl:template>
   
   <xsl:template match="individualName" mode="partyKey">
-    <xsl:value-of select="concat($acronym, '/', givenName, surName)" />
+    <xsl:value-of select="concat($global_acronym, '/', givenName, surName)" />
   </xsl:template>
 
   <xsl:template match="positionName">
