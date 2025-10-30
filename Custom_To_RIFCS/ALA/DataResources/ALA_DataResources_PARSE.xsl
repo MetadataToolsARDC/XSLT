@@ -25,9 +25,8 @@
     <xsl:param name="global_publisherName" select="'Atlas of Living Australia'"/>
     <xsl:param name="global_publisherPlace" select="''"/>
     <!--xsl:param name="global_allKeysURL" select="'https://biocache.ala.org.au/ws/occurrences/facets?q=*:*&amp;facets=dataResourceUid&amp;count=true&amp;lookup=true&amp;flimit=10000'"/-->
-    <!--xsl:param name="global_allKeysURL" select="'https://metadatatoolsardc.github.io/XSLT/ALA/CachedKeyCall_Mini.json'"/-->
-    <xsl:param name="global_allKeysURL" select="'file:/home/melanie/git/XSLT/docs/ALA/CachedKeyCall_Mini.json'"/>
-   
+    <xsl:param name="global_allKeysURL" select="'https://metadatatoolsardc.github.io/XSLT/ALA/CachedKeyCall_Mini.json'"/>
+    
     
     <xsl:param name="global_ElementNameKeyArray" select="'fieldResult'"/>
     <xsl:param name="global_ElementNameKey" select="'i18nCode'"/>
@@ -41,24 +40,6 @@
     
     <xsl:output method="xml" omit-xml-declaration="no" indent="yes"/>
     <xsl:strip-space elements="*"/>
-    
-    <!-- Override key contructon to use old method -->
-    <!--xsl:template match="mcc:code" mode="registryObject_key">
-        <xsl:variable name="uuid_sequence" select="ancestor::mdb:MD_Metadata/mdb:alternativeMetadataReference/cit:CI_Citation/cit:identifier/mcc:MD_Identifier[contains(mcc:description, 'uuid') and (string-length(mcc:code) > 0)][1]/mcc:code" as="xs:string*"/>
-        <xsl:choose>
-            <xsl:when test="string-length(normalize-space($uuid_sequence[1])) > 0">
-                <key>
-                    <xsl:value-of select="concat($global_acronym, '/', normalize-space($uuid_sequence[1]))"/>
-                </key>
-            </xsl:when>
-            <xsl:otherwise>
-                <key>
-                    <xsl:value-of select="concat($global_acronym, '/', normalize-space(.))"/>
-                </key>
-            </xsl:otherwise>
-        </xsl:choose>
-        
-    </xsl:template-->
     
     <xsl:template match="/">
         
@@ -120,6 +101,18 @@
                 </registryObjects>
             </xsl:result-document>
         </xsl:for-each-group>
+        
+        <!-- Main output: combined registryObjects -->
+        <registryObjects
+            xmlns="http://ands.org.au/standards/rif-cs/registryObjects"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd">
+            
+            <!--xsl:for-each select="$allTempFiles">
+                <xsl:copy-of select="/*"/>
+            </xsl:for-each-->
+            
+        </registryObjects>
         
     </xsl:template>
     

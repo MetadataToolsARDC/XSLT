@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasets>
+    <dataset>
+        <fieldName>dataResourceUid</fieldName>
+        <fieldResult>
+            <label>A Very Large Spawning Aggregation of the basketwork eel, Diastobranchus capensis,
+                on the small (3 km2) Patience Seamount off southeast Australia.</label>
+            <i18nCode>dataResourceUid.dr23206</i18nCode>
+            <count>20</count>
+            <fq>dataResourceUid:&quot;dr23206&quot;</fq>
+        </fieldResult>
+        <fieldResult>
+            <label>Condition of larvae of western rock lobster (Panulirus cygnus) in cyclonic and
+                anticyclonic eddies of the Leeuwin Current off Western Australia (2011)</label>
+            <i18nCode>dataResourceUid.dr23215</i18nCode>
+            <count>20</count>
+            <fq>dataResourceUid:&quot;dr23215&quot;</fq>
+        </fieldResult>
+    </dataset>
+</datasets>
