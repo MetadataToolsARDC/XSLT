@@ -1,0 +1,55 @@
+[
+  {
+    "fieldName": "dataResourceUid",
+    "fieldResult": [
+      {
+        "label": "Outdoor School - 15 Mile Creek ",
+        "i18nCode": "dataResourceUid.dr19062",
+        "count": 20,
+        "fq": "dataResourceUid:\"dr19062\""
+      },
+      {
+        "label": "Wetlands & Wildlife Creations Group",
+        "i18nCode": "dataResourceUid.dr21131",
+        "count": 20,
+        "fq": "dataResourceUid:\"dr21131\""
+      },
+      {
+        "label": "Genomic sampling locations for ribbon weed (Posidonia australis) and wire weed (Amphibolis antarctica) in Shark Bay (Gathaagudu), Australia (2012-2019)",
+        "i18nCode": "dataResourceUid.dr23191",
+        "count": 20,
+        "fq": "dataResourceUid:\"dr23191\""
+      },
+      {
+        "label": "A Very Large Spawning Aggregation of the basketwork eel, Diastobranchus capensis, on the small (3 km2) Patience Seamount off southeast Australia.",
+        "i18nCode": "dataResourceUid.dr23206",
+        "count": 20,
+        "fq": "dataResourceUid:\"dr23206\""
+      },
+      {
+        "label": "Condition of larvae of western rock lobster (Panulirus cygnus) in cyclonic and anticyclonic eddies of the Leeuwin Current off Western Australia (2011)",
+        "i18nCode": "dataResourceUid.dr23215",
+        "count": 20,
+        "fq": "dataResourceUid:\"dr23215\""
+      },
+      {
+        "label": "Wildlife Queensland - Platypus eDNA",
+        "i18nCode": "dataResourceUid.dr25165",
+        "count": 20,
+        "fq": "dataResourceUid:\"dr25165\""
+      },
+      {
+        "label": "Biology and population studies of two endemic orchid species on sub-Antarctic Macquarie Island",
+        "i18nCode": "dataResourceUid.dr474",
+        "count": 20,
+        "fq": "dataResourceUid:\"dr474\""
+      },
+      {
+        "label": "Steve's Australian Spider Pics",
+        "i18nCode": "dataResourceUid.dr524",
+        "count": 20,
+        "fq": "dataResourceUid:\"dr524\""
+      }
+    ]
+  }
+]

@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet 
     xmlns="http://ands.org.au/standards/rif-cs/registryObjects"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:math="http://www.w3.org/2005/xpath-functions/math"
     xmlns:local="http://local/function" 
-    exclude-result-prefixes="xs math local"
+    exclude-result-prefixes="xs math local xsi"
     version="3.0">
     
     <xsl:param name="global_group" select="'Atlas of Living Australia'"/>
     <xsl:param name="global_acronym" select="'ALA'"/>
+    <xsl:param name="global_originatingSource" select="'Atlas of Living Australia'"/>
     <xsl:param name="global_emlNamespace" select="'eml://ecoinformatics.org/eml-2.1.1'"/>
+    <xsl:param name="global_prefixURL" select="'https://collections.ala.org.au/public/show/'"/>
+    <xsl:param name="global_prefixKey" select="'ala.org.au/'"/>
     <xsl:param name="serverUrl"/>
     <xsl:param name="dateCreated" />
     <xsl:param name="lastModified" />
@@ -22,12 +26,28 @@
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" omit-xml-declaration="yes" />
     
     <xsl:strip-space elements="*" />
+  
+    <xsl:template match="/">
+        <registryObjects>
+            <xsl:attribute name="xsi:schemaLocation">
+                <xsl:text>http://ands.org.au/standards/rif-cs/registryObjects https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd</xsl:text>
+            </xsl:attribute>
+          
+          <xsl:variable name="key" as="xs:string">
+            <xsl:value-of select="substring-after(/*/dataset/alternateIdentifier[contains(., $global_prefixURL)][1], $global_prefixURL)"/>
+          </xsl:variable>
+            <xsl:apply-templates select="/*" mode="process">
+              <xsl:with-param name="key" select="$key"/>
+            </xsl:apply-templates>
+        </registryObjects>
+    </xsl:template>
     
     <!--key for selecting a nodeset of identical parties based on the details-->
     <xsl:key name="keyPartyUnique" match="creator|associatedParty|metadataProvider|contact" 
         use="concat(individualName, organizationName, positionName, address, phone, electronicMailAddress)"/>
     
-    <xsl:template match="/*[local-name()='eml' and namespace-uri()=$global_emlNamespace]">
+  <xsl:template match="/*[local-name()='eml' and namespace-uri()=$global_emlNamespace]" mode="process">
+    <xsl:param name="key"/>
         <xsl:message select="concat('ALA source has children count:', has-children(.))"/>
     
      <!--<xsl:variable name="packageId" select="@packageId"/> -->
@@ -37,17 +57,19 @@
     <xsl:variable name="docid" select="@packageId" />
     <xsl:variable name="revid" select="''"/> <!-- TODO: obtain revid from somewhere if required -->
     
-    <xsl:element name="registryObjects">
+    <!--xsl:element name="registryObjects"-->
       <xsl:apply-templates select="dataset">
         <xsl:with-param name="docid" select="$docid" />
         <xsl:with-param name="revid" select="$revid" />
+        <xsl:with-param name="key" select="$key" />
       </xsl:apply-templates>
-    </xsl:element>
+    <!--/xsl:element-->
   </xsl:template>
   
   <xsl:template match="dataset">
     <xsl:param name="docid"/>
     <xsl:param name="revid"/>
+    <xsl:param name="key"/>
     
     <xsl:variable name="originatingSource">
       <xsl:choose>
@@ -69,9 +91,9 @@
     
     <!-- collection -->
     <xsl:call-template name="collection">
-      <xsl:with-param name="originatingSource" select="$originatingSource" />
       <xsl:with-param name="docid" select="$docid" />
       <xsl:with-param name="revid" select="$revid" />
+      <xsl:with-param name="key" select="$key" />
     </xsl:call-template>
     
     <!-- party -->
@@ -91,18 +113,18 @@
   <xsl:template name="collection">
     <xsl:param name="docid"/>
     <xsl:param name="revid"/>
-    <xsl:param name="originatingSource"/>
+    <xsl:param name="key"/>
     
     
-    <xsl:variable name="doi_sequence" select="alternateIdentifier[(@system='doi') and (string-length(text()) > 0)]"/>
+    <xsl:variable name="doi_sequence" select="alternateIdentifier[contains(text(), '10.')]"/>
     
     <xsl:element name="registryObject">
       <xsl:attribute name="group"><xsl:value-of select="$global_group" /></xsl:attribute>
       
-      <xsl:element name="key"><xsl:value-of select="concat($global_acronym, '/Collection/', @id)" /></xsl:element>
+      <xsl:element name="key"><xsl:value-of select="concat($global_prefixKey, $key)" /></xsl:element>
       
       <xsl:element name="originatingSource">
-        <xsl:value-of select="$originatingSource" />
+        <xsl:value-of select="$global_originatingSource" />
       </xsl:element>
       
       <xsl:element name="collection">
@@ -112,11 +134,11 @@
         
         <!--xsl:variable name="doi" select="alternateIdentifier[@system='doi']"/-->
         
-        <xsl:element name="identifier">
+        <!--xsl:element name="identifier">
           <xsl:attribute name="type">local</xsl:attribute>
-          <!-- xsl:value-of select="$docid" / This ID is for the whole packages, which can contain dataset, software etc. so it is higher than this object-->
-          <xsl:value-of select="@id" />
-        </xsl:element>
+          <xsl:value-of select="$docid" / This ID is for the whole packages, which can contain dataset, software etc. so it is higher than this object>
+          <xsl:value-of select="@id"/>
+        </xsl:element-->
         
         <xsl:if test="count($doi_sequence) > 0">
           <xsl:for-each select="$doi_sequence">
@@ -140,11 +162,20 @@
         <xsl:element name="location">
           <xsl:element name="address">
               <xsl:choose>
-                <xsl:when test="(count($doi_sequence) > 0) and boolean(normalize-space($doi_sequence[1]))">
+                <!-- Don't use DOI because it might go elsewhere rather than in ALA -->
+                <!--xsl:when test="(count($doi_sequence) > 0) and boolean(normalize-space($doi_sequence[1]))">
                   <xsl:element name="electronic">
                     <xsl:attribute name="type">url</xsl:attribute>
                     <xsl:element name="value">
                       <xsl:value-of select="local:format_doi($doi_sequence[1])"/>
+                    </xsl:element>
+                  </xsl:element>
+                </xsl:when-->
+                <xsl:when test="count(distribution/online/url[string-length(text()) > 0]) > 0">
+                  <xsl:element name="electronic">
+                    <xsl:attribute name="type">url</xsl:attribute>
+                    <xsl:element name="value">
+                      <xsl:value-of select="distribution/online/url[string-length(text()) > 0][1]"/>
                     </xsl:element>
                   </xsl:element>
                 </xsl:when>
@@ -164,7 +195,7 @@
 
         <!--generate relationships to parties, implied by name of element -->
         <xsl:apply-templates select="(creator|associatedParty|metadataProvider|contact)[generate-id()=generate-id(key('keyPartyUnique', concat(individualName, organizationName, positionName, address, phone, electronicMailAddress))[1])]"
-                             mode="relatedObject"/>
+                             mode="relatedInfo"/>
 
         <xsl:apply-templates select="keywordSet" />
         <xsl:apply-templates select="abstract" />
@@ -209,20 +240,19 @@
           </xsl:element>
         </xsl:if>
         
-        <xsl:variable name="datasetId" select="@id" as="xs:string"/>
-        
+       
         <!-- If suggested citation, use it -->
         <xsl:element name="citationInfo">
           
-          <xsl:message select="concat('Result: ', count(following-sibling::additionalMetadata[(metadata/citeAs[string-length(text()) > 0]) and (describes = $datasetId)]) > 0)"></xsl:message>
+          <xsl:message select="concat('additionalMetadata for citation present: ', count(following-sibling::additionalMetadata[(metadata/gbif/citation[string-length(text()) > 0])]))"></xsl:message>
           
           <xsl:choose>
           
           
             <!--xsl:when test="count(following-sibling::additionalMetadata[(metadata/citeAs[string-length(text()) > 0] and (describes = @id))]) > 0"-->
-            <xsl:when test="count(following-sibling::additionalMetadata[(metadata/citeAs[string-length(text()) > 0]) and (describes = $datasetId)]) > 0">
-              <xsl:for-each select="following-sibling::additionalMetadata[(metadata/citeAs[string-length(text()) > 0]) and (describes = $datasetId)]">
-                <xsl:for-each select="metadata/citeAs">
+            <xsl:when test="count(following-sibling::additionalMetadata[(metadata/gbif/citation[string-length(text()) > 0])]) > 0">
+              <xsl:for-each select="following-sibling::additionalMetadata[(metadata/gbif/citation[string-length(text()) > 0])]">
+                <xsl:for-each select="metadata/gbif/citation">
                   <xsl:element name="fullCitation">
                     <xsl:value-of select="."/>
                   </xsl:element>
@@ -312,8 +342,9 @@
   <xsl:template match="project">
     
       <!-- Related Project -->
-      <xsl:element name="relatedObject">
-        <xsl:element name="key">
+      <xsl:element name="relatedInfo">
+        <xsl:element name="identifier">
+          <xsl:attribute name="type" select="'local'"/>
           <xsl:value-of select="concat($global_acronym, '/Activity/', local:format_keystring(@id))" />
         </xsl:element>
         <xsl:element name="relation">
@@ -375,8 +406,9 @@
   
   <xsl:template match="relatedProject">
     <!-- Related Activity(grant) -->
-    <xsl:element name="relatedObject">
-      <xsl:element name="key">
+    <xsl:element name="relatedInfo">
+      <xsl:element name="identifier">
+        <xsl:attribute name="type" select="'local'"/>
         <xsl:value-of select="concat($global_acronym, '/Activity/', local:format_keystring(@id))" />
       </xsl:element>
       <xsl:element name="relation">
@@ -412,27 +444,29 @@
   <xsl:template match="creator|associatedParty|metadataProvider|contact">
     <xsl:param name="docid"/>
     <xsl:param name="originatingSource"/>
-    <xsl:call-template name="party">
+    <!--xsl:call-template name="party">
       <xsl:with-param name="docid" select="$docid" />
       <xsl:with-param name="originatingSource" select="$originatingSource" />
-    </xsl:call-template>
+    </xsl:call-template-->
   </xsl:template>
 
-  <xsl:template match="creator|associatedParty|metadataProvider|contact" mode="relatedObject">
-    <xsl:element name="relatedObject">
-      <xsl:element name="key">
-        <xsl:call-template name="partyKey"/>
+  <xsl:template match="creator|associatedParty|metadataProvider|contact" mode="relatedInfo">
+    <xsl:element name="relatedInfo">
+      <xsl:element name="identifier">
+        <xsl:attribute name="type" select="'local'"/>
+        <xsl:call-template name="partyIdentifier"/>
       </xsl:element>
 
       <xsl:apply-templates select="key('keyPartyUnique', concat(individualName, organizationName, positionName, address, phone, electronicMailAddress))" mode="relationCollection" />
       <xsl:apply-templates select="../*[references = current()/@id]" mode="relationCollection"/>
+      <xsl:apply-templates select="organizationName" mode="related_title"/>
     </xsl:element>
   </xsl:template>
 
   <xsl:template match="*[references]"/>
-  <xsl:template match="*[references]" mode="relatedObject"/>
+  <xsl:template match="*[references]" mode="relatedInfo"/>
   
-  <xsl:template name="party">
+  <!--xsl:template name="party">
     <xsl:param name="docid"/>
     <xsl:param name="originatingSource"/>
     
@@ -442,7 +476,7 @@
       </xsl:attribute>
       
       <xsl:element name="key">
-        <xsl:call-template name="partyKey"/>
+        <xsl:call-template name="partyIdentifier"/>
       </xsl:element>
       
       <xsl:element name="originatingSource">
@@ -468,20 +502,17 @@
 
         <xsl:call-template name="fillOutAddress"/>
 
-        <!--xsl:element name="relatedObject">
-          <xsl:element name="key">
-            <xsl:value-of select="concat($global_acronym, '/', $docid)" />
-          </xsl:element-->
-
-          <!--xsl:apply-templates select="key('keyPartyUnique', concat(individualName, organizationName, positionName, address, phone, electronicMailAddress))" mode="relationParty" /-->
-          <!--xsl:apply-templates select="../*[references = current()/@id]" mode="relationParty"/-->
-        <!--/xsl:element-->
-      </xsl:element>
       
-    </xsl:element> <!--registryObject-->
-  </xsl:template> <!--name="party"-->
+    </xsl:element> 
+  </xsl:template--> <!--name="party"-->
+  
+  <xsl:template match="organizationName" mode="related_title">
+    <xsl:element name="title">
+      <xsl:value-of select="."/>
+    </xsl:element>
+  </xsl:template>
 
-  <xsl:template name="partyKey">
+  <xsl:template name="partyIdentifier">
     <xsl:choose>
       <xsl:when test="individualName">
         <xsl:value-of select="concat($global_acronym, '/Party/', local:format_keystring(individualName/givenName), local:format_keystring(individualName/surName))" />
@@ -672,7 +703,7 @@
     <xsl:value-of select="surName" />
   </xsl:template>
   
-  <xsl:template match="individualName" mode="partyKey">
+  <xsl:template match="individualName" mode="partyIdentifier">
     <xsl:value-of select="concat($global_acronym, '/', givenName, surName)" />
   </xsl:template>
 

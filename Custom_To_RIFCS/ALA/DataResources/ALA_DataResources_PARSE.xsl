@@ -60,10 +60,6 @@
         
     </xsl:template-->
     
-    <xsl:function name="local:processArrayEntry">
-        <xsl:message select="concat('Map size ', map:size(.))"/>
-    </xsl:function>
-   
     <xsl:template match="/">
         
         <xsl:message select="concat('getKeys has url: ', $global_allKeysURL)"/>
@@ -77,7 +73,7 @@
         </xsl:variable>
         
         <!-- Batch the keys in groups of 200 -->
-        <xsl:for-each-group select="$allKeys" group-adjacent="(position() - 1) idiv 200">
+        <xsl:for-each-group select="$allKeys" group-adjacent="(position() - 1) idiv 5">
             <xsl:variable name="batch" select="current-group()"/>
             <xsl:variable name="ts" select="format-dateTime(current-dateTime(), '[Y0001][M01][D01]T[H01][m01]')"/>
             <xsl:variable name="filename" select="concat($ts, '-', position(), '.xml')"/>
@@ -91,29 +87,27 @@
                     <xsl:for-each select="$batch">
                         
                         <xsl:variable name="fullURL" select="concat($global_baseURI, $global_pathEML_ws, '/', .)"/>
-                        <xsl:variable name="fullURL" select="'file:/home/melanie/git/XSLT/docs/ALA/dr23206_eml.xml'"/>
-                        <xsl:variable name="fullURL" select="'file:/home/melanie/git/projects/CentreForSafeAir/2.1.1_AlteredExampleFromAirHealth_OneDatasetOnly_Valid_20220221_IvanAttemptMelanieUpdated.xml'"/>
+                        
                         <xsl:message select="concat('Loading doc from: ', $fullURL)"/>
                         
                         <xsl:choose>
                             <xsl:when test="fn:doc-available($fullURL)">
-                                <xsl:try>
-                                    <xsl:variable name="doc" select="fn:doc($fullURL)"/>
                                     
-                                    <xsl:choose>
-                                        <xsl:when test="not(has-children($doc))">
-                                            <xsl:message select="'Doc is empty'"/>
-                                        </xsl:when>
-                                        <xsl:otherwise>
-                                            <xsl:apply-templates select="$doc"/>
-                                        </xsl:otherwise>
-                                    </xsl:choose>
-                                    
-                                    <xsl:catch>
-                                        <xsl:message select="concat('Failed to load or parse XML from: ', $fullURL)"/>
-                                        <xsl:value-of select="concat('&#x00a0;Error code: ', $err:code, ' and Error Desc is: ', $err:description)"/>
-                                    </xsl:catch>
-                                </xsl:try>
+                                <xsl:variable name="document" select="document($fullURL)"/>
+                                
+                                 <xsl:choose>
+                                     <xsl:when test="not(has-children($document))">
+                                        <xsl:message select="'Doc is empty'"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:message select="concat('Transforming doc and writing rif-cs to ', $filename)"/>
+                                        <xsl:apply-templates select="$document" mode="process">
+                                            <xsl:with-param name="key" select="."/>
+                                        </xsl:apply-templates>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                                
+                                   
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:message select="concat('No doc available at: ', $fullURL)"/>
