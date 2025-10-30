@@ -17,12 +17,14 @@
     <xsl:param name="global_prefixURL" select="'https://collections.ala.org.au/public/show/'"/>
     <xsl:param name="global_prefixKey" select="'ala.org.au/'"/>
     <xsl:param name="global_baseURI" select="'https://collections.ala.org.au'"/>
-  <xsl:param name="global_pathEML_ws" select="'/ws/eml'"/>
+    <xsl:param name="global_pathEML_ws" select="'/ws/eml'"/>
     <xsl:param name="serverUrl"/>
     <xsl:param name="dateCreated" />
     <xsl:param name="lastModified" />
   
-  <xsl:param name="global_drKeyPrefix" select="'dataResourceUid.'"/>
+    <xsl:param name="global_drKeyPrefix" select="'dataResourceUid.'"/>
+    <!-- Adding Australian Frog Atlas dr20406 because it won't turn up in the query because it has no records - ToDO: work out how to include this long term rather than hardcoding the id -->
+    <xsl:param name="global_ExtraDRsToImport" select="['dr20406']" as="xs:string*"/> <!-- if you want to add more values, use syntax select="['dr20406','dr1089']" -->
     
     <xsl:variable name="rifcsVersion" select="1.6"/>
     <xsl:variable name="smallcase" select="'abcdefghijklmnopqrstuvwxyz'" />
@@ -37,9 +39,18 @@
   
     <xsl:template match="/">
       
+      <xsl:message select="concat('Getting keys from context ', node-name(.))"/>
+      
+      <xsl:for-each select="$global_ExtraDRsToImport">
+        <xsl:message select="concat('Adding ', ., ' too because we want to include that one even if not returned in initial query')"/>
+      </xsl:for-each>
+      
       <xsl:variable name="allKeys" as="xs:string*">
         <xsl:for-each select="datasets/dataset/fieldResult/i18nCode[starts-with(., $global_drKeyPrefix)]">
           <xsl:value-of select="substring-after(., $global_drKeyPrefix)"/>
+        </xsl:for-each>
+        <xsl:for-each select="$global_ExtraDRsToImport">
+          <xsl:value-of select="."/>
         </xsl:for-each>
       </xsl:variable> 
       

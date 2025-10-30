@@ -24,13 +24,17 @@
     <xsl:param name="global_group" select="'Atlas of Living Australia'"/>
     <xsl:param name="global_publisherName" select="'Atlas of Living Australia'"/>
     <xsl:param name="global_publisherPlace" select="''"/>
-    <xsl:param name="global_allKeysURL" select="'https://biocache.ala.org.au/ws/occurrences/facets?q=*:*&amp;facets=dataResourceUid&amp;count=true&amp;lookup=true&amp;flimit=10000'"/>
+    <!--xsl:param name="global_allKeysURL" select="'https://biocache.ala.org.au/ws/occurrences/facets?q=*:*&amp;facets=dataResourceUid&amp;count=true&amp;lookup=true&amp;flimit=10000'"/-->
     <!--xsl:param name="global_allKeysURL" select="'https://metadatatoolsardc.github.io/XSLT/ALA/CachedKeyCall_Mini.json'"/-->
+    <xsl:param name="global_allKeysURL" select="'file:/home/melanie/git/XSLT/docs/ALA/CachedKeyCall_Mini.json'"/>
     
     
     <xsl:param name="global_ElementNameKeyArray" select="'fieldResult'"/>
     <xsl:param name="global_ElementNameKey" select="'i18nCode'"/>
     <xsl:param name="global_KeyPrefix" select="'dataResourceUid.'"/>
+    
+    <!-- Adding Australian Frog Atlas dr20406 because it won't turn up in the query because it has no records - ToDO: work out how to include this long term rather than hardcoding the id -->
+    <xsl:param name="global_ExtraDRsToImport" select="['dr20406']" as="xs:string*"/> <!-- if you want to add more values, use syntax select="['dr20406','dr1089']" -->
     
     <!-- Keys at: https://biocache.ala.org.au/ws/occurrences/facets?q=*:*&amp;facets=dataResourceUid&amp;count=true&amp;lookup=true&amp;flimit=10000 -->
     <!-- EML XML at: https://collections.ala.org.au/ws/eml/dr23206 -->
@@ -44,6 +48,10 @@
     <xsl:template match="/">
         
         <xsl:message select="concat('getKeys has url: ', $global_allKeysURL)"/>
+       
+        <xsl:for-each select="$global_ExtraDRsToImport">
+           <xsl:message select="concat('Adding ', ., ' too because we want to include that one even if not returned in initial query')"/>
+        </xsl:for-each>
         
         
        <!-- Get all keys -->
@@ -51,7 +59,12 @@
             <xsl:call-template name="getKeys">
                 <xsl:with-param name="url" select="$global_allKeysURL"/>
             </xsl:call-template>
+            <xsl:for-each select="$global_ExtraDRsToImport">
+                <xsl:value-of select="."/>
+            </xsl:for-each>
         </xsl:variable>
+        
+        
         
         <!-- Batch the keys in groups of 200 -->
         <xsl:for-each-group select="$allKeys" group-adjacent="(position() - 1) idiv 5">
