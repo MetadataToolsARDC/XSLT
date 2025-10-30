@@ -24,8 +24,8 @@
     <xsl:param name="global_group" select="'Atlas of Living Australia'"/>
     <xsl:param name="global_publisherName" select="'Atlas of Living Australia'"/>
     <xsl:param name="global_publisherPlace" select="''"/>
-    <!--xsl:param name="global_allKeysURL" select="'https://biocache.ala.org.au/ws/occurrences/facets?q=*:*&amp;facets=dataResourceUid&amp;count=true&amp;lookup=true&amp;flimit=10000'"/-->
-    <xsl:param name="global_allKeysURL" select="'https://metadatatoolsardc.github.io/XSLT/ALA/CachedKeyCall_Mini.json'"/>
+    <xsl:param name="global_allKeysURL" select="'https://biocache.ala.org.au/ws/occurrences/facets?q=*:*&amp;facets=dataResourceUid&amp;count=true&amp;lookup=true&amp;flimit=10000'"/>
+    <!--xsl:param name="global_allKeysURL" select="'https://metadatatoolsardc.github.io/XSLT/ALA/CachedKeyCall_Mini.json'"/-->
     
     
     <xsl:param name="global_ElementNameKeyArray" select="'fieldResult'"/>
