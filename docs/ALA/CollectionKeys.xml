@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasets>
+    <dataset>
+        <name>Allan Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co214</uri>
+        <uid>co214</uid>
+    </dataset>
+    <!--dataset>
+        <name>American Museum of Natural History Palaeontology Collections</name>
+        <uri>https://collections.ala.org.au/ws/collection/co229</uri>
+        <uid>co229</uid>
+    </dataset>
+    <dataset>
+        <name>Animal Health Division Culture Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co85</uri>
+        <uid>co85</uid>
+    </dataset>
+    <dataset>
+        <name>ANU Research School of Earth Sciences Geology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co230</uri>
+        <uid>co230</uid>
+    </dataset-->
+</datasets>
