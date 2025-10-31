@@ -47,35 +47,159 @@
         
         <registryObject group="$global_group">
             
-            <key>
-                <xsl:value-of select="$key"/>
-            </key>
+            <xsl:call-template name="key">
+                <xsl:with-param name="key" select="$key"/>
+            </xsl:call-template>
             
-            <originatingSource>
-                <xsl:value-of select="$global_originatingSource"/>
-            </originatingSource>
+            <xsl:call-template name="originatingSource">
+                <xsl:with-param name="originatingSource" select="$global_originatingSource"/>
+            </xsl:call-template>
             
-            <collection type="collection">
-                
-                <identifier type="url">
-                    <xsl:value-of select="concat($global_prefixURL, $key)"/>
-                </identifier>
-                
-                <name type="primary">
-                    <namePart>
-                        <xsl:value-of select="string[@key='name']"/>
-                    </namePart>
-                </name>
-                
-                <description type="brief">
-                    <xsl:value-of select="string[@key='pubDescription']"/>
-                </description>
-                
-            </collection>
+            <xsl:apply-templates select="." mode="collection">
+                <xsl:with-param name="key" select="$key"/>
+            </xsl:apply-templates>
             
         </registryObject>
     </xsl:template>
     
+    <xsl:template name="key">
+        <xsl:param name="key"/>
+        <key>
+            <xsl:value-of select="$key"/>
+        </key>
+    </xsl:template>
+    
+    <xsl:template name="originatingSource">
+        <xsl:param name="originatingSource"/>
+        <originatingSource>
+            <xsl:value-of select="$originatingSource"/>
+        </originatingSource>
+    </xsl:template>
+    
+    <xsl:template match="map" mode="collection">
+        <xsl:param name="key"/>
+        
+        <collection type="collection">
+            
+            <xsl:call-template name="identifier">
+                <xsl:with-param name="key" select="$key"/>
+            </xsl:call-template>
+            
+            <xsl:apply-templates select="string[@key='name'][string-length(.) > 0]"/>
+            
+             <xsl:call-template name="location">
+                <xsl:with-param name="key" select="$key"/>
+            </xsl:call-template>
+            
+            
+            <xsl:apply-templates select="map[@key='institution'][count(string[@key='uid'][string-length(.) > 0]) > 0]"/>
+            
+            
+            <!-- ToDo: Dates -->
+            
+            
+            <xsl:apply-templates select="array[@key='keywords']/string[string-length(.) > 0]" mode="subject"/>
+            
+            <xsl:apply-templates select="array[@key='collectionType']/string[string-length(.) > 0]" mode="subject"/>
+            
+            <xsl:apply-templates select="string[@key='pubDescription'][string-length(.) > 0]"/>
+            
+            <xsl:call-template name="spatial_point">
+                <xsl:with-param name="lon" select="number[@key='longitude']"/>
+                <xsl:with-param name="lat" select="number[@key='latitude']"/>
+            </xsl:call-template>
+            
+            <xsl:apply-templates select="map[@key='geographicRange'][has-children(.)]" mode="spatial_box"/>
+            
+        </collection>
+    </xsl:template>
+    
+    <xsl:template name="identifier">
+        <xsl:param name="key"/>
+        <identifier type="url">
+            <xsl:value-of select="concat($global_prefixURL, $key)"/>
+        </identifier>
+    </xsl:template>
+    
+    <xsl:template match="string[@key='name']">
+        <name type="primary">
+            <namePart>
+                <xsl:value-of select="."/>
+            </namePart>
+        </name>
+        
+    </xsl:template>
+    
+    
+    <xsl:template match="string[@key='pubDescription']">
+         <description type="brief">
+             <xsl:value-of select="."/>
+         </description>
+    </xsl:template>
+    
+    <xsl:template name="location">
+        <xsl:param name="key"/>
+         <location>
+             <address>
+                 <electronic type="url" target="landingPage">
+                     <value>
+                         <xsl:value-of select="concat($global_prefixURL, $key)"/>
+                     </value>
+                 </electronic>
+             </address>
+         </location>
+         
+    </xsl:template>
+    
+    <xsl:template match="map[@key='institution']">
+        <relatedInfo type="party">
+            <identifier type="url">
+                <xsl:value-of select="concat($global_prefixURL, string[@key='uid'])"/>
+            </identifier>
+            <xsl:apply-templates select="string[@key='name']" mode="title"/>
+        </relatedInfo>
+    </xsl:template>
+    
+    <xsl:template match="string[@key='name']" mode="title">
+         <title>
+             <xsl:value-of select="."/>
+         </title>
+    </xsl:template>
+    
+    <xsl:template match="string" mode="subject">
+        <subject type="local">
+            <xsl:value-of select="."/>
+        </subject>
+    </xsl:template>
+    
+    
+    <xsl:template name="spatial_point">
+        <xsl:param name="lon"/>
+        <xsl:param name="lat"/>
+        
+        <xsl:if test="(string-length($lon) > 0) and (string-length($lat) > 0)">
+            <coverage>
+                <spatial type="kmlPolyCoords">
+                    <xsl:value-of select="concat($lon, ',', $lat)"/>
+                </spatial>
+            </coverage>
+        </xsl:if>
+    </xsl:template>
+    
+    <xsl:template match="map[@key='geographicRange']" mode="spatial_box">
+        <xsl:if test="(string-length(number[@key='eastCoordinate']) > 0)
+            and (string-length(number[@key='westCoordinate']) > 0)
+            and (string-length(number[@key='northCoordinate']) > 0)
+            and (string-length(number[@key='southCoordinate']) > 0)">
+            
+            <coverage>
+                <spatial type="iso19139dcmiBox">
+                    <xsl:value-of select="concat('northlimit=',number[@key='northCoordinate'],'; southlimit=-',number[@key='southCoordinate'],'; westlimit=',number[@key='westCoordinate'],'; eastLimit=', number[@key='eastCoordinate'],';')"/>
+                </spatial> 
+            </coverage>
+            
+        </xsl:if>
+    </xsl:template>
    
     
     
