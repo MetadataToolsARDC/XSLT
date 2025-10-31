@@ -33,14 +33,7 @@
 
     <xsl:template match="results" mode="collection">
 
-        <xsl:variable name="metadataURL">
-            <xsl:variable name="name" select="normalize-space(name)"/>
-            <xsl:if test="string-length($name)">
-                <xsl:value-of select="concat($global_baseURI, 'dataset/', $name)"/>
-            </xsl:if>
-        </xsl:variable>
-
-        <registryObject>
+       <registryObject>
             <xsl:attribute name="group">
                 <xsl:value-of select="$global_group"/>
             </xsl:attribute>
@@ -139,9 +132,9 @@
     <!-- Party RegistryObject Template          -->
     <!-- =========================================== -->
 
-    <xsl:template match="results" mode="party">
+    <!--xsl:template match="results" mode="party">
         <xsl:apply-templates select="organization"/>
-    </xsl:template>
+    </xsl:template-->
 
     <!-- =========================================== -->
     <!-- Collection RegistryObject - Child Templates -->
@@ -377,13 +370,31 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+    
+    
+    <xsl:template name="collection_license">
+        <xsl:param name="title"/>
+        <xsl:param name="id"/>
+        <xsl:param name="url"/>
+        <rights>
+            <licence>
+                <xsl:attribute name="type">
+                    <xsl:value-of select="upper-case($id)"/>
+                </xsl:attribute>
+                <xsl:attribute name="rightsUri">
+                    <xsl:value-of select="$url"/>
+                </xsl:attribute>
+                <xsl:value-of select="$title"/>
+            </licence>
+        </rights>
+    </xsl:template>
 
      <!-- ====================================== -->
     <!-- Party RegistryObject - Child Templates -->
     <!-- ====================================== -->
 
     <!-- Party Registry Object (Individuals (person) and Organisations (group)) -->
-    <xsl:template match="organization">
+    <!--xsl:template match="organization">
         <xsl:variable name="title" select="normalize-space(title)"/>
         <xsl:if test="string-length($title) > 0">
             <registryObject group="{$global_group}">
@@ -454,23 +465,7 @@
                 </party>
             </registryObject>
         </xsl:if>
-    </xsl:template>
+    </xsl:template-->
 
-    <xsl:template name="collection_license">
-        <xsl:param name="title"/>
-        <xsl:param name="id"/>
-        <xsl:param name="url"/>
-        <rights>
-            <licence>
-                <xsl:attribute name="type">
-                    <xsl:value-of select="upper-case($id)"/>
-                </xsl:attribute>
-                <xsl:attribute name="rightsUri">
-                    <xsl:value-of select="$url"/>
-                </xsl:attribute>
-                <xsl:value-of select="$title"/>
-            </licence>
-        </rights>
-    </xsl:template>
 
    </xsl:stylesheet>

@@ -3,12 +3,12 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:custom="http://custom.nowhere.yet"
     xmlns="http://ands.org.au/standards/rif-cs/registryObjects">
-    <!-- stylesheet to convert data.nsw.gov.au xml (transformed from json with python script) to RIF-CS -->
+    <!-- stylesheet to convert data.nt.gov.au xml (transformed from json with python script) to RIF-CS -->
     <xsl:output method="xml" version="1.0" encoding="UTF-8" omit-xml-declaration="yes" indent="yes"/>
     <xsl:strip-space elements="*"/>
-    <xsl:param name="global_originatingSource" select="'http://data.nsw.gov.au'"/>
-    <xsl:param name="global_baseURI" select="'http://data.nsw.gov.au/'"/>
-    <xsl:param name="global_group" select="'data.nsw.gov.au'"/>
+    <xsl:param name="global_originatingSource" select="'http://data.nt.gov.au'"/>
+    <xsl:param name="global_baseURI" select="'http://data.nt.gov.au/'"/>
+    <xsl:param name="global_group" select="'data.nt.gov.au'"/>
    
     <xsl:template match="/">
         <xsl:apply-templates/>
@@ -33,7 +33,7 @@
 
     <xsl:template match="results" mode="collection">
 
-         <registryObject>
+       <registryObject>
             <xsl:attribute name="group">
                 <xsl:value-of select="$global_group"/>
             </xsl:attribute>
@@ -178,7 +178,7 @@
                 <xsl:attribute name="type">
                     <xsl:text>uri</xsl:text>
                 </xsl:attribute>
-                <xsl:value-of select="concat($global_baseURI, 'data/dataset/', normalize-space(.))"/>
+                <xsl:value-of select="concat($global_baseURI, 'dataset/', normalize-space(.))"/>
             </identifier>
         </xsl:if>
     </xsl:template>
@@ -211,7 +211,7 @@
                             <xsl:text>landingPage</xsl:text>
                         </xsl:attribute>
                         <value>
-                            <xsl:value-of select="concat($global_baseURI, 'data/dataset/', $name)"/>
+                            <xsl:value-of select="concat($global_baseURI, 'dataset/', $name)"/>
                         </value>
                     </electronic>
                 </address>
@@ -245,7 +245,7 @@
         <xsl:if test="string-length(normalize-space(title))">
             <relatedInfo>
                 <identifier type="url">
-                    <xsl:value-of select="concat($global_baseURI, 'data/organization/',  name)"/>
+                    <xsl:value-of select="concat($global_baseURI, 'org/',  name)"/>
                 </identifier>
                 <relation>
                     <xsl:attribute name="type">
@@ -371,6 +371,7 @@
         </xsl:choose>
     </xsl:template>
     
+    
     <xsl:template name="collection_license">
         <xsl:param name="title"/>
         <xsl:param name="id"/>
@@ -387,7 +388,6 @@
             </licence>
         </rights>
     </xsl:template>
-    
 
      <!-- ====================================== -->
     <!-- Party RegistryObject - Child Templates -->
@@ -467,5 +467,5 @@
         </xsl:if>
     </xsl:template-->
 
-    
+
    </xsl:stylesheet>
