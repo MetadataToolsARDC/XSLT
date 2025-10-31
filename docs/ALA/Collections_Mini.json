@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Allan Herbarium",
+    "uri": "https://collections.ala.org.au/ws/collection/co214",
+    "uid": "co214"
+  },
+  {
+    "name": "American Museum of Natural History Palaeontology Collections",
+    "uri": "https://collections.ala.org.au/ws/collection/co229",
+    "uid": "co229"
+  },
+  {
+    "name": "Animal Health Division Culture Collection",
+    "uri": "https://collections.ala.org.au/ws/collection/co85",
+    "uid": "co85"
+  },
+  {
+    "name": "ANU Research School of Earth Sciences Geology Collection",
+    "uri": "https://collections.ala.org.au/ws/collection/co230",
+    "uid": "co230"
+  }
+]
