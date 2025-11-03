@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasets>
+    <dataset>
+        <enabled>true</enabled>
+        <source>WorldClim</source>
+        <keywords/>
+        <licence_notes>CC BY-SA 4.0</licence_notes>
+        <maxlongitude>180.0</maxlongitude>
+        <metadatapath>https://www.worldclim.org/data/worldclim21.html</metadatapath>
+        <minlongitude>-180.0</minlongitude>
+        <environmentalvalueunits>mm</environmentalvalueunits>
+        <environmentalvaluemin/>
+        <licence_link>https://creativecommons.org/licenses/by-sa/4.0/</licence_link>
+        <displaypath>https://spatial.ala.org.au/geoserver/gwc/service/wms?service=WMS&amp;version=1.1.0&amp;request=GetMap&amp;layers=ALA:worldclim21_bio19&amp;format=image/png&amp;styles=</displaypath>
+        <dt_added>1620632788642</dt_added>
+        <displayname>WorldClim 2.1: Precipitation - coldest quarter</displayname>
+        <classification2>Precipitation</classification2>
+        <mddatest>2020-01</mddatest>
+        <description>Precipitation of Coldest Quarter</description>
+        <datalang>eng</datalang>
+        <name>worldclim21_bio19</name>
+        <respparty_role>Custodian</respparty_role>
+        <type>Environmental</type>
+        <domain>Terrestrial</domain>
+        <source_link>https://www.worldclim.org/data/worldclim21.html</source_link>
+        <maxlatitude>90.0</maxlatitude>
+        <classification1>Climate</classification1>
+        <path_orig>layer/worldclim21_bio19</path_orig>
+        <environmentalvaluemax/>
+        <citation_date>2017</citation_date>
+        <minlatitude>-90.0</minlatitude>
+        <notes>This is WorldClim version 2.1 climate data for 1970-2000. This version was released
+            in January 2020.\r\n\r\nFick, S.E. and R.J. Hijmans, 2017. WorldClim 2: new 1km spatial
+            resolution climate surfaces for global land areas. International Journal of Climatology
+            37 (12): 4302-4315.
+            https://rmets.onlinelibrary.wiley.com/doi/abs/10.1002/joc.5086</notes>
+        <licence_level>1</licence_level>
+        <id>10996</id>
+    </dataset>
+    <dataset>
+        <classification1>Vegetation</classification1>
+        <notes>Primary data with some data gaps filling from Major Vegetation Groups</notes>
+        <lookuptablepath/>
+        <enabled>true</enabled>
+        <keywords/>
+        <scale/>
+        <pid/>
+        <licence_link>http://data.daff.gov.au/anrdl/metadata_files/pa_vast_g9abll0032008_11a.xml</licence_link>
+        <displayname>Vegetation types - present</displayname>
+        <licence_notes>All material in this publication is licensed under a Creative Commons
+            Attribution 3.0 Australia Licence, save for content supplied by third parties, logos and
+            the Commonwealth Coat of Arms. This publication (and any material sourced from it)
+            should be attributed as: Source: ABARES. Users of the data set are asked to acknowledge,
+            in any visual or published material, that it was derived and compiled by ABARES. Users
+            of the data set are asked to make known to ABARES any errors, omissions or suggestions
+            for improvement.</licence_notes>
+        <dt_added>1317906000000</dt_added>
+        <environmentalvaluemax>99</environmentalvaluemax>
+        <citation_date>2006</citation_date>
+        <mdhrlv/>
+        <description>Current major vegetation group (class)</description>
+        <type>Contextual</type>
+        <path>/mnt/transfer/MCAS_1k_Datapack/Vegetation/present_veg.tif</path>
+        <extents/>
+        <maxlongitude>153.6377</maxlongitude>
+        <uid>620</uid>
+        <environmentalvaluemin>0</environmentalvaluemin>
+        <displaypath>https://spatial.ala.org.au/geoserver/gwc/service/wms?service=WMS&amp;version=1.1.0&amp;request=GetMap&amp;layers=ALA:present_veg&amp;format=image/png&amp;styles=</displaypath>
+        <environmentalvalueunits>class</environmentalvalueunits>
+        <datalang>eng</datalang>
+        <minlatitude>-43.67225</minlatitude>
+        <path_1km/>
+        <domain>Terrestrial</domain>
+        <path_orig>layer/present_veg</path_orig>
+        <name>present_veg</name>
+        <classification2/>
+        <respparty_role>distributor</respparty_role>
+        <maxlatitude>-9.22397</maxlatitude>
+        <mddatest>2009-08</mddatest>
+        <minlongitude>112.91646</minlongitude>
+        <licence_level>3</licence_level>
+        <metadatapath>http://www.environment.gov.au/erin/nvis/mvg/index.html ,
+            http://www.environment.gov.au/erin/nvis/publications/pubs/major-veg-summary.pdf</metadatapath>
+        <source>ERIN</source>
+        <source_link>http://data.daff.gov.au/anrdl/metadata_files/pa_vast_g9abll0032008_11a.xml</source_link>
+        <id>620</id>
+    </dataset>
+    <dataset>
+        <classification1>Vegetation</classification1>
+        <lookuptablepath/>
+        <enabled>true</enabled>
+        <metadatapath>http://data.daff.gov.au/anrdl/metadata_files/pb_foa13g9abfs20160525_11a.xml</metadatapath>
+        <notes/>
+        <keywords>indigenous, aboriginal, torres strait, forest, estate</keywords>
+        <mddatest>2016-06-01</mddatest>
+        <scale/>
+        <source_link>http://www.agriculture.gov.au/abares/forestsaustralia/publications/display?url=http://143.188.17.20/anrdl/DAFFService/display.php?fid=pb_aif13g9abfs20160527_11a.xml</source_link>
+        <minlongitude>109.49189</minlongitude>
+        <source>Department of Agriculture and Water Resources : Australian Bureau of Agricultural
+            and Resource Economics and Sciences</source>
+        <path/>
+        <environmentalvaluemax>32767.0</environmentalvaluemax>
+        <mdhrlv/>
+        <licence_link>https://creativecommons.org/licenses/by/3.0/au/</licence_link>
+        <displayname>Australia's Indigenous forest estate (2013) v2.0</displayname>
+        <path_orig>layer/ind_for13_v2</path_orig>
+        <maxlatitude>-8.19553</maxlatitude>
+        <licence_notes>CC-BY-3.0-Australia</licence_notes>
+        <respparty_role/>
+        <environmentalvaluemin>-32767.0</environmentalvaluemin>
+        <name>ind_for13_v2</name>
+        <type>Contextual</type>
+        <dt_added>1482361289443</dt_added>
+        <uid>10900</uid>
+        <maxlongitude>157.22993</maxlongitude>
+        <extents/>
+        <description>Australia's Indigenous forest estate (2013) v2.0</description>
+        <citation_date>2016-06-01</citation_date>
+        <displaypath>https://spatial.ala.org.au/geoserver/gwc/service/wms?service=WMS&amp;version=1.1.0&amp;request=GetMap&amp;layers=ALA:ind_for13_v2&amp;format=image/png&amp;styles=</displaypath>
+        <path_1km/>
+        <domain>Terrestrial</domain>
+        <classification2/>
+        <minlatitude>-44.37462</minlatitude>
+        <environmentalvalueunits/>
+        <datalang/>
+        <pid>10900</pid>
+        <licence_level>1</licence_level>
+        <id>10900</id>
+    </dataset>
+    <dataset>
+        <enabled>true</enabled>
+        <source>WorldClim</source>
+        <keywords/>
+        <licence_notes>CC BY-SA 4.0</licence_notes>
+        <maxlongitude>180.0</maxlongitude>
+        <metadatapath>https://www.worldclim.org/data/worldclim21.html</metadatapath>
+        <dt_added>1620621908186</dt_added>
+        <displayname>WorldClim 2.1: Precipitation - warmest quarter</displayname>
+        <displaypath>https://spatial.ala.org.au/geoserver/gwc/service/wms?service=WMS&amp;version=1.1.0&amp;request=GetMap&amp;layers=ALA:worldclim21_bio18&amp;format=image/png&amp;styles=</displaypath>
+        <minlongitude>-180.0</minlongitude>
+        <environmentalvalueunits>mm</environmentalvalueunits>
+        <environmentalvaluemin/>
+        <licence_link>https://creativecommons.org/licenses/by-sa/4.0/</licence_link>
+        <classification2>Precipitation</classification2>
+        <mddatest>2020-01</mddatest>
+        <datalang>eng</datalang>
+        <name>worldclim21_bio18</name>
+        <respparty_role>Custodian</respparty_role>
+        <type>Environmental</type>
+        <domain>Terrestrial</domain>
+        <source_link>https://www.worldclim.org/data/worldclim21.html</source_link>
+        <description>Precipitation of Warmest Quarter</description>
+        <maxlatitude>90.0</maxlatitude>
+        <classification1>Climate</classification1>
+        <path_orig>layer/worldclim21_bio18</path_orig>
+        <environmentalvaluemax/>
+        <citation_date>2017</citation_date>
+        <minlatitude>-90.0</minlatitude>
+        <notes>This is WorldClim version 2.1 climate data for 1970-2000. This version was released
+            in January 2020.\r\n\r\nFick, S.E. and R.J. Hijmans, 2017. WorldClim 2: new 1km spatial
+            resolution climate surfaces for global land areas. International Journal of Climatology
+            37 (12): 4302-4315.
+            https://rmets.onlinelibrary.wiley.com/doi/abs/10.1002/joc.5086</notes>
+        <licence_level>1</licence_level>
+        <id>10995</id>
+    </dataset>
+    <dataset>
+        <enabled>true</enabled>
+        <displaypath>https://spatial.ala.org.au/geoserver/gwc/service/wms?service=WMS&amp;version=1.1.0&amp;request=GetMap&amp;layers=ALA:worldclim21_bio16&amp;format=image/png&amp;styles=</displaypath>
+        <source>WorldClim</source>
+        <keywords/>
+        <description>Precipitation of Wettest Quarter</description>
+        <licence_notes>CC BY-SA 4.0</licence_notes>
+        <maxlongitude>180.0</maxlongitude>
+        <metadatapath>https://www.worldclim.org/data/worldclim21.html</metadatapath>
+        <dt_added>1620685964710</dt_added>
+        <displayname>WorldClim 2.1: Precipitation - wettest quarter</displayname>
+        <minlongitude>-180.0</minlongitude>
+        <environmentalvalueunits>mm</environmentalvalueunits>
+        <environmentalvaluemin/>
+        <licence_link>https://creativecommons.org/licenses/by-sa/4.0/</licence_link>
+        <classification2>Precipitation</classification2>
+        <mddatest>2020-01</mddatest>
+        <path_orig>layer/worldclim21_bio16</path_orig>
+        <datalang>eng</datalang>
+        <respparty_role>Custodian</respparty_role>
+        <name>worldclim21_bio16</name>
+        <type>Environmental</type>
+        <domain>Terrestrial</domain>
+        <source_link>https://www.worldclim.org/data/worldclim21.html</source_link>
+        <maxlatitude>90.0</maxlatitude>
+        <classification1>Climate</classification1>
+        <environmentalvaluemax/>
+        <citation_date>2017</citation_date>
+        <minlatitude>-90.0</minlatitude>
+        <notes>This is WorldClim version 2.1 climate data for 1970-2000. This version was released
+            in January 2020.\r\n\r\nFick, S.E. and R.J. Hijmans, 2017. WorldClim 2: new 1km spatial
+            resolution climate surfaces for global land areas. International Journal of Climatology
+            37 (12): 4302-4315.
+            https://rmets.onlinelibrary.wiley.com/doi/abs/10.1002/joc.5086</notes>
+        <licence_level>1</licence_level>
+        <id>10993</id>
+    </dataset>
+</datasets>

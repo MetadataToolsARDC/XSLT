@@ -19,10 +19,6 @@
     <xsl:param name="dateCreated" />
     <xsl:param name="lastModified" />
     
-    <xsl:variable name="rifcsVersion" select="1.6"/>
-    <xsl:variable name="smallcase" select="'abcdefghijklmnopqrstuvwxyz'" />
-    <xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
-    
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" omit-xml-declaration="yes" />
     
     <xsl:strip-space elements="*" />

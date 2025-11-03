@@ -74,9 +74,7 @@
                     </xsl:when>
                     <xsl:otherwise>
                       <xsl:message select="concat('Transforming doc and writing rif-cs to ', $filename)"/>
-                      <xsl:apply-templates select="$xmlDoc/fn:map" mode="process">
                         <xsl:with-param name="key" select="."/>
-                      </xsl:apply-templates>
                     </xsl:otherwise>
                   </xsl:choose>
                   

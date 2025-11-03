@@ -35,7 +35,7 @@
             <xsl:variable name="key" as="xs:string">
                 <xsl:value-of select="map/string[@key='uid']"/>
             </xsl:variable>
-            <xsl:apply-templates select="/*" mode="process">
+            <xsl:apply-templates select="." mode="process">
                 <xsl:with-param name="key" select="$key"/>
             </xsl:apply-templates>
         </registryObjects>
@@ -45,10 +45,10 @@
         <xsl:param name="key"/>
         <xsl:message select="concat('ALA source has children count:', has-children(.))"/>
         
-        <registryObject group="$global_group">
+        <registryObject group="{$global_group}">
             
             <xsl:call-template name="key">
-                <xsl:with-param name="key" select="$key"/>
+                <xsl:with-param name="key" select="concat($global_prefixKey, $key)"/>
             </xsl:call-template>
             
             <xsl:call-template name="originatingSource">
