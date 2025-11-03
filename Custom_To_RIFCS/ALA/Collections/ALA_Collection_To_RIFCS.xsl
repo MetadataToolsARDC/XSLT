@@ -92,8 +92,8 @@
             </xsl:call-template>
             
             
-            <xsl:apply-templates select="map[@key='institution'][count(string[@key='uid'][string-length(.) > 0]) > 0]"/>
-            
+            <xsl:apply-templates select="map[@key='institution'][count(string[@key='uid'][string-length(.) > 0]) > 0]" mode="relatedInfo"/>
+            <xsl:apply-templates select="array[@key='linkedRecordProviders']/map[count(string[@key='uid'][string-length(.) > 0]) > 0]" mode="relatedInfo_provider"/>
             
             <!-- ToDo: Dates -->
             
@@ -151,7 +151,16 @@
          
     </xsl:template>
     
-    <xsl:template match="map[@key='institution']">
+    <xsl:template match="map[@key='institution']" mode="relatedInfo">
+        <relatedInfo type="party">
+            <identifier type="url">
+                <xsl:value-of select="concat($global_prefixURL, string[@key='uid'])"/>
+            </identifier>
+            <xsl:apply-templates select="string[@key='name']" mode="title"/>
+        </relatedInfo>
+    </xsl:template>
+    
+    <xsl:template match="map" mode="relatedInfo_provider">
         <relatedInfo type="party">
             <identifier type="url">
                 <xsl:value-of select="concat($global_prefixURL, string[@key='uid'])"/>
