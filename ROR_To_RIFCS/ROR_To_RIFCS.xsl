@@ -79,30 +79,28 @@
             
             <xsl:apply-templates select="id[string-length(.) > 0]" mode="identifier"/>
             
+            <xsl:apply-templates select="external_ids" mode="identifier"/>
+            
             <xsl:apply-templates select="names[count(types[contains(., 'ror_display')]) > 0]"/>
             
             <xsl:apply-templates select="id[string-length(.) > 0]" mode="location"/>
             
-            <xsl:apply-templates select="source[string-length(.) > 0]" mode="description_notes"/>
-            
             <!-- ToDo: Dates -->
             
             
-            <xsl:apply-templates select="./*[starts-with(local-name(.), 'classification')]" mode="subject_classification"/>
+            <xsl:apply-templates select="types[string-length(.) > 0]" mode="subject"/>
             
-            <xsl:apply-templates select="type[string-length(.) > 0]" mode="subject"/>
+            <xsl:apply-templates select="links[string-length(.) > 0]"/>
             
-            <xsl:apply-templates select="domain[string-length(.) > 0]" mode="subject"/>
+            <!--xsl:apply-templates select="domain[string-length(.) > 0]" mode="subject"/-->
             
-            <xsl:apply-templates select="description[string-length(.) > 0]"/>
+            <!--xsl:apply-templates select="description[string-length(.) > 0]"/-->
             
-            <xsl:apply-templates select="notes[string-length(.) > 0]"/>
+            <!--xsl:apply-templates select="notes[string-length(.) > 0]"/-->
             
             <xsl:apply-templates select="locations"/>
             
-            <xsl:apply-templates select="." mode="rights_licence"/>
-            
-        </party>
+           </party>
     </xsl:template>
     
     <xsl:template match="id" mode="identifier">
@@ -115,6 +113,21 @@
                 <xsl:value-of select="substring-after(., 'ror.org/')"/>
             </identifier>
         </xsl:if>
+    </xsl:template>
+    
+    <xsl:template match="links">
+        <relatedInfo>
+            <identifier type="{type}">
+                <xsl:apply-templates select="value/text()"/>
+            </identifier>
+            <relation type="hasAssociationWith"/>
+        </relatedInfo>
+    </xsl:template>
+    
+    <xsl:template match="external_ids" mode="identifier">
+        <identifier type="{type}">
+            <xsl:apply-templates select="preferred/text()"/>
+        </identifier>
     </xsl:template>
     
     <xsl:template match="names">
@@ -153,30 +166,11 @@
         
     </xsl:template>
     
-    <xsl:template match="source" mode="description_notes">
-        <description type="notes">
-            <xsl:value-of select="concat('Source: ', .)"/>
-        </description>
-    </xsl:template>
-    
-    <xsl:template match="*" mode="subject_classification">
+     <xsl:template match="types" mode="subject">
         <subject type="local">
             <xsl:value-of select="."/>
         </subject>
     </xsl:template>
-    
-    <xsl:template match="type" mode="subject">
-        <subject type="local">
-            <xsl:value-of select="."/>
-        </subject>
-    </xsl:template>
-    
-    <xsl:template match="domain" mode="subject">
-        <subject type="local">
-            <xsl:value-of select="."/>
-        </subject>
-    </xsl:template>
-    
     
     <xsl:template match="locations" mode="coverage">
         <xsl:apply-templates select="geonames_details"/>
@@ -194,6 +188,7 @@
         <xsl:apply-templates select="country_name[string-length(.) > 0]"/>
         <xsl:apply-templates select="country_subdivision_name[string-length(.) > 0]"/>
         <xsl:apply-templates select="continent_name[string-length(.) > 0]"/>
+        <xsl:apply-templates select="name[string-length(.) > 0]"/>
         
         
     </xsl:template>
@@ -202,7 +197,7 @@
         <!-- ToDo -->
     </xsl:template>
     
-    <xsl:template match="country_name | country_subdivision_name | continent_name">
+    <xsl:template match="country_name | country_subdivision_name | continent_name | name">
         <coverage>
             <spatial>
                 <text>
@@ -242,22 +237,7 @@
         </xsl:if>
     </xsl:template>
     
-    
-    <xsl:template match="items" mode="rights_licence">
-        <rights>
-            <licence>
-                <xsl:if test="string-length(licence_link) > 0">
-                    <xsl:attribute name="rightsUri">
-                        <xsl:value-of select="licence_link"/>
-                    </xsl:attribute>
-                </xsl:if>
-                <xsl:if test="string-length(licence_notes) > 0">
-                    <xsl:value-of select="licence_notes"/>
-                </xsl:if>
-            </licence>
-        </rights>
-    </xsl:template>
-    
+        
     <xsl:template match="*/text()">
         <xsl:value-of select="normalize-space(.)"/>
     </xsl:template>
