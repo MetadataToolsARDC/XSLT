@@ -209,7 +209,7 @@
         
         <xsl:apply-templates select="additionalInfo/section"  mode="relatedInfo"/>
        
-        <xsl:apply-templates select="intellectualRights"/>
+        <xsl:apply-templates select="intellectualRights/para" mode="rights"/>
         
         <!-- If no access element, 
           accessRights/@type be set to 'restricted'; otherwise, leave unset
@@ -250,7 +250,7 @@
               <xsl:for-each select="following-sibling::additionalMetadata[(metadata/gbif/citation[string-length(text()) > 0])]">
                 <xsl:for-each select="metadata/gbif/citation">
                   <xsl:element name="fullCitation">
-                    <xsl:value-of select="."/>
+                    <xsl:apply-templates select="./text()"/>
                   </xsl:element>
                 </xsl:for-each>
               </xsl:for-each>
@@ -421,12 +421,25 @@
  
   
   <!-- intellectualRights -->
-  <xsl:template match="intellectualRights">
-    <xsl:element name="rights">
-      <xsl:element name="rightsStatement">
-        <xsl:value-of select="." />
+  <xsl:template match="para" mode="rights">
+    <xsl:for-each-group select="ulink" group-by="@url">
+      <xsl:element name="rights">
+        <xsl:element name="licence">
+          <xsl:if test="string-length(current-grouping-key()) > 0">
+            <xsl:attribute name="rightsUri">
+              <xsl:value-of select="current-grouping-key()"/>
+            </xsl:attribute>
+          </xsl:if>
+          <xsl:if test="string-length(citetitle) > 0">
+             <xsl:apply-templates select="citetitle/text()"/>
+          </xsl:if>
+        </xsl:element>
       </xsl:element>
-    </xsl:element>
+    </xsl:for-each-group>
+  </xsl:template>
+
+  <xsl:template match="*/text()">
+    <xsl:value-of select="normalize-space(.)"/>
   </xsl:template>
 
   <xsl:template name="citationMetadataVersion">
@@ -940,7 +953,7 @@
   <xsl:template match="abstract">
     <xsl:element name="description">
       <xsl:attribute name="type">brief</xsl:attribute>
-      <xsl:value-of select="." />
+      <xsl:apply-templates select="para/text()"/>
     </xsl:element>
   </xsl:template>
 
@@ -970,8 +983,9 @@
   <xsl:template match="creator" mode="relationParty">
     <xsl:element name="relation"><xsl:attribute name="type">isOwnerOf</xsl:attribute></xsl:element>
   </xsl:template>
+  <!-- Not doing contact at the moment because it is set as ALA, not contributor to ALA -->
   <xsl:template match="contact" mode="relationCollection">
-    <xsl:element name="relation"><xsl:attribute name="type">isManagedBy</xsl:attribute></xsl:element>
+    <xsl:element name="relation"><xsl:attribute name="type">isContactFor</xsl:attribute></xsl:element>
   </xsl:template>
   <xsl:template match="contact" mode="relationParty">
     <xsl:element name="relation"><xsl:attribute name="type">isManagerOf</xsl:attribute></xsl:element>
