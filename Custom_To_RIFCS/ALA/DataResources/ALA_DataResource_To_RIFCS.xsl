@@ -44,7 +44,7 @@
     
   <xsl:template match="/*[local-name()='eml' and namespace-uri()=$global_emlNamespace]" mode="process">
     <xsl:param name="key"/>
-        <xsl:message select="concat('ALA source has children count:', has-children(.))"/>
+        <xsl:message select="concat('ALA source has children: ', has-children(.))"/>
     
      <!--<xsl:variable name="packageId" select="@packageId"/> -->
     <!--xsl:variable name="docid" select="concat(substring-before(string(@packageId),'.'),'.',substring-before(substring-after(string(@packageId),'.'),'.'))" /-->

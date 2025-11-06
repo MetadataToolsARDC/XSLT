@@ -43,7 +43,7 @@
     
     <xsl:template match="map" mode="process">
         <xsl:param name="key"/>
-        <xsl:message select="concat('ALA source has children count:', has-children(.))"/>
+        <xsl:message select="concat('ALA source has children: ', has-children(.))"/>
         
         <registryObject group="{$global_group}">
             
