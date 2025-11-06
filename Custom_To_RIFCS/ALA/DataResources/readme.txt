@@ -28,22 +28,35 @@ Can related to DataResource with relatedInfo, using uri (with “ws/dataResource
 
 -----
 
-When running locally and you want it to receive all current keys from ALA, use:
-~/git/XSLT/Custom_To_RIFCS/ALA/DataResources/ALA_DataResources_PARSE.xsl
+The difference between the two top-level XSLTS:
+$HOME/git/XSLT/Custom_To_RIFCS/ALA/DataResources/ALA_DataResources_PARSE.xsl can run no matter what the input XML - it gets all keys itself from the URL in global_allKeysURL
+$HOME/git/XSLT/Custom_To_RIFCS/ALA/DataResources/ALA_AllDataResources.xsl needs input XML to work - it gets all keys from the input XML, e.g from XML $HOME/git/XSLT/docs/ALA/DataResourceKeys.xml
+
+--- 
+
+
+Requires input from https://biocache.ala.org.au/ws/occurrences/facets?q=*:*&facets=dataResourceUid&count=true&lookup=true&flimit=10000 converted to XML (stored locally as example in $HOME/git/XSLT/docs/ALA/DataResourceKeys.xml)
+
+On the RDA Harvester, use the top-level XSLT $HOME/git/XSLT/Custom_To_RIFCS/ALA/DataResources/ALA_AllDataResources.xsl which will process every key that the 
+harvester has retrieved from json, then converted to xml, with format as shown in $HOME/git/XSLT/docs/ALA/DataResourceKeys.xml
 It passes the key to ALA_DataResource_To_RIFCS.xsl template with mode="process" to transform the dataset metadata to rif-cs
 
-Test the above locally like so from directory ~/git/XSLT/Custom_To_RIFCS/ALA/DataResources
+Test the above locally like so from directory $HOME/git/XSLT/Custom_To_RIFCS/ALA/DataResources
+
+java -cp $HOME/OxygenXMLEditor/lib/xmlresolver-5.2.1.jar:$HOME/git/private_scripts-as-required/SaxonHE12-8J/saxon-he-12.8.jar net.sf.saxon.Transform -xsl:file:$HOME/git/XSLT/Custom_To_RIFCS/ALA/DataResources/ALA_AllDataResources.xsl -s:file:$HOME/git/XSLT/docs/ALA/DataResourceKeys.xml -o:out.xml
+
+---
+
+When running locally and you want it to receive all current keys from ALA, use:
+$HOME/git/XSLT/Custom_To_RIFCS/ALA/DataResources/ALA_DataResources_PARSE.xsl
+It passes the key to ALA_DataResource_To_RIFCS.xsl template with mode="process" to transform the dataset metadata to rif-cs
+
+Test the above locally like so from directory $HOME/git/XSLT/Custom_To_RIFCS/ALA/DataResources
 
 java -cp $HOME/OxygenXMLEditor/lib/xmlresolver-5.2.1.jar:$HOME/git/private_scripts-as-required/SaxonHE12-8J/saxon-he-12.8.jar net.sf.saxon.Transform -xsl:file:$HOME/git/XSLT/Custom_To_RIFCS/ALA/DataResources/ALA_DataResources_PARSE.xsl -s:file:$HOME/git/XSLT/Custom_To_RIFCS/ALA/DataResources/Untitled.xml -o:out.xml
 
+---
 
-When running locally and you just want to crosswalk one file like ~/git/XSLT/docs/ALA/dr23206_eml.xml, use 
-~/git/XSLT/Custom_To_RIFCS/ALA/DataResources/ALA_DataResource_To_RIFCS.xsl directly (with no top-level call).
+When running locally and you just want to crosswalk one file like $HOME/git/XSLT/docs/ALA/dr23206_eml.xml, use 
+$HOME/git/XSLT/Custom_To_RIFCS/ALA/DataResources/ALA_DataResource_To_RIFCS.xsl directly (with no top-level call).
 
-On the RDA Harvester, use the top-level XSLT ~/git/XSLT/Custom_To_RIFCS/ALA/DataResources/ALA_AllDataResources.xsl which will process every key that the 
-harvester has retrieved from json, then converted to xml, with format as shown in ~/git/XSLT/docs/ALA/DataResourceKeys.xml
-It passes the key to ALA_DataResource_To_RIFCS.xsl template with mode="process" to transform the dataset metadata to rif-cs
-
-Test the above locally like so from directory ~/git/XSLT/Custom_To_RIFCS/ALA/DataResources
-
-java -cp $HOME/OxygenXMLEditor/lib/xmlresolver-5.2.1.jar:$HOME/git/private_scripts-as-required/SaxonHE12-8J/saxon-he-12.8.jar net.sf.saxon.Transform -xsl:file:$HOME/git/XSLT/Custom_To_RIFCS/ALA/DataResources/ALA_AllDataResources.xsl -s:file:$HOME/git/XSLT/docs/ALA/DataResourceKeys.xml -o:out.xml

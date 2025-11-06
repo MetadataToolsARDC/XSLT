@@ -1,0 +1,141 @@
+<registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd">
+   <registryObject group="Atlas of Living Australia">
+      <key>ala.org.au/co214</key>
+      <originatingSource>Atlas of Living Australia</originatingSource>
+      <collection type="collection">
+         <identifier type="url">https://collections.ala.org.au/public/show/co214</identifier>
+         <name type="primary">
+            <namePart>Allan Herbarium</namePart>
+         </name>
+         <location>
+            <address>
+               <electronic type="url" target="landingPage">
+                  <value>https://collections.ala.org.au/public/show/co214</value>
+               </electronic>
+            </address>
+         </location>
+         <relatedInfo type="party">
+            <identifier type="url">https://collections.ala.org.au/public/show/in92</identifier>
+            <title>Landcare Research NZ Ltd</title>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="url">https://collections.ala.org.au/public/show/dr2153</identifier>
+            <title>New Zealand Virtual Herbarium</title>
+         </relatedInfo>
+         <subject type="local">plants</subject>
+         <subject type="local">fauna</subject>
+         <subject type="local">entomology</subject>
+         <subject type="local">microbes</subject>
+         <subject type="local">preserved</subject>
+         <subject type="local">taxonomic</subject>
+         <description type="brief">The Allan Herbarium contains species from around the world but specialises in indigenous and exotic plants of the New Zealand region and the South Pacific. There are over 660 000 specimens in the Allan Herbarium with 5000-8000 being added annually. Two-thirds of the specimens are of New Zealand indigenous plants with the remainder divided between naturalised and cultivated New Zealand specimens, and also foreign specimens. It also has specialist collections of seed, fruit, wood, plant leaf cuticle, liquid–preserved specimens, and microscope slides. &#xD;
+&#xD;
+The Allan Herbarium's main function is to collect and record the flora of New Zealand, and to make this information readily available to researchers, and regional and national authorities. The collections are used by systematists to classify and identify species accurately, by ecologists to determine historical distributions of species, by biosecurity managers to identify weeds, and by the general public (including botanical groups) for information on plants in New Zealand.</description>
+         <coverage>
+            <spatial type="kmlPolyCoords">172.4764289667,-43.6405303731</spatial>
+         </coverage>
+         <coverage>
+            <spatial type="iso19139dcmiBox">northlimit=90.0000000000; southlimit=--90.0000000000; westlimit=-180.0000000000; eastLimit=180.0000000000;</spatial>
+         </coverage>
+      </collection>
+   </registryObject>
+   <registryObject group="Atlas of Living Australia">
+      <key>ala.org.au/co229</key>
+      <originatingSource>Atlas of Living Australia</originatingSource>
+      <collection type="collection">
+         <identifier type="url">https://collections.ala.org.au/public/show/co229</identifier>
+         <name type="primary">
+            <namePart>American Museum of Natural History Palaeontology Collections</namePart>
+         </name>
+         <location>
+            <address>
+               <electronic type="url" target="landingPage">
+                  <value>https://collections.ala.org.au/public/show/co229</value>
+               </electronic>
+            </address>
+         </location>
+         <relatedInfo type="party">
+            <identifier type="url">https://collections.ala.org.au/public/show/in105</identifier>
+            <title>American Museum of Natural History</title>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="url">https://collections.ala.org.au/public/show/dr2289</identifier>
+            <title>Database of Australasian Vertebrate Occurrences</title>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="url">https://collections.ala.org.au/public/show/dr2290</identifier>
+            <title>Fossil Birds</title>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="url">https://collections.ala.org.au/public/show/dr2342</identifier>
+            <title>Fossil Fish</title>
+         </relatedInfo>
+         <subject type="local">fauna</subject>
+         <subject type="local">plants</subject>
+         <subject type="local">entomology</subject>
+         <subject type="local">microbes</subject>
+         <subject type="local">fossils</subject>
+      </collection>
+   </registryObject>
+   <registryObject group="Atlas of Living Australia">
+      <key>ala.org.au/co85</key>
+      <originatingSource>Atlas of Living Australia</originatingSource>
+      <collection type="collection">
+         <identifier type="url">https://collections.ala.org.au/public/show/co85</identifier>
+         <name type="primary">
+            <namePart>Animal Health Division Culture Collection</namePart>
+         </name>
+         <location>
+            <address>
+               <electronic type="url" target="landingPage">
+                  <value>https://collections.ala.org.au/public/show/co85</value>
+               </electronic>
+            </address>
+         </location>
+         <subject type="local">microbial</subject>
+         <subject type="local">fauna</subject>
+         <subject type="local">plants</subject>
+         <subject type="local">entomology</subject>
+         <subject type="local">microbes</subject>
+         <coverage>
+            <spatial type="kmlPolyCoords">115.885472,-31.988444</spatial>
+         </coverage>
+      </collection>
+   </registryObject>
+   <registryObject group="Atlas of Living Australia">
+      <key>ala.org.au/co230</key>
+      <originatingSource>Atlas of Living Australia</originatingSource>
+      <collection type="collection">
+         <identifier type="url">https://collections.ala.org.au/public/show/co230</identifier>
+         <name type="primary">
+            <namePart>ANU Research School of Earth Sciences Geology Collection</namePart>
+         </name>
+         <location>
+            <address>
+               <electronic type="url" target="landingPage">
+                  <value>https://collections.ala.org.au/public/show/co230</value>
+               </electronic>
+            </address>
+         </location>
+         <relatedInfo type="party">
+            <identifier type="url">https://collections.ala.org.au/public/show/in56</identifier>
+            <title>The Australian National University</title>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="url">https://collections.ala.org.au/public/show/dr2289</identifier>
+            <title>Database of Australasian Vertebrate Occurrences</title>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="url">https://collections.ala.org.au/public/show/dr2342</identifier>
+            <title>Fossil Fish</title>
+         </relatedInfo>
+         <subject type="local">fauna</subject>
+         <subject type="local">plants</subject>
+         <subject type="local">entomology</subject>
+         <subject type="local">microbes</subject>
+         <subject type="local">fossils</subject>
+      </collection>
+   </registryObject>
+</registryObjects>

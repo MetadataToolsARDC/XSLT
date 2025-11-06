@@ -194,7 +194,11 @@
                              mode="relatedInfo"/>
 
         <xsl:apply-templates select="keywordSet" />
-        <xsl:apply-templates select="abstract" />
+        <xsl:apply-templates select="abstract/para[string-length(normalize-space(.)) > 0]" />
+        
+        <xsl:if test="count(abstract/para[string-length(normalize-space(.)) > 0]) = 0">
+          <xsl:apply-templates select="title[1]" mode="description"/>
+        </xsl:if>
 
         <xsl:if test="coverage/geographicCoverage or coverage/temporalCoverage">
           <xsl:element name="coverage">
@@ -610,6 +614,13 @@
     </xsl:element>
   </xsl:template>
   
+  <xsl:template match="title" mode="description">
+    <xsl:element name="description">
+      <xsl:attribute name="type" select="'brief'"/>
+      <xsl:apply-templates select="text()"/>
+    </xsl:element>
+  </xsl:template>
+  
   <xsl:template match="abstract" mode="activity_registryobject_description">
     <xsl:element name="description">
         <xsl:attribute name="type">
@@ -950,10 +961,10 @@
     </xsl:element>
   </xsl:template>
 
-  <xsl:template match="abstract">
+  <xsl:template match="para">
     <xsl:element name="description">
       <xsl:attribute name="type">brief</xsl:attribute>
-      <xsl:apply-templates select="para/text()"/>
+      <xsl:apply-templates select="text()"/>
     </xsl:element>
   </xsl:template>
 

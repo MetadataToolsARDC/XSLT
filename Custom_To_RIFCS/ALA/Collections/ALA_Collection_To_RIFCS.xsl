@@ -102,7 +102,16 @@
             
             <xsl:apply-templates select="array[@key='collectionType']/string[string-length(.) > 0]" mode="subject"/>
             
+            <xsl:apply-templates select="string[@key='pubShortDescription'][string-length(.) > 0]"/>
+            
             <xsl:apply-templates select="string[@key='pubDescription'][string-length(.) > 0]"/>
+            
+            <xsl:if test="(count(string[@key='pubShortDescription'][string-length(.) > 0]) = 0)
+                and (count(string[@key='pubDescription'][string-length(.) > 0]) = 0)">
+                
+                <xsl:apply-templates select="string[@key='name'][string-length(.) > 0]" mode="description"/>
+                
+            </xsl:if>
             
             <xsl:call-template name="spatial_point">
                 <xsl:with-param name="lon" select="number[@key='longitude']"/>
@@ -130,11 +139,25 @@
         
     </xsl:template>
     
+    <xsl:template match="string[@key='name']" mode="description">
+        <description type="brief">
+            <xsl:value-of select="."/>
+        </description>
+        
+    </xsl:template>
     
-    <xsl:template match="string[@key='pubDescription']">
+    
+    <xsl:template match="string[@key='pubShortDescription']">
          <description type="brief">
              <xsl:value-of select="."/>
          </description>
+    </xsl:template>
+    
+    
+    <xsl:template match="string[@key='pubDescription']">
+        <description type="full">
+            <xsl:value-of select="."/>
+        </description>
     </xsl:template>
     
     <xsl:template name="location">
