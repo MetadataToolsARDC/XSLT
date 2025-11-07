@@ -3606,95 +3606,6 @@
 {
   "@context": "http://schema.org",
   "@type": "Project",
-  "@id": "https://doi.org/10.71790/72de7bc0",
-  "identifier": {
-    "@type": "PropertyValue",
-    "propertyID": "RaidAgencyUrl",
-    "value": "https://prod.static.raid.org.au/10.71790/72de7bc0"
-  },
-  "url": "https://raid.org/10.71790/72de7bc0",
-  "additionalType": "RAiD",
-  "name": "NESP CS Project 2.10 - Oceans and coasts: connecting climate variability and extremes across scales",
-  "author": [
-    {
-      "name": "Claire Trenham",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0003-4258-9936"
-    },
-    {
-      "name": "Julio Salcedo-Castro",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-8035-3513"
-    },
-    {
-      "name": "Callum Shakespeare",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-8109-0751"
-    }
-  ],
-  "editor": [
-    {
-      "name": "RAiD AU",
-      "contributorType": "RegistrationAgency",
-      "@type": "Organization",
-      "@id": "https://ror.org/038sjwq14"
-    },
-    {
-      "name": "https://ror.org/03qn8fb07",
-      "contributorType": "HostingInstitution",
-      "@type": "Organization",
-      "@id": "https://ror.org/03qn8fb07"
-    },
-    {
-      "name": "https://ror.org/01nfmeh72",
-      "contributorType": "Other",
-      "@type": "Organization",
-      "@id": "https://ror.org/01nfmeh72"
-    },
-    {
-      "name": "https://ror.org/03r8z3t63",
-      "contributorType": "Other",
-      "@type": "Organization",
-      "@id": "https://ror.org/03r8z3t63"
-    },
-    {
-      "name": "https://ror.org/019wvm592",
-      "contributorType": "Other",
-      "@type": "Organization",
-      "@id": "https://ror.org/019wvm592"
-    }
-  ],
-  "description": "Marine and coastal stakeholders are seeking to understand the connectivity between climate driven deep ocean variability and change with observed and projected marine and coastal impacts, and the associated implications for monitoring and managing future change. This project seeks to address this need, with emphasis on impactful processes, including sea-level change and sea-level extremes, marine heatwaves, and ocean acidification, to support infrastructural, social and ecosystem planning and management, and maintaining cultural values.",
-  "datePublished": 2025,
-  "isPartOf": [
-    {
-      "@id": "https://raid.org/10.71821/a945d761",
-      "@type": "Project"
-    },
-    {
-      "@id": "https://raid.org/10.71821/23fcbc6f",
-      "@type": "Project"
-    }
-  ],
-  "schemaVersion": "http://datacite.org/schema/kernel-4",
-  "publisher": {
-    "@type": "Organization",
-    "@id": "https://ror.org/01db6n192",
-    "name": "https://ror.org/01db6n192"
-  },
-  "funder": {
-    "@id": "https://ror.org/01db6n192",
-    "@type": "Organization",
-    "name": "https://ror.org/01db6n192"
-  },
-  "provider": {
-    "@type": "Organization",
-    "name": "datacite"
-  }
-},
-{
-  "@context": "http://schema.org",
-  "@type": "Project",
   "@id": "https://doi.org/10.71790/883b2f55",
   "identifier": {
     "@type": "PropertyValue",
@@ -4636,89 +4547,6 @@
 {
   "@context": "http://schema.org",
   "@type": "Project",
-  "@id": "https://doi.org/10.26312/db3c5429",
-  "identifier": {
-    "@type": "PropertyValue",
-    "propertyID": "RaidAgencyUrl",
-    "value": "https://prod.static.raid.org.au/10.26312/db3c5429"
-  },
-  "url": "https://raid.org/10.26312/db3c5429",
-  "additionalType": "RAiD",
-  "name": "Research Activity Identifier development project",
-  "author": [
-    {
-      "name": "Siobhann McCafferty",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-2491-0995"
-    },
-    {
-      "name": "Shawn A Ross",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-6492-9025"
-    },
-    {
-      "name": "Matthias Liffers",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-3639-2080"
-    }
-  ],
-  "editor": [
-    {
-      "name": "RAiD AU",
-      "contributorType": "RegistrationAgency",
-      "@type": "Organization",
-      "@id": "https://ror.org/038sjwq14"
-    },
-    {
-      "name": "https://ror.org/038sjwq14",
-      "contributorType": "HostingInstitution",
-      "@type": "Organization",
-      "@id": "https://ror.org/038sjwq14"
-    }
-  ],
-  "datePublished": 2025,
-  "@reverse": {
-    "citation": [
-      {
-        "@id": "https://doi.org/10.1016/j.procs.2024.11.068",
-        "@type": "JournalArticle"
-      },
-      {
-        "@id": "https://doi.org/10.5281/zenodo.7129777",
-        "@type": "Audiovisual"
-      },
-      {
-        "@id": "https://doi.org/10.5281/zenodo.15293455",
-        "@type": "Audiovisual"
-      },
-      {
-        "@id": "https://doi.org/10.5281/zenodo.4477755",
-        "@type": "Audiovisual"
-      },
-      {
-        "@id": "https://doi.org/10.5281/zenodo.17075849",
-        "@type": "Dataset"
-      },
-      {
-        "@id": "https://doi.org/10.5281/zenodo.17142182",
-        "@type": "Audiovisual"
-      }
-    ]
-  },
-  "schemaVersion": "http://datacite.org/schema/kernel-4",
-  "publisher": {
-    "@type": "Organization",
-    "@id": "https://ror.org/038sjwq14",
-    "name": "https://ror.org/038sjwq14"
-  },
-  "provider": {
-    "@type": "Organization",
-    "name": "datacite"
-  }
-},
-{
-  "@context": "http://schema.org",
-  "@type": "Project",
   "@id": "https://doi.org/10.71676/b5b91f0e",
   "identifier": {
     "@type": "PropertyValue",
@@ -5378,6 +5206,54 @@
 {
   "@context": "http://schema.org",
   "@type": "Project",
+  "@id": "https://doi.org/10.71613/10c9226b",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.71613/10c9226b"
+  },
+  "url": "https://raid.org/10.71613/10c9226b",
+  "additionalType": "RAiD",
+  "name": "NESP RL Project 2.4 - National overview of monitoring frameworks and tools for Ramsar sites",
+  "author": {
+    "name": "Fran Sheldon",
+    "@type": "Person",
+    "@id": "https://orcid.org/0000-0001-9944-6392"
+  },
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/02sc3r913",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02sc3r913"
+    }
+  ],
+  "description": "One of Australia’s key obligations under the Ramsar Convention is to maintain the ecological character of its internationally listed Ramsar wetlands, with these responsibilities shared by the Australian Government in partnership with state and territory governments and nongovernment site managers.\nAustralia’s 66 Ramsar wetlands cover more than 8.3 million hectares and exhibit a range of biophysical and ecological characteristics (DAWE, 2022). Each Ramsar wetland is essentially unique in the context of spatial and temporal pressures on ecological character. Appropriate monitoring, using context-specific indicators, is key to understanding changes in condition and ecological character of Ramsar sites in response to natural and anthropogenic disturbances. A well-designed monitoring program can provide critical information to enable site managers to adaptively manage and assess the effectiveness of management interventions and actions to restore and improve condition.\nGiven the specific spatial and temporal context of each Ramsar wetland, this project will develop a better understanding of the monitoring frameworks appropriate for use at Ramsar sites and identify current knowledge gaps to guide research and development of tools to build capacity to monitor and manage Ramsar wetlands.\n",
+  "datePublished": 2025,
+  "isPartOf": {
+    "@id": "https://raid.org/10.71821/ffc970c8",
+    "@type": "Project"
+  },
+  "schemaVersion": "http://datacite.org/schema/kernel-4",
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/01db6n192",
+    "name": "https://ror.org/01db6n192"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
   "@id": "https://doi.org/10.71613/983725c0",
   "identifier": {
     "@type": "PropertyValue",
@@ -5439,54 +5315,6 @@
     }
   ],
   "description": "Resilient, productive and sustainable landscapes support Australia’s rich biodiversity and agricultural and tourism economies, and are central to every Australian’s identity and wellbeing.\n\nIndigenous Australians’ cultural practices have sustainably managed these landscapes for millennia. However, our rangelands, agricultural and peri-urban landscapes – and even our protected areas – face increasingly complex environmental challenges. These challenges erode landscape condition and undermine capacity to recover from threatening processes and extreme events.\n\nTo protect Australia’s landscapes and the services they provide, merely maintaining resilience will not be enough, particularly given the changing climate. Instead, we need to find new ways to enhance and restore resilience.\n\nEnvironmental research has played a critical role in articulating the key threats to the resilience of our landscapes by:\n\n- describing declines in landscape condition, species abundance and distributions\n- predicting future threats\n- proposing and prioritising actions that should be taken to address them.\n\nSuch research has been critical for raising awareness about the magnitude of the threats to biodiversity and the urgent need to address them.\n\nDespite progress on identifying and prioritising threats, surprisingly little research in ecology and environmental science has actually focused on solutions.\n\nThe Resilient Landscapes Hub’s research program is based on a proposed approach we are calling ‘solutions science’. This user-driven, solutions-focused, co-research model brings academic and non-academic partners together to address the scientific and societal challenges of strengthening and restoring resilience in Australia’s landscapes.\n\nThis project focuses on developing and testing better ways to do applied environmental science. This includes supporting the development and implementation of the core components of our solutions-science approach.",
-  "datePublished": 2025,
-  "isPartOf": {
-    "@id": "https://raid.org/10.71821/ffc970c8",
-    "@type": "Project"
-  },
-  "schemaVersion": "http://datacite.org/schema/kernel-4",
-  "publisher": {
-    "@type": "Organization",
-    "@id": "https://ror.org/01db6n192",
-    "name": "https://ror.org/01db6n192"
-  },
-  "provider": {
-    "@type": "Organization",
-    "name": "datacite"
-  }
-},
-{
-  "@context": "http://schema.org",
-  "@type": "Project",
-  "@id": "https://doi.org/10.71613/10c9226b",
-  "identifier": {
-    "@type": "PropertyValue",
-    "propertyID": "RaidAgencyUrl",
-    "value": "https://prod.static.raid.org.au/10.71613/10c9226b"
-  },
-  "url": "https://raid.org/10.71613/10c9226b",
-  "additionalType": "RAiD",
-  "name": "NESP RL Project 2.4 - National overview of monitoring frameworks and tools for Ramsar sites",
-  "author": {
-    "name": "Fran Sheldon",
-    "@type": "Person",
-    "@id": "https://orcid.org/0000-0001-9944-6392"
-  },
-  "editor": [
-    {
-      "name": "RAiD AU",
-      "contributorType": "RegistrationAgency",
-      "@type": "Organization",
-      "@id": "https://ror.org/038sjwq14"
-    },
-    {
-      "name": "https://ror.org/02sc3r913",
-      "contributorType": "HostingInstitution",
-      "@type": "Organization",
-      "@id": "https://ror.org/02sc3r913"
-    }
-  ],
-  "description": "One of Australia’s key obligations under the Ramsar Convention is to maintain the ecological character of its internationally listed Ramsar wetlands, with these responsibilities shared by the Australian Government in partnership with state and territory governments and nongovernment site managers.\nAustralia’s 66 Ramsar wetlands cover more than 8.3 million hectares and exhibit a range of biophysical and ecological characteristics (DAWE, 2022). Each Ramsar wetland is essentially unique in the context of spatial and temporal pressures on ecological character. Appropriate monitoring, using context-specific indicators, is key to understanding changes in condition and ecological character of Ramsar sites in response to natural and anthropogenic disturbances. A well-designed monitoring program can provide critical information to enable site managers to adaptively manage and assess the effectiveness of management interventions and actions to restore and improve condition.\nGiven the specific spatial and temporal context of each Ramsar wetland, this project will develop a better understanding of the monitoring frameworks appropriate for use at Ramsar sites and identify current knowledge gaps to guide research and development of tools to build capacity to monitor and manage Ramsar wetlands.\n",
   "datePublished": 2025,
   "isPartOf": {
     "@id": "https://raid.org/10.71821/ffc970c8",
@@ -7577,54 +7405,6 @@
 {
   "@context": "http://schema.org",
   "@type": "Project",
-  "@id": "https://doi.org/10.71613/8c7fe77a",
-  "identifier": {
-    "@type": "PropertyValue",
-    "propertyID": "RaidAgencyUrl",
-    "value": "https://prod.static.raid.org.au/10.71613/8c7fe77a"
-  },
-  "url": "https://raid.org/10.71613/8c7fe77a",
-  "additionalType": "RAiD",
-  "name": "NESP RL Project 3.17 - Improving environmental outcomes on conserved and managed lands",
-  "author": {
-    "name": "Diane Jarvis",
-    "@type": "Person",
-    "@id": "https://orcid.org/0000-0003-4822-8736"
-  },
-  "editor": [
-    {
-      "name": "RAiD AU",
-      "contributorType": "RegistrationAgency",
-      "@type": "Organization",
-      "@id": "https://ror.org/038sjwq14"
-    },
-    {
-      "name": "https://ror.org/01nfmeh72",
-      "contributorType": "HostingInstitution",
-      "@type": "Organization",
-      "@id": "https://ror.org/01nfmeh72"
-    }
-  ],
-  "description": "The Kunming-Montreal Global Biodiversity Framework (GBF) of the UN Convention on Biological Diversity (CBD) outlines key goals and targets that specifically acknowledge the importance of protecting, conserving and managing land and water effectively. While protected areas are well understood and studied, conserved and managed lands and their role in delivering environmental and social outcomes are not. To this end, ‘other effective area-based conservation measures’ (OECMs; termed ‘conserved areas’ in Target 3 of the GBF) will contribute alongside protected areas to meet area-based measures of 30% of land and sea by 2030. Similarly, managed areas which surround and connect protected and conserved areas are essential for meeting the broader goal that the integrity, connectivity and resilience of ecosystems are maintained and enhanced. Protected, conserved and managed areas will necessarily work in tandem to improve landscape-scale habitat quality and connectivity and, ultimately, overall persistence of biodiversity.\nThis project will review private-land conservation programs against the draft Australian OECM framework criteria to indicate the types of programs that are likely to qualify. Based on this review, programs that are near OECM standard but that fall short on key criteria, such as actively managing for biodiversity outcomes, will be considered for place-based research. Within programs, the research will design and deploy interventions to support landholders to manage their land consistent with OECM criteria and track the outcomes of this management over time to demonstrate enduring biodiversity outcomes. The research will demonstrate if the hypothesised benefits to both biodiversity and participants of these programs (e.g. increased nature connectedness) hold true. If our findings are positive, we expect these interventions could be added to private-land conservation programs in other jurisdictions.",
-  "datePublished": 2025,
-  "isPartOf": {
-    "@id": "https://raid.org/10.71821/ffc970c8",
-    "@type": "Project"
-  },
-  "schemaVersion": "http://datacite.org/schema/kernel-4",
-  "publisher": {
-    "@type": "Organization",
-    "@id": "https://ror.org/01db6n192",
-    "name": "https://ror.org/01db6n192"
-  },
-  "provider": {
-    "@type": "Organization",
-    "name": "datacite"
-  }
-},
-{
-  "@context": "http://schema.org",
-  "@type": "Project",
   "@id": "https://doi.org/10.71613/e39d74c5",
   "identifier": {
     "@type": "PropertyValue",
@@ -7654,6 +7434,54 @@
     }
   ],
   "description": "This project aims to address two overarching research questions: how can First Nations Peoples knowledges be reflected within (or alongside) Ecosystem Accounts prepared following the United Nations System of Environmental-Economic Accounting—Ecosystem Accounting (SEEA EA)? and what are suitable methods for appropriately gathering and presenting First Nations Peoples’ knowledges in relation to SEEA EA?\nTo achieve the project aim, researchers will partner with two First Nations groups from contrasting contexts and environments (northern QLD savannah and southern WA coast). Together we will trial methods and prepare full sets of SEEA EA compliant accounts for each group. By co-designing methods and accounts presentation, the aim is for the accounts to provide information that is useful for the groups themselves in addition to providing useful information for other research users.\nBeyond accounts preparation, and incorporating existing Australian literature, the project will develop and test overarching learnings and recommendations that can inform future EA policy development within DCCEEW. Working closely with our First Nations partners, and testing outputs with a small number of First Nations people from other organisations, the project will seek to identify common themes across different First Nations groups, and assess the relevance of, and links between, national accounting information (such as NEAP) and accounts built upon First Nations knowledge and perspectives. The project is also linked with the Nature Repair Market team within DCCEEW and will exchange learnings and findings with those working in that space, thus seeking to promote complementarity between EA and Nature Repair Market developments.",
+  "datePublished": 2025,
+  "isPartOf": {
+    "@id": "https://raid.org/10.71821/ffc970c8",
+    "@type": "Project"
+  },
+  "schemaVersion": "http://datacite.org/schema/kernel-4",
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/01db6n192",
+    "name": "https://ror.org/01db6n192"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.71613/8c7fe77a",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://prod.static.raid.org.au/10.71613/8c7fe77a"
+  },
+  "url": "https://raid.org/10.71613/8c7fe77a",
+  "additionalType": "RAiD",
+  "name": "NESP RL Project 3.17 - Improving environmental outcomes on conserved and managed lands",
+  "author": {
+    "name": "Diane Jarvis",
+    "@type": "Person",
+    "@id": "https://orcid.org/0000-0003-4822-8736"
+  },
+  "editor": [
+    {
+      "name": "RAiD AU",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "https://ror.org/01nfmeh72",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/01nfmeh72"
+    }
+  ],
+  "description": "The Kunming-Montreal Global Biodiversity Framework (GBF) of the UN Convention on Biological Diversity (CBD) outlines key goals and targets that specifically acknowledge the importance of protecting, conserving and managing land and water effectively. While protected areas are well understood and studied, conserved and managed lands and their role in delivering environmental and social outcomes are not. To this end, ‘other effective area-based conservation measures’ (OECMs; termed ‘conserved areas’ in Target 3 of the GBF) will contribute alongside protected areas to meet area-based measures of 30% of land and sea by 2030. Similarly, managed areas which surround and connect protected and conserved areas are essential for meeting the broader goal that the integrity, connectivity and resilience of ecosystems are maintained and enhanced. Protected, conserved and managed areas will necessarily work in tandem to improve landscape-scale habitat quality and connectivity and, ultimately, overall persistence of biodiversity.\nThis project will review private-land conservation programs against the draft Australian OECM framework criteria to indicate the types of programs that are likely to qualify. Based on this review, programs that are near OECM standard but that fall short on key criteria, such as actively managing for biodiversity outcomes, will be considered for place-based research. Within programs, the research will design and deploy interventions to support landholders to manage their land consistent with OECM criteria and track the outcomes of this management over time to demonstrate enduring biodiversity outcomes. The research will demonstrate if the hypothesised benefits to both biodiversity and participants of these programs (e.g. increased nature connectedness) hold true. If our findings are positive, we expect these interventions could be added to private-land conservation programs in other jurisdictions.",
   "datePublished": 2025,
   "isPartOf": {
     "@id": "https://raid.org/10.71821/ffc970c8",

@@ -23,6 +23,7 @@
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects {$xsd_url}">
             <xsl:apply-templates select="//dataset"/>
+            <xsl:apply-templates select="//data"/>
             <!--xsl:apply-templates select="//dataset/producer" mode="activity"/-->
             <!--xsl:apply-templates select="//includedInDataCatalog" mode="catalog"/-->
             <!--xsl:apply-templates select="//publisher | //funder | //contributor | //provider" mode="party"/-->
@@ -146,7 +147,7 @@
         
     </xsl:function>
 
-    <xsl:template match="dataset">
+    <xsl:template match="dataset | data">
         <xsl:message select="concat('type: [', string-join(type, ';'), ']')"/>
         <xsl:variable name="typeAndSubType_sequence" select="local:getTypeAndSubType(type)"/>
         <xsl:choose>

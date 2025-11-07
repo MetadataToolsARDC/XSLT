@@ -9,6 +9,7 @@
     <xsl:param name="global_originatingSource" select="'Research Organization Registry (ROR)'"/>
     <xsl:param name="global_group" select="'Research Organization Registry (ROR)'"/> 
     <xsl:param name="global_debug" select="false()" as="xs:boolean"/>
+    <xsl:param name="global_fundRefPrefix" select="'10.13039'"/>
     
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" omit-xml-declaration="yes" />
     
@@ -128,6 +129,15 @@
         <identifier type="{type}">
             <xsl:apply-templates select="preferred/text()"/>
         </identifier>
+        
+        <xsl:if test="(contains(lower-case(type), 'fundref')) and not(starts-with(preferred, '10.'))">
+            <identifier type="doi">
+                <xsl:value-of select="concat($global_fundRefPrefix,'/', preferred)"/>
+            </identifier>
+            <identifier type="url">
+                <xsl:value-of select="concat('https://doi.org/', $global_fundRefPrefix,'/', preferred)"/>
+            </identifier>
+        </xsl:if>
     </xsl:template>
     
     <xsl:template match="names">
