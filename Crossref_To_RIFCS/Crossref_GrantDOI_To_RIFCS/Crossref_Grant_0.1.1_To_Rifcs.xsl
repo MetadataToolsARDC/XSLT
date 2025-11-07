@@ -72,7 +72,14 @@
             <xsl:attribute name="group" select="$global_group"/>
             
             <key>
-                <xsl:value-of select="concat($global_acronym, '/', DOI[1])"/>
+                <xsl:choose>
+                    <xsl:when test="starts-with(DOI[1] , '10.')">
+                        <xsl:value-of select="concat('http://doi.org/', DOI[1])"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="normalize-space(DOI[1])"/>
+                    </xsl:otherwise>
+                </xsl:choose>
             </key>
             
             <originatingSource>
@@ -134,9 +141,26 @@
     </xsl:template>  
     
     <xsl:template match="DOI" mode="activity_identifier_doi">
-        <identifier type="DOI">
-            <xsl:value-of select="normalize-space(.)"/>
-        </identifier>    
+        <xsl:choose>
+            <xsl:when test="contains(., 'doi.org/') and (string-length(substring-after(normalize-space(.), 'doi.org/')) > 0)">
+                <identifier type="url">
+                    <xsl:value-of select="normalize-space(.)"/>
+                </identifier>    
+                <identifier type="doi">
+                    <xsl:value-of select="substring-after(normalize-space(.), 'doi.org/')"/>
+                </identifier>  
+            </xsl:when>
+            <xsl:otherwise>
+                <identifier type="doi">
+                    <xsl:value-of select="normalize-space(.)"/>
+                </identifier>    
+                <identifier type="url">
+                    <xsl:value-of select="concat('http://doi.org/', normalize-space(.))"/>
+                </identifier>  
+            </xsl:otherwise>
+            
+        </xsl:choose>
+       
     </xsl:template>
     
     <xsl:template match="identifier[@xsi:type ='dcterms:URI']" mode="activity_location_if_no_DOI">
@@ -201,60 +225,7 @@
         </relatedInfo>
     </xsl:template>
     
-    <!-- For relating grant that has an awardNumber or awardNumber/@awardURI -->
-    <xsl:template match="fundingReference" mode="activity_relatedInfo_grant">
-        <relatedInfo>
-            <xsl:attribute name="type">
-                <xsl:text>activity</xsl:text> <!-- Change to 'grant' if required -->
-            </xsl:attribute>
-            
-            <xsl:choose>
-                <xsl:when test="
-                    boolean(string-length(awardNumber/@awardURI)) and
-                    boolean(string-length(awardNumber))">
-                    <identifier type="{awardNumber/@awardURI}">
-                        <xsl:value-of select="awardNumber"/>
-                    </identifier>
-                </xsl:when>
-                <xsl:when test="boolean(string-length(awardNumber/@awardURI))">
-                    <identifier type="{awardNumber/@awardURI}">
-                        <xsl:value-of select="awardNumber/@awardURI"/>
-                    </identifier>
-                </xsl:when>
-                <xsl:when test="boolean(string-length(awardNumber))">
-                    <identifier type="{awardNumber}">
-                        <xsl:value-of select="awardNumber"/>
-                    </identifier>
-                </xsl:when>
-            </xsl:choose>
-            
-            <xsl:if test="boolean(string-length(awardTitle))">
-                <title>
-                  <xsl:value-of select="awardTitle"/>
-                </title>
-            </xsl:if>
-            
-            <!-- Currently using vocab term 'isOutputOf' to relate this Collection to the (grant) Activity, 
-                 noting that the vocabs documentation specifies that 'isFundedBy' ought only be for where:
-                - a Party is funded by a Party
-                - a Party is funded by a (program) Activity
-                - an Activity is funded by a (program) Activity -->
-            <relation type="isOutputOf"/>
-            
-        </relatedInfo>
-    </xsl:template>
-    
-    <!-- For creator who has no identifier - relate with relatedObject -->
-    <xsl:template match="fundingReference" mode="activity_relatedObject_grant">
-        <relatedObject>
-            <key>
-                <xsl:value-of select="dcrifcsFunc:formatKey(awardTitle)"/>
-            </key>
-            <relation type="isOutputOf"/>
-        </relatedObject>
-    </xsl:template>
-    
-    <xsl:template match="relatedItem" mode="activity_relatedInfo">
+     <xsl:template match="relatedItem" mode="activity_relatedInfo">
         <relatedInfo>
             <xsl:attribute name="type">
                 <xsl:apply-templates select="." mode="related_item_type_core"/>
@@ -378,7 +349,17 @@
     <xsl:template match="lead-investigator" mode="activity_relatedInfo_party_orcid">
        <!-- Person -->
         <relatedInfo type='party'>
-            <identifier type="ORCID">
+            <identifier>
+                <xsl:attribute name="type">
+                    <xsl:choose>
+                        <xsl:when test="starts-with(ORCID, 'http')">
+                            <xsl:text>url</xsl:text>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:text>orcid</xsl:text>
+                        </xsl:otherwise>
+                    </xsl:choose>    
+                </xsl:attribute>
                 <xsl:value-of select="normalize-space(ORCID)"/>
             </identifier>
            <relation type="hasPrincipalInvestigator"/>
@@ -394,7 +375,24 @@
         
          <!-- Affiliated Group -->
          <relatedInfo type='party'>
-             <identifier type="{id/id-type}">
+             <identifier>
+                 <xsl:attribute name="type">
+                     <xsl:choose>
+                         <xsl:when test="string-length(fn:normalize-space(id/id-type)) > 0">
+                             <xsl:choose>
+                                 <xsl:when test="fn:starts-with(id/id, 'http')">
+                                     <xsl:text>url</xsl:text>
+                                 </xsl:when>
+                                 <xsl:otherwise>
+                                     <xsl:value-of select="id/id-type"/>
+                                 </xsl:otherwise>
+                             </xsl:choose>
+                         </xsl:when>
+                         <xsl:otherwise>
+                             <xsl:text>local</xsl:text>
+                         </xsl:otherwise>
+                     </xsl:choose>
+                 </xsl:attribute>
                  <xsl:value-of select="normalize-space(id/id)"/>
              </identifier>
              <relation type="isManagedBy"/>
@@ -404,51 +402,7 @@
          </relatedInfo>
     </xsl:template>
     
-    <!-- For a creator who has a nameIdentifier -->
-     <xsl:template match="creator" mode="activity_relatedInfo">
-        <relatedInfo>
-            <xsl:attribute name="type">
-                <!-- Switch the two lines below (i.e. comment one and uncomment the other) 
-                    if you want 'person' and 'group' rather than 'party' -->
-                <!--xsl:apply-templates select="." mode="party_type_core"/-->
-                <xsl:text>party</xsl:text>
-            </xsl:attribute>
-            <identifier>
-                <xsl:attribute name="type">
-                    <xsl:value-of select="nameIdentifier/@nameIdentifierScheme"/>
-                </xsl:attribute>
-                <xsl:value-of select="nameIdentifier"/>
-            </identifier>
-            <title>
-                <xsl:value-of select="dcrifcsFunc:formatName(creatorName)"/> 
-            </title>
-            <relation type="hasCollector"/>
-        </relatedInfo>
-    </xsl:template>
-    
-    <!-- For contributor who has a name identifier -->
-    <xsl:template match="contributor" mode="activity_relatedInfo">
-        <relatedInfo>
-            <xsl:attribute name="type">
-                <!-- Switch the two lines below (i.e. comment one and uncomment the other) 
-                    if you want 'person' and 'group' rather than 'party' -->
-                <!--xsl:apply-templates select="." mode="party_type_core"/-->
-                <xsl:text>party</xsl:text>
-            </xsl:attribute>
-            <identifier>
-                <xsl:attribute name="type">
-                    <xsl:value-of select="nameIdentifier/@nameIdentifierScheme"/>
-                </xsl:attribute>
-                <xsl:value-of select="nameIdentifier"/>
-            </identifier>
-            <title>
-                <xsl:value-of select="dcrifcsFunc:formatName(contributorName)"/> 
-            </title>
-            <relation type="hasCollector"/>
-        </relatedInfo>
-    </xsl:template>
-    
-   <!-- For funder who has a name identifier -->
+     <!-- For funder who has a name identifier -->
     <xsl:template match="funder" mode="activity_relatedInfo_funder">
         <relatedInfo>
             <xsl:attribute name="type">
@@ -456,7 +410,21 @@
             </xsl:attribute>
             <identifier>
                 <xsl:attribute name="type">
-                    <xsl:value-of select="id/id-type"/>
+                    <xsl:choose>
+                        <xsl:when test="string-length(fn:normalize-space(id/id-type)) > 0">
+                            <xsl:choose>
+                               <xsl:when test="fn:starts-with(id/id, 'http')">
+                                   <xsl:text>url</xsl:text>
+                               </xsl:when>
+                               <xsl:otherwise>
+                                   <xsl:value-of select="id/id-type"/>
+                               </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:text>local</xsl:text>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </xsl:attribute>
                 <xsl:value-of select="id/id"/>
             </identifier>
@@ -610,14 +578,6 @@
                     </xsl:when>
                 </xsl:choose>
                 
-                <xsl:for-each select="creators/creator">
-                    <xsl:apply-templates select="." mode="citationMetadata_contributor"/>
-                </xsl:for-each>
-                
-                <xsl:for-each select="contributors/contributor">
-                    <xsl:apply-templates select="." mode="citationMetadata_contributor"/>
-                </xsl:for-each>
-                
                 <title>
                     <xsl:value-of select="string-join(titles/title, ', ')"/>
                 </title>
@@ -686,128 +646,7 @@
         </contributor>
     </xsl:template>
     
-    <xsl:template match="creator" mode="citationMetadata_contributor">
-        <contributor>
-            <xsl:choose>
-                <xsl:when test="'Organizational' = creatorName/@nameType">
-                    <namePart type="family">
-                        <xsl:value-of select="normalize-space(creatorName)"/>
-                    </namePart>
-                </xsl:when>
-                <xsl:otherwise>
-                    <namePart type="family">
-                        <xsl:choose>
-                            <xsl:when test="boolean(string-length(familyName))">
-                                <xsl:value-of select="familyName"/>
-                            </xsl:when>
-                            <xsl:when test="contains(creatorName, ',')">
-                                <xsl:value-of select="normalize-space(substring-before(creatorName,','))"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:value-of select="normalize-space(creatorName)"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </namePart>
-                    <namePart type="given">
-                        <xsl:choose>
-                            <xsl:when test="boolean(string-length(givenName))">
-                                <xsl:value-of select="givenName"/>
-                            </xsl:when>
-                            <xsl:when test="contains(creatorName, ',')">
-                                <xsl:value-of select="normalize-space(substring-after(creatorName,','))"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:value-of select="normalize-space(creatorName)"/>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </namePart>
-                    
-                </xsl:otherwise>
-            </xsl:choose>
-        </contributor>
-    </xsl:template>
-    
-    
-    <xsl:template match="fundingReference" mode="Crossref_0.1.1_to_rifcs_activity">
-        <xsl:param name="originatingSource" as="xs:string"/>
-        
-        <registryObject group="{$global_group}">
-            
-            <key>
-                <xsl:choose>
-                    <xsl:when test="boolean(string-length(awardNumber/@awardURI))">
-                        <xsl:value-of select="concat($global_acronym, '/', awardNumber/@awardURI)"/>
-                    </xsl:when>
-                    <xsl:when test="boolean(string-length(awardNumber))">
-                        <xsl:value-of select="concat($global_acronym, '/', awardNumber)"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="dcrifcsFunc:formatKey(awardTitle)"/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </key>
-            
-            <originatingSource>
-                <xsl:value-of select="$originatingSource"/>
-            </originatingSource>
-            
-            <activity>
-                <xsl:attribute name="type">
-                    <xsl:text>grant</xsl:text> <!-- ToDo: Activity type is set to 'grant' but consider how to determine wehther 'grant' or 'investment' -->
-                </xsl:attribute>
-                <name type="primary">
-                    <namePart>
-                        <xsl:choose>
-                            <xsl:when test="boolean(string-length(awardTitle))">
-                                <xsl:value-of select="awardTitle"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:if test="boolean(string-length(awardNumber))">
-                                    <xsl:value-of select="concat('AwardNumber: ', awardNumber, ' ')"/>
-                                </xsl:if>
-                                <xsl:if test="boolean(string-length(awardNumber/@awardURI))">
-                                    <xsl:value-of select="concat('AwardURI: ', awardNumber/@awardURI, ' ')"/>
-                                </xsl:if>
-                             </xsl:otherwise>
-                          </xsl:choose>
-                        
-                    </namePart>
-                </name>
-                <xsl:choose>
-                    <xsl:when test="
-                        boolean(string-length(awardNumber/@awardURI)) and
-                        boolean(string-length(awardNumber))">
-                        <identifier type="{awardNumber/@awardURI}">
-                            <xsl:value-of select="awardNumber"/>
-                        </identifier>
-                    </xsl:when>
-                    <xsl:when test="boolean(string-length(awardNumber/@awardURI))">
-                        <identifier type="{awardNumber/@awardURI}">
-                            <xsl:value-of select="@awardURI"/>
-                        </identifier>
-                    </xsl:when>
-                    <xsl:when test="boolean(string-length(awardNumber))">
-                        <identifier type="{awardNumber}">
-                            <xsl:value-of select="awardNumber"/>
-                        </identifier>
-                    </xsl:when>
-                </xsl:choose>
-                
-                <xsl:if test="boolean(string-length(funderIdentifier))">
-                    <relatedInfo>
-                        <identifier>
-                            <xsl:attribute name="type">
-                                <xsl:value-of select="funderIdentifier/@funderIdentifierType"/>
-                            </xsl:attribute>
-                            <xsl:value-of select="funderIdentifier"/>
-                        </identifier>
-                        <relation type="isFundedBy"/>
-                    </relatedInfo>
-                </xsl:if>
-                    
-            </activity>
-        </registryObject>
-    </xsl:template>
+      
     
     <!-- ***************************************** -->
     <!-- FUNCTIONS -->

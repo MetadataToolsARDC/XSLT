@@ -199,10 +199,8 @@
     
     <xsl:template match="country_name | country_subdivision_name | continent_name | name">
         <coverage>
-            <spatial>
-                <text>
-                    <xsl:apply-templates select="text()"/>
-                </text>
+            <spatial type="text">
+                <xsl:apply-templates select="text()"/>
             </spatial>
         </coverage>
     </xsl:template>
