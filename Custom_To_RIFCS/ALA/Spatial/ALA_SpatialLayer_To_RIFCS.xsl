@@ -186,7 +186,7 @@
             
             <coverage>
                 <spatial type="iso19139dcmiBox">
-                    <xsl:value-of select="concat('northlimit=',maxlatitude,'; southlimit=-',minlatitude,'; westlimit=',minlongitude,'; eastLimit=', maxlongitude,';')"/>
+                    <xsl:value-of select="concat('northlimit=',maxlatitude,'; southlimit=',minlatitude,'; westlimit=',minlongitude,'; eastLimit=', maxlongitude,';')"/>
                 </spatial> 
             </coverage>
             
