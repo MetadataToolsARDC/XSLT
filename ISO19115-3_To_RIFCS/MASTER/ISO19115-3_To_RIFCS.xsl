@@ -1352,7 +1352,7 @@
     
     
     <xsl:template match="cit:CI_OnlineResource" mode="relatedInfo_all">     
-        <xsl:param name="identifierToUse" select="normalize-space(cit:linkage)"/> <!-- can be overriden -->
+        <xsl:param name="identifierToUse" select="normalize-space(cit:linkage)"/> <!-- can be overridden -->
         
         <identifier>
             <xsl:attribute name="type">

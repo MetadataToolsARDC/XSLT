@@ -194,7 +194,7 @@
             To allow the package to be publicly viewable, the EML author must explicitly include a rule stating so. "
             https://sbclter.msi.ucsb.edu/external/InformationManagement/EML_211_schema/docs/eml-2.1.1/eml-access.html
             
-          This package-level access is then overriden per distribution underneath one of either:
+          This package-level access is then overridden per distribution underneath one of either:
           dataTable; spatialRaster; spatialVector; storedProcedure; view; otherEntity.  
         
         -->
@@ -408,7 +408,7 @@
     </xsl:element>
   </xsl:template>
 
-  <!--this will match all possible party nodes except the ones that contain references, overriden by template *[references] defined later-->
+  <!--this will match all possible party nodes except the ones that contain references, overridden by template *[references] defined later-->
   <xsl:template match="creator|associatedParty|metadataProvider|contact">
     <xsl:param name="docid"/>
     <xsl:param name="originatingSource"/>

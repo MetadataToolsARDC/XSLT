@@ -43,7 +43,7 @@ It passes the key to ALA_DataResource_To_RIFCS.xsl template with mode="process" 
 
 Test the above locally like so from directory $HOME/git/XSLT/Custom_To_RIFCS/ALA/DataResources
 
-java -cp $HOME/OxygenXMLEditor/lib/xmlresolver-5.2.1.jar:$HOME/git/private_scripts-as-required/SaxonHE12-8J/saxon-he-12.8.jar net.sf.saxon.Transform -xsl:file:$HOME/git/XSLT/Custom_To_RIFCS/ALA/DataResources/ALA_AllDataResources.xsl -s:file:$HOME/git/XSLT/docs/ALA/DataResourceKeys.xml -o:out.xml
+java -cp $HOME/OxygenXMLEditor/lib/xmlresolver-5.2.1.jar:$HOME/git/private_scripts-as-required/SaxonHE12-8J/saxon-he-12.8.jar net.sf.saxon.Transform -xsl:file:$HOME/git/XSLT/Custom_To_RIFCS/ALA/DataResources/ALA_AllDataResources.xsl -s:file:$HOME/git/XSLT/docs/ALA/CachedDataResources.xml -o:out.xml
 
 ---
 

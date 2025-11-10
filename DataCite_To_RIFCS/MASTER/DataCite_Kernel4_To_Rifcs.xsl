@@ -12,7 +12,7 @@
 	
     <xsl:import href="CustomFunctions.xsl"/>
     
-    <!-- All values of params below will be overriden in the case where an xsl imports this file, 
+    <!-- All values of params below will be overridden in the case where an xsl imports this file, 
         then sets the param values itself, so the values below can be considered default values -->
     <xsl:param name="global_originatingSource" select="'DataCite'"/>
     <xsl:param name="global_group" select="'Health Data Australia Contributor Records'"/>

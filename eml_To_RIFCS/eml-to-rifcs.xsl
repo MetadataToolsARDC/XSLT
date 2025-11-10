@@ -288,7 +288,7 @@
     </xsl:element>
   </xsl:template>
 
-  <!--this will match all possible party nodes except the ones that contain references, overriden by template *[references] defined later-->
+  <!--this will match all possible party nodes except the ones that contain references, overridden by template *[references] defined later-->
   <xsl:template match="creator|associatedParty|metadataProvider|contact|publisher">
     <xsl:param name="docid"/>
     <xsl:param name="originatingSource"/>

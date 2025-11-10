@@ -1,0 +1,1028 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<array>
+    <array>
+        <name>Allan Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co214</uri>
+        <uid>co214</uid>
+    </array>
+    <array>
+        <name>American Museum of Natural History Palaeontology Collections</name>
+        <uri>https://collections.ala.org.au/ws/collection/co229</uri>
+        <uid>co229</uid>
+    </array>
+    <array>
+        <name>Animal Health Division Culture Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co85</uri>
+        <uid>co85</uid>
+    </array>
+    <array>
+        <name>ANU Research School of Earth Sciences Geology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co230</uri>
+        <uid>co230</uid>
+    </array>
+    <array>
+        <name>Archer Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co222</uri>
+        <uid>co222</uid>
+    </array>
+    <array>
+        <name>Auckland War Memorial Museum Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co249</uri>
+        <uid>co249</uid>
+    </array>
+    <array>
+        <name>Australian Antarctic Division Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co173</uri>
+        <uid>co173</uid>
+    </array>
+    <array>
+        <name>Australian Collection of Antarctic Microorganisms</name>
+        <uri>https://collections.ala.org.au/ws/collection/co81</uri>
+        <uid>co81</uid>
+    </array>
+    <array>
+        <name>Australian Collection of Microorganisms</name>
+        <uri>https://collections.ala.org.au/ws/collection/co82</uri>
+        <uid>co82</uid>
+    </array>
+    <array>
+        <name>Australian Museum Arachnology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co116</uri>
+        <uid>co116</uid>
+    </array>
+    <array>
+        <name>Australian Museum Entomology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co9</uri>
+        <uid>co9</uid>
+    </array>
+    <array>
+        <name>Australian Museum Herpetology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co10</uri>
+        <uid>co10</uid>
+    </array>
+    <array>
+        <name>Australian Museum Ichthyology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co112</uri>
+        <uid>co112</uid>
+    </array>
+    <array>
+        <name>Australian Museum Malacology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co114</uri>
+        <uid>co114</uid>
+    </array>
+    <array>
+        <name>Australian Museum Mammalogy Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co80</uri>
+        <uid>co80</uid>
+    </array>
+    <array>
+        <name>Australian Museum Marine Invertebrate Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co113</uri>
+        <uid>co113</uid>
+    </array>
+    <array>
+        <name>Australian Museum Ornithology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co11</uri>
+        <uid>co11</uid>
+    </array>
+    <array>
+        <name>Australian Museum Palaeontology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co136</uri>
+        <uid>co136</uid>
+    </array>
+    <array>
+        <name>Australian National Algae Culture Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co90</uri>
+        <uid>co90</uid>
+    </array>
+    <array>
+        <name>Australian National Botanic Gardens Seed Bank</name>
+        <uri>https://collections.ala.org.au/ws/collection/co196</uri>
+        <uid>co196</uid>
+    </array>
+    <array>
+        <name>Australian National Fish Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co21</uri>
+        <uid>co21</uid>
+    </array>
+    <array>
+        <name>Australian National Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co12</uri>
+        <uid>co12</uid>
+    </array>
+    <array>
+        <name>Australian National Insect Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co13</uri>
+        <uid>co13</uid>
+    </array>
+    <array>
+        <name>Australian National Reference Laboratory in Medical Mycology</name>
+        <uri>https://collections.ala.org.au/ws/collection/co87</uri>
+        <uid>co87</uid>
+    </array>
+    <array>
+        <name>Australian National Universitry Vertebrate Paleontology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co225</uri>
+        <uid>co225</uid>
+    </array>
+    <array>
+        <name>Australian National Wildlife Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co16</uri>
+        <uid>co16</uid>
+    </array>
+    <array>
+        <name>Australian Tropical Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co17</uri>
+        <uid>co17</uid>
+    </array>
+    <array>
+        <name>Biocatalytic Microbe Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co93</uri>
+        <uid>co93</uid>
+    </array>
+    <array>
+        <name>Biosecurity Queensland Cairns Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co175</uri>
+        <uid>co175</uid>
+    </array>
+    <array>
+        <name>Brisbane Botanic Gardens Conservation Seedbank</name>
+        <uri>https://collections.ala.org.au/ws/collection/co188</uri>
+        <uid>co188</uid>
+    </array>
+    <array>
+        <name>Bureau of Mineral Resources Fossil Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co248</uri>
+        <uid>co248</uid>
+    </array>
+    <array>
+        <name>Calder Chaffey Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co195</uri>
+        <uid>co195</uid>
+    </array>
+    <array>
+        <name>CampusFlora</name>
+        <uri>https://collections.ala.org.au/ws/collection/co288</uri>
+        <uid>co288</uid>
+    </array>
+    <array>
+        <name>Candidatus Phytoplasma DNA collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co199</uri>
+        <uid>co199</uid>
+    </array>
+    <array>
+        <name>Canterbury Museum Mayfly Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co305</uri>
+        <uid>co305</uid>
+    </array>
+    <array>
+        <name>Centre for Mined Land Rehabilitation Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co272</uri>
+        <uid>co272</uid>
+    </array>
+    <array>
+        <name>Charles Sturt University Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co20</uri>
+        <uid>co20</uid>
+    </array>
+    <array>
+        <name>Christchurch Botanic Gardens Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co217</uri>
+        <uid>co217</uid>
+    </array>
+    <array>
+        <name>Commonwealth Palaeontological Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co220</uri>
+        <uid>co220</uid>
+    </array>
+    <array>
+        <name>Conservation Atlas Surveys</name>
+        <uri>https://collections.ala.org.au/ws/collection/co203</uri>
+        <uid>co203</uid>
+    </array>
+    <array>
+        <name>CSIRO Food &amp; Nutritional Sciences</name>
+        <uri>https://collections.ala.org.au/ws/collection/co97</uri>
+        <uid>co97</uid>
+    </array>
+    <array>
+        <name>Dadswell Memorial Wood Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co183</uri>
+        <uid>co183</uid>
+    </array>
+    <array>
+        <name>Dadswell Wood Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co181</uri>
+        <uid>co181</uid>
+    </array>
+    <array>
+        <name>DAFWA - Invertebrate Reference Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co5</uri>
+        <uid>co5</uid>
+    </array>
+    <array>
+        <name>DAFWA - Plant Pathology Culture Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co4</uri>
+        <uid>co4</uid>
+    </array>
+    <array>
+        <name>Dame Ella Campbell Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co254</uri>
+        <uid>co254</uid>
+    </array>
+    <array>
+        <name>Downing Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co164</uri>
+        <uid>co164</uid>
+    </array>
+    <array>
+        <name>Field Museum of Natural History Fossils and Minerals Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co233</uri>
+        <uid>co233</uid>
+    </array>
+    <array>
+        <name>FieldData / Biological Data Recording System</name>
+        <uri>https://collections.ala.org.au/ws/collection/co270</uri>
+        <uid>co270</uid>
+    </array>
+    <array>
+        <name>Fish Disease Culture Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co95</uri>
+        <uid>co95</uid>
+    </array>
+    <array>
+        <name>Flinders University Vertebrate Palaeontology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co244</uri>
+        <uid>co244</uid>
+    </array>
+    <array>
+        <name>Forestry Tasmania, Tasmanian Forest Insect Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co29</uri>
+        <uid>co29</uid>
+    </array>
+    <array>
+        <name>Fossil collection of the Geological Survey of NSW</name>
+        <uri>https://collections.ala.org.au/ws/collection/co219</uri>
+        <uid>co219</uid>
+    </array>
+    <array>
+        <name>Fossil collection of the Geological Survey of Queensland</name>
+        <uri>https://collections.ala.org.au/ws/collection/co234</uri>
+        <uid>co234</uid>
+    </array>
+    <array>
+        <name>Fossil collection of the Geological Survey of South Australia</name>
+        <uri>https://collections.ala.org.au/ws/collection/co240</uri>
+        <uid>co240</uid>
+    </array>
+    <array>
+        <name>Gauba Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co14</uri>
+        <uid>co14</uid>
+    </array>
+    <array>
+        <name>Haswell Museum</name>
+        <uri>https://collections.ala.org.au/ws/collection/co275</uri>
+        <uid>co275</uid>
+    </array>
+    <array>
+        <name>Herbarium of the Museum of New Zealand Te Papa Tongarewa</name>
+        <uri>https://collections.ala.org.au/ws/collection/co216</uri>
+        <uid>co216</uid>
+    </array>
+    <array>
+        <name>Hunterian Museum Dinosaurs and Fossils Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co235</uri>
+        <uid>co235</uid>
+    </array>
+    <array>
+        <name>IFM Quality Services Pty. Ltd.</name>
+        <uri>https://collections.ala.org.au/ws/collection/co98</uri>
+        <uid>co98</uid>
+    </array>
+    <array>
+        <name>IMVS Culture Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co99</uri>
+        <uid>co99</uid>
+    </array>
+    <array>
+        <name>IMVS Mycology Culture Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co78</uri>
+        <uid>co78</uid>
+    </array>
+    <array>
+        <name>James Cook University Fossil Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co236</uri>
+        <uid>co236</uid>
+    </array>
+    <array>
+        <name>James Cook University Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co31</uri>
+        <uid>co31</uid>
+    </array>
+    <array>
+        <name>John Ray Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co69</uri>
+        <uid>co69</uid>
+    </array>
+    <array>
+        <name>John T. Waterhouse Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co66</uri>
+        <uid>co66</uid>
+    </array>
+    <array>
+        <name>Kings Park and Botanic Garden</name>
+        <uri>https://collections.ala.org.au/ws/collection/co32</uri>
+        <uid>co32</uid>
+    </array>
+    <array>
+        <name>La Trobe University Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co33</uri>
+        <uid>co33</uid>
+    </array>
+    <array>
+        <name>Lincoln University Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co253</uri>
+        <uid>co253</uid>
+    </array>
+    <array>
+        <name>Macleay Museum - Entomology</name>
+        <uri>https://collections.ala.org.au/ws/collection/co35</uri>
+        <uid>co35</uid>
+    </array>
+    <array>
+        <name>Microbial Gene Research and Resources Facility</name>
+        <uri>https://collections.ala.org.au/ws/collection/co102</uri>
+        <uid>co102</uid>
+    </array>
+    <array>
+        <name>Microbiological Diagnostic Unit Public Health Laboratory</name>
+        <uri>https://collections.ala.org.au/ws/collection/co101</uri>
+        <uid>co101</uid>
+    </array>
+    <array>
+        <name>Monash University Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co36</uri>
+        <uid>co36</uid>
+    </array>
+    <array>
+        <name>Murdoch University Algal Culture Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co103</uri>
+        <uid>co103</uid>
+    </array>
+    <array>
+        <name>Murdoch University Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co37</uri>
+        <uid>co37</uid>
+    </array>
+    <array>
+        <name>Museum and Art Gallery of the Northern Territory Amphibian Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co139</uri>
+        <uid>co139</uid>
+    </array>
+    <array>
+        <name>Museum and Art Gallery of the Northern Territory Annelid Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co142</uri>
+        <uid>co142</uid>
+    </array>
+    <array>
+        <name>Museum and Art Gallery of the Northern Territory Arachnid Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co210</uri>
+        <uid>co210</uid>
+    </array>
+    <array>
+        <name>Museum and Art Gallery of the Northern Territory Ascidian Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co209</uri>
+        <uid>co209</uid>
+    </array>
+    <array>
+        <name>Museum and Art Gallery of the Northern Territory Bird Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co138</uri>
+        <uid>co138</uid>
+    </array>
+    <array>
+        <name>Museum and Art Gallery of the Northern Territory Coelenterate Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co207</uri>
+        <uid>co207</uid>
+    </array>
+    <array>
+        <name>Museum and Art Gallery of the Northern Territory Crustacean Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co206</uri>
+        <uid>co206</uid>
+    </array>
+    <array>
+        <name>Museum and Art Gallery of the Northern Territory Echinoderm Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co208</uri>
+        <uid>co208</uid>
+    </array>
+    <array>
+        <name>Museum and Art Gallery of the Northern Territory Entomology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co41</uri>
+        <uid>co41</uid>
+    </array>
+    <array>
+        <name>Museum and Art Gallery of the Northern Territory Ichthyology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co42</uri>
+        <uid>co42</uid>
+    </array>
+    <array>
+        <name>Museum and Art Gallery of the Northern Territory Malacology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co141</uri>
+        <uid>co141</uid>
+    </array>
+    <array>
+        <name>Museum and Art Gallery of the Northern Territory Mammal Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co137</uri>
+        <uid>co137</uid>
+    </array>
+    <array>
+        <name>Museum and Art Gallery of the Northern Territory Palaeontology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co238</uri>
+        <uid>co238</uid>
+    </array>
+    <array>
+        <name>Museum and Art Gallery of the Northern Territory Porifera Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co192</uri>
+        <uid>co192</uid>
+    </array>
+    <array>
+        <name>Museum and Art Gallery of the Northern Territory Reptile Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co140</uri>
+        <uid>co140</uid>
+    </array>
+    <array>
+        <name>Museums Victoria DNA Laboratory</name>
+        <uri>https://collections.ala.org.au/ws/collection/co274</uri>
+        <uid>co274</uid>
+    </array>
+    <array>
+        <name>Museums Victoria Entomology and Arachnology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co39</uri>
+        <uid>co39</uid>
+    </array>
+    <array>
+        <name>Museums Victoria Herpetology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co117</uri>
+        <uid>co117</uid>
+    </array>
+    <array>
+        <name>Museums Victoria Ichthyology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co40</uri>
+        <uid>co40</uid>
+    </array>
+    <array>
+        <name>Museums Victoria Mammalogy Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co118</uri>
+        <uid>co118</uid>
+    </array>
+    <array>
+        <name>Museums Victoria Marine Invertebrates Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co119</uri>
+        <uid>co119</uid>
+    </array>
+    <array>
+        <name>Museums Victoria Ornithology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co120</uri>
+        <uid>co120</uid>
+    </array>
+    <array>
+        <name>N.C.W. Beadle Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co65</uri>
+        <uid>co65</uid>
+    </array>
+    <array>
+        <name>National Forestry Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co255</uri>
+        <uid>co255</uid>
+    </array>
+    <array>
+        <name>National Herbarium of New South Wales</name>
+        <uri>https://collections.ala.org.au/ws/collection/co54</uri>
+        <uid>co54</uid>
+    </array>
+    <array>
+        <name>National Herbarium of Victoria</name>
+        <uri>https://collections.ala.org.au/ws/collection/co55</uri>
+        <uid>co55</uid>
+    </array>
+    <array>
+        <name>Natural History Museum UK Fossil Invertebrate Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co231</uri>
+        <uid>co231</uid>
+    </array>
+    <array>
+        <name>Natural History Museum UK Fossil Vertebrate Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co232</uri>
+        <uid>co232</uid>
+    </array>
+    <array>
+        <name>Neurospora crassa Mutants</name>
+        <uri>https://collections.ala.org.au/ws/collection/co104</uri>
+        <uid>co104</uid>
+    </array>
+    <array>
+        <name>New South Wales Plant Pathology Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co46</uri>
+        <uid>co46</uid>
+    </array>
+    <array>
+        <name>New Zealand Fungarium Te Kohinga Hekaheka o Aotearoa</name>
+        <uri>https://collections.ala.org.au/ws/collection/co215</uri>
+        <uid>co215</uid>
+    </array>
+    <array>
+        <name>North Coast Regional Botanic Gardens Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co44</uri>
+        <uid>co44</uid>
+    </array>
+    <array>
+        <name>Northern Territory Economic Insect Reference Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co129</uri>
+        <uid>co129</uid>
+    </array>
+    <array>
+        <name>Northern Territory Herbarium (Alice Springs)</name>
+        <uri>https://collections.ala.org.au/ws/collection/co24</uri>
+        <uid>co24</uid>
+    </array>
+    <array>
+        <name>Northern Territory Herbarium (Darwin)</name>
+        <uri>https://collections.ala.org.au/ws/collection/co25</uri>
+        <uid>co25</uid>
+    </array>
+    <array>
+        <name>NSW Insect &amp; Mite Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co43</uri>
+        <uid>co43</uid>
+    </array>
+    <array>
+        <name>Otago Regional Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co256</uri>
+        <uid>co256</uid>
+    </array>
+    <array>
+        <name>OWAD Environment</name>
+        <uri>https://collections.ala.org.au/ws/collection/co292</uri>
+        <uid>co292</uid>
+    </array>
+    <array>
+        <name>Patent Culture Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co84</uri>
+        <uid>co84</uid>
+    </array>
+    <array>
+        <name>PlantBank</name>
+        <uri>https://collections.ala.org.au/ws/collection/co186</uri>
+        <uid>co186</uid>
+    </array>
+    <array>
+        <name>Queen Victoria Museum and Art Gallery - Birds</name>
+        <uri>https://collections.ala.org.au/ws/collection/co158</uri>
+        <uid>co158</uid>
+    </array>
+    <array>
+        <name>Queen Victoria Museum and Art Gallery - Geology and Fossil Vertebrates</name>
+        <uri>https://collections.ala.org.au/ws/collection/co239</uri>
+        <uid>co239</uid>
+    </array>
+    <array>
+        <name>Queen Victoria Museum and Art Gallery - Herpetology</name>
+        <uri>https://collections.ala.org.au/ws/collection/co159</uri>
+        <uid>co159</uid>
+    </array>
+    <array>
+        <name>Queen Victoria Museum and Art Gallery - Ichthyology</name>
+        <uri>https://collections.ala.org.au/ws/collection/co156</uri>
+        <uid>co156</uid>
+    </array>
+    <array>
+        <name>Queen Victoria Museum and Art Gallery - Invertebrates</name>
+        <uri>https://collections.ala.org.au/ws/collection/co258</uri>
+        <uid>co258</uid>
+    </array>
+    <array>
+        <name>Queen Victoria Museum and Art Gallery - Mammals</name>
+        <uri>https://collections.ala.org.au/ws/collection/co157</uri>
+        <uid>co157</uid>
+    </array>
+    <array>
+        <name>Queensland Forestry Research Institute</name>
+        <uri>https://collections.ala.org.au/ws/collection/co130</uri>
+        <uid>co130</uid>
+    </array>
+    <array>
+        <name>Queensland Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co49</uri>
+        <uid>co49</uid>
+    </array>
+    <array>
+        <name>Queensland Microalgae Culture Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co189</uri>
+        <uid>co189</uid>
+    </array>
+    <array>
+        <name>Queensland Museum Amphibians and Reptiles</name>
+        <uri>https://collections.ala.org.au/ws/collection/co153</uri>
+        <uid>co153</uid>
+    </array>
+    <array>
+        <name>Queensland Museum Arachnids</name>
+        <uri>https://collections.ala.org.au/ws/collection/co148</uri>
+        <uid>co148</uid>
+    </array>
+    <array>
+        <name>Queensland Museum Birds</name>
+        <uri>https://collections.ala.org.au/ws/collection/co151</uri>
+        <uid>co151</uid>
+    </array>
+    <array>
+        <name>Queensland Museum Corals</name>
+        <uri>https://collections.ala.org.au/ws/collection/co200</uri>
+        <uid>co200</uid>
+    </array>
+    <array>
+        <name>Queensland Museum Crustaceans</name>
+        <uri>https://collections.ala.org.au/ws/collection/co135</uri>
+        <uid>co135</uid>
+    </array>
+    <array>
+        <name>Queensland Museum Entomology</name>
+        <uri>https://collections.ala.org.au/ws/collection/co50</uri>
+        <uid>co50</uid>
+    </array>
+    <array>
+        <name>Queensland Museum Fishes</name>
+        <uri>https://collections.ala.org.au/ws/collection/co51</uri>
+        <uid>co51</uid>
+    </array>
+    <array>
+        <name>Queensland Museum Mammals</name>
+        <uri>https://collections.ala.org.au/ws/collection/co150</uri>
+        <uid>co150</uid>
+    </array>
+    <array>
+        <name>Queensland Museum Molluscs</name>
+        <uri>https://collections.ala.org.au/ws/collection/co147</uri>
+        <uid>co147</uid>
+    </array>
+    <array>
+        <name>Queensland Museum Other Invertebrates</name>
+        <uri>https://collections.ala.org.au/ws/collection/co201</uri>
+        <uid>co201</uid>
+    </array>
+    <array>
+        <name>Queensland Museum Palaeontology</name>
+        <uri>https://collections.ala.org.au/ws/collection/co155</uri>
+        <uid>co155</uid>
+    </array>
+    <array>
+        <name>Queensland Museum Porifera</name>
+        <uri>https://collections.ala.org.au/ws/collection/co191</uri>
+        <uid>co191</uid>
+    </array>
+    <array>
+        <name>Queensland Museum Protozoans</name>
+        <uri>https://collections.ala.org.au/ws/collection/co143</uri>
+        <uid>co143</uid>
+    </array>
+    <array>
+        <name>Queensland Plant Pathology Herbarium (BRIP)</name>
+        <uri>https://collections.ala.org.au/ws/collection/co53</uri>
+        <uid>co53</uid>
+    </array>
+    <array>
+        <name>Queensland Primary Industries Insect Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co52</uri>
+        <uid>co52</uid>
+    </array>
+    <array>
+        <name>Queensland Primary Industries Mareeba - Entomology</name>
+        <uri>https://collections.ala.org.au/ws/collection/co7</uri>
+        <uid>co7</uid>
+    </array>
+    <array>
+        <name>Royal Tasmanian Botanical Gardens</name>
+        <uri>https://collections.ala.org.au/ws/collection/co184</uri>
+        <uid>co184</uid>
+    </array>
+    <array>
+        <name>South Australian Department of Mines Fossil Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co251</uri>
+        <uid>co251</uid>
+    </array>
+    <array>
+        <name>South Australian Museum Arachnology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co202</uri>
+        <uid>co202</uid>
+    </array>
+    <array>
+        <name>South Australian Museum Australian Biological Tissue Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co166</uri>
+        <uid>co166</uid>
+    </array>
+    <array>
+        <name>South Australian Museum Herpetology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co125</uri>
+        <uid>co125</uid>
+    </array>
+    <array>
+        <name>South Australian Museum Ichthyology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co57</uri>
+        <uid>co57</uid>
+    </array>
+    <array>
+        <name>South Australian Museum Mammalogy Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co126</uri>
+        <uid>co126</uid>
+    </array>
+    <array>
+        <name>South Australian Museum Marine Invertebrates Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co165</uri>
+        <uid>co165</uid>
+    </array>
+    <array>
+        <name>South Australian Museum Ornithology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co127</uri>
+        <uid>co127</uid>
+    </array>
+    <array>
+        <name>South Australian Museum Palaeontology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co241</uri>
+        <uid>co241</uid>
+    </array>
+    <array>
+        <name>South Australian Museum Parasitology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co128</uri>
+        <uid>co128</uid>
+    </array>
+    <array>
+        <name>South Australian Museum Terrestrial Invertebrate Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co56</uri>
+        <uid>co56</uid>
+    </array>
+    <array>
+        <name>South Australian Seed Conservation Centre</name>
+        <uri>https://collections.ala.org.au/ws/collection/co190</uri>
+        <uid>co190</uid>
+    </array>
+    <array>
+        <name>South Australian Seedbank</name>
+        <uri>https://collections.ala.org.au/ws/collection/co205</uri>
+        <uid>co205</uid>
+    </array>
+    <array>
+        <name>Southern Cross University Medicinal Plant Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co172</uri>
+        <uid>co172</uid>
+    </array>
+    <array>
+        <name>State Herbarium of South Australia</name>
+        <uri>https://collections.ala.org.au/ws/collection/co48</uri>
+        <uid>co48</uid>
+    </array>
+    <array>
+        <name>Tasmanian Agricultural Insect Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co131</uri>
+        <uid>co131</uid>
+    </array>
+    <array>
+        <name>Tasmanian Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co60</uri>
+        <uid>co60</uid>
+    </array>
+    <array>
+        <name>Tasmanian Museum and Art Gallery Bulk Samples Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co304</uri>
+        <uid>co304</uid>
+    </array>
+    <array>
+        <name>Tasmanian Museum and Art Gallery Invertebrate Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co198</uri>
+        <uid>co198</uid>
+    </array>
+    <array>
+        <name>Tasmanian Museum and Art Gallery Tissue Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co329</uri>
+        <uid>co329</uid>
+    </array>
+    <array>
+        <name>Tasmanian Museum and Art Gallery Vertebrate Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co111</uri>
+        <uid>co111</uid>
+    </array>
+    <array>
+        <name>Tasmanian Seed Conservation Centre</name>
+        <uri>https://collections.ala.org.au/ws/collection/co185</uri>
+        <uid>co185</uid>
+    </array>
+    <array>
+        <name>Tate Geological Museum Palaeontology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co247</uri>
+        <uid>co247</uid>
+    </array>
+    <array>
+        <name>Texas Memorial Museum Geology and Palaeontology</name>
+        <uri>https://collections.ala.org.au/ws/collection/co245</uri>
+        <uid>co245</uid>
+    </array>
+    <array>
+        <name>The Janet Cosh Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co72</uri>
+        <uid>co72</uid>
+    </array>
+    <array>
+        <name>The Robert Brown Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co27</uri>
+        <uid>co27</uid>
+    </array>
+    <array>
+        <name>The University of Melbourne Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co64</uri>
+        <uid>co64</uid>
+    </array>
+    <array>
+        <name>The University of Melbourne, Department of Geology Fossil Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co221</uri>
+        <uid>co221</uid>
+    </array>
+    <array>
+        <name>The University of Melbourne, Land and Food Resources (Burnley) - Entomology</name>
+        <uri>https://collections.ala.org.au/ws/collection/co61</uri>
+        <uid>co61</uid>
+    </array>
+    <array>
+        <name>The University of Sydney, Department of Geology Fossil Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co246</uri>
+        <uid>co246</uid>
+    </array>
+    <array>
+        <name>UNE Natural History Museum</name>
+        <uri>https://collections.ala.org.au/ws/collection/co269</uri>
+        <uid>co269</uid>
+    </array>
+    <array>
+        <name>Unitec Institute of Technology Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co218</uri>
+        <uid>co218</uid>
+    </array>
+    <array>
+        <name>University of California Museum of Palaeontology Vertebrate Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co242</uri>
+        <uid>co242</uid>
+    </array>
+    <array>
+        <name>University of Canterbury Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co250</uri>
+        <uid>co250</uid>
+    </array>
+    <array>
+        <name>University of New South Wales Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co298</uri>
+        <uid>co298</uid>
+    </array>
+    <array>
+        <name>University of Tasmania - Entomology</name>
+        <uri>https://collections.ala.org.au/ws/collection/co70</uri>
+        <uid>co70</uid>
+    </array>
+    <array>
+        <name>University of Tasmania, Department of Geology Fossil Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co252</uri>
+        <uid>co252</uid>
+    </array>
+    <array>
+        <name>University of the Sunshine Coast Microbial Library</name>
+        <uri>https://collections.ala.org.au/ws/collection/co106</uri>
+        <uid>co106</uid>
+    </array>
+    <array>
+        <name>University of Waikato Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co257</uri>
+        <uid>co257</uid>
+    </array>
+    <array>
+        <name>University of Western Australia Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co71</uri>
+        <uid>co71</uid>
+    </array>
+    <array>
+        <name>University of Western Australia Microbiology Culture Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co107</uri>
+        <uid>co107</uid>
+    </array>
+    <array>
+        <name>Victorian Agricultural Insect Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co132</uri>
+        <uid>co132</uid>
+    </array>
+    <array>
+        <name>Victorian Conservation Seed Bank</name>
+        <uri>https://collections.ala.org.au/ws/collection/co193</uri>
+        <uid>co193</uid>
+    </array>
+    <array>
+        <name>Victorian Plant Pathology Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co73</uri>
+        <uid>co73</uid>
+    </array>
+    <array>
+        <name>WA Department of Parks and Wildlife, Threatened Flora Seed Centre</name>
+        <uri>https://collections.ala.org.au/ws/collection/co187</uri>
+        <uid>co187</uid>
+    </array>
+    <array>
+        <name>WA Seed Technology Centre</name>
+        <uri>https://collections.ala.org.au/ws/collection/co194</uri>
+        <uid>co194</uid>
+    </array>
+    <array>
+        <name>Waite Insect and Nematode Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co74</uri>
+        <uid>co74</uid>
+    </array>
+    <array>
+        <name>Wallace Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co301</uri>
+        <uid>co301</uid>
+    </array>
+    <array>
+        <name>Western Australian Culture Collections</name>
+        <uri>https://collections.ala.org.au/ws/collection/co109</uri>
+        <uid>co109</uid>
+    </array>
+    <array>
+        <name>Western Australian Herbarium</name>
+        <uri>https://collections.ala.org.au/ws/collection/co75</uri>
+        <uid>co75</uid>
+    </array>
+    <array>
+        <name>Western Australian Museum Arachnology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co124</uri>
+        <uid>co124</uid>
+    </array>
+    <array>
+        <name>Western Australian Museum Bird Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co121</uri>
+        <uid>co121</uid>
+    </array>
+    <array>
+        <name>Western Australian Museum Crustacean Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co331</uri>
+        <uid>co331</uid>
+    </array>
+    <array>
+        <name>Western Australian Museum Entomology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co76</uri>
+        <uid>co76</uid>
+    </array>
+    <array>
+        <name>Western Australian Museum Fish Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co77</uri>
+        <uid>co77</uid>
+    </array>
+    <array>
+        <name>Western Australian Museum Fossil Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co243</uri>
+        <uid>co243</uid>
+    </array>
+    <array>
+        <name>Western Australian Museum Herpetology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co122</uri>
+        <uid>co122</uid>
+    </array>
+    <array>
+        <name>Western Australian Museum Mammal Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co123</uri>
+        <uid>co123</uid>
+    </array>
+    <array>
+        <name>Western Australian Museum Marine Invertebrate Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co273</uri>
+        <uid>co273</uid>
+    </array>
+    <array>
+        <name>Western Australian Museum Mollusc Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co271</uri>
+        <uid>co271</uid>
+    </array>
+    <array>
+        <name>Western Australian Museum Worms Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co289</uri>
+        <uid>co289</uid>
+    </array>
+    <array>
+        <name>Westmead Medical Mycology Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co110</uri>
+        <uid>co110</uid>
+    </array>
+    <array>
+        <name>WHO/FAO/OIE Collaborating Centre for Reference and Research on Leptospirosis</name>
+        <uri>https://collections.ala.org.au/ws/collection/co92</uri>
+        <uid>co92</uid>
+    </array>
+    <array>
+        <name>Wine Microorganism Culture Collection</name>
+        <uri>https://collections.ala.org.au/ws/collection/co169</uri>
+        <uid>co169</uid>
+    </array>
+</array>

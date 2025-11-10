@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd">
+    <registryObject group="Atlas of Living Australia">
+        <key>ala.org.au/dr17877</key>
+        <originatingSource>Atlas of Living Australia</originatingSource>
+        <collection type="dataset" dateAccessioned="" dateModified="">
+            <identifier type="doi">https://doi.org/10.15468/g92v52</identifier>
+            <name type="primary">
+                <namePart type="full">RV Investigator Voyage IN2020_V01 Seabird Observations, Broken Ridge region, Indian Ocean (2020)</namePart>
+            </name>
+            <location>
+                <address>
+                    <electronic type="url">
+                        <value>https://collections.ala.org.au/public/show/dr17877</value>
+                    </electronic>
+                </address>
+            </location>
+            <description type="brief">A team of 4 observers recorded 446 incidental seabird and cetacean sightings from Perth, Western Australia and return on the RV Investigator voyage IN2020_V01. The bulk of the observations is at Broken Ridge on the edge
+                of the Kerguelen Plateau. Voyage details (metadata, projects, other datasets either online or as downloads, publications and reports, events, maps etc) can be accessed at https://www.marine.csiro.au/data/trawler/surveydetails.cfm?survey=IN2020V01 If thi
+                s data has been used in any products, please acknowledge with the following: We acknowledge the use of the CSIRO Marine National Facility (https://ror.org/01mae9353) in undertaking this research.</description>
+            <coverage>
+                <temporal>
+                    <date dateFormat="UTC" type="dateFrom">2020-01-10</date>
+                    <date dateFormat="UTC" type="dateTo">2021-03-05</date>
+                </temporal>
+                <spatial type="text">Broken Ridge, Southern Indian Ocean</spatial>
+                <spatial type="iso19139dcmiBox">northlimit=-31; southlimit=-56; westlimit=78; eastLimit=116</spatial>
+            </coverage>
+            <rights>
+                <accessRights type="restricted"/>
+            </rights>
+            <citationInfo>
+                <fullCitation>Sime T (2023): RV Investigator Voyage IN2020_V01 Seabird Observations, Broken Ridge region, Indian Ocean (2020). v1.5. CSIRO National Collections and Marine Infrastructure (NCMI) Information and Data Centre (IDC). Dataset/Occurr
+                    ence. https://www.marine.csiro.au/ipt/resource?r=in2020_v01_wov&amp;v=1.5</fullCitation>
+            </citationInfo>
+        </collection>
+    </registryObject>
+</registryObjects>
