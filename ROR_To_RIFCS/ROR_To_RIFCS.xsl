@@ -113,6 +113,9 @@
             <identifier type="ror">
                 <xsl:value-of select="substring-after(., 'ror.org/')"/>
             </identifier>
+            <identifier type="ror">
+                <xsl:value-of select="."/>
+            </identifier>
         </xsl:if>
     </xsl:template>
     
@@ -135,6 +138,9 @@
                 <xsl:value-of select="concat($global_fundRefPrefix,'/', preferred)"/>
             </identifier>
             <identifier type="url">
+                <xsl:value-of select="concat('https://doi.org/', $global_fundRefPrefix,'/', preferred)"/>
+            </identifier>
+            <identifier type="doi">
                 <xsl:value-of select="concat('https://doi.org/', $global_fundRefPrefix,'/', preferred)"/>
             </identifier>
         </xsl:if>
