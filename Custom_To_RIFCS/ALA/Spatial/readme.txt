@@ -41,7 +41,7 @@ Json for each spatial later records is embedded in that first call above.
 
 Requires input from https://spatial.ala.org.au/ws/layers converted to XML (stored locally as example in $HOME/git/XSLT/docs/ALA/SpatialLayerRecords.xml)
 
-On the RDA Harvester, use file:/home/melanie/git/XSLT/Custom_To_RIFCS/ALA/Spatial/ALA_SpatialLayer_To_RIFCS.xsl to generate rif-cs per each spatial layer.  
+On the RDA Harvester, use file:$HOME/git/XSLT/Custom_To_RIFCS/ALA/Spatial/ALA_SpatialLayer_To_RIFCS.xsl to generate rif-cs per each spatial layer.  
 
 Test the above locally like so from directory $HOME/git/XSLT/Custom_To_RIFCS/ALA/Collections
 
