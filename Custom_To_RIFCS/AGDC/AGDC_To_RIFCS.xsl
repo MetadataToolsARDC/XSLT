@@ -1,5 +1,4 @@
 <xsl:stylesheet 
-    xpath-default-namespace="http://www.w3.org/2005/xpath-functions"
     xmlns="http://ands.org.au/standards/rif-cs/registryObjects"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -13,7 +12,7 @@
     <xsl:param name="global_acronym" select="'AGDC'"/>
     <xsl:param name="global_originatingSource" select="'Australian Government Data Catalogue'"/>
     <xsl:param name="global_prefixURL" select="'https://www.dataplace.gov.au/dataset/'"/>
-    <xsl:param name="global_prefixKey" select="'dataplace.gov.au/'"/>
+    <xsl:param name="global_prefixKey" select="'AGDC/'"/>
     <xsl:param name="serverUrl"/>
     <xsl:param name="dateCreated" />
     <xsl:param name="lastModified" />
@@ -28,32 +27,24 @@
                 <xsl:text>http://ands.org.au/standards/rif-cs/registryObjects https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd</xsl:text>
             </xsl:attribute>
             
-            <xsl:variable name="key" as="xs:string">
-                <xsl:value-of select="map/string[@key='uid']"/>
-            </xsl:variable>
-            <xsl:apply-templates select="." mode="process">
-                <xsl:with-param name="key" select="$key"/>
-            </xsl:apply-templates>
+            <xsl:apply-templates select="datasets/value" mode="process"/>
         </registryObjects>
     </xsl:template>
     
-    <xsl:template match="map" mode="process">
-        <xsl:param name="key"/>
+    <xsl:template match="value" mode="process">
         <xsl:message select="concat('AGDC source has children: ', has-children(.))"/>
         
         <registryObject group="{$global_group}">
             
             <xsl:call-template name="key">
-                <xsl:with-param name="key" select="concat($global_prefixKey, $key)"/>
+                <xsl:with-param name="key" select="concat($global_prefixKey, id)"/>
             </xsl:call-template>
             
             <xsl:call-template name="originatingSource">
                 <xsl:with-param name="originatingSource" select="$global_originatingSource"/>
             </xsl:call-template>
             
-            <xsl:apply-templates select="." mode="collection">
-                <xsl:with-param name="key" select="$key"/>
-            </xsl:apply-templates>
+            <xsl:apply-templates select="." mode="collection"/>
             
         </registryObject>
     </xsl:template>
@@ -72,87 +63,108 @@
         </originatingSource>
     </xsl:template>
     
-    <xsl:template match="map" mode="collection">
-        <xsl:param name="key"/>
+    <xsl:template match="value" mode="collection">
         
-        <collection type="collection">
+        <collection type="dataset">
             
-            <xsl:call-template name="identifier">
-                <xsl:with-param name="key" select="$key"/>
-            </xsl:call-template>
+            <xsl:apply-templates select="createdon"/>
             
-            <xsl:apply-templates select="string[@key='name'][string-length(.) > 0]"/>
+            <xsl:apply-templates select="id[string-length(.) > 0]" mode="identifier"/>
+            
+            <xsl:apply-templates select="dp_identifier[string-length(.) > 0]" mode="identifier"/>
+            
+            <xsl:apply-templates select="id[string-length(.) > 0]" mode="identifier_url"/>
+            
+            <xsl:apply-templates select="dp_title[string-length(.) > 0]"/>
             
             <xsl:call-template name="location">
-                <xsl:with-param name="key" select="$key"/>
+                <xsl:with-param name="key" select="id"/>
             </xsl:call-template>
             
             
-            <xsl:apply-templates select="map[@key='institution'][count(string[@key='uid'][string-length(.) > 0]) > 0]" mode="relatedInfo"/>
-            <xsl:apply-templates select="array[@key='linkedRecordProviders']/map[count(string[@key='uid'][string-length(.) > 0]) > 0]" mode="relatedInfo_provider"/>
+            <xsl:apply-templates select="dp_publisher[string-length(.) > 0]" mode="relatedInfo"/>
+            <xsl:apply-templates select="dp_datacustodian[string-length(.) > 0]" mode="relatedInfo"/>
             
             <!-- ToDo: Dates -->
             
             
-            <xsl:apply-templates select="array[@key='keywords']/string[string-length(.) > 0]" mode="subject"/>
+            <xsl:apply-templates select="dp_keyword[string-length(.) > 0]" mode="subject"/>
             
-            <xsl:apply-templates select="array[@key='collectionType']/string[string-length(.) > 0]" mode="subject"/>
+            <xsl:apply-templates select="dp_updatefrequency[string-length(.) > 0]" mode="subject"/>
             
-            <xsl:apply-templates select="string[@key='pubShortDescription'][string-length(.) > 0]"/>
+            <xsl:apply-templates select="dp_securityclassification[string-length(.) > 0]" mode="subject"/>
             
-            <xsl:apply-templates select="string[@key='pubDescription'][string-length(.) > 0]"/>
+            <xsl:apply-templates select="dp_format[string-length(.) > 0]" mode="subject"/>
             
-            <xsl:if test="(count(string[@key='pubShortDescription'][string-length(.) > 0]) = 0)
-                and (count(string[@key='pubDescription'][string-length(.) > 0]) = 0)">
+            <xsl:apply-templates select="dp_purpose[string-length(.) > 0]"/>
+            
+            <xsl:apply-templates select="dp_description[string-length(.) > 0]"/>
+            
+            <xsl:if test="(count(dp_purpose[string-length(.) > 0]) = 0)
+                and (count(dp_description[string-length(.) > 0]) = 0)">
                 
-                <xsl:apply-templates select="string[@key='name'][string-length(.) > 0]" mode="description"/>
+                <xsl:apply-templates select="dp_title[string-length(.) > 0]" mode="description"/>
                 
             </xsl:if>
             
-            <xsl:call-template name="spatial_point">
-                <xsl:with-param name="lon" select="number[@key='longitude']"/>
-                <xsl:with-param name="lat" select="number[@key='latitude']"/>
-            </xsl:call-template>
+            <xsl:apply-templates select="dp_location[string-length(.) > 0]"/>
             
-            <xsl:apply-templates select="map[@key='geographicRange'][has-children(.)]" mode="spatial_box"/>
+            <xsl:apply-templates select="dp_accessrights[string-length(.) > 0]"/>
+            
+            <xsl:apply-templates select="dp_license[string-length(.) > 0]"/>
+           
+           
+            <xsl:apply-templates select="dp_publishdate[string-length(.) > 0]"/>
+            
             
         </collection>
     </xsl:template>
     
-    <xsl:template name="identifier">
-        <xsl:param name="key"/>
-        <identifier type="url">
-            <xsl:value-of select="concat($global_prefixURL, $key)"/>
+    <xsl:template match="createdon">
+        <xsl:attribute name="dateAccessioned">
+            <xsl:apply-templates select="text()"/>
+        </xsl:attribute>
+    </xsl:template>
+    
+    <xsl:template match="id | dp_identifier" mode="identifier">
+        <identifier type="local">
+            <xsl:apply-templates select="text()"/>
         </identifier>
     </xsl:template>
     
-    <xsl:template match="string[@key='name']">
+    <xsl:template match="id" mode="identifier_url">
+        <identifier type="url">
+            <xsl:value-of select="concat($global_prefixURL, .)"/>
+        </identifier>
+    </xsl:template>
+    
+    <xsl:template match="dp_title">
         <name type="primary">
             <namePart>
-                <xsl:value-of select="."/>
+                <xsl:apply-templates select="text()"/>
             </namePart>
         </name>
         
     </xsl:template>
     
-    <xsl:template match="string[@key='name']" mode="description">
+    <xsl:template match="dp_title" mode="description">
         <description type="brief">
-            <xsl:value-of select="."/>
+            <xsl:apply-templates select="text()"/>
         </description>
         
     </xsl:template>
     
     
-    <xsl:template match="string[@key='pubShortDescription']">
-        <description type="brief">
-            <xsl:value-of select="."/>
+    <xsl:template match="dp_purpose">
+        <description type="notes">
+            <xsl:apply-templates select="text()"/>
         </description>
     </xsl:template>
     
     
-    <xsl:template match="string[@key='pubDescription']">
+    <xsl:template match="dp_description">
         <description type="full">
-            <xsl:value-of select="."/>
+            <xsl:apply-templates select="text()"/>
         </description>
     </xsl:template>
     
@@ -170,65 +182,81 @@
         
     </xsl:template>
     
-    <xsl:template match="map[@key='institution']" mode="relatedInfo">
+    <xsl:template match="dp_publisher" mode="relatedInfo">
         <relatedInfo type="party">
-            <identifier type="url">
-                <xsl:value-of select="concat($global_prefixURL, string[@key='uid'])"/>
+            <identifier type="local">
+                <xsl:value-of select="concat($global_acronym, '/', translate(., ' ', ''))"/>
             </identifier>
-            <xsl:apply-templates select="string[@key='name']" mode="title"/>
+            <xsl:apply-templates select="." mode="title"/>
+            <relation type="isPublishedBy"/>
         </relatedInfo>
     </xsl:template>
     
-    <xsl:template match="map" mode="relatedInfo_provider">
+    
+    <xsl:template match="dp_datacustodian" mode="relatedInfo">
         <relatedInfo type="party">
-            <identifier type="url">
-                <xsl:value-of select="concat($global_prefixURL, string[@key='uid'])"/>
+            <identifier type="local">
+                <xsl:value-of select="concat($global_acronym, '/', translate(., ' ', ''))"/>
             </identifier>
-            <xsl:apply-templates select="string[@key='name']" mode="title"/>
+            <xsl:apply-templates select="." mode="title"/>
+            <relation type="isManagedBy"/>
         </relatedInfo>
     </xsl:template>
     
-    <xsl:template match="string[@key='name']" mode="title">
+    <xsl:template match="*" mode="title">
         <title>
-            <xsl:value-of select="."/>
+            <xsl:apply-templates select="text()"/>
         </title>
     </xsl:template>
     
-    <xsl:template match="string" mode="subject">
+    <xsl:template match="dp_keyword | dp_updatefrequency | dp_securityclassification | dp_format" mode="subject">
         <subject type="local">
-            <xsl:value-of select="."/>
+            <xsl:apply-templates select="text()"/>
         </subject>
     </xsl:template>
     
     
-    <xsl:template name="spatial_point">
-        <xsl:param name="lon"/>
-        <xsl:param name="lat"/>
+    <xsl:template match="dp_location">
+        <coverage>
+            <spatial type="text">
+                <xsl:apply-templates select="text()"/>
+            </spatial>
+        </coverage>
+    </xsl:template>
+    
+    <xsl:template match="dp_accessrights">
+        <rights>
+            <accessRights>
+                <xsl:attribute name="type">
+                    <xsl:apply-templates select="text()"/>
+                </xsl:attribute>
+            </accessRights>
+        </rights>
+    </xsl:template>
+    
+    <xsl:template match="dp_license">
+        <rights>
+            <licence>
+                <xsl:apply-templates select="text()"/>
+            </licence>
+        </rights>
+    </xsl:template>
+    
+    
+    <xsl:template match="dp_publishdate">
+        <dates type="dc.issued">
+            <date type="dateFrom" dateFormat="W3CDTF">
+                <xsl:apply-templates select="text()"/>
+            </date>
+        </dates>
         
-        <xsl:if test="(string-length($lon) > 0) and (string-length($lat) > 0)">
-            <coverage>
-                <spatial type="kmlPolyCoords">
-                    <xsl:value-of select="concat($lon, ',', $lat)"/>
-                </spatial>
-            </coverage>
-        </xsl:if>
     </xsl:template>
     
-    <xsl:template match="map[@key='geographicRange']" mode="spatial_box">
-        <xsl:if test="(string-length(number[@key='eastCoordinate']) > 0)
-            and (string-length(number[@key='westCoordinate']) > 0)
-            and (string-length(number[@key='northCoordinate']) > 0)
-            and (string-length(number[@key='southCoordinate']) > 0)">
-            
-            <coverage>
-                <spatial type="iso19139dcmiBox">
-                    <xsl:value-of select="concat('northlimit=',number[@key='northCoordinate'],'; southlimit=-',number[@key='southCoordinate'],'; westlimit=',number[@key='westCoordinate'],'; eastLimit=', number[@key='eastCoordinate'],';')"/>
-                </spatial> 
-            </coverage>
-            
-        </xsl:if>
-    </xsl:template>
     
+ 
+    <xsl:template match="*/text()">
+        <xsl:value-of select="normalize-space(.)"/>
+    </xsl:template>
     
     
 </xsl:stylesheet>    

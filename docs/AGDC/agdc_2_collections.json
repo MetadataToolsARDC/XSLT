@@ -1,0 +1,210 @@
+{
+    "facets": {
+        "dp_demographic": [
+            {
+                "count": 36,
+                "type": "Value",
+                "value": "Disability"
+            },
+            {
+                "count": 41,
+                "type": "Value",
+                "value": "Gender"
+            },
+            {
+                "count": 59,
+                "type": "Value",
+                "value": "Indigenous"
+            }
+        ],
+        "dp_accessrights": [
+            {
+                "count": 150,
+                "type": "Value",
+                "value": "Conditional"
+            },
+            {
+                "count": 207,
+                "type": "Value",
+                "value": "Open"
+            },
+            {
+                "count": 150,
+                "type": "Value",
+                "value": "Restricted"
+            }
+        ],
+        "dp_datacustodian": [
+            {
+                "count": 44,
+                "type": "Value",
+                "value": "Australian Bureau of Statistics"
+            },
+            {
+                "count": 25,
+                "type": "Value",
+                "value": "Australian Commission on Safety and Quality in Health Care"
+            },
+            {
+                "count": 44,
+                "type": "Value",
+                "value": "Australian Institute of Family Studies"
+            },
+            {
+                "count": 102,
+                "type": "Value",
+                "value": "Australian Institute of Health and Welfare"
+            },
+            {
+                "count": 1,
+                "type": "Value",
+                "value": "Australian Taxation Office"
+            },
+            {
+                "count": 89,
+                "type": "Value",
+                "value": "Bureau of Meteorology"
+            },
+            {
+                "count": 68,
+                "type": "Value",
+                "value": "Department of Defence"
+            },
+            {
+                "count": 7,
+                "type": "Value",
+                "value": "Department of Education"
+            },
+            {
+                "count": 21,
+                "type": "Value",
+                "value": "Department of Employment and Workplace Relations"
+            },
+            {
+                "count": 12,
+                "type": "Value",
+                "value": "Department of Finance"
+            }
+        ],
+        "dp_datasource": [
+            {
+                "count": 507,
+                "type": "Value",
+                "value": "AGDC Specific"
+            }
+        ]
+    },
+    "totalrecordcount": 507,
+    "value": [
+        {
+            "@search.score": 1.0,
+            "id": "1cd71a5f-8c69-ef11-a671-000d3ad03172",
+            "createdon": "2024-09-03T10:35:15Z",
+            "dp_accessrights": "Open",
+            "dp_accessurl": "http://pid.geoscience.gov.au/dataset/ga/148605",
+            "dp_account": "a10d2962-7032-ec11-b6e6-00224810e8d9",
+            "dp_accountname": "Department of Defence",
+            "dp_collectiontype": null,
+            "dp_datacustodian": "Department of Defence",
+            "dp_datasource": "AGDC Specific",
+            "dp_datastatus": "Completed",
+            "dp_datemodified": "2022-01-24T00:00:00Z",
+            "dp_demographic": [],
+            "dp_description": "The Gulf St Vincent North bathymetry survey was acquired for the Australian Hydrographic Office (AHO) onboard the MV Pacific Conquest during the period 27 August – 21 December 2020. This was a contracted survey conducted for the Australian Hydrographic Office by Fugro Australia Marine as part of the Hydroscheme Industry Partnership Program. The survey area encompases an area North of Gulf St Vincent, South Australia. Bathymetry data was acquired using a Kongsberg EM2040 and processed using CARIS HIPS & SIPS processing software. The dataset was then exported as a 30m resolution, 32 bit floating point GeoTIFF grid of the survey area. This dataset is not to be used for navigational purposes.",
+            "dp_disposal": "To be determined",
+            "dp_enquiryinfo": null,
+            "dp_filesize": "NIL",
+            "dp_format": ["geographicdata"],
+            "dp_identifier": "39325865",
+            "dp_jurisdiction": null,
+            "dp_keyword": [
+                "Oceans Governance",
+                "Maritime",
+                "Environment",
+                "Science",
+                "Oceanography",
+                "Earth Sciences",
+                "Spatial Information Research",
+                "Defence"
+            ],
+            "dp_language": "English",
+            "dp_legalauthority": "Navigation Act 2012",
+            "dp_license": "Creative Commons Attribution 4.0 International Licence",
+            "dp_limitations": null,
+            "dp_location": "Northern Territory",
+            "dp_pointofcontact": "datadiv-servicerequestform@resources.defence.gov.au",
+            "dp_publishdate": "2023-07-06T00:00:00Z",
+            "dp_publisher": "Department of Industry Science and Resources - Geoscience Australia",
+            "dp_publisheremail": null,
+            "dp_purpose": "The Australian Hydrographic Office is responsible for the publication and distribution of nautical charts and information required for the safety of ships navigating in Australian waters. \u00A0The HydroScheme Industry Partnership Program is the commercial acquisition program that undertakes focused hydrographic survey activities to contribute to national charting priorities.\u00A0 This bathymetric dataset is a part of the hydrographic survey published through AusSeabed to support non-navigational use.",
+            "dp_referenceid": null,
+            "dp_referencesource": null,
+            "dp_relatedentities": null,
+            "dp_resourcetype": "dataset",
+            "dp_scope": null,
+            "dp_securityclassification": "OFFICIAL",
+            "dp_sensitivedata": "N/A",
+            "dp_subject": null,
+            "dp_temporalcoveragefrom": "2020-08-27T00:00:00Z",
+            "dp_temporalcoverageto": "2020-12-21T00:00:00Z",
+            "dp_theme": "Defence",
+            "dp_title": "SI 1008 Gulf St Vincent North, SA. (HIPP) Bathymetry Acquisition",
+            "dp_updatefrequency": null
+        },
+        {
+            "@search.score": 1.0,
+            "id": "70866bf0-363c-ef11-a316-000d3aca5357",
+            "createdon": "2024-07-07T18:00:15Z",
+            "dp_accessrights": "Restricted",
+            "dp_accessurl": null,
+            "dp_account": "d1abe76d-55e5-ec11-bb3c-000d3a6b3b62",
+            "dp_accountname": "Department of Employment and Workplace Relations",
+            "dp_collectiontype": null,
+            "dp_datacustodian": "Department of Employment and Workplace Relations",
+            "dp_datasource": "AGDC Specific",
+            "dp_datastatus": "Completed",
+            "dp_datemodified": "2024-05-31T00:00:00Z",
+            "dp_demographic": [],
+            "dp_description": "The Industry Specialist Mentoring for Australian Apprentices (ISMAA) program provides intensive support to apprentices and trainees in the first two years of their training in industries that are undergoing structural change.  The program complements other Australian Government support for apprentices, trainees and their employers through the Australian Apprenticeships Incentives program, Trade Support Loans and the Australian Apprenticeship Support Network.",
+            "dp_disposal": "As required under the Archives Act 1983",
+            "dp_enquiryinfo": null,
+            "dp_filesize": "2.9GB",
+            "dp_format": ["as discussed with requestor"],
+            "dp_identifier": "DEWR000060",
+            "dp_jurisdiction": null,
+            "dp_keyword": [
+                "Australian Apprenticeships",
+                "Apprentice",
+                "Trainee",
+                "ISMAA",
+                "Industry Specialist Mentoring for Australian Apprentices",
+                "Apprenticeship programs",
+                "Trainee programs",
+                "Workplace training"
+            ],
+            "dp_language": "English",
+            "dp_legalauthority": null,
+            "dp_license": null,
+            "dp_limitations": null,
+            "dp_location": "Australia",
+            "dp_pointofcontact": "AustralianApprenticeshipsDataRequests@dewr.gov.au",
+            "dp_publishdate": "2018-01-01T00:00:00Z",
+            "dp_publisher": "Department of Employment and Workplace Relations",
+            "dp_publisheremail": null,
+            "dp_purpose": "Industry Specialist Mentoring for Australian Apprentices (ISMAA) KPI3 data is used to confirm eligibility of apprentices and track outcomes for the program. Maintained as a spreadsheet with additional data sourced from Traning and Youth Internet Management System (TYIMS).",
+            "dp_referenceid": null,
+            "dp_referencesource": null,
+            "dp_relatedentities": null,
+            "dp_resourcetype": "dataset",
+            "dp_scope": null,
+            "dp_securityclassification": "OFFICIAL: Sensitive",
+            "dp_sensitivedata": "Personal Privacy",
+            "dp_subject": null,
+            "dp_temporalcoveragefrom": "2018-01-01T00:00:00Z",
+            "dp_temporalcoverageto": "2019-12-31T00:00:00Z",
+            "dp_theme": null,
+            "dp_title": "Industry Specialist Mentoring for Australian Apprentices (ISMAA) KPI3 data",
+            "dp_updatefrequency": "continuous"
+        }
+    ]
+}
