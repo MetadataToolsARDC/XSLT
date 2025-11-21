@@ -119,7 +119,7 @@
                 <xsl:text>arc</xsl:text>
             </xsl:when>
             <xsl:when test="contains(lower-case($identifier), 'http')">
-                <xsl:text>uri</xsl:text>
+                <xsl:text>url</xsl:text>
             </xsl:when>
             <xsl:when test="contains(lower-case($identifier), 'uuid')">
                 <xsl:text>global</xsl:text>

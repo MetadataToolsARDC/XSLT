@@ -302,7 +302,7 @@
         </xsl:variable-->
         
          <xsl:for-each
-            select="mri:citation/cit:CI_Citation/cit:citedResponsibleParty/cit:CI_Responsibility/cit:party |
+             select="mri:citation/cit:CI_Citation/cit:citedResponsibleParty/cit:CI_Responsibility/cit:party |
             ancestor::mdb:MD_Metadata/mdb:distributionInfo/*/mrd:distributionFormat/mrd:MD_Format/mrd:formatDistributor/mrd:MD_Distributor/mrd:distributorContact/cit:CI_Responsibility/cit:party |
             ancestor::mdb:MD_Metadata/mdb:distributionInfo/*/mrd:distributor/mrd:MD_Distributor/mrd:distributorContact/cit:CI_Responsibility/cit:party |
             ancestor::mdb:MD_Metadata/mdb:identificationInfo/*/mri:pointOfContact/cit:CI_Responsibility/cit:party |
@@ -1779,7 +1779,27 @@
         </xsl:if>
         
         
-        <xsl:variable name="priorityIdentifier_sequence" select="cit:identifier/mcc:MD_Identifier/mcc:code[(string-length(.) > 0) and not(contains(lower-case(.), 'dataset doi'))]" as="node()*"/>
+        <xsl:variable name="priorityIdentifier_sequence" as="node()*">
+            
+            <xsl:copy-of select="cit:identifier/mcc:MD_Identifier/mcc:code[(starts-with(lower-case(.), '10.')) and (string-length(.) > string-length('10.1'))]"/>
+            
+            <xsl:copy-of select="cit:identifier/mcc:MD_Identifier/mcc:code[(matches(lower-case(.), 'https?://doi.org/')) and (string-length(.) > string-length('https://doi.org/'))]"/>
+            
+            <xsl:copy-of select="cit:identifier/mcc:MD_Identifier/mcc:code[(matches(lower-case(.), 'https?://dx.doi.org/')) and (string-length(.) > string-length('https://dx.doi.org/'))]"/>
+            
+            <xsl:copy-of select="cit:identifier/mcc:MD_Identifier/mcc:code[(matches(lower-case(.), 'doi:')) and (string-length(.) > string-length('doi:'))]"/>
+            
+            <xsl:copy-of select="cit:identifier/mcc:MD_Identifier/mcc:code[(matches(lower-case(.), 'https?://pid.')) and (string-length(.) > string-length('https://pid.'))]"/>
+            
+            <xsl:copy-of select="cit:identifier/mcc:MD_Identifier/mcc:code[(matches(lower-case(.), 'hdl:')) and (string-length(.) > string-length('hdl:'))]"/>
+            
+            <xsl:copy-of select="cit:identifier/mcc:MD_Identifier/mcc:code[(matches(lower-case(.), 'https?://handle.')) and (string-length(.) > string-length('https://handle.'))]"/>
+            
+            <xsl:copy-of select="cit:identifier/mcc:MD_Identifier/mcc:code[(matches(lower-case(.), 'https?://')) and (string-length(.) > string-length('https://'))]"/>
+            
+            <xsl:copy-of select="cit:identifier/mcc:MD_Identifier/mcc:code[(string-length(.) > 0) and not(contains(lower-case(.), 'dataset doi'))]"/>
+        
+        </xsl:variable>
         
         
         <xsl:if test="count($allContributorName_sequence) > 0">
@@ -1809,11 +1829,11 @@
                                     </xsl:choose>
                                 </xsl:when>
                                 <xsl:when test="count(ancestor::mdb:MD_Metadata/mdb:metadataLinkage/cit:CI_OnlineResource/cit:linkage[string-length(.) > 0]) > 0">
-                                    <xsl:attribute name="type" select="'uri'"/>
+                                    <xsl:attribute name="type" select="'url'"/>
                                     <xsl:value-of select="ancestor::mdb:MD_Metadata/mdb:metadataLinkage/cit:CI_OnlineResource/cit:linkage[string-length(.) > 0][1]"/> 
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <xsl:attribute name="type" select="'uri'"/>
+                                    <xsl:attribute name="type" select="'url'"/>
                                     <xsl:value-of select="concat('http://', $global_baseURI, $global_path, ancestor::mdb:MD_Metadata/mdb:metadataIdentifier[1]/mcc:MD_Identifier[1]/mcc:code[1])"/>
                                 </xsl:otherwise>
                         </xsl:choose>
@@ -2103,18 +2123,9 @@
    <xsl:template match="mcc:MD_Identifier">
         <xsl:if test="string-length(mcc:code) > 0">
             <identifier>
-                <xsl:choose>
-                    <xsl:when test="string-length(mcc:codeSpace) > 0">
-                        <xsl:attribute name="type">
-                            <xsl:value-of select="custom:getIdentifierType(mcc:codeSpace)"/>       
-                        </xsl:attribute>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:attribute name="type">
-                            <xsl:value-of select="custom:getIdentifierType(mcc:code)"/>       
-                        </xsl:attribute>
-                    </xsl:otherwise>
-                </xsl:choose>
+               <xsl:attribute name="type">
+                    <xsl:value-of select="custom:getIdentifierType(mcc:code)"/>       
+                </xsl:attribute>
                 <xsl:value-of select="mcc:code"/>
             </identifier>
         </xsl:if>

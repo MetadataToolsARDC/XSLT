@@ -228,7 +228,7 @@
         <rights>
             <accessRights>
                 <xsl:attribute name="type">
-                    <xsl:apply-templates select="text()"/>
+                    <xsl:apply-templates select="lower-case(text())"/>
                 </xsl:attribute>
             </accessRights>
         </rights>
