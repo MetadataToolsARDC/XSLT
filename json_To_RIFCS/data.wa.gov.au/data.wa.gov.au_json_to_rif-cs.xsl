@@ -86,7 +86,7 @@
 
                 <xsl:apply-templates select="name" mode="collection_location_name"/>
 
-                <xsl:apply-templates select="url[(string-length(.) > 0) and (lower-case(text()) != 'null')]" mode="collection_location_url"/>
+                <!--xsl:apply-templates select="url[(string-length(.) > 0) and (lower-case(text()) != 'null')]" mode="collection_location_url"/-->
 
                 <xsl:apply-templates select="organization" mode="collection_related_object"/>
 
@@ -114,6 +114,8 @@
                 <xsl:apply-templates select="isopen" mode="collection_rights_accessRights"/>
                 
                 <xsl:apply-templates select="published_on" mode="collection_dates_issued"/>
+                
+                <!--xsl:apply-templates select="created" mode="collection_dates_created"/-->
                 
                 <xsl:apply-templates select="citation" mode="collection_citation"/>
 
@@ -306,6 +308,16 @@
         </xsl:if>
     </xsl:template>
     
+    <!--xsl:template match="created" mode="collection_dates_created">
+        <xsl:if test="string-length(normalize-space(.)) > 0">
+            <dates type="dc.created">
+                <date type="dateFrom" dateFormat="W3CDTF">
+                    <xsl:value-of select="normalize-space(.)"/>
+                </date>
+            </dates>
+        </xsl:if>
+    </xsl:template-->
+    
     <xsl:template match="citation" mode="collection_citation">
         <xsl:if test="string-length(normalize-space(.)) > 0">
             <citationInfo>
@@ -318,11 +330,18 @@
     
 
     <xsl:template match="isopen" mode="collection_rights_accessRights">
-        <xsl:if test="contains(lower-case(.), 'true')">
-            <rights>
-                <accessRights type="open"/>
-            </rights>
-        </xsl:if>
+        <xsl:choose>
+            <xsl:when test="contains(lower-case(.), 'true')">
+                <rights>
+                    <accessRights type="open"/>
+                </rights>
+            </xsl:when>
+            <xsl:when test="contains(lower-case(.), 'false')">
+                <rights>
+                    <accessRights type="restricted"/>
+                </rights>
+            </xsl:when>
+        </xsl:choose>
     </xsl:template>
 
     <xsl:template match="spatial_coverage" mode="collection_coverage_spatial">
