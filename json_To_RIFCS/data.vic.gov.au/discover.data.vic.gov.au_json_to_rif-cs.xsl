@@ -245,7 +245,7 @@
     <!-- Collection - Related Object (Organisation or Individual) Element -->
     <xsl:template match="organization" mode="collection_related_object">
         <xsl:if test="string-length(normalize-space(title))">
-            <relatedInfo>
+            <relatedInfo type="party">
                 <identifier type="url">
                     <xsl:value-of select="concat($global_baseURI, 'organization/',  name)"/>
                 </identifier>
@@ -285,7 +285,7 @@
     <xsl:template match="notes" mode="collection_description">
         <xsl:if test="string-length(normalize-space(.)) > 0">
             <description type="brief">
-                <xsl:value-of select="replace(replace(normalize-space(.), '\\n', '&lt;br&gt;'), '\\t', ' - ')"/>
+                <xsl:value-of select="replace(replace(normalize-space(.), '\\n|\\r', '&lt;br&gt;'), '\\t', ' - ')"/>
             </description>
         </xsl:if>
     </xsl:template>
