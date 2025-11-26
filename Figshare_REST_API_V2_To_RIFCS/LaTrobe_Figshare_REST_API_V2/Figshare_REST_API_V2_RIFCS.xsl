@@ -1,1 +1,0 @@
-../CORE/Figshare_REST_API_V2_RIFCS.xsl
