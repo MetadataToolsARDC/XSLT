@@ -22,7 +22,6 @@
     <xsl:param name="global_acronym" select="'{requires override}'"/>
     <xsl:param name="global_publisherName" select="'{requires override}'"/>
     <xsl:param name="global_baseURI" select="'{requires override}'"/>
-    <xsl:param name="global_path" select="'{requires override}'"/>
         
     <xsl:variable name="licenseCodelist" select="document('license-codelist.xml')"/>
     
@@ -152,7 +151,18 @@
                 
                 <xsl:apply-templates select="element[@name ='dcterms']/element[@name ='accessRights'][string-length(.) > 0]" mode="collection_rights_accessRights"/>
                 
-                <xsl:apply-templates select="element[@name ='dc']/element[@name ='description'][string-length(.) > 0]" mode="collection_description_full"/>
+                <xsl:choose>
+                    <xsl:when test="count(element[@name ='dc']/element[@name ='description'][count(.//field[string-length(.) > 0]) > 0]) > 0">
+                        <xsl:apply-templates select="element[@name ='dc']/element[@name ='description'][count(.//field[string-length(.) > 0]) > 0]" mode="collection_description_full"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:apply-templates select="element[@name ='dc']/element[@name ='title'][string-length(.) > 0]" mode="collection_description_brief">
+                            <xsl:with-param name="defaultValue" select="'...'"></xsl:with-param>
+                        </xsl:apply-templates>
+                    </xsl:otherwise>
+                </xsl:choose>
+                
+                
                
                 <xsl:apply-templates select="element[@name ='dc']/element[@name ='coverage']/element[@name ='temporal'][string-length(.) > 0]" mode="collection_dates_coverage"/>
                 
@@ -290,9 +300,11 @@
     </xsl:template>
     
     <xsl:template match="element[@name='uri']" mode="collection_identifier">
-        <identifier type="{custom:getIdentifierType(.)}">
-            <xsl:value-of select="normalize-space(.)"/>
-        </identifier>    
+        <xsl:for-each select=".//field[string-length(.) > 0]">
+            <identifier type="{custom:getIdentifierType(.)}">
+                <xsl:value-of select="normalize-space(.)"/>
+            </identifier>   
+        </xsl:for-each>
     </xsl:template>
     
     <xsl:template match="element[@name='doi']" mode="collection_identifier">
@@ -347,18 +359,6 @@
             </address>
         </location> 
     </xsl:template>
-    
-    <!--xsl:template match="oai:identifier" mode="collection_location_nodoi">
-        <location>
-            <address>
-                <electronic type="url" target="landingPage">
-                    <value>
-                        <xsl:value-of select="concat($global_baseURI, $global_path, '/', substring-after(.,'oai:eprints.utas.edu.au:'))"/>
-                    </value>
-                </electronic>
-            </address>
-        </location> 
-    </xsl:template-->
     
     <xsl:template match="element[@name ='title']" mode="collection_name">
         <name type="primary">
@@ -698,13 +698,24 @@
         
     </xsl:function>
     
+    <xsl:template match="element[@name ='title']" mode="collection_description_brief">
+        <xsl:param name="defaultValue" as="xs:string"/>
+        
+        <description type="brief">
+            <xsl:choose>
+                <xsl:when test="string-length(fn:normalize-space(.)) > 0">
+                    <xsl:value-of select="normalize-space(.)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="$defaultValue"/>
+                </xsl:otherwise>
+            </xsl:choose>
+            
+        </description>
+    </xsl:template>
+    
     <xsl:template match="element[@name ='description']" mode="collection_description_full">
-        <xsl:for-each select="element[@name='abstract']/element/field[@name='value'][string-length(.) > 0]">
-            <description type="full">
-                <xsl:value-of select="normalize-space(.)"/>
-            </description>
-        </xsl:for-each>
-        <xsl:for-each select="element/field[@name='value'][string-length(.) > 0]">
+        <xsl:for-each select=".//field[string-length(.) > 0]">
             <description type="full">
                 <xsl:value-of select="normalize-space(.)"/>
             </description>

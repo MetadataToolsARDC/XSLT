@@ -85,6 +85,9 @@
     <xsl:function name="custom:getIdentifierType" as="xs:string">
         <xsl:param name="identifier" as="xs:string"/>
         <xsl:choose>
+            <xsl:when test="contains(lower-case($identifier), 'http')">
+                <xsl:text>url</xsl:text>
+            </xsl:when>
             <xsl:when test="contains(lower-case($identifier), 'orcid')">
                 <xsl:text>orcid</xsl:text>
             </xsl:when>
@@ -117,9 +120,6 @@
             </xsl:when>
             <xsl:when test="starts-with(lower-case($identifier), 'arc')">
                 <xsl:text>arc</xsl:text>
-            </xsl:when>
-            <xsl:when test="contains(lower-case($identifier), 'http')">
-                <xsl:text>url</xsl:text>
             </xsl:when>
             <xsl:when test="contains(lower-case($identifier), 'uuid')">
                 <xsl:text>global</xsl:text>
