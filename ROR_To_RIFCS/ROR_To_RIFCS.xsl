@@ -27,7 +27,17 @@
     
     <xsl:template match="items">
         <xsl:variable name="key" as="xs:string">
-            <xsl:value-of select="id"/>
+            <!-- Priotirise using Fundref ID as key if there is one, format like so https://doi.org/10.13039/501100024290 -->
+            <!-- This is to keep consistency with current Party records for other funders: ARDC and NHMRC in RDA-->
+            <xsl:choose>
+                <xsl:when test="count(external_ids[type='fundref'][string-length(preferred) > 0]) > 0">
+                    <xsl:value-of select="concat('https://doi.org/10.13039/', external_ids[type='fundref'][string-length(preferred) > 0][1]/preferred[1])"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="id"/>
+                </xsl:otherwise>
+            </xsl:choose>
+            
         </xsl:variable>
         <xsl:apply-templates select="." mode="process">
             <xsl:with-param name="key" select="$key"/>
