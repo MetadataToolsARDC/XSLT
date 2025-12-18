@@ -20,6 +20,7 @@
     <xsl:param name="global_publisherName" select="''"/>
     <xsl:param name="global_rightsStatement" select="''"/>
     <xsl:param name="global_project_identifier_strings" select="'raid'" as="xs:string*"/>
+    <xsl:param name="global_filterOnScheme" select="false()" as="xs:boolean"/>
     <xsl:param name="global_schemeFilter" select="'(Public Sector to Research Sector)|(National Data Assets)|(Translational Research Data Challenges)'" as="xs:string"/>
     <!--xsl:param name="global_baseURI" select="''"/-->
     <!--xsl:param name="global_path" select="''"/-->
@@ -28,11 +29,23 @@
 
     <xsl:template match="/">
         <xsl:message select="'Crossref_Grant_0.1.1_To_Rifcs'"/>
-        <xsl:message select="concat('Creating ', count(//items[matches(project/funding/scheme[1], $global_schemeFilter)]), ' Activity records where scheme contains :', $global_schemeFilter)"/>
+        
         <registryObjects>
-            <xsl:apply-templates select="//items[matches(project/funding/scheme, $global_schemeFilter)]" mode="Crossref_0.1.1_to_rifcs_collection">
-                <xsl:with-param name="originatingSource" select="$global_originatingSource"/>
-            </xsl:apply-templates>  
+            <xsl:choose>
+                <xsl:when test="$global_filterOnScheme = true()">
+                    <xsl:message select="concat('Creating ', count(//items[matches(project/funding/scheme[1], $global_schemeFilter)]), ' Activity records where scheme contains :', $global_schemeFilter)"/>
+                    <xsl:apply-templates select="//items[matches(project/funding/scheme, $global_schemeFilter)]" mode="Crossref_0.1.1_to_rifcs_collection">
+                        <xsl:with-param name="originatingSource" select="$global_originatingSource"/>
+                    </xsl:apply-templates>  
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:message select="concat('Creating ', count(//items), ' Activity records - no filtering')"/>
+                    <xsl:apply-templates select="//items" mode="Crossref_0.1.1_to_rifcs_collection">
+                        <xsl:with-param name="originatingSource" select="$global_originatingSource"/>
+                    </xsl:apply-templates>  
+                </xsl:otherwise>
+            </xsl:choose>
+           
         </registryObjects>
         
     </xsl:template>
@@ -504,7 +517,7 @@
     
     <xsl:template match="description" mode="activity_description_brief">
         <description type="brief">
-            <xsl:value-of select="normalize-space(.)"/>
+            <xsl:value-of select="replace(normalize-space(.), '\\n|\\r', '&lt;br&gt;')"/>
         </description>
     </xsl:template>
     
@@ -523,7 +536,7 @@
     
     <xsl:template match="award-amount" mode="activity_description_amount">
         <description type="fundingAmount">
-            <xsl:value-of select="concat(amount, ' ', currency)"/>
+            <xsl:value-of select="concat(format-number(amount, '#,###.00'), ' ', currency)"/>
         </description>
     </xsl:template>
     

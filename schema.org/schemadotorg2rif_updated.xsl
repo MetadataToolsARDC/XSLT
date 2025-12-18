@@ -962,6 +962,8 @@
             </xsl:call-template>
         </xsl:variable> 
         
+        <xsl:message select="concat('relatedInfo - found ', count($identifier_elements), ' identifiers for ', name(.), ' with priority types doi|handle|orcid|ror')"/>
+        
         <!-- don't create relatedInfo if we can't add an identifier  -->
         <xsl:if test="count($identifier_elements)">
             <xsl:element name="relatedInfo">
@@ -1309,7 +1311,7 @@
           
     
     <xsl:template match="identifier | url | id | value | sameAs" mode="identifier" as="node()*">
-        <xsl:param name="priorityType" as="xs:string"/> <!-- if type is empty string, match will succeed so all types will be provided -->
+        <xsl:param name="priorityType" as="xs:string"/> <!-- if type is empty string, value will be returned no matter waht it is -->
         <xsl:param name="match" as="xs:boolean" select="true()"/> <!-- set to "false()" if you want to _not_ match on type -->
         
         <xsl:if test="(string-length(.) > 0) and not(ends-with(., ':'))">
@@ -1322,20 +1324,27 @@
                      - if type is empty string: not(matches(value, '')) will be false(), so no populate
                      - if type is not empty string: not(matches(value, $type), populate if true()
              -->
-             
              <xsl:choose>
-                 <xsl:when test="$match">
-                     <xsl:if test="matches(., $priorityType)">
-                        <xsl:apply-templates select="."  mode="identifier_with_type"/>
-                     </xsl:if>
+                 <xsl:when test="string-length($priorityType) = 0">
+                     <xsl:apply-templates select="."  mode="identifier_with_type"/>
                  </xsl:when>
                  <xsl:otherwise>
-                     <xsl:if test="not(matches(., $priorityType))">
-                         <xsl:apply-templates select="."  mode="identifier_with_type"/>
-                     </xsl:if>
+                     <xsl:choose>
+                        <xsl:when test="$match">
+                            <xsl:if test="matches(., $priorityType)">
+                                <xsl:apply-templates select="."  mode="identifier_with_type"/>
+                            </xsl:if>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:if test="not(matches(., $priorityType))">
+                                <xsl:apply-templates select="."  mode="identifier_with_type"/>
+                            </xsl:if>
+                        </xsl:otherwise>
+                     </xsl:choose>
                  </xsl:otherwise>
              </xsl:choose>
         </xsl:if>
+    
         
     </xsl:template>
     
@@ -1436,11 +1445,12 @@
                         </xsl:for-each>
                     </xsl:variable>
                     
-                    <xsl:message select="concat('found identifiers by type ', count($identifiersByType))"/>
+                    <xsl:variable name="totalFoundByType" as="xs:integer" select="count($identifiersByType)"/>
+                    <xsl:message select="concat('found identifiers by type ', $totalFoundByType)"/>
+                        
                     
                     <xsl:variable name="identifiersSupplementary" as="node()*">
-                        <xsl:if test="(0 > $numRequired) or ($numRequired > count($identifiersByType))">
-                        
+                        <xsl:if test="(0 > $numRequired) or ($numRequired > $totalFoundByType)">
                             <xsl:apply-templates select="$contextNode" mode="all_identifiers">
                                 <xsl:with-param name="priorityTypes" select="$priorityTypes"/>
                                 <xsl:with-param name="match" select="false()"/>
