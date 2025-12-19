@@ -2,6 +2,255 @@
 {
   "@context": "http://schema.org",
   "@type": "Project",
+  "@id": "https://doi.org/10.71826/96c7ec4a",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://static.prod.raid.org.au/raids/10.71826/96c7ec4a"
+  },
+  "url": "https://static.prod.raid.org.au/raids/10.71826/96c7ec4a",
+  "additionalType": "RAiD",
+  "name": "NESP SCaW Project IP2.02.01 - Understanding Microplastics, 2022-2026 (UNSW)",
+  "author": [
+    {
+      "name": "Veena Sahajwalla",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0001-9528-9967"
+    },
+    {
+      "name": "Anirban Ghose",
+      "@type": "Person",
+      "@id": "https://orcid.org/0009-0006-1511-9129"
+    },
+    {
+      "name": "Rumana Hossain",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-5585-931X"
+    },
+    {
+      "name": "Sofia Payel",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0001-5767-8814"
+    },
+    {
+      "name": "Asiyeh Kheradmand",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0001-7302-3375"
+    }
+  ],
+  "editor": [
+    {
+      "name": "Australian Research Data Commons",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "UNSW Sydney",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/03r8z3t63"
+    }
+  ],
+  "description": "This project seeks to address the concerns raised by councils, industry, governments and communities over microplastics and component materials to directly address gaps on the prevalence and impact of microplastic pollution. This includes understanding the sources and generators of microplastics and the finalisation of a national protocol for measuring and monitoring microplastics, providing deeper insights for policy. ",
+  "datePublished": 2025,
+  "isPartOf": {
+    "@id": "https://raid.org/10.71821/35f86452",
+    "@type": "Project"
+  },
+  "@reverse": {
+    "citation": [
+      {
+        "@id": "https://doi.org/10.26190/unsworks/31300",
+        "@type": "Report"
+      },
+      {
+        "@id": "https://doi.org/10.26190/unsworks/31299",
+        "@type": "Report"
+      },
+      {
+        "@id": "https://doi.org/10.1016/j.jwpe.2024.106400",
+        "@type": "JournalArticle"
+      },
+      {
+        "@id": "https://doi.org/10.1016/j.cscee.2024.101036",
+        "@type": "JournalArticle"
+      }
+    ]
+  },
+  "schemaVersion": "http://datacite.org/schema/kernel-4",
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/01db6n192",
+    "name": "Department of Climate Change, Energy, the Environment and Water"
+  },
+  "funder": {
+    "@id": "https://ror.org/01db6n192",
+    "@type": "Organization",
+    "name": "Department of Climate Change, Energy, the Environment and Water"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.71790/d20a98c5",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://static.prod.raid.org.au/raids/10.71790/d20a98c5"
+  },
+  "url": "https://static.prod.raid.org.au/raids/10.71790/d20a98c5",
+  "additionalType": "RAiD",
+  "name": "NESP CS Project 5.1 - ACCESS development and delivery to CMIP7",
+  "author": [
+    {
+      "name": "Tilo Ziehn",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0001-9873-9775"
+    },
+    {
+      "name": "Rachel Law",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-7346-0927"
+    },
+    {
+      "name": "Arnold Sullivan",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-5712-6195"
+    },
+    {
+      "name": "Guojian Wang",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-8881-7394"
+    },
+    {
+      "name": "Harun Rashid",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0003-1896-2446"
+    },
+    {
+      "name": "Ian Harman",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-5690-0484"
+    },
+    {
+      "name": "Alexander Norton",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0001-7708-3914"
+    },
+    {
+      "name": "Matthew Chamberlain",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-3287-3282"
+    },
+    {
+      "name": "Pearse James Buchanan",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0001-7142-882X"
+    },
+    {
+      "name": "Peter Dobrohotoff",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0001-7315-042X"
+    },
+    {
+      "name": "Serena Schroeter",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-8963-3044"
+    },
+    {
+      "name": "Jhan Srbinovsky",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-8912-3650"
+    },
+    {
+      "name": "Christine Chung",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-5510-6609"
+    },
+    {
+      "name": "Ghyslaine Boschat",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-5174-1170"
+    },
+    {
+      "name": "S Abhik",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-6533-367X"
+    },
+    {
+      "name": "Shayne McGregor",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0003-3222-7042"
+    }
+  ],
+  "editor": [
+    {
+      "name": "Australian Research Data Commons",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "Commonwealth Scientific and Industrial Research Organisation",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/03qn8fb07"
+    },
+    {
+      "name": "Bureau of Meteorology",
+      "contributorType": "Other",
+      "@type": "Organization",
+      "@id": "https://ror.org/04dkp1p98"
+    },
+    {
+      "name": "Monash University",
+      "contributorType": "Other",
+      "@type": "Organization",
+      "@id": "https://ror.org/02bfwt286"
+    },
+    {
+      "name": "Australian National University",
+      "contributorType": "Other",
+      "@type": "Organization",
+      "@id": "https://ror.org/019wvm592"
+    }
+  ],
+  "description": "Advancing ACCESS—Australia’s climate and earth system modelling capabilities to provide world-class data and insights for research, policy, and international climate negotiations.  \n\nNext-generation climate modelling for science and policy\nAustralia’s Climate and Earth System Model (ACCESS) is a critical research tool tailored to Australian conditions, supporting climate policy and decision-making. This project will prepare new versions of the ACCESS Earth System Model and use these to perform climate simulations for the Coupled Model Intercomparison Project 7 (CMIP7)—a global initiative that informs international climate assessments, including the Intergovernmental Panel on Climate Change (IPCC) 7th Assessment Report (AR7). \n\nBy developing an Australian-owned model, researchers can better capture local influences like the Southern Ocean’s role in future climate and carbon management and how Australia’s nutrient-limited soil impacts plant productivity and carbon uptake—factors often overlooked in international models. ACCESS ensures Australia has internationally credible tools for negotiations and policy decisions. The project, led by CSIRO in partnership with BoM, Monash University and the ACCESS-NRI, will provide researchers with cutting-edge climate data, supporting climate projections and the nation’s transition to net zero.",
+  "datePublished": 2025,
+  "isPartOf": [
+    {
+      "@id": "https://raid.org/10.71821/a945d761",
+      "@type": "Project"
+    },
+    {
+      "@id": "https://raid.org/10.71821/23fcbc6f",
+      "@type": "Project"
+    }
+  ],
+  "schemaVersion": "http://datacite.org/schema/kernel-4",
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/01db6n192",
+    "name": "Department of Climate Change, Energy, the Environment and Water"
+  },
+  "funder": {
+    "@id": "https://ror.org/01db6n192",
+    "@type": "Organization",
+    "name": "Department of Climate Change, Energy, the Environment and Water"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
   "@id": "https://doi.org/10.71790/534da9a2",
   "identifier": {
     "@type": "PropertyValue",
@@ -892,115 +1141,6 @@
 {
   "@context": "http://schema.org",
   "@type": "Project",
-  "@id": "https://doi.org/10.82210/1bfa3963",
-  "identifier": {
-    "@type": "PropertyValue",
-    "propertyID": "RaidAgencyUrl",
-    "value": "https://static.prod.raid.org.au/raids/10.82210/1bfa3963"
-  },
-  "url": "https://static.prod.raid.org.au/raids/10.82210/1bfa3963",
-  "additionalType": "RAiD",
-  "name": "NESP TWQ Project 2.1.4 - Demonstration and evaluation of gully remediation on downstream water quality and agricultural production in GBR rangelands, 2016-2018 (CSIRO)",
-  "author": [
-    {
-      "name": "Rebecca Bartley",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0001-9471-5354"
-    },
-    {
-      "name": "Scott Wilkinson",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-2879-8603"
-    },
-    {
-      "name": "Aaron Hawdon",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-2021-6154"
-    },
-    {
-      "name": "Chris Stokes",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0003-1576-2457"
-    },
-    {
-      "name": "Fazlul Karim",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-6369-7410"
-    },
-    {
-      "name": "Ben Jarihani",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-1728-0008"
-    },
-    {
-      "name": "Brett Abbott",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0003-3377-1736"
-    },
-    {
-      "name": "Eric Vanderduys",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-3953-1875"
-    }
-  ],
-  "editor": [
-    {
-      "name": "Australian Research Data Commons",
-      "contributorType": "RegistrationAgency",
-      "@type": "Organization",
-      "@id": "https://ror.org/038sjwq14"
-    },
-    {
-      "name": "Commonwealth Scientific and Industrial Research Organisation",
-      "contributorType": "HostingInstitution",
-      "@type": "Organization",
-      "@id": "https://ror.org/03qn8fb07"
-    },
-    {
-      "name": "Department of Primary Industries",
-      "contributorType": "Other",
-      "@type": "Organization",
-      "@id": "https://ror.org/05s5aag36"
-    },
-    {
-      "name": "Queensland Department of Environment and Science",
-      "contributorType": "Other",
-      "@type": "Organization",
-      "@id": "https://ror.org/02wtcj248"
-    },
-    {
-      "name": "University of the Sunshine Coast",
-      "contributorType": "Other",
-      "@type": "Organization",
-      "@id": "https://ror.org/016gb9e15"
-    },
-    {
-      "name": "The University of Queensland",
-      "contributorType": "Other",
-      "@type": "Organization",
-      "@id": "https://ror.org/00rqy9422"
-    }
-  ],
-  "description": "This project will evaluate the cost, effectiveness and biophysical processes of gully remediation options in the Burdekin Region. Sub-surface soil erosion is the major source of anthropogenic sediment delivered to the Great Barrier Reef and must be addressed to help meet Reef water quality targets. The Reef Trust Gully Erosion Control Programme is the first to focus on gully remediation. This study will evaluate and communicate the impact of gully remediation options to underpin future investor, stakeholder and public confidence in the impact of erosion control programmes on (i) water quality (ii) project cost-effectiveness and (iii) agricultural production.",
-  "datePublished": 2025,
-  "isPartOf": {
-    "@id": "https://raid.org/10.71821/dc497fd6",
-    "@type": "Project"
-  },
-  "schemaVersion": "http://datacite.org/schema/kernel-4",
-  "publisher": {
-    "@type": "Organization",
-    "@id": "https://ror.org/03x57gn41",
-    "name": "Australian Institute of Marine Science"
-  },
-  "provider": {
-    "@type": "Organization",
-    "name": "datacite"
-  }
-},
-{
-  "@context": "http://schema.org",
-  "@type": "Project",
   "@id": "https://doi.org/10.82210/33a1a0af",
   "identifier": {
     "@type": "PropertyValue",
@@ -1105,95 +1245,55 @@
 {
   "@context": "http://schema.org",
   "@type": "Project",
-  "@id": "https://doi.org/10.71790/d20a98c5",
+  "@id": "https://doi.org/10.82210/1bfa3963",
   "identifier": {
     "@type": "PropertyValue",
     "propertyID": "RaidAgencyUrl",
-    "value": "https://static.prod.raid.org.au/raids/10.71790/d20a98c5"
+    "value": "https://static.prod.raid.org.au/raids/10.82210/1bfa3963"
   },
-  "url": "https://static.prod.raid.org.au/raids/10.71790/d20a98c5",
+  "url": "https://static.prod.raid.org.au/raids/10.82210/1bfa3963",
   "additionalType": "RAiD",
-  "name": "NESP CS Project 5.1 - ACCESS development and delivery to CMIP7",
+  "name": "NESP TWQ Project 2.1.4 - Demonstration and evaluation of gully remediation on downstream water quality and agricultural production in GBR rangelands, 2016-2018 (CSIRO)",
   "author": [
     {
-      "name": "Tilo Ziehn",
+      "name": "Rebecca Bartley",
       "@type": "Person",
-      "@id": "https://orcid.org/0000-0001-9873-9775"
+      "@id": "https://orcid.org/0000-0001-9471-5354"
     },
     {
-      "name": "Rachel Law",
+      "name": "Scott Wilkinson",
       "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-7346-0927"
+      "@id": "https://orcid.org/0000-0002-2879-8603"
     },
     {
-      "name": "Arnold Sullivan",
+      "name": "Aaron Hawdon",
       "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-5712-6195"
+      "@id": "https://orcid.org/0000-0002-2021-6154"
     },
     {
-      "name": "Guojian Wang",
+      "name": "Chris Stokes",
       "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-8881-7394"
+      "@id": "https://orcid.org/0000-0003-1576-2457"
     },
     {
-      "name": "Harun Rashid",
+      "name": "Fazlul Karim",
       "@type": "Person",
-      "@id": "https://orcid.org/0000-0003-1896-2446"
+      "@id": "https://orcid.org/0000-0002-6369-7410"
     },
     {
-      "name": "Ian Harman",
+      "name": "Ben Jarihani",
       "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-5690-0484"
+      "@id": "https://orcid.org/0000-0002-1728-0008"
     },
     {
-      "name": "Alexander Norton",
+      "name": "Brett Abbott",
       "@type": "Person",
-      "@id": "https://orcid.org/0000-0001-7708-3914"
+      "@id": "https://orcid.org/0000-0003-3377-1736"
     },
     {
-      "name": "Matthew Chamberlain",
+      "name": "Eric Vanderduys",
       "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-3287-3282"
-    },
-    {
-      "name": "Pearse James Buchanan",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0001-7142-882X"
-    },
-    {
-      "name": "Peter Dobrohotoff",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0001-7315-042X"
-    },
-    {
-      "name": "Serena Schroeter",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-8963-3044"
-    },
-    {
-      "name": "Jhan Srbinovsky",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-8912-3650"
-    },
-    {
-      "name": "Christine Chung",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-5510-6609"
-    },
-    {
-      "name": "Ghyslaine Boschat",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-5174-1170"
-    },
-    {
-      "name": "S Abhik",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-6533-367X"
-    },
-    {
-      "name": "Shayne McGregor",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0003-3222-7042"
+      "@id": "https://orcid.org/0000-0002-3953-1875"
     }
   ],
   "editor": [
@@ -1210,46 +1310,41 @@
       "@id": "https://ror.org/03qn8fb07"
     },
     {
-      "name": "Bureau of Meteorology",
+      "name": "Department of Primary Industries",
       "contributorType": "Other",
       "@type": "Organization",
-      "@id": "https://ror.org/04dkp1p98"
+      "@id": "https://ror.org/05s5aag36"
     },
     {
-      "name": "Monash University",
+      "name": "Queensland Department of Environment and Science",
       "contributorType": "Other",
       "@type": "Organization",
-      "@id": "https://ror.org/02bfwt286"
+      "@id": "https://ror.org/02wtcj248"
     },
     {
-      "name": "Australian National University",
+      "name": "University of the Sunshine Coast",
       "contributorType": "Other",
       "@type": "Organization",
-      "@id": "https://ror.org/019wvm592"
+      "@id": "https://ror.org/016gb9e15"
+    },
+    {
+      "name": "The University of Queensland",
+      "contributorType": "Other",
+      "@type": "Organization",
+      "@id": "https://ror.org/00rqy9422"
     }
   ],
-  "description": "Advancing ACCESS—Australia’s climate and earth system modelling capabilities to provide world-class data and insights for research, policy, and international climate negotiations.  \n\nNext-generation climate modelling for science and policy\nAustralia’s Climate and Earth System Model (ACCESS) is a critical research tool tailored to Australian conditions, supporting climate policy and decision-making. This project will prepare new versions of the ACCESS Earth System Model and use these to perform climate simulations for the Coupled Model Intercomparison Project 7 (CMIP7)—a global initiative that informs international climate assessments, including the Intergovernmental Panel on Climate Change (IPCC) 7th Assessment Report (AR7). \n\nBy developing an Australian-owned model, researchers can better capture local influences like the Southern Ocean’s role in future climate and carbon management and how Australia’s nutrient-limited soil impacts plant productivity and carbon uptake—factors often overlooked in international models. ACCESS ensures Australia has internationally credible tools for negotiations and policy decisions. The project, led by CSIRO in partnership with BoM, Monash University and the ACCESS-NRI, will provide researchers with cutting-edge climate data, supporting climate projections and the nation’s transition to net zero.",
+  "description": "This project will evaluate the cost, effectiveness and biophysical processes of gully remediation options in the Burdekin Region. Sub-surface soil erosion is the major source of anthropogenic sediment delivered to the Great Barrier Reef and must be addressed to help meet Reef water quality targets. The Reef Trust Gully Erosion Control Programme is the first to focus on gully remediation. This study will evaluate and communicate the impact of gully remediation options to underpin future investor, stakeholder and public confidence in the impact of erosion control programmes on (i) water quality (ii) project cost-effectiveness and (iii) agricultural production.",
   "datePublished": 2025,
-  "isPartOf": [
-    {
-      "@id": "https://raid.org/10.71821/a945d761",
-      "@type": "Project"
-    },
-    {
-      "@id": "https://raid.org/10.71821/23fcbc6f",
-      "@type": "Project"
-    }
-  ],
+  "isPartOf": {
+    "@id": "https://raid.org/10.71821/dc497fd6",
+    "@type": "Project"
+  },
   "schemaVersion": "http://datacite.org/schema/kernel-4",
   "publisher": {
     "@type": "Organization",
-    "@id": "https://ror.org/01db6n192",
-    "name": "Department of Climate Change, Energy, the Environment and Water"
-  },
-  "funder": {
-    "@id": "https://ror.org/01db6n192",
-    "@type": "Organization",
-    "name": "Department of Climate Change, Energy, the Environment and Water"
+    "@id": "https://ror.org/03x57gn41",
+    "name": "Australian Institute of Marine Science"
   },
   "provider": {
     "@type": "Organization",
@@ -1648,6 +1743,98 @@
 {
   "@context": "http://schema.org",
   "@type": "Project",
+  "@id": "https://doi.org/10.82210/ea04704c",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://static.prod.raid.org.au/raids/10.82210/ea04704c"
+  },
+  "url": "https://static.prod.raid.org.au/raids/10.82210/ea04704c",
+  "additionalType": "RAiD",
+  "name": "NESP TWQ Project 2.1.5 - What’s really damaging the Reef? Tracing the origin and fate of the environmentally detrimental sediment, 2016-2018 (JCU)",
+  "author": [
+    {
+      "name": "Stephen Lewis",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-6929-6626"
+    },
+    {
+      "name": "Zoe Bainbridge",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0001-9814-4421"
+    },
+    {
+      "name": "chengrong chen",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0001-6377-4001"
+    },
+    {
+      "name": "Scott Smithers",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-4420-1897"
+    },
+    {
+      "name": "Alexandra Garzon-Garcia",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-6804-8890"
+    },
+    {
+      "name": "Mohammad Bahadori",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-1185-5472"
+    },
+    {
+      "name": "Mehran Rezaei Rashti",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0003-2639-7547"
+    }
+  ],
+  "editor": [
+    {
+      "name": "Australian Research Data Commons",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "James Cook University",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/04gsp2c11"
+    },
+    {
+      "name": "Griffith University",
+      "contributorType": "Other",
+      "@type": "Organization",
+      "@id": "https://ror.org/02sc3r913"
+    },
+    {
+      "name": "Queensland Department of Environment and Science",
+      "contributorType": "Other",
+      "@type": "Organization",
+      "@id": "https://ror.org/02wtcj248"
+    }
+  ],
+  "description": "Recent research has shown that only a portion of the fine sediment fraction delivered from rivers draining into the Great Barrier Reef Lagoon (GBRL) reaches coral reefs and seagrass meadows. The specific sources of this sediment, which affects the health of corals and seagrasses, are as yet unresolved. This project will, for the first time characterise and trace the origin(s) and fate of this environmentally detrimental sediment using samples collected in flood plumes and during resuspension events. This will enable direct spatial targeting of the sources of this material to achieve maximum benefits to GBR health from catchment management actions.",
+  "datePublished": 2025,
+  "isPartOf": {
+    "@id": "https://raid.org/10.71821/dc497fd6",
+    "@type": "Project"
+  },
+  "schemaVersion": "http://datacite.org/schema/kernel-4",
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/03x57gn41",
+    "name": "Australian Institute of Marine Science"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
   "@id": "https://doi.org/10.82210/1a935b90",
   "identifier": {
     "@type": "PropertyValue",
@@ -1726,98 +1913,6 @@
     }
   ],
   "description": "Recent research has shown that only a portion of the fine sediment fraction delivered from rivers draining into the Great Barrier Reef Lagoon (GBRL) reaches coral reefs and seagrass meadows. The specific sources of this sediment, which affects the health of corals and seagrasses, are as yet unresolved. This project, for the first time, characterised and traced the origin(s), fate and nutrient bioavailability of this environmentally detrimental sediment using samples collected in flood plumes and during resuspension events. This enabled direct spatial targeting of the sources of this material to achieve maximum benefits to GBR health from catchment management actions.",
-  "datePublished": 2025,
-  "isPartOf": {
-    "@id": "https://raid.org/10.71821/dc497fd6",
-    "@type": "Project"
-  },
-  "schemaVersion": "http://datacite.org/schema/kernel-4",
-  "publisher": {
-    "@type": "Organization",
-    "@id": "https://ror.org/03x57gn41",
-    "name": "Australian Institute of Marine Science"
-  },
-  "provider": {
-    "@type": "Organization",
-    "name": "datacite"
-  }
-},
-{
-  "@context": "http://schema.org",
-  "@type": "Project",
-  "@id": "https://doi.org/10.82210/ea04704c",
-  "identifier": {
-    "@type": "PropertyValue",
-    "propertyID": "RaidAgencyUrl",
-    "value": "https://static.prod.raid.org.au/raids/10.82210/ea04704c"
-  },
-  "url": "https://static.prod.raid.org.au/raids/10.82210/ea04704c",
-  "additionalType": "RAiD",
-  "name": "NESP TWQ Project 2.1.5 - What’s really damaging the Reef? Tracing the origin and fate of the environmentally detrimental sediment, 2016-2018 (JCU)",
-  "author": [
-    {
-      "name": "Stephen Lewis",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-6929-6626"
-    },
-    {
-      "name": "Zoe Bainbridge",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0001-9814-4421"
-    },
-    {
-      "name": "chengrong chen",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0001-6377-4001"
-    },
-    {
-      "name": "Scott Smithers",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-4420-1897"
-    },
-    {
-      "name": "Alexandra Garzon-Garcia",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-6804-8890"
-    },
-    {
-      "name": "Mohammad Bahadori",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-1185-5472"
-    },
-    {
-      "name": "Mehran Rezaei Rashti",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0003-2639-7547"
-    }
-  ],
-  "editor": [
-    {
-      "name": "Australian Research Data Commons",
-      "contributorType": "RegistrationAgency",
-      "@type": "Organization",
-      "@id": "https://ror.org/038sjwq14"
-    },
-    {
-      "name": "James Cook University",
-      "contributorType": "HostingInstitution",
-      "@type": "Organization",
-      "@id": "https://ror.org/04gsp2c11"
-    },
-    {
-      "name": "Griffith University",
-      "contributorType": "Other",
-      "@type": "Organization",
-      "@id": "https://ror.org/02sc3r913"
-    },
-    {
-      "name": "Queensland Department of Environment and Science",
-      "contributorType": "Other",
-      "@type": "Organization",
-      "@id": "https://ror.org/02wtcj248"
-    }
-  ],
-  "description": "Recent research has shown that only a portion of the fine sediment fraction delivered from rivers draining into the Great Barrier Reef Lagoon (GBRL) reaches coral reefs and seagrass meadows. The specific sources of this sediment, which affects the health of corals and seagrasses, are as yet unresolved. This project will, for the first time characterise and trace the origin(s) and fate of this environmentally detrimental sediment using samples collected in flood plumes and during resuspension events. This will enable direct spatial targeting of the sources of this material to achieve maximum benefits to GBR health from catchment management actions.",
   "datePublished": 2025,
   "isPartOf": {
     "@id": "https://raid.org/10.71821/dc497fd6",
@@ -3405,86 +3500,6 @@
 {
   "@context": "http://schema.org",
   "@type": "Project",
-  "@id": "https://doi.org/10.82210/df9770bf",
-  "identifier": {
-    "@type": "PropertyValue",
-    "propertyID": "RaidAgencyUrl",
-    "value": "https://static.prod.raid.org.au/raids/10.82210/df9770bf"
-  },
-  "url": "https://static.prod.raid.org.au/raids/10.82210/df9770bf",
-  "additionalType": "RAiD",
-  "name": "NESP TWQ Project 2.3.2 - ‘Human sensors’ for monitoring GBR environmental changes and quality of marine waters through harnessing Big Data analysis, 2016-2017 (GU)",
-  "author": [
-    {
-      "name": "Susanne Becken",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-3348-2750"
-    },
-    {
-      "name": "Bela Stantic",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0003-0475-7951"
-    },
-    {
-      "name": "Michael Blumenstein",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-9908-3744"
-    },
-    {
-      "name": "Jinyan Chen",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0001-5986-977X"
-    },
-    {
-      "name": "Nigel Franciscus",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-8321-0040"
-    },
-    {
-      "name": "Rod Connolly",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0001-6223-1291"
-    },
-    {
-      "name": "Alexandra Bec",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-8678-2909"
-    }
-  ],
-  "editor": [
-    {
-      "name": "Australian Research Data Commons",
-      "contributorType": "RegistrationAgency",
-      "@type": "Organization",
-      "@id": "https://ror.org/038sjwq14"
-    },
-    {
-      "name": "Griffith University",
-      "contributorType": "HostingInstitution",
-      "@type": "Organization",
-      "@id": "https://ror.org/02sc3r913"
-    }
-  ],
-  "description": "This project will take a novel approach to improving monitoring of environmental and aesthetic conditions in real time by capitalising on information provided through micro-blogs from visitors to the Great Barrier Reef. The data mining will integrate human sensing data (e.g. twitter) with existing monitoring data (including the ‘eye on the reef’), meteorological data, tourism statistics, and others dispersed data sources and a cost-effective monitoring tool will be made available to stakeholders. All Great Barrier Reef stakeholders will benefit greatly from this innovative monitoring system.",
-  "datePublished": 2025,
-  "isPartOf": {
-    "@id": "https://raid.org/10.71821/dc497fd6",
-    "@type": "Project"
-  },
-  "schemaVersion": "http://datacite.org/schema/kernel-4",
-  "publisher": {
-    "@type": "Organization",
-    "@id": "https://ror.org/03x57gn41",
-    "name": "Australian Institute of Marine Science"
-  },
-  "provider": {
-    "@type": "Organization",
-    "name": "datacite"
-  }
-},
-{
-  "@context": "http://schema.org",
-  "@type": "Project",
   "@id": "https://doi.org/10.82210/1e6ba6a9",
   "identifier": {
     "@type": "PropertyValue",
@@ -3616,6 +3631,86 @@
     }
   ],
   "description": "This research project responded to the urgent need of understanding how ecological changes affect the aesthetic value and the user experience of the Great Barrier Reef, and how these are measured and monitored in a cost-effective way. The research capitalised on two major trends, namely peoples’ ability and willingness to share large amounts of information through various online platforms, and rapid development in computing technology to store, process and interpret these data.",
+  "datePublished": 2025,
+  "isPartOf": {
+    "@id": "https://raid.org/10.71821/dc497fd6",
+    "@type": "Project"
+  },
+  "schemaVersion": "http://datacite.org/schema/kernel-4",
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/03x57gn41",
+    "name": "Australian Institute of Marine Science"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.82210/df9770bf",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://static.prod.raid.org.au/raids/10.82210/df9770bf"
+  },
+  "url": "https://static.prod.raid.org.au/raids/10.82210/df9770bf",
+  "additionalType": "RAiD",
+  "name": "NESP TWQ Project 2.3.2 - ‘Human sensors’ for monitoring GBR environmental changes and quality of marine waters through harnessing Big Data analysis, 2016-2017 (GU)",
+  "author": [
+    {
+      "name": "Susanne Becken",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-3348-2750"
+    },
+    {
+      "name": "Bela Stantic",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0003-0475-7951"
+    },
+    {
+      "name": "Michael Blumenstein",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-9908-3744"
+    },
+    {
+      "name": "Jinyan Chen",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0001-5986-977X"
+    },
+    {
+      "name": "Nigel Franciscus",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-8321-0040"
+    },
+    {
+      "name": "Rod Connolly",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0001-6223-1291"
+    },
+    {
+      "name": "Alexandra Bec",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-8678-2909"
+    }
+  ],
+  "editor": [
+    {
+      "name": "Australian Research Data Commons",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "Griffith University",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/02sc3r913"
+    }
+  ],
+  "description": "This project will take a novel approach to improving monitoring of environmental and aesthetic conditions in real time by capitalising on information provided through micro-blogs from visitors to the Great Barrier Reef. The data mining will integrate human sensing data (e.g. twitter) with existing monitoring data (including the ‘eye on the reef’), meteorological data, tourism statistics, and others dispersed data sources and a cost-effective monitoring tool will be made available to stakeholders. All Great Barrier Reef stakeholders will benefit greatly from this innovative monitoring system.",
   "datePublished": 2025,
   "isPartOf": {
     "@id": "https://raid.org/10.71821/dc497fd6",
@@ -4849,6 +4944,88 @@
 {
   "@context": "http://schema.org",
   "@type": "Project",
+  "@id": "https://doi.org/10.82210/9d6a1baa",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://static.prod.raid.org.au/raids/10.82210/9d6a1baa"
+  },
+  "url": "https://static.prod.raid.org.au/raids/10.82210/9d6a1baa",
+  "additionalType": "RAiD",
+  "name": "NESP TWQ Project 1.9 - The establishment of a future NESP dredging research investment framework, 2015-2015 (AIMS)",
+  "author": [
+    {
+      "name": "Britta Schaffelke",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-8487-0147"
+    },
+    {
+      "name": "Richard Brinkman",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-2938-9473"
+    },
+    {
+      "name": "Ross Jones",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0003-1661-4149"
+    },
+    {
+      "name": "Andrew Negri",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0003-1388-7395"
+    },
+    {
+      "name": "Michael Rasheed",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-8316-7644"
+    }
+  ],
+  "editor": [
+    {
+      "name": "Australian Research Data Commons",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "Australian Institute of Marine Science",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/03x57gn41"
+    },
+    {
+      "name": "James Cook University",
+      "contributorType": "Other",
+      "@type": "Organization",
+      "@id": "https://ror.org/04gsp2c11"
+    },
+    {
+      "name": "Great Barrier Reef Marine Park Authority",
+      "contributorType": "Other",
+      "@type": "Organization",
+      "@id": "https://ror.org/00pfevw30"
+    }
+  ],
+  "description": "The project will conduct an inclusive facilitated workshop with key researchers and stakeholders to identify the future knowledge needs for improved management of dredging activities in the GBR. Building upon the recent dredging synthesis and other resources, this workshop will distill a clear, prioritized research framework to inform future NESP investment into dredging research. The framework will: (i) define the scope of work required to develop and apply improved sediment transport models for the GBR lagoon, (ii) identify and quantify the type and extent of ecological impacts, especially of maintenance dredging activities and (iii) identify management options including innovative amelioration approaches.",
+  "datePublished": 2025,
+  "isPartOf": {
+    "@id": "https://raid.org/10.71821/dc497fd6",
+    "@type": "Project"
+  },
+  "schemaVersion": "http://datacite.org/schema/kernel-4",
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/03x57gn41",
+    "name": "Australian Institute of Marine Science"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
   "@id": "https://doi.org/10.82210/41d03319",
   "identifier": {
     "@type": "PropertyValue",
@@ -4919,88 +5096,6 @@
     }
   ],
   "description": "Report cards are used at various levels to summarise and communicate complex information on GBR health. The effectiveness of Reef Plan is communicated through the annual Reef Report card. In the Reef Report Card, marine water quality is reported using a metric, developed in 2009, based on satellite remote sensing of near surface concentrations of chlorophyll and total suspended solids. This provides a wide spatial and temporal coverage of marine water quality.\n\nHowever, the current water quality metric has a number of issues such that the Independent Science Panel has recently expressed a lack of confidence in it and suggested that a new approach was needed. This proposal outlines a research program to deliver elements of this new approach.",
-  "datePublished": 2025,
-  "isPartOf": {
-    "@id": "https://raid.org/10.71821/dc497fd6",
-    "@type": "Project"
-  },
-  "schemaVersion": "http://datacite.org/schema/kernel-4",
-  "publisher": {
-    "@type": "Organization",
-    "@id": "https://ror.org/03x57gn41",
-    "name": "Australian Institute of Marine Science"
-  },
-  "provider": {
-    "@type": "Organization",
-    "name": "datacite"
-  }
-},
-{
-  "@context": "http://schema.org",
-  "@type": "Project",
-  "@id": "https://doi.org/10.82210/9d6a1baa",
-  "identifier": {
-    "@type": "PropertyValue",
-    "propertyID": "RaidAgencyUrl",
-    "value": "https://static.prod.raid.org.au/raids/10.82210/9d6a1baa"
-  },
-  "url": "https://static.prod.raid.org.au/raids/10.82210/9d6a1baa",
-  "additionalType": "RAiD",
-  "name": "NESP TWQ Project 1.9 - The establishment of a future NESP dredging research investment framework, 2015-2015 (AIMS)",
-  "author": [
-    {
-      "name": "Britta Schaffelke",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-8487-0147"
-    },
-    {
-      "name": "Richard Brinkman",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-2938-9473"
-    },
-    {
-      "name": "Ross Jones",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0003-1661-4149"
-    },
-    {
-      "name": "Andrew Negri",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0003-1388-7395"
-    },
-    {
-      "name": "Michael Rasheed",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-8316-7644"
-    }
-  ],
-  "editor": [
-    {
-      "name": "Australian Research Data Commons",
-      "contributorType": "RegistrationAgency",
-      "@type": "Organization",
-      "@id": "https://ror.org/038sjwq14"
-    },
-    {
-      "name": "Australian Institute of Marine Science",
-      "contributorType": "HostingInstitution",
-      "@type": "Organization",
-      "@id": "https://ror.org/03x57gn41"
-    },
-    {
-      "name": "James Cook University",
-      "contributorType": "Other",
-      "@type": "Organization",
-      "@id": "https://ror.org/04gsp2c11"
-    },
-    {
-      "name": "Great Barrier Reef Marine Park Authority",
-      "contributorType": "Other",
-      "@type": "Organization",
-      "@id": "https://ror.org/00pfevw30"
-    }
-  ],
-  "description": "The project will conduct an inclusive facilitated workshop with key researchers and stakeholders to identify the future knowledge needs for improved management of dredging activities in the GBR. Building upon the recent dredging synthesis and other resources, this workshop will distill a clear, prioritized research framework to inform future NESP investment into dredging research. The framework will: (i) define the scope of work required to develop and apply improved sediment transport models for the GBR lagoon, (ii) identify and quantify the type and extent of ecological impacts, especially of maintenance dredging activities and (iii) identify management options including innovative amelioration approaches.",
   "datePublished": 2025,
   "isPartOf": {
     "@id": "https://raid.org/10.71821/dc497fd6",
@@ -5983,6 +6078,87 @@
 {
   "@context": "http://schema.org",
   "@type": "Project",
+  "@id": "https://doi.org/10.82210/0350c337",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://static.prod.raid.org.au/raids/10.82210/0350c337"
+  },
+  "url": "https://static.prod.raid.org.au/raids/10.82210/0350c337",
+  "additionalType": "RAiD",
+  "name": "NESP TWQ Project 5.6 - Designing the Aesthetics Long Term Monitoring Program (ALTMP), 2019-2020 (CSIRO)",
+  "author": [
+    {
+      "name": "Matthew Curnock",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-2365-810X"
+    },
+    {
+      "name": "nadine marshall",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0003-4463-3558"
+    },
+    {
+      "name": "Paul Marshall",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0003-4784-5767"
+    },
+    {
+      "name": "Adam Smith",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-4863-485X"
+    },
+    {
+      "name": "Petina Pert",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-7738-7691"
+    },
+    {
+      "name": "Nathan Cook",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0003-1728-9499"
+    }
+  ],
+  "editor": [
+    {
+      "name": "Australian Research Data Commons",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "Commonwealth Scientific and Industrial Research Organisation",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/03qn8fb07"
+    },
+    {
+      "name": "Reef Ecologic",
+      "contributorType": "Other",
+      "@type": "Organization",
+      "@id": "https://ror.org/0249xx705"
+    }
+  ],
+  "description": "Aesthetic condition and trend of the Great Barrier Reef (GBR) are critical to monitor for the Reef 2050 Integrated Monitoring and Reporting Program (RIMReP), and World Heritage Area reporting. This research project designed and implemented an aesthetics long term monitoring program (ALTMP) for the GBR. It included a strong research component that identified how to convert a subjective measurement into an objective one. Baseline data was also provided to represent a snapshot of aesthetic condition at a large number of below-water and above-water sites within the GBR, and for a range of stakeholders.\n\nThis project builds on the work undertaken by:\n\n- NESP TWQ Project 3.2.3 - Monitoring aesthetic value of the GBR by using artificial intelligence to score photos and videos\n- NESP TWQ Project 3.2.4 - Defining, assessing and monitoring Great Barrier Reef aesthetics",
+  "datePublished": 2025,
+  "isPartOf": {
+    "@id": "https://raid.org/10.71821/dc497fd6",
+    "@type": "Project"
+  },
+  "schemaVersion": "http://datacite.org/schema/kernel-4",
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/03x57gn41",
+    "name": "Australian Institute of Marine Science"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
   "@id": "https://doi.org/10.82210/47a90a8b",
   "identifier": {
     "@type": "PropertyValue",
@@ -6054,87 +6230,6 @@
     }
   ],
   "description": "The sugar industry occupies 350,000ha in Reef catchments, applied 58,000t of nitrogen (N) fertilizer in 2014 and is a major contributor of dissolved inorganic nitrogen (DIN) to Great Barrier Reef receiving waters. There are many potential mechanisms for reducing on-farm N- usage. However, the comprehensive review of N use in sugarcane (SRA/DoE 2014) identified widespread over-use of N fertilizer and recommended adopting production unit yield potential (PUYP) combined with enhanced efficiency fertilizers (EEFs) to reduce ’surplus N’ (where applied N>crop requirements). This project will combine with existing farm trials at identified N loss ‘hot spots’ to test PUYP as the basis for determining fertilizer N rates and compare EEFs with standard N fertilizers for minimizing N losses, and to examine the water quality benefits that derive from such practice changes. Productivity, economic and environmental indicators will validate these strategies for reducing surplus N and produce recommendations for enhanced BMP’s.",
-  "datePublished": 2025,
-  "isPartOf": {
-    "@id": "https://raid.org/10.71821/dc497fd6",
-    "@type": "Project"
-  },
-  "schemaVersion": "http://datacite.org/schema/kernel-4",
-  "publisher": {
-    "@type": "Organization",
-    "@id": "https://ror.org/03x57gn41",
-    "name": "Australian Institute of Marine Science"
-  },
-  "provider": {
-    "@type": "Organization",
-    "name": "datacite"
-  }
-},
-{
-  "@context": "http://schema.org",
-  "@type": "Project",
-  "@id": "https://doi.org/10.82210/0350c337",
-  "identifier": {
-    "@type": "PropertyValue",
-    "propertyID": "RaidAgencyUrl",
-    "value": "https://static.prod.raid.org.au/raids/10.82210/0350c337"
-  },
-  "url": "https://static.prod.raid.org.au/raids/10.82210/0350c337",
-  "additionalType": "RAiD",
-  "name": "NESP TWQ Project 5.6 - Designing the Aesthetics Long Term Monitoring Program (ALTMP), 2019-2020 (CSIRO)",
-  "author": [
-    {
-      "name": "Matthew Curnock",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-2365-810X"
-    },
-    {
-      "name": "nadine marshall",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0003-4463-3558"
-    },
-    {
-      "name": "Paul Marshall",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0003-4784-5767"
-    },
-    {
-      "name": "Adam Smith",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-4863-485X"
-    },
-    {
-      "name": "Petina Pert",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-7738-7691"
-    },
-    {
-      "name": "Nathan Cook",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0003-1728-9499"
-    }
-  ],
-  "editor": [
-    {
-      "name": "Australian Research Data Commons",
-      "contributorType": "RegistrationAgency",
-      "@type": "Organization",
-      "@id": "https://ror.org/038sjwq14"
-    },
-    {
-      "name": "Commonwealth Scientific and Industrial Research Organisation",
-      "contributorType": "HostingInstitution",
-      "@type": "Organization",
-      "@id": "https://ror.org/03qn8fb07"
-    },
-    {
-      "name": "Reef Ecologic",
-      "contributorType": "Other",
-      "@type": "Organization",
-      "@id": "https://ror.org/0249xx705"
-    }
-  ],
-  "description": "Aesthetic condition and trend of the Great Barrier Reef (GBR) are critical to monitor for the Reef 2050 Integrated Monitoring and Reporting Program (RIMReP), and World Heritage Area reporting. This research project designed and implemented an aesthetics long term monitoring program (ALTMP) for the GBR. It included a strong research component that identified how to convert a subjective measurement into an objective one. Baseline data was also provided to represent a snapshot of aesthetic condition at a large number of below-water and above-water sites within the GBR, and for a range of stakeholders.\n\nThis project builds on the work undertaken by:\n\n- NESP TWQ Project 3.2.3 - Monitoring aesthetic value of the GBR by using artificial intelligence to score photos and videos\n- NESP TWQ Project 3.2.4 - Defining, assessing and monitoring Great Barrier Reef aesthetics",
   "datePublished": 2025,
   "isPartOf": {
     "@id": "https://raid.org/10.71821/dc497fd6",
@@ -6348,6 +6443,168 @@
 {
   "@context": "http://schema.org",
   "@type": "Project",
+  "@id": "https://doi.org/10.82210/d6216d98",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://static.prod.raid.org.au/raids/10.82210/d6216d98"
+  },
+  "url": "https://static.prod.raid.org.au/raids/10.82210/d6216d98",
+  "additionalType": "RAiD",
+  "name": "NESP TWQ Project 5.2 - From exposure to risk: Novel experimental approaches to analyse cumulative impacts and determine thresholds in the Great Barrier Reef World Heritage Area (GBRWHA), 2019-2020 (AIMS)",
+  "author": [
+    {
+      "name": "Sven Uthicke",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-3476-6595"
+    },
+    {
+      "name": "Andrew Negri",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0003-1388-7395"
+    },
+    {
+      "name": "Carolina Castro Sanguino",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-2515-5186"
+    },
+    {
+      "name": "Renata Ferrari",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-5056-1178"
+    },
+    {
+      "name": "Eric Lawrey",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-3144-3475"
+    },
+    {
+      "name": "Frances Patel",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0001-8559-0692"
+    },
+    {
+      "name": "Florita Flores",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0003-4637-1379"
+    },
+    {
+      "name": "Christopher Brunner",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-5405-9126"
+    },
+    {
+      "name": "Olivia King",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0003-3649-4316"
+    }
+  ],
+  "editor": [
+    {
+      "name": "Australian Research Data Commons",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "Australian Institute of Marine Science",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/03x57gn41"
+    },
+    {
+      "name": "Griffith University",
+      "contributorType": "Other",
+      "@type": "Organization",
+      "@id": "https://ror.org/02sc3r913"
+    },
+    {
+      "name": "Queensland Department of Environment and Science",
+      "contributorType": "Other",
+      "@type": "Organization",
+      "@id": "https://ror.org/02wtcj248"
+    }
+  ],
+  "description": "Understanding cumulative impacts from multiple stressors will be critical for successful management of the Great Barrier Reef (GBR) under the Reef2050 Plan. This project produced experimental analyses of concentration-response relationships for selected species under broad, controlled envelopes of local stressors at different climate scenarios. Results informed assessments of ecological risks, and management opportunities for a range of activities in the coastal zone and on the GBR. In the project-extension used exposure maps and ecological models, based on our developed and existing databases and experimental results, advancing our understanding of the contribution of individual disturbances in a cumulative framework (including both acute and chronic disturbances) to the current status of the reef. In turn, this new knowledge will inform management on setting future water quality thresholds, identifying catchments and regions as priorities for management action aimed at ameliorating impacts to reef health and building resilience for large-scale cumulative disturbances.",
+  "datePublished": 2025,
+  "isPartOf": {
+    "@id": "https://raid.org/10.71821/dc497fd6",
+    "@type": "Project"
+  },
+  "schemaVersion": "http://datacite.org/schema/kernel-4",
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/03x57gn41",
+    "name": "Australian Institute of Marine Science"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
+  "@id": "https://doi.org/10.82210/581586c4",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://static.prod.raid.org.au/raids/10.82210/581586c4"
+  },
+  "url": "https://static.prod.raid.org.au/raids/10.82210/581586c4",
+  "additionalType": "RAiD",
+  "name": "NESP TWQ Project 2.3.5 - eAtlas - Data management for environmental research, 2016-2018 (AIMS)",
+  "author": [
+    {
+      "name": "Eric Lawrey",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-3144-3475"
+    },
+    {
+      "name": "Gaël Lafond",
+      "@type": "Person",
+      "@id": "https://orcid.org/0009-0006-6859-6527"
+    },
+    {
+      "name": "Suzannah Babicci",
+      "@type": "Person",
+      "@id": "https://orcid.org/0009-0004-8179-0979"
+    }
+  ],
+  "editor": [
+    {
+      "name": "Australian Research Data Commons",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "Australian Institute of Marine Science",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/03x57gn41"
+    }
+  ],
+  "description": "Having ready access to the best available information, scientific knowledge and data is vital for evidence based environmental management and for science that builds on the prior work of others. The eAtlas is a web based knowledge and data management system for environmental research data. Its systems ensure that data is discoverable, publicly accessible and preserved for the future.\nThis project will allow the eAtlas team to work with NESP TWQ researchers to:\n* Assist and support them with data management guidance and training.\n* Ensure that hub data is well documented, accessible and reusable now and into the future.\n* Visualize spatial data allowing its use by management without specialized GIS software.\nThis project will also engage stakeholders to establish and implement refinements to the eAtlas systems to remove existing barriers to its broader use.",
+  "datePublished": 2025,
+  "isPartOf": {
+    "@id": "https://raid.org/10.71821/dc497fd6",
+    "@type": "Project"
+  },
+  "schemaVersion": "http://datacite.org/schema/kernel-4",
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/03x57gn41",
+    "name": "Australian Institute of Marine Science"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
   "@id": "https://doi.org/10.82210/573b5e23",
   "identifier": {
     "@type": "PropertyValue",
@@ -6502,168 +6759,6 @@
     }
   ],
   "description": "This project involves preparing, publishing, and visualizing approximately 50 recently submitted datasets, making them available through the eAtlas and the AODN.\n\nThis proposal covers the activities of the eAtlas in 2015 (July - December). These are:\n\n1. The eAtlas has approximately 50 datasets that were recently submitted for review that are awaiting preparation, publication and visualization. This project will complete the publication process for these datasets making them available via the eAtlas and with spatial datasets also being made available via the AODN.\n2. Work with 1st round NESP TWQ projects to capture any new relevant data products for inclusion in the eAtlas and provide training sessions on providing data in the right format. \n3. Support and continue training in the use of the Torres Strait eAtlas6 with Torres Strait Regional Authority (TSRA) so it can be used as a publishing platform for their new Land and Sea Strategy NRM plans.\n4. Work with TSRA to complete the Torres Strait reef mapping, started under the NERP TE, so that it can be used by GBRMPA to process the Torres Strait coral monitoring data (RHIS).",
-  "datePublished": 2025,
-  "isPartOf": {
-    "@id": "https://raid.org/10.71821/dc497fd6",
-    "@type": "Project"
-  },
-  "schemaVersion": "http://datacite.org/schema/kernel-4",
-  "publisher": {
-    "@type": "Organization",
-    "@id": "https://ror.org/03x57gn41",
-    "name": "Australian Institute of Marine Science"
-  },
-  "provider": {
-    "@type": "Organization",
-    "name": "datacite"
-  }
-},
-{
-  "@context": "http://schema.org",
-  "@type": "Project",
-  "@id": "https://doi.org/10.82210/581586c4",
-  "identifier": {
-    "@type": "PropertyValue",
-    "propertyID": "RaidAgencyUrl",
-    "value": "https://static.prod.raid.org.au/raids/10.82210/581586c4"
-  },
-  "url": "https://static.prod.raid.org.au/raids/10.82210/581586c4",
-  "additionalType": "RAiD",
-  "name": "NESP TWQ Project 2.3.5 - eAtlas - Data management for environmental research, 2016-2018 (AIMS)",
-  "author": [
-    {
-      "name": "Eric Lawrey",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-3144-3475"
-    },
-    {
-      "name": "Gaël Lafond",
-      "@type": "Person",
-      "@id": "https://orcid.org/0009-0006-6859-6527"
-    },
-    {
-      "name": "Suzannah Babicci",
-      "@type": "Person",
-      "@id": "https://orcid.org/0009-0004-8179-0979"
-    }
-  ],
-  "editor": [
-    {
-      "name": "Australian Research Data Commons",
-      "contributorType": "RegistrationAgency",
-      "@type": "Organization",
-      "@id": "https://ror.org/038sjwq14"
-    },
-    {
-      "name": "Australian Institute of Marine Science",
-      "contributorType": "HostingInstitution",
-      "@type": "Organization",
-      "@id": "https://ror.org/03x57gn41"
-    }
-  ],
-  "description": "Having ready access to the best available information, scientific knowledge and data is vital for evidence based environmental management and for science that builds on the prior work of others. The eAtlas is a web based knowledge and data management system for environmental research data. Its systems ensure that data is discoverable, publicly accessible and preserved for the future.\nThis project will allow the eAtlas team to work with NESP TWQ researchers to:\n* Assist and support them with data management guidance and training.\n* Ensure that hub data is well documented, accessible and reusable now and into the future.\n* Visualize spatial data allowing its use by management without specialized GIS software.\nThis project will also engage stakeholders to establish and implement refinements to the eAtlas systems to remove existing barriers to its broader use.",
-  "datePublished": 2025,
-  "isPartOf": {
-    "@id": "https://raid.org/10.71821/dc497fd6",
-    "@type": "Project"
-  },
-  "schemaVersion": "http://datacite.org/schema/kernel-4",
-  "publisher": {
-    "@type": "Organization",
-    "@id": "https://ror.org/03x57gn41",
-    "name": "Australian Institute of Marine Science"
-  },
-  "provider": {
-    "@type": "Organization",
-    "name": "datacite"
-  }
-},
-{
-  "@context": "http://schema.org",
-  "@type": "Project",
-  "@id": "https://doi.org/10.82210/d6216d98",
-  "identifier": {
-    "@type": "PropertyValue",
-    "propertyID": "RaidAgencyUrl",
-    "value": "https://static.prod.raid.org.au/raids/10.82210/d6216d98"
-  },
-  "url": "https://static.prod.raid.org.au/raids/10.82210/d6216d98",
-  "additionalType": "RAiD",
-  "name": "NESP TWQ Project 5.2 - From exposure to risk: Novel experimental approaches to analyse cumulative impacts and determine thresholds in the Great Barrier Reef World Heritage Area (GBRWHA), 2019-2020 (AIMS)",
-  "author": [
-    {
-      "name": "Sven Uthicke",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-3476-6595"
-    },
-    {
-      "name": "Andrew Negri",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0003-1388-7395"
-    },
-    {
-      "name": "Carolina Castro Sanguino",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-2515-5186"
-    },
-    {
-      "name": "Renata Ferrari",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-5056-1178"
-    },
-    {
-      "name": "Eric Lawrey",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-3144-3475"
-    },
-    {
-      "name": "Frances Patel",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0001-8559-0692"
-    },
-    {
-      "name": "Florita Flores",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0003-4637-1379"
-    },
-    {
-      "name": "Christopher Brunner",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-5405-9126"
-    },
-    {
-      "name": "Olivia King",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0003-3649-4316"
-    }
-  ],
-  "editor": [
-    {
-      "name": "Australian Research Data Commons",
-      "contributorType": "RegistrationAgency",
-      "@type": "Organization",
-      "@id": "https://ror.org/038sjwq14"
-    },
-    {
-      "name": "Australian Institute of Marine Science",
-      "contributorType": "HostingInstitution",
-      "@type": "Organization",
-      "@id": "https://ror.org/03x57gn41"
-    },
-    {
-      "name": "Griffith University",
-      "contributorType": "Other",
-      "@type": "Organization",
-      "@id": "https://ror.org/02sc3r913"
-    },
-    {
-      "name": "Queensland Department of Environment and Science",
-      "contributorType": "Other",
-      "@type": "Organization",
-      "@id": "https://ror.org/02wtcj248"
-    }
-  ],
-  "description": "Understanding cumulative impacts from multiple stressors will be critical for successful management of the Great Barrier Reef (GBR) under the Reef2050 Plan. This project produced experimental analyses of concentration-response relationships for selected species under broad, controlled envelopes of local stressors at different climate scenarios. Results informed assessments of ecological risks, and management opportunities for a range of activities in the coastal zone and on the GBR. In the project-extension used exposure maps and ecological models, based on our developed and existing databases and experimental results, advancing our understanding of the contribution of individual disturbances in a cumulative framework (including both acute and chronic disturbances) to the current status of the reef. In turn, this new knowledge will inform management on setting future water quality thresholds, identifying catchments and regions as priorities for management action aimed at ameliorating impacts to reef health and building resilience for large-scale cumulative disturbances.",
   "datePublished": 2025,
   "isPartOf": {
     "@id": "https://raid.org/10.71821/dc497fd6",
@@ -7486,6 +7581,88 @@
 {
   "@context": "http://schema.org",
   "@type": "Project",
+  "@id": "https://doi.org/10.82210/e198bb9b",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://static.prod.raid.org.au/raids/10.82210/e198bb9b"
+  },
+  "url": "https://static.prod.raid.org.au/raids/10.82210/e198bb9b",
+  "additionalType": "RAiD",
+  "name": "NESP TWQ Project 1.8 - Sub-catchment scale monitoring, modelling and extension design to support reef water quality improvement, 2015-2016 (JCU)",
+  "author": [
+    {
+      "name": "Aaron Davis",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-8278-9599"
+    },
+    {
+      "name": "Ryan Turner",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0001-6889-8273"
+    },
+    {
+      "name": "Mark Silburn",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-6119-6292"
+    },
+    {
+      "name": "Michael Warne",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0003-1804-7889"
+    },
+    {
+      "name": "Rachael Smith",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-7459-5452"
+    }
+  ],
+  "editor": [
+    {
+      "name": "Australian Research Data Commons",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "James Cook University",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/04gsp2c11"
+    },
+    {
+      "name": "Queensland Department of Environment and Science",
+      "contributorType": "Other",
+      "@type": "Organization",
+      "@id": "https://ror.org/02wtcj248"
+    },
+    {
+      "name": "Queensland Department of Natural Resources, Mines and Energy",
+      "contributorType": "Other",
+      "@type": "Organization",
+      "@id": "https://ror.org/007zyap28"
+    }
+  ],
+  "description": "1. Design of a pilot sub-catchment scale monitoring, modelling and extension program, based on end-user workshop, existing risk assessments, monitoring and modelling programs, for subsequent implementation with farmer’s support to identify reef pollutant “spikes/hotspots”, their causes and the necessary areas for extension to improve management.\n2. Pilot implementation to test the design with the assistance of farmers, extension providers, etc in a particular local area to underpin future initiatives such as nutrient trading. \n3. Subsequently, implementation, monitoring and evaluation of an extension program based on\nany refinements resulting from the pilot study findings.\n4. Use of additional information from implementation as one line of evidence assisting in\ndevelopment and trialing of market based instruments.",
+  "datePublished": 2025,
+  "isPartOf": {
+    "@id": "https://raid.org/10.71821/dc497fd6",
+    "@type": "Project"
+  },
+  "schemaVersion": "http://datacite.org/schema/kernel-4",
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/03x57gn41",
+    "name": "Australian Institute of Marine Science"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
   "@id": "https://doi.org/10.82210/b4e2254a",
   "identifier": {
     "@type": "PropertyValue",
@@ -7555,88 +7732,6 @@
     }
   ],
   "description": "Recent global experiences suggest that spatially identifying and prioritizing landscape ‘hotspots’ of pollutant generation for management intervention, and small catchment-scale water quality monitoring in collaboration with landholders linking water quality with specific management practices, are among the most promising strategies for reducing water quality pollution. This project will combine recent hotspot identification in GBR sugarcane catchment of the Russel/Mulgrave with targeted cane farmer interaction activities (related to sub-catchment and localized monitoring activities), focusing on emerging monitoring technologies (real-time water quality monitoring) to link farmer on-farm practices with feedback from sub- catchment water quality measurements. The use of both scientific and citizen science monitoring approaches will deliver robust feedback loops to enable farmers to directly link their activities with water quality conditions. The project will focus on on-farm practice improvements in highest priority catchments to achieve maximum benefits to GBR health from catchment management actions.",
-  "datePublished": 2025,
-  "isPartOf": {
-    "@id": "https://raid.org/10.71821/dc497fd6",
-    "@type": "Project"
-  },
-  "schemaVersion": "http://datacite.org/schema/kernel-4",
-  "publisher": {
-    "@type": "Organization",
-    "@id": "https://ror.org/03x57gn41",
-    "name": "Australian Institute of Marine Science"
-  },
-  "provider": {
-    "@type": "Organization",
-    "name": "datacite"
-  }
-},
-{
-  "@context": "http://schema.org",
-  "@type": "Project",
-  "@id": "https://doi.org/10.82210/e198bb9b",
-  "identifier": {
-    "@type": "PropertyValue",
-    "propertyID": "RaidAgencyUrl",
-    "value": "https://static.prod.raid.org.au/raids/10.82210/e198bb9b"
-  },
-  "url": "https://static.prod.raid.org.au/raids/10.82210/e198bb9b",
-  "additionalType": "RAiD",
-  "name": "NESP TWQ Project 1.8 - Sub-catchment scale monitoring, modelling and extension design to support reef water quality improvement, 2015-2016 (JCU)",
-  "author": [
-    {
-      "name": "Aaron Davis",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-8278-9599"
-    },
-    {
-      "name": "Ryan Turner",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0001-6889-8273"
-    },
-    {
-      "name": "Mark Silburn",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-6119-6292"
-    },
-    {
-      "name": "Michael Warne",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0003-1804-7889"
-    },
-    {
-      "name": "Rachael Smith",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-7459-5452"
-    }
-  ],
-  "editor": [
-    {
-      "name": "Australian Research Data Commons",
-      "contributorType": "RegistrationAgency",
-      "@type": "Organization",
-      "@id": "https://ror.org/038sjwq14"
-    },
-    {
-      "name": "James Cook University",
-      "contributorType": "HostingInstitution",
-      "@type": "Organization",
-      "@id": "https://ror.org/04gsp2c11"
-    },
-    {
-      "name": "Queensland Department of Environment and Science",
-      "contributorType": "Other",
-      "@type": "Organization",
-      "@id": "https://ror.org/02wtcj248"
-    },
-    {
-      "name": "Queensland Department of Natural Resources, Mines and Energy",
-      "contributorType": "Other",
-      "@type": "Organization",
-      "@id": "https://ror.org/007zyap28"
-    }
-  ],
-  "description": "1. Design of a pilot sub-catchment scale monitoring, modelling and extension program, based on end-user workshop, existing risk assessments, monitoring and modelling programs, for subsequent implementation with farmer’s support to identify reef pollutant “spikes/hotspots”, their causes and the necessary areas for extension to improve management.\n2. Pilot implementation to test the design with the assistance of farmers, extension providers, etc in a particular local area to underpin future initiatives such as nutrient trading. \n3. Subsequently, implementation, monitoring and evaluation of an extension program based on\nany refinements resulting from the pilot study findings.\n4. Use of additional information from implementation as one line of evidence assisting in\ndevelopment and trialing of market based instruments.",
   "datePublished": 2025,
   "isPartOf": {
     "@id": "https://raid.org/10.71821/dc497fd6",
@@ -10998,6 +11093,77 @@
 {
   "@context": "http://schema.org",
   "@type": "Project",
+  "@id": "https://doi.org/10.82210/09c1728d",
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "RaidAgencyUrl",
+    "value": "https://static.prod.raid.org.au/raids/10.82210/09c1728d"
+  },
+  "url": "https://static.prod.raid.org.au/raids/10.82210/09c1728d",
+  "additionalType": "RAiD",
+  "name": "NESP MaC Project 1.12 - Mapping critical habitat in Yanyuwa Sea Country, 2021-2022 (CDU)",
+  "author": [
+    {
+      "name": "Rachel Groom",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0001-9938-7222"
+    },
+    {
+      "name": "Alex B Carter",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0003-2303-0010"
+    },
+    {
+      "name": "Catherine Collier",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0001-9494-6582"
+    },
+    {
+      "name": "Chris van de Wetering",
+      "@type": "Person",
+      "@id": "https://orcid.org/0000-0002-6055-1125"
+    }
+  ],
+  "editor": [
+    {
+      "name": "Australian Research Data Commons",
+      "contributorType": "RegistrationAgency",
+      "@type": "Organization",
+      "@id": "https://ror.org/038sjwq14"
+    },
+    {
+      "name": "Charles Darwin University",
+      "contributorType": "HostingInstitution",
+      "@type": "Organization",
+      "@id": "https://ror.org/048zcaj52"
+    },
+    {
+      "name": "James Cook University",
+      "contributorType": "Other",
+      "@type": "Organization",
+      "@id": "https://ror.org/04gsp2c11"
+    }
+  ],
+  "description": "This record provides an overview of the NESP Marine and Coastal Hub small-scale study - \"Mapping critical habitat in Yanyuwa Sea Country\". For specific data outputs from this project, please see child records associated with this metadata.\n\nMarra and li-Anthawirriyarra rangers seek to build on existing partnerships with CDU and JCU to map the intertidal habitats of the Yanyuwa Indigenous Protected Area (IPA) and coastal areas connected to it, an area of profound importance to these communities and the marine ecosystem of the Gulf of Carpentaria (GoC). Significant co-funding will be provided by the Mabunji Aboriginal Corporation (MAC) and DAWE Migratory Species Section to conduct a large-scale mapping project that will inform Marra and Yanyuwa community decisions that underpin sustainable management and facilitate continued connection with sea country. Co-funding from NESP2 is sought to provide salary for data processing and reporting for these surveys. This project also leverages existing funding allocated to training, capacity building, community consultation and communication products committed to by the rangers, CDU, JCU, the Australian and the NT Governments.\n\nPlanned Outputs\n • Benthic survey data and habitat maps [spatial dataset]\n • Final technical report with analysed data and a short summary of recommendations for policy makers of key findings [written]",
+  "datePublished": 2025,
+  "isPartOf": {
+    "@id": "https://raid.org/10.71821/418be95a",
+    "@type": "Project"
+  },
+  "schemaVersion": "http://datacite.org/schema/kernel-4",
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://ror.org/03x57gn41",
+    "name": "Australian Institute of Marine Science"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "datacite"
+  }
+},
+{
+  "@context": "http://schema.org",
+  "@type": "Project",
   "@id": "https://doi.org/10.82210/c6ab8039",
   "identifier": {
     "@type": "PropertyValue",
@@ -11059,77 +11225,6 @@
     }
   ],
   "description": "This record provides an overview of the NESP Marine and Coastal Hub small-scale - \"Scoping Study: Supporting Regional Planning in Northern Australia\". \n\nDevelopment in northern Australia has had bi-partisan political support for many years and thus receives significant policy and funding profile.  However, the agenda is widely considered to have under-achieved against aspirations, becoming a heavily contested space with poor outcomes for development and environment.  Disputes over environmental issues are central to this contestation affecting development proponents, government agency decision-makers and affected communities.  This project aimed to make a positive contribution to easing (often known as de-risking) this contestation.  A key issue has been availability of agreed data/information/knowledge to all parties. This project planned to run this agenda in partnership with the Resilient Landscapes Hub and the CRC for Developing Northern Australia, thus covering terrestrial, marine and socio-economic issues in strategic partnership.  Given the many parties and wide range of issues involved, the project required extensive planning and consultation in the first year in order to develop a coherent research investment strategy for future years.\n\nOutputs\n • Final technical report with analysed data and a short summary of recommendations for policy makers of key findings [written]",
-  "datePublished": 2025,
-  "isPartOf": {
-    "@id": "https://raid.org/10.71821/418be95a",
-    "@type": "Project"
-  },
-  "schemaVersion": "http://datacite.org/schema/kernel-4",
-  "publisher": {
-    "@type": "Organization",
-    "@id": "https://ror.org/03x57gn41",
-    "name": "Australian Institute of Marine Science"
-  },
-  "provider": {
-    "@type": "Organization",
-    "name": "datacite"
-  }
-},
-{
-  "@context": "http://schema.org",
-  "@type": "Project",
-  "@id": "https://doi.org/10.82210/09c1728d",
-  "identifier": {
-    "@type": "PropertyValue",
-    "propertyID": "RaidAgencyUrl",
-    "value": "https://static.prod.raid.org.au/raids/10.82210/09c1728d"
-  },
-  "url": "https://static.prod.raid.org.au/raids/10.82210/09c1728d",
-  "additionalType": "RAiD",
-  "name": "NESP MaC Project 1.12 - Mapping critical habitat in Yanyuwa Sea Country, 2021-2022 (CDU)",
-  "author": [
-    {
-      "name": "Rachel Groom",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0001-9938-7222"
-    },
-    {
-      "name": "Alex B Carter",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0003-2303-0010"
-    },
-    {
-      "name": "Catherine Collier",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0001-9494-6582"
-    },
-    {
-      "name": "Chris van de Wetering",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-6055-1125"
-    }
-  ],
-  "editor": [
-    {
-      "name": "Australian Research Data Commons",
-      "contributorType": "RegistrationAgency",
-      "@type": "Organization",
-      "@id": "https://ror.org/038sjwq14"
-    },
-    {
-      "name": "Charles Darwin University",
-      "contributorType": "HostingInstitution",
-      "@type": "Organization",
-      "@id": "https://ror.org/048zcaj52"
-    },
-    {
-      "name": "James Cook University",
-      "contributorType": "Other",
-      "@type": "Organization",
-      "@id": "https://ror.org/04gsp2c11"
-    }
-  ],
-  "description": "This record provides an overview of the NESP Marine and Coastal Hub small-scale study - \"Mapping critical habitat in Yanyuwa Sea Country\". For specific data outputs from this project, please see child records associated with this metadata.\n\nMarra and li-Anthawirriyarra rangers seek to build on existing partnerships with CDU and JCU to map the intertidal habitats of the Yanyuwa Indigenous Protected Area (IPA) and coastal areas connected to it, an area of profound importance to these communities and the marine ecosystem of the Gulf of Carpentaria (GoC). Significant co-funding will be provided by the Mabunji Aboriginal Corporation (MAC) and DAWE Migratory Species Section to conduct a large-scale mapping project that will inform Marra and Yanyuwa community decisions that underpin sustainable management and facilitate continued connection with sea country. Co-funding from NESP2 is sought to provide salary for data processing and reporting for these surveys. This project also leverages existing funding allocated to training, capacity building, community consultation and communication products committed to by the rangers, CDU, JCU, the Australian and the NT Governments.\n\nPlanned Outputs\n • Benthic survey data and habitat maps [spatial dataset]\n • Final technical report with analysed data and a short summary of recommendations for policy makers of key findings [written]",
   "datePublished": 2025,
   "isPartOf": {
     "@id": "https://raid.org/10.71821/418be95a",
@@ -13983,101 +14078,6 @@
       {
         "@id": "https://doi.org/10.25919/kw52-6e06",
         "@type": "Report"
-      }
-    ]
-  },
-  "schemaVersion": "http://datacite.org/schema/kernel-4",
-  "publisher": {
-    "@type": "Organization",
-    "@id": "https://ror.org/01db6n192",
-    "name": "Department of Climate Change, Energy, the Environment and Water"
-  },
-  "funder": {
-    "@id": "https://ror.org/01db6n192",
-    "@type": "Organization",
-    "name": "Department of Climate Change, Energy, the Environment and Water"
-  },
-  "provider": {
-    "@type": "Organization",
-    "name": "datacite"
-  }
-},
-{
-  "@context": "http://schema.org",
-  "@type": "Project",
-  "@id": "https://doi.org/10.71826/96c7ec4a",
-  "identifier": {
-    "@type": "PropertyValue",
-    "propertyID": "RaidAgencyUrl",
-    "value": "https://static.prod.raid.org.au/raids/10.71826/96c7ec4a"
-  },
-  "url": "https://static.prod.raid.org.au/raids/10.71826/96c7ec4a",
-  "additionalType": "RAiD",
-  "name": "NESP SCaW Project IP2.02.01 - Understanding Microplastics, 2022-2026 (UNSW)",
-  "author": [
-    {
-      "name": "Veena Sahajwalla",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0001-9528-9967"
-    },
-    {
-      "name": "Anirban Ghose",
-      "@type": "Person",
-      "@id": "https://orcid.org/0009-0006-1511-9129"
-    },
-    {
-      "name": "Rumana Hossain",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0002-5585-931X"
-    },
-    {
-      "name": "Sofia Payel",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0001-5767-8814"
-    },
-    {
-      "name": "Asiyeh Kheradmand",
-      "@type": "Person",
-      "@id": "https://orcid.org/0000-0001-7302-3375"
-    }
-  ],
-  "editor": [
-    {
-      "name": "Australian Research Data Commons",
-      "contributorType": "RegistrationAgency",
-      "@type": "Organization",
-      "@id": "https://ror.org/038sjwq14"
-    },
-    {
-      "name": "UNSW Sydney",
-      "contributorType": "HostingInstitution",
-      "@type": "Organization",
-      "@id": "https://ror.org/03r8z3t63"
-    }
-  ],
-  "description": "This project seeks to address the concerns raised by councils, industry, governments and communities over microplastics and component materials to directly address gaps on the prevalence and impact of microplastic pollution. This includes understanding the sources and generators of microplastics and the finalisation of a national protocol for measuring and monitoring microplastics, providing deeper insights for policy. ",
-  "datePublished": 2025,
-  "isPartOf": {
-    "@id": "https://raid.org/10.71821/35f86452",
-    "@type": "Project"
-  },
-  "@reverse": {
-    "citation": [
-      {
-        "@id": "https://doi.org/10.26190/unsworks/31300",
-        "@type": "Report"
-      },
-      {
-        "@id": "https://doi.org/10.26190/unsworks/31299",
-        "@type": "Report"
-      },
-      {
-        "@id": "https://doi.org/10.1016/j.jwpe.2024.106400",
-        "@type": "JournalArticle"
-      },
-      {
-        "@id": "https://doi.org/10.1016/j.cscee.2024.101036",
-        "@type": "JournalArticle"
       }
     ]
   },

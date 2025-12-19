@@ -1053,10 +1053,10 @@
                     </xsl:attribute>
                 </xsl:element>
                 <xsl:choose>
-                    <xsl:when test="string-length(name)">
+                    <xsl:when test="string-length(name) > 0">
                         <xsl:apply-templates select="name"/>
                     </xsl:when>
-                    <xsl:when test="(string-length(givenName) + string-length(familyName))">
+                    <xsl:when test="(string-length(givenName) + string-length(familyName)) > 0">
                         <xsl:element name="title">
                             <xsl:apply-templates select="concat(givenName, ' ', familyName)"/>
                         </xsl:element>
@@ -1064,7 +1064,12 @@
                 </xsl:choose>
                 
                 <xsl:copy-of select="$identifier_elements"/>
-                <xsl:apply-templates select="description" mode="notes"/>
+                
+                <xsl:if test="string-length(description) > 0">
+                    <notes>
+                        <xsl:value-of select="description"/>
+                    </notes>
+                </xsl:if>
                 
             </xsl:element>
         </xsl:if>
@@ -1366,10 +1371,18 @@
                         <xsl:attribute name="type">
                             <xsl:text>url</xsl:text>
                         </xsl:attribute>
-                        <xsl:value-of select="."/>
+                        <xsl:choose>
+                            <xsl:when test="ends-with(., '/')">
+                                <xsl:value-of select="substring(., 1, string-length(.) - 1)"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="."/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                        
                     </xsl:element>
                    
-                    <xsl:element name="identifier">
+                    <!--xsl:element name="identifier">
                         <xsl:attribute name="type">
                             <xsl:choose>
                                 <xsl:when test="contains($domain, '.')">
@@ -1381,7 +1394,7 @@
                             </xsl:choose>
                         </xsl:attribute>
                        <xsl:value-of select="$pathAfterDomain"/>
-                    </xsl:element>
+                    </xsl:element-->
                 </xsl:if>
             </xsl:when>
              <xsl:otherwise>
