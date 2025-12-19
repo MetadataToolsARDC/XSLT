@@ -1353,7 +1353,7 @@
         
     </xsl:template>
     
-    <xsl:template match="identifier | url | id | value | sameAs" mode="identifier_with_type">
+    <xsl:template match="identifier | url | id | value | sameAs" mode="identifier_with_type"  as="node()*">
         
         <xsl:choose>
             <xsl:when test="starts-with(., 'http')">
@@ -1381,6 +1381,15 @@
                         </xsl:choose>
                         
                     </xsl:element>
+                    
+                    <xsl:if test="contains(., 'static.prod.raid.org.au')">
+                        <xsl:element name="identifier">
+                            <xsl:attribute name="type">
+                                <xsl:text>url</xsl:text>
+                            </xsl:attribute>
+                            <xsl:value-of select="replace(., 'static.prod.raid.org.au/raids', 'raid.org')"/>
+                        </xsl:element>
+                    </xsl:if>
                    
                     <!--xsl:element name="identifier">
                         <xsl:attribute name="type">
