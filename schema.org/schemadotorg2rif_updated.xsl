@@ -984,10 +984,7 @@
                         <xsl:when test="type = 'Organization'">
                              <xsl:text>party</xsl:text>
                         </xsl:when>
-                        <xsl:when test="type = 'Organization'">
-                            <xsl:text>party</xsl:text>
-                        </xsl:when>
-                        <xsl:when test="type = 'ResearchProject'">
+                        <xsl:when test="(type = 'ResearchProject') or contains(identifier, 'raid.org')">">
                             <xsl:text>activity</xsl:text>
                         </xsl:when>
                         <xsl:when test="type = 'WebPage'">
@@ -996,16 +993,7 @@
                         <xsl:when test="type = 'PublicationIssue'">
                             <xsl:text>publication</xsl:text>
                         </xsl:when>
-                        <xsl:when test="type = 'SoftwareSourceCode'">
-                            <xsl:text>collection</xsl:text>
-                        </xsl:when>
-                        <xsl:when test="type = 'CreativeWork'">
-                            <xsl:text>collection</xsl:text>
-                        </xsl:when>
-                        <xsl:when test="type = 'Dataset'">
-                            <xsl:text>collection</xsl:text>
-                        </xsl:when>
-                        <xsl:when test="name() = 'includedInDataCatalog'">
+                        <xsl:when test="(type = 'SoftwareSourceCode') or (type = 'CreativeWork') or (type = 'Dataset') or (name() = 'includedInDataCatalog')">
                             <xsl:text>collection</xsl:text>
                         </xsl:when>
                         <xsl:when test="name() = 'creator'">
@@ -1016,7 +1004,7 @@
                 <xsl:element name="relation">
                     <xsl:attribute name="type">
                         <xsl:choose>
-                            <xsl:when test="type = 'ResearchProject'">
+                            <xsl:when test="(type = 'ResearchProject') or contains(identifier, 'raid.org')">
                                 <xsl:text>isOutputOf</xsl:text>
                             </xsl:when>
                             <xsl:when test="type = 'WebPage'">
@@ -1365,29 +1353,30 @@
                 <xsl:variable name="pathAfterDomain" select="substring-after(., concat($domain, '/'))"/>
                 <xsl:message select="concat('pathAfterDomain: ', $pathAfterDomain)"/>
                 
-                
-                <xsl:if test="string-length($pathAfterDomain) > 0">
+                <xsl:variable name="identifierFormatted">
+                    <xsl:choose>
+                        <xsl:when test="ends-with(., '/')">
+                            <xsl:value-of select="substring(., 1, string-length(.) - 1)"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="."/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:if test="(string-length($pathAfterDomain) > 0) and (string-length($identifierFormatted) > 0)">
                     <xsl:element name="identifier">
                         <xsl:attribute name="type">
                             <xsl:text>url</xsl:text>
                         </xsl:attribute>
-                        <xsl:choose>
-                            <xsl:when test="ends-with(., '/')">
-                                <xsl:value-of select="substring(., 1, string-length(.) - 1)"/>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:value-of select="."/>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                        
-                    </xsl:element>
+                        <xsl:value-of select="$identifierFormatted"/>
+                     </xsl:element>
                     
-                    <xsl:if test="contains(., 'static.prod.raid.org.au')">
+                    <xsl:if test="contains($identifierFormatted, 'static.prod.raid.org.au')">
                         <xsl:element name="identifier">
                             <xsl:attribute name="type">
                                 <xsl:text>url</xsl:text>
                             </xsl:attribute>
-                            <xsl:value-of select="replace(., 'static.prod.raid.org.au/raids', 'raid.org')"/>
+                            <xsl:value-of select="replace($identifierFormatted, 'static.prod.raid.org.au/raids', 'raid.org')"/>
                         </xsl:element>
                     </xsl:if>
                    
