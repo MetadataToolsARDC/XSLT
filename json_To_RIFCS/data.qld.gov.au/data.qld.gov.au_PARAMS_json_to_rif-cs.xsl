@@ -12,6 +12,8 @@
     <xsl:param name="global_acronym" select="'data.qld.gov.au'"/>
     <xsl:param name="global_originatingSource" select="'http://data.qld.gov.au'"/>
     <xsl:param name="global_baseURI" select="'http://data.qld.gov.au/'"/>
+    <xsl:param name="global_dataset_path" select="'dataset/'"/>
+    <xsl:param name="global_organization_path" select="'organization/'"/>
     <xsl:param name="global_group" select="'data.qld.gov.au'"/>
     <xsl:param name="global_contributor" select="'data.qld.gov.au'"/>
     <xsl:param name="global_publisherName" select="'data.qld.gov.au'"/>
