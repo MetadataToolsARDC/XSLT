@@ -24,11 +24,10 @@
     
     <xsl:param name="global_baseURI" select="'geonetwork.nci.org.au'"/>
     <xsl:param name="global_acronym" select="'NCI'"/>
-    <xsl:param name="global_group" select="'Bureau of Meteorology (Hosted at National Computational Infrastructure)'"/> 
+    <xsl:param name="global_group" select="'Consortium for Ocean-Sea Ice Modelling in Australia (COSIMA), (Hosted at National Computational Infrastructure)'"/> 
     <xsl:param name="global_path" select="'/geonetwork/srv/eng/catalog.search#/metadata/'"/>
     <xsl:param name="global_publisher" select="'NCI Australia'"/>
     <xsl:param name="global_DOI_prefix_sequence" select="'10.25914|10.4225/41'" as="xs:string"/>
-    <xsl:param name="global_debug" select="true()" as="xs:boolean"/>
     
     <!-- stylesheet to convert iso19139 in OAI-PMH ListRecords response to RIF-CS -->
     
@@ -50,11 +49,12 @@
     
     
     <xsl:template match="*:MD_Metadata" mode="TOP_LEVEL">
-        <xsl:message>NCI_BOM_toplevel_aggregating</xsl:message>
+        <xsl:message>NCI_COSIMA_toplevel_aggregating</xsl:message>
         
-       <xsl:apply-templates select="." mode="ISO19139_TO_RIFCS">
+        <xsl:apply-templates select="." mode="ISO19139_TO_RIFCS">
             <xsl:with-param name="aggregatingGroup" select="$global_group"/>
         </xsl:apply-templates>
-     </xsl:template>
+               
+    </xsl:template>
     
 </xsl:stylesheet>
