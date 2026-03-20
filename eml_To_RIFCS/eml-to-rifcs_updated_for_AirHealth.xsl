@@ -94,7 +94,7 @@
     <xsl:param name="originatingSource"/>
     
     
-    <xsl:variable name="doi_sequence" select="alternateIdentifier[(@system='doi') and (string-length(text()) > 0)]"/>
+    <xsl:variable name="doi_sequence" select="alternateIdentifier[(contains(@system,'doi')) and (string-length(text()) > 0)]"/>
     
     <xsl:element name="registryObject">
       <xsl:attribute name="group"><xsl:value-of select="$global_group" /></xsl:attribute>
