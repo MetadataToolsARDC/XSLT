@@ -34,7 +34,7 @@
             https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd">
           
             <xsl:message select="concat('name(oai:OAI-PMH): ', name(oai:OAI-PMH))"/>
-            <xsl:apply-templates select="oai:OAI-PMH/*/oai:record"/>
+            <xsl:apply-templates select="*:OAI-PMH/*/*:record"/>
             
         </registryObjects>
     </xsl:template>
@@ -87,12 +87,12 @@
                 
                 <xsl:apply-templates select="dcterms:bibliographicCitation[string-length(.) > 0]" mode="collection_extract_DOI_location"/>  
                 
-                <xsl:apply-templates select="dc:identifier[starts-with(.,'10.') or (contains(.,'doi') and starts-with(.,'http'))]" mode="collection_identifier"/>
+                <xsl:apply-templates select="dc:identifier[starts-with(normalize-space(.),'10.') or (contains(.,'doi') and starts-with(normalize-space(.),'http'))]" mode="collection_identifier"/>
                 
-                <xsl:apply-templates select="dc:identifier[starts-with(.,'10.') or (contains(.,'doi') and starts-with(.,'http'))]" mode="collection_location_doi"/>
+                <xsl:apply-templates select="dc:identifier[starts-with(normalize-space(.),'10.') or (contains(.,'doi') and starts-with(normalize-space(.),'http'))]" mode="collection_location_doi"/>
                 
                 <!-- if no doi, use handle as location -->
-                <xsl:if test="count(dc:identifier[starts-with(.,'10.') or (contains(.,'doi') and starts-with(.,'http'))]) = 0">
+                <xsl:if test="count(dc:identifier[starts-with(normalize-space(.),'10.') or (contains(.,'doi') and starts-with(normalize-space(.),'http'))]) = 0">
                     <xsl:choose>
                         <xsl:when test="count(dc:identifier[contains(.,'handle.net')]) > 0">
                             <xsl:apply-templates select="dc:identifier[contains(.,'handle.net')]" mode="collection_location_handle"/>
@@ -193,7 +193,7 @@
                 <electronic type="url" target="landingPage">
                     <value>
                         <xsl:choose>
-                            <xsl:when test="starts-with(. , '10.')">
+                            <xsl:when test="starts-with(normalize-space(.) , '10.')">
                                 <xsl:value-of select="concat('http://doi.org/', .)"/>
                             </xsl:when>
                             <xsl:otherwise>
