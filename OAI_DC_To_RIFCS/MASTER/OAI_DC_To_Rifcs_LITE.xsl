@@ -7,11 +7,11 @@
     xmlns:dc="http://purl.org/dc/elements/1.1/" 
     xmlns:oai="http://www.openarchives.org/OAI/2.0/" 
     xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" 
-    xmlns:dcterms="http://purl.org/dc/terms/"
+    xmlns:dct="http://purl.org/dc/terms/"
     xmlns:fn="http://www.w3.org/2005/xpath-functions"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    exclude-result-prefixes="xsl murFunc custom dc oai oai_dc dcterms fn xs xsi">
+    exclude-result-prefixes="xsl murFunc custom dc oai oai_dc dct fn xs xsi">
 	
 	
     <xsl:import href="CustomFunctions.xsl"/>
@@ -83,11 +83,13 @@
                 
                 <xsl:apply-templates select="../../oai:header/oai:datestamp" mode="collection_date_accessioned"/>
                 
-                <xsl:apply-templates select="dcterms:bibliographicCitation[string-length(.) > 0]" mode="collection_extract_DOI_identifier"/>  
+                <xsl:apply-templates select="dct:bibliographicCitation[string-length(.) > 0]" mode="collection_extract_DOI_identifier"/>  
                 
-                <xsl:apply-templates select="dcterms:bibliographicCitation[string-length(.) > 0]" mode="collection_extract_DOI_location"/>  
+                <xsl:apply-templates select="dct:bibliographicCitation[string-length(.) > 0]" mode="collection_extract_DOI_location"/>  
                 
                 <xsl:apply-templates select="dc:identifier[starts-with(normalize-space(.),'10.') or (contains(.,'doi') and starts-with(normalize-space(.),'http'))]" mode="collection_identifier"/>
+                
+                <xsl:apply-templates select="dc:identifier[count(@type) = 0]" mode="collection_identifier"/>
                 
                 <xsl:apply-templates select="dc:identifier[starts-with(normalize-space(.),'10.') or (contains(.,'doi') and starts-with(normalize-space(.),'http'))]" mode="collection_location_doi"/>
                 
@@ -123,9 +125,13 @@
                 
                 <xsl:apply-templates select="dc:coverage[string-length(.) > 0]" mode="collection_spatial_coverage"/>
                 
-                <xsl:apply-templates select="dcterms:created[string-length(.) > 0]" mode="collection_dates_created"/>
+                <xsl:apply-templates select="dct:created[string-length(.) > 0]" mode="collection_dates_created"/>
+                
+                <xsl:apply-templates select="dct:available[string-length(.) > 0]" mode="collection_dates_available"/>
                 
                 <xsl:apply-templates select="dc:rights[string-length(.) > 0]" mode="collection_rights_rightsStatement"/>
+                
+                <xsl:apply-templates select="dct:license[string-length(.) > 0]" mode="collection_rights_license"/>
                 
                 <xsl:call-template name="rightsStatement"/>
                 
@@ -142,11 +148,25 @@
                 </xsl:choose>
                
                
-                <xsl:apply-templates select="dc:date[string-length(.) > 0]" mode="collection_dates_coverage"/>  
+                <xsl:apply-templates select="dct:temporal[string-length(.) > 0]" mode="collection_dates_coverage"/>  
                 
-                <xsl:apply-templates select="dc:source[string-length(.) > 0]" mode="collection_citation_info"/>  
                 
-                <xsl:apply-templates select="dcterms:bibliographicCitation[string-length(.) > 0]" mode="collection_citation_info"/>  
+                <xsl:choose>
+                    <xsl:when test="count(dct:bibliographicCitation[string-length(.) > 0]) > 0">
+                        <xsl:apply-templates select="dct:bibliographicCitation[string-length(.) > 0]" mode="collection_citation_info"/>  
+                        
+                    </xsl:when>
+                    <xsl:when test="count(dc:source[string-length(.) > 0]) > 0">
+                        <xsl:apply-templates select="dc:source[string-length(.) > 0]" mode="collection_citation_info"/>  
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:apply-templates select="." mode="collection_citation_info_metadata"/>  
+                    </xsl:otherwise>
+                </xsl:choose>
+                
+               
+                
+               
                 
             </xsl:element>
         </registryObject>
@@ -161,11 +181,11 @@
         <xsl:attribute name="dateAccessioned" select="normalize-space(.)"/>
     </xsl:template>
     
-    <xsl:template match="dcterms:bibliographicCitation" mode="collection_extract_DOI_identifier">
+    <xsl:template match="dct:bibliographicCitation" mode="collection_extract_DOI_identifier">
         <!-- override to extract identifier from full citation, custom per provider -->
     </xsl:template>  
     
-    <xsl:template match="dcterms:bibliographicCitation" mode="collection_extract_DOI_location">
+    <xsl:template match="dct:bibliographicCitation" mode="collection_extract_DOI_location">
         <!-- override to extract location from full citation, custom per provider -->
     </xsl:template>
     
@@ -183,7 +203,7 @@
         </identifier>    
     </xsl:template>
     
-    <xsl:template match="dc:identifier[@xsi:type ='dcterms:URI']" mode="collection_location_if_no_DOI">
+    <xsl:template match="dc:identifier[@xsi:type ='dct:URI']" mode="collection_location_if_no_DOI">
         <!--override if required-->
     </xsl:template>
     
@@ -255,38 +275,43 @@
         <!-- Override this -->
     </xsl:template>
     
-    <xsl:template match="dc:creator" mode="collection_relatedInfo">
+    <xsl:template match="dc:creator | dc:contributor" mode="collection_relatedInfo">
             <relatedInfo type="party">
-                <identifier type="local">
-                    <xsl:value-of select="murFunc:formatKey(murFunc:formatName(.))"/> 
-                </identifier>
+                <xsl:apply-templates select="." mode="collection_relatedInfo_identifier_fromName"/>
                 <title>
-                    <xsl:value-of select="."/>
+                    <xsl:value-of select="normalize-space(.)"/>
                 </title>
                 <relation type="hasCollector"/>
             </relatedInfo>
     </xsl:template>
     
-    <xsl:template match="dc:contributor" mode="collection_relatedInfo">
-        <relatedInfo type="party">
-            <identifier type="local">
-                <xsl:value-of select="murFunc:formatKey(murFunc:formatName(.))"/> 
-            </identifier>
-            <title>
-                <xsl:value-of select="."/>
-            </title>
-            <relation type="hasCollector"/>
-        </relatedInfo>
+    <xsl:template match="dc:creator | dc:contributor" mode="collection_relatedInfo_identifier_fromName">
+        <identifier type="local">
+            <xsl:value-of select="murFunc:formatKey(murFunc:formatName(.))"/> 
+        </identifier>
     </xsl:template>
     
-    <xsl:template match="dcterms:created" mode="collection_dates_created">
-        <dates type="dc.created">
-            <date type="dateFrom" dateFormat="{@xsi:type}">
-                <xsl:value-of select="."/>
-            </date>
+    
+    
+    <xsl:template match="dct:available" mode="collection_dates_available">
+        <dates type="dc.available">
+            <xsl:call-template name="parseDates">
+                <xsl:with-param name="inputDate" select="normalize-space(.)"/>
+                <xsl:with-param name="inputFormat" select="@xsi:type"></xsl:with-param>
+            </xsl:call-template>
         </dates>
     </xsl:template>
 
+
+    <xsl:template match="dct:created" mode="collection_dates_created">
+        <dates type="dc.created">
+            <xsl:call-template name="parseDates">
+                <xsl:with-param name="inputDate" select="normalize-space(.)"/>
+                <xsl:with-param name="inputFormat" select="@xsi:type"></xsl:with-param>
+            </xsl:call-template>
+        </dates>
+    </xsl:template>
+    
     
     <xsl:template match="dc:subject" mode="collection_subject">
         <xsl:if test="string-length(.) > 0">
@@ -324,6 +349,14 @@
 
     </xsl:template>
     
+    <xsl:template match="dct:license" mode="collection_rights_license">
+        <rights>
+            <licence>
+                <xsl:value-of select="fn:normalize-space(.)"/>
+            </licence>
+        </rights>
+    </xsl:template>
+    
     <xsl:template name="collection_description_default">
         <description type="brief">
             <xsl:value-of select="'(no description)'"/>
@@ -343,37 +376,124 @@
         </description>
     </xsl:template>
     
-    <xsl:template match="dc:date" mode="collection_dates_coverage">
+    <xsl:template match="dct:temporal" mode="collection_dates_coverage">
         <coverage>
             <temporal>
-                <xsl:analyze-string select="translate(translate(., ']', ''), '[', '')" regex="[\d]+[?]*[-]*[\d]*">
-                    <xsl:matching-substring>
-                        <xsl:choose>
-                            <xsl:when test="contains(regex-group(0), '-')">
-                                <date type="dateFrom" dateFormat="W3CDTF">
-                                    <xsl:value-of select="substring-before(regex-group(0), '-')"/>
-                                    <!--xsl:message select="concat('from: ', substring-before(regex-group(0), '-'))"/-->
-                                </date>
-                                <date type="dateTo" dateFormat="W3CDTF">
-                                    <xsl:value-of select="substring-after(regex-group(0), '-')"/>
-                                    <!--xsl:message select="concat('to: ', substring-after(regex-group(0), '-'))"/-->
-                                </date>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <date type="dateFrom" dateFormat="W3CDTF">
-                                    <xsl:value-of select="regex-group(0)"/>
-                                    <!--xsl:message select="concat('match: ', regex-group(0))"/-->
-                                </date> 
-                            </xsl:otherwise>
-                        </xsl:choose>
-                        
-                    </xsl:matching-substring>
-                </xsl:analyze-string>
+                <xsl:call-template name="parseDates">
+                    <xsl:with-param name="inputDate" select="normalize-space(.)"/>
+                    <xsl:with-param name="inputFormat" select="'W3CDTF'"></xsl:with-param>
+                </xsl:call-template>
             </temporal>
         </coverage>
     </xsl:template>  
     
-    <xsl:template match="dc:source | dcterms:bibliographicCitation" mode="collection_citation_info">
+    
+    <xsl:template name="parseDates">
+        <xsl:param name="inputDate"/>
+        <xsl:param name="inputFormat"/>
+        
+        <xsl:variable name="format">
+            <xsl:choose>
+                <xsl:when test="fn:string-length($inputFormat) = 0">
+                    <xsl:value-of select="'W3CDTF'"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="$inputFormat"/>
+                </xsl:otherwise>
+            </xsl:choose> 
+        </xsl:variable>
+       
+        <xsl:analyze-string select="translate(translate($inputDate, ']', ''), '[', '')" regex="[\d\-?/]+">
+            <xsl:matching-substring>
+                <xsl:choose>
+                    <xsl:when test="contains(regex-group(0), '/')">
+                        <date type="dateFrom" dateFormat="{$format}">
+                            <xsl:value-of select="substring-before(regex-group(0), '/')"/>
+                            <!--xsl:message select="concat('from: ', substring-before(regex-group(0), '/'))"/-->
+                        </date>
+                        <date type="dateTo" dateFormat="{$format}">
+                            <xsl:value-of select="substring-after(regex-group(0), '/')"/>
+                            <!--xsl:message select="concat('to: ', substring-after(regex-group(0), '/'))"/-->
+                        </date>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <date type="dateFrom" dateFormat="{$format}">
+                            <xsl:value-of select="regex-group(0)"/>
+                            <!--xsl:message select="concat('match: ', regex-group(0))"/-->
+                        </date> 
+                    </xsl:otherwise>
+                </xsl:choose>
+                
+            </xsl:matching-substring>
+        </xsl:analyze-string>
+    </xsl:template>
+    
+    <xsl:template match="*" mode="collection_citation_info_metadata">
+        <citationInfo>
+            <citationMetadata>
+                <xsl:choose>
+                    <xsl:when test="count(dc:identifier[starts-with(normalize-space(.),'10.') or (contains(.,'doi') and starts-with(normalize-space(.),'http'))]) > 0">
+                        <xsl:apply-templates select="dc:identifier[starts-with(normalize-space(.),'10.') or (contains(.,'doi') and starts-with(normalize-space(.),'http'))]" mode="collection_identifier"/>
+                    </xsl:when>
+                    <xsl:when test="count(dc:identifier[count(@type) = 0])">
+                        <xsl:apply-templates select="dc:identifier[count(@type) = 0]" mode="collection_identifier"/>    
+                    </xsl:when>
+                </xsl:choose>
+
+                <xsl:apply-templates select="dc:creator" mode="collection_citation_info_metadata_contributor"/>
+                    
+                <xsl:apply-templates select="dc:publisher" mode="collection_citation_info_metadata_publisher"/>
+                
+                <xsl:apply-templates select="dct:available" mode="collection_citation_info_metadata_date"/>
+ 
+                 
+            </citationMetadata>
+        </citationInfo>
+    </xsl:template>
+    
+    <xsl:template match="dc:publisher" mode="collection_citation_info_metadata_publisher">
+        <publisher>
+            <xsl:value-of select="fn:normalize-space(.)"/>
+        </publisher>
+    </xsl:template>
+        
+    <xsl:template match="dct:available" mode="collection_citation_info_metadata_date">
+        <date type="available">
+            <xsl:value-of select="fn:normalize-space(.)"/>
+        </date>
+    </xsl:template>
+    
+   
+    <date type="date">1999</date>
+    
+    <xsl:template match="dc:creator" mode="collection_citation_info_metadata_contributor">
+        <xsl:variable name="rawName" select="normalize-space(replace(., ';.*', ''))"/>
+        
+        <contributor>
+            <namePart type="family"><xsl:value-of select="$rawName"/></namePart>
+            <!-- Commenting out the following because we have organisations with commas sometimes so need to do this another way
+             <xsl:choose>
+                 <xsl:when test="contains($rawName, ',')">
+                     <namePart type="family"><xsl:value-of select="normalize-space(substring-before($rawName, ','))"/></namePart>
+                     <namePart type="given"><xsl:value-of select="normalize-space(substring-after($rawName, ','))"/></namePart>
+                 </xsl:when>
+                 
+                 <xsl:when test="contains($rawName, ' ')">
+                     <namePart type="given"><xsl:value-of select="replace($rawName, '^(.*)\s+.*$', '$1')"/></namePart>
+                     <namePart type="family"><xsl:value-of select="replace($rawName, '^.*\s+(.*)$', '$1')"/></namePart>
+                 </xsl:when>
+                 
+                 <xsl:otherwise>
+                     <namePart type="family"><xsl:value-of select="$rawName"/></namePart>
+                 </xsl:otherwise>
+             </xsl:choose>
+             -->
+        </contributor>
+    </xsl:template>
+    
+  
+    
+    <xsl:template match="dc:source | dct:bibliographicCitation" mode="collection_citation_info">
         <citationInfo>
            <fullCitation>
                 <xsl:value-of select="normalize-space(.)"/>
