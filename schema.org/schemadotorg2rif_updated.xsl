@@ -984,7 +984,7 @@
                         <xsl:when test="type = 'Organization'">
                              <xsl:text>party</xsl:text>
                         </xsl:when>
-                        <xsl:when test="(type = 'ResearchProject') or contains(identifier, 'raid.org')">">
+                        <xsl:when test="(type = 'ResearchProject') or contains(identifier, 'raid.org')">
                             <xsl:text>activity</xsl:text>
                         </xsl:when>
                         <xsl:when test="type = 'WebPage'">
