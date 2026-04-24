@@ -81,10 +81,10 @@
         <xsl:variable name="originatingSource">
             <xsl:choose>
                 <xsl:when test="count(mdb:identificationInfo/*[contains(lower-case(name()),'identification')]/mri:pointOfContact/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name[string-length(.) > 0]) > 0">
-                    <xsl:value-of select="distinct-values(mdb:identificationInfo/*[contains(lower-case(name()),'identification')]/mri:pointOfContact/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name[string-length(.) > 0])"/>
+                    <xsl:value-of select="normalize-space(distinct-values(mdb:identificationInfo/*[contains(lower-case(name()),'identification')]/mri:pointOfContact/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name[string-length(.) > 0])[1])"/>
                 </xsl:when>
                 <xsl:when test="count(mdb:identificationInfo/*[contains(lower-case(name()),'identification')]/mdb:contact/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name[string-length(.) > 0]) > 0">
-                    <xsl:value-of select="distinct-values(mdb:identificationInfo/*[contains(lower-case(name()),'identification')]/mdb:contact/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name[string-length(.) > 0])"/>
+                    <xsl:value-of select="normalize-space(distinct-values(mdb:identificationInfo/*[contains(lower-case(name()),'identification')]/mdb:contact/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name[string-length(.) > 0])[1])"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="$global_originatingSource"/>
@@ -266,6 +266,7 @@
             </xsl:element>
                 
         </registryObject>
+       
         
         <!--xsl:apply-templates select="mdb:identificationInfo/*[contains(lower-case(name()),'identification')]" mode="relatedRegistryObjects">
             <xsl:with-param name="originatingSource" select="$originatingSource"/>
@@ -574,7 +575,7 @@
                         <xsl:text>landingPage</xsl:text>
                     </xsl:attribute>
                     <value>
-                        <xsl:value-of select="."/>
+                        <xsl:value-of select="normalize-space(.)"/>
                     </value>
                 </electronic>
             </address>
@@ -847,6 +848,12 @@
             </xsl:choose>
         </xsl:variable>
         
+       
+        
+        <xsl:variable name="linkage">
+            <xsl:value-of select="normalize-space(cit:contactInfo/cit:CI_Contact/cit:onlineResource/cit:CI_OnlineResource/cit:linkage[string-length(.) > 0][1])"/>
+        </xsl:variable>
+        
         <xsl:choose>
             <xsl:when test="count(distinct-values(ancestor::cit:CI_Responsibility/cit:role/cit:CI_RoleCode/@codeListValue)) > 0">
                 <xsl:for-each select="distinct-values(ancestor::cit:CI_Responsibility/cit:role/cit:CI_RoleCode/@codeListValue)">
@@ -872,8 +879,21 @@
                         <xsl:otherwise>
                             <xsl:if test="string-length($name) > 0">
                                 <relatedInfo type="party">
-                                    <identifier type="local">
-                                        <xsl:value-of select="concat($global_acronym, '/', translate(normalize-space($name),' ',''))"/>
+                                    <identifier>
+                                        <xsl:choose>
+                                            <xsl:when test="string-length($linkage) > 0">
+                                                <xsl:attribute name="type">
+                                                    <xsl:text>url</xsl:text>
+                                                </xsl:attribute>
+                                                <xsl:value-of select="$linkage"/>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:attribute name="type">
+                                                    <xsl:text>local</xsl:text>
+                                                </xsl:attribute>
+                                                <xsl:value-of select="concat($global_acronym, '/', translate(normalize-space($name),' ',''))"/>
+                                            </xsl:otherwise>
+                                        </xsl:choose>
                                     </identifier>
                                     <title>
                                         <xsl:value-of select="normalize-space($name)"/>
@@ -1046,7 +1066,7 @@
             <description type="notes">
                 <xsl:text>&lt;b&gt;Credit&lt;/b&gt;</xsl:text>
                 <xsl:text>&lt;br/&gt;</xsl:text>
-                <xsl:value-of select="."/>
+                <xsl:value-of select="normalize-space(.)"/>
             </description>
         </xsl:if>
     </xsl:template>
@@ -1056,7 +1076,7 @@
             <description type="notes">
                 <xsl:text>&lt;b&gt;Purpose&lt;/b&gt;</xsl:text>
                 <xsl:text>&lt;br/&gt;</xsl:text>
-                <xsl:value-of select="."/>
+                <xsl:value-of select="normalize-space(.)"/>
             </description>
         </xsl:if>
     </xsl:template>
@@ -1314,7 +1334,7 @@
             <xsl:attribute name="type" select="'relatedInformation'"/>   
             
             <xsl:apply-templates select="." mode="relatedInfo_all">
-                <xsl:with-param name="identifierToUse" select="cit:linkage"/>
+                <xsl:with-param name="identifierToUse" select="normalize-space(cit:linkage)"/>
             </xsl:apply-templates>
             
             <relation>
@@ -1379,7 +1399,7 @@
                 <xsl:if
                     test="string-length(normalize-space(cit:name)) > 0">
                     <title>
-                        <xsl:value-of select="concat('(', cit:name, ')')"/>
+                        <xsl:value-of select="normalize-space(cit:name)"/>
                     </title>
                 </xsl:if>
             </xsl:otherwise>
@@ -1616,7 +1636,7 @@
                 </relation>
             
             <title>
-                <xsl:value-of select="concat(string-join(mri:name/cit:CI_Citation/cit:title[string-length(.) > 0], ' '), ' ', string-join(mri:metadataReference/cit:CI_Citation/cit:title[string-length(.) > 0], ' '))"/>
+                <xsl:value-of select="normalize-space(concat(string-join(mri:name/cit:CI_Citation/cit:title[string-length(.) > 0], ' '), ' ', string-join(mri:metadataReference/cit:CI_Citation/cit:title[string-length(.) > 0], ' ')))"/>
             </title>
         </relatedInfo>
     </xsl:template>
@@ -1678,7 +1698,7 @@
                         </xsl:attribute>
                     </xsl:otherwise>
                 </xsl:choose>
-                <xsl:value-of select="cit:title"/>
+                <xsl:value-of select="normalize-space(cit:title)"/>
             </licence>
         </rights>
     </xsl:template>
@@ -1725,7 +1745,7 @@
     <xsl:template match="mco:otherConstraints" mode="rightsStatement"> 
         <rights>
             <rightsStatement>
-                <xsl:value-of select="."/>
+                <xsl:value-of select="normalize-space(.)"/>
             </rightsStatement>
         </rights>
     </xsl:template>
@@ -1840,7 +1860,7 @@
                     </identifier>
              
                     <title>
-                        <xsl:value-of select="cit:title"/>
+                        <xsl:value-of select="normalize-space(cit:title)"/>
                     </title>
                     
                     <xsl:if test="$global_debugExceptions">
@@ -1902,7 +1922,7 @@
                             <xsl:for-each select="distinct-values($allContributorName_sequence)">
                                         <contributor seq="{position()}">
                                             <namePart>
-                                                <xsl:value-of select="."/>
+                                                <xsl:value-of select="normalize-space(.)"/>
                                             </namePart>
                                         </contributor>
                             </xsl:for-each>
@@ -2124,7 +2144,15 @@
         <xsl:if test="string-length(mcc:code) > 0">
             <identifier>
                <xsl:attribute name="type">
-                    <xsl:value-of select="custom:getIdentifierType(mcc:code)"/>       
+                   <xsl:choose>
+                       <xsl:when test="string-length(mcc:codeSpace) > 0">
+                           <xsl:value-of select="custom:getIdentifierType(mcc:codeSpace)"/> 
+                       </xsl:when>
+                       <xsl:otherwise>
+                           <xsl:value-of select="custom:getIdentifierType(mcc:code)"/> 
+                       </xsl:otherwise>
+                   </xsl:choose>
+                         
                 </xsl:attribute>
                 <xsl:value-of select="mcc:code"/>
             </identifier>
