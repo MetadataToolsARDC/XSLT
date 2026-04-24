@@ -505,7 +505,7 @@
     
     
     <xsl:template match="cit:linkage" mode="registryObject_identifier_metadata_URL">
-        <identifier type="uri">
+        <identifier type="url">
             <xsl:value-of select="."/>    
         </identifier>
     </xsl:template>
@@ -558,9 +558,8 @@
     
     <!-- RegistryObject - Identifier Element  -->
     <xsl:template match="cit:linkage" mode="registryObject_identifier">
-        <identifier>
-            <xsl:attribute name="type" select="custom:getIdentifierType(.)"/>
-            <xsl:value-of select="normalize-space(.)"/>
+        <identifier type="url">
+            <xsl:value-of select="fn:normalize-space(.)"/>
         </identifier>
     </xsl:template>
     
@@ -850,9 +849,7 @@
         
        
         
-        <xsl:variable name="linkage">
-            <xsl:value-of select="normalize-space(cit:contactInfo/cit:CI_Contact/cit:onlineResource/cit:CI_OnlineResource/cit:linkage[string-length(.) > 0][1])"/>
-        </xsl:variable>
+        <xsl:variable name="linkage_sequence" select="cit:contactInfo/cit:CI_Contact/cit:onlineResource/cit:CI_OnlineResource/cit:linkage[string-length(.) > 0]" as="element(cit:linkage)*"/>
         
         <xsl:choose>
             <xsl:when test="count(distinct-values(ancestor::cit:CI_Responsibility/cit:role/cit:CI_RoleCode/@codeListValue)) > 0">
@@ -879,22 +876,17 @@
                         <xsl:otherwise>
                             <xsl:if test="string-length($name) > 0">
                                 <relatedInfo type="party">
-                                    <identifier>
-                                        <xsl:choose>
-                                            <xsl:when test="string-length($linkage) > 0">
-                                                <xsl:attribute name="type">
-                                                    <xsl:text>url</xsl:text>
-                                                </xsl:attribute>
-                                                <xsl:value-of select="$linkage"/>
-                                            </xsl:when>
-                                            <xsl:otherwise>
-                                                <xsl:attribute name="type">
-                                                    <xsl:text>local</xsl:text>
-                                                </xsl:attribute>
+                                    <xsl:choose>
+                                        <xsl:when test="count($linkage_sequence) > 0">
+                                            <xsl:apply-templates select="$linkage_sequence" mode="registryObject_identifier"/>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <identifier type="local">
                                                 <xsl:value-of select="concat($global_acronym, '/', translate(normalize-space($name),' ',''))"/>
-                                            </xsl:otherwise>
-                                        </xsl:choose>
-                                    </identifier>
+                                            </identifier>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                    
                                     <title>
                                         <xsl:value-of select="normalize-space($name)"/>
                                     </title>
@@ -1047,19 +1039,23 @@
             </xsl:if>
         </description>
         
-        <relatedInfo type="reuseInformation">
-            <title>
-                <xsl:value-of select="mrl:LI_Lineage/mrl:additionalDocumentation/cit:CI_Citation/cit:title"/>
-            </title>
-            <identifier type="uri">
-                <xsl:value-of select="mrl:LI_Lineage/mrl:additionalDocumentation/cit:CI_Citation/cit:onlineResource/cit:CI_OnlineResource/cit:linkage"/>
-            </identifier>
-            <relation type="isSupplementTo"></relation>
-            <notes>
-                <xsl:value-of select="mrl:LI_Lineage/mrl:additionalDocumentation/cit:CI_Citation/cit:onlineResource/cit:CI_OnlineResource/cit:description"/>
-            </notes>
-        </relatedInfo>
+        <xsl:if test="count(mrl:LI_Lineage/mrl:additionalDocumentation/cit:CI_Citation/cit:onlineResource/cit:CI_OnlineResource/cit:linkage[string-length(.)]) > 0">
+         <relatedInfo type="reuseInformation">
+             <title>
+                 <xsl:value-of select="mrl:LI_Lineage/mrl:additionalDocumentation/cit:CI_Citation/cit:title"/>
+             </title>
+             
+             <xsl:apply-templates select="mrl:LI_Lineage/mrl:additionalDocumentation/cit:CI_Citation/cit:onlineResource/cit:CI_OnlineResource/cit:linkage" mode="registryObject_identifier"/>
+          
+             <relation type="isSupplementTo"></relation>
+             <notes>
+                 <xsl:value-of select="mrl:LI_Lineage/mrl:additionalDocumentation/cit:CI_Citation/cit:onlineResource/cit:CI_OnlineResource/cit:description"/>
+             </notes>
+         </relatedInfo>
+        </xsl:if>
     </xsl:template>
+    
+   
     
     <xsl:template match="mri:credit" mode="registryObject_description_notes">
         <xsl:if test="string-length(normalize-space(.)) > 0">
