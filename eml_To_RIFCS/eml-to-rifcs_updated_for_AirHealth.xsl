@@ -323,32 +323,48 @@
         </xsl:element>
       </xsl:element>
       
-    <xsl:apply-templates select="funding/section" mode="relatedInfo"/>
+    <xsl:apply-templates select="funding/section/para" mode="relatedInfo_funding">
+      <xsl:with-param name="title" select="title[1]"></xsl:with-param>
+    </xsl:apply-templates>
     
-    <xsl:apply-templates select="relatedProject"/>
+    <xsl:apply-templates select="funding/para[count(ulink[string-length(@url) > 0]) > 0]" mode="relatedInfo_funding"/>
+    
+    <xsl:apply-templates select="funding/para[count(ulink[string-length(@url) > 0]) = 0]" mode="description_note"/>
+    
+    <xsl:apply-templates select="description_note"/>
     
   </xsl:template>
   
+  <xsl:template match="para" mode="description_note">
+    <xsl:element name="description">
+      <xsl:attribute name="type">
+        <xsl:text>note</xsl:text>
+      </xsl:attribute>
+      <xsl:value-of select="normalize-space(.)"/>
+    </xsl:element>
+  </xsl:template>
   
-  <xsl:template match="section" mode="relatedInfo">
+  
+  <xsl:template match="para" mode="relatedInfo_funding">
+    <xsl:param name="title"/>
     
       <xsl:element name="relatedInfo">
         <xsl:attribute name="type">
-          <xsl:value-of select="title[1]"/>
+          <xsl:value-of select="$title"/>
         </xsl:attribute>
         <xsl:element name="identifier">
           <xsl:attribute name="type">
             <xsl:value-of select="'uri'"/>
           </xsl:attribute>
-          <xsl:value-of select="para[1]/ulink[1]/@url"/>
+          <xsl:value-of select="ulink[1]/@url"/>
         </xsl:element>
         <xsl:element name="relation">
           <xsl:attribute name="type">
             <xsl:choose>
-              <xsl:when test="lower-case(title) = 'publication'">
+              <xsl:when test="lower-case($title) = 'publication'">
                 <xsl:text>isCitedBy</xsl:text>
               </xsl:when>
-              <xsl:when test="lower-case(title) = 'activity'">
+              <xsl:when test="lower-case($title) = 'activity'">
                 <xsl:text>isOutputOf</xsl:text>
               </xsl:when>
               <xsl:otherwise>
@@ -359,9 +375,9 @@
         </xsl:element>
         
         <xsl:choose>
-            <xsl:when test="string-length(para[1]/value[1]) > 0">
+            <xsl:when test="string-length(value[1]) > 0">
               <xsl:element name="title">
-                <xsl:value-of select="para[1]/value[1]"/>
+                <xsl:value-of select="value[1]"/>
               </xsl:element>
             </xsl:when>
              <xsl:otherwise>
