@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0"
+    xpath-default-namespace="http://www.openarchives.org/OAI/2.0/"
     xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" 
     xmlns="http://ands.org.au/standards/rif-cs/registryObjects" 
     xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -101,6 +102,24 @@
         </rights>
     </xsl:template>
     
+    <!-- Override for CDU - map raid to related even though provided as if identifier of this record -->
+    
+    <xsl:template match="dc:identifier" mode="collection_identifier_raid">
+        <relatedInfo type="activity">
+            <identifier type="{custom:getIdentifierType(.)}">
+                <xsl:choose>
+                    <xsl:when test="starts-with(. , '10.')">
+                        <xsl:value-of select="concat('http://raid.org/', .)"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="normalize-space(.)"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </identifier>    
+            <relation type="isOutputOf"/>
+        </relatedInfo>
+    </xsl:template>
+    
     
     <xsl:template match="dc:creator | dc:contributor" mode="collection_relatedInfo">
         <relatedInfo type="party">
@@ -150,6 +169,7 @@
         </relatedInfo>
     </xsl:template>
     
+    <!-- Override for CDU -->
     
     <xsl:template match="dc:description" mode="collection_description_full">
         
@@ -162,6 +182,9 @@
                         <xsl:value-of select="normalize-space(.)"/>
                     </namePart>
                 </name>
+                <description type="brief">
+                    <xsl:value-of select="normalize-space(.)"/>
+                </description>
             </xsl:when>
             <xsl:when test="$position = 2">
                 <description type="full">
@@ -174,6 +197,9 @@
                 </description>
             </xsl:when>
             <xsl:when test="$position = 4">
+                <description type="notes">
+                    <xsl:value-of select="normalize-space(.)"/>
+                </description>
                 <rights>
                     <rightsStatement>
                         <xsl:value-of select="normalize-space(.)"/>

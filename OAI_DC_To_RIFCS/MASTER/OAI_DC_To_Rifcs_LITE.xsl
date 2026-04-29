@@ -93,6 +93,8 @@
                 
                 <xsl:apply-templates select="dc:identifier[starts-with(normalize-space(.),'10.') or (contains(.,'doi') and starts-with(normalize-space(.),'http'))]" mode="collection_location_doi"/>
                 
+                <xsl:apply-templates select="dc:identifier[(contains(.,'raid.org') and starts-with(normalize-space(.),'http'))]" mode="collection_identifier_raid"/>
+                
                 <!-- if no doi, use handle as location -->
                 <xsl:if test="count(dc:identifier[starts-with(normalize-space(.),'10.') or (contains(.,'doi') and starts-with(normalize-space(.),'http'))]) = 0">
                     <xsl:choose>
@@ -195,6 +197,19 @@
             <xsl:choose>
                 <xsl:when test="starts-with(. , '10.')">
                     <xsl:value-of select="concat('http://doi.org/', .)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="normalize-space(.)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </identifier>    
+    </xsl:template>
+    
+    <xsl:template match="dc:identifier" mode="collection_identifier_raid">
+        <identifier type="{custom:getIdentifierType(.)}">
+            <xsl:choose>
+                <xsl:when test="starts-with(. , '10.')">
+                    <xsl:value-of select="concat('http://raid.org/', .)"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="normalize-space(.)"/>
@@ -441,7 +456,9 @@
                 </xsl:choose>
 
                 <xsl:apply-templates select="dc:creator" mode="collection_citation_info_metadata_contributor"/>
-                    
+                
+                <xsl:apply-templates select="dc:title" mode="collection_citation_info_metadata_title"/>
+                
                 <xsl:apply-templates select="dc:publisher" mode="collection_citation_info_metadata_publisher"/>
                 
                 <xsl:apply-templates select="dct:available" mode="collection_citation_info_metadata_date"/>
@@ -451,11 +468,18 @@
         </citationInfo>
     </xsl:template>
     
+    <xsl:template match="dc:title" mode="collection_citation_info_metadata_title">
+        <title>
+            <xsl:value-of select="fn:normalize-space(.)"/>
+        </title>
+    </xsl:template>
+    
     <xsl:template match="dc:publisher" mode="collection_citation_info_metadata_publisher">
         <publisher>
             <xsl:value-of select="fn:normalize-space(.)"/>
         </publisher>
     </xsl:template>
+    
         
     <xsl:template match="dct:available" mode="collection_citation_info_metadata_date">
         <date type="available">
