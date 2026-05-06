@@ -201,7 +201,7 @@
                     </xsl:when>
                 </xsl:choose>
                 
-                <xsl:for-each select="[(@mdschema='dc') and (@element='contributor') and (@qualifier='author')][string-length(.) > 0]">
+                <xsl:for-each select="field[(@mdschema='dc') and (@element='contributor') and (@qualifier='author')][string-length(.) > 0]">
                     <xsl:variable name="nameValueSpaceSeparated" select="tokenize(murFunc:formatName(.), '\s')" as="xs:string*"/> 
                     <contributor seq="{position()}">
                         <xsl:choose>
@@ -223,7 +223,7 @@
                 </xsl:for-each>
                 
                 
-                <xsl:for-each select="field[@mdschema='dc']/field[@name ='contributor']/field[@name ='corporate']/field/field[@name='value'][string-length(.) > 0]">
+                <xsl:for-each select="field[(@mdschema='dc') and (@element='contributor') and (@qualifier='corporate')][string-length(.) > 0]">
                     <contributor>
                         <namePart type="family">
                             <xsl:value-of select="."/>
@@ -232,7 +232,7 @@
                 </xsl:for-each>
                 
                 
-                <xsl:for-each select="field[@mdschema='dc']/field[@name ='title'][string-length(.) > 0]">
+                <xsl:for-each select="field[(@mdschema='dc') and (@element ='title')][string-length(.) > 0]">
                     <title>
                         <xsl:value-of select="normalize-space(.)"/>
                     </title>
@@ -240,13 +240,13 @@
                     
                 <!--version>@todo</version-->
                 
-                <xsl:for-each select="field[@mdschema='dc']/field[@name ='publisher'][string-length(.) > 0]">
+                <xsl:for-each select="field[(@mdschema='dc') and (@element='publisher') and (@qualifier!='place')][string-length(.) > 0]">
                     <publisher>
                         <xsl:value-of select="normalize-space(.)"/>
                     </publisher>
                 </xsl:for-each>
                 
-                <xsl:for-each select="field[@mdschema='dc']/field[@name ='date']/field[@name ='issued'][string-length(.) > 0]">
+                <xsl:for-each select="field[(@mdschema='dc') and (@element = 'date') and (@qualifier = 'issued')][string-length(.) > 0]">
                     <date type="publicationDate">
                         <xsl:value-of select="normalize-space(.)"/>
                     </date>
@@ -595,67 +595,47 @@
              
      <xsl:template match="field" mode="party_person">
         
-         <!--xsl:for-each select="field[@mdschema='dc']/field[@name ='contributor']/field[(@name ='author') or (@name ='publisher')]"-->
+          <registryObject group="{$global_group}">
+            <key>
+                <xsl:value-of select="murFunc:formatKey(murFunc:formatName(.))"/> 
+            </key>
+            <originatingSource>
+                 <xsl:value-of select="$global_originatingSource"/>
+            </originatingSource>
             
-             <xsl:for-each select="element/field[@name='value']">
-                <xsl:variable name="name" select="normalize-space(.)"/>
-                
-                <xsl:if test="(string-length(.) > 0)">
-                
-                       <xsl:if test="string-length(normalize-space(.)) > 0">
-                         <registryObject group="{$global_group}">
-                            <key>
-                                <xsl:value-of select="murFunc:formatKey(murFunc:formatName(.))"/> 
-                            </key>
-                            <originatingSource>
-                                 <xsl:value-of select="$global_originatingSource"/>
-                            </originatingSource>
-                            
-                             <party>
-                                <xsl:attribute name="type" select="'person'"/>
-                                 
-                                 <name type="primary">
-                                     <namePart>
-                                         <xsl:value-of select="murFunc:formatName(normalize-space(.))"/>
-                                     </namePart>   
-                                 </name>
-                             </party>
-                         </registryObject>
-                       </xsl:if>
-                    </xsl:if>
-                </xsl:for-each>
-         <!--/xsl:for-each-->
-        </xsl:template>
+             <party>
+                <xsl:attribute name="type" select="'person'"/>
+                 
+                 <name type="primary">
+                     <namePart>
+                         <xsl:value-of select="murFunc:formatName(normalize-space(.))"/>
+                     </namePart>   
+                 </name>
+             </party>
+         </registryObject>
+
+    </xsl:template>
     
     <xsl:template match="field" mode="party_group">
         
-        <xsl:for-each select="field/field[@name='value']">
-            <xsl:variable name="name" select="normalize-space(.)"/>
+      <registryObject group="{$global_group}">
+         <key>
+         <xsl:value-of select="murFunc:formatKey(murFunc:formatName(.))"/> 
+            </key>
+            <originatingSource>
+                <xsl:value-of select="$global_originatingSource"/>
+            </originatingSource>
             
-            <xsl:if test="(string-length(.) > 0)">
+            <party>
+                <xsl:attribute name="type" select="'group'"/>
                 
-                <xsl:if test="string-length(normalize-space(.)) > 0">
-                    <registryObject group="{$global_group}">
-                        <key>
-                            <xsl:value-of select="murFunc:formatKey(murFunc:formatName(.))"/> 
-                        </key>
-                        <originatingSource>
-                            <xsl:value-of select="$global_originatingSource"/>
-                        </originatingSource>
-                        
-                        <party>
-                            <xsl:attribute name="type" select="'group'"/>
-                            
-                            <name type="primary">
-                                <namePart>
-                                    <xsl:value-of select="murFunc:formatName(normalize-space(.))"/>
-                                </namePart>   
-                            </name>
-                        </party>
-                    </registryObject>
-                </xsl:if>
-            </xsl:if>
-        </xsl:for-each>
+                <name type="primary">
+                    <namePart>
+                        <xsl:value-of select="murFunc:formatName(normalize-space(.))"/>
+                    </namePart>   
+                </name>
+            </party>
+        </registryObject>
     </xsl:template>
                    
     <xsl:function name="murFunc:formatName">
