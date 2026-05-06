@@ -4,7 +4,7 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-    <xsl:import href="DSPACE_To_Rifcs.xsl"/>
+    <xsl:import href="DSPACE_DIM_To_Rifcs.xsl"/>
     
     <xsl:param name="global_originatingSource" select="'University of New England'"/>
     <xsl:param name="global_group" select="'University of New England, Australia'"/>
