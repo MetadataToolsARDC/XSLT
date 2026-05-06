@@ -44,11 +44,12 @@
                 <xsl:with-param name="oai_identifier" select="$oai_identifier"/>
             </xsl:apply-templates>
             <!--  xsl:apply-templates select="oai:metadata/metadata/dc:funding" mode="funding_party"/-->
-            <xsl:apply-templates select="oai:metadata/dim/field[@mdschema='dc']/field[@name ='contributor']/field[(@name ='author') or (@name ='publisher')]" mode="party_person"/> 
-            <xsl:apply-templates select="oai:metadata/dim/field[@name ='local']/field[@name ='datasetcontact']/field[@name ='name']" mode="party_person"/> 
-            <xsl:apply-templates select="oai:metadata/dim/field[@name ='local']/field[@name ='datasetcustodian']/field[@name ='name']" mode="party_person"/> 
+            <xsl:apply-templates select="oai:metadata/dim/field[(@mdschema='dc') and (@element='contributor') and (@qualifier='author')]" mode="party_person"/> 
+            <xsl:apply-templates select="oai:metadata/dim/field[(@mdschema='dc') and (@element='publisher') and (@qualifier!='place')]" mode="party_person"/> 
+            <xsl:apply-templates select="oai:metadata/dim/field[(@mdschema='local') and (@element='datasetcontact') and (@qualifier='name')]" mode="party_person"/> 
+            <xsl:apply-templates select="oai:metadata/dim/field[(@mdschema='local') and (@element='datasetcustodian') and (@qualifier='name')]" mode="party_person"/> 
             
-            <xsl:apply-templates select="oai:metadata/dim/field[@mdschema='dc']/field[@name ='contributor']/field[@name ='corporate']" mode="party_group"/> 
+            <xsl:apply-templates select="oai:metadata/dim/field[(@mdschema='dc') and (@element='contributor') and (@qualifier='corporate')]" mode="party_group"/> 
         </xsl:if>
     </xsl:template>
     
@@ -71,7 +72,7 @@
                 
                 <xsl:attribute name="type">
                     <xsl:choose>
-                        <xsl:when test="boolean(custom:sequenceContains(field[@mdschema='dc']/field[@name ='type'], 'dataset')) = true()">
+                        <xsl:when test="contains(field[(@mdschema='dc') and (@element='type')], 'dataset')">
                             <xsl:value-of select="'dataset'"/>
                         </xsl:when>
                         <xsl:otherwise>
@@ -121,17 +122,17 @@
                 
                 <!-- xsl:apply-templates select="dc:identifier.orcid" mode="collection_relatedInfo"/ -->
                 
-                <xsl:apply-templates select="field[(@mdschema='local') and (@element='search') and (@qualifier='author')][string-length(.) > 0]" mode="collection_relatedObject"/>
-                
-                <xsl:apply-templates select="field[(@mdschema='local') and (@element='datasetcontact') and (@qualifier='name')][string-length(.) > 0]" mode="collection_relatedObject_isOwnedBy"/>
+               <xsl:apply-templates select="field[(@mdschema='local') and (@element='datasetcontact') and (@qualifier='name')][string-length(.) > 0]" mode="collection_relatedObject_isOwnedBy"/>
                 
                 <!--xsl:apply-templates select="field[(@mdschema='local') and (@element='datasetcontact') and (@qualifier='email')][string-length(.) > 0]" mode="collection_contact_email"/-->
                 
                 <xsl:apply-templates select="field[(@mdschema='local') and (@element='datasetcustodian') and (@qualifier='name')][string-length(.) > 0]" mode="collection_relatedObject_isManagedBy"/>
                 
                 <xsl:apply-templates select="field[(@mdschema='dc') and (@element='contributor') and (@qualifier='author')][string-length(.) > 0]" mode="collection_relatedObject"/> 
+                
+                <xsl:apply-templates select="field[(@mdschema='dc') and (@element='contributor') and (@qualifier='corporate')][string-length(.) > 0]" mode="collection_relatedObject"/> 
                
-                <xsl:apply-templates select="field[(@mdschema='dc') and (@element='publisher') and (@qualifier='author')][string-length(.) > 0]" mode="collection_relatedObject"/>
+                <xsl:apply-templates select="field[(@mdschema='dc') and (@element='publisher') and (@qualifier!='place')][string-length(.) > 0]" mode="collection_relatedObject"/>
                 
                 <xsl:apply-templates select="field[(@mdschema='dc') and (@element='subject') and (@qualifier='keywords')][string-length(.) > 0]" mode="collection_subject"/>
                 
@@ -163,7 +164,7 @@
                 
                 
                
-                <xsl:apply-templates select="field[@mdschema='dc']/field[@name ='coverage']/field[@name ='temporal'][string-length(.) > 0]" mode="collection_dates_coverage"/>
+                <xsl:apply-templates select="field[(@mdschema='dc') and (@element='coverage') and (@qualifier='temporal')][string-length(.) > 0]" mode="collection_coverage_temporal"/>
                 
                 <xsl:apply-templates select="." mode="collection_citation_information"/>
                 
@@ -177,22 +178,22 @@
         <citationInfo>
             <citationMetadata>
                 <xsl:choose>
-                    <xsl:when test="count(field[@mdschema='dc']/field[@name ='identifier']/field[@name='doi'][string-length(.) > 0]) > 0">
-                        <xsl:for-each select="field[@mdschema='dc']/field[@name ='identifier']/field[@name='doi'][string-length(.) > 0]">
+                    <xsl:when test="count(field[(@mdschema='dc') and (@element = 'identifier') and (@qualifier = 'doi')][string-length(.) > 0]) > 0">
+                        <xsl:for-each select="field[(@mdschema='dc') and (@element = 'identifier') and (@qualifier = 'doi')][string-length(.) > 0]">
                             <identifier type="doi">
                                 <xsl:value-of select="normalize-space(.)"/>
                             </identifier>
                         </xsl:for-each>
                     </xsl:when>
-                    <xsl:when test="count(field[@mdschema='dc']/field[@name ='identifier']/field[@name='uri'][string-length(.) > 0]) > 0">
-                        <xsl:for-each select="field[@mdschema='dc']/field[@name ='identifier']/field[@name='uri'][string-length(.) > 0]">
+                    <xsl:when test="count(field[(@mdschema='dc') and (@element = 'identifier') and (@qualifier = 'uri')][string-length(.) > 0]) > 0">
+                        <xsl:for-each select="field[(@mdschema='dc') and (@element = 'identifier') and (@qualifier = 'uri')][string-length(.) > 0]">
                             <identifier type="uri">
                                 <xsl:value-of select="normalize-space(.)"/>
                             </identifier>
                         </xsl:for-each>
                     </xsl:when>
-                    <xsl:when test="count(field[@name ='local']/field[@name ='identifier']/field[@name='unepublicationid'][string-length(.) > 0]) > 0">
-                        <xsl:for-each select="field[@name ='local']/field[@name ='identifier']/field[@name='unepublicationid'][string-length(.) > 0]">
+                    <xsl:when test="count(field[(@mdschema='local') and (@element = 'identifier') and (@qualifier = 'unepublicationid')][string-length(.) > 0]) > 0">
+                        <xsl:for-each select="field[(@mdschema='local') and (@element = 'identifier') and (@qualifier = 'unepublicationid')][string-length(.) > 0]">
                             <identifier type="local">
                                 <xsl:value-of select="normalize-space(.)"/>
                             </identifier>
@@ -200,7 +201,7 @@
                     </xsl:when>
                 </xsl:choose>
                 
-                <xsl:for-each select="field[@mdschema='dc']/field[@name ='contributor']/field[@name ='author']/field/field[@name='value'][string-length(.) > 0]">
+                <xsl:for-each select="[(@mdschema='dc') and (@element='contributor') and (@qualifier='author')][string-length(.) > 0]">
                     <xsl:variable name="nameValueSpaceSeparated" select="tokenize(murFunc:formatName(.), '\s')" as="xs:string*"/> 
                     <contributor seq="{position()}">
                         <xsl:choose>
@@ -437,7 +438,7 @@
         </relatedObject>
     </xsl:template>
     
-    <xsl:template match="field[@qualifier ='author']" mode="collection_relatedObject">
+    <xsl:template match="field[(@element='contributor') and (@qualifier='author')]" mode="collection_relatedObject">
         <relatedObject>
             <key>
                 <xsl:value-of select="murFunc:formatKey(murFunc:formatName(.))"/> 
@@ -446,7 +447,16 @@
         </relatedObject>
     </xsl:template>
     
-    <xsl:template match="field[@qualifier ='publisher']" mode="collection_relatedObject">
+    <xsl:template match="field[(@element='contributor') and (@qualifier='corporate')]" mode="collection_relatedObject">
+        <relatedObject>
+            <key>
+                <xsl:value-of select="murFunc:formatKey(murFunc:formatName(.))"/> 
+            </key>
+            <relation type="hasAssociationWith"/>
+        </relatedObject>
+    </xsl:template>
+    
+    <xsl:template match="field[(@element='publisher') and (@qualifier!='place')]" mode="collection_relatedObject">
         <relatedObject>
             <key>
                 <xsl:value-of select="murFunc:formatKey(murFunc:formatName(.))"/> 
@@ -565,7 +575,7 @@
     
     
     
-    <xsl:template match="field[@name ='temporal']" mode="collection_dates_coverage">
+    <xsl:template match="field[@name ='temporal']" mode="collection_coverage_temporal">
         <coverage>
             <temporal>
                 <text>
