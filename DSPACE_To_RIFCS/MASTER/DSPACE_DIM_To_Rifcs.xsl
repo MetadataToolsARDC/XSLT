@@ -142,6 +142,8 @@
                 
                 <xsl:apply-templates select="field[(@mdschema='dc') and (@element='coverage') and (@qualifier='spatial')][string-length(.) > 0]" mode="collection_spatial_coverage"/>
                 
+                <xsl:apply-templates select="field[(@mdschema='dc') and (@element='coverage') and (@qualifier='place')][string-length(.) > 0]" mode="collection_spatial_coverage"/>
+                
                 <xsl:apply-templates select="field[(@mdschema='dc') and (@element='rights')][string-length(.) > 0]" mode="collection_rights"/>
                 
                 <xsl:apply-templates select="field[(@mdschema='dcterms') and (@element='accessRights')][string-length(.) > 0]" mode="collection_accessRights"/>
@@ -466,7 +468,7 @@
     </xsl:template>
     
     <xsl:template match="field[@qualifier='keywords']" mode="collection_subject">
-        <subject>
+        <subject type="local">
             <xsl:value-of select="normalize-space(.)"/>
         </subject>
     </xsl:template>
@@ -491,18 +493,21 @@
                           <xsl:value-of select='normalize-space(.)'/>   
                       </spatial>
                   </xsl:when>
-                  <xsl:when test="contains(lower-case(.), 'point') or contains(lower-case(.), 'polygon')">
+                  <xsl:otherwise>
                       <spatial type="gmlKmlPolyCoords">
                           <xsl:value-of select="normalize-space(.)"/>     
-                      </spatial>
-                  </xsl:when>
-                  <xsl:otherwise>
-                      <spatial type="text">
-                          <xsl:value-of select='normalize-space(.)'/>  
                       </spatial>
                   </xsl:otherwise>
               </xsl:choose>
           </coverage>
+    </xsl:template>
+    
+    <xsl:template match="field[@qualifier ='place']" mode="collection_spatial_coverage">
+        <coverage>
+         <spatial type="text">
+                <xsl:value-of select='normalize-space(.)'/>  
+          </spatial>
+        </coverage>
     </xsl:template>
     
     <xsl:template match="field[(@element='rights') or (@element='RightsStatement')]" mode="collection_rights">
@@ -548,7 +553,7 @@
         </description>
     </xsl:template>
     
-    <xsl:template match="field[@name ='description']" mode="collection_description_full">
+    <xsl:template match="field[@element ='description']" mode="collection_description_full">
         <description type="full">
             <xsl:value-of select="normalize-space(.)"/>
         </description>
@@ -575,7 +580,7 @@
     
     
     
-    <xsl:template match="field[@name ='temporal']" mode="collection_coverage_temporal">
+    <xsl:template match="field[(@element ='coverage') and  (@qualifier='temporal')]" mode="collection_coverage_temporal">
         <coverage>
             <temporal>
                 <text>
