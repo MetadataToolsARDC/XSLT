@@ -547,7 +547,7 @@
  
    
     
-    <xsl:template match="field[@name ='title']" mode="collection_description_brief">
+    <xsl:template match="field[@element ='title']" mode="collection_description_brief">
         <description type="brief">
             <xsl:value-of select="normalize-space(.)"/>
         </description>
