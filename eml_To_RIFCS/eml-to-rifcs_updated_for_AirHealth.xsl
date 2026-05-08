@@ -5,8 +5,7 @@
                 xmlns:local="http://local/function" 
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                xmlns:date="http://exslt.org/dates-and-times"
-                xmlns:exslt="http://exslt.org/common">
+                xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0">
 
   <!-- the registry object group -->
   <xsl:param name="global_group" select="'Centre for Safe Air'"/>
@@ -29,7 +28,7 @@
            use="concat(individualName, organizationName, positionName, address, phone, electronicMailAddress)"/>
   
   <!--dynamically match the root eml element based on the eml namespace that contains the version-->
-  <xsl:template match="/*[local-name()='eml' and namespace-uri()=$global_emlNamespace]">
+  <xsl:template match="eml:eml">
     <!--<xsl:variable name="packageId" select="@packageId"/> -->
     <!--xsl:variable name="docid" select="concat(substring-before(string(@packageId),'.'),'.',substring-before(substring-after(string(@packageId),'.'),'.'))" /-->
     <!--xsl:variable name="revid" select="substring-after(string(@packageId), concat($docid, '.'))" /-->
@@ -323,11 +322,16 @@
         </xsl:element>
       </xsl:element>
       
-    <xsl:apply-templates select="funding/section/para" mode="relatedInfo_funding">
+    <xsl:apply-templates select="funding/section/para[count(ulink[string-length(@url) > 0]) > 0]" mode="relatedInfo_funding">
       <xsl:with-param name="title" select="title[1]"></xsl:with-param>
     </xsl:apply-templates>
     
     <xsl:apply-templates select="funding/para[count(ulink[string-length(@url) > 0]) > 0]" mode="relatedInfo_funding"/>
+    
+    
+    <xsl:apply-templates select="funding/section/para[count(ulink[string-length(@url) > 0]) = 0]" mode="description_note">
+      <xsl:with-param name="title" select="title[1]"></xsl:with-param>
+    </xsl:apply-templates>
     
     <xsl:apply-templates select="funding/para[count(ulink[string-length(@url) > 0]) = 0]" mode="description_note"/>
     
@@ -948,22 +952,23 @@
   
   <xsl:template name="relationAssociatedParty">
     <xsl:element name="relation">
-      <xsl:attribute name="type">hasAssociationWith</xsl:attribute>
-      <xsl:element name="description"><xsl:value-of select="role" /></xsl:element>
+      <xsl:attribute name="type">
+        <xsl:value-of select="role"/>
+      </xsl:attribute>
     </xsl:element>
   </xsl:template>
 
   <xsl:template match="creator" mode="relationCollection">
-    <xsl:element name="relation"><xsl:attribute name="type">isOwnedBy</xsl:attribute></xsl:element>
+    <xsl:element name="relation"><xsl:attribute name="type">hasCollector</xsl:attribute></xsl:element>
   </xsl:template>
   <xsl:template match="creator" mode="relationParty">
-    <xsl:element name="relation"><xsl:attribute name="type">isOwnerOf</xsl:attribute></xsl:element>
+    <xsl:element name="relation"><xsl:attribute name="type">hasCollector</xsl:attribute></xsl:element>
   </xsl:template>
   <xsl:template match="contact" mode="relationCollection">
-    <xsl:element name="relation"><xsl:attribute name="type">isManagedBy</xsl:attribute></xsl:element>
+    <xsl:element name="relation"><xsl:attribute name="type">hasAssociationWith</xsl:attribute></xsl:element>
   </xsl:template>
   <xsl:template match="contact" mode="relationParty">
-    <xsl:element name="relation"><xsl:attribute name="type">isManagerOf</xsl:attribute></xsl:element>
+    <xsl:element name="relation"><xsl:attribute name="type">hasAssociationWith</xsl:attribute></xsl:element>
   </xsl:template>
   <xsl:template match="associatedParty" mode="relationCollection">
     <xsl:call-template name="relationAssociatedParty"/>
@@ -972,10 +977,10 @@
     <xsl:call-template name="relationAssociatedParty"/>
   </xsl:template>
   <xsl:template match="publisher|metadataProvider|associatedParty[role='Publisher']|associatedParty[role='Metadata Provider']" mode="relationCollection">
-    <xsl:element name="relation"><xsl:attribute name="type">hasCollector</xsl:attribute></xsl:element>
+    <xsl:element name="relation"><xsl:attribute name="type">isManagedBy</xsl:attribute></xsl:element>
   </xsl:template>
   <xsl:template match="publisher|metadataProvider|associatedParty[role='Publisher']|associatedParty[role='Metadata Provider']" mode="relationParty">
-    <xsl:element name="relation"><xsl:attribute name="type">isCollectorOf</xsl:attribute></xsl:element>
+    <xsl:element name="relation"><xsl:attribute name="type">isManagedBy</xsl:attribute></xsl:element>
   </xsl:template>
   <xsl:template match="associatedParty[role='Principal Investigator']" mode="relationCollection">
     <xsl:element name="relation"><xsl:attribute name="type">hasPrincipalInvestigator</xsl:attribute></xsl:element>
