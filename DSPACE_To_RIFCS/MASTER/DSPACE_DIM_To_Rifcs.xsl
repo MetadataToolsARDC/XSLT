@@ -384,11 +384,29 @@
     </xsl:template>
     
     <xsl:template match="field" mode="collection_relatedInfo_url">
-        <relatedInfo type='relatedInformation'>
+        <relatedInfo>
+            <xsl:choose>
+                <xsl:when test="contains(., 'raid.org')">
+                    <xsl:attribute name="type">
+                     <xsl:text>activity</xsl:text>
+                    </xsl:attribute>
+                </xsl:when>
+            </xsl:choose>
             <identifier type="url">
                 <xsl:value-of select="normalize-space(.)"/>
             </identifier>
-            <relation type="hasAssociationWith"/>
+            <relation>
+                <xsl:attribute name="type">
+                    <xsl:choose>
+                        <xsl:when test="contains(., 'raid.org')">
+                            <xsl:text>isOutputOf</xsl:text>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:text>hasAssociationWith</xsl:text>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:attribute>
+            </relation>
         </relatedInfo>
     </xsl:template>
     
