@@ -89,7 +89,9 @@
                 
                 <xsl:apply-templates select="field[(@mdschema='dc') and (@element = 'date') and (@qualifier = 'deposit')][string-length(.) > 0]" mode="collection_date_deposit"/>
                 
-                <xsl:apply-templates select="field[(@mdschema='dc') and (@element = 'relation') and (@qualifier = 'uri')][string-length(.) > 0]" mode="collection_relatedInfo_uri"/>
+                <xsl:apply-templates select="field[(@mdschema='local') and (@element = 'relation') and (@qualifier = 'uri')][string-length(.) > 0]" mode="collection_relatedInfo_uri"/>
+                
+                <xsl:apply-templates select="field[(@mdschema='local') and (@element = 'relation') and (@qualifier = 'url')][string-length(.) > 0]" mode="collection_relatedInfo_url"/>
                 
                 <!--xsl:apply-templates select="field[@mdschema='dcterms']/field[@name ='relation']/field[@name ='none']" mode="collection_relatedInfo_none"/-->
                 
@@ -380,6 +382,16 @@
             <relation type="hasAssociationWith"/>
        </relatedInfo>
     </xsl:template>
+    
+    <xsl:template match="field" mode="collection_relatedInfo_url">
+        <relatedInfo type='relatedInformation'>
+            <identifier type="url">
+                <xsl:value-of select="normalize-space(.)"/>
+            </identifier>
+            <relation type="hasAssociationWith"/>
+        </relatedInfo>
+    </xsl:template>
+    
     
     <xsl:template match="field[@name='none']" mode="collection_relatedInfo_none">
         <xsl:for-each select="field[@name='value']">
