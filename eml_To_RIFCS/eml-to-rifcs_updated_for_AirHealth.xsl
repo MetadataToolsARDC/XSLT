@@ -23,9 +23,15 @@
 
   <xsl:strip-space elements="*" />
   
+  
+  <xsl:template match="/">
+    <xsl:apply-templates select="//eml:eml"/>
+  </xsl:template>
+  
   <!--key for selecting a nodeset of identical parties based on the details-->
-  <xsl:key name="keyPartyUnique" match="creator|associatedParty|metadataProvider|contact" 
-           use="concat(individualName, organizationName, positionName, address, phone, electronicMailAddress)"/>
+  <!--xsl:key name="keyPartyUnique" match="creator|associatedParty|metadataProvider|contact" 
+    use="concat(individualName, organizationName, positionName, address, phone, electronicMailAddress)"/-->
+  
   
   <!--dynamically match the root eml element based on the eml namespace that contains the version-->
   <xsl:template match="eml:eml">
@@ -93,7 +99,7 @@
     <xsl:param name="originatingSource"/>
     
     
-    <xsl:variable name="doi_sequence" select="alternateIdentifier[(contains(@system,'doi')) and (string-length(text()) > 0)]"/>
+    <xsl:variable name="doi_sequence" select="alternateIdentifier[(contains(@system,'doi')) and (string-length(.) > 0)]"/>
     
     <xsl:element name="registryObject">
       <xsl:attribute name="group"><xsl:value-of select="$global_group" /></xsl:attribute>
@@ -162,8 +168,7 @@
         </xsl:element>
 
         <!--generate relationships to parties, implied by name of element -->
-        <xsl:apply-templates select="(creator|associatedParty|metadataProvider|contact)[generate-id()=generate-id(key('keyPartyUnique', concat(individualName, organizationName, positionName, address, phone, electronicMailAddress))[1])]"
-                             mode="relatedObject"/>
+        <xsl:apply-templates select="creator | associatedParty | metadataProvider | contact" mode="relatedObject" />
 
         <xsl:apply-templates select="keywordSet" />
         <xsl:apply-templates select="abstract" />
@@ -208,19 +213,19 @@
           </xsl:element>
         </xsl:if>
         
-        <xsl:variable name="datasetId" select="@id" as="xs:string"/>
+        <xsl:variable name="datasetId" select="@id" as="xs:string?"/>
         
         <!-- If suggested citation, use it -->
         <xsl:element name="citationInfo">
           
-          <xsl:message select="concat('Result: ', count(following-sibling::additionalMetadata[(metadata/citeAs[string-length(text()) > 0]) and (describes = $datasetId)]) > 0)"></xsl:message>
+          <xsl:message select="concat('Result: ', count(following-sibling::additionalMetadata[(metadata/citeAs[string-length(.) > 0]) and (describes = $datasetId)]) > 0)"></xsl:message>
           
           <xsl:choose>
           
           
-            <!--xsl:when test="count(following-sibling::additionalMetadata[(metadata/citeAs[string-length(text()) > 0] and (describes = @id))]) > 0"-->
-            <xsl:when test="count(following-sibling::additionalMetadata[(metadata/citeAs[string-length(text()) > 0]) and (describes = $datasetId)]) > 0">
-              <xsl:for-each select="following-sibling::additionalMetadata[(metadata/citeAs[string-length(text()) > 0]) and (describes = $datasetId)]">
+            <!--xsl:when test="count(following-sibling::additionalMetadata[(metadata/citeAs[string-length(.) > 0] and (describes = @id))]) > 0"-->
+            <xsl:when test="count(following-sibling::additionalMetadata[(metadata/citeAs[string-length(.) > 0]) and (describes = $datasetId)]) > 0">
+              <xsl:for-each select="following-sibling::additionalMetadata[(metadata/citeAs[string-length(.) > 0]) and (describes = $datasetId)]">
                 <xsl:for-each select="metadata/citeAs">
                   <xsl:element name="fullCitation">
                     <xsl:value-of select="."/>
@@ -307,6 +312,18 @@
       </xsl:otherwise>
     </xsl:choose>
   </xsl:function>
+  
+  <xsl:template match="funding">
+    <xsl:param name="relation"/>
+    
+    <xsl:element name="relatedObject">
+      <xsl:element name="relation">
+        <xsl:attribute name="type">
+          <xsl:value-of select="$relation"/>
+        </xsl:attribute>
+      </xsl:element>
+    </xsl:element>
+  </xsl:template>
   
   <xsl:template match="project">
     
@@ -443,8 +460,9 @@
       <xsl:element name="key">
         <xsl:call-template name="partyKey"/>
       </xsl:element>
-
-      <xsl:apply-templates select="key('keyPartyUnique', concat(individualName, organizationName, positionName, address, phone, electronicMailAddress))" mode="relationCollection" />
+      
+      <xsl:apply-templates select="." mode="relationCollection" />
+      
       <xsl:apply-templates select="../*[references = current()/@id]" mode="relationCollection"/>
     </xsl:element>
   </xsl:template>
@@ -563,8 +581,8 @@
             <xsl:element name="relation">
               <xsl:attribute name="type">
                 <xsl:choose>
-                  <xsl:when test="ancestor::personnel/role[string-length(text()) > 0]">
-                    <xsl:value-of select="ancestor::personnel/role"/>
+                  <xsl:when test="../role[string-length(.) > 0]">
+                    <xsl:value-of select="../role"/>
                   </xsl:when>
                   <xsl:otherwise>
                     <xsl:text>hasAssociationWith</xsl:text>
@@ -573,7 +591,7 @@
               </xsl:attribute>
             </xsl:element>
             <xsl:element name="title">
-              <xsl:value-of select="ancestor::personnel/organizationName"/>
+              <xsl:value-of select="../organizationName"/>
             </xsl:element>
           </xsl:element>
         </xsl:for-each>
@@ -957,6 +975,10 @@
       </xsl:attribute>
     </xsl:element>
   </xsl:template>
+  
+  <xsl:template match="additionalInfo/section" mode="relatedInfo">
+  </xsl:template>
+  
 
   <xsl:template match="creator" mode="relationCollection">
     <xsl:element name="relation"><xsl:attribute name="type">hasCollector</xsl:attribute></xsl:element>
