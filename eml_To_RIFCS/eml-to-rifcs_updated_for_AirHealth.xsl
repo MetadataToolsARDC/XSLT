@@ -25,7 +25,9 @@
   
   
   <xsl:template match="/">
-    <xsl:apply-templates select="//eml:eml"/>
+    <xsl:element name="registryObjects">
+      <xsl:apply-templates select="//eml:eml"/>
+    </xsl:element>
   </xsl:template>
   
   <!--key for selecting a nodeset of identical parties based on the details-->
@@ -42,12 +44,11 @@
     <xsl:variable name="docid" select="@packageId" />
     <xsl:variable name="revid" select="''"/> <!-- TODO: obtain revid from somewhere if required -->
     
-    <xsl:element name="registryObjects">
+    
       <xsl:apply-templates select="dataset">
         <xsl:with-param name="docid" select="$docid" />
         <xsl:with-param name="revid" select="$revid" />
       </xsl:apply-templates>
-    </xsl:element>
   </xsl:template>
   
   <xsl:template match="dataset">
@@ -313,17 +314,17 @@
     </xsl:choose>
   </xsl:function>
   
-  <xsl:template match="funding">
+  <!--xsl:template match="funding">
     <xsl:param name="relation"/>
     
-    <xsl:element name="relatedObject">
+    <xsl:element name="relatedInfo">
       <xsl:element name="relation">
         <xsl:attribute name="type">
           <xsl:value-of select="$relation"/>
         </xsl:attribute>
       </xsl:element>
     </xsl:element>
-  </xsl:template>
+  </xsl:template-->
   
   <xsl:template match="project">
     
@@ -555,17 +556,15 @@
           <xsl:text>project</xsl:text>
         </xsl:attribute>
         
-        <xsl:if test="string-length(title) > 0">
-          <xsl:apply-templates select="title" mode="activity_registryobject_name"/>
-        </xsl:if>
+        <xsl:apply-templates select="title[string-length(.) > 0]" mode="activity_registryobject_name"/>
         
-        <xsl:if test="string-length(abstract) > 0">
-          <xsl:apply-templates select="abstract" mode="activity_registryobject_description"/>
-        </xsl:if>
+        <xsl:apply-templates select="abstract[string-length(.) > 0]" mode="activity_registryobject_description"/>
         
-        <xsl:apply-templates select="funding">
-          <xsl:with-param name="relation" select="'isFundedBy'"/>
+        <xsl:apply-templates select="funding/section/para[count(ulink[string-length(@url) > 0]) > 0]" mode="relatedInfo_funding">
+          <xsl:with-param name="title" select="title[1]"></xsl:with-param>
         </xsl:apply-templates>
+        
+        <xsl:apply-templates select="funding/para[count(ulink[string-length(@url) > 0]) > 0]" mode="relatedInfo_funding"/>
         
         <xsl:for-each select="personnel/userId">
           <xsl:element name="relatedInfo">
