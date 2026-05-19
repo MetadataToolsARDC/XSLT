@@ -76,6 +76,7 @@
                     <xsl:for-each select="$batch">
                         <xsl:variable name="relative_path" select="concat($global_folder, .)"/>
                         <xsl:variable name="full_url" select="resolve-uri($relative_path, $global_base_url)"/>
+                        <!-- For example https://transfer.data.aad.gov.au/aadc-metadata/iso-19115-1/AAS_4100_MI_marine_Cu_multiple_stressor-iso-19115-1.xml -->
                         <xsl:message select="concat('Getting metadata from url: ', $full_url)"/>
                         
                         <xsl:try>
