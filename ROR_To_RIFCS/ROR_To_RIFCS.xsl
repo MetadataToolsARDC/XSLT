@@ -90,7 +90,7 @@
             
             <xsl:apply-templates select="id[string-length(.) > 0]" mode="identifier"/>
             
-            <xsl:apply-templates select="external_ids" mode="identifier"/>
+            <xsl:apply-templates select="external_ids[preferred != 'null']" mode="identifier"/>
             
             <xsl:apply-templates select="names[count(types[contains(., 'ror_display')]) > 0]"/>
             
@@ -198,7 +198,7 @@
         </subject>
     </xsl:template>
     
-    <xsl:template match="locations" mode="coverage">
+    <xsl:template match="locations" mode="location">
         <xsl:apply-templates select="geonames_details"/>
         <xsl:apply-templates select="geonames_id"/>
     </xsl:template>
@@ -224,11 +224,11 @@
     </xsl:template>
     
     <xsl:template match="country_name | country_subdivision_name | continent_name | name">
-        <coverage>
+        <location>
             <spatial type="text">
                 <xsl:apply-templates select="text()"/>
             </spatial>
-        </coverage>
+        </location>
     </xsl:template>
 
 
@@ -237,11 +237,11 @@
         <xsl:param name="lat"/>
         
         <xsl:if test="(string-length($lon) > 0) and (string-length($lat) > 0)">
-            <coverage>
+            <location>
                 <spatial type="kmlPolyCoords">
                     <xsl:value-of select="concat($lon, ',', $lat)"/>
                 </spatial>
-            </coverage>
+            </location>
         </xsl:if>
     </xsl:template>
     
@@ -252,11 +252,11 @@
             and (string-length(maxlatitude) > 0)
             and (string-length(minlatitude) > 0)">
             
-            <coverage>
+            <location>
                 <spatial type="iso19139dcmiBox">
                     <xsl:value-of select="concat('northlimit=',maxlatitude,'; southlimit=-',minlatitude,'; westlimit=',minlongitude,'; eastLimit=', maxlongitude,';')"/>
                 </spatial> 
-            </coverage>
+            </location>
             
         </xsl:if>
     </xsl:template>
