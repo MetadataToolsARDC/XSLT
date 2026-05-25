@@ -1,0 +1,2223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd">
+   <registryObject group="Australian Antarctic Division">
+      <key>AADC/246d9d19-e854-4a50-bbdd-102d33eccc38</key>
+      <originatingSource>AU/AADC &gt; Australian Antarctic Data Centre, Australia</originatingSource>
+      <collection type="dataset" dateAccessioned="2003-06-23T00:00:00&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;">
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/eds/1119/download</identifier>
+            <title>Download point for the data - images and field data (GET DATA &gt; DIRECT DOWNLOAD)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://projects.aad.gov.au/search_projects_results.cfm?project_no=1071</identifier>
+            <title>Public information for ASAC project 1071 (PROJECT HOME PAGE)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/metadata/citation.cfm?entry_id=1071_PCMEGA</identifier>
+            <title>Citation reference for this metadata record and dataset (VIEW RELATED INFORMATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <identifier type="global">1071_PCMEGA</identifier>
+         <location>
+            <address>
+               <electronic type="url" target="landingPage">
+                  <value>http://data.aad.gov.au/metadata/1071_PCMEGA</value>
+               </electronic>
+            </address>
+         </location>
+         <description type="lineage">Progress Code: completed</description>
+         <description type="lineage">Statement: Cosmogenic Exposure Age samples were collected from glacial erratics and glacially eroded bedrock. Small, glacially rounded and striated samples on stable bedrock sites with little shielding were favoured. Where it occurred, shielding was constrained using a sighting clinometer ( 1 degree) and compass ( 2 degrees) at each break in slope. Photographs were taken to document the location of each sample within the landscape. Sample preparation and analysis will be conducted by ANSTO at the ANTARES tandem accelerator facility in Lucas Heights.
+
+Sediments were sampled from within 20cm of the surface, with particles greater than 4cm removed by hand. At Mount Stinear, sites were selected to remove the influence of post-glacial transport on sediment composition, and to gain a geographical and altitudinal spread of material. At the remaining sites, glacial history and transport direction were more easily distinguished and samples were chosen to represent the character of each glacial maxima. Sand size particle size analysis is being conducted using a settling tube and silt clay material by a malvern 2000 laser diffractometer after dispersion with a chemical dispersant and ultrasonic action for 30 minutes. Analysis of major and trace elements will be conducted by XRF. Clay mineralogy may also be investigated using either a combination of XRD and PIMA. Salts were sampled on an opportunistic basis to gain diversity in spatial extent, salt type (based on field appearance) and altitude. Mineralogy will be classified by XRD.</description>
+         <name type="primary">
+            <namePart>Southern prince charles mountains: sediments and salts</namePart>
+         </name>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/WHITE,DUANNE</identifier>
+            <title>WHITE, DUANNE</title>
+            <relation type="author"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AustralianAntarcticDivision</identifier>
+            <title>Australian Antarctic Division</title>
+            <relation type="sponsor"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC</identifier>
+            <title>AADC</title>
+            <relation type="owner"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/Gore,D.andWhite,D.</identifier>
+            <title>Gore, D. and White, D.</title>
+            <relation type="originator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AustralianAntarcticDataCentre</identifier>
+            <title>Australian Antarctic Data Centre</title>
+            <relation type="publisher"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/GORE,DAMIAN</identifier>
+            <title>GORE, DAMIAN</title>
+            <relation type="principalInvestigator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/WHITE,DUANNE</identifier>
+            <title>WHITE, DUANNE</title>
+            <relation type="collaborator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AU/AADC&gt;AustralianAntarcticDataCentre,Australia</identifier>
+            <title>AU/AADC &gt; Australian Antarctic Data Centre, Australia</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC,DATAOFFICER</identifier>
+            <title>AADC, DATA OFFICER</title>
+            <relation type="custodian"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AU/AADC&gt;AustralianAntarcticDataCentre,Australia</identifier>
+            <title>AU/AADC &gt; Australian Antarctic Data Centre, Australia</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC,DATAOFFICER</identifier>
+            <title>AADC, DATA OFFICER</title>
+            <relation type="distributor"/>
+         </relatedInfo>
+         <subject type="local">geoscientificInformation</subject>
+         <subject type="local">inlandWaters</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; CRYOSPHERE &gt; SNOW/ICE &gt; ICE DEPTH/THICKNESS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; CRYOSPHERE &gt; SNOW/ICE &gt; ICE EXTENT</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; CRYOSPHERE &gt; GLACIERS/ICE SHEETS &gt; ICE SHEETS</subject>
+         <subject type="local">COSMOGENIC ISOTOPE DATING</subject>
+         <subject type="local">GEOLOGY</subject>
+         <subject type="local">GLACIATION</subject>
+         <subject type="local">GLACIAL SEDIMENTS</subject>
+         <subject type="local">GEOCHEMISTRY</subject>
+         <subject type="local">GLACIAL MAXIMUM</subject>
+         <subject type="local">PALAEOCLIMATE</subject>
+         <subject type="local">ROUNDNESS</subject>
+         <subject type="local">ICE-MARGINAL SEDIMENTS</subject>
+         <subject type="local">ICE THICKNESS</subject>
+         <subject type="local">PARTICLE SIZE</subject>
+         <subject type="local">PCMEGA</subject>
+         <subject type="local">SALT</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">SURVEYING TOOLS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">FIELD SURVEYS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">CEOS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">AMD/AU</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">AMD</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">CONTINENT &gt; ANTARCTICA</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">CONTINENT &gt; ANTARCTICA &gt; Mount Stinear</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">CONTINENT &gt; ANTARCTICA &gt; Mount Ruker</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">CONTINENT &gt; ANTARCTICA &gt; Rimmington Bluff</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">CONTINENT &gt; ANTARCTICA &gt; Rimmington Cirques</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">CONTINENT &gt; ANTARCTICA &gt; Wilson Bluff</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">CONTINENT &gt; ANTARCTICA &gt; Clemence Massif</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">CONTINENT &gt; ANTARCTICA &gt; Southern Prince Charles Mountains</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">CONTINENT &gt; ANTARCTICA &gt; Lambert Glacier</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">GEOGRAPHIC REGION &gt; POLAR</subject>
+         <description type="full">Field analysis of included quantification of clast rounding and lithology, and weathering features such as tafoni, elongated pitting, sand accumulations, frost shattering, glacial polish, and the degree of weathering based on the Moriwaki et. al. 1991 and 1994 scheme. Schmidt hammer tests on boulders were undertaken at approximately 30 sites.&lt;br/&gt;&lt;br/&gt;Approximately 200 sediment (predominantly glacial but also some glaciofluvial, lacustrine and aeolian), 50 surface salt and 100 cosmogenic exposure age samples were taken from the Southern Prince Charles mountains during the PCMEGA (Prince Charles Mountains Expedition of Germany and Australia) expedition of the 2002/03 summer.&lt;br/&gt;&lt;br/&gt;The matrix (less than 2 mm fraction) of the sediments are to be subjected to grain size and elemental analysis. Approximately 20 cosmogenic exposure age samples will be selected to date glacial highstands.&lt;br/&gt;&lt;br/&gt;Aspects of the data are to be used for various publications on glacial history, and geomorphic agents active in the region.&lt;br/&gt;&lt;br/&gt;The download file contains a large number of images taken as part of this project, plus an excel spreadsheet of data with an accompanying word document.&lt;br/&gt;&lt;br/&gt;This work was undertaken as part of the PCMEGA project, and was part of ASAC project 1071 (ASAC_1071).</description>
+         <coverage>
+            <spatial type="iso19139dcmiBox">westlimit=64; southlimit=-74.5; eastlimit=69; northlimit=-72</spatial>
+            <spatial type="text">westlimit=64; southlimit=-74.5; eastlimit=69; northlimit=-72</spatial>
+         </coverage>
+         <coverage/>
+         <coverage/>
+         <coverage/>
+         <coverage/>
+         <coverage/>
+         <coverage/>
+         <coverage/>
+         <coverage/>
+         <coverage/>
+         <coverage/>
+         <coverage/>
+         <coverage>
+            <spatial type="iso19139dcmiBox">uplimit=2000; downlimit=50</spatial>
+            <spatial type="text">uplimit=2000; downlimit=50</spatial>
+         </coverage>
+         <coverage>
+            <temporal>
+               <date type="dateFrom" dateFormat="W3CDTF">2002-12-02</date>
+               <date type="dateTo" dateFormat="W3CDTF">2003-01-23</date>
+            </temporal>
+         </coverage>
+         <rights>
+            <rightsStatement>Some photographs from the expedition are available for download from the provided URL. An excel spreadsheet and an accompanying word document are also available for download at the provided URL. The word document also describes data collected as part of metadata record: 'ASAC_1071_Loewe'.</rightsStatement>
+         </rights>
+         <rights>
+            <licence rightsUri="https://creativecommons.org/licenses/by/4.0/legalcode"
+                     type="CC-BY">Attribution 4.0 International (CC BY 4.0)</licence>
+         </rights>
+         <rights>
+            <rightsStatement>This data set conforms to the CCBY Attribution License (http://creativecommons.org/licenses/by/4.0/). Please follow instructions listed in the citation reference provided at http://data.aad.gov.au/aadc/metadata/citation.cfm?entry_id=1071_PCMEGA when using these data.</rightsStatement>
+         </rights>
+         <rights>
+            <rightsStatement>This metadata record is publicly available.</rightsStatement>
+         </rights>
+         <rights>
+            <accessRights type="other"/>
+         </rights>
+         <citationInfo>
+            <citationMetadata>
+               <identifier type="url">http://data.aad.gov.au/metadata/1071_PCMEGA</identifier>
+               <title>Southern prince charles mountains: sediments and salts</title>
+               <date type="publicationDate">2003-06-23T00:00:00
+					</date>
+               <contributor seq="1">
+                  <namePart>Gore, D. and White, D.</namePart>
+               </contributor>
+               <contributor seq="2">
+                  <namePart>GORE, DAMIAN</namePart>
+               </contributor>
+               <contributor seq="3">
+                  <namePart>WHITE, DUANNE</namePart>
+               </contributor>
+               <publisher>Australian Antarctic Data Centre</publisher>
+            </citationMetadata>
+         </citationInfo>
+      </collection>
+   </registryObject>
+   <registryObject group="Australian Antarctic Division">
+      <key>AADC/dada9302-3d8a-49a1-9cec-9985d453adc7</key>
+      <originatingSource>AU/AADC &gt; Australian Antarctic Data Centre, Australia</originatingSource>
+      <collection type="dataset" dateAccessioned="2012-12-17T00:00:00&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;">
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/eds/3446/download</identifier>
+            <title>Download point for the data (GET DATA &gt; DIRECT DOWNLOAD)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://projects.aad.gov.au/search_projects_results.cfm?project_no=3064</identifier>
+            <title>Public information for ASAC project 3064 (PROJECT HOME PAGE)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/metadata/citation.cfm?entry_id=10Be-Law-Dome-10-year-composite</identifier>
+            <title>Citation reference for this metadata record and dataset (VIEW RELATED INFORMATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo>
+            <identifier type="global"/>
+            <relation type="isPartOf"/>
+         </relatedInfo>
+         <identifier type="global">10Be-Law-Dome-10-year-composite</identifier>
+         <location>
+            <address>
+               <electronic type="url" target="landingPage">
+                  <value>http://data.aad.gov.au/metadata/10Be-Law-Dome-10-year-composite</value>
+               </electronic>
+            </address>
+         </location>
+         <description type="lineage">Progress Code: completed</description>
+         <name type="primary">
+            <namePart>High Resolution ice core 10Be records from Law Dome, Antarctica: 10-year composite (revised dating)</namePart>
+         </name>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/ANDERSON,JASON</identifier>
+            <title>ANDERSON, JASON</title>
+            <relation type="author"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AustralianAntarcticDivision</identifier>
+            <title>Australian Antarctic Division</title>
+            <relation type="sponsor"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC</identifier>
+            <title>AADC</title>
+            <relation type="owner"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/Pedro,J.andSmith,A.M.</identifier>
+            <title>Pedro, J. and Smith, A.M.</title>
+            <relation type="originator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AustralianAntarcticDataCentre</identifier>
+            <title>Australian Antarctic Data Centre</title>
+            <relation type="publisher"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/PEDRO,JOEL</identifier>
+            <title>PEDRO, JOEL</title>
+            <relation type="principalInvestigator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/SMITH,ANDREWM</identifier>
+            <title>SMITH, ANDREW M</title>
+            <relation type="principalInvestigator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/PEDRO,JOEL</identifier>
+            <title>PEDRO, JOEL</title>
+            <relation type="collaborator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AU/AADC&gt;AustralianAntarcticDataCentre,Australia</identifier>
+            <title>AU/AADC &gt; Australian Antarctic Data Centre, Australia</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC,DATAOFFICER</identifier>
+            <title>AADC, DATA OFFICER</title>
+            <relation type="custodian"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AU/AADC&gt;AustralianAntarcticDataCentre,Australia</identifier>
+            <title>AU/AADC &gt; Australian Antarctic Data Centre, Australia</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC,DATAOFFICER</identifier>
+            <title>AADC, DATA OFFICER</title>
+            <relation type="distributor"/>
+         </relatedInfo>
+         <subject type="local">climatologyMeteorologyAtmosphere</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; CLIMATE INDICATORS &gt; PALEOCLIMATE INDICATORS &gt; ICE CORE RECORDS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; PALEOCLIMATE &gt; ICE CORE RECORDS</subject>
+         <subject type="local">10Be</subject>
+         <subject type="local">climate</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">CORING DEVICES &gt; CORING DEVICES</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">FIELD INVESTIGATION &gt; FIELD INVESTIGATION</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">AMD</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">AMD/AU</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">CEOS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">ACE/CRC</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">CONTINENT &gt; ANTARCTICA</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">GEOGRAPHIC REGION &gt; POLAR</subject>
+         <description type="full">This record comprises composite 10Be concentrations from three Law Dome ice cores (DSS0506-core, DSS0809-core and DSS0910-core). Sample dating is revised from that presented in Pedro et al., clim. Past 7, 707-721, 2011 by accounting for sub-seasonal variability in snow accumulation. The accumulation record was derived from the European Center for Medium-Range Weather Forecasts Interim Reanalysis (ERA-Interim). See Appendix 1 of Pedro et al., J. Geophys. Res. 116, D23120, 2011 for details of method.</description>
+         <coverage>
+            <spatial type="iso19139dcmiBox">westlimit=112.8; southlimit=-66.77; eastlimit=112.8; northlimit=-66.77</spatial>
+            <spatial type="text">westlimit=112.8; southlimit=-66.77; eastlimit=112.8; northlimit=-66.77</spatial>
+         </coverage>
+         <coverage/>
+         <coverage/>
+         <coverage/>
+         <coverage>
+            <temporal>
+               <date type="dateFrom" dateFormat="W3CDTF">1999-12-01</date>
+               <date type="dateTo" dateFormat="W3CDTF">2009-12-31</date>
+            </temporal>
+         </coverage>
+         <rights>
+            <rightsStatement>These data are available for download from the provided URL.</rightsStatement>
+         </rights>
+         <rights>
+            <licence rightsUri="https://creativecommons.org/licenses/by/4.0/legalcode"
+                     type="CC-BY">Attribution 4.0 International (CC BY 4.0)</licence>
+         </rights>
+         <rights>
+            <rightsStatement>This data set conforms to the CCBY Attribution License (http://creativecommons.org/licenses/by/4.0/). Please follow instructions listed in the citation reference at the provided http://data.aad.gov.au/aadc/metadata/citation.cfm?entry_id=10Be-Law-Dome-10-year-composite when using these data.</rightsStatement>
+         </rights>
+         <rights>
+            <rightsStatement>This metadata record is publicly available.</rightsStatement>
+         </rights>
+         <rights>
+            <accessRights type="other"/>
+         </rights>
+         <citationInfo>
+            <citationMetadata>
+               <identifier type="url">http://data.aad.gov.au/metadata/10Be-Law-Dome-10-year-composite</identifier>
+               <title>High Resolution ice core 10Be records from Law Dome, Antarctica: 10-year composite (revised dating)</title>
+               <date type="publicationDate">2012-12-17T00:00:00
+					</date>
+               <contributor seq="1">
+                  <namePart>Pedro, J. and Smith, A.M.</namePart>
+               </contributor>
+               <contributor seq="2">
+                  <namePart>PEDRO, JOEL</namePart>
+               </contributor>
+               <contributor seq="3">
+                  <namePart>SMITH, ANDREW M</namePart>
+               </contributor>
+               <publisher>Australian Antarctic Data Centre</publisher>
+            </citationMetadata>
+         </citationInfo>
+      </collection>
+   </registryObject>
+   <registryObject group="Australian Antarctic Division">
+      <key>AADC/e23ff7d5-5002-4c09-9156-69012b72db01</key>
+      <originatingSource>AU/AADC &gt; Australian Antarctic Data Centre, Australia</originatingSource>
+      <collection type="dataset" dateAccessioned="2010-02-15T00:00:00&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;">
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/marine_science/underway_extraction/index.cfm</identifier>
+            <title>Marine Science Data Search (GET DATA)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/eds/5264/download</identifier>
+            <title>Download the supplementary dataset. (GET DATA &gt; DIRECT DOWNLOAD)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/eds/5850/download</identifier>
+            <title>Download the report. (GET DATA &gt; DIRECT DOWNLOAD)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://portal.aodn.org.au/</identifier>
+            <title>Access the data via the AODN web portal (GET DATA)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/geoserver/underway/wms?request=GetCapabilities</identifier>
+            <title>Underway data web map service (USE SERVICE API &gt; WEB MAP SERVICE (WMS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/geoserver/underway/wfs?request=GetCapabilities</identifier>
+            <title>Underway data web feature service (USE SERVICE API &gt; WEB FEATURE SERVICE (WFS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/geoserver/underway/ows?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;typeName=underway%3Aunderway_mln_1200&amp;outputFormat=SHAPE-ZIP&amp;cql_filter=set_code=198081050</identifier>
+            <title>Citation reference for this metadata record and dataset (USE SERVICE API &gt; WEB FEATURE SERVICE (WFS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/voyages/sensors.cfm?set_code=198081050</identifier>
+            <title>Voyage Instrumentation List (VIEW RELATED INFORMATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/voyages/display_voyage.cfm?set_code=198081050</identifier>
+            <title>Voyage Summary Sheet (VIEW RELATED INFORMATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/aadc/metadata/citation.cfm?entry_id=198081050</identifier>
+            <title>Citation reference for this metadata record and dataset. (VIEW RELATED INFORMATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo>
+            <identifier type="global"/>
+            <relation type="isPartOf"/>
+         </relatedInfo>
+         <identifier type="global">198081050</identifier>
+         <location>
+            <address>
+               <electronic type="url" target="landingPage">
+                  <value>http://data.aad.gov.au/metadata/198081050</value>
+               </electronic>
+            </address>
+         </location>
+         <description type="lineage">Progress Code: completed</description>
+         <description type="lineage">Statement: The data have been acquired at 0.1 Hz. There will be the occasional invalid value such as temperatures being out of range.
+
+This dataset has not been checked. Please verify the data before use.
+
+Where data for a particular sensor do not exist for a particular time, the last known value is used unless the sensor has been disabled or has encountered an error. For example, some sensors only record data every minute, but the resolution for the underway dataset is 10 seconds, so the same value will be used 6 times a minute. No averages are taken for sensors that capture data at a rate other than every 10 seconds. Instead, each record will be a snapshot of each sensor at that time.</description>
+         <name type="primary">
+            <namePart>MS Nella Dan Voyage V5 1980/81 (FIBEX) Track and Underway Data</namePart>
+         </name>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/REEVE,JONO</identifier>
+            <title>REEVE, JONO</title>
+            <relation type="author"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AustralianAntarcticDivision</identifier>
+            <title>Australian Antarctic Division</title>
+            <relation type="sponsor"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC</identifier>
+            <title>AADC</title>
+            <relation type="owner"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/CommonwealthofAustralia</identifier>
+            <title>Commonwealth of Australia</title>
+            <relation type="originator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AustralianAntarcticDataCentre</identifier>
+            <title>Australian Antarctic Data Centre</title>
+            <relation type="publisher"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/REEVE,JONO</identifier>
+            <title>REEVE, JONO</title>
+            <relation type="principalInvestigator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/REEVE,JONO</identifier>
+            <title>REEVE, JONO</title>
+            <relation type="collaborator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AU/AADC&gt;AustralianAntarcticDataCentre,Australia</identifier>
+            <title>AU/AADC &gt; Australian Antarctic Data Centre, Australia</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC,DATAOFFICER</identifier>
+            <title>AADC, DATA OFFICER</title>
+            <relation type="custodian"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AU/AADC&gt;AustralianAntarcticDataCentre,Australia</identifier>
+            <title>AU/AADC &gt; Australian Antarctic Data Centre, Australia</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC,DATAOFFICER</identifier>
+            <title>AADC, DATA OFFICER</title>
+            <relation type="distributor"/>
+         </relatedInfo>
+         <subject type="local">climatologyMeteorologyAtmosphere</subject>
+         <subject type="local">oceans</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC PRESSURE &gt; SEA LEVEL PRESSURE</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC TEMPERATURE &gt; SURFACE TEMPERATURE &gt; AIR TEMPERATURE</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC WATER VAPOR &gt; WATER VAPOR INDICATORS &gt; HUMIDITY</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC WINDS &gt; WIND DYNAMICS &gt; CONVECTION</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC RADIATION &gt; SOLAR RADIATION</subject>
+         <subject type="local">MARINE</subject>
+         <subject type="local">METEOROLOGY</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">ECHO SOUNDERS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">SHIPS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">AMD/AU</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">CEOS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">AMD</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">OCEAN &gt; SOUTHERN OCEAN</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">CONTINENT &gt; ANTARCTICA</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">GEOGRAPHIC REGION &gt; POLAR</subject>
+         <description type="full">This dataset contains the underway data collected during the MS Nella Dan Voyage V5 1980/81 (FIBEX).&lt;br/&gt;&lt;br/&gt;Voyage name :  First International BIOMASS Experiment &lt;br/&gt;Voyage leader: Knowles Ronald Kerry &lt;br/&gt;&lt;br/&gt;Underway (meteorological) data are available online via the Australian Antarctic Division Data Centre web page (or via the Related URL section).&lt;br/&gt;</description>
+         <coverage>
+            <spatial type="iso19139dcmiBox">westlimit=61.9; southlimit=-69; eastlimit=147.3; northlimit=-43.2</spatial>
+            <spatial type="text">westlimit=61.9; southlimit=-69; eastlimit=147.3; northlimit=-43.2</spatial>
+         </coverage>
+         <coverage/>
+         <coverage/>
+         <coverage/>
+         <coverage/>
+         <coverage>
+            <temporal>
+               <date type="dateFrom" dateFormat="W3CDTF">1981-01-19</date>
+               <date type="dateTo" dateFormat="W3CDTF">1981-03-25</date>
+            </temporal>
+         </coverage>
+         <rights>
+            <rightsStatement>Data are available online via the Australian Antarctic Division Data Centre web page. A "supplementary" dataset is also available for download from the provided URL. It contains raw data collected directly from the ship, which has not been quality checked. Furthermore, a report from the voyage is also publicy available for download from the provided URL.</rightsStatement>
+         </rights>
+         <rights>
+            <licence rightsUri="https://creativecommons.org/licenses/by/4.0/legalcode"
+                     type="CC-BY">Attribution 4.0 International (CC BY 4.0)</licence>
+         </rights>
+         <rights>
+            <rightsStatement>This data set conforms to the CCBY Attribution License (http://creativecommons.org/licenses/by/4.0/). Please follow instructions listed in the citation reference provided at http://data.aad.gov.au/aadc/metadata/citation.cfm?entry_id=198081050 when using these data.</rightsStatement>
+         </rights>
+         <rights>
+            <rightsStatement>This metadata record is publicly available.</rightsStatement>
+         </rights>
+         <rights>
+            <accessRights type="other"/>
+         </rights>
+         <citationInfo>
+            <citationMetadata>
+               <identifier type="url">http://data.aad.gov.au/metadata/198081050</identifier>
+               <title>MS Nella Dan Voyage V5 1980/81 (FIBEX) Track and Underway Data</title>
+               <date type="publicationDate">2010-02-15T00:00:00
+					</date>
+               <contributor seq="1">
+                  <namePart>Commonwealth of Australia</namePart>
+               </contributor>
+               <contributor seq="2">
+                  <namePart>REEVE, JONO</namePart>
+               </contributor>
+               <publisher>Australian Antarctic Data Centre</publisher>
+            </citationMetadata>
+         </citationInfo>
+      </collection>
+   </registryObject>
+   <registryObject group="Australian Antarctic Division">
+      <key>AADC/56e85ef1-8497-4702-bddf-f19911f4dda9</key>
+      <originatingSource>AU/AADC &gt; Australian Antarctic Data Centre, Australia</originatingSource>
+      <collection type="dataset" dateAccessioned="2010-02-15T00:00:00&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;">
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/marine_science/underway_extraction/index.cfm</identifier>
+            <title>Marine Science Data Search (GET DATA)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/eds/5265/download</identifier>
+            <title>Download the supplementary dataset. (GET DATA &gt; DIRECT DOWNLOAD)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://portal.aodn.org.au/</identifier>
+            <title>Access the data via the AODN web portal (GET DATA)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/geoserver/underway/wms?request=GetCapabilities</identifier>
+            <title>Underway data web map service (USE SERVICE API &gt; WEB MAP SERVICE (WMS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/geoserver/underway/wfs?request=GetCapabilities</identifier>
+            <title>Underway data web feature service (USE SERVICE API &gt; WEB FEATURE SERVICE (WFS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/geoserver/underway/ows?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;typeName=underway%3Aunderway_mln_1200&amp;outputFormat=SHAPE-ZIP&amp;cql_filter=set_code=198283020</identifier>
+            <title>Citation reference for this metadata record and dataset (USE SERVICE API &gt; WEB FEATURE SERVICE (WFS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/voyages/sensors.cfm?set_code=198283020</identifier>
+            <title>Voyage Instrumentation List (VIEW RELATED INFORMATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/voyages/display_voyage.cfm?set_code=198283020</identifier>
+            <title>Voyage Summary Sheet (VIEW RELATED INFORMATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/metadata/citation.cfm?entry_id=198283020</identifier>
+            <title>Citation reference for this metadata record and dataset (VIEW RELATED INFORMATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo>
+            <identifier type="global"/>
+            <relation type="isPartOf"/>
+         </relatedInfo>
+         <identifier type="global">198283020</identifier>
+         <location>
+            <address>
+               <electronic type="url" target="landingPage">
+                  <value>http://data.aad.gov.au/metadata/198283020</value>
+               </electronic>
+            </address>
+         </location>
+         <description type="lineage">Progress Code: completed</description>
+         <description type="lineage">Statement: The data have been acquired at 0.1 Hz. There will be the occasional invalid value such as temperatures being out of range.
+
+This dataset has not been checked. Please verify the data before use.
+
+Where data for a particular sensor do not exist for a particular time, the last known value is used unless the sensor has been disabled or has encountered an error. For example, some sensors only record data every minute, but the resolution for the underway dataset is 10 seconds, so the same value will be used 6 times a minute. No averages are taken for sensors that capture data at a rate other than every 10 seconds. Instead, each record will be a snapshot of each sensor at that time.</description>
+         <name type="primary">
+            <namePart>MS Nella Dan Voyage V2 1982/83 (ADBEX1) Track and Underway Data</namePart>
+         </name>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/REEVE,JONO</identifier>
+            <title>REEVE, JONO</title>
+            <relation type="author"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AustralianAntarcticDivision</identifier>
+            <title>Australian Antarctic Division</title>
+            <relation type="sponsor"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC</identifier>
+            <title>AADC</title>
+            <relation type="owner"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/CommonwealthofAustralia</identifier>
+            <title>Commonwealth of Australia</title>
+            <relation type="originator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AustralianAntarcticDataCentre</identifier>
+            <title>Australian Antarctic Data Centre</title>
+            <relation type="publisher"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/REEVE,JONO</identifier>
+            <title>REEVE, JONO</title>
+            <relation type="principalInvestigator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/REEVE,JONO</identifier>
+            <title>REEVE, JONO</title>
+            <relation type="collaborator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AU/AADC&gt;AustralianAntarcticDataCentre,Australia</identifier>
+            <title>AU/AADC &gt; Australian Antarctic Data Centre, Australia</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC,DATAOFFICER</identifier>
+            <title>AADC, DATA OFFICER</title>
+            <relation type="custodian"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AU/AADC&gt;AustralianAntarcticDataCentre,Australia</identifier>
+            <title>AU/AADC &gt; Australian Antarctic Data Centre, Australia</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC,DATAOFFICER</identifier>
+            <title>AADC, DATA OFFICER</title>
+            <relation type="distributor"/>
+         </relatedInfo>
+         <subject type="local">climatologyMeteorologyAtmosphere</subject>
+         <subject type="local">oceans</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC PRESSURE &gt; SEA LEVEL PRESSURE</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC TEMPERATURE &gt; SURFACE TEMPERATURE &gt; AIR TEMPERATURE</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC WATER VAPOR &gt; WATER VAPOR INDICATORS &gt; HUMIDITY</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC WINDS &gt; WIND DYNAMICS &gt; CONVECTION</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC RADIATION &gt; SOLAR RADIATION</subject>
+         <subject type="local">MARINE</subject>
+         <subject type="local">METEOROLOGY</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">ECHO SOUNDERS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">SHIPS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">AMD/AU</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">CEOS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">AMD</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">OCEAN &gt; SOUTHERN OCEAN</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">CONTINENT &gt; ANTARCTICA</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">GEOGRAPHIC REGION &gt; POLAR</subject>
+         <description type="full">This dataset contains the underway data collected during the MS Nella Dan Voyage V2 1982/83 (ADBEX1).&lt;br/&gt;&lt;br/&gt;Voyage name :  Antarctic Division BIOMASS Experiment I &lt;br/&gt;Voyage leader: Knowles Ronald Kerry &lt;br/&gt;&lt;br/&gt;Underway (meteorological) data are available online via the Australian Antarctic Division Data Centre web page (or via the Related URL section).</description>
+         <coverage>
+            <spatial type="iso19139dcmiBox">westlimit=31.2; southlimit=-69.4; eastlimit=90.2; northlimit=-59.5</spatial>
+            <spatial type="text">westlimit=31.2; southlimit=-69.4; eastlimit=90.2; northlimit=-59.5</spatial>
+         </coverage>
+         <coverage/>
+         <coverage/>
+         <coverage/>
+         <coverage/>
+         <coverage>
+            <temporal>
+               <date type="dateFrom" dateFormat="W3CDTF">1981-11-26</date>
+               <date type="dateTo" dateFormat="W3CDTF">1982-12-18</date>
+            </temporal>
+         </coverage>
+         <rights>
+            <rightsStatement>Data are available online via the Australian Antarctic Division Data Centre web page. A "supplementary" dataset is also available for download from the provided URL. It contains raw data collected directly from the ship, which has not been quality checked.</rightsStatement>
+         </rights>
+         <rights>
+            <licence rightsUri="https://creativecommons.org/licenses/by/4.0/legalcode"
+                     type="CC-BY">Attribution 4.0 International (CC BY 4.0)</licence>
+         </rights>
+         <rights>
+            <rightsStatement>This data set conforms to the CCBY Attribution License (http://creativecommons.org/licenses/by/4.0/). Please follow instructions listed in the citation reference provided at http://data.aad.gov.au/aadc/metadata/citation.cfm?entry_id=198283020 when using these data.</rightsStatement>
+         </rights>
+         <rights>
+            <rightsStatement>This metadata record is publicly available.</rightsStatement>
+         </rights>
+         <rights>
+            <accessRights type="other"/>
+         </rights>
+         <citationInfo>
+            <citationMetadata>
+               <identifier type="url">http://data.aad.gov.au/metadata/198283020</identifier>
+               <title>MS Nella Dan Voyage V2 1982/83 (ADBEX1) Track and Underway Data</title>
+               <date type="publicationDate">2010-02-15T00:00:00
+					</date>
+               <contributor seq="1">
+                  <namePart>Commonwealth of Australia</namePart>
+               </contributor>
+               <contributor seq="2">
+                  <namePart>REEVE, JONO</namePart>
+               </contributor>
+               <publisher>Australian Antarctic Data Centre</publisher>
+            </citationMetadata>
+         </citationInfo>
+      </collection>
+   </registryObject>
+   <registryObject group="Australian Antarctic Division">
+      <key>AADC/68b30418-4592-468a-84d0-6d564d3ebffe</key>
+      <originatingSource>AU/AADC &gt; Australian Antarctic Data Centre, Australia</originatingSource>
+      <collection type="dataset" dateAccessioned="2010-02-15T00:00:00&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;">
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/marine_science/underway_extraction/index.cfm</identifier>
+            <title>Marine Science Data Search (GET DATA)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/eds/5266/download</identifier>
+            <title>Download the supplementary dataset. (GET DATA &gt; DIRECT DOWNLOAD)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://portal.aodn.org.au/</identifier>
+            <title>Access the data via the AODN web portal (GET DATA)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/eds/5851/download</identifier>
+            <title>Download the Station List log. (GET DATA &gt; DIRECT DOWNLOAD)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/eds/5544/download</identifier>
+            <title>Download the Reports. (GET DATA &gt; DIRECT DOWNLOAD)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/geoserver/underway/wms?request=GetCapabilities</identifier>
+            <title>Underway data web map service (USE SERVICE API &gt; WEB MAP SERVICE (WMS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/geoserver/underway/wfs?request=GetCapabilities</identifier>
+            <title>Underway data web feature service (USE SERVICE API &gt; WEB FEATURE SERVICE (WFS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/geoserver/underway/ows?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;typeName=underway%3Aunderway_mln_1200&amp;outputFormat=SHAPE-ZIP&amp;cql_filter=set_code=198384050</identifier>
+            <title>Citation reference for this metadata record and dataset (USE SERVICE API &gt; WEB FEATURE SERVICE (WFS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/voyages/sensors.cfm?set_code=198384050</identifier>
+            <title>Voyage Instrumentation List (VIEW RELATED INFORMATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/voyages/display_voyage.cfm?set_code=198384050</identifier>
+            <title>Voyage Summary Sheet (VIEW RELATED INFORMATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/aadc/metadata/citation.cfm?entry_id=198384050</identifier>
+            <title>Citation reference for this metadata record and dataset. (VIEW RELATED INFORMATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo>
+            <identifier type="global"/>
+            <relation type="isPartOf"/>
+         </relatedInfo>
+         <identifier type="global">198384050</identifier>
+         <location>
+            <address>
+               <electronic type="url" target="landingPage">
+                  <value>http://data.aad.gov.au/metadata/198384050</value>
+               </electronic>
+            </address>
+         </location>
+         <description type="lineage">Progress Code: completed</description>
+         <description type="lineage">Statement: The data have been acquired at 0.1 Hz. There will be the occasional invalid value such as temperatures being out of range.
+
+This dataset has not been checked. Please verify the data before use.
+
+Where data for a particular sensor do not exist for a particular time, the last known value is used unless the sensor has been disabled or has encountered an error. For example, some sensors only record data every minute, but the resolution for the underway dataset is 10 seconds, so the same value will be used 6 times a minute. No averages are taken for sensors that capture data at a rate other than every 10 seconds. Instead, each record will be a snapshot of each sensor at that time.</description>
+         <name type="primary">
+            <namePart>MS Nella Dan Voyage V5 1983/84 (ADBEX2) Track and Underway Data</namePart>
+         </name>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/REEVE,JONO</identifier>
+            <title>REEVE, JONO</title>
+            <relation type="author"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AustralianAntarcticDivision</identifier>
+            <title>Australian Antarctic Division</title>
+            <relation type="sponsor"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC</identifier>
+            <title>AADC</title>
+            <relation type="owner"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/CommonwealthofAustralia</identifier>
+            <title>Commonwealth of Australia</title>
+            <relation type="originator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AustralianAntarcticDataCentre</identifier>
+            <title>Australian Antarctic Data Centre</title>
+            <relation type="publisher"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/REEVE,JONO</identifier>
+            <title>REEVE, JONO</title>
+            <relation type="principalInvestigator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/REEVE,JONO</identifier>
+            <title>REEVE, JONO</title>
+            <relation type="collaborator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AU/AADC&gt;AustralianAntarcticDataCentre,Australia</identifier>
+            <title>AU/AADC &gt; Australian Antarctic Data Centre, Australia</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC,DATAOFFICER</identifier>
+            <title>AADC, DATA OFFICER</title>
+            <relation type="custodian"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AU/AADC&gt;AustralianAntarcticDataCentre,Australia</identifier>
+            <title>AU/AADC &gt; Australian Antarctic Data Centre, Australia</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC,DATAOFFICER</identifier>
+            <title>AADC, DATA OFFICER</title>
+            <relation type="distributor"/>
+         </relatedInfo>
+         <subject type="local">climatologyMeteorologyAtmosphere</subject>
+         <subject type="local">oceans</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC TEMPERATURE &gt; SURFACE TEMPERATURE &gt; AIR TEMPERATURE</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC WATER VAPOR &gt; WATER VAPOR INDICATORS &gt; HUMIDITY</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC PRESSURE &gt; SEA LEVEL PRESSURE</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC RADIATION &gt; SOLAR RADIATION</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC WINDS &gt; WIND DYNAMICS &gt; CONVECTION</subject>
+         <subject type="local">MARINE</subject>
+         <subject type="local">METEOROLOGY</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">ECHO SOUNDERS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">SHIPS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">CEOS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">AMD/AU</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">AMD</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">OCEAN &gt; SOUTHERN OCEAN</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">CONTINENT &gt; ANTARCTICA</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">GEOGRAPHIC REGION &gt; POLAR</subject>
+         <description type="full">This dataset contains the underway data collected during the MS Nella Dan Voyage V5 1983/84 (ADBEX2).&lt;br/&gt;&lt;br/&gt;Voyage name :  Antarctic Division BIOMASS Experiment II &lt;br/&gt;Voyage leader: Knowles Ronald Kerry &lt;br/&gt;&lt;br/&gt;Underway (meteorological) data are available online via the Australian Antarctic Division Data Centre web page (or via the Related URL section).&lt;br/&gt;&lt;br/&gt;A scanned copy of the Station List log, and two voyage reports are also available for download from the provided URLs.&lt;br/&gt;&lt;br/&gt;The Nella Dan departed Hobart on 3 January with a full compliment of passengers.  These included four members of the winter party and six members of the summer party for Davis, and 21 members of the winter party and three members of the summer party for Mawson.  There were also 18 scientists and support staff for the ADBEX-II program.  General cargo was carried for Mawson and in addition a small amount of priority cargo for Davis.&lt;br/&gt;&lt;br/&gt;A meteorological buoy was launched at 53 degrees, 25.6 minutes S, 132 degrees, 44.0 minutes East on 7 January.  The marine biology program commenced on 14 January at 63 degrees S, 73 degrees E and continued along 73 degrees E.  However, after 10 hours bad weather forced the curtailment of the program and the Nella Dan made directly to Davis.  The ice edge, which was just to the north of the anchorage, was reached at 1530 hours, 15 January.  Personnel and cargo were discharged by LARC and barge operating to the south of Gardiner Island.  The ship sailed shortly after midnight.&lt;br/&gt;&lt;br/&gt;The marine program was commenced again on departure on the 16th of January.  Five stations were taken along the track to 73 degrees E to 65 degrees S.  The Nella Dan departed from there pm on 17 January and proceeded to 60 degrees E and 66.30 degrees S arriving 0200 hours on 19 January, where a sampling station was taken.  Further stations were taken at 59 degrees E 66.30 degrees S and 57.46 degrees E 66.08 degrees S.  The latter station was within the pack-ice.  A transect was then run north along 58 degrees E to 63 degrees S and then down 60 degrees E to 66 degrees S.  Finally, on 23 January, four stations were taken from there on a direct line to Mawson.  The total station time amounted to two days ten hours additional steaming time four days five hours, and hove to one day six hours.  The remaining time was taken up with normal steaming.&lt;br/&gt;&lt;br/&gt;Sampling included 24 CTD casts, 22 bongo hauls, 10 RMT and 2 beam trawls.  At all CTD stations water was collected for salinity oxygen and nutrient analysis.  Bongo hauls were made for krill larvae and RMT hauls for krill for ageing.  Reproductive studies for investigations of bioluminescence metabolic studies were made on animals collected by drift nets.&lt;br/&gt;&lt;br/&gt;AT the conclusion of the marine program, the Nella Dan proceeded towards Mawson.  The ship arrived at the edge of the pack-ice about seven miles from the station on 24 January and proceeded to work through the pack-ice.  Mawson harbour was finally reached on 1 February.  The discharge of cargo was carried out despite the large amount of broken ice present.  This was done using the barge the Fred Bond assisted by the LARCs.  Changeover of the station was completed and the ship departed on 4 February.  Hobart was reached on 16 February approximately 8 days later than scheduled.</description>
+         <coverage>
+            <spatial type="iso19139dcmiBox">westlimit=57.8; southlimit=-66.9; eastlimit=89.1; northlimit=-59</spatial>
+            <spatial type="text">westlimit=57.8; southlimit=-66.9; eastlimit=89.1; northlimit=-59</spatial>
+         </coverage>
+         <coverage/>
+         <coverage/>
+         <coverage/>
+         <coverage/>
+         <coverage>
+            <temporal>
+               <date type="dateFrom" dateFormat="W3CDTF">1984-01-17</date>
+               <date type="dateTo" dateFormat="W3CDTF">1984-02-07</date>
+            </temporal>
+         </coverage>
+         <rights>
+            <rightsStatement>Data are available online via the Australian Antarctic Division Data Centre web page. A "supplementary" dataset is also available for download from the provided URL. It contains raw data collected directly from the ship, which has not been quality checked. A scanned copy of the Station List log and two reports are also available for download from the provided URLs.</rightsStatement>
+         </rights>
+         <rights>
+            <licence rightsUri="https://creativecommons.org/licenses/by/4.0/legalcode"
+                     type="CC-BY">Attribution 4.0 International (CC BY 4.0)</licence>
+         </rights>
+         <rights>
+            <rightsStatement>This data set conforms to the CCBY Attribution License (http://creativecommons.org/licenses/by/4.0/). Please follow instructions listed in the citation reference provided at http://data.aad.gov.au/aadc/metadata/citation.cfm?entry_id=198384050 when using these data.</rightsStatement>
+         </rights>
+         <rights>
+            <rightsStatement>This metadata record is publicly available.</rightsStatement>
+         </rights>
+         <rights>
+            <accessRights type="other"/>
+         </rights>
+         <citationInfo>
+            <citationMetadata>
+               <identifier type="url">http://data.aad.gov.au/metadata/198384050</identifier>
+               <title>MS Nella Dan Voyage V5 1983/84 (ADBEX2) Track and Underway Data</title>
+               <date type="publicationDate">2010-02-15T00:00:00
+					</date>
+               <contributor seq="1">
+                  <namePart>Commonwealth of Australia</namePart>
+               </contributor>
+               <contributor seq="2">
+                  <namePart>REEVE, JONO</namePart>
+               </contributor>
+               <publisher>Australian Antarctic Data Centre</publisher>
+            </citationMetadata>
+         </citationInfo>
+      </collection>
+   </registryObject>
+   <registryObject group="Australian Antarctic Division">
+      <key>AADC/68574f60-c7d2-4f82-9a86-824c916e0bd6</key>
+      <originatingSource>AU/AADC &gt; Australian Antarctic Data Centre, Australia</originatingSource>
+      <collection type="dataset" dateAccessioned="2010-02-15T00:00:00&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;">
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/marine_science/underway_extraction/index.cfm</identifier>
+            <title>Marine Science Data Search (GET DATA)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/eds/5267/download</identifier>
+            <title>Download the supplementary dataset. (GET DATA &gt; DIRECT DOWNLOAD)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/eds/5852/download</identifier>
+            <title>Download the reports. (GET DATA &gt; DIRECT DOWNLOAD)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://portal.aodn.org.au/</identifier>
+            <title>Access the data via the AODN web portal (GET DATA)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/geoserver/underway/wms?request=GetCapabilities</identifier>
+            <title>Underway data web map service (USE SERVICE API &gt; WEB MAP SERVICE (WMS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/geoserver/underway/wfs?request=GetCapabilities</identifier>
+            <title>Underway data web feature service (USE SERVICE API &gt; WEB FEATURE SERVICE (WFS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/geoserver/underway/ows?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;typeName=underway%3Aunderway_mln_1200&amp;outputFormat=SHAPE-ZIP&amp;cql_filter=set_code=198485050</identifier>
+            <title>Citation reference for this metadata record and dataset (USE SERVICE API &gt; WEB FEATURE SERVICE (WFS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/voyages/sensors.cfm?set_code=198485050</identifier>
+            <title>Voyage Instrumentation List (VIEW RELATED INFORMATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/voyages/display_voyage.cfm?set_code=198485050</identifier>
+            <title>Voyage Summary Sheet (VIEW RELATED INFORMATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/metadata/citation.cfm?entry_id=198485050</identifier>
+            <title>Citation reference for this metadata record and dataset (VIEW RELATED INFORMATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo>
+            <identifier type="global"/>
+            <relation type="isPartOf"/>
+         </relatedInfo>
+         <identifier type="global">198485050</identifier>
+         <location>
+            <address>
+               <electronic type="url" target="landingPage">
+                  <value>http://data.aad.gov.au/metadata/198485050</value>
+               </electronic>
+            </address>
+         </location>
+         <description type="lineage">Progress Code: completed</description>
+         <description type="lineage">Statement: The data have been acquired at 0.1 Hz. There will be the occasional invalid value such as temperatures being out of range.
+
+This dataset has not been checked. Please verify the data before use.
+
+Where data for a particular sensor do not exist for a particular time, the last known value is used unless the sensor has been disabled or has encountered an error. For example, some sensors only record data every minute, but the resolution for the underway dataset is 10 seconds, so the same value will be used 6 times a minute. No averages are taken for sensors that capture data at a rate other than every 10 seconds. Instead, each record will be a snapshot of each sensor at that time.</description>
+         <name type="primary">
+            <namePart>MS Nella Dan Voyage V5 1984/85 (SIBEX2) Track and Underway Data</namePart>
+         </name>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/REEVE,JONO</identifier>
+            <title>REEVE, JONO</title>
+            <relation type="author"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AustralianAntarcticDivision</identifier>
+            <title>Australian Antarctic Division</title>
+            <relation type="sponsor"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC</identifier>
+            <title>AADC</title>
+            <relation type="owner"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/CommonwealthofAustralia</identifier>
+            <title>Commonwealth of Australia</title>
+            <relation type="originator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AustralianAntarcticDataCentre</identifier>
+            <title>Australian Antarctic Data Centre</title>
+            <relation type="publisher"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/REEVE,JONO</identifier>
+            <title>REEVE, JONO</title>
+            <relation type="principalInvestigator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/REEVE,JONO</identifier>
+            <title>REEVE, JONO</title>
+            <relation type="collaborator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AU/AADC&gt;AustralianAntarcticDataCentre,Australia</identifier>
+            <title>AU/AADC &gt; Australian Antarctic Data Centre, Australia</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC,DATAOFFICER</identifier>
+            <title>AADC, DATA OFFICER</title>
+            <relation type="custodian"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AU/AADC&gt;AustralianAntarcticDataCentre,Australia</identifier>
+            <title>AU/AADC &gt; Australian Antarctic Data Centre, Australia</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC,DATAOFFICER</identifier>
+            <title>AADC, DATA OFFICER</title>
+            <relation type="distributor"/>
+         </relatedInfo>
+         <subject type="local">climatologyMeteorologyAtmosphere</subject>
+         <subject type="local">oceans</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC RADIATION &gt; SOLAR RADIATION</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC PRESSURE &gt; SEA LEVEL PRESSURE</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC WATER VAPOR &gt; WATER VAPOR INDICATORS &gt; HUMIDITY</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC TEMPERATURE &gt; SURFACE TEMPERATURE &gt; AIR TEMPERATURE</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC WINDS &gt; WIND DYNAMICS &gt; CONVECTION</subject>
+         <subject type="local">METEOROLOGY</subject>
+         <subject type="local">MARINE</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">ECHO SOUNDERS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">SHIPS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">AMD/AU</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">AMD</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">CEOS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">OCEAN &gt; SOUTHERN OCEAN</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">CONTINENT &gt; ANTARCTICA</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">GEOGRAPHIC REGION &gt; POLAR</subject>
+         <description type="full">This dataset contains the underway data collected during the MS Nella Dan Voyage V5 1984/85 (SIBEX2).&lt;br/&gt;&lt;br/&gt;Voyage name :  Second International BIOMASS Expedition Phase II &lt;br/&gt;Voyage leader: H J Marchant &lt;br/&gt;&lt;br/&gt;Underway (meteorological) data are available online via the Australian Antarctic Division Data Centre web page (or via the Related URL section).&lt;br/&gt;&lt;br/&gt;BIOMASS (Biological Investigation of Marine Antarctic Systems and Stocks) , an international collaborative research program, was established in 1976 to run for 10 years with the aim of gaining a deeper understanding of the structure and dynamic functioning of the Southern Ocean marine ecosystem to provide a basis for any future management of the living resources.&lt;br/&gt;&lt;br/&gt;FIBEX (the First International BIOMASS Experiment), conducted in 1981, focussed on determining the distribution and abundance of the Antarctic krill, Euphausia superba, in two areas of the Southern Ocean, the Scotia Sea and Prydz Bay.  In the latter area Australia worked together with France, Japan and South Africa.&lt;br/&gt;&lt;br/&gt;In SIBEX I, the first phase of the Second International BIOMASS EXperiment, conducted in 1984, the main emphasis was on oceanography.  Because of logistic problems, Australia was unable to devote as much time to this project as was planned and officially withdrew, renaming its short cruise ADBEX II.&lt;br/&gt;&lt;br/&gt;The participants agreed that the principal activities of SIBEX II, the second phase of the Second International BIOMASS Experiment, were to be investigations of the biological processes occurring in the Southern Ocean.  The Chief Scientists from the nations involved in research in the Prydz Bay area (Australia, France, South Africa and to a very limited extent, Japan) met in Hobart in September 1984, at the time of the meeting of CCAMLR (The Convention for the Conservation of Antarctic Marine Living Resources) to plan and coordinate their activities.&lt;br/&gt;&lt;br/&gt;Within the study area, 60 S to the Antarctic Coast and 58 to 93 E, a series of North-South transects were sailed.  At intervals of 1 degree of latitude and 5 degrees of longitude, hydrographic stations and net samples were taken.&lt;br/&gt;&lt;br/&gt;A number of integrated activities were undertaken on this cruise.  The cruise track and the spacing of the stations were designed to provide data on the distribution and abundance of adult as well as the juvenile stages of krill.  In addition, other grazing invertebrates as well as fish, particularly larval stages, were sampled with a rectangular mid-water trawl (RMT 1+8) having nets with effective mouth areas of 1 and 8 metres squared.&lt;br/&gt;&lt;br/&gt;At the hydrographic stations, taken in conjunction with the net trawls, a profile of temperature, salinity, oxygen concentration and light intensity was measured from the surface to 600 metres (or to the bottom on or near the continental shelf) with a Neil Brown Mark 3 CTD apparatus.  During the latter part of the cruise, equipment failure prevented oxygen profiling and limited the recording depth to 600m.  Samples were taken at standard depths (0, 10, 25, 50, 100, 200 and 500m) with 5L Niskin bottles on a rosette sampler attached to the CTD apparatus for nutrient analysis and to ascertain the species diversity, abundance and productivity of phytoplankton, the food of the grazers.&lt;br/&gt;&lt;br/&gt;Hull-mounted echosounders operating at 120kHz and 38kHz were operated south of 60 S providing data along about 4600n.miles of cruise track on the distribution and abundance of planktonic organisms, including krill.&lt;br/&gt;&lt;br/&gt;The birds in the vicinity of the ship were identified and counted hourly and all whale sightings recorded.  Meteorological, sea-ice and iceberg observations were also made.&lt;br/&gt;&lt;br/&gt;As well as this survey and routine monitoring, a variety of experimental and other studies were carried out.  These included investigations of the metabolic rate, feeding, fecundity and hatching, swarming behaviour and sound production of krill.&lt;br/&gt;&lt;br/&gt;Phytoplankton and various stages in the life-cycle of krill as well as tissue and organs were prepared for later electron microscopical examination.&lt;br/&gt;&lt;br/&gt;Three moored current meter arrays, each consisting of 3 current meters at different depths as well as a CSIRO drifting buoy, drogued at 50m, were deployed to provide long-term information on the dynamics of the circulation in Prydz Bay.&lt;br/&gt;&lt;br/&gt;Photography of the seabed with a Benthos camera and flash was attempted at 3 stations before the breakdown of the main hydrographic winch.&lt;br/&gt;&lt;br/&gt;Samples were taken while returning to Hobart to investigate changes in the distribution and abundance of certain groups of phytoplankton and their relation to the concentration of reduced sulphur compounds.  At 50 S zooplankton were sampled with a net trawl at 1000m.</description>
+         <coverage>
+            <spatial type="iso19139dcmiBox">westlimit=57.9; southlimit=-68.6; eastlimit=102; northlimit=-59.5</spatial>
+            <spatial type="text">westlimit=57.9; southlimit=-68.6; eastlimit=102; northlimit=-59.5</spatial>
+         </coverage>
+         <coverage/>
+         <coverage/>
+         <coverage/>
+         <coverage/>
+         <coverage>
+            <temporal>
+               <date type="dateFrom" dateFormat="W3CDTF">1985-01-04</date>
+               <date type="dateTo" dateFormat="W3CDTF">1985-04-15</date>
+            </temporal>
+         </coverage>
+         <rights>
+            <rightsStatement>Data are available online via the Australian Antarctic Division Data Centre web page. A "supplementary" dataset, and various reports are also available for download from the provided URLs. The supplementary dataset contains raw data collected directly from the ship, which has not been quality checked.</rightsStatement>
+         </rights>
+         <rights>
+            <licence rightsUri="https://creativecommons.org/licenses/by/4.0/legalcode"
+                     type="CC-BY">Attribution 4.0 International (CC BY 4.0)</licence>
+         </rights>
+         <rights>
+            <rightsStatement>This data set conforms to the CCBY Attribution License (http://creativecommons.org/licenses/by/4.0/). Please follow instructions listed in the citation reference provided at http://data.aad.gov.au/aadc/metadata/citation.cfm?entry_id=198485050 when using these data.</rightsStatement>
+         </rights>
+         <rights>
+            <rightsStatement>This metadata record is publicly available.</rightsStatement>
+         </rights>
+         <rights>
+            <accessRights type="other"/>
+         </rights>
+         <citationInfo>
+            <citationMetadata>
+               <identifier type="url">http://data.aad.gov.au/metadata/198485050</identifier>
+               <title>MS Nella Dan Voyage V5 1984/85 (SIBEX2) Track and Underway Data</title>
+               <date type="publicationDate">2010-02-15T00:00:00
+					</date>
+               <contributor seq="1">
+                  <namePart>Commonwealth of Australia</namePart>
+               </contributor>
+               <contributor seq="2">
+                  <namePart>REEVE, JONO</namePart>
+               </contributor>
+               <publisher>Australian Antarctic Data Centre</publisher>
+            </citationMetadata>
+         </citationInfo>
+      </collection>
+   </registryObject>
+   <registryObject group="Australian Antarctic Division">
+      <key>AADC/35023174-0f5a-4361-aac9-c01ff68246b0</key>
+      <originatingSource>AU/AADC &gt; Australian Antarctic Data Centre, Australia</originatingSource>
+      <collection type="dataset" dateAccessioned="2000-05-01T00:00:00&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;">
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/marine_science/underway_extraction/index.cfm</identifier>
+            <title>Marine Science Data Search (GET DATA)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/eds/5548/download</identifier>
+            <title>Download the supplementary dataset. (GET DATA &gt; DIRECT DOWNLOAD)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/eds/5853/download</identifier>
+            <title>Download the Marine Science Support Report (GET DATA &gt; DIRECT DOWNLOAD)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://portal.aodn.org.au/</identifier>
+            <title>Access the data via the AODN web portal (GET DATA)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/voyages/sensors.cfm?set_code=198586010</identifier>
+            <title>Voyage instrumentation list (PROJECT HOME PAGE)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/geoserver/underway/wms?request=GetCapabilities</identifier>
+            <title>Underway data web map service (USE SERVICE API &gt; WEB MAP SERVICE (WMS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/geoserver/underway/wfs?request=GetCapabilities</identifier>
+            <title>Underway data web feature service (USE SERVICE API &gt; WEB FEATURE SERVICE (WFS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/geoserver/underway/ows?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;typeName=underway%3Aunderway_mln_1200&amp;outputFormat=SHAPE-ZIP&amp;cql_filter=set_code=198586010</identifier>
+            <title>Voyage Track (USE SERVICE API &gt; WEB FEATURE SERVICE (WFS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/voyages/display_voyage.cfm?set_code=198586010</identifier>
+            <title>Voyage Summary Sheet (VIEW RELATED INFORMATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/metadata/citation.cfm?entry_id=198586010</identifier>
+            <title>Citation reference for this metadata record and dataset (VIEW RELATED INFORMATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo>
+            <identifier type="global"/>
+            <relation type="isPartOf"/>
+         </relatedInfo>
+         <identifier type="global">198586010</identifier>
+         <location>
+            <address>
+               <electronic type="url" target="landingPage">
+                  <value>http://data.aad.gov.au/metadata/198586010</value>
+               </electronic>
+            </address>
+         </location>
+         <description type="lineage">Progress Code: completed</description>
+         <description type="lineage">Statement: See Marine Science Support Voyage Report at Related URL below.
+
+Where data for a particular sensor do not exist for a particular time, the last known value is used unless the sensor has been disabled or has encountered an error. For example, some sensors only record data every minute, but the resolution for the underway dataset is 10 seconds, so the same value will be used 6 times a minute. No averages are taken for sensors that capture data at a rate other than every 10 seconds. Instead, each record will be a snapshot of each sensor at that time.</description>
+         <name type="primary">
+            <namePart>Nella Dan 1985-86 Voyage 1 Underway Data</namePart>
+         </name>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/REEVE,JONO</identifier>
+            <title>REEVE, JONO</title>
+            <relation type="author"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AustralianAntarcticDivision</identifier>
+            <title>Australian Antarctic Division</title>
+            <relation type="sponsor"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC</identifier>
+            <title>AADC</title>
+            <relation type="owner"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/CommonwealthofAustralia</identifier>
+            <title>Commonwealth of Australia</title>
+            <relation type="originator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AustralianAntarcticDataCentre</identifier>
+            <title>Australian Antarctic Data Centre</title>
+            <relation type="publisher"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/REEVE,JONO</identifier>
+            <title>REEVE, JONO</title>
+            <relation type="principalInvestigator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/REEVE,JONO</identifier>
+            <title>REEVE, JONO</title>
+            <relation type="collaborator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AU/AADC&gt;AustralianAntarcticDataCentre,Australia</identifier>
+            <title>AU/AADC &gt; Australian Antarctic Data Centre, Australia</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC,DATAOFFICER</identifier>
+            <title>AADC, DATA OFFICER</title>
+            <relation type="custodian"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AU/AADC&gt;AustralianAntarcticDataCentre,Australia</identifier>
+            <title>AU/AADC &gt; Australian Antarctic Data Centre, Australia</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC,DATAOFFICER</identifier>
+            <title>AADC, DATA OFFICER</title>
+            <relation type="distributor"/>
+         </relatedInfo>
+         <subject type="local">elevation</subject>
+         <subject type="local">oceans</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; OCEANS &gt; BATHYMETRY/SEAFLOOR TOPOGRAPHY &gt; WATER DEPTH</subject>
+         <subject type="local">BATHYMETRY</subject>
+         <subject type="local">MARINE</subject>
+         <subject type="local">ADBEX III</subject>
+         <subject type="local">NELLA DAN</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">ECHO SOUNDERS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">SHIPS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">AMD/AU</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">CEOS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">AMD</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">OCEAN &gt; SOUTHERN OCEAN</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">GEOGRAPHIC REGION &gt; POLAR</subject>
+         <description type="full">This dataset contains bathymetry (water depth), ship's heading, ship's speed and position data collected during the Nella Dan Voyage 1 1985-86. This was a marine science voyage departing Hobart, visiting Heard Island, beset at Amundsen Bay and returning to Hobart. Data are available online via the Australian Antarctic Division Data Centre web page (or via the Related URL given below). For further information, see the Marine Science Support Voyage Report at the Related URL below.</description>
+         <coverage>
+            <spatial type="iso19139dcmiBox">westlimit=45; southlimit=-70; eastlimit=150; northlimit=-40</spatial>
+            <spatial type="text">westlimit=45; southlimit=-70; eastlimit=150; northlimit=-40</spatial>
+         </coverage>
+         <coverage/>
+         <coverage/>
+         <coverage/>
+         <coverage>
+            <temporal>
+               <date type="dateFrom" dateFormat="W3CDTF">1985-10-08</date>
+               <date type="dateTo" dateFormat="W3CDTF">1985-12-28</date>
+            </temporal>
+         </coverage>
+         <rights>
+            <rightsStatement>Data are available online via the Australian Antarctic Division Data Centre web page. A "supplementary" dataset is also available for download from the provided URL. It contains raw data collected directly from the ship, which has not been quality checked. The supplementary dataset also contains a scanned copy of the acoustics log from the voyage.</rightsStatement>
+         </rights>
+         <rights>
+            <licence rightsUri="https://creativecommons.org/licenses/by/4.0/legalcode"
+                     type="CC-BY">Attribution 4.0 International (CC BY 4.0)</licence>
+         </rights>
+         <rights>
+            <rightsStatement>This data set conforms to the CCBY Attribution License (http://creativecommons.org/licenses/by/4.0/). Please follow instructions listed in the citation reference provided at http://data.aad.gov.au/aadc/metadata/citation.cfm?entry_id=198586010 when using these data.</rightsStatement>
+         </rights>
+         <rights>
+            <rightsStatement>This metadata record is publicly available.</rightsStatement>
+         </rights>
+         <rights>
+            <accessRights type="other"/>
+         </rights>
+         <citationInfo>
+            <citationMetadata>
+               <identifier type="url">http://data.aad.gov.au/metadata/198586010</identifier>
+               <title>Nella Dan 1985-86 Voyage 1 Underway Data</title>
+               <date type="publicationDate">2000-05-01T00:00:00
+					</date>
+               <contributor seq="1">
+                  <namePart>Commonwealth of Australia</namePart>
+               </contributor>
+               <contributor seq="2">
+                  <namePart>REEVE, JONO</namePart>
+               </contributor>
+               <publisher>Australian Antarctic Data Centre</publisher>
+            </citationMetadata>
+         </citationInfo>
+      </collection>
+   </registryObject>
+   <registryObject group="Australian Antarctic Division">
+      <key>AADC/7912abaa-6554-4591-9dfb-ab4bb4f29c39</key>
+      <originatingSource>AU/AADC &gt; Australian Antarctic Data Centre, Australia</originatingSource>
+      <collection type="dataset" dateAccessioned="2000-05-01T00:00:00&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;">
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/marine_science/underway_extraction/index.cfm</identifier>
+            <title>Marine Science Data Search (GET DATA)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/eds/5549/download</identifier>
+            <title>Download the supplementary dataset. (GET DATA &gt; DIRECT DOWNLOAD)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://portal.aodn.org.au/</identifier>
+            <title>Access the data via the AODN web portal (GET DATA)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/eds/5561/download</identifier>
+            <title>Download the reports (GET DATA &gt; DIRECT DOWNLOAD)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/voyages/sensors.cfm?set_code=198586050</identifier>
+            <title>Voyage instrumentation list (PROJECT HOME PAGE)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/geoserver/underway/wms?request=GetCapabilities</identifier>
+            <title>Underway data web map service (USE SERVICE API &gt; WEB MAP SERVICE (WMS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/geoserver/underway/wfs?request=GetCapabilities</identifier>
+            <title>Underway data web feature service (USE SERVICE API &gt; WEB FEATURE SERVICE (WFS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/geoserver/underway/ows?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;typeName=underway%3Aunderway_mln_1200&amp;outputFormat=SHAPE-ZIP&amp;cql_filter=set_code=198586050</identifier>
+            <title>Voyage Track (USE SERVICE API &gt; WEB FEATURE SERVICE (WFS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/voyages/display_voyage.cfm?set_code=198586050</identifier>
+            <title>Voyage Summary Sheet (VIEW RELATED INFORMATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/metadata/citation.cfm?entry_id=198586050</identifier>
+            <title>Citation reference for this metadata record and dataset (VIEW RELATED INFORMATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo>
+            <identifier type="global"/>
+            <relation type="isPartOf"/>
+         </relatedInfo>
+         <identifier type="global">198586050</identifier>
+         <location>
+            <address>
+               <electronic type="url" target="landingPage">
+                  <value>http://data.aad.gov.au/metadata/198586050</value>
+               </electronic>
+            </address>
+         </location>
+         <description type="lineage">Progress Code: completed</description>
+         <description type="lineage">Statement: See Marine Science Support Voyage Report at Related URL below.
+
+Where data for a particular sensor do not exist for a particular time, the last known value is used unless the sensor has been disabled or has encountered an error. For example, some sensors only record data every minute, but the resolution for the underway dataset is 10 seconds, so the same value will be used 6 times a minute. No averages are taken for sensors that capture data at a rate other than every 10 seconds. Instead, each record will be a snapshot of each sensor at that time.</description>
+         <name type="primary">
+            <namePart>Nella Dan 1985-86 Voyage 5 Underway Data</namePart>
+         </name>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AustralianAntarcticDivision</identifier>
+            <title>Australian Antarctic Division</title>
+            <relation type="sponsor"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC</identifier>
+            <title>AADC</title>
+            <relation type="owner"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/CommonwealthofAustralia</identifier>
+            <title>Commonwealth of Australia</title>
+            <relation type="originator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AustralianAntarcticDataCentre</identifier>
+            <title>Australian Antarctic Data Centre</title>
+            <relation type="publisher"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/REEVE,JONO</identifier>
+            <title>REEVE, JONO</title>
+            <relation type="principalInvestigator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/REEVE,JONO</identifier>
+            <title>REEVE, JONO</title>
+            <relation type="collaborator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AU/AADC&gt;AustralianAntarcticDataCentre,Australia</identifier>
+            <title>AU/AADC &gt; Australian Antarctic Data Centre, Australia</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC,DATAOFFICER</identifier>
+            <title>AADC, DATA OFFICER</title>
+            <relation type="custodian"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AU/AADC&gt;AustralianAntarcticDataCentre,Australia</identifier>
+            <title>AU/AADC &gt; Australian Antarctic Data Centre, Australia</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC,DATAOFFICER</identifier>
+            <title>AADC, DATA OFFICER</title>
+            <relation type="distributor"/>
+         </relatedInfo>
+         <subject type="local">elevation</subject>
+         <subject type="local">oceans</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; OCEANS &gt; BATHYMETRY/SEAFLOOR TOPOGRAPHY &gt; WATER DEPTH</subject>
+         <subject type="local">BATHYMETRY</subject>
+         <subject type="local">MARINE</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">ECHO SOUNDERS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">SHIPS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">AMD/AU</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">CEOS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">AMD</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">OCEAN &gt; SOUTHERN OCEAN</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">GEOGRAPHIC REGION &gt; POLAR</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">CONTINENT &gt; ANTARCTICA</subject>
+         <description type="full">This dataset contains bathymetry (water depth), ship's heading, ship's speed and position data collected during the Nella Dan Voyage 5 1985-86. This voyage visited Davis, Mawson, Casey and Edgeworth David, as well as carrying out marine science research in Prydz Bay. Data are available online via the Australian Antarctic Division Data Centre web page (see Related URL below). For further information, see the Marine Science Support Voyage Report at the Related URL below.&lt;br/&gt;    &lt;br/&gt;Voyage Goals&lt;br/&gt;&lt;br/&gt;1) To depot the Bunger Hills field party at the Shackleton Ice Shelf and transport personnel and necessary supplies to Edgeworth-David or the inland edge of the ice shelf as required.&lt;br/&gt;&lt;br/&gt;2) To transfer passengers to and from Casey, Davis, and Mawson stations in accordance with the passenger list.&lt;br/&gt;&lt;br/&gt;3) To transfer cargo to Mawson as a major goal, and to Davis and Casey as may be necessary.&lt;br/&gt;&lt;br/&gt;4) To recover RTA cargo from Mawson and other stations as may be available during their respective discharge operations; to recover German ecologist's cargo from Casey for onward shipment to European destinations on Nella Dan.&lt;br/&gt;&lt;br/&gt;5) To transfer approximately 300,000 lts of SAB at Mawson.&lt;br/&gt;&lt;br/&gt;6) To support a helicopter visit to Scullin Monolith preferably from Mawson, but alternatively from the Nella Dan for the purposes of bird marking, etc.&lt;br/&gt;&lt;br/&gt;7) To recover and redeploy, as part of an oceanography program, tide and current meters from the Prydz Bay and Mawson areas.&lt;br/&gt;&lt;br/&gt;8) To deploy Bureau of Meteorology Buoys enroute to the Shackleton Ice Shelf from Hobart.&lt;br/&gt;&lt;br/&gt;9) To undertake brief beam and surface trawls at current meter mooring sites, time and weather conditions permitting.&lt;br/&gt;&lt;br/&gt;10) If suitable opportunity permits, undertake mapping of fronts of Amery Ice Shelf, Shackleton Ice Shelf, and Denman Glacier.&lt;br/&gt;&lt;br/&gt;Goals 1 to 9 were achieved, but due to lack of suitable opportunity and time, goal 10 was not.  In addition, passengers and cargo were transferred from Icebord Voyage 6 for delivery to Mawson, and a field camp was established from the ship at Larsemann Hills, south of Davis, and retrieved.</description>
+         <coverage>
+            <spatial type="iso19139dcmiBox">westlimit=60; southlimit=-70; eastlimit=150; northlimit=-40</spatial>
+            <spatial type="text">westlimit=60; southlimit=-70; eastlimit=150; northlimit=-40</spatial>
+         </coverage>
+         <coverage/>
+         <coverage/>
+         <coverage/>
+         <coverage/>
+         <coverage>
+            <temporal>
+               <date type="dateFrom" dateFormat="W3CDTF">1986-01-04</date>
+               <date type="dateTo" dateFormat="W3CDTF">1986-02-22</date>
+            </temporal>
+         </coverage>
+         <rights>
+            <rightsStatement>Data are available online via the Australian Antarctic Division Data Centre web page. A "supplementary" dataset is also available for download from the provided URL. It contains raw data collected directly from the ship, which has not been quality checked. The supplementary dataset also contains a scanned copy of the acoustics log from the voyage.</rightsStatement>
+         </rights>
+         <rights>
+            <licence rightsUri="https://creativecommons.org/licenses/by/4.0/legalcode"
+                     type="CC-BY">Attribution 4.0 International (CC BY 4.0)</licence>
+         </rights>
+         <rights>
+            <rightsStatement>This data set conforms to the CCBY Attribution License (http://creativecommons.org/licenses/by/4.0/). Please follow instructions listed in the citation reference provided at http://data.aad.gov.au/aadc/metadata/citation.cfm?entry_id=198586050 when using these data.</rightsStatement>
+         </rights>
+         <rights>
+            <rightsStatement>This metadata record is publicly available.</rightsStatement>
+         </rights>
+         <rights>
+            <accessRights type="other"/>
+         </rights>
+         <citationInfo>
+            <citationMetadata>
+               <identifier type="url">http://data.aad.gov.au/metadata/198586050</identifier>
+               <title>Nella Dan 1985-86 Voyage 5 Underway Data</title>
+               <date type="publicationDate">2000-05-01T00:00:00
+					</date>
+               <contributor seq="1">
+                  <namePart>Commonwealth of Australia</namePart>
+               </contributor>
+               <contributor seq="2">
+                  <namePart>REEVE, JONO</namePart>
+               </contributor>
+               <publisher>Australian Antarctic Data Centre</publisher>
+            </citationMetadata>
+         </citationInfo>
+      </collection>
+   </registryObject>
+   <registryObject group="Australian Antarctic Division">
+      <key>AADC/19a47c14-f6a9-4f31-97b1-ac05bded4607</key>
+      <originatingSource>AU/AADC &gt; Australian Antarctic Data Centre, Australia</originatingSource>
+      <collection type="dataset" dateAccessioned="2000-05-01T00:00:00&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;">
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/marine_science/underway_extraction/index.cfm</identifier>
+            <title>Marine Science Data Search (GET DATA)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/eds/5270/download</identifier>
+            <title>Download the supplementary dataset. (GET DATA &gt; DIRECT DOWNLOAD)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://portal.aodn.org.au/</identifier>
+            <title>Access the data via the AODN web portal (GET DATA)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/voyages/sensors.cfm?set_code=198687070</identifier>
+            <title>Voyage instrumentation list (PROJECT HOME PAGE)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/geoserver/underway/wms?request=GetCapabilities</identifier>
+            <title>Underway data web map service (USE SERVICE API &gt; WEB MAP SERVICE (WMS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/geoserver/underway/wfs?request=GetCapabilities</identifier>
+            <title>Underway data web feature service (USE SERVICE API &gt; WEB FEATURE SERVICE (WFS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/geoserver/underway/ows?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;typeName=underway%3Aunderway_mln_1200&amp;outputFormat=SHAPE-ZIP&amp;cql_filter=set_code=198687070</identifier>
+            <title>Citation reference for this metadata record and dataset (USE SERVICE API &gt; WEB FEATURE SERVICE (WFS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/eds/5562/download</identifier>
+            <title>Marine Science Support Report (VIEW RELATED INFORMATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/voyages/display_voyage.cfm?set_code=198687070</identifier>
+            <title>Voyage Summary Sheet (VIEW RELATED INFORMATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/metadata/citation.cfm?entry_id=198687070</identifier>
+            <title>Citation reference for this metadata record and dataset (VIEW RELATED INFORMATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo>
+            <identifier type="global"/>
+            <relation type="isPartOf"/>
+         </relatedInfo>
+         <identifier type="global">198687070</identifier>
+         <location>
+            <address>
+               <electronic type="url" target="landingPage">
+                  <value>http://data.aad.gov.au/metadata/198687070</value>
+               </electronic>
+            </address>
+         </location>
+         <description type="lineage">Progress Code: completed</description>
+         <description type="lineage">Statement: See Marine Science Support Voyage Report at Related URL below.
+
+Where data for a particular sensor do not exist for a particular time, the last known value is used unless the sensor has been disabled or has encountered an error. For example, some sensors only record data every minute, but the resolution for the underway dataset is 10 seconds, so the same value will be used 6 times a minute. No averages are taken for sensors that capture data at a rate other than every 10 seconds. Instead, each record will be a snapshot of each sensor at that time.</description>
+         <name type="primary">
+            <namePart>Nella Dan 1986-87 Voyage 7 Underway Data</namePart>
+         </name>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AustralianAntarcticDivision</identifier>
+            <title>Australian Antarctic Division</title>
+            <relation type="sponsor"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC</identifier>
+            <title>AADC</title>
+            <relation type="owner"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/CommonwealthofAustralia</identifier>
+            <title>Commonwealth of Australia</title>
+            <relation type="originator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AustralianAntarcticDataCentre</identifier>
+            <title>Australian Antarctic Data Centre</title>
+            <relation type="publisher"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/REEVE,JONO</identifier>
+            <title>REEVE, JONO</title>
+            <relation type="collaborator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AU/AADC&gt;AustralianAntarcticDataCentre,Australia</identifier>
+            <title>AU/AADC &gt; Australian Antarctic Data Centre, Australia</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC,DATAOFFICER</identifier>
+            <title>AADC, DATA OFFICER</title>
+            <relation type="custodian"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AU/AADC&gt;AustralianAntarcticDataCentre,Australia</identifier>
+            <title>AU/AADC &gt; Australian Antarctic Data Centre, Australia</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC,DATAOFFICER</identifier>
+            <title>AADC, DATA OFFICER</title>
+            <relation type="distributor"/>
+         </relatedInfo>
+         <subject type="local">elevation</subject>
+         <subject type="local">oceans</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; OCEANS &gt; BATHYMETRY/SEAFLOOR TOPOGRAPHY &gt; WATER DEPTH</subject>
+         <subject type="local">BATHYMETRY</subject>
+         <subject type="local">MARINE</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">ECHO SOUNDERS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">SHIPS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">AMD/AU</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">CEOS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">AMD</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">OCEAN &gt; SOUTHERN OCEAN</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">GEOGRAPHIC REGION &gt; POLAR</subject>
+         <description type="full">This dataset contains bathymetry (water depth), ship's heading, ship's speed and position data collected during the Nella Dan Voyage 7 1986-87. This was a marine science voyage which also visited Davis. Data are available online via the Australian Antarctic Division Data Centre web page (see Related URL below). For further information, see the Marine Science Support Voyage Report at the Related URL below.</description>
+         <coverage>
+            <spatial type="iso19139dcmiBox">westlimit=60; southlimit=-70; eastlimit=160; northlimit=-40</spatial>
+            <spatial type="text">westlimit=60; southlimit=-70; eastlimit=160; northlimit=-40</spatial>
+         </coverage>
+         <coverage/>
+         <coverage/>
+         <coverage/>
+         <coverage>
+            <temporal>
+               <date type="dateFrom" dateFormat="W3CDTF">1987-02-06</date>
+               <date type="dateTo" dateFormat="W3CDTF">1987-04-02</date>
+            </temporal>
+         </coverage>
+         <rights>
+            <rightsStatement>Data are available online via the Australian Antarctic Division Data Centre web page. A "supplementary" dataset is also available for download from the provided URL. It contains raw data collected directly from the ship, which has not been quality checked.</rightsStatement>
+         </rights>
+         <rights>
+            <licence rightsUri="https://creativecommons.org/licenses/by/4.0/legalcode"
+                     type="CC-BY">Attribution 4.0 International (CC BY 4.0)</licence>
+         </rights>
+         <rights>
+            <rightsStatement>This data set conforms to the CCBY Attribution License (http://creativecommons.org/licenses/by/4.0/). Please follow instructions listed in the citation reference provided at http://data.aad.gov.au/aadc/metadata/citation.cfm?entry_id=198687070 when using these data.</rightsStatement>
+         </rights>
+         <rights>
+            <rightsStatement>This metadata record is publicly available.</rightsStatement>
+         </rights>
+         <rights>
+            <accessRights type="other"/>
+         </rights>
+         <citationInfo>
+            <citationMetadata>
+               <identifier type="url">http://data.aad.gov.au/metadata/198687070</identifier>
+               <title>Nella Dan 1986-87 Voyage 7 Underway Data</title>
+               <date type="publicationDate">2000-05-01T00:00:00
+					</date>
+               <contributor seq="1">
+                  <namePart>Commonwealth of Australia</namePart>
+               </contributor>
+               <contributor seq="2">
+                  <namePart>REEVE, JONO</namePart>
+               </contributor>
+               <publisher>Australian Antarctic Data Centre</publisher>
+            </citationMetadata>
+         </citationInfo>
+      </collection>
+   </registryObject>
+   <registryObject group="Australian Antarctic Division">
+      <key>AADC/190868a2-0545-468f-8310-56217d9b3a35</key>
+      <originatingSource>AU/AADC &gt; Australian Antarctic Data Centre, Australia</originatingSource>
+      <collection type="dataset" dateAccessioned="2000-05-01T00:00:00&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;">
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/marine_science/underway_extraction/index.cfm</identifier>
+            <title>Marine Science Data Search (GET DATA)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/eds/5271/download</identifier>
+            <title>Download the supplementary dataset. (GET DATA &gt; DIRECT DOWNLOAD)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://portal.aodn.org.au/</identifier>
+            <title>Access the data via the AODN web portal (GET DATA)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/voyages/sensors.cfm?set_code=198788040</identifier>
+            <title>Voyage instrumentation list (PROJECT HOME PAGE)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/geoserver/underway/wms?request=GetCapabilities</identifier>
+            <title>Underway data web map service (USE SERVICE API &gt; WEB MAP SERVICE (WMS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/geoserver/underway/wfs?request=GetCapabilities</identifier>
+            <title>Underway data web feature service (USE SERVICE API &gt; WEB FEATURE SERVICE (WFS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/geoserver/underway/ows?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;typeName=underway%3Aunderway_mln_1200&amp;outputFormat=SHAPE-ZIP&amp;cql_filter=set_code=198788040</identifier>
+            <title>Voyage Track (USE SERVICE API &gt; WEB FEATURE SERVICE (WFS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/eds/5563/download</identifier>
+            <title>Download the reports (VIEW RELATED INFORMATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/voyages/display_voyage.cfm?set_code=198788040</identifier>
+            <title>Voyage Summary Sheet (VIEW RELATED INFORMATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/metadata/citation.cfm?entry_id=198788040</identifier>
+            <title>Citation reference for this metadata record and dataset (VIEW RELATED INFORMATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo>
+            <identifier type="global"/>
+            <relation type="isPartOf"/>
+         </relatedInfo>
+         <identifier type="global">198788040</identifier>
+         <location>
+            <address>
+               <electronic type="url" target="landingPage">
+                  <value>http://data.aad.gov.au/metadata/198788040</value>
+               </electronic>
+            </address>
+         </location>
+         <description type="lineage">Progress Code: completed</description>
+         <description type="lineage">Statement: See Marine Science Support Voyage Report at Related URL below.
+
+Where data for a particular sensor do not exist for a particular time, the last known value is used unless the sensor has been disabled or has encountered an error. For example, some sensors only record data every minute, but the resolution for the underway dataset is 10 seconds, so the same value will be used 6 times a minute. No averages are taken for sensors that capture data at a rate other than every 10 seconds. Instead, each record will be a snapshot of each sensor at that time.</description>
+         <name type="primary">
+            <namePart>Nella Dan 1987-88 Voyage 4 Underway Data</namePart>
+         </name>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AustralianAntarcticDivision</identifier>
+            <title>Australian Antarctic Division</title>
+            <relation type="sponsor"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC</identifier>
+            <title>AADC</title>
+            <relation type="owner"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/CommonwealthofAustralia</identifier>
+            <title>Commonwealth of Australia</title>
+            <relation type="originator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AustralianAntarcticDataCentre</identifier>
+            <title>Australian Antarctic Data Centre</title>
+            <relation type="publisher"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/REEVE,JONO</identifier>
+            <title>REEVE, JONO</title>
+            <relation type="collaborator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AU/AADC&gt;AustralianAntarcticDataCentre,Australia</identifier>
+            <title>AU/AADC &gt; Australian Antarctic Data Centre, Australia</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC,DATAOFFICER</identifier>
+            <title>AADC, DATA OFFICER</title>
+            <relation type="custodian"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AU/AADC&gt;AustralianAntarcticDataCentre,Australia</identifier>
+            <title>AU/AADC &gt; Australian Antarctic Data Centre, Australia</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC,DATAOFFICER</identifier>
+            <title>AADC, DATA OFFICER</title>
+            <relation type="distributor"/>
+         </relatedInfo>
+         <subject type="local">elevation</subject>
+         <subject type="local">oceans</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; OCEANS &gt; BATHYMETRY/SEAFLOOR TOPOGRAPHY &gt; WATER DEPTH</subject>
+         <subject type="local">MARINE</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">ECHO SOUNDERS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">SHIPS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">AMD/AU</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">CEOS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">AMD</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">OCEAN &gt; SOUTHERN OCEAN</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">GEOGRAPHIC REGION &gt; POLAR</subject>
+         <description type="full">This dataset contains bathymetry (water depth), ship's heading, ship's speed and position data collected during the Nella Dan Voyage 4 1987-88. This was the Nella Dan's final voyage, as the ship ran aground at Macquarie Island and was subsequently scuttled. Some marine science was carried out en route to Macquarie Island from Hobart. Data are available online from the Australian Antarctic Division Data Centre web page (see Related URL below). For further information, see the Marine Science Support Voyage Report at the Related URL below.&lt;br/&gt;    &lt;br/&gt;The voyage report in the download file provides extensive details on the grounding, salvage, and scuttling of the ship.&lt;br/&gt;&lt;br/&gt;Nella Dan grounded on December 3, at approximately 18:35 local time.  The ship was eventually scuttled on December 24 in deep water off Macquarie Island at 17:42 local time, at 54 degrees, 37.4 minutes S and 159 degrees, 13.3 minutes E.</description>
+         <coverage>
+            <spatial type="iso19139dcmiBox">westlimit=140; southlimit=-55; eastlimit=160; northlimit=-40</spatial>
+            <spatial type="text">westlimit=140; southlimit=-55; eastlimit=160; northlimit=-40</spatial>
+         </coverage>
+         <coverage/>
+         <coverage/>
+         <coverage/>
+         <coverage>
+            <temporal>
+               <date type="dateFrom" dateFormat="W3CDTF">1987-11-27</date>
+               <date type="dateTo" dateFormat="W3CDTF">1987-12-03</date>
+            </temporal>
+         </coverage>
+         <rights>
+            <rightsStatement>Data are available online via the Australian Antarctic Division Data Centre web page. A "supplementary" dataset is also available for download from the provided URL. It contains raw data collected directly from the ship, which has not been quality checked.</rightsStatement>
+         </rights>
+         <rights>
+            <licence rightsUri="https://creativecommons.org/licenses/by/4.0/legalcode"
+                     type="CC-BY">Attribution 4.0 International (CC BY 4.0)</licence>
+         </rights>
+         <rights>
+            <rightsStatement>This data set conforms to the CCBY Attribution License (http://creativecommons.org/licenses/by/4.0/). Please follow instructions listed in the citation reference provided at http://data.aad.gov.au/aadc/metadata/citation.cfm?entry_id=198788040 when using these data.</rightsStatement>
+         </rights>
+         <rights>
+            <rightsStatement>This metadata record is publicly available.</rightsStatement>
+         </rights>
+         <rights>
+            <accessRights type="other"/>
+         </rights>
+         <citationInfo>
+            <citationMetadata>
+               <identifier type="url">http://data.aad.gov.au/metadata/198788040</identifier>
+               <title>Nella Dan 1987-88 Voyage 4 Underway Data</title>
+               <date type="publicationDate">2000-05-01T00:00:00
+					</date>
+               <contributor seq="1">
+                  <namePart>Commonwealth of Australia</namePart>
+               </contributor>
+               <contributor seq="2">
+                  <namePart>REEVE, JONO</namePart>
+               </contributor>
+               <publisher>Australian Antarctic Data Centre</publisher>
+            </citationMetadata>
+         </citationInfo>
+      </collection>
+   </registryObject>
+   <registryObject group="Australian Antarctic Division">
+      <key>AADC/0d3918e5-0b7d-4717-84f1-7acfe1fe3a20</key>
+      <originatingSource>AU/AADC &gt; Australian Antarctic Data Centre, Australia</originatingSource>
+      <collection type="dataset" dateAccessioned="1999-10-07T00:00:00&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;">
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/eds/5272/download</identifier>
+            <title>Download the supplementary dataset. (GET DATA &gt; DIRECT DOWNLOAD)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/eds/5565/download</identifier>
+            <title>Download the associated reports (GET DATA &gt; DIRECT DOWNLOAD)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/marine_science/underway_extraction/index.cfm</identifier>
+            <title>Marine Science Data Search (GET DATA)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://portal.aodn.org.au/</identifier>
+            <title>Access the data via the AODN web portal (GET DATA)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/geoserver/underway/ows?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;typeName=underway%3Aunderway_60&amp;outputFormat=csv&amp;cql_filter=set_code=198990072</identifier>
+            <title>CSV download of underway data collected during the voyage - 60 second intervals (USE SERVICE API &gt; WEB FEATURE SERVICE (WFS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/geoserver/underway/ows?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;typeName=underway%3Aunderway_1200&amp;outputFormat=csv&amp;cql_filter=set_code=198990072</identifier>
+            <title>CSV download of underway data collected during the voyage - 1200 second intervals (USE SERVICE API &gt; WEB FEATURE SERVICE (WFS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/geoserver/underway/ows?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;typeName=underway%3Aunderway_7200&amp;outputFormat=csv&amp;cql_filter=set_code=198990072</identifier>
+            <title>CSV download of underway data collected during the voyage - 7200 second intervals (USE SERVICE API &gt; WEB FEATURE SERVICE (WFS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/geoserver/underway/wms?request=GetCapabilities</identifier>
+            <title>Underway data web map service (USE SERVICE API &gt; WEB MAP SERVICE (WMS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/geoserver/underway/wfs?request=GetCapabilities</identifier>
+            <title>Underway data web feature service (USE SERVICE API &gt; WEB FEATURE SERVICE (WFS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/geoserver/underway/ows?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;typeName=underway%3Aunderway_mln_1200&amp;outputFormat=SHAPE-ZIP&amp;cql_filter=set_code=198990072</identifier>
+            <title>Voyage Track (USE SERVICE API &gt; WEB FEATURE SERVICE (WFS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/eds/4629/download</identifier>
+            <title>Download a copy of the scanned voyage track maps (VIEW RELATED INFORMATION &gt; GENERAL DOCUMENTATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/voyages/sensors.cfm?set_code=198990072</identifier>
+            <title>Voyage instrumentation list (VIEW RELATED INFORMATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/voyages/display_voyage.cfm?set_code=198990072</identifier>
+            <title>Voyage Summary Sheet (VIEW RELATED INFORMATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/metadata/citation.cfm?entry_id=198990072</identifier>
+            <title>Citation reference for this metadata record and dataset (VIEW RELATED INFORMATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo>
+            <identifier type="global"/>
+            <relation type="isPartOf"/>
+         </relatedInfo>
+         <identifier type="global">198990072</identifier>
+         <location>
+            <address>
+               <electronic type="url" target="landingPage">
+                  <value>http://data.aad.gov.au/metadata/198990072</value>
+               </electronic>
+            </address>
+         </location>
+         <description type="lineage">Progress Code: completed</description>
+         <description type="lineage">Statement: Please see the Marine Science Support Data Quality and Programmer's Reports at the Related URL section.
+
+Where data for a particular sensor do not exist for a particular time, the last known value is used unless the sensor has been disabled or has encountered an error. For example, some sensors only record data every minute, but the resolution for the underway dataset is 10 seconds, so the same value will be used 6 times a minute. No averages are taken for sensors that capture data at a rate other than every 10 seconds. Instead, each record will be a snapshot of each sensor at that time.</description>
+         <name type="primary">
+            <namePart>Aurora Australis Voyage 7.2 (HIMS) 1989-90 Underway Data</namePart>
+         </name>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/REEVE,JONO</identifier>
+            <title>REEVE, JONO</title>
+            <relation type="author"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AustralianAntarcticDivision</identifier>
+            <title>Australian Antarctic Division</title>
+            <relation type="sponsor"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC</identifier>
+            <title>AADC</title>
+            <relation type="owner"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/CommonwealthofAustralia</identifier>
+            <title>Commonwealth of Australia</title>
+            <relation type="originator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AustralianAntarcticDataCentre</identifier>
+            <title>Australian Antarctic Data Centre</title>
+            <relation type="publisher"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/REEVE,JONO</identifier>
+            <title>REEVE, JONO</title>
+            <relation type="principalInvestigator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/REEVE,JONO</identifier>
+            <title>REEVE, JONO</title>
+            <relation type="collaborator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AU/AADC&gt;AustralianAntarcticDataCentre,Australia</identifier>
+            <title>AU/AADC &gt; Australian Antarctic Data Centre, Australia</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC,DATAOFFICER</identifier>
+            <title>AADC, DATA OFFICER</title>
+            <relation type="custodian"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AU/AADC&gt;AustralianAntarcticDataCentre,Australia</identifier>
+            <title>AU/AADC &gt; Australian Antarctic Data Centre, Australia</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC,DATAOFFICER</identifier>
+            <title>AADC, DATA OFFICER</title>
+            <relation type="distributor"/>
+         </relatedInfo>
+         <subject type="local">climatologyMeteorologyAtmosphere</subject>
+         <subject type="local">elevation</subject>
+         <subject type="local">oceans</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC TEMPERATURE &gt; SURFACE TEMPERATURE &gt; AIR TEMPERATURE</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC WATER VAPOR &gt; WATER VAPOR INDICATORS &gt; HUMIDITY</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC WINDS &gt; SURFACE WINDS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC RADIATION &gt; SOLAR RADIATION</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; OCEANS &gt; BATHYMETRY/SEAFLOOR TOPOGRAPHY &gt; WATER DEPTH</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC PRESSURE</subject>
+         <subject type="local">MARINE</subject>
+         <subject type="local">OCEANOGRAPHY</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">TEMPERATURE LOGGERS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">BAROMETERS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">ECHO SOUNDERS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">R/V AA &gt; R/V Aurora Australis</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">CEOS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">AMD/AU</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">AMD</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">OCEAN &gt; SOUTHERN OCEAN</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">GEOGRAPHIC REGION &gt; POLAR</subject>
+         <description type="full">This dataset contains the underway data from Voyage 7.2 1989-90 (HIMS) of the Aurora Australis. This was the maiden cruise of the AA and was a manned marine science voyage. DLS data types were logged at 60-second intervals. The observations were taken between May and July 1990 en route from Hobart to Heard Island and back to Hobart. The Programmer's and Data Quality Reports are available via the Related URL section.&lt;br/&gt;&lt;br/&gt;Also available is a scan of a printed plot of a section of the Voyage 7.2 1989/90 (HIMS) track in the Heard Island area, 18 May to 14 June 1990.&lt;br/&gt;&lt;br/&gt;A copy of the voyage leader's report is included with the data quality report download.&lt;br/&gt;&lt;br/&gt;From the Voyage Leader's Report:&lt;br/&gt;&lt;br/&gt;Voyage 7.2 was the main marine science cruise of the season, and the maiden voyage of Aurora Australis.  Research was conducted in the region of Heard Island, and the main objectives were:&lt;br/&gt;&lt;br/&gt;1) A survey of the distribution and abundance of demersal fish in shelf waters in the EEZ around Heard Island.&lt;br/&gt;2) A site survey for the forthcoming global warming experiment to be conducted by CSIRO Division of Oceanography.&lt;br/&gt;3) Research on the formation and distribution of cloud condensation buclei by scientists from the University of NSW.&lt;br/&gt;4) Research on the distribution and abundance of phytoplankton cells and their pigments.&lt;br/&gt;5) Studies on the zooplankton of the area.&lt;br/&gt;6) Studies on the invertebrate benthos brought up in the trawls by workers from the South Australian Museum.&lt;br/&gt;7) Capture and transport to Australia of live fish for aquarium display at the Sydney Aquarium, Darling Harbour.&lt;br/&gt;8) Deploy a party of four people at Spit Point, Heard Island, for the maximum possible time for studies on seal diets and foraging ranges.&lt;br/&gt;&lt;br/&gt;The basic plan was to head straight for Heard Island with at most one stop per day for a CTD drop to 150m, deploy the current meter array for CSIRO and the drifting buoy for the Bureau of Meteorology just SE of the Island and to deploy the shore party at the first opportunity.  Thereafter the fish survey would determine the vessel's route around the EEZ between the fishing sites, and the other scientific programmes would continue in "piggy back" fashion.  The shore party would be picked up and the current meter array recovered and redeployed as late as prudently possible.  With this in mind, it was agreed a priori that the shore party would be ready to depart at short notice any time within the last week of the planned stay.  After leaving the Heard Island vicinity, it was planned to visit Kerguelen en route to Australia to sample icefish from that area for comparison of their genetic structure with those from the Heard Island area.</description>
+         <coverage>
+            <spatial type="iso19139dcmiBox">westlimit=73; southlimit=-53; eastlimit=148; northlimit=-44</spatial>
+            <spatial type="text">westlimit=73; southlimit=-53; eastlimit=148; northlimit=-44</spatial>
+         </coverage>
+         <coverage/>
+         <coverage/>
+         <coverage/>
+         <coverage>
+            <temporal>
+               <date type="dateFrom" dateFormat="W3CDTF">1990-05-07</date>
+               <date type="dateTo" dateFormat="W3CDTF">1990-07-04</date>
+            </temporal>
+         </coverage>
+         <rights>
+            <rightsStatement>Data are available online via the Australian Antarctic Division Data Centre web page. A "supplementary" dataset is also available for download from the provided URL. It contains raw data collected directly from the ship, which has not been quality checked.</rightsStatement>
+         </rights>
+         <rights>
+            <licence rightsUri="https://creativecommons.org/licenses/by/4.0/legalcode"
+                     type="CC-BY">Attribution 4.0 International (CC BY 4.0)</licence>
+         </rights>
+         <rights>
+            <rightsStatement>This data set conforms to the CCBY Attribution License (http://creativecommons.org/licenses/by/4.0/). Please follow instructions listed in the citation reference provided at http://data.aad.gov.au/aadc/metadata/citation.cfm?entry_id=198990072 when using these data.</rightsStatement>
+         </rights>
+         <rights>
+            <rightsStatement>This metadata record is publicly available.</rightsStatement>
+         </rights>
+         <rights>
+            <accessRights type="other"/>
+         </rights>
+         <citationInfo>
+            <citationMetadata>
+               <identifier type="url">http://data.aad.gov.au/metadata/198990072</identifier>
+               <title>Aurora Australis Voyage 7.2 (HIMS) 1989-90 Underway Data</title>
+               <date type="publicationDate">1999-10-07T00:00:00
+					</date>
+               <contributor seq="1">
+                  <namePart>Commonwealth of Australia</namePart>
+               </contributor>
+               <contributor seq="2">
+                  <namePart>REEVE, JONO</namePart>
+               </contributor>
+               <publisher>Australian Antarctic Data Centre</publisher>
+            </citationMetadata>
+         </citationInfo>
+      </collection>
+   </registryObject>
+   <registryObject group="Australian Antarctic Division">
+      <key>AADC/6dcc81d7-ad57-4475-b435-f5999788dee2</key>
+      <originatingSource>AU/AADC &gt; Australian Antarctic Data Centre, Australia</originatingSource>
+      <collection type="dataset" dateAccessioned="1999-10-07T00:00:00&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;">
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">https://data.aad.gov.au/geoserver/underway/ows?service=WFS&amp;version=1.0.0&amp;request=GetFeature&amp;typeName=underway%3Aunderway_mln_1200&amp;outputFormat=SHAPE-ZIP&amp;cql_filter=set_code=199091020</identifier>
+            <title>Citation reference for this metadata record and dataset (USE SERVICE API &gt; WEB FEATURE SERVICE (WFS))</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="relatedInformation">
+            <identifier type="url">http://data.aad.gov.au/aadc/metadata/citation.cfm?entry_id=199091020</identifier>
+            <title>Citation reference for this metadata record and dataset (VIEW RELATED INFORMATION)</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo>
+            <identifier type="global"/>
+            <relation type="isPartOf"/>
+         </relatedInfo>
+         <identifier type="global">199091020</identifier>
+         <location>
+            <address>
+               <electronic type="url" target="landingPage">
+                  <value>http://data.aad.gov.au/metadata/199091020</value>
+               </electronic>
+            </address>
+         </location>
+         <description type="lineage">Progress Code: completed</description>
+         <description type="lineage">Statement: These data are corrupt and may not be able to be recovered.
+
+Where data for a particular sensor do not exist for a particular time, the last known value is used unless the sensor has been disabled or has encountered an error. For example, some sensors only record data every minute, but the resolution for the underway dataset is 10 seconds, so the same value will be used 6 times a minute. No averages are taken for sensors that capture data at a rate other than every 10 seconds. Instead, each record will be a snapshot of each sensor at that time.</description>
+         <name type="primary">
+            <namePart>Aurora Australis Voyage 2 (ICE) 1990-91 Underway Data</namePart>
+         </name>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/REEVE,JONO</identifier>
+            <title>REEVE, JONO</title>
+            <relation type="author"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AustralianAntarcticDivision</identifier>
+            <title>Australian Antarctic Division</title>
+            <relation type="sponsor"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC</identifier>
+            <title>AADC</title>
+            <relation type="owner"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/CommonwealthofAustralia</identifier>
+            <title>Commonwealth of Australia</title>
+            <relation type="originator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AustralianAntarcticDataCentre</identifier>
+            <title>Australian Antarctic Data Centre</title>
+            <relation type="publisher"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/REEVE,JONO</identifier>
+            <title>REEVE, JONO</title>
+            <relation type="principalInvestigator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/REEVE,JONO</identifier>
+            <title>REEVE, JONO</title>
+            <relation type="collaborator"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AU/AADC&gt;AustralianAntarcticDataCentre,Australia</identifier>
+            <title>AU/AADC &gt; Australian Antarctic Data Centre, Australia</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC,DATAOFFICER</identifier>
+            <title>AADC, DATA OFFICER</title>
+            <relation type="custodian"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AU/AADC&gt;AustralianAntarcticDataCentre,Australia</identifier>
+            <title>AU/AADC &gt; Australian Antarctic Data Centre, Australia</title>
+            <relation type="hasAssociationWith"/>
+         </relatedInfo>
+         <relatedInfo type="party">
+            <identifier type="local">AADC/AADC,DATAOFFICER</identifier>
+            <title>AADC, DATA OFFICER</title>
+            <relation type="distributor"/>
+         </relatedInfo>
+         <subject type="local">climatologyMeteorologyAtmosphere</subject>
+         <subject type="local">elevation</subject>
+         <subject type="local">oceans</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC TEMPERATURE &gt; SURFACE TEMPERATURE &gt; AIR TEMPERATURE</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC WATER VAPOR &gt; WATER VAPOR INDICATORS &gt; HUMIDITY</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC WINDS &gt; SURFACE WINDS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC RADIATION &gt; SOLAR RADIATION</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; OCEANS &gt; BATHYMETRY/SEAFLOOR TOPOGRAPHY &gt; WATER DEPTH</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; OCEANS &gt; OCEAN TEMPERATURE &gt; SEA SURFACE TEMPERATURE</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; OCEANS &gt; SALINITY/DENSITY &gt; SALINITY</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">EARTH SCIENCE &gt; ATMOSPHERE &gt; ATMOSPHERIC PRESSURE</subject>
+         <subject type="local">MARINE</subject>
+         <subject type="local">OCEANOGRAPHY</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">ECHO SOUNDERS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">R/V AA &gt; R/V Aurora Australis</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">SHIPS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">AMD/AU</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">CEOS</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">AMD</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">OCEAN &gt; SOUTHERN OCEAN</subject>
+         <subject type="NASA/GCMD Earth Science Keywords">GEOGRAPHIC REGION &gt; POLAR</subject>
+         <description type="full">This dataset contains the underway data from Voyage 2 1990-91 (ICE) of the Aurora Australis. Unfortunately, these data are corrupt and may not be able to be recovered. They are therefore not available online. This was a resupply voyage, but marine science data were logged as part of the sea trial to test the DLS. DLS data types were logged at 20-second intervals. The observations were taken between October and November 1990 en route from Hobart to Casey to Mawson to Davis and back to Hobart.</description>
+         <coverage>
+            <spatial type="iso19139dcmiBox">westlimit=62.0; southlimit=-69.0; eastlimit=148.0; northlimit=-44.0</spatial>
+            <spatial type="text">westlimit=62.0; southlimit=-69.0; eastlimit=148.0; northlimit=-44.0</spatial>
+         </coverage>
+         <coverage/>
+         <coverage/>
+         <coverage/>
+         <coverage>
+            <temporal>
+               <date type="dateFrom" dateFormat="W3CDTF">1990-10-09</date>
+               <date type="dateTo" dateFormat="W3CDTF">1990-11-19</date>
+            </temporal>
+         </coverage>
+         <rights>
+            <rightsStatement>Data are stored on Magnetic Optical Disk and are not available online.</rightsStatement>
+         </rights>
+         <rights>
+            <licence rightsUri="https://creativecommons.org/licenses/by/4.0/legalcode"
+                     type="CC-BY">Attribution 4.0 International (CC BY 4.0)</licence>
+         </rights>
+         <rights>
+            <rightsStatement>This data set conforms to the CCBY Attribution License (http://creativecommons.org/licenses/by/4.0/). Please follow instructions listed in the citation reference provided at http://data.aad.gov.au/aadc/metadata/citation.cfm?entry_id=199091020 when using these data.</rightsStatement>
+         </rights>
+         <rights>
+            <rightsStatement>This metadata record is publicly available.</rightsStatement>
+         </rights>
+         <rights>
+            <accessRights type="other"/>
+         </rights>
+         <citationInfo>
+            <citationMetadata>
+               <identifier type="url">http://data.aad.gov.au/metadata/199091020</identifier>
+               <title>Aurora Australis Voyage 2 (ICE) 1990-91 Underway Data</title>
+               <date type="publicationDate">1999-10-07T00:00:00
+					</date>
+               <contributor seq="1">
+                  <namePart>Commonwealth of Australia</namePart>
+               </contributor>
+               <contributor seq="2">
+                  <namePart>REEVE, JONO</namePart>
+               </contributor>
+               <publisher>Australian Antarctic Data Centre</publisher>
+            </citationMetadata>
+         </citationInfo>
+      </collection>
+   </registryObject>

@@ -121,7 +121,9 @@
                 <xsl:apply-templates select="gmd:fileIdentifier" mode="registryObject_location_metadata"/>
                 <xsl:apply-templates select="gmd:parentIdentifier" mode="registryObject_related_object"/>
                 <xsl:apply-templates select="gmd:children/gmd:childIdentifier" mode="registryObject_related_object"/>
-             
+                <xsl:apply-templates select="gmd:contact/gmd:CI_ResponsibleParty/gmd:contactInfo/gmd:CI_Contact/gmd:contactInstructions[contains(lower-case(.), 'raid.org')]" mode="registryObject_relatedInfo_RAiD"/>
+                
+                
                 <xsl:apply-templates
                     select="gmd:distributionInfo"/>
                  
@@ -153,7 +155,7 @@
         
         <xsl:apply-templates select="gmd:MD_Distribution/gmd:transferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource" mode="registryObject_relatedInfo"/>
         <xsl:apply-templates select="gmd:MD_Distribution/gmd:distributionFormat/gmd:MD_Format/gmd:formatDistributor/gmd:MD_Distributor/gmd:distributorTransferOptions/gmd:MD_DigitalTransferOptions/gmd:onLine/gmd:CI_OnlineResource" mode="registryObject_relatedInfo"/>
-     </xsl:template>
+      </xsl:template>
     
    <xsl:template match="*[contains(lower-case(name()),'identification')]" mode="registryObject">
         <xsl:param name="originatingSource"/>
@@ -216,8 +218,8 @@
            group-by="gmd:organisationName">
            <xsl:apply-templates select="." mode="registryObject_related_object_organisation_no_individual_or_position_name"/>
        </xsl:for-each-group>
-        
-        <xsl:apply-templates
+       
+          <xsl:apply-templates
             select="gmd:topicCategory/gmd:MD_TopicCategoryCode"
             mode="registryObject_subject"/>
         
@@ -1721,6 +1723,15 @@
         </xsl:for-each>
     </xsl:template>
     
+    <xsl:template match="gmd:contactInstructions" mode="registryObject_relatedInfo_RAiD">
+         <relatedInfo type="activity">
+            <identifier type="url">
+                <xsl:value-of select="."/>
+            </identifier>
+            <relation type="isOutputOf"/>
+        </relatedInfo>
+    </xsl:template>
+    
     <xsl:function name="localFunc:registryObjectClass" as="xs:string">
         <xsl:param name="scopeCode_sequence" as="xs:string*"/>
        <xsl:choose>
@@ -1814,6 +1825,9 @@
             </xsl:when>
             <xsl:when test="contains(lower-case($identifier), 'doi.org')">
                 <xsl:text>doi</xsl:text>
+            </xsl:when>
+            <xsl:when test="contains(lower-case($identifier), 'raid.org')">
+                <xsl:text>raid</xsl:text>
             </xsl:when>
             <xsl:when test="contains(lower-case($identifier), '10.')">
                 <xsl:text>doi</xsl:text>
