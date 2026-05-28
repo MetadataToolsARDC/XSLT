@@ -13,6 +13,18 @@
     <xsl:param name="prefixKeyWithGroup" select="false()"/>
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
     
+    <xsl:template match="/">
+        <registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects {$xsd_url}">
+            <xsl:apply-templates select="//dataset[lower-case(type) = 'researchproject']"/>
+            <xsl:apply-templates select="//data"/>
+            <!--xsl:apply-templates select="//dataset/producer" mode="activity"/-->
+            <!--xsl:apply-templates select="//includedInDataCatalog" mode="catalog"/-->
+            <!--xsl:apply-templates select="//publisher | //funder | //contributor | //provider" mode="party"/-->
+        </registryObjects>
+    </xsl:template>
+    
     
     <xsl:template match="alternateName">
         <xsl:element name="name">
