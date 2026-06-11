@@ -7,6 +7,7 @@
     xmlns:mdb="http://standards.iso.org/iso/19115/-3/mdb/2.0"
     xmlns:mcc="http://standards.iso.org/iso/19115/-3/mcc/1.0" 
     xmlns:cit="http://standards.iso.org/iso/19115/-3/cit/2.0" 
+    xmlns:custom="http://custom.nowhere.yet"
     xmlns="http://ands.org.au/standards/rif-cs/registryObjects"
     exclude-result-prefixes="xs xsi xsl s3 mdb mcc cit">
     
@@ -51,6 +52,35 @@
         </xsl:choose>
         
     </xsl:template>
+    
+    <!-- Override to remove "doi:" prefix -->
+    <xsl:template match="mcc:MD_Identifier">
+        <xsl:if test="string-length(mcc:code) > 0">
+            <identifier>
+                <xsl:attribute name="type">
+                    <xsl:choose>
+                        <xsl:when test="string-length(mcc:codeSpace) > 0">
+                            <xsl:value-of select="custom:getIdentifierType(mcc:codeSpace)"/> 
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="custom:getIdentifierType(mcc:code)"/> 
+                        </xsl:otherwise>
+                    </xsl:choose>
+                    
+                </xsl:attribute>
+                <xsl:choose>
+                    <xsl:when test="starts-with(lower-case(mcc:code), lower-case('doi:'))">
+                        <xsl:value-of select="substring(mcc:code,string-length('doi:')+1)"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="mcc:code"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+                
+            </identifier>
+        </xsl:if>
+    </xsl:template>
+    
     
     <xsl:template match="/">
         
