@@ -2137,22 +2137,35 @@
     </xsl:template>
     
    <xsl:template match="mcc:MD_Identifier">
-        <xsl:if test="string-length(mcc:code) > 0">
-            <identifier>
+       <xsl:if test="
+           (not(contains(mcc:code, ':')) and string-length(mcc:code) > 0) or 
+           (contains(mcc:code, ':') and string-length(substring-after(mcc:code, ':')) > 0)">
+           <identifier>
                <xsl:attribute name="type">
                    <xsl:choose>
                        <xsl:when test="string-length(mcc:codeSpace) > 0">
-                           <xsl:value-of select="custom:getIdentifierType(mcc:codeSpace)"/> 
+                           <xsl:value-of select="custom:getIdentifierTypeFromNameSpace(mcc:codeSpace)"/> 
                        </xsl:when>
                        <xsl:otherwise>
                            <xsl:value-of select="custom:getIdentifierType(mcc:code)"/> 
                        </xsl:otherwise>
                    </xsl:choose>
-                         
-                </xsl:attribute>
-                <xsl:value-of select="mcc:code"/>
-            </identifier>
-        </xsl:if>
+                   
+               </xsl:attribute>
+               <xsl:choose>
+                   <xsl:when test="starts-with(lower-case(mcc:code), lower-case('doi:'))">
+                       <xsl:value-of select="substring(mcc:code,string-length('doi:')+1)"/>
+                   </xsl:when>
+                   <xsl:when test="(contains(mcc:code, ':') and string-length(substring-after(mcc:code, ':')) > 0)">
+                       <xsl:value-of select="substring-after(mcc:code, ':')"/>
+                   </xsl:when>
+                   <xsl:otherwise>
+                       <xsl:value-of select="mcc:code"/>
+                   </xsl:otherwise>
+               </xsl:choose>
+               
+           </identifier>
+       </xsl:if>
     </xsl:template>
     
     <xsl:template match="mcc:MD_Identifier" mode="global_identifier">

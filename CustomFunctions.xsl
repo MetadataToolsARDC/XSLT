@@ -85,9 +85,54 @@
     <xsl:function name="custom:getIdentifierType" as="xs:string">
         <xsl:param name="identifier" as="xs:string"/>
         <xsl:choose>
+            <xsl:when test="contains(lower-case($identifier), 'orcid')">
+                <xsl:text>orcid</xsl:text>
+            </xsl:when>
+            <xsl:when test="contains(lower-case($identifier), 'ror')">
+                <xsl:text>ror</xsl:text>
+            </xsl:when>
+            <xsl:when test="contains(lower-case($identifier), 'raid')">
+                <xsl:text>raid</xsl:text>
+            </xsl:when>
+            <xsl:when test="contains(lower-case($identifier), 'purl.org')">
+                <xsl:text>purl</xsl:text>
+            </xsl:when>
+            <xsl:when test="contains(lower-case($identifier), 'doi')">
+                <xsl:text>doi</xsl:text>
+            </xsl:when>
+            <xsl:when test="starts-with($identifier, '10.')"> <!-- in case it doesn't contain doi.org -->
+                <xsl:text>doi</xsl:text>
+            </xsl:when>
+            <xsl:when test="contains(lower-case($identifier), 'scopus')">
+                <xsl:text>scopus</xsl:text>
+            </xsl:when>
+            <xsl:when test="contains(lower-case($identifier), 'handle.net')">
+                <xsl:text>handle</xsl:text>
+            </xsl:when>
+            <xsl:when test="contains(lower-case($identifier), 'nla.gov.au')">
+                <xsl:text>AU-ANL:PEAU</xsl:text>
+            </xsl:when>
+            <xsl:when test="contains(lower-case($identifier), 'fundref')">
+                <xsl:text>fundref</xsl:text>
+            </xsl:when>
+            <xsl:when test="starts-with(lower-case($identifier), 'arc')">
+                <xsl:text>arc</xsl:text>
+            </xsl:when>
             <xsl:when test="contains(lower-case($identifier), 'http')">
                 <xsl:text>url</xsl:text>
             </xsl:when>
+            <xsl:when test="contains(lower-case($identifier), 'uuid')">
+                <xsl:text>global</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:text>local</xsl:text>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
+    <xsl:function name="custom:getIdentifierTypeFromNameSpace" as="xs:string">
+        <xsl:param name="identifier" as="xs:string"/>
+        <xsl:choose>
             <xsl:when test="contains(lower-case($identifier), 'orcid')">
                 <xsl:text>orcid</xsl:text>
             </xsl:when>

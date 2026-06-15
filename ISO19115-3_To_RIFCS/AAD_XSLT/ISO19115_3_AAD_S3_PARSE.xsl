@@ -60,7 +60,7 @@
                 <xsl:attribute name="type">
                     <xsl:choose>
                         <xsl:when test="string-length(mcc:codeSpace) > 0">
-                            <xsl:value-of select="custom:getIdentifierType(mcc:codeSpace)"/> 
+                            <xsl:value-of select="custom:getIdentifierTypeFromNameSpace(mcc:codeSpace)"/> 
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:value-of select="custom:getIdentifierType(mcc:code)"/> 
