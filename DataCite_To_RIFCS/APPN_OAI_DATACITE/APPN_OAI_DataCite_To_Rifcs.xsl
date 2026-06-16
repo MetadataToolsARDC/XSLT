@@ -6,10 +6,11 @@
     xmlns:fn="http://www.w3.org/2005/xpath-functions"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://ands.org.au/standards/rif-cs/registryObjects"
     xpath-default-namespace="http://datacite.org/schema/kernel-4"
-    exclude-result-prefixes="xsl custom oai fn xs xsi">
+    exclude-result-prefixes="xsl custom fn xs xsi">
     
-    <xsl:import href="DataCite_Kernel4_To_Rifcs.xsl"/>
+    <xsl:import href="DataCite_Kernel4_7_To_Rifcs.xsl"/>
     
     <xsl:param name="global_originatingSource" select="'Australian Plant Phenomics Network'"/>
     <xsl:param name="global_group" select="'Australian Plant Phenomics Network'"/>
@@ -63,6 +64,8 @@
                 <xsl:otherwise></xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
+        
+        <xsl:message select="concat('recordID_stub: ', $recordID_stub)"></xsl:message>
         <xsl:message select="concat('name: ', fn:namespace-uri(oai:metadata/*:oai_datacite/*:payload/*:resource))"/>
         <xsl:apply-templates select="oai:metadata/*:oai_datacite/*:payload/resource" mode="datacite_4_to_rifcs_collection">
             <xsl:with-param name="originatingSource" select="$global_originatingSource"/>
