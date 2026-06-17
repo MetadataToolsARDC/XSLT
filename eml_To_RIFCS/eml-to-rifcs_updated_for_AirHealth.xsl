@@ -45,13 +45,13 @@
     <xsl:variable name="revid" select="''"/> <!-- TODO: obtain revid from somewhere if required -->
     
     
-      <xsl:apply-templates select="dataset">
+      <xsl:apply-templates select="dataset | protocol">
         <xsl:with-param name="docid" select="$docid" />
         <xsl:with-param name="revid" select="$revid" />
       </xsl:apply-templates>
   </xsl:template>
   
-  <xsl:template match="dataset">
+  <xsl:template match="dataset | protocol">
     <xsl:param name="docid"/>
     <xsl:param name="revid"/>
     
@@ -105,15 +105,51 @@
     <xsl:element name="registryObject">
       <xsl:attribute name="group"><xsl:value-of select="$global_group" /></xsl:attribute>
       
-      <xsl:element name="key"><xsl:value-of select="concat($global_acronym, '/Collection/', @id)" /></xsl:element>
+      
+      
+      <xsl:element name="key">
+        <xsl:choose>
+          <xsl:when test="local-name() = 'protocol'">
+            <xsl:value-of select="concat($global_acronym, '/Service/', @id)" />
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="concat($global_acronym, '/Collection/', @id)" />
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:element>
+        
       
       <xsl:element name="originatingSource">
         <xsl:value-of select="$originatingSource" />
       </xsl:element>
       
-      <xsl:element name="collection">
-        <xsl:attribute name="type">dataset</xsl:attribute>
-        <xsl:attribute name="dateAccessioned"><xsl:value-of select="$dateCreated" /></xsl:attribute>
+      <xsl:variable name="objectType">
+        <xsl:choose>
+          <xsl:when test="local-name() = 'protocol'">
+            <xsl:text>service</xsl:text>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:text>collection</xsl:text>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+      
+      <xsl:element name="{$objectType}">
+        <xsl:attribute name="type">
+          <xsl:choose>
+            <xsl:when test="local-name() = 'protocol'">
+              <xsl:text>report</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:text>dataset</xsl:text>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:attribute>
+        
+        <xsl:if test="local-name() = 'dataset'">
+          <xsl:attribute name="dateAccessioned"><xsl:value-of select="$dateCreated" /></xsl:attribute>
+        </xsl:if>
+       
         <xsl:attribute name="dateModified"><xsl:value-of select="$lastModified" /></xsl:attribute>
         
         <!--xsl:variable name="doi" select="alternateIdentifier[@system='doi']"/-->
@@ -167,6 +203,15 @@
               </xsl:choose>
           </xsl:element>
         </xsl:element>
+        
+        <xsl:for-each select="alternateIdentifier[@system='url']">
+          <xsl:element name="identifier">
+            <xsl:attribute name="type">url</xsl:attribute>
+              <xsl:value-of select="."/>
+          </xsl:element>
+        </xsl:for-each>
+        
+        <xsl:apply-templates select="distribution[string-length(@id) > 0]" mode="relatedInfo_distribution"/>
 
         <!--generate relationships to parties, implied by name of element -->
         <xsl:apply-templates select="creator | associatedParty | metadataProvider | contact" mode="relatedObject" />
@@ -217,79 +262,83 @@
         <xsl:variable name="datasetId" select="@id" as="xs:string?"/>
         
         <!-- If suggested citation, use it -->
-        <xsl:element name="citationInfo">
-          
-          <xsl:message select="concat('Result: ', count(following-sibling::additionalMetadata[(metadata/citeAs[string-length(.) > 0]) and (describes = $datasetId)]) > 0)"></xsl:message>
-          
-          <xsl:choose>
-          
-          
-            <!--xsl:when test="count(following-sibling::additionalMetadata[(metadata/citeAs[string-length(.) > 0] and (describes = @id))]) > 0"-->
-            <xsl:when test="count(following-sibling::additionalMetadata[(metadata/citeAs[string-length(.) > 0]) and (describes = $datasetId)]) > 0">
-              <xsl:for-each select="following-sibling::additionalMetadata[(metadata/citeAs[string-length(.) > 0]) and (describes = $datasetId)]">
-                <xsl:for-each select="metadata/citeAs">
-                  <xsl:element name="fullCitation">
-                    <xsl:value-of select="."/>
-                  </xsl:element>
-                </xsl:for-each>
-              </xsl:for-each>
-          </xsl:when>
-          <xsl:otherwise>
-          
-            <!-- Otherwise construct citation metadata -->
-            <!-- citationInfo -->
+        
+        <xsl:if test="local-name() = 'dataset'">
+          <xsl:element name="citationInfo">
             
-              <xsl:element name="citationMetadata">
-                <xsl:element name="identifier">
-                  <xsl:choose>
-                    <xsl:when test="normalize-space($doi_sequence[1])">
-                      <xsl:attribute name="type">doi</xsl:attribute>
-                      <xsl:value-of select="local:format_doi($doi_sequence[1])"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                      <xsl:attribute name="type">local</xsl:attribute>
-                      <xsl:value-of select="$docid"/>
-                    </xsl:otherwise>
-                  </xsl:choose>
-                </xsl:element>
-                <xsl:apply-templates select="creator" mode="citationContributor"/>
-                <xsl:element name="title">
-                  <xsl:value-of select="title[1]"/>
-                </xsl:element>
-                
-                <xsl:call-template name="citationMetadataVersion">
-                  <xsl:with-param name="revid" select="$revid" />
-                </xsl:call-template>
-                
-                <xsl:for-each select="publisher/organizationName">
-                  <xsl:element name="publisher">
-                    <xsl:value-of select="."/>
-                  </xsl:element>
+            <xsl:message select="concat('Result: ', count(following-sibling::additionalMetadata[(metadata/citeAs[string-length(.) > 0]) and (describes = $datasetId)]) > 0)"></xsl:message>
+            
+            <xsl:choose>
+            
+            
+              <!--xsl:when test="count(following-sibling::additionalMetadata[(metadata/citeAs[string-length(.) > 0] and (describes = @id))]) > 0"-->
+              <xsl:when test="count(following-sibling::additionalMetadata[(metadata/citeAs[string-length(.) > 0]) and (describes = $datasetId)]) > 0">
+                <xsl:for-each select="following-sibling::additionalMetadata[(metadata/citeAs[string-length(.) > 0]) and (describes = $datasetId)]">
+                  <xsl:for-each select="metadata/citeAs">
+                    <xsl:element name="fullCitation">
+                      <xsl:value-of select="."/>
+                    </xsl:element>
+                  </xsl:for-each>
                 </xsl:for-each>
-                
-                <xsl:element name="placePublished">
-                  <xsl:value-of select="pubPlace"/>
+            </xsl:when>
+            <xsl:otherwise>
+            
+              <!-- Otherwise construct citation metadata -->
+              <!-- citationInfo -->
+              
+                <xsl:element name="citationMetadata">
+                  <xsl:element name="identifier">
+                    <xsl:choose>
+                      <xsl:when test="normalize-space($doi_sequence[1])">
+                        <xsl:attribute name="type">doi</xsl:attribute>
+                        <xsl:value-of select="local:format_doi($doi_sequence[1])"/>
+                      </xsl:when>
+                      <xsl:otherwise>
+                        <xsl:attribute name="type">local</xsl:attribute>
+                        <xsl:value-of select="$docid"/>
+                      </xsl:otherwise>
+                    </xsl:choose>
+                  </xsl:element>
+                  <xsl:apply-templates select="creator" mode="citationContributor"/>
+                  <xsl:element name="title">
+                    <xsl:value-of select="title[1]"/>
+                  </xsl:element>
+                  
+                  <xsl:call-template name="citationMetadataVersion">
+                    <xsl:with-param name="revid" select="$revid" />
+                  </xsl:call-template>
+                  
+                  <xsl:for-each select="publisher/organizationName">
+                    <xsl:element name="publisher">
+                      <xsl:value-of select="."/>
+                    </xsl:element>
+                  </xsl:for-each>
+                  
+                  <xsl:element name="placePublished">
+                    <xsl:value-of select="pubPlace"/>
+                  </xsl:element>
+                  <xsl:element name="date">
+                    <xsl:attribute name="type">publicationDate</xsl:attribute>
+                    <xsl:value-of select="pubDate"/>
+                    <xsl:if test="not(normalize-space(pubDate))">
+                      <xsl:value-of select="$dateCreated"/>
+                    </xsl:if>
+                  </xsl:element>
+                  <!--xsl:element name="url">
+                    <xsl:choose>
+                      <xsl:when test="normalize-space($doi_sequence[1])">
+                        <xsl:value-of select="local:format_doi($doi_sequence[1])"/>
+                      </xsl:when>
+                   </xsl:choose>
+                  </xsl:element-->
+                  <!--xsl:element name="context"></xsl:element-->
                 </xsl:element>
-                <xsl:element name="date">
-                  <xsl:attribute name="type">publicationDate</xsl:attribute>
-                  <xsl:value-of select="pubDate"/>
-                  <xsl:if test="not(normalize-space(pubDate))">
-                    <xsl:value-of select="$dateCreated"/>
-                  </xsl:if>
-                </xsl:element>
-                <!--xsl:element name="url">
-                  <xsl:choose>
-                    <xsl:when test="normalize-space($doi_sequence[1])">
-                      <xsl:value-of select="local:format_doi($doi_sequence[1])"/>
-                    </xsl:when>
-                 </xsl:choose>
-                </xsl:element-->
-                <!--xsl:element name="context"></xsl:element-->
-              </xsl:element>
-          </xsl:otherwise>
-        </xsl:choose>
+            </xsl:otherwise>
+          </xsl:choose>
+          </xsl:element>
+        </xsl:if>
         </xsl:element>
-      </xsl:element>
+      
     </xsl:element>
   </xsl:template>
   
@@ -325,6 +374,19 @@
       </xsl:element>
     </xsl:element>
   </xsl:template-->
+  
+  <xsl:template match="distribution" mode="relatedInfo_distribution">
+    <xsl:element name="relatedObject">
+      <xsl:element name="key">
+        <xsl:value-of select="concat($global_acronym, '/Service/', local:format_keystring(@id))" />
+      </xsl:element>
+      <xsl:element name="relation">
+        <xsl:attribute name="type">
+          <xsl:text>supports</xsl:text>
+        </xsl:attribute>
+      </xsl:element>
+    </xsl:element>
+  </xsl:template>
   
   <xsl:template match="project">
     
