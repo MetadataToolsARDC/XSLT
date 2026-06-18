@@ -55,27 +55,10 @@
     <xsl:param name="docid"/>
     <xsl:param name="revid"/>
     
-    <xsl:variable name="originatingSource">
-      <xsl:choose>
-        <xsl:when test="not($serverUrl)">
-            <xsl:choose>
-              <xsl:when test="count(creator/organizationName) > 0">
-                <xsl:value-of select="creator/organizationName[1]"/>
-              </xsl:when>
-              <xsl:when test="count(publisher/organizationName) > 0">
-                <xsl:value-of select="publisher/organizationName[1]"/>
-              </xsl:when>
-            </xsl:choose>
-       </xsl:when>
-        <xsl:otherwise>
-          <xsl:value-of select="$serverUrl" />
-        </xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
     
     <!-- collection -->
     <xsl:call-template name="collection">
-      <xsl:with-param name="originatingSource" select="$originatingSource" />
+      <xsl:with-param name="originatingSource" select="$global_group" />
       <xsl:with-param name="docid" select="$docid" />
       <xsl:with-param name="revid" select="$revid" />
     </xsl:call-template>
@@ -83,12 +66,12 @@
     <!-- party -->
     <xsl:apply-templates select="(creator|associatedParty|metadataProvider|contact)">
       <xsl:with-param name="docid" select="$docid" />
-      <xsl:with-param name="originatingSource" select="$originatingSource" />
+      <xsl:with-param name="originatingSource" select="$global_group" />
     </xsl:apply-templates>
     
     <xsl:apply-templates select="(project|project/relatedProject)" mode="activity_registryObject">
       <xsl:with-param name="docid" select="$docid" />
-      <xsl:with-param name="originatingSource" select="$originatingSource"/>
+      <xsl:with-param name="originatingSource" select="$global_group"/>
     </xsl:apply-templates>
   </xsl:template>
   
@@ -402,9 +385,7 @@
         </xsl:element>
       </xsl:element>
       
-    <xsl:apply-templates select="funding/section/para[count(ulink[string-length(@url) > 0]) > 0]" mode="relatedInfo_funding">
-      <xsl:with-param name="title" select="title[1]"></xsl:with-param>
-    </xsl:apply-templates>
+    <xsl:apply-templates select="funding/section/para[count(ulink[string-length(@url) > 0]) > 0]" mode="relatedInfo_funding"/>
     
     <xsl:apply-templates select="funding/para[count(ulink[string-length(@url) > 0]) > 0]" mode="relatedInfo_funding"/>
     
@@ -430,7 +411,7 @@
   
   
   <xsl:template match="para" mode="relatedInfo_funding">
-    <xsl:param name="title"/>
+    <xsl:param name="title" select="preceding-sibling::title[1]"/>
     
       <xsl:element name="relatedInfo">
         <xsl:attribute name="type">
@@ -622,9 +603,7 @@
         
         <xsl:apply-templates select="abstract[string-length(.) > 0]" mode="activity_registryobject_description"/>
         
-        <xsl:apply-templates select="funding/section/para[count(ulink[string-length(@url) > 0]) > 0]" mode="relatedInfo_funding">
-          <xsl:with-param name="title" select="title[1]"></xsl:with-param>
-        </xsl:apply-templates>
+        <xsl:apply-templates select="funding/section/para[count(ulink[string-length(@url) > 0]) > 0]" mode="relatedInfo_funding"/>
         
         <xsl:apply-templates select="funding/para[count(ulink[string-length(@url) > 0]) > 0]" mode="relatedInfo_funding"/>
         
