@@ -25,7 +25,6 @@
     <xsl:param name="global_debug" select="false()" as="xs:boolean"/>
     <xsl:param name="global_debugExceptions" select="true()" as="xs:boolean"/>
     <xsl:variable name="licenseCodelist" select="document('license-codelist.xml')"/>
-    <xsl:variable name="gmdCodelists" select="document('codelists.xml')"/>
     <!--xsl:variable name="anzsrcCodelist" select="document('anzsrc-for-2008.xml')"/-->
     <xsl:param name="global_baseURI" select="'undetermined'"/>
     <xsl:param name="global_acronym" select="'undetermined'"/>
@@ -283,22 +282,24 @@
     
     <xsl:template match="*[contains(lower-case(name()),'identification')]" mode="relatedRegistryObjects">
         <xsl:param name="originatingSource"/>
+        <!-- Create Party record unless ORCiD identifier is present - ORCiD will be related using relatedInfo in this case rather than Party record created and relatedObject used -->
         <xsl:for-each-group
-            select="gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty/gmd:CI_ResponsibleParty[(string-length(normalize-space(gmd:individualName))) > 0] |
-            ancestor::gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty[(string-length(normalize-space(gmd:individualName))) > 0] |
-            gmd:pointOfContact/gmd:CI_ResponsibleParty[string-length(normalize-space(gmd:individualName)) > 0] |
-            ancestor::gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty[string-length(normalize-space(gmd:individualName)) > 0]"
+            select="gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty/gmd:CI_ResponsibleParty[((string-length(normalize-space(gmd:individualName))) > 0) and (count(gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage[contains(gmd:URL, 'orcid.org')]) = 0)] |
+            ancestor::gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty[((string-length(normalize-space(gmd:individualName))) > 0) and (count(gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage[contains(gmd:URL, 'orcid.org')]) = 0)] |
+            gmd:pointOfContact/gmd:CI_ResponsibleParty[(string-length(normalize-space(gmd:individualName)) > 0) and (count(gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage[contains(gmd:URL, 'orcid.org')]) = 0)] |
+            ancestor::gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty[(string-length(normalize-space(gmd:individualName)) > 0) and(count(gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage[contains(gmd:URL, 'orcid.org')]) = 0)]"
             group-by="gmd:individualName">
             <xsl:call-template name="partyPerson">
                 <xsl:with-param name="originatingSource" select="$originatingSource"/>
             </xsl:call-template>
         </xsl:for-each-group>
         
+        <!-- Create Party record unless ROR identifier is present - ROR will be related using relatedInfo in this case rather than Party record created and relatedObject used -->
         <xsl:for-each-group
-            select="gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty/gmd:CI_ResponsibleParty[(string-length(normalize-space(gmd:organisationName))) > 0] |
-            ancestor::gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty[(string-length(normalize-space(gmd:organisationName))) > 0] |
-            gmd:pointOfContact/gmd:CI_ResponsibleParty[string-length(normalize-space(gmd:organisationName)) > 0] |
-            ancestor::gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty[string-length(normalize-space(gmd:organisationName)) > 0]"
+            select="gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty/gmd:CI_ResponsibleParty[((string-length(normalize-space(gmd:organisationName))) > 0) and (count(gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage[contains(gmd:URL, 'ror.org')]) = 0)] |
+            ancestor::gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty[((string-length(normalize-space(gmd:organisationName))) > 0)and (count(gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage[contains(gmd:URL, 'ror.org')]) = 0)] |
+            gmd:pointOfContact/gmd:CI_ResponsibleParty[(string-length(normalize-space(gmd:organisationName)) > 0)and (count(gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage[contains(gmd:URL, 'ror.org')]) = 0)] |
+            ancestor::gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty[(string-length(normalize-space(gmd:organisationName)) > 0)and (count(gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage[contains(gmd:URL, 'ror.org')]) = 0)]"
             group-by="gmd:organisationName">
             <xsl:call-template name="partyGroup">
                 <xsl:with-param name="originatingSource" select="$originatingSource"/>
@@ -480,54 +481,52 @@
     
     <!-- RegistryObject - Related Object (Individual) Element -->
     <xsl:template match="gmd:CI_ResponsibleParty" mode="registryObject_related_object_individual">
-          <relatedObject>
-            <key>
-                <xsl:value-of select="concat($global_acronym,'/', translate(normalize-space(current-grouping-key()),' ',''))"/>
-            </key>
-            <xsl:choose>
-                <xsl:when test="(count(current-group()/gmd:role) > 0)">
-                    <xsl:for-each-group select="current-group()/gmd:role"
-                        group-by="gmd:CI_RoleCode/@codeListValue">
-                        <xsl:variable name="role">
-                            <xsl:value-of select="normalize-space(current-grouping-key())"/>
-                        </xsl:variable>
-                         <xsl:choose>
-                            <xsl:when test="(string-length($role) > 0) ">
-                                <relation>
-                                    <xsl:variable name="codelist"
-                                        select="$gmdCodelists/codelists/codelist[contains(@name,'CI_RoleCode')]"/>
-                                    
-                                    <xsl:variable name="type">
-                                        <xsl:value-of select="$codelist/entry[code = $role]/description"/>
-                                    </xsl:variable>
-                                    
-                                    <xsl:attribute name="type">
-                                        <xsl:choose>
-                                            <xsl:when test="string-length($type) > 0">
-                                                <xsl:value-of select="$type"/>
-                                            </xsl:when>
-                                            <xsl:when test="string-length($role) > 0">
-                                                <xsl:value-of select="$role"/>  
-                                            </xsl:when>
-                                            <xsl:otherwise>
-                                                <xsl:text>unknown</xsl:text>
-                                            </xsl:otherwise>
-                                        </xsl:choose>
-                                    </xsl:attribute>
-                                </relation>
-                            </xsl:when>
-                        </xsl:choose>
-                    </xsl:for-each-group>
-                </xsl:when>     
-                <xsl:otherwise>
+        
+        <xsl:choose>
+            <xsl:when test="count(gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage[contains(gmd:URL, 'orcid.org')]) = 0">
+                <xsl:element name="relatedObject">
+                    <key>
+                        <xsl:value-of select="concat($global_acronym,'/', translate(normalize-space(current-grouping-key()),' ',''))"/>
+                    </key>
+                    
+                    <xsl:apply-templates select="." mode="relationType"/>
+                    
+                </xsl:element>
+            </xsl:when>
+            <xsl:otherwise>
+                
+                <xsl:element name="relatedInfo">
+                    <identifier type="orcid">
+                        <xsl:value-of select="gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage[contains(gmd:URL, 'orcid.org')][1]/gmd:URL[1]"/>
+                    </identifier>
+                    
+                    <xsl:apply-templates select="." mode="relationType"/>
+                </xsl:element>
+                
+            </xsl:otherwise>
+        </xsl:choose>
+        
+    </xsl:template>
+    
+    <xsl:template match="gmd:CI_ResponsibleParty" mode="relationType">
+        <xsl:choose>
+            <xsl:when test="(count(gmd:role/gmd:CI_RoleCode[string-length(.) > 0]) > 0)">
+                <xsl:for-each select="gmd:role/gmd:CI_RoleCode[string-length(.) > 0]">
                     <relation>
                         <xsl:attribute name="type">
-                            <xsl:text>hasAssociationWith</xsl:text>
+                            <xsl:value-of select="."></xsl:value-of>
                         </xsl:attribute>
                     </relation>
-                </xsl:otherwise>
-            </xsl:choose>
-        </relatedObject>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+                <relation>
+                    <xsl:attribute name="type">
+                        <xsl:text>hasAssociationWith</xsl:text>
+                    </xsl:attribute>
+                </relation>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     
     <!-- RegistryObject - Related Object (Individual) Element -->
@@ -536,49 +535,9 @@
             <key>
                 <xsl:value-of select="concat($global_acronym,'/', translate(normalize-space(current-grouping-key()),' ',''))"/>
             </key>
-            <xsl:choose>
-                <xsl:when test="(count(current-group()/gmd:role) > 0)">
-                    <xsl:for-each-group select="current-group()/gmd:role"
-                        group-by="gmd:CI_RoleCode/@codeListValue">
-                        <xsl:variable name="role">
-                            <xsl:value-of select="normalize-space(current-grouping-key())"/>
-                        </xsl:variable>
-                        <xsl:choose>
-                            <xsl:when test="(string-length($role) > 0) ">
-                                <relation>
-                                    <xsl:variable name="codelist"
-                                        select="$gmdCodelists/codelists/codelist[contains(@name,'CI_RoleCode')]"/>
-                                    
-                                    <xsl:variable name="type">
-                                        <xsl:value-of select="$codelist/entry[code = $role]/description"/>
-                                    </xsl:variable>
-                                    
-                                    <xsl:attribute name="type">
-                                        <xsl:choose>
-                                            <xsl:when test="string-length($type) > 0">
-                                                <xsl:value-of select="$type"/>
-                                            </xsl:when>
-                                            <xsl:when test="string-length($role) > 0">
-                                                <xsl:value-of select="$role"/>  
-                                            </xsl:when>
-                                            <xsl:otherwise>
-                                                <xsl:text>unknown</xsl:text>
-                                            </xsl:otherwise>
-                                        </xsl:choose>
-                                    </xsl:attribute>
-                                </relation>
-                            </xsl:when>
-                        </xsl:choose>
-                    </xsl:for-each-group>
-                </xsl:when>     
-                <xsl:otherwise>
-                    <relation>
-                        <xsl:attribute name="type">
-                            <xsl:text>hasAssociationWith</xsl:text>
-                        </xsl:attribute>
-                    </relation>
-                </xsl:otherwise>
-            </xsl:choose>
+            
+            <xsl:apply-templates select="." mode="relationType"/>
+            
         </relatedObject>
     </xsl:template>
     
@@ -590,86 +549,54 @@
         <xsl:param name="organisationNamesOnly_sequence" as="xs:string*"/>
         
        <xsl:if test="count($organisationNamesOnly_sequence[. = current-grouping-key()]) = 0">
-            <relatedObject>
-                <key>
-                    <xsl:value-of select="concat($global_acronym,'/', translate(normalize-space(current-grouping-key()),' ',''))"/>
-                </key>
-                
-                <relation>
-                    <xsl:attribute name="type">
-                        <xsl:text>hasAssociationWith</xsl:text>
-                    </xsl:attribute>
-                </relation>
-                
-            </relatedObject>
+           <xsl:choose>
+               <xsl:when test="count(gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage[contains(gmd:URL, 'ror.org')]) = 0">
+                   <xsl:element name="relatedObject">
+                       <key>
+                           <xsl:value-of select="concat($global_acronym,'/', translate(normalize-space(current-grouping-key()),' ',''))"/>
+                       </key>
+                       
+                       <xsl:apply-templates select="." mode="relationType"/>
+                       
+                   </xsl:element>
+               </xsl:when>
+               <xsl:otherwise>
+                   
+                   <xsl:element name="relatedInfo">
+                    <identifier type="ror">
+                        <xsl:value-of select="gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage[contains(gmd:URL, 'ror.org')][1]/gmd:URL[1]"/>
+                    </identifier>
+                    
+                    <xsl:apply-templates select="." mode="relationType"/>
+                   </xsl:element>
+               </xsl:otherwise>
+           </xsl:choose>
         </xsl:if>
     </xsl:template>
     
     <xsl:template match="gmd:CI_ResponsibleParty" mode="registryObject_related_object_organisation_no_individual_or_position_name">
-        <relatedObject>
-            <key>
-                <xsl:value-of select="concat($global_acronym,'/', translate(normalize-space(current-grouping-key()),' ',''))"/>
-            </key>
-            
-            <xsl:if test="$global_debug">
-                <xsl:message select="concat('count current-group() gmd:role: ', count(current-group()/gmd:role))"/>
-            </xsl:if>
-            
-            <xsl:choose>
-                <!-- Dealing with an organisation without an individual name, so add role code -->
-                <xsl:when test="(count(current-group()/gmd:role) > 0)">
-                    <xsl:for-each-group select="current-group()/gmd:role"
-                        group-by="gmd:CI_RoleCode/@codeListValue">
-                        <xsl:variable name="role">
-                            <xsl:value-of select="normalize-space(current-grouping-key())"/>
-                        </xsl:variable>
-                        <xsl:if test="$global_debug">
-                            <xsl:message select="concat('role : ', $role)"/>
-                        </xsl:if>
-                        <xsl:choose>
-                            <xsl:when test="(string-length($role) > 0) ">
-                                <relation>
-                                    <xsl:variable name="codelist"
-                                        select="$gmdCodelists/codelists/codelist[contains(@name,'CI_RoleCode')]"/>
-                                    
-                                    <xsl:variable name="type">
-                                        <xsl:value-of select="$codelist/entry[code = $role]/description"/>
-                                    </xsl:variable>
-                                    
-                                    <xsl:attribute name="type">
-                                        <xsl:choose>
-                                            <xsl:when test="string-length($type) > 0">
-                                                <xsl:value-of select="$type"/>
-                                            </xsl:when>
-                                            <xsl:when test="string-length($role) > 0">
-                                                <xsl:value-of select="$role"/>  
-                                            </xsl:when>
-                                            <xsl:otherwise>
-                                                <xsl:text>unknown</xsl:text>
-                                            </xsl:otherwise>
-                                        </xsl:choose>
-                                    </xsl:attribute>
-                                </relation>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <relation>
-                                    <xsl:attribute name="type">
-                                        <xsl:text>hasAssociationWith</xsl:text>
-                                    </xsl:attribute>
-                                </relation>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:for-each-group>
-                </xsl:when>     
-                <xsl:otherwise>
-                    <relation>
-                        <xsl:attribute name="type">
-                            <xsl:text>hasAssociationWith</xsl:text>
-                        </xsl:attribute>
-                    </relation>
-                </xsl:otherwise>
-            </xsl:choose>
-        </relatedObject>
+        <xsl:choose>
+            <xsl:when test="count(gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage[contains(gmd:URL, 'ror.org')]) = 0">
+                <xsl:element name="relatedObject">
+                    <key>
+                        <xsl:value-of select="concat($global_acronym,'/', translate(normalize-space(current-grouping-key()),' ',''))"/>
+                    </key>
+                    
+                    <xsl:apply-templates select="." mode="relationType"/>
+                    
+                </xsl:element>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:element name="relatedInfo">
+                 <identifier type="ror">
+                     <xsl:value-of select="gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage[contains(gmd:URL, 'ror.org')][1]/gmd:URL[1]"/>
+                 </identifier>
+                 
+                 <xsl:apply-templates select="." mode="relationType"/>
+                </xsl:element>
+                 
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
     <!-- RegistryObject - Related Object Element  -->
@@ -1347,9 +1274,7 @@
                <xsl:variable name="dateValue" select="$dateValueAndType_sequence[1]"/>
                 <!--xsl:variable name="dateTypeFromSource" select="$dateValueAndType_sequence[2]"/-->
                 
-                <xsl:variable name="codelist" select="$gmdCodelists/codelists/codelist[@name = 'gmd:CI_DateTypeCode']"/>
-                
-                <xsl:variable name="formattedYear">
+               <xsl:variable name="formattedYear">
                     <xsl:choose>
                         <xsl:when test="string-length(localFunc:getYear($dateValue))">
                             <xsl:if test="$global_debug">
