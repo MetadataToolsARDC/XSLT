@@ -172,14 +172,14 @@
             <xsl:apply-templates select="." mode="registryObject_related_object_individual"/>
         </xsl:for-each-group>
        
-       <xsl:for-each-group
+       <!--xsl:for-each-group
            select="gmd:citation/gmd:CI_Citation/gmd:citedResponsibleParty/gmd:CI_ResponsibleParty[(string-length(normalize-space(gmd:positionName))) > 0] |
            ancestor::gmd:MD_Metadata/gmd:distributionInfo/gmd:MD_Distribution/gmd:distributor/gmd:MD_Distributor/gmd:distributorContact/gmd:CI_ResponsibleParty[(string-length(normalize-space(gmd:positionName))) > 0] |
            gmd:pointOfContact/gmd:CI_ResponsibleParty[(string-length(normalize-space(gmd:positionName))) > 0] |
            ancestor::gmd:MD_Metadata/gmd:contact/gmd:CI_ResponsibleParty[(string-length(normalize-space(gmd:positionName))) > 0]"
            group-by="gmd:positionName">
            <xsl:apply-templates select="." mode="registryObject_related_object_position"/>
-       </xsl:for-each-group>
+       </xsl:for-each-group-->
         
         <!-- get a list of all organisation names from responsible parties where there is no corresponding individual name or position name -->
        <xsl:variable name="organisationNamesOnly_sequence" as="xs:string*">
@@ -496,6 +496,9 @@
             <xsl:otherwise>
                 
                 <xsl:element name="relatedInfo">
+                    <xsl:attribute name="type">
+                        <xsl:text>party</xsl:text>
+                    </xsl:attribute>
                     <identifier type="orcid">
                         <xsl:value-of select="gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage[contains(gmd:URL, 'orcid.org')][1]/gmd:URL[1]"/>
                     </identifier>
@@ -530,7 +533,7 @@
     </xsl:template>
     
     <!-- RegistryObject - Related Object (Individual) Element -->
-    <xsl:template match="gmd:CI_ResponsibleParty" mode="registryObject_related_object_position">
+    <!--xsl:template match="gmd:CI_ResponsibleParty" mode="registryObject_related_object_position">
         <relatedObject>
             <key>
                 <xsl:value-of select="concat($global_acronym,'/', translate(normalize-space(current-grouping-key()),' ',''))"/>
@@ -539,7 +542,7 @@
             <xsl:apply-templates select="." mode="relationType"/>
             
         </relatedObject>
-    </xsl:template>
+    </xsl:template-->
     
     
     <!-- RegistryObject - Related Object (Organisation or Individual) Element -->
@@ -563,6 +566,9 @@
                <xsl:otherwise>
                    
                    <xsl:element name="relatedInfo">
+                       <xsl:attribute name="type">
+                           <xsl:text>party</xsl:text>
+                       </xsl:attribute>
                     <identifier type="ror">
                         <xsl:value-of select="gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage[contains(gmd:URL, 'ror.org')][1]/gmd:URL[1]"/>
                     </identifier>
@@ -588,6 +594,9 @@
             </xsl:when>
             <xsl:otherwise>
                 <xsl:element name="relatedInfo">
+                    <xsl:attribute name="type">
+                        <xsl:text>party</xsl:text>
+                    </xsl:attribute>
                  <identifier type="ror">
                      <xsl:value-of select="gmd:contactInfo/gmd:CI_Contact/gmd:onlineResource/gmd:CI_OnlineResource/gmd:linkage[contains(gmd:URL, 'ror.org')][1]/gmd:URL[1]"/>
                  </identifier>
@@ -1440,16 +1449,17 @@
                  </xsl:when>
 
                  <xsl:otherwise>
-                     <!-- Individual does not have an organisation name, so physicalAddress must pertain this individual -->
+                     <!-- Individual does not have an organisation name, so physicalAddress and online resource must pertain this individual -->
                      <xsl:call-template name="physicalAddress"/>
+                     <xsl:call-template name="onlineResource"/>
                  </xsl:otherwise>
              </xsl:choose>
              
              <!-- Individual - Phone and email on the individual, regardless of whether there's an organisation name -->
-             <xsl:call-template name="onlineResource"/>
-             <xsl:call-template name="telephone"/>
+             
+             <!--xsl:call-template name="telephone"/>
              <xsl:call-template name="facsimile"/>
-             <xsl:call-template name="email"/>
+             <xsl:call-template name="email"/-->
         </party>
         </registryObject>
     </xsl:template>
@@ -1483,15 +1493,14 @@
                 <xsl:for-each-group 
                     select="current-group()[count(gmd:individualName) = 0]"
                     group-by="gmd:organisationName">
+                        <xsl:call-template name="physicalAddress"/>
                         <xsl:call-template name="onlineResource"/>
-                        <xsl:call-template name="telephone"/>
+                        <!--xsl:call-template name="telephone"/>
                         <xsl:call-template name="facsimile"/>
-                        <xsl:call-template name="email"/>
+                        <xsl:call-template name="email"/-->
                 </xsl:for-each-group>
    
-                
-                <!-- We are dealing with an organisation, so always include the address -->
-                <xsl:call-template name="physicalAddress"/>
+           
             </party>
         </registryObject>
     </xsl:template>
