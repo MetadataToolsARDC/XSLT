@@ -118,7 +118,7 @@
             <xsl:when test="starts-with(lower-case($identifier), 'arc')">
                 <xsl:text>arc</xsl:text>
             </xsl:when>
-            <xsl:when test="contains(lower-case($identifier), 'http')">
+            <xsl:when test="starts-with(lower-case($identifier), 'http')">
                 <xsl:text>url</xsl:text>
             </xsl:when>
             <xsl:when test="contains(lower-case($identifier), 'uuid')">
