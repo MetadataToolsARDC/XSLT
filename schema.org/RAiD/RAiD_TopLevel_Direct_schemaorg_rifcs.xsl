@@ -17,8 +17,15 @@
         <registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects {$xsd_url}">
-            <xsl:apply-templates select="//dataset[lower-case(type) = 'researchproject']"/>
-            <xsl:apply-templates select="//data"/>
+            
+            <!-- Not we are specifically excluding the following:
+                Record with id https://raid.org/10.71821/418be95a
+                Any Record indicated as partOf the above Record (with id https://raid.org/10.71821/418be95a)
+                
+                This is because IMAS UTAS provide there own records and we don't want to include them
+                until we have de-duplication processing in RDA -->
+            <xsl:apply-templates select="//dataset[(lower-case(type) = 'researchproject') and ((id != 'https://raid.org/10.71821/418be95a') and count(isPartOf[id = 'https://raid.org/10.71821/418be95a']) = 0)]/id"/>
+            <!--xsl:apply-templates select="//data"/-->
             <!--xsl:apply-templates select="//dataset/producer" mode="activity"/-->
             <!--xsl:apply-templates select="//includedInDataCatalog" mode="catalog"/-->
             <!--xsl:apply-templates select="//publisher | //funder | //contributor | //provider" mode="party"/-->

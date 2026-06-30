@@ -1370,29 +1370,6 @@
                         </xsl:attribute>
                         <xsl:value-of select="$identifierFormatted"/>
                      </xsl:element>
-                    
-                    <xsl:if test="contains($identifierFormatted, 'static.prod.raid.org.au')">
-                        <xsl:element name="identifier">
-                            <xsl:attribute name="type">
-                                <xsl:text>url</xsl:text>
-                            </xsl:attribute>
-                            <xsl:value-of select="replace($identifierFormatted, 'static.prod.raid.org.au/raids', 'raid.org')"/>
-                        </xsl:element>
-                    </xsl:if>
-                   
-                    <!--xsl:element name="identifier">
-                        <xsl:attribute name="type">
-                            <xsl:choose>
-                                <xsl:when test="contains($domain, '.')">
-                                    <xsl:value-of select="substring-before($domain, '.')"/>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:text>local</xsl:text>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:attribute>
-                       <xsl:value-of select="$pathAfterDomain"/>
-                    </xsl:element-->
                 </xsl:if>
             </xsl:when>
              <xsl:otherwise>
@@ -1487,11 +1464,11 @@
         
         <xsl:sequence>
             
-            <xsl:for-each select="$identifiersRetrieved">
+            <xsl:for-each-group select="$identifiersRetrieved" group-by="normalize-space(.)"> <!-- Deduplicate by value -->
                 <xsl:if test="(0 > $numRequired) or ($numRequired >= position())">
                     <xsl:copy-of select="."/>
                 </xsl:if>
-            </xsl:for-each>
+            </xsl:for-each-group>
         </xsl:sequence>
         
        
