@@ -24,7 +24,7 @@
                 
                 This is because IMAS UTAS provide there own records and we don't want to include them
                 until we have de-duplication processing in RDA -->
-            <xsl:apply-templates select="//dataset[(lower-case(type) = 'researchproject') and ((id != 'https://raid.org/10.71821/418be95a') and count(isPartOf[id = 'https://raid.org/10.71821/418be95a']) = 0)]/id"/>
+            <xsl:apply-templates select="//dataset[(lower-case(type) = 'researchproject') and ((id != 'https://raid.org/10.71821/418be95a') and count(isPartOf[id = 'https://raid.org/10.71821/418be95a']) = 0)]"/>
             <!--xsl:apply-templates select="//data"/-->
             <!--xsl:apply-templates select="//dataset/producer" mode="activity"/-->
             <!--xsl:apply-templates select="//includedInDataCatalog" mode="catalog"/-->
