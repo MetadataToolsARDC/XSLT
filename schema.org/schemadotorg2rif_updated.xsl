@@ -197,6 +197,8 @@
                         <!--xsl:apply-templates select="producer | publisher | funder | funding/funder | contributor | provider | citation | creator" mode="relatedInfo"/-->
                         <xsl:apply-templates select="producer | funder | funding/funder | contributor | provider | citation | creator" mode="relatedInfo"/>
                         <xsl:apply-templates select="potentialAction/target" mode="relatedInfo"/>
+                        <xsl:apply-templates select="member/member[lower-case(type) = 'person']" mode="relatedInfo"/>
+                        <xsl:apply-templates select="member/member[lower-case(type) = 'organization']" mode="relatedInfo"/>
                         <xsl:apply-templates select="funding" mode="relatedInfo"/>
                     </xsl:element>
                 </xsl:element>
@@ -1104,6 +1106,40 @@
                 
                 <xsl:apply-templates select="description" mode="notes"/>
                 
+            </xsl:element>
+        </xsl:if>
+    </xsl:template>
+    
+    <!-- Person or Organization -->
+    <xsl:template match="member" mode="relatedInfo">
+        <xsl:variable name="identifier_elements" as="node()*">
+            <xsl:call-template name="identifiers">
+                <xsl:with-param name="contextNode" select="." as="node()*"/>
+                <xsl:with-param name="priorityTypes" select="'doi|handle'"/>
+                <xsl:with-param name="numRequired" select="1" as="xs:integer"/>
+            </xsl:call-template>
+        </xsl:variable> 
+        
+        <!-- don't create relatedInfo if we can't add an identifier  -->
+        <xsl:if test="count($identifier_elements)">
+            <xsl:element name="relatedInfo">
+                <xsl:attribute name="type">
+                    <xsl:text>party</xsl:text>
+                </xsl:attribute>
+                <xsl:element name="relation">
+                    <xsl:attribute name="type">
+                        <!--xsl:value-of select="ancestor::member[lower-case(type) = 'role']/id"/-->
+                        <xsl:text>hasAssociationWith</xsl:text>
+                    </xsl:attribute>
+                </xsl:element>
+                <xsl:for-each select="$identifier_elements">
+                    <xsl:element name="identifier">
+                        <xsl:attribute name="type">
+                            <xsl:value-of select="@type"/>
+                        </xsl:attribute>
+                        <xsl:apply-templates/>
+                    </xsl:element>
+                </xsl:for-each>
             </xsl:element>
         </xsl:if>
     </xsl:template>
