@@ -1128,8 +1128,15 @@
                 </xsl:attribute>
                 <xsl:element name="relation">
                     <xsl:attribute name="type">
-                        <!--xsl:value-of select="ancestor::member[lower-case(type) = 'role']/id"/-->
-                        <xsl:text>hasAssociationWith</xsl:text>
+                        <xsl:choose>
+                            <xsl:when test="count(ancestor::member[string-length(roleName) > 0]) > 0">
+                                <xsl:value-of select="ancestor::member[string-length(roleName) > 0][1]/roleName"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:text>hasAssociationWith</xsl:text>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                       
                     </xsl:attribute>
                 </xsl:element>
                 <xsl:for-each select="$identifier_elements">
