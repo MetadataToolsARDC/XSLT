@@ -1637,11 +1637,11 @@
     </xsl:template>
 
     <xsl:template match="text()">
-        <xsl:value-of select="normalize-space(.)"/>
+        <xsl:value-of select="custom:stripHtmlPreserveBreaks(.)"/>
     </xsl:template>
     
     <xsl:template match="text()" mode="HTML_Format">
-        <xsl:value-of select="custom:preserveWhitespaceHTML(.)"/>
+        <xsl:value-of select="."/>
     </xsl:template>
     
 

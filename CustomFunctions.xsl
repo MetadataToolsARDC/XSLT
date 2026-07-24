@@ -471,10 +471,32 @@
         <xsl:value-of select="$replaceNarrowNoBreakSpace"/>
     </xsl:function>
     
-    <xsl:function name="custom:preserveWhitespaceHTML" as="xs:string">
+    <xsl:function name="custom:stripHtmlPreserveBreaks" as="xs:string">
         <xsl:param name="text" as="xs:string"/>
+        
+        <!-- Step 0: normalise all line endings to a single LF -->
+        <xsl:variable name="normalised" as="xs:string"
+            select="replace(replace($text, '&#13;&#10;', '&#10;'), '&#13;', '&#10;')"/>
+        
+        <!-- Step 1: also treat literal backslash-n text as a line break -->
+        <xsl:variable name="withLiteralBreaks" as="xs:string"
+            select="replace($normalised, '\\n', '&#10;')"/>
+        
+        <!-- Step 2: convert any <br>, <br/>, <br /> (any case, with or without
+         attributes) into a real newline character, BEFORE stripping tags -->
+        <xsl:variable name="withBreaks" as="xs:string"
+            select="replace($withLiteralBreaks, '&lt;br(&gt;|[\s/][^&gt;]*&gt;)', '&#10;', 'i')"/>
+        
+        <!-- Step 3: remove every remaining HTML tag entirely -->
+        <xsl:variable name="stripped" as="xs:string"
+            select="replace($withBreaks, '&lt;/?[^&gt;]+&gt;', '')"/>
+        
+        <!-- Step 4: tidy up spaces/tabs on each line without losing the newlines -->
         <xsl:sequence select="
-            replace(replace(replace($text, '&#10;', '&lt;br/&gt;'),'\\n', '&lt;br/&gt;'),'&#9;', '&#160;&#160;&#160;&#160;')"/>
+            string-join(
+            for $line in tokenize($stripped, '&#10;')
+            return normalize-space($line),
+            '&#10;')"/>
     </xsl:function>
     
 </xsl:stylesheet>
