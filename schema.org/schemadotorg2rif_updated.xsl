@@ -972,21 +972,13 @@
                 <xsl:attribute name="type">
                     <xsl:variable name="sourceType" select="normalize-space(additionalType)"/>
                     <xsl:choose>
-                        <xsl:when test="string-length($sourceType) > 0">
-                            <xsl:choose>
-                                <xsl:when test="contains($sourceType, '/')">
-                                    <xsl:variable name="index" select="count(tokenize($sourceType, '/'))" as="xs:integer"/>
-                                    <xsl:value-of select="tokenize($sourceType, '/')[$index]"/>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:value-of select="$sourceType"/>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </xsl:when>
-                        <xsl:when test="type = 'Organization'">
+                        <xsl:when test="(type = 'Organization') or contains(id, 'ror.org')">
                              <xsl:text>party</xsl:text>
                         </xsl:when>
-                        <xsl:when test="(type = 'ResearchProject') or contains(identifier, 'raid.org')">
+                        <xsl:when test="(type = 'Person') or contains(id, 'orcid.org')">
+                            <xsl:text>party</xsl:text>
+                        </xsl:when>
+                        <xsl:when test="(type = 'ResearchProject') or contains(id, 'raid.org')">
                             <xsl:text>activity</xsl:text>
                         </xsl:when>
                         <xsl:when test="type = 'WebPage'">
@@ -995,25 +987,22 @@
                         <xsl:when test="type = 'PublicationIssue'">
                             <xsl:text>publication</xsl:text>
                         </xsl:when>
-                        <xsl:when test="(type = 'SoftwareSourceCode') or (type = 'CreativeWork') or (type = 'Dataset') or (name() = 'includedInDataCatalog')">
+                        <xsl:when test="(type = 'SoftwareSourceCode') or (type = 'Dataset') or (name() = 'includedInDataCatalog')">
                             <xsl:text>collection</xsl:text>
                         </xsl:when>
                         <xsl:when test="name() = 'creator'">
                             <xsl:text>party</xsl:text>
                         </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:text>website</xsl:text>
+                        </xsl:otherwise>
                      </xsl:choose>
                 </xsl:attribute>
                 <xsl:element name="relation">
                     <xsl:attribute name="type">
                         <xsl:choose>
-                            <xsl:when test="(type = 'ResearchProject') or contains(identifier, 'raid.org')">
+                            <xsl:when test="(type = 'ResearchProject') or contains(id, 'raid.org')">
                                 <xsl:text>isOutputOf</xsl:text>
-                            </xsl:when>
-                            <xsl:when test="type = 'WebPage'">
-                                <xsl:text>isSupplementTo</xsl:text>
-                            </xsl:when>
-                            <xsl:when test="type = 'PublicationIssue'">
-                                <xsl:text>isCitedBy</xsl:text>
                             </xsl:when>
                             <xsl:when test="type = 'SoftwareSourceCode'">
                                 <xsl:text>isProducedBy</xsl:text>

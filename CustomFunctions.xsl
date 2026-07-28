@@ -83,7 +83,10 @@
     </xsl:function>
     
     <xsl:function name="custom:getIdentifierType" as="xs:string">
-        <xsl:param name="identifier" as="xs:string"/>
+        <xsl:param name="identifierInput" as="xs:string"/>
+        
+        <xsl:variable name="identifier" select="fn:normalize-space($identifierInput)" as="xs:string"/>
+        
         <xsl:choose>
             <xsl:when test="contains(lower-case($identifier), 'orcid')">
                 <xsl:text>orcid</xsl:text>
@@ -131,7 +134,10 @@
     </xsl:function>
     
     <xsl:function name="custom:getIdentifierTypeFromNameSpace" as="xs:string">
-        <xsl:param name="identifier" as="xs:string"/>
+        <xsl:param name="identifierInput" as="xs:string"/>
+        
+        <xsl:variable name="identifier" select="fn:normalize-space($identifierInput)" as="xs:string"/>
+      
         <xsl:choose>
             <xsl:when test="contains(lower-case($identifier), 'orcid')">
                 <xsl:text>orcid</xsl:text>
@@ -498,5 +504,30 @@
             return normalize-space($line),
             '&#10;')"/>
     </xsl:function>
+    
+    <xsl:function name="custom:preserveWhitespaceHTML" as="xs:string">
+        <xsl:param name="text" as="xs:string"/>
+        
+        <!-- Step 0: normalise line endings -->
+        <xsl:variable name="normalised" as="xs:string"
+            select="replace(replace($text, '&#13;&#10;', '&#10;'), '&#13;', '&#10;')"/>
+        
+        <!-- Step 1: escape HTML-significant characters already in the text.
+         & must go first, before &lt;/&gt; are introduced below, or the
+         & in those entities would get escaped a second time. -->
+        <xsl:variable name="escaped" as="xs:string"
+            select="replace(replace(replace($normalised,
+            '&amp;', '&amp;amp;'),
+            '&lt;',  '&amp;lt;'),
+            '&gt;',  '&amp;gt;')"/>
+        
+        <!-- Step 2: convert real newlines and literal backslash-n to <br/> -->
+        <xsl:variable name="withBreaks" as="xs:string"
+            select="replace(replace($escaped, '&#10;', '&lt;br/&gt;'), '\\n', '&lt;br/&gt;')"/>
+        
+        <!-- Step 3: tabs to non-breaking spaces -->
+        <xsl:sequence select="replace($withBreaks, '&#9;', '&#160;&#160;&#160;&#160;')"/>
+    </xsl:function>
+    
     
 </xsl:stylesheet>

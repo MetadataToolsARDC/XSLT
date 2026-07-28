@@ -249,6 +249,10 @@
                     mode="registryObject_description_lineage"/>
                 
                 <xsl:apply-templates
+                    select="mdb:dataQualityInfo"
+                    mode="registryObject_description_quality"/>
+                
+                <xsl:apply-templates
                     select="mdb:resourceLineage"
                     mode="registryObject_description_lineage"/>
                 
@@ -506,7 +510,7 @@
     
     <xsl:template match="cit:linkage" mode="registryObject_identifier_metadata_URL">
         <identifier type="url">
-            <xsl:value-of select="."/>    
+            <xsl:value-of select="normalize-space(.)"/>    
         </identifier>
     </xsl:template>
     
@@ -1015,7 +1019,7 @@
     <xsl:template match="mcc:MD_ProgressCode" mode="registryObject_description_lineage">
         
         <description type="lineage">
-            <xsl:value-of select="concat('Progress Code: ',.)"/>
+            <xsl:value-of select="concat('Progress Code: ',normalize-space(.))"/>
         </description>
         
     </xsl:template>
@@ -1028,6 +1032,19 @@
             </description>
         </xsl:if>
         
+    </xsl:template>
+    
+    <!-- RegistryObject - Decription Element - lineage -->
+    <xsl:template match="mdb:dataQualityInfo" mode="registryObject_description_quality">
+        
+        <description type="Data Quality">
+            <xsl:for-each select="descendant::gco:CharacterString">
+                <xsl:value-of select="custom:preserveWhitespaceHTML(normalize-space(.))"/>
+                <xsl:if test="position() != last()">
+                    <xsl:text>&amp;lt;br/&amp;gt;</xsl:text>
+                </xsl:if>
+            </xsl:for-each>
+        </description>
     </xsl:template>
     
     <!-- RegistryObject - Decription Element - lineage -->
@@ -1281,16 +1298,16 @@
         
         <xsl:variable name="identifierToUse">
             <xsl:choose>
-                 <xsl:when test="contains(cit:linkage, '?')">
-                    <xsl:value-of select="substring-before(., '?')"/>
+                 <xsl:when test="contains(normalize-space(cit:linkage), '?')">
+                     <xsl:value-of select="substring-before(normalize-space(cit:linkage), '?')"/>
                 </xsl:when>
                 <!-- if we are refering to a thredds endpoint but we are not at catalogue level but rather down in a file
                         we can truncate up to the root catalogue -->
-                <xsl:when test="contains(cit:linkage, '/thredds/') and not(contains(cit:linkage, 'catalog.'))">
+                <xsl:when test="contains(normalize-space(cit:linkage), '/thredds/') and not(contains(normalize-space(cit:linkage), 'catalog.'))">
                     <xsl:value-of select="concat(substring-before(., '/thredds/'), '/thredds/', 'catalog.html')"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:value-of select="cit:linkage"/>
+                    <xsl:value-of select="normalize-space(cit:linkage)"/>
                 </xsl:otherwise>
                 </xsl:choose>
         </xsl:variable> 
@@ -1306,14 +1323,14 @@
                 <xsl:attribute name="type">
                     <xsl:text>supports</xsl:text>
                 </xsl:attribute>
-                <xsl:if test="not(string-length($identifierToUse) = string-length(cit:linkage))">
+                <xsl:if test="not(string-length($identifierToUse) = string-length(normalize-space(cit:linkage)))">
                     <url>
                      <xsl:choose>
-                            <xsl:when test="contains(cit:linkage, '?')">
-                                <xsl:value-of select="concat(fn:iri-to-uri(substring-before(cit:linkage, '?')), '?', fn:encode-for-uri(substring-after(cit:linkage, '?')))"/>
+                         <xsl:when test="contains(normalize-space(cit:linkage), '?')">
+                                <xsl:value-of select="concat(fn:iri-to-uri(substring-before(normalize-space(cit:linkage), '?')), '?', fn:encode-for-uri(substring-after(normalize-space(cit:linkage), '?')))"/>
                             </xsl:when>
                             <xsl:otherwise>
-                                <xsl:value-of select="fn:iri-to-uri(cit:linkage)"/>
+                                <xsl:value-of select="fn:iri-to-uri(normalize-space(cit:linkage))"/>
                             </xsl:otherwise>
                         </xsl:choose>
                     </url>
@@ -1732,7 +1749,7 @@
     <xsl:template match="mco:useLimitation" mode="rightsStatement"> 
          <rights>
             <rightsStatement>
-                <xsl:value-of select="."/>
+                <xsl:value-of select="normalize-space(.)"/>
             </rightsStatement>
         </rights>
     </xsl:template>
@@ -1928,13 +1945,13 @@
                     <publisher>
                         <xsl:choose>
                             <xsl:when test="count(cit:citedResponsibleParty/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue = 'publisher']/cit:party/cit:CI_Organisation/cit:name[string-length(.) > 0]) > 0">
-                                <xsl:value-of select="cit:citedResponsibleParty/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue = 'publisher'][1]/cit:party[1]/cit:CI_Organisation/cit:name"/>    
+                                <xsl:value-of select="normalize-space(cit:citedResponsibleParty/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue = 'publisher'][1]/cit:party[1]/cit:CI_Organisation/cit:name)"/>    
                             </xsl:when>
                             <xsl:when test="count(ancestor::mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:pointOfContact/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue = 'publisher']/cit:party/cit:CI_Organisation/cit:name[string-length(.) > 0]) > 0">
-                                <xsl:value-of select="ancestor::mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:pointOfContact/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue = 'publisher'][1]/cit:party[1]/cit:CI_Organisation/cit:name"/>
+                                <xsl:value-of select="normalize-space(ancestor::mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:pointOfContact/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue = 'publisher'][1]/cit:party[1]/cit:CI_Organisation/cit:name)"/>
                             </xsl:when>
                             <xsl:when test="count(ancestor::mdb:MD_Metadata/mdb:distributionInfo/*/mrd:distributor/mrd:MD_Distributor/mrd:distributorContact/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue = 'publisher']/cit:party/cit:CI_Organisation/cit:name[string-length(.) > 0]) > 0">
-                                <xsl:value-of select="ancestor::mdb:MD_Metadata/mdb:distributionInfo/*/mrd:distributor/mrd:MD_Distributor/mrd:distributorContact/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue = 'publisher'][1]/cit:party[1]/cit:CI_Organisation/cit:name"/>
+                                <xsl:value-of select="normalize-space(ancestor::mdb:MD_Metadata/mdb:distributionInfo/*/mrd:distributor/mrd:MD_Distributor/mrd:distributorContact/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue = 'publisher'][1]/cit:party[1]/cit:CI_Organisation/cit:name)"/>
                             </xsl:when>
                             <!--xsl:when test="count(ancestor::mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:pointOfContact/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name[string-length(.) > 0]) > 0">
                                 <xsl:value-of select="ancestor::mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:pointOfContact/cit:CI_Responsibility[1]/cit:party[1]/cit:CI_Organisation/cit:name"/>
@@ -2156,10 +2173,10 @@
                </xsl:attribute>
                <xsl:choose>
                    <xsl:when test="starts-with(lower-case(mcc:code), lower-case('doi:'))">
-                       <xsl:value-of select="substring(mcc:code,string-length('doi:')+1)"/>
+                       <xsl:value-of select="substring(normalize-space(mcc:code),string-length('doi:')+1)"/>
                    </xsl:when>
                    <xsl:otherwise>
-                       <xsl:value-of select="mcc:code"/>
+                       <xsl:value-of select="normalize-space(mcc:code)"/>
                    </xsl:otherwise>
                </xsl:choose>
                

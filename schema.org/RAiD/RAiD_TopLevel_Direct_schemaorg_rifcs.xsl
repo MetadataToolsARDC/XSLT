@@ -7,9 +7,9 @@
     <!--xsl:import href="schemadotorg2rif.xsl"/-->
     <xsl:import href="schemadotorg2rif_updated.xsl"/>
     
-    <xsl:param name="originatingSource" select="'RAiD AU'"/>
-    <xsl:variable name="group" select="'RAiD AU'"/>
-    <xsl:param name="groupAcronym" select="'RAiD_AU'"/> 
+    <xsl:param name="originatingSource" select="'Australian Research Data Commons'"/>
+    <xsl:variable name="group" select="'Australian Research Data Commons'"/>
+    <xsl:param name="groupAcronym" select="'ARDC'"/> 
     <xsl:param name="prefixKeyWithGroup" select="false()"/>
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
 
