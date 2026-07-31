@@ -301,10 +301,10 @@
                         <xsl:copy-of select="$identifier_elements[1]"/>
                         <xsl:choose>
                             <xsl:when test="name">
-                                <xsl:apply-templates select="name[1]"/>
+                                <xsl:apply-templates select="name[1]" mode="title"/>
                             </xsl:when>
                             <xsl:when test="title">
-                                <xsl:apply-templates select="title[1]"/>
+                                <xsl:apply-templates select="title[1]" mode="title"/>
                             </xsl:when>
                         </xsl:choose>
                         <xsl:apply-templates select="publisher" mode="CitationMetadata"/>
@@ -1033,7 +1033,7 @@
                 </xsl:element>
                 <xsl:choose>
                     <xsl:when test="string-length(name) > 0">
-                        <xsl:apply-templates select="name"/>
+                        <xsl:apply-templates select="name" mode="title"/>
                     </xsl:when>
                     <xsl:when test="(string-length(givenName) + string-length(familyName)) > 0">
                         <xsl:element name="title">
@@ -1128,6 +1128,10 @@
                        
                     </xsl:attribute>
                 </xsl:element>
+                
+                <xsl:apply-templates select=".[type[contains(., 'Organization')]]/ancestor::member/id" mode="organisationRelationshipMapping"/>
+                <xsl:apply-templates select=".[type[contains(., 'Person')]]/ancestor::member/id" mode="personRelationshipMapping"/>
+                
                 <xsl:for-each select="$identifier_elements">
                     <xsl:element name="identifier">
                         <xsl:attribute name="type">
@@ -1136,8 +1140,19 @@
                         <xsl:apply-templates/>
                     </xsl:element>
                 </xsl:for-each>
+                
+                <xsl:apply-templates select="name" mode="title"/>
+                
             </xsl:element>
         </xsl:if>
+    </xsl:template>
+    
+    <xsl:template match="id" mode="organisationRelationshipMapping">
+        <!-- Do nothing general - override for specific cases -->
+    </xsl:template>
+    
+    <xsl:template match="id" mode="personRelationshipMapping">
+        <!-- Do nothing general - override for specific cases -->
     </xsl:template>
     
     <xsl:template match="funding" mode="relatedInfo">
@@ -1200,7 +1215,7 @@
         </xsl:if>
     </xsl:template>
 
-    <xsl:template match="name | title">
+    <xsl:template match="name | title" mode="title">
         <xsl:element name="title">
             <xsl:apply-templates/>
         </xsl:element>

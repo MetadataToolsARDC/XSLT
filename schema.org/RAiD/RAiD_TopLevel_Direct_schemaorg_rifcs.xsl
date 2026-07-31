@@ -52,6 +52,37 @@
         </xsl:element>
     </xsl:template>
     
+    <!-- Override of RAiD vocabuarly mapping -->
+    <xsl:template match="id" mode="organisationRelationshipMapping">
+        
+        <xsl:if test="contains(., 'https://vocabulary.raid.org/organisation.role.schema/182')">
+            <xsl:element name="relation">
+                <xsl:attribute name="type">
+                    <xsl:text>isManagedBy</xsl:text>
+                </xsl:attribute>
+            </xsl:element>
+        </xsl:if>
+        <xsl:if test="contains(., 'https://vocabulary.raid.org/organisation.role.schema/186')">
+            <xsl:element name="relation">
+                <xsl:attribute name="type">
+                    <xsl:text>isFundedBy</xsl:text>
+                </xsl:attribute>
+            </xsl:element>
+        </xsl:if>
+    </xsl:template>
+    
+    <xsl:template match="id" mode="personRelationshipMapping">
+        
+        <xsl:if test="contains(., 'https://vocabulary.raid.org/contributor.position.schema/307')">
+            <xsl:element name="relation">
+                <xsl:attribute name="type">
+                    <xsl:text>hasPrincipalInvestigator</xsl:text>
+                </xsl:attribute>
+            </xsl:element>
+        </xsl:if>
+      
+    </xsl:template>
+    
     
     <xsl:template name="resultFromXPATH" as="node()*">
         <xsl:param name="xpathString" as="xs:string"/>
