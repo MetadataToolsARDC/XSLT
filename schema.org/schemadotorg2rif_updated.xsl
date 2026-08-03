@@ -27,8 +27,9 @@
             <!--xsl:apply-templates select="//dataset/producer" mode="activity"/-->
             <!--xsl:apply-templates select="//includedInDataCatalog" mode="catalog"/-->
             <!--xsl:apply-templates select="//publisher | //funder | //contributor | //provider" mode="party"/-->
-           </registryObjects>
+            </registryObjects>
     </xsl:template>
+
 
     <xsl:template match="publisher| funder | contributor | provider" mode="party">
         <xsl:if test="type = 'Organization' and name(parent::node()) = 'dataset'">
@@ -195,10 +196,17 @@
                         <xsl:apply-templates select="isPartOf | hasPart"/>
                         <!--xsl:apply-templates select="producer | publisher | funder | funding/funder | contributor | provider | includedInDataCatalog | citation | creator" mode="relatedInfo"/-->
                         <!--xsl:apply-templates select="producer | publisher | funder | funding/funder | contributor | provider | citation | creator" mode="relatedInfo"/-->
-                        <xsl:apply-templates select="producer | funder | funding/funder | contributor | provider | citation | creator" mode="relatedInfo"/>
                         <xsl:apply-templates select="potentialAction/target" mode="relatedInfo"/>
-                        <xsl:apply-templates select="member/member[lower-case(type) = 'person']" mode="relatedInfo"/>
-                        <xsl:apply-templates select="member/member[lower-case(type) = 'organization']" mode="relatedInfo"/>
+                        
+                        <xsl:apply-templates select="producer[count(member) = 0] | funder[count(member) = 0] | funding/funder[count(member) = 0] | contributor[count(member) = 0] | provider[count(member) = 0] | citation | creator[count(member) = 0]" mode="relatedInfo"/>
+                        
+                        <xsl:apply-templates select="member/member[(lower-case(type) = 'person') or (lower-case(type) = 'organization')]" mode="relatedInfo"/>
+                        <xsl:apply-templates select="funder/member[(lower-case(type) = 'person') or (lower-case(type) = 'organization')]" mode="relatedInfo"/>
+                        <xsl:apply-templates select="producer/member[(lower-case(type) = 'person') or (lower-case(type) = 'organization')]" mode="relatedInfo"/>
+                        <xsl:apply-templates select="contributor/member[(lower-case(type) = 'person') or (lower-case(type) = 'organization')]" mode="relatedInfo"/>
+                        <xsl:apply-templates select="provider/member[(lower-case(type) = 'person') or (lower-case(type) = 'organization')]" mode="relatedInfo"/>
+                        <xsl:apply-templates select="creator/member[(lower-case(type) = 'person') or (lower-case(type) = 'organization')]" mode="relatedInfo"/>
+                        <xsl:apply-templates select="funding/funder/member[(lower-case(type) = 'person') or (lower-case(type) = 'organization')]" mode="relatedInfo"/>
                         <xsl:apply-templates select="funding" mode="relatedInfo"/>
                     </xsl:element>
                 </xsl:element>
@@ -1118,8 +1126,8 @@
                 <xsl:element name="relation">
                     <xsl:attribute name="type">
                         <xsl:choose>
-                            <xsl:when test="count(ancestor::member[string-length(roleName) > 0]) > 0">
-                                <xsl:value-of select="ancestor::member[string-length(roleName) > 0][1]/roleName"/>
+                            <xsl:when test="count(..[string-length(roleName) > 0]) > 0">
+                                <xsl:value-of select="..[string-length(roleName) > 0][1]/roleName"/>
                             </xsl:when>
                             <xsl:otherwise>
                                 <xsl:text>hasAssociationWith</xsl:text>
@@ -1129,8 +1137,8 @@
                     </xsl:attribute>
                 </xsl:element>
                 
-                <xsl:apply-templates select=".[type[contains(., 'Organization')]]/ancestor::member/id" mode="organisationRelationshipMapping"/>
-                <xsl:apply-templates select=".[type[contains(., 'Person')]]/ancestor::member/id" mode="personRelationshipMapping"/>
+                <xsl:apply-templates select=".[type[contains(., 'Organization')]]/..//id" mode="organisationRelationshipMapping"/>
+                <xsl:apply-templates select=".[type[contains(., 'Person')]]/../id" mode="personRelationshipMapping"/>
                 
                 <xsl:for-each select="$identifier_elements">
                     <xsl:element name="identifier">

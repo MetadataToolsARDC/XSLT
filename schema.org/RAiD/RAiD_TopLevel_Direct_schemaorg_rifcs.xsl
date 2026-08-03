@@ -26,11 +26,39 @@
                 This is because IMAS UTAS provide there own records and we don't want to include them
                 until we have de-duplication processing in RDA -->
             <xsl:apply-templates select="//dataset[(lower-case(type) = 'researchproject') and ((id != 'https://raid.org/10.71821/418be95a') and count(isPartOf[id = 'https://raid.org/10.71821/418be95a']) = 0)]"/>
+            <xsl:apply-templates select="//dataset/member[id = 'https://vocabulary.raid.org/organisation.role.schema/182']/member[(lower-case(type) = 'person') or (lower-case(type) = 'organization')]" mode="party_record"/>
+            
             <!--xsl:apply-templates select="//data"/-->
             <!--xsl:apply-templates select="//dataset/producer" mode="activity"/-->
             <!--xsl:apply-templates select="//includedInDataCatalog" mode="catalog"/-->
             <!--xsl:apply-templates select="//publisher | //funder | //contributor | //provider" mode="party"/-->
         </registryObjects>
+    </xsl:template>
+    
+    <!-- RDA currently needs a Party record rather than just ROR for Managing Organisation of an Activity, 
+         otherwise we get an undefined index error, so create a Party record for now, for each organisation
+         that is related with 'isManagedBy' 
+         Post ReWrite we can remove these - or decide whether to retrieve them from ROR API instead -->
+    <xsl:template match="member" mode="party_record">
+        <registryObject group="{$group}">
+             <key>
+                 <xsl:value-of select="id[contains(., ror.org)][1]"/>
+             </key>
+            <originatingSource>
+                <xsl:value-of select="$originatingSource"/>
+            </originatingSource>
+           <party type="group">
+               
+               <identifier type="url">
+                   <xsl:value-of select="id[contains(., ror.org)][1]"/>
+               </identifier>
+               <name type="primary">
+                   <namePart>
+                       <xsl:value-of select="name"/>
+                   </namePart>
+               </name>
+           </party>
+         </registryObject>
     </xsl:template>
     
     
