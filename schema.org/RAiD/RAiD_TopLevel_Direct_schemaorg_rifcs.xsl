@@ -27,6 +27,7 @@
                 until we have de-duplication processing in RDA -->
             <xsl:apply-templates select="//dataset[(lower-case(type) = 'researchproject') and ((id != 'https://raid.org/10.71821/418be95a') and count(isPartOf[id = 'https://raid.org/10.71821/418be95a']) = 0)]"/>
             <xsl:apply-templates select="//dataset/member[id = 'https://vocabulary.raid.org/organisation.role.schema/182']/member[(lower-case(type) = 'person') or (lower-case(type) = 'organization')]" mode="party_record"/>
+            <xsl:apply-templates select="//dataset/member[id = 'https://vocabulary.raid.org/organisation.role.schema/186']/member[(lower-case(type) = 'person') or (lower-case(type) = 'organization')]" mode="party_record"/>
             
             <!--xsl:apply-templates select="//data"/-->
             <!--xsl:apply-templates select="//dataset/producer" mode="activity"/-->
@@ -40,12 +41,12 @@
          that is related with 'isManagedBy' 
          Post ReWrite we can remove these - or decide whether to retrieve them from ROR API instead -->
     <xsl:template match="member" mode="party_record">
-        <registryObject group="{$group}">
+        <registryObject group="Research Organization Registry (ROR)">
              <key>
                  <xsl:value-of select="id[contains(., ror.org)][1]"/>
              </key>
             <originatingSource>
-                <xsl:value-of select="$originatingSource"/>
+                <xsl:value-of select="'Research Organization Registry (ROR)'"/>
             </originatingSource>
            <party type="group">
                
