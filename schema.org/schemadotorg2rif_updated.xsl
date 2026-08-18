@@ -1648,12 +1648,21 @@
         </xsl:element>
     </xsl:template>
 
+    <!-- ============================================================
+     ACTUAL CALL SITES — the two text() match templates, repurposed
+     to use the safe split-and-emit approach instead of a blanket
+     disable-output-escaping over the whole string.
+     ============================================================ -->
     <xsl:template match="text()">
-        <xsl:value-of select="custom:stripHtmlPreserveBreaks(.)"/>
+        <xsl:call-template name="custom:writeCleanedText">
+            <xsl:with-param name="value" select="custom:cleanAndStripHtml(.)"/>
+        </xsl:call-template>
     </xsl:template>
     
     <xsl:template match="text()" mode="HTML_Format">
-        <xsl:value-of select="."/>
+        <xsl:call-template name="custom:writeCleanedText">
+            <xsl:with-param name="value" select="custom:cleanTextPreserveHTML(.)"/>
+        </xsl:call-template>
     </xsl:template>
     
 

@@ -467,67 +467,227 @@
         </xsl:if>
     </xsl:function>
     
-    <xsl:function name="custom:characterReplace">
-        <xsl:param name="input"/>
-        <!--xsl:variable name="name" select='replace(.,"&#x00E2;&#x80;&#x99;", "&#8217;")'/-->
-        <xsl:variable name="replaceSingleQuote" select='replace($input,"&#x00E2;&#x80;&#x99;", "&#x2019;")'/>
-        <xsl:variable name="replaceLeftDoubleQuote" select='replace($replaceSingleQuote, "&#x00E2;&#x80;&#x9c;", "&#x201C;")'/>
-        <xsl:variable name="replaceRightDoubleQuote" select='replace($replaceLeftDoubleQuote, "&#x00E2;&#x80;&#x9d;", "&#x201D;")'/>
-        <xsl:variable name="replaceNarrowNoBreakSpace" select='replace($replaceRightDoubleQuote, "&#xE2;&#x80;&#xAF;", "&#x202F;")'/>
-        <xsl:value-of select="$replaceNarrowNoBreakSpace"/>
+    <!-- ============================================================
+     SHARED HELPERS from claude.ai - hopefully they work and cover everything
+     ============================================================ -->
+  
+    <xsl:function name="custom:hexToInt" as="xs:integer">
+        <xsl:param name="hex" as="xs:string"/>
+        <xsl:sequence select="
+            if (string-length($hex) = 0)
+            then 0
+            else custom:hexToInt(substring($hex, 1, string-length($hex) - 1)) * 16
+            + index-of(('0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'),
+            lower-case(substring($hex, string-length($hex))))[1] - 1
+            "/>
     </xsl:function>
     
-    <xsl:function name="custom:stripHtmlPreserveBreaks" as="xs:string">
+    <!-- Decodes NUMERIC character references only (&#226; / &#xE2; etc.),
+     unwrapping repeated &amp;-escaping first. Needed for mojibake repair. -->
+    <xsl:function name="custom:decodeNumericEntities" as="xs:string">
         <xsl:param name="text" as="xs:string"/>
-        
-        <!-- Step 0: normalise all line endings to a single LF -->
-        <xsl:variable name="normalised" as="xs:string"
-            select="replace(replace($text, '&#13;&#10;', '&#10;'), '&#13;', '&#10;')"/>
-        
-        <!-- Step 1: also treat literal backslash-n text as a line break -->
-        <xsl:variable name="withLiteralBreaks" as="xs:string"
-            select="replace($normalised, '\\n', '&#10;')"/>
-        
-        <!-- Step 2: convert any <br>, <br/>, <br /> (any case, with or without
-         attributes) into a real newline character, BEFORE stripping tags -->
-        <xsl:variable name="withBreaks" as="xs:string"
-            select="replace($withLiteralBreaks, '&lt;br(&gt;|[\s/][^&gt;]*&gt;)', '&#10;', 'i')"/>
-        
-        <!-- Step 3: remove every remaining HTML tag entirely -->
-        <xsl:variable name="stripped" as="xs:string"
-            select="replace($withBreaks, '&lt;/?[^&gt;]+&gt;', '')"/>
-        
-        <!-- Step 4: tidy up spaces/tabs on each line without losing the newlines -->
+        <xsl:variable name="unwrapped" as="xs:string">
+            <xsl:iterate select="1 to 5">
+                <xsl:param name="current" as="xs:string" select="$text"/>
+                <xsl:on-completion select="$current"/>
+                <xsl:next-iteration>
+                    <xsl:with-param name="current"
+                        select="replace($current, '&amp;amp;(#x?[0-9a-fA-F]+;)', '&amp;$1')"/>
+                </xsl:next-iteration>
+            </xsl:iterate>
+        </xsl:variable>
+        <xsl:variable name="pieces" as="xs:string*">
+            <xsl:analyze-string select="$unwrapped" regex="&amp;#(x[0-9a-fA-F]+|[0-9]+);">
+                <xsl:matching-substring>
+                    <xsl:variable name="ref" select="regex-group(1)"/>
+                    <xsl:value-of select="
+                        codepoints-to-string(
+                        if (starts-with($ref, 'x'))
+                        then custom:hexToInt(substring($ref, 2))
+                        else xs:integer($ref)
+                        )"/>
+                </xsl:matching-substring>
+                <xsl:non-matching-substring>
+                    <xsl:value-of select="."/>
+                </xsl:non-matching-substring>
+            </xsl:analyze-string>
+        </xsl:variable>
+        <xsl:sequence select="string-join($pieces, '')"/>
+    </xsl:function>
+    
+    <!-- Decodes NAMED entities relevant to markup (lt, gt, amp, quot, apos,
+     nbsp), unwrapping repeated &amp;-escaping first. Only used where HTML
+     is actually being processed. -->
+    <xsl:function name="custom:decodeNamedEntities" as="xs:string">
+        <xsl:param name="text" as="xs:string"/>
+        <xsl:variable name="unwrapped" as="xs:string">
+            <xsl:iterate select="1 to 5">
+                <xsl:param name="current" as="xs:string" select="$text"/>
+                <xsl:on-completion select="$current"/>
+                <xsl:next-iteration>
+                    <xsl:with-param name="current"
+                        select="replace($current, '&amp;amp;(lt|gt|amp|quot|apos|nbsp);', '&amp;$1;')"/>
+                </xsl:next-iteration>
+            </xsl:iterate>
+        </xsl:variable>
+        <xsl:variable name="pieces" as="xs:string*">
+            <xsl:analyze-string select="$unwrapped" regex="&amp;(lt|gt|amp|quot|apos|nbsp);">
+                <xsl:matching-substring>
+                    <xsl:variable name="ref" select="regex-group(1)"/>
+                    <xsl:choose>
+                        <xsl:when test="$ref = 'lt'">&lt;</xsl:when>
+                        <xsl:when test="$ref = 'gt'">&gt;</xsl:when>
+                        <xsl:when test="$ref = 'amp'">&amp;</xsl:when>
+                        <xsl:when test="$ref = 'quot'">&quot;</xsl:when>
+                        <xsl:when test="$ref = 'apos'">&apos;</xsl:when>
+                        <xsl:when test="$ref = 'nbsp'"><xsl:text>&#160;</xsl:text></xsl:when>
+                    </xsl:choose>
+                </xsl:matching-substring>
+                <xsl:non-matching-substring>
+                    <xsl:value-of select="."/>
+                </xsl:non-matching-substring>
+            </xsl:analyze-string>
+        </xsl:variable>
+        <xsl:sequence select="string-join($pieces, '')"/>
+    </xsl:function>
+    
+    <!-- Repairs UTF-8-misread-as-Latin-1 mojibake generally, by reconstructing
+     the real character from the raw byte values, rather than relying on
+     a fixed table of known-corrupted sequences. Covers both 2-byte UTF-8
+     sequences (e.g. accented letters: Ã¶ -> ö, Ã± -> ñ, Ã¸ -> ø) and
+     3-byte sequences (e.g. smart punctuation: â€™ -> ’, â€“ -> –).
+     This subsumes the old hardcoded punctuation table — same results
+     for known cases, plus correct results for any character we hadn't
+     explicitly enumerated (e.g. author names with diacritics). -->
+    <xsl:function name="custom:repairMojibake" as="xs:string">
+        <xsl:param name="text" as="xs:string"/>
+        <xsl:variable name="pieces" as="xs:string*">
+            <xsl:analyze-string select="$text"
+                regex="[&#xE0;-&#xEF;][&#x80;-&#xBF;][&#x80;-&#xBF;]|[&#xC2;-&#xDF;][&#x80;-&#xBF;]">
+                <xsl:matching-substring>
+                    <xsl:variable name="cps" select="string-to-codepoints(.)"/>
+                    <xsl:value-of select="
+                        codepoints-to-string(
+                        if (string-length(.) = 3)
+                        then (($cps[1] - 224) * 4096) + (($cps[2] - 128) * 64) + ($cps[3] - 128)
+                        else (($cps[1] - 192) * 64) + ($cps[2] - 128)
+                        )"/>
+                </xsl:matching-substring>
+                <xsl:non-matching-substring>
+                    <xsl:value-of select="."/>
+                </xsl:non-matching-substring>
+            </xsl:analyze-string>
+        </xsl:variable>
+        <xsl:sequence select="string-join($pieces, '')"/>
+    </xsl:function>
+    
+    <!-- Converts literal backslash-escaped break characters (\n, \t) — as
+     opposed to real control characters, which normaliseLineEndings
+     already handles — into their real equivalents. The real tab this
+     produces gets collapsed to a single space by tidyLines' per-line
+     normalize-space, consistent with how all other whitespace is
+     handled throughout this pipeline. -->
+    <xsl:function name="custom:normaliseLiteralEscapes" as="xs:string">
+        <xsl:param name="text" as="xs:string"/>
+        <xsl:sequence select="replace(replace($text, '\\n', '&#10;'), '\\t', '&#9;')"/>
+    </xsl:function>
+    
+    <!-- Trims/collapses whitespace on each line, then rejoins using the
+     XML-friendly literal marker &#10; instead of a real line-feed, so
+     serializers/renderers can't silently collapse or strip it. -->
+    <xsl:function name="custom:tidyLines" as="xs:string">
+        <xsl:param name="text" as="xs:string"/>
         <xsl:sequence select="
             string-join(
-            for $line in tokenize($stripped, '&#10;')
+            for $line in tokenize($text, '&#10;')
             return normalize-space($line),
-            '&#10;')"/>
+            '&amp;#10;')"/>
     </xsl:function>
     
-    <xsl:function name="custom:preserveWhitespaceHTML" as="xs:string">
+    <!-- Folds every line-break representation we know of down to a single
+     internal LF, so downstream steps only ever have one form to deal
+     with. Literal backslash-n text is handled separately by the caller,
+     since it isn't a real control character.
+     Note: vertical tab (U+000B) and form feed (U+000C) are deliberately
+     NOT included here — both are illegal anywhere in a well-formed XML
+     document (XML 1.0 §2.2 Char production), so they can never legally
+     appear in text parsed out of XML input in the first place. Including
+     even a character reference to them in this stylesheet is itself a
+     fatal XML well-formedness error, since the stylesheet is XML too. -->
+    <xsl:function name="custom:normaliseLineEndings" as="xs:string">
+        <xsl:param name="text" as="xs:string"/>
+        <xsl:sequence select="
+            replace(
+            replace($text, '&#13;&#10;', '&#10;'),
+            '[&#13;&#x2028;&#x2029;]', '&#10;')
+            "/>
+    </xsl:function>
+    
+    
+    <!-- ============================================================
+     FUNCTION 1 — mojibake + break normalisation only
+     ============================================================ -->
+    <xsl:function name="custom:cleanTextPreserveHTML" as="xs:string">
         <xsl:param name="text" as="xs:string"/>
         
-        <!-- Step 0: normalise line endings -->
         <xsl:variable name="normalised" as="xs:string"
-            select="replace(replace($text, '&#13;&#10;', '&#10;'), '&#13;', '&#10;')"/>
+            select="custom:normaliseLineEndings($text)"/>
+        <xsl:variable name="withLiteralBreaks" as="xs:string"
+            select="custom:normaliseLiteralEscapes($normalised)"/>
+        <xsl:variable name="repaired" as="xs:string"
+            select="custom:repairMojibake(custom:decodeNumericEntities($withLiteralBreaks))"/>
         
-        <!-- Step 1: escape HTML-significant characters already in the text.
-         & must go first, before &lt;/&gt; are introduced below, or the
-         & in those entities would get escaped a second time. -->
-        <xsl:variable name="escaped" as="xs:string"
-            select="replace(replace(replace($normalised,
-            '&amp;', '&amp;amp;'),
-            '&lt;',  '&amp;lt;'),
-            '&gt;',  '&amp;gt;')"/>
-        
-        <!-- Step 2: convert real newlines and literal backslash-n to <br/> -->
-        <xsl:variable name="withBreaks" as="xs:string"
-            select="replace(replace($escaped, '&#10;', '&lt;br/&gt;'), '\\n', '&lt;br/&gt;')"/>
-        
-        <!-- Step 3: tabs to non-breaking spaces -->
-        <xsl:sequence select="replace($withBreaks, '&#9;', '&#160;&#160;&#160;&#160;')"/>
+        <xsl:sequence select="custom:tidyLines($repaired)"/>
     </xsl:function>
     
     
+    <!-- ============================================================
+     FUNCTION 2 — everything Function 1 does, plus HTML handling:
+     <br> variants become a line break, everything else is stripped
+     ============================================================ -->
+    <xsl:function name="custom:cleanAndStripHtml" as="xs:string">
+        <xsl:param name="text" as="xs:string"/>
+        
+        <xsl:variable name="normalised" as="xs:string"
+            select="custom:normaliseLineEndings($text)"/>
+        <xsl:variable name="withLiteralBreaks" as="xs:string"
+            select="custom:normaliseLiteralEscapes($normalised)"/>
+        <xsl:variable name="repaired" as="xs:string"
+            select="custom:repairMojibake(custom:decodeNumericEntities($withLiteralBreaks))"/>
+        
+        <xsl:variable name="realTags" as="xs:string"
+            select="custom:decodeNamedEntities($repaired)"/>
+        
+        <xsl:variable name="withBreaks" as="xs:string"
+            select="replace($realTags, '&lt;br(&gt;|[\s/][^&gt;]*&gt;)', '&#10;', 'i')"/>
+        
+        <xsl:variable name="stripped" as="xs:string"
+            select="replace($withBreaks, '&lt;/?[a-zA-Z][a-zA-Z0-9]*(\s[^&lt;&gt;]*)?/?&gt;', '')"/>
+        
+        <xsl:sequence select="custom:tidyLines($stripped)"/>
+    </xsl:function>
+    
+    
+    <!-- ============================================================
+     CALL SITE HELPER — writes a cleaned string out safely.
+     Splits on the literal &#10; marker: real content segments are
+     emitted with NORMAL escaping (so any genuine & or < in the
+     source text — e.g. "Lance & Kachel" — is correctly re-escaped
+     back to &amp;), while only the marker itself is written raw via
+     disable-output-escaping, since we know exactly what it contains.
+     A blanket disable-output-escaping over the whole string is unsafe:
+     it also suppresses escaping of any real ampersand in the content,
+     producing invalid, non-well-formed output.
+     ============================================================ -->
+    <xsl:template name="custom:writeCleanedText">
+        <xsl:param name="value" as="xs:string"/>
+        <xsl:for-each select="tokenize($value, '&amp;#10;')">
+            <xsl:if test="position() > 1">
+                <xsl:text disable-output-escaping="yes">&amp;#10;</xsl:text>
+            </xsl:if>
+            <xsl:value-of select="."/>
+        </xsl:for-each>
+    </xsl:template>
+    
+  
 </xsl:stylesheet>
