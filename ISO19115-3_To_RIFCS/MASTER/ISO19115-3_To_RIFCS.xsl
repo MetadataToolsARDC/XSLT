@@ -1011,7 +1011,7 @@
     <xsl:template match="mri:abstract" mode="registryObject_description_full">
         <xsl:if test="string-length(normalize-space(.)) > 0">
             <description type="full">
-                <xsl:value-of select="custom:preserveWhitespaceHTML(.)"/>
+                <xsl:value-of select="normalize-space(.)"/>
             </description>
         </xsl:if>
     </xsl:template>
@@ -1039,7 +1039,7 @@
         
         <description type="Data Quality">
             <xsl:for-each select="descendant::gco:CharacterString">
-                <xsl:value-of select="custom:preserveWhitespaceHTML(normalize-space(.))"/>
+                <xsl:value-of select="normalize-space(.)"/>
                 <xsl:if test="position() != last()">
                     <xsl:text>&amp;lt;br/&amp;gt;</xsl:text>
                 </xsl:if>
@@ -1944,19 +1944,17 @@
                     
                     <publisher>
                         <xsl:choose>
-                            <xsl:when test="count(cit:citedResponsibleParty/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue = 'publisher']/cit:party/cit:CI_Organisation/cit:name[string-length(.) > 0]) > 0">
-                                <xsl:value-of select="normalize-space(cit:citedResponsibleParty/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue = 'publisher'][1]/cit:party[1]/cit:CI_Organisation/cit:name)"/>    
+                            <xsl:when test="count(cit:citedResponsibleParty/cit:CI_Responsibility[(cit:role/cit:CI_RoleCode/@codeListValue = 'publisher') and (cit:party/cit:CI_Organisation/cit:name[string-length(.) > 0])]) > 0">
+                                <xsl:value-of select="normalize-space((cit:citedResponsibleParty/cit:CI_Responsibility[(cit:role/cit:CI_RoleCode/@codeListValue = 'publisher') and (cit:party/cit:CI_Organisation/cit:name[string-length(.) > 0])])[1]/cit:party/cit:CI_Organisation/cit:name[string-length(.) > 0][1])"/>
                             </xsl:when>
-                            <xsl:when test="count(ancestor::mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:pointOfContact/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue = 'publisher']/cit:party/cit:CI_Organisation/cit:name[string-length(.) > 0]) > 0">
-                                <xsl:value-of select="normalize-space(ancestor::mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:pointOfContact/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue = 'publisher'][1]/cit:party[1]/cit:CI_Organisation/cit:name)"/>
+                            <xsl:when test="count(ancestor::mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:pointOfContact/cit:CI_Responsibility[(cit:role/cit:CI_RoleCode/@codeListValue = 'publisher') and (cit:party/cit:CI_Organisation/cit:name[string-length(.) > 0])]) > 0">
+                                <xsl:value-of select="normalize-space((ancestor::mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:pointOfContact/cit:CI_Responsibility[(cit:role/cit:CI_RoleCode/@codeListValue = 'publisher') and (cit:party/cit:CI_Organisation/cit:name[string-length(.) > 0])])[1]/cit:party/cit:CI_Organisation/cit:name[string-length(.) > 0][1])"/>
                             </xsl:when>
-                            <xsl:when test="count(ancestor::mdb:MD_Metadata/mdb:distributionInfo/*/mrd:distributor/mrd:MD_Distributor/mrd:distributorContact/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue = 'publisher']/cit:party/cit:CI_Organisation/cit:name[string-length(.) > 0]) > 0">
-                                <xsl:value-of select="normalize-space(ancestor::mdb:MD_Metadata/mdb:distributionInfo/*/mrd:distributor/mrd:MD_Distributor/mrd:distributorContact/cit:CI_Responsibility[cit:role/cit:CI_RoleCode/@codeListValue = 'publisher'][1]/cit:party[1]/cit:CI_Organisation/cit:name)"/>
+                            <xsl:when test="count(ancestor::mdb:MD_Metadata/mdb:distributionInfo/*/mrd:distributor/mrd:MD_Distributor/mrd:distributorContact/cit:CI_Responsibility[(cit:role/cit:CI_RoleCode/@codeListValue = 'publisher') and (cit:party/cit:CI_Organisation/cit:name[string-length(.) > 0])]) > 0">
+                                <xsl:value-of select="normalize-space((ancestor::mdb:MD_Metadata/mdb:distributionInfo/*/mrd:distributor/mrd:MD_Distributor/mrd:distributorContact/cit:CI_Responsibility[(cit:role/cit:CI_RoleCode/@codeListValue = 'publisher') and (cit:party/cit:CI_Organisation/cit:name[string-length(.) > 0])])[1]/cit:party/cit:CI_Organisation/cit:name[string-length(.) > 0][1])"/>
                             </xsl:when>
-                            <!--xsl:when test="count(ancestor::mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:pointOfContact/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:name[string-length(.) > 0]) > 0">
-                                <xsl:value-of select="ancestor::mdb:MD_Metadata/mdb:identificationInfo/mri:MD_DataIdentification/mri:pointOfContact/cit:CI_Responsibility[1]/cit:party[1]/cit:CI_Organisation/cit:name"/>
-                            </xsl:when-->
                         </xsl:choose>
+                        
                     </publisher>
                     
                </citationMetadata>
