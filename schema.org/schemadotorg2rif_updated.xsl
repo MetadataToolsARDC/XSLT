@@ -200,7 +200,7 @@
                         
                         <xsl:apply-templates select="producer[count(member) = 0] | funder[count(member) = 0] | funding/funder[count(member) = 0] | contributor[count(member) = 0] | provider[count(member) = 0] | citation | creator[count(member) = 0]" mode="relatedInfo"/>
                         
-                        <xsl:apply-templates select="member/member[(lower-case(type) = 'person') or (lower-case(type) = 'organization')]" mode="relatedInfo"/>
+                        <!--xsl:apply-templates select="member/member[(lower-case(type) = 'person') or (lower-case(type) = 'organization')]" mode="relatedInfo"/-->
                         <xsl:apply-templates select="funder/member[(lower-case(type) = 'person') or (lower-case(type) = 'organization')]" mode="relatedInfo"/>
                         <xsl:apply-templates select="producer/member[(lower-case(type) = 'person') or (lower-case(type) = 'organization')]" mode="relatedInfo"/>
                         <xsl:apply-templates select="contributor/member[(lower-case(type) = 'person') or (lower-case(type) = 'organization')]" mode="relatedInfo"/>

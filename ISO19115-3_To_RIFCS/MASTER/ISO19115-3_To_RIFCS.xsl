@@ -98,14 +98,15 @@
             </xsl:attribute>
             
             <xsl:choose>
-                <xsl:when test="count(mdb:metadataIdentifier/mcc:MD_Identifier[contains(mcc:codeSpace, 'uuid')]/mcc:code[string-length(.) > 0]) > 0">
-                    <xsl:apply-templates select="mdb:metadataIdentifier/mcc:MD_Identifier[contains(mcc:codeSpace, 'uuid')][1]/mcc:code[string-length(.) > 0][1]" mode="registryObject_key"/>
+                <xsl:when test="count(mdb:metadataIdentifier/mcc:MD_Identifier[contains(translate(mcc:codeSpace, 'UUID', 'uuid'), 'uuid')]/mcc:code[string-length(normalize-space(.)) > 0]) > 0">
+                    <xsl:apply-templates select="mdb:metadataIdentifier/mcc:MD_Identifier[contains(translate(mcc:codeSpace, 'UUID', 'uuid'), 'uuid')][mcc:code[string-length(normalize-space(.)) > 0]][1]/mcc:code[string-length(normalize-space(.)) > 0][1]"
+                        mode="registryObject_key"/>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:apply-templates select="mdb:metadataIdentifier/mcc:MD_Identifier[1]/mcc:code[string-length(.) > 0][1]" mode="registryObject_key"/>
+                    <xsl:apply-templates select="mdb:metadataIdentifier/mcc:MD_Identifier[mcc:code[string-length(normalize-space(.)) > 0]][1]/mcc:code[string-length(normalize-space(.)) > 0][1]"
+                        mode="registryObject_key"/>
                 </xsl:otherwise>
             </xsl:choose>
-            
             
             <originatingSource>
                 <xsl:value-of select="$originatingSource"/>

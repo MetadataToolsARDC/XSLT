@@ -390,22 +390,30 @@
         
     </xsl:function>
     
+    <!-- Sometimes is like so:  urn:ogc:def:crs:EPSG:6.6:4326 -->
    
     <xsl:function name="custom:swapOrder" as="xs:boolean">
         <xsl:param name="CRC" as="xs:string"/>
         <xsl:choose>
-            <xsl:when test="
-                contains(lower-case($CRC), 'epsg:4326') or
-                contains(lower-case($CRC), 'epsg:28354') or
-                contains(lower-case($CRC), 'epsg:3308') or
-                contains(lower-case($CRC), 'epsg:3395') or
-                contains(lower-case($CRC), 'epsg:3577') or
-                contains(lower-case($CRC), 'epsg:4283') or
-                contains(lower-case($CRC), 'epsg:4326') or
-                contains(lower-case($CRC), 'epsg:7844') or
-                contains(lower-case($CRC), 'epsg:7854') or
-                contains(lower-case($CRC), 'epsg:8058')">
-                <xsl:value-of select="true()"/>
+            <xsl:when test="contains(lower-case($CRC), 'epsg')">
+                <xsl:choose>
+                    <xsl:when test="
+                        contains(lower-case($CRC), '4326') or
+                        contains(lower-case($CRC), '28354') or
+                        contains(lower-case($CRC), '3308') or
+                        contains(lower-case($CRC), '3395') or
+                        contains(lower-case($CRC), '3577') or
+                        contains(lower-case($CRC), '4283') or
+                        contains(lower-case($CRC), '4326') or
+                        contains(lower-case($CRC), '7844') or
+                        contains(lower-case($CRC), '7854') or
+                        contains(lower-case($CRC), '8058')">
+                        <xsl:value-of select="true()"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="false()"/>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="false()"/>
