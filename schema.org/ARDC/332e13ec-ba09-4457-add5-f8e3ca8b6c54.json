@@ -1,0 +1,85 @@
+{
+    "@context": "https://schema.org/",
+    "@type": "Dataset",
+    "datePublished": "2020-09-29",
+    "isPartOf": [
+        {
+            "@type": "Dataset",
+            "name": "Seamap Australia National Benthic Habitat Layer (NBHL)",
+            "identifier": {
+                "@type": "PropertyValue",
+                "@id": "4739e4b0-4dba-4ec5-b658-02c09f27ab9a",
+                "value": "4739e4b0-4dba-4ec5-b658-02c09f27ab9a"
+            },
+            "url": "https://researchdata.edu.au/seamap-australia-national-layer-nbhl/933659"
+        },
+        {
+            "@type": "Dataset",
+            "name": "Seamap Australia National Benthic Habitat Layer (NBHL)",
+            "identifier": {
+                "@type": "PropertyValue",
+                "@id": "4739e4b0-4dba-4ec5-b658-02c09f27ab9a",
+                "value": "4739e4b0-4dba-4ec5-b658-02c09f27ab9a"
+            },
+            "url": "https://researchdata.edu.au/seamap-australia-national-layer-nbhl/1730412"
+        }
+    ],
+    "sourceOrganization": {
+        "@type": "Organization",
+        "name": "University of Tasmania, Australia"
+    },
+    "keywords": [
+        "biota",
+        "oceans",
+        "EARTH SCIENCE | BIOLOGICAL CLASSIFICATION | PLANTS | ANGIOSPERMS (FLOWERING PLANTS) | MONOCOTS | SEAGRASS",
+        "CAMRIS",
+        "Coastal and Marine Resources Information System",
+        "coast",
+        "coastal",
+        "Geospatial Information Systems",
+        "ENGINEERING",
+        "GEOMATIC ENGINEERING",
+        "Environmental Sciences not elsewhere classified",
+        "ENVIRONMENTAL SCIENCES",
+        "OTHER ENVIRONMENTAL SCIENCES",
+        "Marine and Estuarine Ecology (incl. Marine Ichthyology)",
+        "BIOLOGICAL SCIENCES",
+        "ECOLOGY",
+        "Australia",
+        "Environmental Management",
+        "ENVIRONMENTAL SCIENCE AND MANAGEMENT",
+        "Benthic habitat"
+    ],
+    "license": [
+        "Creative Commons Attribution 4.0 International License",
+        "CC-BY",
+        "http://creativecommons.org/licenses/by/4.0/"
+    ],
+    "publisher": {
+        "@type": "Organization",
+        "name": "University of Tasmania, Australia"
+    },
+    "spatialCoverage": [
+        {
+            "@type": "Place",
+            "geo": {
+                "@type": "GeoShape",
+                "box": "-43.55829 112.97589 -9.04141 153.558864"
+            }
+        },
+        {
+            "@type": "Place",
+            "description": "text westlimit=112.97589; southlimit=-43.55829; eastlimit=153.558864; northlimit=-9.04141"
+        }
+    ],
+    "temporalCoverage": "1995-01-01/2015-12-31",
+    "inLanguage": "en",
+    "name": "CAMRIS Seagrass Dataset",
+    "description": ["This data contains information about the distribution of seagrass around the Australian coastline. It was prepared by Dr. Hugh Kirkman (CSIRO Division of Fisheries) from a review of published and unpublished sources, and updated by Dr. Ian Hahmdorf, (Bureau of Rural Sciences).&lt;br/&gt;&lt;br/&gt;General info:&lt;br/&gt;CAMRIS, standing for the Coastal and Marine Resources Information System, is a small-scale spatial analysis system developed in collaboration by several divisions of Australia's Commonwealth Scientific and Industrial Research Organisation (CSIRO), as part of the CSIRO Coastal Zone Program. CSIRO Division of Wildlife and Ecology was the custodian of the 'coastal' subset of the Australian Resources Information System (ARIS). Coastal ARIS became the core dataset of the CAMRIS project. The Coastal ARIS database was developed from a coastal inventory developed by Galloway et al. This inventory contained relatively large scale data including landform, geology, vegetation, soil, land use, climate and population information for each of 3027 3x10km sections around the coastline of mainland Australia and Tasmania, but excluding offshore islands."],
+    "identifier": {
+        "@type": "PropertyValue",
+        "@id": "332e13ec-ba09-4457-add5-f8e3ca8b6c54",
+        "value": "332e13ec-ba09-4457-add5-f8e3ca8b6c54"
+    },
+    "url": "https://researchdata.edu.au/camris-seagrass-dataset/1727685"
+}
