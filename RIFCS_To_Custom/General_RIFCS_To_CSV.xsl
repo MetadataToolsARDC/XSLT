@@ -57,6 +57,7 @@
         <xsl:text>name</xsl:text><xsl:value-of select="$columnSeparator"/>
         <xsl:text>description_full</xsl:text><xsl:value-of select="$columnSeparator"/>
         <xsl:text>description_brief</xsl:text><xsl:value-of select="$columnSeparator"/>
+        <xsl:text>electronic_email</xsl:text><xsl:value-of select="$columnSeparator"/>
         <xsl:text>electronic_url</xsl:text><xsl:value-of select="$columnSeparator"/>
         <xsl:text>doi</xsl:text><xsl:value-of select="$columnSeparator"/>
         
@@ -149,6 +150,12 @@
         <!--	column: description brief	(optional) -->
         <xsl:text>&quot;</xsl:text>
         <xsl:value-of select="(collection|service|party|activity)/description[@type='brief']"/>
+        <xsl:text>&quot;</xsl:text>
+        <xsl:value-of select="$columnSeparator"/>
+        
+        <!--	column: electronic email (optional) -->
+        <xsl:text>&quot;</xsl:text>
+        <xsl:value-of select="(collection|service|party|activity)/location/address/electronic[lower-case(@type) = 'email']/value"/>
         <xsl:text>&quot;</xsl:text>
         <xsl:value-of select="$columnSeparator"/>
         
