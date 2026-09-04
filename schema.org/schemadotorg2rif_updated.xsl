@@ -200,6 +200,13 @@
                         
                         <xsl:apply-templates select="producer[count(member) = 0] | funder[count(member) = 0] | funding/funder[count(member) = 0] | contributor[count(member) = 0] | provider[count(member) = 0] | citation | creator[count(member) = 0]" mode="relatedInfo"/>
                         
+                        <xsl:for-each-group select="member/member[(lower-case(type) = 'person') or (lower-case(type) = 'organization')]" 
+                            group-by="id"
+                            composite="yes">
+                            <xsl:apply-templates select="." mode="members_grouped_by_ID_relatedInfo"/>
+                        </xsl:for-each-group>
+                        
+                        <!--xsl:apply-templates select="member/member[(lower-case(type) = 'person') or (lower-case(type) = 'organization')]" mode="relatedInfo"/-->
                         <!--xsl:apply-templates select="member/member[(lower-case(type) = 'person') or (lower-case(type) = 'organization')]" mode="relatedInfo"/-->
                         <xsl:apply-templates select="funder/member[(lower-case(type) = 'person') or (lower-case(type) = 'organization')]" mode="relatedInfo"/>
                         <xsl:apply-templates select="producer/member[(lower-case(type) = 'person') or (lower-case(type) = 'organization')]" mode="relatedInfo"/>
@@ -1102,6 +1109,48 @@
                 
                 
                 <xsl:apply-templates select="description" mode="notes"/>
+                
+            </xsl:element>
+        </xsl:if>
+    </xsl:template>
+    
+    <!-- Person or Organization -->
+    <xsl:template match="member" mode="members_grouped_by_ID_relatedInfo">
+        <xsl:variable name="identifier" as="xs:string" select="current-grouping-key()"/>
+        
+        <!-- don't create relatedInfo if we can't add an identifier  -->
+        <xsl:if test="string-length($identifier) > 0">
+            <xsl:element name="relatedInfo">
+                <xsl:attribute name="type">
+                    <xsl:text>party</xsl:text>
+                </xsl:attribute>
+                <xsl:for-each select="current-group()">
+                    <xsl:element name="relation">
+                        <xsl:attribute name="type">
+                            <xsl:choose>
+                                <xsl:when test="count(..[string-length(roleName) > 0]) > 0">
+                                    <xsl:value-of select="..[string-length(roleName) > 0][1]/roleName"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:text>hasAssociationWith</xsl:text>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                            
+                        </xsl:attribute>
+                    </xsl:element>
+                </xsl:for-each>
+                
+                <xsl:apply-templates select=".[type[contains(., 'Organization')]]/..//id" mode="organisationRelationshipMapping"/>
+                <xsl:apply-templates select=".[type[contains(., 'Person')]]/../id" mode="personRelationshipMapping"/>
+                
+                <xsl:element name="identifier">
+                    <xsl:attribute name="type">
+                        <xsl:value-of select="'url'"/>
+                    </xsl:attribute>
+                    <xsl:value-of select="$identifier"/>
+                </xsl:element>
+                
+                <xsl:apply-templates select="name" mode="title"/>
                 
             </xsl:element>
         </xsl:if>
