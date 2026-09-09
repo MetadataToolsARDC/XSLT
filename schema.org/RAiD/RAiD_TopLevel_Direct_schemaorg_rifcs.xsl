@@ -12,6 +12,7 @@
     <xsl:param name="groupAcronym" select="'ARDC'"/> 
     <xsl:param name="prefixKeyWithGroup" select="false()"/>
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
+    <xsl:param name="map_url" select="false()"/>
 
     
     <xsl:template match="/">

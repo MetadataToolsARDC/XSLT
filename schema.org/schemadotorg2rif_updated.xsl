@@ -12,6 +12,7 @@
     <xsl:param name="group" select="'ARDC Sitemap Crawler - 27 October 2022'"/>
     <xsl:param name="groupAcronym" select="''"/>
     <xsl:param name="prefixKeyWithGroup" select="true()"/>
+    <xsl:param name="map_url" select="true()"/>
     
     <xsl:import href="CustomFunctions.xsl"/>
     
@@ -1303,11 +1304,18 @@
          <xsl:param name="match" as="xs:boolean" select="true()"/> <!-- set to "false()" if you want to _not_ match on type -->
          
          <xsl:message select="concat('All identifiers for ', name(.))"/>
-         <xsl:apply-templates select="identifier[count(*[name() = 'propertyID']) = 0] | id | url | value | sameAs" mode="identifier">
+         <xsl:apply-templates select="identifier[count(*[name() = 'propertyID']) = 0] | id | value | sameAs" mode="identifier">
              <xsl:with-param name="priorityType" select="$priorityType"/> 
              <xsl:with-param name="match" select="$match"/> 
          </xsl:apply-templates>
          
+         <xsl:if test="$map_url = true()">
+             <xsl:apply-templates select="url" mode="identifier">
+                 <xsl:with-param name="priorityType" select="$priorityType"/> 
+                 <xsl:with-param name="match" select="$match"/> 
+             </xsl:apply-templates>
+         </xsl:if>
+             
          <xsl:apply-templates select="identifier[count(*[name() = 'propertyID']) > 0]" mode="propertyID_identifier">
              <xsl:with-param name="priorityType" select="$priorityType"/>
              <xsl:with-param name="match" select="$match"/> 
