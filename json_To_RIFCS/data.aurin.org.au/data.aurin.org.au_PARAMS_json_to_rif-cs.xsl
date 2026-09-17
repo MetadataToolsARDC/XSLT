@@ -18,7 +18,7 @@
     <xsl:param name="global_contributor" select="'data.aurin.org.au'"/>
     <xsl:param name="global_publisherName" select="'data.aurin.org.au'"/>
     <xsl:param name="global_publisherPlace" select="'Australia'"/>
-    <xsl:param name="global_includeDownloadLinks" select="true()"/>
+    <xsl:param name="global_includeDownloadLinks" select="false()"/>
     
     <xsl:template match="/">
         <!-- include all records except those with scopecode 'Document'-->
@@ -26,28 +26,18 @@
             <xsl:attribute name="xsi:schemaLocation">
                 <xsl:text>http://ands.org.au/standards/rif-cs/registryObjects https://researchdata.edu.au/documentation/rifcs/schema/registryObjects.xsd</xsl:text>
             </xsl:attribute>
-            <xsl:for-each select="//*[contains(local-name(), 'result')]">
-               <xsl:apply-templates select=".[contains(license_title, 'Creative Commons Attribution 2.5 Australia (CC BY 2.5 AU)')]" mode="all"/>
-                <xsl:apply-templates select=".[contains(license_title, 'Creative Commons Attribution 3.0 Australia (CC BY 3.0 AU)')]" mode="all"/>
-                <xsl:apply-templates select=".[contains(license_title, 'Creative Commons Attribution 4.0 International (CC BY 4.0)')]" mode="all"/>
-                <xsl:apply-templates select=".[contains(license_title, 'Creative Commons Attribution-NonCommercial 2.0 Australia (CC BY-NC 2.0 AU)')]" mode="all"/>
-                <xsl:apply-templates select=".[contains(license_title, 'Creative Commons Attribution-NonCommercial 2.0 Australia (CC BY-NC 2.0 AU)')]" mode="all"/>
-                <xsl:apply-templates select=".[contains(license_title, 'Creative Commons Attribution-NonCommercial 3.0 Australia (CC BY-NC 3.0 AU)')]" mode="all"/>
-                <xsl:apply-templates select=".[contains(license_title, 'Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)')]" mode="all"/>
-                <xsl:apply-templates select=".[contains(license_title, 'Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Australia (CC BY-NC-ND 3.0 AU)')]" mode="all"/>
-                <xsl:apply-templates select=".[contains(license_title, 'Creative Commons Attribution-NonCommercial-ShareAlike 2.5 Australia (CC BY-NC-SA 2.5 AU)')]" mode="all"/>
-                <xsl:apply-templates select=".[contains(license_title, 'Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Australia (CC BY-NC-SA 3.0 AU)')]" mode="all"/>
-                <xsl:apply-templates select=".[contains(license_title, 'Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)')]" mode="all"/>
-            </xsl:for-each>
+            <xsl:apply-templates select="//result/results" mode="all"/>
         </registryObjects>
     </xsl:template>
     
-    <xsl:template match="*[contains(local-name(), 'result')]"  mode="extras">
+    <xsl:template match="results"  mode="extras">
         <xsl:message select="'Template extras override in top-level custom xslt'"/>
         <xsl:for-each select="extras">
-            <xsl:apply-templates select=".[contains(key, 'spatial')]" mode="spatial"/>
-            <xsl:apply-templates select=".[contains(key, 'Coordinate Ref. System')]" mode="CRS"/>
-            <xsl:apply-templates select=".[contains(key, 'Copyright Notice')]" mode="copyright"/>
+            <xsl:message select="concat('Found extra: ', key)"/>
+            <xsl:apply-templates select=".[contains(lower-case(key), 'spatial')]" mode="spatial"/>
+            <xsl:apply-templates select=".[contains(lower-case(key), 'coordinate ref. system')]" mode="CRS"/>
+            <xsl:apply-templates select=".[contains(lower-case(key), 'copyright notice')]" mode="copyright"/>
+            <xsl:apply-templates select=".[contains(lower-case(key), 'access level')]" mode="access_rights"/>
         </xsl:for-each>
     </xsl:template>
     
@@ -74,6 +64,32 @@
                     <xsl:value-of select="."/>
                 </rightsStatement>
             </rights>
+        </xsl:for-each>
+    </xsl:template>
+    
+    <xsl:template match="extras" mode="access_rights">
+        <xsl:for-each select="value">
+            <xsl:choose>
+                <xsl:when test="contains(lower-case(.), 'open')">
+                    <rights>
+                        <accessRights>
+                            <xsl:attribute name="type">
+                                <xsl:text>open</xsl:text>
+                            </xsl:attribute>
+                        </accessRights>
+                    </rights>
+                </xsl:when>
+                <xsl:when test="contains(lower-case(.), 'restricted')">
+                    <rights>
+                        <accessRights>
+                            <xsl:attribute name="type">
+                                <xsl:text>restricted</xsl:text>
+                            </xsl:attribute>
+                        </accessRights>
+                    </rights>
+                </xsl:when>
+            </xsl:choose>
+            
         </xsl:for-each>
     </xsl:template>
         
