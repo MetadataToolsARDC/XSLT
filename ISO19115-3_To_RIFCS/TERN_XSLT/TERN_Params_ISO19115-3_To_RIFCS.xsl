@@ -14,6 +14,7 @@
     <xsl:param name="global_path" select="'/geonetwork/srv/api/records/'"/>
     <xsl:param name="global_group" select="'Terrestrial Ecosystem Research Network'"/>
     <xsl:param name="global_includeServiceAccessLinks" select="true()"/>
+    <xsl:param name="global_includeContactAddress" select="true()"/>
     
     <xsl:import href="ISO19115-3_To_RIFCS.xsl"/>
     

@@ -54,6 +54,7 @@
     <xsl:param name="global_group" select="''"/>
     <xsl:param name="global_spatialProjection" select="''"/>
     <xsl:param name="global_includeServiceAccessLinks" select="false()"/>
+    <xsl:param name="global_includeContactAddress" select="false()"/>
     <!--xsl:variable name="codelists" select="document('codelists_ISO19115-1.xml')"/-->
     
     <!-- =========================================== -->
@@ -189,7 +190,7 @@
                         </xsl:if>
                 </xsl:if>
                 
-                <xsl:for-each select=".//mrd:MD_DigitalTransferOptions/mrd:onLine/cit:CI_OnlineResource">
+                <xsl:for-each select=".//mrd:MD_DigitalTransferOptions/mrd:onLine/cit:CI_OnlineResource[string-length(cit:linkage) > 0]">
                     <!-- Test for service (then call relatedService but only if current registry object is a collection); otherwise, handle as non service for all objects -->
                     <xsl:choose>
                         <xsl:when test="$global_includeServiceAccessLinks and ($registryObjectTypeSubType_sequence[1] = 'collection') and 
@@ -205,6 +206,10 @@
                             contains(lower-case(cit:linkage), 'geoserver/wfs'))">
                             <xsl:if test="$global_debug"><xsl:message select="concat('cit:protocol for service', cit:protocol)"></xsl:message></xsl:if>
                             <xsl:apply-templates select="." mode="registryObject_relatedInfo_service"/>
+                        </xsl:when>
+                        <xsl:when test="contains(lower-case(cit:protocol), 'download') or contains(lower-case(cit:function/cit_CI_OnlineFunctionCode/@codeListValue), 'download')">
+                            <xsl:if test="$global_debug"><xsl:message select="concat('cit:protocol for non-service', cit:protocol)"></xsl:message></xsl:if>
+                            <xsl:apply-templates select="." mode="registryObject_location_direct_download"/>
                         </xsl:when>
                         <xsl:when test="not(contains(lower-case(cit:protocol), 'metadata-URL'))">
                             <xsl:if test="$global_debug"><xsl:message select="concat('cit:protocol for non-service', cit:protocol)"></xsl:message></xsl:if>
@@ -239,6 +244,11 @@
                                 mode="registryObject_location_uuid"/>
                     </xsl:otherwise>
                 </xsl:choose>
+                
+                <xsl:if test="$global_includeContactAddress = true()">
+                    <xsl:apply-templates select="mdb:contact/cit:CI_Responsibility/cit:party/cit:CI_Organisation" mode="organisation_address"/>
+                    <xsl:apply-templates select="mdb:contact/cit:CI_Responsibility/cit:party/cit:CI_Organisation/cit:contactInfo/cit:CI_Contact/cit:address/cit:CI_Address/cit:electronicMailAddress" mode="registryObject_location_email"/>
+                </xsl:if>
                 
                 <xsl:apply-templates 
                     select="mdb:identificationInfo/mri:MD_DataIdentification/mri:status/mcc:MD_ProgressCode[string-length(.) > 0]"
@@ -1302,6 +1312,21 @@
         
     </xsl:template>
     
+    <xsl:template match="cit:CI_OnlineResource" mode="registryObject_location_direct_download">
+        <location>
+            <address>
+                <electronic type="url" target="directDownload">
+                    <value>
+                        <xsl:value-of select="normalize-space(cit:linkage)"/>
+                    </value>
+                    <title>
+                        <xsl:value-of select="normalize-space(cit:name)"/>
+                    </title>
+                </electronic>
+            </address>
+        </location>
+    </xsl:template>
+    
     <xsl:template match="cit:CI_OnlineResource" mode="registryObject_relatedInfo_nonService">  
         
         <relatedInfo>
@@ -1835,7 +1860,7 @@
                         </xsl:when>
                         <xsl:otherwise>
                             <!--  no individual position name, so use this address for this organisation -->
-                            <xsl:apply-templates select="cit:contactInfo/cit:CI_Contact/cit:address/cit:CI_Address[count(*) > 0]"/>
+                            <xsl:apply-templates select="." mode="organisation_address"/>
                             <!--xsl:apply-templates select="cit:contactInfo/cit:CI_Contact/cit:address/cit:CI_Address/cit:electronicMailAddress[string-length(.) > 0]"/-->
                             <!--xsl:apply-templates select="cit:contactInfo/cit:CI_Contact/cit:phone/cit:CI_Telephone[count(*) > 0]"/-->
                         </xsl:otherwise>
@@ -1913,8 +1938,18 @@
         </xsl:if>
     </xsl:template>
     
+    
+    <xsl:template match="cit:CI_Organisation" mode="organisation_address">
+         
+         <xsl:apply-templates select="cit:contactInfo/cit:CI_Contact/cit:address/cit:CI_Address">
+             <xsl:with-param name="recipientName" select="cit:name"/>
+         </xsl:apply-templates>
+    
+    </xsl:template>
                      
     <xsl:template match="cit:CI_Address">
+        <xsl:param name="recipientName" as="xs:string"/>
+        
         <xsl:if test="
             (exists(cit:deliveryPoint[string-length(.) > 0])) or
             (exists(cit:city[string-length(.) > 0])) or
@@ -1924,6 +1959,12 @@
             <location>
                 <address>
                     <physical type="streetAddress">
+                        
+                        <xsl:if test="string-length($recipientName) > 0">
+                            <addressPart type="addressLine">
+                                <xsl:value-of select="normalize-space($recipientName)"/>
+                            </addressPart>
+                        </xsl:if>
                        
                         <xsl:for-each select="cit:deliveryPoint">
                              <addressPart type="addressLine">

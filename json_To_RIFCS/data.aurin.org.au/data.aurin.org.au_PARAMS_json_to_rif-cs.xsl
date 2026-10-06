@@ -70,7 +70,7 @@
     <xsl:template match="extras" mode="access_rights">
         <xsl:for-each select="value">
             <xsl:choose>
-                <xsl:when test="contains(lower-case(.), 'open')">
+                <xsl:when test="lower-case(.) = 'open access'">
                     <rights>
                         <accessRights>
                             <xsl:attribute name="type">
@@ -79,7 +79,7 @@
                         </accessRights>
                     </rights>
                 </xsl:when>
-                <xsl:when test="contains(lower-case(.), 'restricted')">
+                <xsl:otherwise>
                     <rights>
                         <accessRights>
                             <xsl:attribute name="type">
@@ -87,7 +87,7 @@
                             </xsl:attribute>
                         </accessRights>
                     </rights>
-                </xsl:when>
+                </xsl:otherwise>
             </xsl:choose>
             
         </xsl:for-each>
