@@ -6,12 +6,12 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     exclude-result-prefixes="xs xsi xsl mdb">
     
-    <xsl:param name="global_debug" select="false()" as="xs:boolean"/>
+    <xsl:param name="global_debug" select="true()" as="xs:boolean"/>
     <xsl:param name="global_debugExceptions" select="true()" as="xs:boolean"/>
     <xsl:param name="global_originatingSource" select="'TERN'"/>
     <xsl:param name="global_acronym" select="'TERN'"/>
     <xsl:param name="global_baseURI" select="'geonetwork.tern.org.au'"/>
-    <xsl:param name="global_path" select="'/geonetwork/srv/api/records/'"/>
+    <xsl:param name="global_path" select="'/geonetwork/srv/eng/catalog.search#/metadata/'"/>
     <xsl:param name="global_group" select="'Terrestrial Ecosystem Research Network'"/>
     <xsl:param name="global_includeServiceAccessLinks" select="true()"/>
     <xsl:param name="global_includeContactAddress" select="true()"/>
