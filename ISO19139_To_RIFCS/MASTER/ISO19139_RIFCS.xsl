@@ -735,7 +735,7 @@
                 (string-length(normalize-space(gmd:southBoundLatitude/gco:Decimal)) > 0) and
                 (string-length(normalize-space(gmd:westBoundLongitude/gco:Decimal)) > 0) and
                 (string-length(normalize-space(gmd:eastBoundLongitude/gco:Decimal)) > 0)">
-                 <xsl:variable name="spatialString">
+                 <xsl:variable name="spatialStringText">
                      <xsl:value-of
                          select="normalize-space(concat('northlimit=',gmd:northBoundLatitude/gco:Decimal,'; southlimit=',gmd:southBoundLatitude/gco:Decimal,'; westlimit=',gmd:westBoundLongitude/gco:Decimal,'; eastLimit=',gmd:eastBoundLongitude/gco:Decimal))"/>
                      
@@ -754,21 +754,60 @@
                      </xsl:choose>
                  </xsl:variable>
                  <coverage>
-                     <spatial>
-                         <xsl:attribute name="type">
-                             <xsl:text>iso19139dcmiBox</xsl:text>
-                         </xsl:attribute>
-                         <xsl:value-of select="$spatialString"/>
-                     </spatial>
-                     <spatial>
+                    <spatial>
                          <xsl:attribute name="type">
                              <xsl:text>text</xsl:text>
                          </xsl:attribute>
-                         <xsl:value-of select="$spatialString"/>
+                         <xsl:value-of select="$spatialStringText"/>
                      </spatial>
                  </coverage>
+            
+                <xsl:variable name="spatialStringTweakPolygon">
+                    <xsl:value-of
+                        select="normalize-space(concat('northlimit=',localFunc:tweakCoord(gmd:northBoundLatitude/gco:Decimal),'; southlimit=',localFunc:tweakCoord(gmd:southBoundLatitude/gco:Decimal),'; westlimit=',localFunc:tweakCoord(gmd:westBoundLongitude/gco:Decimal),'; eastLimit=',localFunc:tweakCoord(gmd:eastBoundLongitude/gco:Decimal)))"/>
+                    
+                    <xsl:if
+                        test="
+                        (string-length(normalize-space(gmd:EX_VerticalExtent/gmd:maximumValue/gco:Real)) > 0) and
+                        (string-length(normalize-space(gmd:EX_VerticalExtent/gmd:minimumValue/gco:Real)) > 0)">
+                        <xsl:value-of
+                            select="normalize-space(concat('; uplimit=',gmd:EX_VerticalExtent/gmd:maximumValue/gco:Real,'; downlimit=',gmd:EX_VerticalExtent/gmd:minimumValue/gco:Real))"
+                        />
+                    </xsl:if>
+                    <xsl:choose>
+                        <xsl:when test="string-length(normalize-space($crsCode)) > 0">
+                            <xsl:value-of select="concat('; projection=', $crsCode)"/>
+                        </xsl:when>
+                    </xsl:choose>
+                </xsl:variable>
+                <coverage>
+                    <spatial>
+                        <xsl:attribute name="type">
+                            <xsl:text>iso19139dcmiBox</xsl:text>
+                        </xsl:attribute>
+                        <xsl:value-of select="$spatialStringTweakPolygon"/>
+                    </spatial>
+                </coverage>
         </xsl:if>
     </xsl:template>
+    
+    <xsl:function name="localFunc:tweakCoord">
+        <xsl:param name="in"/>
+        <xsl:choose>
+            <xsl:when test="number($in) = 180">
+                <xsl:text>179.99</xsl:text>
+            </xsl:when>
+            <xsl:when test="number($in) = -180">
+                <xsl:text>-179.99</xsl:text>
+            </xsl:when>
+            <xsl:when test="number($in) = 90">
+                <xsl:text>89.99</xsl:text>
+            </xsl:when>
+            <xsl:when test="number($in) = -90">
+                <xsl:text>-89.99</xsl:text>
+            </xsl:when>
+        </xsl:choose>
+    </xsl:function>
 
 
     <!-- RegistryObject - Coverage Spatial Element -->
